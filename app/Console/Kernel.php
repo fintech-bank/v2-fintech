@@ -16,6 +16,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        // Administration
+        $schedule->command('system:admin deleteLog')
+            ->twiceMonthly(1, 16, '00:00')
+            ->description("Suppression des logs bancaire")
+            ->emailOutputTo(config('mail.from.address'));
     }
 
     /**

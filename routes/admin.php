@@ -15,4 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.dashboard');
+
+    Route::prefix('erp')->group(function () {
+
+    });
+
+    Route::prefix('configuration')->group(function () {
+
+    });
+
+    Route::prefix('cms')->group(function () {
+
+    });
+
+    Route::prefix('system')->group(function () {
+        Route::prefix('log-banque')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\System\LogBanqueController::class, 'index'])->name('admin.system.log.index');
+        });
+    });
 });

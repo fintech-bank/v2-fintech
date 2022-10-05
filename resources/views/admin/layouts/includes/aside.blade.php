@@ -188,7 +188,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.system.log.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-bug fa-2x"></i>
 						</span>

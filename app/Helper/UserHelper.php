@@ -10,13 +10,14 @@ class UserHelper
 {
     public static function getGroupNamed($user)
     {
-        switch ($group) {
-            case 'admin': return 'Administrateur';
-                break;
-            case 'agent': return 'Agent';
-                break;
-            default: return 'Client';
-                break;
+        if($user->admin == 1) {
+            return 'Administrateur';
+        } elseif ($user->agent == 1) {
+            return 'Agent';
+        } elseif ($user->customer == 1) {
+            return 'Client';
+        } else {
+            return 'Distributeur';
         }
     }
 
