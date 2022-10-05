@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $reference
  * @property-read \App\Models\Customer\CustomerTransaction|null $transaction
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerCheckDeposit whereReference($value)
+ * @property int|null $customer_transaction_id
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerCheckDeposit whereCustomerTransactionId($value)
  */
 class CustomerCheckDeposit extends Model
 {

@@ -6,9 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "appoly/mail-web": "^4.0",
         "arcanedev/log-viewer": "^9.0",
         "authy/php": "^4.0@RC",
+        "barryvdh/laravel-dompdf": "^2.0",
         "barryvdh/laravel-ide-helper": "^2.12",
+        "creativeorange/gravatar": "^1.0",
+        "do-inc/laravel-persona-kyc": "^0.10.22",
         "fruitcake/laravel-cors": "^3.0",
         "globalcitizen/php-iban": "^4.1",
         "guzzlehttp/guzzle": "^7.2",
@@ -16,22 +22,34 @@
         "jenssegers/agent": "^2.6",
         "kylekatarnls/vicopo": "^1.3",
         "laravel-notification-channels/fcm": "~2.0",
+        "laravel-notification-channels/pushbullet": "^1.4",
         "laravel-notification-channels/pusher-push-notifications": "^4.0",
+        "laravel/fortify": "^1.13",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
+        "mad-web/laravel-initializer": "^3.4",
+        "mmockelyn/api-response": "dev-master",
         "mmockelyn/iban-generator": "^1.0",
         "mmockelyn/laravel-insee": "dev-master",
-        "pusher/pusher-php-server": "^7.0",
+        "mmockelyn/pushover": "dev-master",
+        "pavel-mironchik/laravel-backup-panel": "^2.2",
+        "pusher/pusher-php-server": "^7.2",
         "rplansky/credit-card": "dev-master",
+        "rtippin/messenger": "^1.21",
+        "rtippin/messenger-ui": "^2.6",
         "skagarwal/google-places-api": "^2.0",
+        "spatie/laravel-backup": "^8.1",
         "stripe/stripe-php": "^9.6",
         "torann/geoip": "^3.0",
         "twilio/sdk": "^6.42"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
+        "laravel-lang/attributes": "^2.0",
+        "laravel-lang/lang": "^12.0",
+        "laravel-lang/publisher": "^14.3",
         "laravel/homestead": "^13.2",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
@@ -50,7 +68,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

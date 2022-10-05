@@ -63,6 +63,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereWalletPaymentId($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerPret
+ * @property-read mixed $status_explanation
+ * @property-read mixed $status_label
  */
 class CustomerPret extends Model
 {

@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Paris',
 
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'fr_FR',
 
     /*
     |--------------------------------------------------------------------------
@@ -187,6 +187,7 @@ return [
          */
         Jenssegers\Agent\AgentServiceProvider::class,
         \Torann\GeoIP\GeoIPServiceProvider::class,
+        Obiefy\API\ApiResponseServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -195,7 +196,10 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\LaravelBackupPanelServiceProvider::class,
+        App\Providers\MessengerServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\CanvasServiceProvider::class,
 
     ],
 
@@ -213,6 +217,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
+        'API' => Obiefy\API\Facades\API::class,
+        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
     ])->toArray(),
 
 ];

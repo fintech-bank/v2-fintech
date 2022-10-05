@@ -5,7 +5,6 @@ namespace App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use NotificationChannels\WebPush\HasPushSubscriptions;
 
 /**
  * App\Models\Customer\CustomerInfo
@@ -63,13 +62,12 @@ use NotificationChannels\WebPush\HasPushSubscriptions;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo whereType($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerInfo
- * @property-read \Illuminate\Database\Eloquent\Collection|\NotificationChannels\WebPush\PushSubscription[] $pushSubscriptions
  * @property-read int|null $push_subscriptions_count
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo verified()
  */
 class CustomerInfo extends Model
 {
-    use HasFactory, Notifiable, HasPushSubscriptions;
+    use HasFactory, Notifiable;
 
     protected $guarded = [];
 
@@ -87,28 +85,5 @@ class CustomerInfo extends Model
         return $query->update([
             'isVerified' => 1
         ]);
-    }
-
-    public function routeNotificationForTwilio()
-    {
-        return $this->mobile;
-    }
-
-    /**
-     * Route notifications for the authy channel.
-     *
-     * @return string
-     */
-    public function routeNotificationForAuthy()
-    {
-        return $this->authy_id;
-    }
-
-    /**
-     * Returns the user's phone number.
-     */
-    public function routeNotificationForOvhSms()
-    {
-        return $this->mobile; // Ex: +33611223344
     }
 }

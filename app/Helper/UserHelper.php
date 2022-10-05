@@ -4,18 +4,20 @@ namespace App\Helper;
 
 use App\Models\User;
 use Creativeorange\Gravatar\Facades\Gravatar;
+use Illuminate\Support\Facades\Hash;
 
 class UserHelper
 {
-    public static function getGroupNamed($group)
+    public static function getGroupNamed($user)
     {
-        switch ($group) {
-            case 'admin': return 'Administrateur';
-                break;
-            case 'agent': return 'Agent';
-                break;
-            default: return 'Client';
-                break;
+        if($user->admin == 1) {
+            return 'Administrateur';
+        } elseif ($user->agent == 1) {
+            return 'Agent';
+        } elseif ($user->customer == 1) {
+            return 'Client';
+        } else {
+            return 'Distributeur';
         }
     }
 
@@ -50,5 +52,17 @@ class UserHelper
         $replacement = '$1*$3***$4';
 
         return preg_replace($pattern, $replacement, $email);
+    }
+
+    public static function createUser(array $data)
+    {
+        $password = \Str::random(10);
+        return User::create([
+            'name' => $data['firstname'].' '.$data['lastname'],
+            'email' => $data['email'],
+            'password' => Hash::make($password),
+            'identifiant' => self::generateID(),
+            'agency_id' => 1
+        ]);
     }
 }

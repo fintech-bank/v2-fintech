@@ -1,0 +1,131 @@
+body {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #010035;
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.underline {
+    text-decoration: underline;
+    line-height: 5px;
+}
+
+.l-1-5 {
+    line-height: 1.5em;
+}
+
+.l-2 {
+    line-height: 2em;
+}
+
+.l-2-5 {
+    line-height: 2.5em;
+}
+
+.l-3 {
+    line-height: 3em;
+}
+
+.l-5 {
+    line-height: 5em;
+}
+
+.start-10 { left: 10% !important }
+.start-15 { left: 15% !important }
+.start-20 { left: 20% !important }
+
+.header {
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 112.5rem;
+    background-color: #fff;
+    z-index: 99;
+}
+
+[class*=header_] {
+    margin: 0;
+    padding: 0;
+    font-family: sourcesanspro,Arial,Helvetica,sans-serif;
+    font-size: 1rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.header_nav--above {
+    position: relative;
+    padding: 0 1rem 0 0.5rem;
+    height: 1.5rem;
+    background-color: #010035;
+    z-index: 10;
+}
+
+.header_nav--above .header_nav__list {
+    height: 100%;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.header_nav--above .header_nav__item {
+    display: inline-block;
+    padding: 0 1.5rem;
+    vertical-align: middle;
+}
+
+.header_nav--above .header_nav__item .is-active .header_nav__link {
+    color: #fff;
+    background-color: hsla(0,0%,100%,.2);
+}
+
+.header_nav__item .is-active > .header_nav__link {
+    font-weight: 600;
+    color: #e9041e;
+}
+
+.header_nav--above .header_nav__item .header_nav__link {
+    padding: 0.285rem 1rem;
+}
+
+.header_nav--above .header_nav__link {
+    font-size: .75rem;
+    color: #ccccd6;
+}
+
+.header_nav--above .header_nav__item:first-child {
+    padding-left: 0;
+}
+
+.header_nav {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
+.header_nav__item {
+    padding: 0;
+}
+
+.header_nav__link {
+    display: block;
+    font-size: .875rem;
+    color: #333;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+

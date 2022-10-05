@@ -2,6 +2,12 @@
 
 namespace App\Helper;
 
+use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerInfo;
+use App\Models\User;
+use App\Services\BankFintech;
+use Illuminate\Support\Carbon;
+
 class CustomerHelper
 {
     public static function getTypeCustomerArray()
@@ -181,4 +187,26 @@ class CustomerHelper
     {
         return $customer->beneficiaires()->count();
     }
+
+    /**
+     * @param $revenue
+     * @param $pro_category
+     * @return float|int
+     */
+    public static function calcOverdraft($revenue, $pro_category): float
+    {
+        $taux = 9.98;
+        $result = $revenue / 3;
+
+        if($result >= 300) {
+            if($pro_category != 'Sans Emploie') {
+                return $result > 1000 ? 1000 : ceil($result / 100) * 100;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
 }

@@ -42,12 +42,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Agency wherePostal($value)
  * @mixin \Eloquent
  * @mixin IdeHelperAgency
+ * @property-read mixed $online_label
  */
 class Agency extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+    protected $appends = ['online_label'];
 
     public $timestamps = false;
 
@@ -82,5 +84,24 @@ class Agency extends Model
     public function setCountryAttribute($value)
     {
         $this->attributes['country'] = \Str::upper(\Str::limit($value, 2, ''));
+    }
+
+    public function setCodeBanqueAttribute($value)
+    {
+        $this->attributes['code_banque'] = mt_rand(10000,99999);
+    }
+
+    public function setCodeAgenceAttribute($value)
+    {
+        $this->attributes['code_agence'] = mt_rand(10000,99999);
+    }
+
+    public function getOnlineLabelAttribute()
+    {
+        if ($this->online == 1) {
+            return "<span class='badge badge-success'>En Ligne</span>";
+        } else {
+            return "<span class='badge badge-info'>Agence Physique</span>";
+        }
     }
 }
