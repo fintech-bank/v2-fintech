@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Core;
 
+use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Agency;
 use Illuminate\Http\Request;
@@ -34,6 +35,41 @@ class AgencyController extends Controller
         ];
 
         return response()->json($arr);
+    }
+
+    public function update(Request $request, $agency_id)
+    {
+        $agency = Agency::find($agency_id);
+
+        try {
+            $agency->update($request->except('_token'));
+            LogHelper::insertLogSystem('success', "Edition de l'agence ".$agency->name);
+
+            return response()->json($agency);
+        }catch (\Exception $exception) {
+            LogHelper::notify('critical', $exception);
+            return response()->json($exception, 500);
+        }
+    }
+
+    public function delete($agency_id)
+    {
+        $agency = Agency::find($agency_id);
+        if($agency->users->count() == 0) {
+            try {
+                $agency->delete();
+
+                LogHelper::insertLogSystem('success', "Suppression de l'agence ".$agency->name);
+
+                return response()->json($agency);
+            }catch (\Exception $exception) {
+                LogHelper::notify('critical', $exception);
+                return response()->json($exception, 500);
+            }
+        } else {
+            LogHelper::insertLogSystem('warning', "L'agence $agency->name ne peut être supprimer car elle comporte des clients.");
+            return response()->json($agency, 408);
+        }
     }
 
     private function formatCommunication(Agency $agence)

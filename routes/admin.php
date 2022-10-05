@@ -20,6 +20,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::prefix('agence')->group(function () {
             Route::get("/", [\App\Http\Controllers\Admin\Erp\AgenceController::class, 'index'])->name('admin.erp.agence.index');
             Route::post("/", [\App\Http\Controllers\Admin\Erp\AgenceController::class, 'store'])->name('admin.erp.agence.store');
+            Route::get("{agency_id}/edit", [\App\Http\Controllers\Admin\Erp\AgenceController::class, 'edit'])->name('admin.erp.agence.edit');
         });
     });
 

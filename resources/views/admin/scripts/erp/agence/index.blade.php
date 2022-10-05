@@ -3,13 +3,16 @@
         tableAgence: document.querySelector("#kt_agence_table")
     }
     let elements = {
-        btnViewAgence: document.querySelectorAll('.viewAgency')
+        btnViewAgence: document.querySelectorAll('.viewAgency'),
+        btnEditAgence: document.querySelectorAll('.editAgency'),
+        btnDeleteAgence: document.querySelectorAll('.deleteAgency'),
     }
     let modals = {
         modalAgence: document.querySelector("#viewAgence")
     }
     let forms = {
-        formAddAgency: $("#formAddAgency")
+        formAddAgency: $("#formAddAgency"),
+        formEditAgency: $("#formEditAgency"),
     }
 
     let dataTableAgence = $(tables.tableAgence).DataTable()
@@ -46,9 +49,11 @@
         return $(span);
     }
 
-    document.querySelector('[data-kt-agence-filter="search"]').addEventListener("keyup", (function (t) {
-        dataTableAgence.search(t.target.value).draw()
-    }))
+    if(document.querySelector('[data-kt-agence-filter="search"]')) {
+        document.querySelector('[data-kt-agence-filter="search"]').addEventListener("keyup", (function (t) {
+            dataTableAgence.search(t.target.value).draw()
+        }))
+    }
     if (elements.btnViewAgence) {
         elements.btnViewAgence.forEach(btn => {
             btn.addEventListener('click', e => {
@@ -74,6 +79,38 @@
             })
         })
     }
+    if (elements.btnEditAgence) {
+        elements.btnEditAgence.forEach(btn => {
+            btn.addEventListener('click', e => {
+                window.location.href='/admin/erp/agence/'+e.target.dataset.agency+'/edit'
+            })
+        })
+    }
+    if (elements.btnDeleteAgence) {
+        elements.btnDeleteAgence.forEach(btn => {
+            btn.addEventListener('click', e => {
+                $.ajax({
+                    url: '/api/core/agency/'+e.target.dataset.agency,
+                    method: 'DELETE',
+                    success: data => {
+                        toastr.success(`L'agence ${data.name} à été supprimé avec succès`, `Edition d'une Agence`)
+
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1200)
+                    },
+                    statusCode: {
+                        408: data => {
+                            toastr.warning(`L'agence ${data.name} ne peut être supprimer car elle comporte des clients.`, `Edition d'une Agence`)
+                        },
+                        500: () => {
+                            toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+                        }
+                    }
+                })
+            })
+        })
+    }
 
     forms.formAddAgency.on('submit', e => {
         e.preventDefault()
@@ -94,6 +131,33 @@
 
                 setTimeout(() => {
                     window.location.reload()
+                }, 1200)
+            },
+            error: () => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+            }
+        })
+    })
+    forms.formEditAgency.on('submit', e => {
+        e.preventDefault()
+        let form = forms.formEditAgency
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.success(`L'agence ${data.name} à été édité avec succès`, `Edition d'une Agence`)
+
+                setTimeout(() => {
+                    window.location.href='{{ route('admin.erp.agence.index') }}'
                 }, 1200)
             },
             error: () => {

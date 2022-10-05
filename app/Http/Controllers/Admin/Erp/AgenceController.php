@@ -40,4 +40,11 @@ class AgenceController extends Controller
             return response()->json(null, 500);
         }
     }
+
+    public function edit($agency_id)
+    {
+        $agency = Agency::find($agency_id);
+
+        return view('admin.erp.agence.edit', compact('agency'));
+    }
 }
