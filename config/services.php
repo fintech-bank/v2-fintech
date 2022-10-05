@@ -35,4 +35,17 @@ return [
         'token' => env('PUSHOVER_APP_TOKEN'),
     ],
 
+    'yousign' => [
+        'api_key' => env('YOUSIGN_API_KEY')
+    ],
+
+    'pushbullet' => [
+        'access_token' => env('PUSHBULLET_ACCESS_TOKEN')
+    ],
+
+    'stripe' => [
+        'api_key' => env('STRIPE_API_KEY'),
+        'api_secret' => env('STRIPE_API_SECRET'),
+    ],
+
 ];

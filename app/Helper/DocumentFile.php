@@ -5,7 +5,10 @@ namespace App\Helper;
 use App\Models\Core\DocumentCategory;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
+use App\Services\Yousign\Document;
+use App\Services\Yousign\Signature;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\File;
 
 class DocumentFile
@@ -115,6 +118,24 @@ class DocumentFile
         }
 
         return null;
+    }
+
+    public function processSignableDocument($customer_id, $file, $page, $x, $y)
+    {
+        $documentApi = new Document();
+        $signatureApi = new Signature();
+        $customer = Customer::find($customer_id);
+
+        try {
+            $upload = $documentApi->uploadDocument($file, 'signable_document');
+            $sign = $signatureApi->initiate($upload['id'], $customer, ['page' => $page, 'x' => $x, 'y' => $y]);
+            $activate = $signatureApi->activate($sign->id);
+        } catch (GuzzleException $e) {
+            dd($e->getMessage());
+        }
+
+
+        return $activate;
     }
 
     public static function createDoc(Customer $customer, $name, $nameless = null, $category = 3, $reference = null, $signable = false, $signed_bank = false, $signed_client = false, $pdf = false, $pdfData = [])

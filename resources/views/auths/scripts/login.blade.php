@@ -21,11 +21,28 @@
             url: url,
             method: 'POST',
             data: data,
-            success: data => {
-                elements.formLoginElement.querySelector(".btn-bank").removeAttribute('data-kt-indicator')
-            },
-            error: err => {
-                elements.formLoginElement.querySelector(".btn-bank").removeAttribute('data-kt-indicator')
+            dataType: 'json',
+            statusCode: {
+                204: () => {
+                    elements.formLoginElement.querySelector(".btn-bank").removeAttribute('data-kt-indicator')
+                    window.location.href='/redirect'
+                },
+                302: () => {
+                    elements.formLoginElement.querySelector(".btn-bank").removeAttribute('data-kt-indicator')
+                    window.location.href='/redirect'
+                },
+                500: err => {
+                    elements.formLoginElement.querySelector(".btn-bank").removeAttribute('data-kt-indicator')
+                    toastr.error("Une erreur à eu lieu !", "Erreur serveur")
+                },
+                422: err => {
+                    elements.formLoginElement.querySelector(".btn-bank").removeAttribute('data-kt-indicator')
+                    const errors = err.responseJSON.errors
+
+                    Object.keys(errors).forEach(key => {
+                        toastr.error(errors[key], "Champs: "+key)
+                    })
+                },
             }
         })
     })

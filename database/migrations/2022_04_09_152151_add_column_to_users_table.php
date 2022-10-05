@@ -20,6 +20,8 @@ return new class extends Migration
             $table->boolean('reseller')->default(false);
             $table->string('identifiant')->nullable();
             $table->timestamp('last_seen')->nullable();
+            $table->string('pushbullet_device_id')->nullable();
+            $table->string('avatar')->nullable();
         });
     }
 
@@ -37,6 +39,8 @@ return new class extends Migration
             $table->removeColumn('reseller');
             $table->removeColumn('identifiant');
             $table->removeColumn('last_seen');
+            $table->removeColumn('pushbullet_device_id');
+            $table->removeColumn('avatar');
         });
     }
 };

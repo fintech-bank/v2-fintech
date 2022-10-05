@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use App\Helper\CustomerHelper;
 use App\Models\Core\Agency;
 use App\Models\Core\Package;
 use App\Models\Core\TicketConversation;
 use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use NotificationChannels\WebPush\HasPushSubscriptions;
+use RTippin\Messenger\Contracts\MessengerProvider;
+use RTippin\Messenger\Traits\Messageable;
 
 /**
  * App\Models\User
@@ -78,6 +81,8 @@ use NotificationChannels\WebPush\HasPushSubscriptions;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereReseller($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereStripeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTrialEndsAt($value)
+ * @property string|null $pushbullet_device_id
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePushbulletDeviceId($value)
  */
 class User extends Authenticatable
 {
@@ -109,6 +114,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function routeNotificationForPushbullet()
+    {
+        return new \NotificationChannels\Pushbullet\Targets\Device($this->pushbullet_device_id);
+    }
+
     public function customers()
     {
         return $this->hasOne(Customer::class);
@@ -132,5 +142,10 @@ class User extends Authenticatable
     public function revendeur()
     {
         return $this->hasOne(Reseller::class);
+    }
+
+    public function log()
+    {
+        return $this->hasMany();
     }
 }

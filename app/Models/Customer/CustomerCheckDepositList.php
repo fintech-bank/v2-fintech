@@ -31,6 +31,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @mixin \Eloquent
  * @property int $verified
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerCheckDepositList whereVerified($value)
+ * @property-read mixed $date_deposit_format
+ * @property-read mixed $is_verified_label
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerCheckDepositList isUnverified()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerCheckDepositList isVerified()
  */
 class CustomerCheckDepositList extends Model
 {

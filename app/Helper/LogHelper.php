@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\Models\Core\LogBanque;
 use App\Models\User;
 use App\Notifications\Admin\LogNotification;
 
@@ -39,5 +40,10 @@ class LogHelper
     public static function error(string $exception, $t = null)
     {
         \Log::error($exception, $t);
+    }
+
+    public static function insertLogSystem($type, $message,User $user = null)
+    {
+        LogBanque::create(['type' => $type, 'message' => $message, 'user_id' => $user->id]);
     }
 }

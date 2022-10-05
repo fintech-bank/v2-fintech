@@ -1,3 +1,7 @@
+.btn-circle {
+    border-radius: 35px !important;
+}
+
 .bg-bank {
     background-color: #0c27a3 !important;
 }
