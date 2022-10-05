@@ -64,7 +64,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.erp.bank.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-building-columns fa-2x"></i>
 						</span>

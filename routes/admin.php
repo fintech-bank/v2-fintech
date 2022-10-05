@@ -22,14 +22,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
             Route::post("/", [\App\Http\Controllers\Admin\Erp\AgenceController::class, 'store'])->name('admin.erp.agence.store');
             Route::get("{agency_id}/edit", [\App\Http\Controllers\Admin\Erp\AgenceController::class, 'edit'])->name('admin.erp.agence.edit');
         });
-    });
 
-    Route::prefix('configuration')->group(function () {
-
-    });
-
-    Route::prefix('cms')->group(function () {
-
+        Route::prefix('bank')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Bank\BankController::class, 'index'])->name('admin.erp.bank.index');
+        });
     });
 
     Route::prefix('system')->group(function () {
