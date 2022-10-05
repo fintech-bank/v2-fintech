@@ -22,6 +22,6 @@
     }))
 
     document.querySelector('[data-kt-log-bank-filter="search"]').addEventListener("keyup", (function(t) {
-        e.search(t.target.value).draw()
+        datatableLog.search(t.target.value).draw()
     }))
 </script>

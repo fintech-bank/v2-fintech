@@ -54,7 +54,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.erp.agence.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-house-laptop fa-2x"></i>
 						</span>
