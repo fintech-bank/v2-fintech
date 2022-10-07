@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/ship/suivi', [\App\Http\Controllers\HomeController::class, 'shipping'])->name('shipping');
 
 Route::prefix('particulier')->group(function () {
     Route::get('/', [\App\Http\Controllers\Front\Particulier\HomeController::class, 'index'])->name('part.home');

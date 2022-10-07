@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Helper\CustomerHelper;
 use App\Models\Core\Agency;
+use App\Models\Core\LogBanque;
 use App\Models\Core\Package;
 use App\Models\Core\TicketConversation;
 use App\Models\Customer\Customer;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 use RTippin\Messenger\Contracts\MessengerProvider;
 use RTippin\Messenger\Traits\Messageable;
 
@@ -83,10 +85,14 @@ use RTippin\Messenger\Traits\Messageable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTrialEndsAt($value)
  * @property string|null $pushbullet_device_id
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePushbulletDeviceId($value)
+ * @property string|null $avatar
+ * @method static Builder|User whereAvatar($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|LogBanque[] $log
+ * @property-read int|null $log_count
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasPushSubscriptions;
 
     /**
      * The attributes that are mass assignable.
@@ -146,6 +152,6 @@ class User extends Authenticatable
 
     public function log()
     {
-        return $this->hasMany();
+        return $this->hasMany(LogBanque::class);
     }
 }

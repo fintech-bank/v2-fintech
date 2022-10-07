@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->string('phone')->nullable();
             $table->string('img')->nullable();
             $table->boolean('open')->default(true);
             $table->string('place_id')->nullable();

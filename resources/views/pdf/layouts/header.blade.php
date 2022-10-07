@@ -1,7 +1,7 @@
 @if($type == 'simple')
     <header>
         <div class="logo">
-            <img src="{{ config('app.url') }}/storage/logo/logo_long_color_540.png" alt="{{ $agence->name }}">
+            <img src="{{ config('app.url') }}/storage/logo/logo_long_color_540.png" />
         </div>
         <span class="letter-code">{{ Str::upper(Str::random(4)) }} {{ Str::upper(Str::random(4)) }} {{ Str::upper(Str::random(4)) }} CPT{{ isset($customer->wallets()->first()->number_account)?$customer->wallets()->first()->number_account:Str::upper(Str::random(10)) }} {{ Str::upper(Str::random(5)) }} {{ Str::upper(Str::random(4)) }}</span>
         <div style="margin: 20px; text-align: left" class="fs-1 text-start">
