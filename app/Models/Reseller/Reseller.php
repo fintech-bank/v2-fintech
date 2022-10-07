@@ -2,6 +2,8 @@
 
 namespace App\Models\Reseller;
 
+use App\Helper\LogHelper;
+use App\Models\Core\Shipping;
 use App\Models\Customer\CustomerWithdrawDab;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $status
  * @property-read mixed $status_label
  * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereStatus($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|Shipping[] $shippings
+ * @property-read int|null $shippings_count
  */
 class Reseller extends Model
 {
@@ -47,6 +51,11 @@ class Reseller extends Model
         return $this->belongsTo(CustomerWithdrawDab::class, 'customer_withdraw_dabs_id');
     }
 
+    public function shippings()
+    {
+        return $this->belongsToMany(Shipping::class);
+    }
+
     public function getStatusLabelAttribute()
     {
         switch ($this->status) {
@@ -55,5 +64,22 @@ class Reseller extends Model
             case 'active': return '<span class="badge badge-success">Distributeur Actif</span>';
             case 'cancel': return '<span class="badge badge-danger">Dossier Clotûrer</span>';
         }
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($reseller) {
+            LogHelper::insertLogSystem('success', "Un distributeur à été ajouté: ".$reseller->dab->name);
+        });
+
+        static::updated(function ($reseller) {
+            LogHelper::insertLogSystem('success', "Un distributeur à été edité: ".$reseller->dab->name);
+        });
+
+        static::deleted(function () {
+            LogHelper::insertLogSystem('success', "Un distributeur à été supprimé");
+        });
     }
 }

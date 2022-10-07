@@ -45,6 +45,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $withdraws_count
  * @property string|null $phone
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWithdrawDab wherePhone($value)
+ * @property-read mixed $type_string
  */
 class CustomerWithdrawDab extends Model
 {

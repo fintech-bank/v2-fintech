@@ -8,9 +8,12 @@ use App\Helper\LogHelper;
 use App\Helper\UserHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Agency;
+use App\Models\Core\Shipping;
+use App\Models\Core\ShippingTrack;
 use App\Models\Customer\CustomerWithdrawDab;
 use App\Models\Reseller\Reseller;
 use App\Models\User;
+use App\Notifications\Reseller\ShipTpeNotification;
 use App\Notifications\Reseller\WelcomeNotification;
 use App\Services\GeoPortailLook;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -29,6 +32,8 @@ class ResellerController extends Controller
     {
         $agence = Agency::find(1);
         $password = \Str::random(8);
+
+        // Création du distributeur
         try {
             $user = User::create([
                 'name' => $request->get('name'),
@@ -64,6 +69,28 @@ class ResellerController extends Controller
             return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
         }
 
+        // Création de l'envoie du TPE
+        try {
+            $shipTPE = Shipping::create([
+                'number_ship' => \Str::random(18),
+                'product' => "TPE Distributeur",
+                'date_delivery_estimated' => now()->addDays(5),
+            ]);
+
+            ShippingTrack::create([
+                'state' => 'ordered',
+                'shipping_id' => $shipTPE->id
+            ]);
+
+            $reseller->shippings()->attach($shipTPE->id);
+
+            $reseller->user->notify(new ShipTpeNotification($reseller, $shipTPE));
+        }catch (\Exception $exception) {
+            LogHelper::notify('critical', $exception);
+            return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
+        }
+
+        // Enregistrement du logo
         try {
             $request->file('logo')->storeAs('public/reseller/'.$user->id.'/', $user->id.'.'.$request->file('logo')->getClientOriginalExtension());
         }catch (\Exception $exception) {
@@ -96,6 +123,7 @@ class ResellerController extends Controller
             LogHelper::notify('critical', $exception);
             return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
         }
+
 
         $reseller->user->notify(new WelcomeNotification($reseller, $password));
 

@@ -21,6 +21,11 @@ class Kernel extends ConsoleKernel
             ->twiceMonthly(1, 16, '00:00')
             ->description("Suppression des logs bancaire")
             ->emailOutputTo(config('mail.from.address'));
+
+        $schedule->command('system:admin shipTpe')
+            ->dailyAt('08:00')
+            ->description("Mise à jour des trackers d'envoie")
+            ->emailOutputTo(config('mail.from.address'));
     }
 
     /**

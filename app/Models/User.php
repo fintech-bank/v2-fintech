@@ -87,6 +87,8 @@ use RTippin\Messenger\Traits\Messageable;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePushbulletDeviceId($value)
  * @property string|null $avatar
  * @method static Builder|User whereAvatar($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|LogBanque[] $log
+ * @property-read int|null $log_count
  */
 class User extends Authenticatable
 {

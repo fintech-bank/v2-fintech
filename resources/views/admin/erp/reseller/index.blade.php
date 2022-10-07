@@ -84,7 +84,11 @@
                             <a href="mailto:{{ $reseller->user->email }}"><i class="fa-solid fa-envelope me-2"></i>: {{ $reseller->user->email }}</a><br>
                         </td>
                         <td>{!! $reseller->status_label !!}</td>
-                        <td></td>
+                        <td>
+                            <a href="{{ route('admin.erp.reseller.show', $reseller->id) }}" class="btn btn-circle btn-icon btn-light" data-bs-toggle="tooltip" title="Fiche"><i class="fa-solid fa-eye"></i> </a>
+                            <a href="{{ route('admin.erp.reseller.edit', $reseller->id) }}" class="btn btn-circle btn-icon btn-primary" data-bs-toggle="tooltip" title="Editer"><i class="fa-solid fa-edit"></i> </a>
+                            <button class="btn btn-circle btn-icon btn-danger btnDeleteReseller" data-reseller="{{ $reseller->id }}" data-bs-toggle="tooltip" title="Supprimer"><i class="fa-solid fa-trash"></i> </button>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -110,23 +114,23 @@
                             type="text"
                             name="name"
                             label="Raison social"
-                            required="true" />
+                            required="true"
+                            value="{{ old('name') }}"/>
 
                         <div class="mb-10">
                             <label for="" class="form-label required">Type</label>
                             <select class="form-control form-control-solid" name="type">
-                                <option value="bank">Banque & Distributeur</option>
-                                <option value="supermarket">Grande Distribution</option>
-                                <option value="tabac">Tabac / Presse</option>
+                                <option value="bank" {{ old('type') == 'bank' ? 'selected' : '' }}>Banque & Distributeur</option>
+                                <option value="supermarket" {{ old('type') == 'supermarket' ? 'selected' : '' }}>Grande Distribution</option>
+                                <option value="tabac" {{ old('type') == 'tabac' ? 'selected' : '' }}>Tabac / Presse</option>
                             </select>
                         </div>
 
                         <div class="mb-10">
                             <label for="" class="form-label required">Etat</label>
                             <select class="form-control form-control-solid" name="open">
-                                <option value="1">Ouvert</option>
-                                <option value="0">Fermé</option>
-
+                                <option value="1" {{ old('open') == 1 ? 'selected' : '' }}>Ouvert</option>
+                                <option value="0" {{ old('open') == 0 ? 'selected' : '' }}>Fermé</option>
                             </select>
                         </div>
 
@@ -137,7 +141,8 @@
                             type="text"
                             name="address"
                             label="Adresse"
-                            required="true" />
+                            required="true"
+                            value="{{ old('address') }}"/>
 
                         <div class="row">
                             <div class="col-4">
@@ -145,14 +150,16 @@
                                     type="text"
                                     name="postal"
                                     label="Code Postal"
-                                    required="true" />
+                                    required="true"
+                                    value="{{ old('postal') }}"/>
                             </div>
                             <div class="col-8">
                                 <x-form.input
                                     type="text"
                                     name="city"
                                     label="Ville"
-                                    required="true" />
+                                    required="true"
+                                    value="{{ old('city') }}"/>
                             </div>
                         </div>
 
@@ -164,14 +171,16 @@
                             label="Téléphone"
                             symbol="<i class='fa-solid fa-phone'></i>"
                             placement="left"
-                            required="true" />
+                            required="true"
+                            value="{{ old('phone') }}"/>
 
                         <x-form.input-group
                             name="email"
                             label="Adresse Mail"
                             symbol="<i class='fa-solid fa-envelope'></i>"
                             placement="left"
-                            required="true" />
+                            required="true"
+                            value="{{ old('email') }}"/>
 
                         <x-form.input-file
                             name="logo"
@@ -188,7 +197,8 @@
                                     label="Limite de retrait"
                                     symbol="<i class='fa-solid fa-arrow-up'></i>"
                                     placement="left"
-                                    required="true" />
+                                    required="true"
+                                    value="{{ old('limit_outgoing') }}"/>
                             </div>
                             <div class="col-6">
                                 <x-form.input-group
@@ -196,7 +206,8 @@
                                     label="Limite de dépot"
                                     symbol="<i class='fa-solid fa-arrow-down'></i>"
                                     placement="left"
-                                    required="true" />
+                                    required="true"
+                                    value="{{ old('limit_incoming') }}"/>
                             </div>
                         </div>
 
