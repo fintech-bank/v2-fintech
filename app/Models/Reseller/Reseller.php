@@ -26,12 +26,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereLimitIncoming($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereLimitOutgoing($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereUserId($value)
+ * @property string $status
+ * @property-read mixed $status_label
+ * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereStatus($value)
  */
 class Reseller extends Model
 {
     use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
+    protected $appends = ['status_label'];
 
     public function user()
     {
@@ -41,5 +45,15 @@ class Reseller extends Model
     public function dab()
     {
         return $this->belongsTo(CustomerWithdrawDab::class, 'customer_withdraw_dabs_id');
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        switch ($this->status) {
+            case 'open': return '<span class="badge badge-primary">Dossier ouvert</span>';
+            case 'pending': return '<span class="badge badge-warning">Vérification en cours</span>';
+            case 'active': return '<span class="badge badge-success">Distributeur Actif</span>';
+            case 'cancel': return '<span class="badge badge-danger">Dossier Clotûrer</span>';
+        }
     }
 }

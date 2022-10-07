@@ -6,6 +6,7 @@
     <title>{{ config('app.name') }}</title>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -54,6 +55,7 @@
                     <div id="kt_app_content" class="app-content flex-column-fluid">
                         <!--begin::Content container-->
                         <div id="kt_app_content_container" class="app-container container-fluid">
+                            @include("admin.layouts.includes.alert")
                             @yield("content")
                         </div>
                         <!--end::Content container-->
@@ -92,6 +94,10 @@
 <script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used by this page)-->
+@auth
+    <script src="{{ asset('js/enable-push.js') }}">
+@endauth
+<script src="/js/app.js"></script>
 @yield("script")
 <!--end::Custom Javascript-->
 <!--end::Javascript-->

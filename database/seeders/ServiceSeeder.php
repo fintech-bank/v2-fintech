@@ -42,6 +42,10 @@ class ServiceSeeder extends Seeder
             'name' => 'Carte Virtuel supplémentaire',
             'price' => 10.00,
             'type_prlv' => 'ponctual',
+        ])->create([
+            'name' => 'TPE Distributeur',
+            'price' => 0.00,
+            'type_prlv' => 'mensual',
         ]);
     }
 }

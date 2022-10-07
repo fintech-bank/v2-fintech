@@ -26,6 +26,9 @@ Route::prefix('core')->group(function () {
         Route::delete('{agency_id}', [\App\Http\Controllers\Api\Core\AgencyController::class, 'delete']);
     });
 
+    Route::prefix('reseller')->group(function () {
+
+    });
 
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);
 });

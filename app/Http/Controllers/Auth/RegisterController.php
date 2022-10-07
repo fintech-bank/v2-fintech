@@ -19,10 +19,10 @@ use App\Models\Customer\CustomerSituation;
 use App\Models\Customer\CustomerSituationCharge;
 use App\Models\Customer\CustomerSituationIncome;
 use App\Models\Customer\CustomerWallet;
-use App\Notifications\Customer\SendCreditCardCodeNotification;
 use App\Notifications\Customer\SendPasswordNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Notifications\Customer\WelcomeNotification;
+use App\Notifications\Testing\Customer\SendCreditCardCodeNotification;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Services\BankFintech;
@@ -311,6 +311,7 @@ class RegisterController extends Controller
 
         $iden = $pushbullet->createDevice($request['firstname'], $request['lastname']);
 
+
         $user->update([
             'pushbullet_device_id' => $iden->iden
         ]);
@@ -430,7 +431,9 @@ class RegisterController extends Controller
 
         // Envoie du mot de passe provisoire par SMS avec identifiant
         try {
-            $user->notify(new SendPasswordNotification($customer, $password));
+            config('app.env') != 'local' ?
+                $user->notify(new SendPasswordNotification($customer, $password)) :
+                $user->notify(new \App\Notifications\Testing\Customer\SendPasswordNotification($customer, $password));
         } catch (\Exception $exception) {
             LogHelper::notify('critical', $exception);
         }
@@ -591,7 +594,9 @@ class RegisterController extends Controller
         ]);
 
         // Envoie du code de la carte bleu par sms
-        $wallet->customer->user->notify(new SendCreditCardCodeNotification($card_code, $card));
+        config('app.env') != 'local' ?
+            $wallet->customer->user->notify(new \App\Notifications\Customer\SendCreditCardCodeNotification($card_code, $card)) :
+            $wallet->customer->user->notify(new SendCreditCardCodeNotification($card_code, $card));
 
         return $card;
     }

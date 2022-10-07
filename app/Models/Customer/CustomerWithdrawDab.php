@@ -43,13 +43,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $status_format
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerWithdraw[] $withdraws
  * @property-read int|null $withdraws_count
+ * @property string|null $phone
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWithdrawDab wherePhone($value)
  */
 class CustomerWithdrawDab extends Model
 {
     use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
-    protected $appends = ['address_format', 'status_format'];
+    protected $appends = ['address_format', 'status_format', 'type_string'];
 
     public function withdraws()
     {
@@ -69,5 +71,15 @@ class CustomerWithdrawDab extends Model
     public function getStatusFormatAttribute()
     {
         return $this->attributes['status_formated'] = CustomerWithdrawHelper::getStatusDab($this->open, true);
+    }
+
+    public function getTypeStringAttribute()
+    {
+        switch ($this->type) {
+            case 'tabac': return "Tabac / Press";
+            case 'supermarket': return "Grande distributeur";
+            case 'bank': return "Banque & Distributeur";
+            default: return "Inconnue";
+        }
     }
 }

@@ -26,6 +26,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::prefix('bank')->group(function () {
             Route::get("/", [\App\Http\Controllers\Admin\Bank\BankController::class, 'index'])->name('admin.erp.bank.index');
         });
+
+        Route::prefix('reseller')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Erp\ResellerController::class, 'index'])->name('admin.erp.reseller.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Erp\ResellerController::class, 'store'])->name('admin.erp.reseller.store');
+        });
     });
 
     Route::prefix('system')->group(function () {

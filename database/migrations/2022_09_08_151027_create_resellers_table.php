@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('resellers', function (Blueprint $table) {
             $table->id();
+            $table->enum('status', ['open', 'pending', 'active', 'cancel'])->default('open');
             $table->float('limit_outgoing');
             $table->float('limit_incoming');
 

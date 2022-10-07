@@ -74,7 +74,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.erp.reseller.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-shop fa-2x"></i>
 						</span>

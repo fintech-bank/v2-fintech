@@ -188,6 +188,8 @@ return [
         Jenssegers\Agent\AgentServiceProvider::class,
         \Torann\GeoIP\GeoIPServiceProvider::class,
         Obiefy\API\ApiResponseServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -219,6 +221,8 @@ return [
         'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
         'API' => Obiefy\API\Facades\API::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
     ])->toArray(),
 
 ];
