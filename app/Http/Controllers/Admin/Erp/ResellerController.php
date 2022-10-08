@@ -129,4 +129,13 @@ class ResellerController extends Controller
 
         return redirect()->back()->with('success', 'Le distributeur '.$reseller->dab->name.' à été créer avec succès');
     }
+
+    public function show($reseller_id)
+    {
+        $reseller = Reseller::find($reseller_id);
+
+        return view('admin.erp.reseller.show', [
+            'reseller' => $reseller
+        ]);
+    }
 }

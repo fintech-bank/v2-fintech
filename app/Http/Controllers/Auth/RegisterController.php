@@ -29,6 +29,8 @@ use App\Services\BankFintech;
 use App\Services\Ovh;
 use App\Services\PushbulletApi;
 use App\Services\Stripe;
+use App\Services\Twilio\Messaging\Whatsapp;
+use App\Services\Twilio\Verify;
 use App\Services\Yousign\Signature;
 use App\Services\YousignApi;
 use Authy\AuthyApi;
@@ -151,9 +153,13 @@ class RegisterController extends Controller
 
     public function signate(Request $request)
     {
-        $user = $this->createUser($request->session()->get('personnel'));
-        session()->put('user', $user);
-        Messenger::getProviderMessenger($user);
+        if(session()->has('error')) {
+            $user = User::find(session('user')['id']);
+        } else {
+            $user = $this->createUser($request->session()->get('personnel'));
+            session()->put('user', $user);
+            Messenger::getProviderMessenger($user);
+        }
 
         $documents = $user->customers->documents()->where('document_category_id', 3)->where('signable', 1)->where('signed_by_client', 0)->get();
 
@@ -174,7 +180,7 @@ class RegisterController extends Controller
             'customer' => $user->customers,
             'documents' => $documents,
             'signables' => $signables
-        ]);
+        ])->with(['info' => "N'oubliez pas de vérifier le numéro de téléphone <strong>".$user->customers->info->mobile."</strong>: <a href='".route('auth.verify.view')."' target='_blank'>Vérifier mon téléphone</a>"]);
 
     }
 
@@ -210,10 +216,11 @@ class RegisterController extends Controller
 
     public function identity(Request $request)
     {
-        $customer = Customer::find($request->get('amp;customer_id'));
+            $customer = Customer::find($request->get('customer_id'));
 
         if($request->has('action') && $request->get('action') == 'verifyIdentity') {
             if($request->get('amp;status') == 'success') {
+                $customer = Customer::find($request->get('amp;customer_id'));
                 $customer->info->verified();
                 return view('auths.register.perso_identity', [
                     'customer' => $customer,
@@ -300,6 +307,7 @@ class RegisterController extends Controller
     {
         $password = \Str::random(10);
         $pushbullet = new PushbulletApi();
+        $twilio = new Verify();
 
         $user = User::create([
             'name' => $request['firstname'] . ' ' . $request['lastname'],
@@ -315,6 +323,8 @@ class RegisterController extends Controller
         $user->update([
             'pushbullet_device_id' => $iden->iden
         ]);
+        session()->put('phone', $request['mobile']);
+        $twilio->create($request['mobile']);
 
         $this->createCustomer(session(), $user, $password);
 
@@ -434,6 +444,8 @@ class RegisterController extends Controller
             config('app.env') != 'local' ?
                 $user->notify(new SendPasswordNotification($customer, $password)) :
                 $user->notify(new \App\Notifications\Testing\Customer\SendPasswordNotification($customer, $password));
+
+            config('app.env') == 'local' ? Whatsapp::sendNotification($customer->info->mobile, "Votre mot de passe provisoire est: $password") : null;
         } catch (\Exception $exception) {
             LogHelper::notify('critical', $exception);
         }
@@ -597,6 +609,8 @@ class RegisterController extends Controller
         config('app.env') != 'local' ?
             $wallet->customer->user->notify(new \App\Notifications\Customer\SendCreditCardCodeNotification($card_code, $card)) :
             $wallet->customer->user->notify(new SendCreditCardCodeNotification($card_code, $card));
+
+        config('app.env') == 'local' ? Whatsapp::sendNotification($card->wallet->customer->info->mobile, "Le code de votre carte bleu N°$card->number est le $card_code") : null;
 
         return $card;
     }

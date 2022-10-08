@@ -48,4 +48,11 @@ return [
         'api_secret' => env('STRIPE_API_SECRET'),
     ],
 
+    'twilio' => [
+        'twilio_sid' => env("TWILIO_SID"),
+        'twilio_auth_token' => env("TWILIO_AUTH_TOKEN"),
+        'twilio_verify_sid' => env("TWILIO_VERIFY_SID"),
+        'twilio_whatsapp_from' => env('TWILIO_WHATSAPP_FROM')
+    ],
+
 ];

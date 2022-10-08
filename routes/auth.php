@@ -40,3 +40,8 @@ Route::prefix('register/pro')->group(function () {
     Route::get('/document', [\App\Http\Controllers\Auth\RegisterProController::class, 'document'])->name('auth.register.pro.document');
     Route::get('/terminate', [\App\Http\Controllers\Auth\RegisterProController::class, 'terminate'])->name('auth.register.pro.terminate');
 });
+
+Route::prefix('auth')->group(function () {
+    Route::get("/verify", [\App\Http\Controllers\Auth\TwilioController::class, 'verifyView'])->name('auth.verify.view');
+    Route::post("/verify", [\App\Http\Controllers\Auth\TwilioController::class, 'verify'])->name('auth.verify.check');
+});

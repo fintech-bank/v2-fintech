@@ -21,6 +21,7 @@
                 <li><strong>Identifiant:</strong> {{ $customer->user->identifiant }}</li>
                 <li><strong>Email:</strong> {{ $customer->user->email }}</li>
                 <li><strong>Code SecurPass temporaire:</strong> {{ base64_decode($customer->auth_code) }}</li>
+                <li><strong>Vérifier votre numéro de téléphone:</strong> <a href="{{ route('auth.verify.view') }}">Vérifier</a></li>
             </ul>
             <p>Si vous souhaitez changer de banque et faire de {{ config('app.name') }} votre banque principale, <strong>vous pouvez utiliser notre service Transbank</strong>
                 Ce service est accessible par l'intermédiaire de votre espace client <strong>Rubrique "Mon Profil > Transbank"</strong>.</p>
