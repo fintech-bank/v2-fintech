@@ -35,5 +35,11 @@ Route::prefix('core')->group(function () {
         Route::post("{reseller_id}/withdraw/{withdraw_id}/sendCode", [\App\Http\Controllers\Api\Core\ResellerController::class, 'sendCode']);
     });
 
+    Route::prefix('category')->group(function () {
+        Route::get("{category_id}", [\App\Http\Controllers\Api\Core\DocumentCategoryController::class, 'info']);
+        Route::put("{category_id}", [\App\Http\Controllers\Api\Core\DocumentCategoryController::class, 'update']);
+        Route::delete("{category_id}", [\App\Http\Controllers\Api\Core\DocumentCategoryController::class, 'delete']);
+    });
+
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);
 });

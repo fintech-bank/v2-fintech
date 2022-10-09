@@ -36,6 +36,13 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         });
     });
 
+    Route::prefix('configuration')->group(function () {
+        Route::prefix('category')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\CategoryController::class, 'index'])->name('admin.config.category.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\CategoryController::class, 'store'])->name('admin.config.category.store');
+        });
+    });
+
     Route::prefix('system')->group(function () {
         Route::prefix('log-banque')->group(function () {
             Route::get("/", [\App\Http\Controllers\Admin\System\LogBanqueController::class, 'index'])->name('admin.system.log.index');

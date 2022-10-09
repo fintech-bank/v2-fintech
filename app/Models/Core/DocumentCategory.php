@@ -2,6 +2,7 @@
 
 namespace App\Models\Core;
 
+use App\Helper\LogHelper;
 use App\Models\Customer\CustomerDocument;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,5 +33,22 @@ class DocumentCategory extends Model
     public function documents()
     {
         return $this->hasMany(CustomerDocument::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($category) {
+            LogHelper::insertLogSystem('success', "La catégorie de document à été ajouté: " . $category->name);
+        });
+
+        static::updated(function ($category) {
+            LogHelper::insertLogSystem('success', "La catégorie de document à été édité: " . $category->name);
+        });
+
+        static::deleted(function () {
+            LogHelper::insertLogSystem('success', "Une catégorie de document à été supprimé");
+        });
     }
 }
