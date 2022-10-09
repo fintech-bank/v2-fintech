@@ -27,6 +27,7 @@ class InvoiceProduct extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public $timestamps = false;
     protected $appends = ['amount_format'];
 
     public function invoice()

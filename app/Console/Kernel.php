@@ -26,6 +26,16 @@ class Kernel extends ConsoleKernel
             ->dailyAt('08:00')
             ->description("Mise à jour des trackers d'envoie")
             ->emailOutputTo(config('mail.from.address'));
+
+        $schedule->command('system:admin generateInvoiceReseller')
+            ->lastDayOfMonth()
+            ->description("Génération des factures des distributeurs")
+            ->emailOutputTo(config('mail.from.address'));
+
+        $schedule->command('system:admin notifyResellerInvoicePayment')
+            ->daily()
+            ->description("Paiement des factures de distributeur")
+            ->emailOutputTo(config('mail.from.address'));
     }
 
     /**

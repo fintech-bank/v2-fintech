@@ -60,6 +60,8 @@ class SystemSeedCommand extends Command
     {
         if ($this->option('base')) {
             $this->call('migrate:fresh', ['force']);
+            \Storage::disk('public')->deleteDirectory('gdd/');
+            \Storage::disk('public')->deleteDirectory('reseller/');
         }
 
         $this->info('Seeding: Liste des agences');

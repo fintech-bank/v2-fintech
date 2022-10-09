@@ -6,6 +6,7 @@ use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * App\Models\Core\Invoice
@@ -47,7 +48,7 @@ class Invoice extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $appends = ['amount_format', 'status_text', 'status_label'];
+    protected $appends = ['amount_format', 'status_text', 'status_label', 'due_at'];
 
     public function customer()
     {
@@ -110,5 +111,15 @@ class Invoice extends Model
     public function getStatusLabelAttribute()
     {
         return '<span class="badge badge-'.$this->getStatusColorAttribute().'">'.$this->getStatusIconAttribute().' '.$this->getStatusTextAttribute().'</span>';
+    }
+
+    public function getDueAtAttribute()
+    {
+        return $this->created_at->addDays(7)->startOfDay();
+    }
+
+    public static function generateReference()
+    {
+        return Str::upper(Str::random(8));
     }
 }

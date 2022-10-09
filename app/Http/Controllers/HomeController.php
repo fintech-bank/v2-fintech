@@ -78,8 +78,10 @@ class HomeController extends Controller
 
     public function test()
     {
-        $notification = new Whatsapp();
+        $reseller = Reseller::find(1);
 
-        dd($notification->sendNotification('+33749061225', 'Bonjour ceci est un message'));
+        $query = $reseller->dab->withdraws()->where('status', 'terminated')->whereBetween('updated_at', [now()->startOfMonth(), now()->endOfMonth()])->get();
+
+        dd($query);
     }
 }
