@@ -76,7 +76,10 @@ class Reseller extends Model
 
     public function calcRemainingOutgoing()
     {
-        $sum = $this->dab->withdraws()->sum('amount');
+        $sum = $this->dab->withdraws()
+            ->whereBetween('created_at', [now()->startOfDay(), now()->endOfDay()])
+            ->where('status', 'terminated')
+            ->sum('amount');
 
         return $this->limit_outgoing - $sum;
     }
@@ -84,12 +87,15 @@ class Reseller extends Model
     public function calcRemainingOutgoingPercent()
     {
         $sum = $this->calcRemainingOutgoing();
-        return $sum * 100 / $this->limit_outgoing;
+        return intval($sum * 100 / $this->limit_outgoing);
     }
 
     public function calcRemainingIncoming()
     {
-        $sum = $this->dab->moneys()->sum('amount');
+        $sum = $this->dab->moneys()
+            ->whereBetween('created_at', [now()->startOfDay(), now()->endOfDay()])
+            ->where('status', 'terminated')
+            ->sum('amount');
 
         return $this->limit_incoming - $sum;
     }
@@ -97,7 +103,7 @@ class Reseller extends Model
     public function calcRemainingIncomingPercent()
     {
         $sum = $this->calcRemainingIncoming();
-        return $sum * 100 / $this->limit_incoming;
+        return intval($sum * 100 / $this->limit_incoming);
     }
 
 

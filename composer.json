@@ -26,6 +26,7 @@
         "laravel-notification-channels/fcm": "~2.0",
         "laravel-notification-channels/pushbullet": "^1.4",
         "laravel-notification-channels/pusher-push-notifications": "^4.0",
+        "laravel-notification-channels/twilio": "^3.2",
         "laravel-notification-channels/webpush": "^7.0",
         "laravel/fortify": "^1.13",
         "laravel/framework": "^9.19",

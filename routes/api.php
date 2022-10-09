@@ -31,6 +31,8 @@ Route::prefix('core')->group(function () {
         Route::get("{reseller_id}", [\App\Http\Controllers\Api\Core\ResellerController::class, 'get']);
         Route::put("{reseller_id}", [\App\Http\Controllers\Api\Core\ResellerController::class, 'update']);
         Route::delete("{reseller_id}", [\App\Http\Controllers\Api\Core\ResellerController::class, 'delete']);
+
+        Route::post("{reseller_id}/withdraw/{withdraw_id}/sendCode", [\App\Http\Controllers\Api\Core\ResellerController::class, 'sendCode']);
     });
 
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);

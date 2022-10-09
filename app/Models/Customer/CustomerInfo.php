@@ -75,6 +75,11 @@ class CustomerInfo extends Model
 
     protected $dates = ['datebirth'];
 
+    public function routeNotificationForTwilio()
+    {
+        return $this->mobile;
+    }
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);

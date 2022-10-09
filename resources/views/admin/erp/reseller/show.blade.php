@@ -234,7 +234,7 @@
                                             <td>{!! $withdraw->labeled_status !!}</td>
                                             <td>
                                                 @if($withdraw->status == 'pending')
-                                                    <button class="btn btn-circle btn-sm btn-primary btn-icon btnSendCode" data-bs-toggle="tooltip" title="Renvoyer le code au client"><i class="fa-solid fa-key"></i> </button>
+                                                    <button class="btn btn-circle btn-sm btn-primary btn-icon btnSendCode" data-withdraw="{{ $withdraw->id }}" data-action="withdraw" data-bs-toggle="tooltip" title="Renvoyer le code au client"><i class="fa-solid fa-key"></i> </button>
                                                 @endif
                                             </td>
                                         </tr>
@@ -308,7 +308,7 @@
                                             <td>{!! $withdraw->labeled_status !!}</td>
                                             <td>
                                                 @if($withdraw->status == 'pending')
-                                                    <button class="btn btn-circle btn-sm btn-primary btn-icon btnSendCode" data-bs-toggle="tooltip" title="Renvoyer le code au client"><i class="fa-solid fa-key"></i> </button>
+                                                    <button class="btn btn-circle btn-sm btn-primary btn-icon btnSendCode" data-withdraw="{{ $withdraw->id }}" data-action="money" data-bs-toggle="tooltip" title="Renvoyer le code au client"><i class="fa-solid fa-key"></i> </button>
                                                 @endif
                                             </td>
                                         </tr>

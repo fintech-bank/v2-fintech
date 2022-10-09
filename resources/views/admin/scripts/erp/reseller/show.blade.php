@@ -13,6 +13,7 @@
         inputStatusIncoming: document.querySelector('[data-kt-incoming-filter="status"]'),
         inputSearchInvoice: document.querySelector('[data-kt-invoice-filter="search"]'),
         inputStatusInvoice: document.querySelector('[data-kt-invoice-filter="status"]'),
+        btnSendCode: document.querySelectorAll('.btnSendCode'),
     }
     let modals = {}
     let forms = {}
@@ -100,4 +101,24 @@
     $(elements.inputSearchInvoice).on('keyup', t => {
         datatableInvoice.search(t.target.value).draw()
     })
+
+    if(elements.btnSendCode) {
+        elements.btnSendCode.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+
+                $.ajax({
+                    url: `/api/core/reseller/{{ $reseller->id }}/withdraw/${e.target.dataset.withdraw}/sendCode`,
+                    method: 'POST',
+                    data: {"action": e.target.dataset.action},
+                    success: () => {
+                        toastr.success(`Le code à été renvoyé au client`, `Renvoie de code d'identification`)
+                    },
+                    error: () => {
+                        toastr.error(`Erreur lors de l'exécution de la requete, consulter les logs ou contacter un administrateur.`, `Erreur Système`)
+                    }
+                })
+            })
+        })
+    }
 </script>
