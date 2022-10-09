@@ -1,0 +1,320 @@
+body {
+    font-family: "Roboto Light", Arial, 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+}
+
+footer {
+    font-size: 8px;
+}
+
+.body {
+    background-color: #dfe0e0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius-radius: 5px;
+}
+
+.body.white {
+    background-color: #ffffff;
+}
+.page-break {
+    page-break-after: always;
+}
+header {
+    padding: 15px;
+    display: inline-block;
+
+    .date {
+        font-size: 10px;
+        position: absolute;
+        right: 10px;
+        top: 40px;
+    }
+
+    .address_customer {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 12px;
+        position: absolute;
+        right: 130px;
+        top: 90px;
+    }
+
+    .logo img {
+        width: 150px;
+        position: relative;
+    }
+
+    .banner-title {
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        background-color: #ff9d00;
+        color: white;
+        width: 750px;
+        position: absolute;
+        text-align: left;
+        left: 245px;
+        top: 0;
+        font-weight: bold;
+        padding: 10px
+    }
+
+    .banner-title-content {
+        font-size: 30px;
+    }
+
+    .letter-code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 10px;
+        position: absolute;
+        right: 10px;
+        top: 0
+    }
+}
+
+.alert {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ff9d00;
+    text-align: center;
+}
+
+.container {
+    padding: 15px;
+    display: inline-block;
+    border-radius: 5px;
+
+    img {
+        width: 150px;
+        position: relative;
+    }
+
+    .addressText {
+        width: 300px;
+        position: absolute;
+        text-align: left;
+        left: 185px;
+        top: 30px;
+        font-weight: bold;
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    .headingText {
+        position: absolute;
+        text-align: right;
+        right: 5px;
+        font-weight: bold;
+        font-size: 20px;
+        color: #ffffff;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-end {
+    text-align: right;
+}
+
+@for $i from 1 through 12 {
+    .fs-#{$i} {
+        font-size: 0.3rem*$i;
+    }
+}
+
+.util {
+    width: 70%;
+    border: 3px dashed #ff7b22;
+    border-radius: 20px;
+    margin: 0 45px;
+    padding: 10px;
+}
+
+.table-global {
+    width: 90%;
+    margin: 0 auto;
+    border: 3px solid #ff7b22;
+    border-radius: 20px;
+}
+
+.my-10 {
+    margin-top: 2.5rem !important;
+    margin-bottom: 2.5rem !important;
+}
+
+@for $i from 1 through 100 {
+    .mb-#{$i} {
+        margin-bottom: 1px*$i;
+    }
+}
+
+@for $i from 1 through 100 {
+    .mt-#{$i} {
+        margin-top: 1px*$i;
+    }
+}
+
+@for $i from 1 through 5 {
+    .p-#{$i} {
+        padding: 1px*$i;
+    }
+}
+
+@for $i from 1 through 100 {
+    .pt-#{$i} {
+        padding-top: 1px*$i;
+    }
+}
+
+@for $i from 1 through 100 {
+    .pb-#{$i} {
+        padding-bottom: 1px*$i;
+    }
+}
+
+:root {
+    --primary: #ff7b22;
+    --secondary: #1794d7;
+    --warning: #dec981;
+    --danger: #ff3041;
+    --success: #3cc700;
+    --info: #7230b8;
+    --bank: #002f87;
+
+    --primary-light: #fa955b;
+    --secondary-light: #56a9d5;
+    --warning-light: #dcd0a8;
+    --danger-light: #fd707c;
+    --success-light: #6bc743;
+    --info-light: #8252b6;
+    --bank-light: #294985;
+}
+
+.text-primary { color: var(--primary) !important; }
+.text-secondary { color: var(--secondary) !important; }
+.text-warning { color: var(--warning) !important; }
+.text-danger { color: var(--danger) !important; }
+.text-success { color: var(--success) !important; }
+.text-info { color: var(--info) !important; }
+.text-bank { color: var(--bank) !important; }
+
+span.text-primary { color: var(--primary) !important; }
+span.text-secondary { color: var(--secondary) !important; }
+span.text-warning { color: var(--warning) !important; }
+span.text-danger { color: var(--danger) !important; }
+span.text-success { color: var(--success) !important; }
+span.text-info { color: var(--info) !important; }
+span.text-bank { color: var(--bank) !important; }
+
+i.icon-primary { color: var(--primary) !important; }
+i.icon-secondary { color: var(--secondary) !important; }
+i.icon-warning { color: var(--warning) !important; }
+i.icon-danger { color: var(--danger) !important; }
+i.icon-success { color: var(--success) !important; }
+i.icon-info { color: var(--info) !important; }
+i.icon-bank { color: var(--bank) !important; }
+
+.bg-primary { color: var(--primary) !important; }
+.bg-secondary { color: var(--secondary) !important; }
+.bg-warning { color: var(--warning) !important; }
+.bg-danger { color: var(--danger) !important; }
+.bg-success { color: var(--success) !important; }
+.bg-info { color: var(--info) !important; }
+.bg-bank { color: var(--bank) !important; }
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.fw-bolder {
+    font-weight: bolder;
+}
+
+.fs-italic {
+    font-style: italic;
+}
+
+.fs-underline {
+    text-decoration: underline;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+.page-break {
+    page-break-after: always;
+}
+
+footer {
+    position: fixed;
+    bottom: -60px;
+    left: 0px;
+    right: 0px;
+    height: 50px;
+}
+
+.pagenum:before {
+    content: counter(page);
+}
+@for $i from 1 through 5 {
+    .border-#{$i} {
+        border-width: 1px*$i;
+    }
+}
+
+.form-check {
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 2.25rem;
+    margin-bottom: 0.125rem;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=checkbox] {
+    background-size: 60% 60%;
+}
+.form-check-input[type=checkbox] {
+    border-radius: 0.45em;
+}
+.form-check .form-check-input {
+    float: left;
+    margin-left: -2.25rem;
+}
+.form-check-input {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-top: -0.125rem;
+    vertical-align: top;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid #E4E6EF;
+    appearance: none;
+    print-color-adjust: exact;
+}
+.form-check-input {
+    background-color: var(--bank);
+    border: var(--bank-light);
+}
+.form-check-label {
+    color: var(--bank);
+}
+label {
+    display: inline-block;
+}
+
+.form-check-input:checked {
+    background-color: var(--bank);
+    border-color: var(--bank-light);
+}
+
+@for $i from 1 through 10 {
+    .w-#{$i} {
+        width: 10%*$i;
+    }
+}
+
+@import "base/separator";
+@import "base/border";

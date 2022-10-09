@@ -7,6 +7,7 @@ use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
+use App\Services\Twilio\Messaging\Whatsapp;
 use App\Services\YousignApi;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect()->route('part.home');
+        return redirect()->to('/particulier');
     }
 
     public function redirect()
@@ -77,25 +78,10 @@ class HomeController extends Controller
 
     public function test()
     {
-        $document = null;
-        $agence = Agency::find(1);
-        $reseller = Reseller::find(12);
+        $reseller = Reseller::find(1);
 
-        try {
-            $pdf = PDF::loadView('pdf.reseller.contrat', [
-                'agence' => $agence,
-                'title' => $document,
-                'reseller' => $reseller
-            ]);
-            $pdf->getDomPDF()->getOptions()
-                ->set('isHtml5ParserEnabled', true)
-                ->set('isRemoteEnabled', true)
-                ->set('enable-local-file-access', true)
-                ->set('viewport-size', "1280x1024");
+        $query = $reseller->dab->withdraws()->where('status', 'terminated')->whereBetween('updated_at', [now()->startOfMonth(), now()->endOfMonth()])->get();
 
-            $pdf->save(public_path('storage/reseller/'.$reseller->user->id.'/contrat.pdf'));
-        }catch (\Exception $exception) {
-            dd($exception);
-        }
+        dd($query);
     }
 }

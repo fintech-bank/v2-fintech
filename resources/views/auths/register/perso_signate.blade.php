@@ -190,6 +190,7 @@ License: For each use you must have a valid license purchased only from above li
                     <!--end::Stepper-->
                     <form action="{{ route('auth.register.personnal.document') }}" method="get" class="w-100 mx-auto">
                         @csrf
+                        @include('admin.layouts.includes.alert')
                         <p class="fw-bolder">Pour valider et signer électroniquement votre demande d'ouverture de compte individuel et votre
                         souscription à l'offre</p>
                         <ol>

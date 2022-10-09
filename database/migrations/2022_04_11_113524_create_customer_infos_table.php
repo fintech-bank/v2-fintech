@@ -31,9 +31,8 @@ return new class extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('phone')->nullable();
-            $table->string('mobile');
+            $table->string('mobile')->unique();
             $table->string('country_code')->nullable();
-            $table->string('authy_id')->nullable();
             $table->boolean('isVerified')->default(false);
 
             $table->foreignId('customer_id')

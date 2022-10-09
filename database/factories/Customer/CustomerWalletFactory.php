@@ -16,7 +16,6 @@ class CustomerWalletFactory extends Factory
      */
     public function definition()
     {
-        $status = ['pending', 'active', 'suspended', 'closed'];
         $dcs = [100, 200, 300, 400, 500, 800, 1000, 2000];
         $balance_actual = $this->faker->boolean(50) == true ? rand(0, 99999) : -rand(0, 99999);
         $balance_coming = $this->faker->boolean(50) == true ? rand(0, 9999) : -rand(0, 9999);

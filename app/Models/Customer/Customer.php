@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Models\Core\Agency;
+use App\Models\Core\Invoice;
 use App\Models\Core\Package;
 use App\Models\Document\DocumentTransmiss;
 use App\Models\User;
@@ -61,6 +62,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin IdeHelperCustomer
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMobility[] $mobilities
  * @property-read int|null $mobilities_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Invoice[] $invoices
+ * @property-read int|null $invoices_count
  */
 class Customer extends Model
 {
@@ -148,5 +151,10 @@ class Customer extends Model
     public function mobilities()
     {
         return $this->hasMany(CustomerMobility::class);
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
     }
 }

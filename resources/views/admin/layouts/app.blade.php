@@ -94,10 +94,10 @@
 <script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used by this page)-->
-@auth
-    <script src="{{ asset('js/enable-push.js') }}">
-@endauth
 <script src="/js/app.js"></script>
+@auth
+    <script src="{{ asset('js/enable-push.js') }}"></script>
+@endauth
 @yield("script")
 <!--end::Custom Javascript-->
 <!--end::Javascript-->

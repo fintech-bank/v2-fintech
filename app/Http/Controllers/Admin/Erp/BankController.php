@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Bank;
+namespace App\Http\Controllers\Admin\Erp\Bank;
 
 use App\Http\Controllers\Controller;
 use App\Models\Core\Bank;

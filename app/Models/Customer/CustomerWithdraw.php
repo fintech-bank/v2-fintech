@@ -42,12 +42,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read string|bool $decoded_code
  * @property-read mixed $labeled_status
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWithdraw whereCode($value)
+ * @property-read mixed $status_text
  */
 class CustomerWithdraw extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $appends = ['decoded_code', 'labeled_status', 'customer_name', 'amount_format'];
+    protected $appends = ['decoded_code', 'labeled_status', 'customer_name', 'amount_format', 'status_text'];
 
     public function wallet()
     {
@@ -64,10 +65,11 @@ class CustomerWithdraw extends Model
         return $this->belongsTo(CustomerWithdrawDab::class, 'customer_withdraw_dab_id');
     }
 
-    public function getDecodedCodeAttribute(): bool|string
+    public function getDecodedCodeAttribute()
     {
         return base64_decode($this->code);
     }
+
 
     /**
      * @throws \Exception
@@ -75,6 +77,16 @@ class CustomerWithdraw extends Model
     public function getLabeledStatusAttribute()
     {
         return CustomerWithdrawHelper::getStatusWithdraw($this->status, true);
+    }
+
+    public function getStatusTextAttribute()
+    {
+        switch ($this->status) {
+            case 'pending': return 'En Attente';
+            case 'accepted': return 'Accepter';
+            case 'rejected': return 'Refuser';
+            case 'terminated': return 'Terminer';
+        }
     }
 
     public function getCustomerNameAttribute()

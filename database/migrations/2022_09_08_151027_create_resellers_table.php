@@ -18,6 +18,8 @@ return new class extends Migration
             $table->enum('status', ['open', 'pending', 'active', 'cancel'])->default('open');
             $table->float('limit_outgoing');
             $table->float('limit_incoming');
+            $table->float('percent_outgoing')->default(3.75);
+            $table->float('percent_incoming')->default(3.00);
 
             $table->foreignId('user_id')
                 ->constrained()
