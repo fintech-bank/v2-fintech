@@ -10,18 +10,4 @@ class CountryHelper
 
         return $response->first()->name->common;
     }
-
-    public static function getCountriesAll()
-    {
-        $responses = collect(\Http::get('https://restcountries.com/v3.1/all')->object());
-        $arr = [];
-
-        foreach ($responses as $country) {
-            $arr[] = [
-                'name' => $country->name->common,
-            ];
-        }
-
-        return collect($arr)->toJson();
-    }
 }

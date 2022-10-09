@@ -134,9 +134,59 @@ class ResellerController extends Controller
     {
         $reseller = Reseller::find($reseller_id);
 
-        //dd($reseller->calcRemainingOutgoing());
         return view('admin.erp.reseller.show', [
             'reseller' => $reseller
         ]);
+    }
+
+    public function edit($reseller_id)
+    {
+        return view('admin.erp.reseller.edit', [
+            'reseller' => Reseller::find($reseller_id)
+        ]);
+    }
+
+    public function update(Request $request, $reseller_id)
+    {
+        $reseller = Reseller::find($reseller_id);
+
+        try {
+            $reseller->user()->update([
+                'email' => $request->get('email')
+            ]);
+
+            $reseller->dab()->update([
+                'type' => $request->has('type') ? $request->get('type'): null,
+                'name' => $request->has('name') ? $request->get('name'): null,
+                'address' => $request->has('address') ? $request->get('address'): null,
+                'postal' => $request->has('postal') ? $request->get('postal'): null,
+                'city' => $request->has('city') ? $request->get('city'): null,
+                'latitude' => $request->has('address') ? GeoPortailLook::call($request->get('address').' '.$request->get('postal').' '.$request->get('city'))->features[0]->geometry->coordinates[0] : null,
+                'longitude' => $request->has('address') ? GeoPortailLook::call($request->get('address').' '.$request->get('postal').' '.$request->get('city'))->features[0]->geometry->coordinates[1] : null,
+                'img' => $request->has('logo') ? '/storage/reseller/'.$reseller->user->id.'/'.$reseller->user->id.'.'.$request->file('logo')->getClientOriginalExtension() : null,
+                'open' => $request->has('open') ? $request->get('open'): null,
+                'phone' => $request->has('phone') ? $request->get('phone'): null
+            ]);
+
+            $reseller->update([
+                'limit_outgoing' => $request->has('limit_outgoing') ? $request->get('limit_outgoing'): null,
+                'limit_incoming' => $request->has('limit_incoming') ? $request->get('limit_incoming'): null
+            ]);
+        }catch (\Exception $exception) {
+            LogHelper::notify('critical', $exception);
+            return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
+        }
+
+        // Enregistrement du logo
+        try {
+            if($request->has('logo')) {
+                $request->file('logo')->storeAs('public/reseller/'.$reseller->user->id.'/', $reseller->user->id.'.'.$request->file('logo')->getClientOriginalExtension());
+            }
+        }catch (\Exception $exception) {
+            LogHelper::notify('critical', $exception);
+            return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
+        }
+
+        return redirect()->back()->with('success', 'Le distributeur '.$reseller->dab->name.' à été éditer avec succès');
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Document\DocumentTransmiss;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * App\Models\Core\Agency
@@ -102,6 +103,22 @@ class Agency extends Model
             return "<span class='badge badge-success'>En Ligne</span>";
         } else {
             return "<span class='badge badge-info'>Agence Physique</span>";
+        }
+    }
+
+    public static function generateBic($agencyName)
+    {
+        $replace = Str::replace(' ', '', $agencyName);
+        $rep2 = Str::replace('FINTECH', '', $replace);
+
+        $bic =  "FINFRPP".Str::limit($rep2, 3, '');
+
+        $agence = Agency::where('bic', $bic)->count();
+
+        if($agence == 0) {
+            return $bic;
+        } else {
+            return $bic.$agence;
         }
     }
 }

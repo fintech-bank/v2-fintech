@@ -22,7 +22,7 @@ class AgenceController extends Controller
         try {
             $agence = Agency::create([
                 'name' => $request->get('name'),
-                'bic' => AgencyHelper::generateBic($request->get('name')),
+                'bic' => Agency::generateBic($request->get('name')),
                 'address' => $request->get('address'),
                 'postal' => $request->get('postal'),
                 'city' => $request->get('city'),
