@@ -27,7 +27,9 @@ Route::prefix('core')->group(function () {
     });
 
     Route::prefix('reseller')->group(function () {
+        Route::get("/", [\App\Http\Controllers\Api\Core\ResellerController::class, 'list'])->name('api.reseller.list');
         Route::get("{reseller_id}", [\App\Http\Controllers\Api\Core\ResellerController::class, 'get']);
+        Route::put("{reseller_id}", [\App\Http\Controllers\Api\Core\ResellerController::class, 'update']);
         Route::delete("{reseller_id}", [\App\Http\Controllers\Api\Core\ResellerController::class, 'delete']);
     });
 

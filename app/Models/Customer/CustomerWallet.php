@@ -72,6 +72,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read string|null $type_text
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerCheckDeposit[] $deposits
  * @property-read int|null $deposits_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMoneyDeposit[] $moneys
+ * @property-read int|null $moneys_count
  */
 class CustomerWallet extends Model
 {
@@ -158,6 +160,11 @@ class CustomerWallet extends Model
     public function deposits()
     {
         return $this->hasMany(CustomerCheckDeposit::class);
+    }
+
+    public function moneys()
+    {
+        return $this->hasMany(CustomerMoneyDeposit::class);
     }
 
     /**

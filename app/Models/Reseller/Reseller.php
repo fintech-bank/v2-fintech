@@ -3,6 +3,7 @@
 namespace App\Models\Reseller;
 
 use App\Helper\LogHelper;
+use App\Models\Core\Invoice;
 use App\Models\Core\Shipping;
 use App\Models\Customer\CustomerWithdrawDab;
 use App\Models\User;
@@ -33,6 +34,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereStatus($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|Shipping[] $shippings
  * @property-read int|null $shippings_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Invoice[] $invoices
+ * @property-read int|null $invoices_count
  */
 class Reseller extends Model
 {
@@ -56,6 +59,11 @@ class Reseller extends Model
         return $this->belongsToMany(Shipping::class);
     }
 
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
     public function getStatusLabelAttribute()
     {
         switch ($this->status) {
@@ -65,6 +73,34 @@ class Reseller extends Model
             case 'cancel': return '<span class="badge badge-danger">Dossier Clotûrer</span>';
         }
     }
+
+    public function calcRemainingOutgoing()
+    {
+        $sum = $this->dab->withdraws()->sum('amount');
+
+        return $this->limit_outgoing - $sum;
+    }
+
+    public function calcRemainingOutgoingPercent()
+    {
+        $sum = $this->calcRemainingOutgoing();
+        return $sum * 100 / $this->limit_outgoing;
+    }
+
+    public function calcRemainingIncoming()
+    {
+        $sum = $this->dab->moneys()->sum('amount');
+
+        return $this->limit_incoming - $sum;
+    }
+
+    public function calcRemainingIncomingPercent()
+    {
+        $sum = $this->calcRemainingIncoming();
+        return $sum * 100 / $this->limit_incoming;
+    }
+
+
 
     public static function boot()
     {

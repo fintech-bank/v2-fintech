@@ -134,6 +134,7 @@ class ResellerController extends Controller
     {
         $reseller = Reseller::find($reseller_id);
 
+        //dd($reseller->calcRemainingOutgoing());
         return view('admin.erp.reseller.show', [
             'reseller' => $reseller
         ]);

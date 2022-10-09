@@ -13,7 +13,7 @@
     let datatableReseller = $(tables.tableReseller).DataTable({
         info: !1,
         order: [],
-        pageLength: 10
+        pageLength: 10,
     })
 
     if(elements.btnDeleteReseller) {

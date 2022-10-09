@@ -46,17 +46,25 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $phone
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWithdrawDab wherePhone($value)
  * @property-read mixed $type_string
+ * @property-read mixed $open_text
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMoneyDeposit[] $moneys
+ * @property-read int|null $moneys_count
  */
 class CustomerWithdrawDab extends Model
 {
     use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
-    protected $appends = ['address_format', 'status_format', 'type_string'];
+    protected $appends = ['address_format', 'status_format', 'type_string', 'open_text'];
 
     public function withdraws()
     {
         return $this->hasMany(CustomerWithdraw::class);
+    }
+
+    public function moneys()
+    {
+        return $this->hasMany(CustomerMoneyDeposit::class);
     }
 
     public function reseller()
@@ -82,5 +90,28 @@ class CustomerWithdrawDab extends Model
             case 'bank': return "Banque & Distributeur";
             default: return "Inconnue";
         }
+    }
+
+    public function getOpenTextAttribute()
+    {
+        return $this->open ? 'Ouvert' : 'Fermé';
+    }
+
+    public function tableTypeDabs()
+    {
+        return collect([
+            [
+                'label' => 'tabac',
+                'name' => "Tabac / Presse"
+            ],
+            [
+                'label' => 'supermarket',
+                'name' => "Grande Distribution"
+            ],
+            [
+                'label' => 'bank',
+                'name' => "Banque & Distributeur"
+            ],
+        ]);
     }
 }

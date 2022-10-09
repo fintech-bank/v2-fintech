@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect()->route('part.home');
+        return redirect()->to('/particulier');
     }
 
     public function redirect()

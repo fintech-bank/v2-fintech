@@ -13,20 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('resellers', function (Blueprint $table) {
+        Schema::create('invoice_payments', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['open', 'pending', 'active', 'cancel'])->default('open');
-            $table->float('limit_outgoing');
-            $table->float('limit_incoming');
-            $table->float('percent_outgoing')->default(3.75);
-            $table->float('percent_incoming')->default(3.00);
+            $table->float('amount');
+            $table->enum('state', [
+                'succeeded',
+                'pending',
+                'failed'
+            ])->default('pending');
+            $table->timestamps();
 
-            $table->foreignId('user_id')
+            $table->foreignId('invoice_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->foreignId('customer_withdraw_dabs_id')
+            $table->foreignId('customer_transaction_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
@@ -40,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resellers');
+        Schema::dropIfExists('invoice_payments');
     }
 };

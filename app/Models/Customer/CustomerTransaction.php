@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use App\Models\Core\InvoicePayment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,6 +48,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Customer\CustomerWithdraw|null $withdraw
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerCheckDeposit[] $check_deposit
  * @property-read int|null $check_deposit_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMoneyDeposit[] $money_deposits
+ * @property-read int|null $money_deposits_count
+ * @property-read InvoicePayment|null $invoice_payment
  */
 class CustomerTransaction extends Model
 {
@@ -74,5 +78,15 @@ class CustomerTransaction extends Model
     public function check_deposit()
     {
         return $this->hasMany(CustomerCheckDeposit::class);
+    }
+
+    public function money_deposits()
+    {
+        return $this->hasMany(CustomerMoneyDeposit::class);
+    }
+
+    public function invoice_payment()
+    {
+        return $this->hasOne(InvoicePayment::class);
     }
 }

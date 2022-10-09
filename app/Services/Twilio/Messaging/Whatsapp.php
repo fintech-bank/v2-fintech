@@ -10,18 +10,18 @@ use Twilio\Rest\Client;
 
 class Whatsapp extends \App\Services\Twilio\Twilio
 {
-    private static $client;
+    private static $s_client;
 
     public function __construct()
     {
         parent::__construct();
-        self::$client = new Client($this->twilio_sid, $this->token);
+        self::$s_client = new Client($this->twilio_sid, $this->token);
     }
 
     public static function sendNotification($mobile, $message)
     {
         try {
-            self::$client->messages->create("whatsapp:$mobile", [
+            self::$s_client->messages->create("whatsapp:$mobile", [
                 'body' => $message,
                 'from' => config('app.env') == 'local' ? 'whatsapp:+14155238886' : 'whatsapp:+33749061225'
             ]);
