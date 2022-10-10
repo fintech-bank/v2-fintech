@@ -45,7 +45,8 @@ class TypePretController extends Controller
                 'instruction' => $request->get('instruction'),
                 'avantage' => json_encode($avantage),
                 'condition' => json_encode($condition),
-                'tarif' => json_encode($tarification)
+                'tarif' => json_encode($tarification),
+                'type_pret' => $request->get('type_pret')
             ]);
 
             if($request->get('type_taux') == 'fixe') {

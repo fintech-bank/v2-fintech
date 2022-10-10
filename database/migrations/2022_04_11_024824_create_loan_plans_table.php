@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('loan_plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('type_pret', ['particulier', 'professionnel', 'authority'])->default('particulier');
             $table->float('minimum');
             $table->float('maximum');
             $table->integer('duration')->comment('En Mois');

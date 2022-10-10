@@ -139,6 +139,15 @@
                             required="true"
                             value="{{ old('name') }}" />
 
+                        <div class="mb-10">
+                            <label for="type_pret" class="form-label required">Type de pret</label>
+                            <select name="type_pret" id="type_pret" class="form-control" data-control="select2" data-parent="#AddPret">
+                                <option value="particulier">Particulier</option>
+                                <option value="professionnel">Professionnel</option>
+                                <option value="authority">Gouvernement / Public</option>
+                            </select>
+                        </div>
+
                         <div class="row">
                             <div class="col-4">
                                 <x-form.input-group
@@ -278,6 +287,15 @@
                             label="Nom du Type de prêt"
                             required="true"
                             value="{{ old('name') }}" />
+
+                        <div class="mb-10">
+                            <label for="type_pret" class="form-label required">Type de pret</label>
+                            <select name="type_pret" id="type_pret" class="form-control" data-control="select2" data-parent="#EditPret">
+                                <option value="particulier">Particulier</option>
+                                <option value="professionnel">Professionnel</option>
+                                <option value="authority">Gouvernement / Public</option>
+                            </select>
+                        </div>
 
                         <div class="row">
                             <div class="col-4">

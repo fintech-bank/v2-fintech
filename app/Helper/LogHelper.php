@@ -44,6 +44,6 @@ class LogHelper
 
     public static function insertLogSystem($type, $message,User $user = null)
     {
-        LogBanque::create(['type' => $type, 'message' => $message, 'user_id' => isset($user) ? $user->id : 1]);
+        LogBanque::create(['type' => $type, 'message' => $message, 'user_id' => isset($user) ? $user->id : null]);
     }
 }
