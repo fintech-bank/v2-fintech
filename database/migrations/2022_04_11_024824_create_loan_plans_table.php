@@ -20,6 +20,9 @@ return new class extends Migration
             $table->float('maximum');
             $table->integer('duration')->comment('En Mois');
             $table->text('instruction')->nullable();
+            $table->json('avantage')->nullable();
+            $table->json('condition')->nullable();
+            $table->json('tarif')->nullable();
         });
     }
 

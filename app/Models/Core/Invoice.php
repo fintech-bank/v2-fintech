@@ -43,6 +43,7 @@ use Illuminate\Support\Str;
  * @property-read \App\Models\Core\InvoicePayment|null $payment
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Core\InvoiceProduct[] $products
  * @property-read int|null $products_count
+ * @property-read mixed $due_at
  */
 class Invoice extends Model
 {

@@ -83,16 +83,18 @@
                         <td data-order="{{ $log->type }}">{!! $log->type_label !!}</td>
                         <td>{!! $log->message !!}</td>
                         <td>
-                            <div class="d-flex flex-row align-items-center">
-                                <div class="symbol symbol-circle symbol-50px">
-                                    {!! \App\Helper\UserHelper::getAvatar($log->user->email) !!}
+                            @if(isset($log->user))
+                                <div class="d-flex flex-row align-items-center">
+                                    <div class="symbol symbol-circle symbol-50px">
+                                        {!! \App\Helper\UserHelper::getAvatar($log->user->email) !!}
+                                    </div>
+                                    <div class="d-flex flex-column ms-4">
+                                        <a href="" class="fw-bolder">{{ $log->user->name }}</a>
+                                        <div class="text-muted">{{ $log->user->email }}</div>
+                                        <div class="badge badge-{{ random_color() }}">{{ \App\Helper\UserHelper::getGroupNamed($log->user) }}</div>
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-column ms-4">
-                                    <a href="" class="fw-bolder">{{ $log->user->name }}</a>
-                                    <div class="text-muted">{{ $log->user->email }}</div>
-                                    <div class="badge badge-{{ random_color() }}">{{ \App\Helper\UserHelper::getGroupNamed($log->user) }}</div>
-                                </div>
-                            </div>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

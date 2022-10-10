@@ -47,5 +47,11 @@ Route::prefix('core')->group(function () {
         Route::delete("{plan_id}", [\App\Http\Controllers\Api\Core\PlanEpargneController::class, 'delete']);
     });
 
+    Route::prefix('pret')->group(function () {
+        Route::get("{pret_id}", [\App\Http\Controllers\Api\Core\TypePretController::class, 'info']);
+        Route::put("{pret_id}", [\App\Http\Controllers\Api\Core\TypePretController::class, 'update']);
+        Route::delete("{pret_id}", [\App\Http\Controllers\Api\Core\TypePretController::class, 'delete']);
+    });
+
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);
 });

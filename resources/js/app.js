@@ -249,3 +249,11 @@ $.extend(true, $.fn.DataTable.defaults, {
         "thousands": " "
     }
 })
+
+let animateOut = (node) => {
+    $(node).slideUp()
+}
+
+let animateIn = (node) => {
+    $(node).slideDown()
+}

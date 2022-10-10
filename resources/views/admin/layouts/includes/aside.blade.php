@@ -114,7 +114,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.config.pret.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-hand-holding-dollar fa-2x"></i>
 						</span>

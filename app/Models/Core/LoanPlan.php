@@ -2,6 +2,7 @@
 
 namespace App\Models\Core;
 
+use App\Helper\LogHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,6 +28,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|LoanPlan whereName($value)
  * @mixin \Eloquent
  * @mixin IdeHelperLoanPlan
+ * @property mixed|null $avantage
+ * @property mixed|null $condition
+ * @property mixed|null $tarif
+ * @method static \Illuminate\Database\Eloquent\Builder|LoanPlan whereAvantage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoanPlan whereCondition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoanPlan whereTarif($value)
  */
 class LoanPlan extends Model
 {
@@ -36,8 +43,41 @@ class LoanPlan extends Model
 
     public $timestamps = false;
 
+
     public function interests()
     {
         return $this->hasMany(LoanPlanInterest::class);
+    }
+
+    public function getAvantageAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function getConditionAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function getTarifAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($plan) {
+            LogHelper::insertLogSystem('success', "Un type de prêt à été créer: ".$plan->name);
+        });
+
+        static::updated(function ($plan) {
+            LogHelper::insertLogSystem('success', "Un type de prêt à été éditer: ".$plan->name);
+        });
+
+        static::deleted(function () {
+            LogHelper::insertLogSystem('success', "Un type de prêt à été supprimer");
+        });
     }
 }

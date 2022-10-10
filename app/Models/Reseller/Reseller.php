@@ -36,6 +36,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $shippings_count
  * @property-read \Illuminate\Database\Eloquent\Collection|Invoice[] $invoices
  * @property-read int|null $invoices_count
+ * @property float $percent_outgoing
+ * @property float $percent_incoming
+ * @method static \Illuminate\Database\Eloquent\Builder|Reseller wherePercentIncoming($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reseller wherePercentOutgoing($value)
  */
 class Reseller extends Model
 {
