@@ -1,28 +1,28 @@
 <script type="text/javascript">
     let tables = {
-        tableCategories: document.querySelector('#kt_category_table')
+        tablePlan: document.querySelector('#kt_plan_table')
     }
     let elements = {
         btnEdit: document.querySelectorAll('.btnEdit'),
         btnDelete: document.querySelectorAll('.btnDelete'),
     }
     let modals = {
-        modalEditCategory: document.querySelector("#EditCategory")
+        modalEditPlan: document.querySelector("#EditPlan")
     }
     let forms = {
-        formAddCategory: document.querySelector('#formAddCategory'),
-        formEditCategory: document.querySelector('#formEditCategory'),
+        formAddPlan: document.querySelector('#formAddPlan'),
+        formEditPlan: document.querySelector('#formEditPlan'),
     }
 
-    let datatableCategories = $(tables.tableCategories).DataTable({
+    let datatablePlan = $(tables.tablePlan).DataTable({
         info: !1,
         order: [],
         pageLength: 10,
     })
 
-    if(document.querySelector('[data-kt-category-filter="search"]')) {
-        document.querySelector('[data-kt-category-filter="search"]').addEventListener("keyup", (function(t) {
-            datatableCategories.search(t.target.value).draw()
+    if(document.querySelector('[data-kt-plan-filter="search"]')) {
+        document.querySelector('[data-kt-plan-filter="search"]').addEventListener("keyup", (function(t) {
+            datatablePlan.search(t.target.value).draw()
         }))
     }
 
@@ -32,12 +32,17 @@
                 e.preventDefault()
 
                 $.ajax({
-                    url: '/api/core/category/'+e.target.dataset.category,
+                    url: '/api/core/epargne/'+e.target.dataset.plan,
                     success: data => {
-                        let modal = new bootstrap.Modal(modals.modalEditCategory)
+                        let modal = new bootstrap.Modal(modals.modalEditPlan)
 
-                        forms.formEditCategory.setAttribute('action', '/admin/configuration/category/'+data.id)
-                        forms.formEditCategory.querySelector('[name="name"]').value = data.name
+                        forms.formEditPlan.setAttribute('action', '/api/core/epargne/'+data.id)
+                        forms.formEditPlan.querySelector('[name="name"]').value = data.name
+                        forms.formEditPlan.querySelector('[name="profit_percent"]').value = data.profit_percent
+                        forms.formEditPlan.querySelector('[name="lock_days"]').value = data.lock_days
+                        forms.formEditPlan.querySelector('[name="profit_days"]').value = data.profit_days
+                        forms.formEditPlan.querySelector('[name="init"]').value = data.init
+                        forms.formEditPlan.querySelector('[name="limit"]').value = data.limit
 
                         modal.show()
                     },
@@ -54,10 +59,10 @@
                 e.preventDefault()
 
                 $.ajax({
-                    url: '/api/core/category/'+e.target.dataset.category,
+                    url: '/api/core/epargne/'+e.target.dataset.plan,
                     method: "DELETE",
                     success: () => {
-                        toastr.success(`Une catégorie de document à été supprimé avec succès`, `Catégorie de document`)
+                        toastr.success(`Un plan d'épargne à été supprimé avec succès`, `Plan d'épargne`)
 
                         $(e.target.parentNode.parentNode).animate({
                             width: ["toggle", "swing"],
@@ -73,9 +78,9 @@
         })
     }
 
-    $(forms.formAddCategory).on('submit', e => {
+    $(forms.formAddPlan).on('submit', e => {
         e.preventDefault()
-        let form = $(forms.formAddCategory)
+        let form = $(forms.formAddPlan)
         let url = form.attr('action')
         let data = form.serializeArray()
         let btn = form.find('.btn-bank')
@@ -88,7 +93,7 @@
             data: data,
             success: data => {
                 btn.removeAttr('data-kt-indicator')
-                toastr.success(`La catégorie ${data.name} à été créer avec succès`, `Catégorie de document`)
+                toastr.success(`Le plan d'épargne ${data.name} à été créer avec succès`, `Plan d'épargne`)
 
                 setTimeout(() => {
                     window.location.reload()
@@ -100,9 +105,9 @@
             }
         })
     })
-    $(forms.formEditCategory).on('submit', e => {
+    $(forms.formEditPlan).on('submit', e => {
         e.preventDefault()
-        let form = $(forms.formEditCategory)
+        let form = $(forms.formEditPlan)
         let url = form.attr('action')
         let data = form.serializeArray()
         let btn = form.find('.btn-bank')
@@ -115,7 +120,7 @@
             data: data,
             success: data => {
                 btn.removeAttr('data-kt-indicator')
-                toastr.success(`La catégorie ${data.name} à été edité avec succès`, `Catégorie de document`)
+                toastr.success(`Le plan d'épargne ${data.name} à été edité avec succès`, `Plan d'épargne`)
 
                 setTimeout(() => {
                     window.location.reload()

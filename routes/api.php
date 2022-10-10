@@ -41,5 +41,11 @@ Route::prefix('core')->group(function () {
         Route::delete("{category_id}", [\App\Http\Controllers\Api\Core\DocumentCategoryController::class, 'delete']);
     });
 
+    Route::prefix('epargne')->group(function () {
+        Route::get("{plan_id}", [\App\Http\Controllers\Api\Core\PlanEpargneController::class, 'info']);
+        Route::put("{plan_id}", [\App\Http\Controllers\Api\Core\PlanEpargneController::class, 'update']);
+        Route::delete("{plan_id}", [\App\Http\Controllers\Api\Core\PlanEpargneController::class, 'delete']);
+    });
+
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);
 });

@@ -104,7 +104,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.config.epargne.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-piggy-bank fa-2x"></i>
 						</span>

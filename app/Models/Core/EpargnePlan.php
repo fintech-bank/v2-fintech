@@ -2,6 +2,7 @@
 
 namespace App\Models\Core;
 
+use App\Helper\LogHelper;
 use App\Models\Customer\CustomerEpargne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,5 +43,22 @@ class EpargnePlan extends Model
     public function epargnes()
     {
         return $this->hasMany(CustomerEpargne::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($plan) {
+            LogHelper::insertLogSystem('success', "Un plan d'épargne à été créer: ".$plan->name);
+        });
+
+        static::updated(function ($plan) {
+            LogHelper::insertLogSystem('success', "Un plan d'épargne à été éditer: ".$plan->name);
+        });
+
+        static::deleted(function () {
+            LogHelper::insertLogSystem('success', "Un plan d'épargne à été supprimer");
+        });
     }
 }

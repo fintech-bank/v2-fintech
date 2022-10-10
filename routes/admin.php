@@ -41,6 +41,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
             Route::get("/", [\App\Http\Controllers\Admin\Configuration\CategoryController::class, 'index'])->name('admin.config.category.index');
             Route::post("/", [\App\Http\Controllers\Admin\Configuration\CategoryController::class, 'store'])->name('admin.config.category.store');
         });
+
+        Route::prefix('epargne')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\PlanEpargneController::class, 'index'])->name('admin.config.epargne.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\PlanEpargneController::class, 'store'])->name('admin.config.epargne.store');
+        });
     });
 
     Route::prefix('system')->group(function () {
