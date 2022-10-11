@@ -95,6 +95,7 @@
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used by this page)-->
 <script src="/js/app.js"></script>
+{{--<script src="/assets/js/custom.js"></script>--}}
 @auth
     <script src="{{ asset('js/enable-push.js') }}"></script>
 @endauth

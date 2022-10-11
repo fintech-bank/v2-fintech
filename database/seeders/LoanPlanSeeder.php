@@ -15,53 +15,55 @@ class LoanPlanSeeder extends Seeder
     public function run()
     {
         LoanPlan::query()->create([
-            'name' => 'Crédit Travaux',
-            'minimum' => 500,
-            'maximum' => 99999,
-            'duration' => 96,
-            'instruction' => 'Des travaux intérieurs ou extérieurs sont nécessaires pour améliorer votre habitat ? Optez pour le prêt travaux',
-        ])->create([
-            'name' => 'Crédit Auto Neuf',
-            'minimum' => 500,
-            'maximum' => 75000,
+            'name' => 'Crédit à la consommation Expresso',
+            'minimum' => 1000,
+            'maximum' => 35000,
             'duration' => 84,
-            'instruction' => null,
+            'type_pret' => 'particulier',
+            'instruction' => 'Le crédit à la consommation Expresso vous permet d’emprunter à partir de 1 000 €, sur une durée d’un à sept ans. Nouvelle voiture, travaux, vacances… Ce crédit amortissable vous aide à financer le projet de votre choix.',
+            'avantage' => '{"report_echeance": true, "adapt_mensuality": true, "online_subscription": true}',
+            'condition' => '{"report_echeance_max": "3", "adapt_mensuality_month": "7"}',
+            'tarif' => '{"interest": "4.12", "type_taux": "fixe", "max_interest": null, "min_interest": null}'
         ])->create([
-            'name' => 'Crédit Occasion -2 ans',
-            'minimum' => 500,
-            'maximum' => 75000,
+            'name' => 'Prêt Jeune actif (18-29 ans)',
+            'minimum' => 1500,
+            'maximum' => 7000,
+            'duration' => 60,
+            'type_pret' => 'particulier',
+            'instruction' => 'Vous avez entre 18 et 29 ans, vous entrez dans la vie active ? Vous souhaitez financer votre installation ou vous envisagez l’achat d’un véhicule ? Le Prêt Jeune Actif vous aide à concrétiser tous vos projets. Simulez votre crédit et souscrivez en ligne.',
+            'avantage' => '{"report_echeance": true, "adapt_mensuality": true, "online_subscription": true}',
+            'condition' => '{"report_echeance_max": "3", "adapt_mensuality_month": "3"}',
+            'tarif' => '{"interest": "2.4", "type_taux": "fixe", "max_interest": null, "min_interest": null}'
+        ])->create([
+            'name' => 'Crédit Auto Expresso',
+            'minimum' => 1000,
+            'maximum' => 35000,
             'duration' => 84,
-            'instruction' => null,
+            'type_pret' => 'particulier',
+            'instruction' => "Le crédit Expresso vous permet de financer l’achat d’une nouvelle voiture ou d'un deux-roues. Ce crédit amortissable est accessible sans apport et ses mensualités sont modulables.",
+            'avantage' => '{"report_echeance": true, "adapt_mensuality": true, "online_subscription": true}',
+            'condition' => '{"report_echeance_max": "3", "adapt_mensuality_month": "7"}',
+            'tarif' => '{"interest": "4.12", "type_taux": "fixe", "max_interest": null, "min_interest": null}'
         ])->create([
-            'name' => 'Crédit Occasion +2 ans',
-            'minimum' => 500,
-            'maximum' => 75000,
+            'name' => 'Convention de trésorerie Courante',
+            'minimum' => 1000,
+            'maximum' => 25000,
+            'duration' => 60,
+            'type_pret' => 'professionnel',
+            'instruction' => "Votre activité professionnelle peut être sujette à des décalages de trésorerie dus à une activité saisonnière ou à des délais de paiement client, voire même demander un financement ponctuel. Découvrez nos solutions de crédit à court terme pour ajuster votre trésorerie courante à vos besoins.",
+            'avantage' => '{"report_echeance": false, "adapt_mensuality": false, "online_subscription": false}',
+            'condition' => '{"report_echeance_max": null, "adapt_mensuality_month": null}',
+            'tarif' => '{"interest": null, "type_taux": "variable", "max_interest": "6.35", "min_interest": "0.90"}'
+        ])->create([
+            'name' => 'Pret CREATOR',
+            'minimum' => 1000,
+            'maximum' => 30000,
             'duration' => 84,
+            'type_pret' => 'professionnel',
             'instruction' => null,
-        ])->create([
-            'name' => 'Crédit Mobilier',
-            'minimum' => 500,
-            'maximum' => 75000,
-            'duration' => 84,
-            'instruction' => null,
-        ])->create([
-            'name' => 'Crédit Personnel',
-            'minimum' => 500,
-            'maximum' => 75000,
-            'duration' => 84,
-            'instruction' => null,
-        ])->create([
-            'name' => 'Crédit Immobilier',
-            'minimum' => 30000,
-            'maximum' => 500000,
-            'duration' => 300,
-            'instruction' => null,
-        ])->create([
-            'name' => 'Crédit Renouvelable Facelia',
-            'minimum' => 500,
-            'maximum' => 3000,
-            'duration' => 36,
-            'instruction' => null,
+            'avantage' => '{"report_echeance": false, "adapt_mensuality": true, "online_subscription": false}',
+            'condition' => '{"report_echeance_max": "0", "adapt_mensuality_month": "2"}',
+            'tarif' => '{"interest": "1.20", "type_taux": "fixe", "max_interest": null, "min_interest": null}'
         ]);
     }
 }

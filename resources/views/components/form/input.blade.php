@@ -15,7 +15,7 @@
             </label>
         @endif
         <input
-            type="{{ $type }}"
+            type="{{ $type ? $type : 'text' }}"
             id="{{ $name }}"
             name="{{ $name }}"
             value="{{ old($name, isset($value) ? $value : '') }}"

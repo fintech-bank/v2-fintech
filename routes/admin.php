@@ -36,6 +36,33 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         });
     });
 
+    Route::prefix('configuration')->group(function () {
+        Route::prefix('category')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\CategoryController::class, 'index'])->name('admin.config.category.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\CategoryController::class, 'store'])->name('admin.config.category.store');
+        });
+
+        Route::prefix('epargne')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\PlanEpargneController::class, 'index'])->name('admin.config.epargne.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\PlanEpargneController::class, 'store'])->name('admin.config.epargne.store');
+        });
+
+        Route::prefix('pret')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\TypePretController::class, 'index'])->name('admin.config.pret.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\TypePretController::class, 'store'])->name('admin.config.pret.store');
+        });
+
+        Route::prefix('forfait')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\PackageController::class, 'index'])->name('admin.config.package.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\PackageController::class, 'store'])->name('admin.config.package.store');
+        });
+
+        Route::prefix('service')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\ServiceController::class, 'index'])->name('admin.config.service.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\ServiceController::class, 'store'])->name('admin.config.service.store');
+        });
+    });
+
     Route::prefix('system')->group(function () {
         Route::prefix('log-banque')->group(function () {
             Route::get("/", [\App\Http\Controllers\Admin\System\LogBanqueController::class, 'index'])->name('admin.system.log.index');

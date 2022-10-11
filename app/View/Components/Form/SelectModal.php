@@ -23,6 +23,10 @@ class SelectModal extends Component
     public $required;
 
     public $label;
+    /**
+     * @var null
+     */
+    public $value;
 
     /**
      * Create a new component instance.
@@ -31,10 +35,11 @@ class SelectModal extends Component
      * @param $parent
      * @param $datas
      * @param $label
-     * @param  null  $placeholder
-     * @param  bool  $required
+     * @param null $placeholder
+     * @param bool $required
+     * @param null $value
      */
-    public function __construct($name, $parent, $datas, $label, $placeholder = null, $required = true)
+    public function __construct($name, $parent, $datas, $label, $placeholder = null, $required = true, $value = null)
     {
         //
         $this->name = $name;
@@ -43,6 +48,7 @@ class SelectModal extends Component
         $this->placeholder = $placeholder;
         $this->required = $required;
         $this->label = $label;
+        $this->value = $value;
     }
 
     /**

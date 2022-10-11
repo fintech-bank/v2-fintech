@@ -25,6 +25,7 @@ return new class extends Migration
             $table->float('balance_coming', 50)->default(0);
             $table->boolean('decouvert')->default(false);
             $table->float('balance_decouvert', 50)->default(0);
+            $table->float('taux_decouvert')->default(7.00);
             $table->boolean('alert_debit')->default(false);
             $table->boolean('alert_fee')->default(false);
             $table->timestamp('alert_date')->nullable();

@@ -35,5 +35,35 @@ Route::prefix('core')->group(function () {
         Route::post("{reseller_id}/withdraw/{withdraw_id}/sendCode", [\App\Http\Controllers\Api\Core\ResellerController::class, 'sendCode']);
     });
 
+    Route::prefix('category')->group(function () {
+        Route::get("{category_id}", [\App\Http\Controllers\Api\Core\DocumentCategoryController::class, 'info']);
+        Route::put("{category_id}", [\App\Http\Controllers\Api\Core\DocumentCategoryController::class, 'update']);
+        Route::delete("{category_id}", [\App\Http\Controllers\Api\Core\DocumentCategoryController::class, 'delete']);
+    });
+
+    Route::prefix('epargne')->group(function () {
+        Route::get("{plan_id}", [\App\Http\Controllers\Api\Core\PlanEpargneController::class, 'info']);
+        Route::put("{plan_id}", [\App\Http\Controllers\Api\Core\PlanEpargneController::class, 'update']);
+        Route::delete("{plan_id}", [\App\Http\Controllers\Api\Core\PlanEpargneController::class, 'delete']);
+    });
+
+    Route::prefix('pret')->group(function () {
+        Route::get("{pret_id}", [\App\Http\Controllers\Api\Core\TypePretController::class, 'info']);
+        Route::put("{pret_id}", [\App\Http\Controllers\Api\Core\TypePretController::class, 'update']);
+        Route::delete("{pret_id}", [\App\Http\Controllers\Api\Core\TypePretController::class, 'delete']);
+    });
+
+    Route::prefix('forfait')->group(function () {
+        Route::get("{forfait_id}", [\App\Http\Controllers\Api\Core\PackageController::class, 'info']);
+        Route::put("{forfait_id}", [\App\Http\Controllers\Api\Core\PackageController::class, 'update']);
+        Route::delete("{forfait_id}", [\App\Http\Controllers\Api\Core\PackageController::class, 'delete']);
+    });
+
+    Route::prefix('service')->group(function () {
+        Route::get("{service_id}", [\App\Http\Controllers\Api\Core\ServiceController::class, 'info']);
+        Route::put("{service_id}", [\App\Http\Controllers\Api\Core\ServiceController::class, 'update']);
+        Route::delete("{service_id}", [\App\Http\Controllers\Api\Core\ServiceController::class, 'delete']);
+    });
+
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);
 });

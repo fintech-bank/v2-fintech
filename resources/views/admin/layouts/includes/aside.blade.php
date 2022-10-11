@@ -94,7 +94,7 @@
                 <!--end:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.config.category.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-folder-tree fa-2x"></i>
 						</span>
@@ -104,7 +104,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.config.epargne.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-piggy-bank fa-2x"></i>
 						</span>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.config.pret.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-hand-holding-dollar fa-2x"></i>
 						</span>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.config.package.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-table-columns fa-2x"></i>
 						</span>
@@ -134,7 +134,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.config.service.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-table-columns fa-2x"></i>
 						</span>
