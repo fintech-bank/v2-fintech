@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Core\Agency;
+use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
 use App\Services\GeoPortailLook;
@@ -78,10 +79,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        $reseller = Reseller::find(1);
-
-        $query = $reseller->dab->withdraws()->where('status', 'terminated')->whereBetween('updated_at', [now()->startOfMonth(), now()->endOfMonth()])->get();
-
-        dd($query);
+        dd(Package::dataTypeCpt()->where('string', 'part')->first());
     }
 }

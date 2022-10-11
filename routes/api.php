@@ -53,5 +53,11 @@ Route::prefix('core')->group(function () {
         Route::delete("{pret_id}", [\App\Http\Controllers\Api\Core\TypePretController::class, 'delete']);
     });
 
+    Route::prefix('forfait')->group(function () {
+        Route::get("{forfait_id}", [\App\Http\Controllers\Api\Core\PackageController::class, 'info']);
+        Route::put("{forfait_id}", [\App\Http\Controllers\Api\Core\PackageController::class, 'update']);
+        Route::delete("{forfait_id}", [\App\Http\Controllers\Api\Core\PackageController::class, 'delete']);
+    });
+
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);
 });

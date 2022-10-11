@@ -51,6 +51,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
             Route::get("/", [\App\Http\Controllers\Admin\Configuration\TypePretController::class, 'index'])->name('admin.config.pret.index');
             Route::post("/", [\App\Http\Controllers\Admin\Configuration\TypePretController::class, 'store'])->name('admin.config.pret.store');
         });
+
+        Route::prefix('forfait')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\PackageController::class, 'index'])->name('admin.config.package.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\PackageController::class, 'store'])->name('admin.config.package.store');
+        });
     });
 
     Route::prefix('system')->group(function () {

@@ -47,6 +47,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $subaccount
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereSubaccount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereTypeCpt($value)
+ * @property-read mixed $price_format
+ * @property-read mixed $type_cpt_label
  */
 class Package extends Model
 {
@@ -55,18 +57,71 @@ class Package extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+    protected $appends = ['price_format', 'type_cpt_label', 'type_cpt_text', 'type_prlv_text'];
 
-    public function getTypePrlvAttribute($value)
+    public static function dataTypePrlv()
     {
-        switch ($value) {
-            case 'mensual': return 'Mensuel';
-                break;
-            case 'trim': return 'Trimestriel';
-                break;
-            case 'sem': return 'Semestriel';
-                break;
-            default: return 'Annuel';
-                break;
-        }
+        $array = [
+            [
+                'string' => 'mensual',
+                'text' => "Mensuel"
+            ],
+            [
+                'string' => 'trim',
+                'text' => "Trimestriel"
+            ],
+            [
+                'string' => 'sem',
+                'text' => "Semestriel"
+            ],
+            [
+                'string' => 'annual',
+                'text' => "Annuel"
+            ]
+        ];
+        return collect($array);
+    }
+
+    public static function dataTypeCpt()
+    {
+        $array = [
+            [
+                'string' => 'part',
+                'text' => "Particulier",
+                'color' => 'primary'
+            ],
+            [
+                'string' => 'pro',
+                'text' => "Professionnel",
+                'color' => 'danger'
+            ],
+            [
+                'string' => 'orga',
+                'text' => "Organisation / Service Public",
+                'color' => 'info'
+            ],
+        ];
+        return collect($array);
+    }
+
+    public function getPriceFormatAttribute()
+    {
+        return eur($this->price);
+    }
+
+    public function getTypeCptLabelAttribute()
+    {
+        $call = self::dataTypeCpt()->where('string', $this->type_cpt)->first();
+        return "<span class='badge badge-".$call['color']."'>".$call['text']."</span>";
+    }
+
+    public function getTypeCptTextAttribute()
+    {
+        return self::dataTypeCpt()->where('string', $this->type_cpt)->first()['text'];
+    }
+
+    public function getTypePrlvTextAttribute()
+    {
+        return self::dataTypePrlv()->where('string', $this->type_prlv)->first()['text'];
     }
 }

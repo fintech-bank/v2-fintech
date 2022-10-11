@@ -67,7 +67,7 @@ class Input extends Component
      * @param  null  $text
      * @param  null  $class
      */
-    public function __construct($name, $type, $label = '',
+    public function __construct($name, $type = null, $label = '',
         $value = '', $required = false, $autofocus = false,
         $placeholder = null, $help = false, $helpText = null,
         $text = null, $class = null)
