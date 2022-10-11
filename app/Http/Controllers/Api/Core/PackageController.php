@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 
 class PackageController extends Controller
 {
-    public function info($forfait_id)
+    public function info($package_id)
     {
-        return response()->json(Package::find($forfait_id));
+        return response()->json(Package::find($package_id));
     }
 
-    public function update(Request $request, $forfait_id)
+    public function update(Request $request, $package_id)
     {
-        $package = Package::find($forfait_id);
+        $package = Package::find($package_id);
 
         try {
             $package->update($request->except('_token'));
@@ -39,9 +39,9 @@ class PackageController extends Controller
         return response()->json($package);
     }
 
-    public function delete(Request $request, $forfait_id)
+    public function delete(Request $request, $package_id)
     {
-        $package = Package::find($forfait_id);
+        $package = Package::find($package_id);
 
         try {
             $package->delete();

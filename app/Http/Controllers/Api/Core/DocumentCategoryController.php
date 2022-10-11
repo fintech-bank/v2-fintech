@@ -9,16 +9,16 @@ use Illuminate\Http\Request;
 
 class DocumentCategoryController extends Controller
 {
-    public function info($category_id)
+    public function info($document_category_id)
     {
-        $category = DocumentCategory::find($category_id);
+        $category = DocumentCategory::find($document_category_id);
 
         return response()->json($category);
     }
 
-    public function update(Request $request, $category_id)
+    public function update(Request $request, $document_category_id)
     {
-        $category = DocumentCategory::find($category_id);
+        $category = DocumentCategory::find($document_category_id);
 
         try {
             $category->update($request->all());
@@ -30,9 +30,9 @@ class DocumentCategoryController extends Controller
         return response()->json($category);
     }
 
-    public function delete($category_id)
+    public function delete($document_category_id)
     {
-        $category = DocumentCategory::find($category_id);
+        $category = DocumentCategory::find($document_category_id);
 
         try {
             $category->delete();

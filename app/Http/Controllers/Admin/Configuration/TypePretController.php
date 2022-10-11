@@ -49,14 +49,14 @@ class TypePretController extends Controller
                 'type_pret' => $request->get('type_pret')
             ]);
 
-            if($request->get('type_taux') == 'fixe') {
+            if ($request->get('type_taux') == 'fixe') {
                 $type->interests()->create([
                     'duration' => $request->get('duration'),
                     'interest' => $request->get('interest'),
                     'loan_plan_id' => $type->id
                 ]);
             }
-        }catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             LogHelper::notify('critical', $exception);
             return response()->json($exception, 500);
         }
