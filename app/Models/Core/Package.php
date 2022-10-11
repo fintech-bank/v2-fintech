@@ -2,6 +2,7 @@
 
 namespace App\Models\Core;
 
+use App\Helper\LogHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -123,5 +124,22 @@ class Package extends Model
     public function getTypePrlvTextAttribute()
     {
         return self::dataTypePrlv()->where('string', $this->type_prlv)->first()['text'];
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($forfait) {
+            LogHelper::insertLogSystem('success', "Un forfait bancaire à été créer: ".$forfait->name);
+        });
+
+        static::updated(function ($forfait) {
+            LogHelper::insertLogSystem('success', "Un forfait bancaire à été éditer: ".$forfait->name);
+        });
+
+        static::deleted(function () {
+            LogHelper::insertLogSystem('success', "Un forfait bancaire à été supprimer");
+        });
     }
 }

@@ -56,6 +56,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
             Route::get("/", [\App\Http\Controllers\Admin\Configuration\PackageController::class, 'index'])->name('admin.config.package.index');
             Route::post("/", [\App\Http\Controllers\Admin\Configuration\PackageController::class, 'store'])->name('admin.config.package.store');
         });
+
+        Route::prefix('service')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\ServiceController::class, 'index'])->name('admin.config.service.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\ServiceController::class, 'store'])->name('admin.config.service.store');
+        });
     });
 
     Route::prefix('system')->group(function () {

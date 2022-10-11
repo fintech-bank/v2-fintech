@@ -2,6 +2,7 @@
 
 namespace App\Models\Core;
 
+use App\Helper\LogHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,20 +33,43 @@ class Service extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+    protected $appends = ['price_format', 'type_prlv_text'];
 
     public function package(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Package::class);
     }
 
-    public function getTypePrlvAttribute($value): string
+    public function getPriceFormatAttribute()
     {
-        return match ($value) {
-            'mensual' => 'Mensuel',
-            'trim' => 'Trimestriel',
-            'sem' => 'Semestriel',
-            'ponctual' => 'Ponctuel',
-            default => 'Annuel',
-        };
+        return eur($this->price);
+    }
+
+    public function getTypePrlvTextAttribute()
+    {
+        switch ($this->type_prlv) {
+            case 'mensual': return "Mensuel";
+            case 'trim': return "Trimestriel";
+            case 'sem': return "Semestriel";
+            case 'ponctual': return "Ponctuel";
+            default: return "Annuel";
+        }
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($plan) {
+            LogHelper::insertLogSystem('success', "Un service bancaire à été créer: ".$plan->name);
+        });
+
+        static::updated(function ($plan) {
+            LogHelper::insertLogSystem('success', "Un service bancaire à été éditer: ".$plan->name);
+        });
+
+        static::deleted(function () {
+            LogHelper::insertLogSystem('success', "Un service bancaire à été supprimer");
+        });
     }
 }
