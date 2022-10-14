@@ -48,8 +48,11 @@ class LogNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'type' => $this->type,
-            'message' => $this->message,
+            'icon' => LogHelper::getTypeTitleIcon($this->type),
+            'color' => LogHelper::getTypeTitleColor($this->type),
+            'title' => 'Informations',
+            'text' => $this->message,
+            'time' => now()->shortAbsoluteDiffForHumans(),
         ];
     }
 }

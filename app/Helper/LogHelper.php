@@ -37,6 +37,29 @@ class LogHelper
         }
     }
 
+    public static function getTypeTitleColor($type)
+    {
+        switch ($type) {
+            case 'emergency' || 'critical' || 'error': return 'danger';
+            case 'alert' || 'warning': return 'warning';
+            case 'notice': return 'primary';
+            case 'info': return 'info';
+            default: return 'light';
+        }
+    }
+
+    public static function getTypeTitleIcon($type)
+    {
+        switch ($type) {
+            case 'emergency' || 'critical': return 'radiation';
+            case 'alert' || 'warning': return 'triangle-exclamation';
+            case 'error': return 'xmark';
+            case 'notice': return 'exclamation';
+            case 'info': return 'info';
+            default: return 'bug';
+        }
+    }
+
     public static function error(string $exception, $t = null)
     {
         \Log::error($exception, $t);

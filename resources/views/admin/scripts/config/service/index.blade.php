@@ -1,48 +1,55 @@
 <script type="text/javascript">
     let tables = {
-        tableService: document.querySelector('#kt_service_table')
+        tableVersion: document.querySelector('#kt_version_table')
     }
     let elements = {
         btnEdit: document.querySelectorAll('.btnEdit'),
         btnDelete: document.querySelectorAll('.btnDelete'),
+        elementTags: document.querySelectorAll('[name="types"]'),
     }
     let modals = {
-        modalEditService: document.querySelector("#EditService"),
-        modalShowService: document.querySelector("#ShowService"),
+        modalEditVersion: document.querySelector("#EditVersion"),
     }
     let forms = {
-        formAddService: document.querySelector('#formAddService'),
-        formEditService: document.querySelector('#formEditService'),
+        formAddVersion: document.querySelector('#formAddVersion'),
+        formEditVersion: document.querySelector('#formEditVersion'),
     }
 
-    let datatableService = $(tables.tableService).DataTable({
+    let dataTypes = null;
+
+    let datatableVersion = $(tables.tableVersion).DataTable({
         info: !1,
         order: [],
         pageLength: 10,
     })
 
+    let edit = editor("#content")
 
-    if(document.querySelector('[data-kt-service-filter="search"]')) {
-        document.querySelector('[data-kt-service-filter="search"]').addEventListener("keyup", (function(t) {
-            datatableService.search(t.target.value).draw()
+
+    if (document.querySelector('[data-kt-version-filter="search"]')) {
+        document.querySelector('[data-kt-version-filter="search"]').addEventListener("keyup", (function (t) {
+            datatableVersion.search(t.target.value).draw()
         }))
     }
 
-    if(elements.btnEdit) {
+    if (elements.btnEdit) {
         elements.btnEdit.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
 
                 $.ajax({
-                    url: '/api/core/service/'+e.target.dataset.service,
+                    url: '/api/core/version/' + e.target.dataset.version,
                     success: data => {
-                        let modal = new bootstrap.Modal(modals.modalEditService)
+                        let modal = new bootstrap.Modal(modals.modalEditVersion)
 
-                        forms.formEditService.setAttribute('action', '/api/core/service/'+data.id)
-                        forms.formEditService.querySelector('[name="name"]').value = data.name
-                        forms.formEditService.querySelector('[name="price"]').value = data.price
-                        $("#select2-type_prlv-container").html(data.type_prlv_text)
-                        $("#select2-package_id-container").html(data.package_id)
+                        forms.formEditVersion.setAttribute('action', '/api/core/version/' + data.id)
+                        forms.formEditVersion.querySelector('[name="name"]').value = data.name
+                        forms.formEditVersion.querySelector('[name="types"]').value = ''
+                        data.types.forEach(type => {
+                            forms.formEditVersion.querySelector('[name="types"]').value += type.name
+                        })
+                        forms.formEditVersion.querySelector('[name="content"]').value = data.content
+                        data.publish ? forms.formEditVersion.querySelector('[name="publish"]').setAttribute('checked', 'checked') : ''
 
 
                         modal.show()
@@ -54,16 +61,16 @@
             })
         })
     }
-    if(elements.btnDelete) {
+    if (elements.btnDelete) {
         elements.btnDelete.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
 
                 $.ajax({
-                    url: '/api/core/service/'+e.target.dataset.service,
+                    url: '/api/core/version/' + e.target.dataset.version,
                     method: "DELETE",
                     success: () => {
-                        toastr.success(`Un service bancaire à été supprimé avec succès`, `Service bancaire`)
+                        toastr.success(`Une version à été supprimé avec succès`, `Version`)
 
                         $(e.target.parentNode.parentNode).animate({
                             width: ["toggle", "swing"],
@@ -79,9 +86,10 @@
         })
     }
 
-    $(forms.formAddService).on('submit', e => {
+    $(forms.formAddVersion).on('submit', e => {
         e.preventDefault()
-        let form = $(forms.formAddService)
+        tinymce.triggerSave()
+        let form = $(forms.formAddVersion)
         let url = form.attr('action')
         let data = form.serializeArray()
         let btn = form.find('.btn-bank')
@@ -94,7 +102,7 @@
             data: data,
             success: data => {
                 btn.removeAttr('data-kt-indicator')
-                toastr.success(`Le service bancaire ${data.name} à été créer avec succès`, `Service bancaire`)
+                toastr.success(`La version ${data.name} à été créer avec succès`, `Version`)
 
                 setTimeout(() => {
                     window.location.reload()
@@ -106,9 +114,9 @@
             }
         })
     })
-    $(forms.formEditService).on('submit', e => {
+    $(forms.formEditVersion).on('submit', e => {
         e.preventDefault()
-        let form = $(forms.formEditService)
+        let form = $(forms.formEditVersion)
         let url = form.attr('action')
         let data = form.serializeArray()
         let btn = form.find('.btn-bank')
@@ -121,7 +129,7 @@
             data: data,
             success: data => {
                 btn.removeAttr('data-kt-indicator')
-                toastr.success(`Le service bancaire ${data.name} à été edité avec succès`, `Service bancaire`)
+                toastr.success(`La version ${data.name} à été edité avec succès`, `Version`)
 
                 setTimeout(() => {
                     window.location.reload()
@@ -133,4 +141,15 @@
             }
         })
     })
+
+    elements.elementTags.forEach(tags => {
+        $.ajax({
+            url: '/api/core/version/types',
+            success: data => {
+                tagify(tags, data)
+            }
+        })
+    })
+
+
 </script>

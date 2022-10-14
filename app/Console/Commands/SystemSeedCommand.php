@@ -97,6 +97,9 @@ class SystemSeedCommand extends Command
         $this->info('Seeding: Liste des Sous Catégories de pages');
         $this->call('db:seed', ['class' => 'CmsSubCategorySeeder', 'force']);
 
+        $this->info('Seeding: Liste des Types de version');
+        $this->call('db:seed', ['class' => 'TypeVersionSeeder', 'force']);
+
 
         return 0;
     }

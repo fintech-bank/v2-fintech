@@ -16,6 +16,7 @@
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
     <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/assets/plugins/custom/editormd/css/editormd.min.css" />
     <link rel="stylesheet" href="/css/app.css">
     @yield("css")
     <!--end::Global Stylesheets Bundle-->
@@ -94,8 +95,10 @@
 <script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used by this page)-->
+<script src="https://cdn.tiny.cloud/1/7e8bt37j9pf0xsp4b6heb0wj0l35laqvukhjasu2jdq7gt83/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@2/dist/tinymce-jquery.min.js"></script>
 <script src="/js/app.js"></script>
-{{--<script src="/assets/js/custom.js"></script>--}}
+<script src="/js/function.js"></script>
 @auth
     <script src="{{ asset('js/enable-push.js') }}"></script>
 @endauth
