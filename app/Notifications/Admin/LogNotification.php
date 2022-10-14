@@ -13,18 +13,24 @@ class LogNotification extends Notification
     public $type;
 
     public $message;
+    /**
+     * @var null
+     */
+    public $content;
 
     /**
      * Create a new notification instance.
      *
      * @param $type
      * @param $message
+     * @param null $content
      */
-    public function __construct($type, $message)
+    public function __construct($type, $message, $content = null)
     {
         //
         $this->type = $type;
         $this->message = $message;
+        $this->content = $content;
     }
 
     /**
@@ -52,6 +58,7 @@ class LogNotification extends Notification
             'color' => LogHelper::getTypeTitleColor($this->type),
             'title' => 'Informations',
             'text' => $this->message,
+            'content' => $this->content,
             'time' => now()->shortAbsoluteDiffForHumans(),
         ];
     }

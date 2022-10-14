@@ -35,7 +35,7 @@ class VersionController extends Controller
                 $version->types()->attach($type->id);
             }
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception, 500);
         }
 
@@ -54,7 +54,7 @@ class VersionController extends Controller
 
             $version->delete();
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception, 500);
         }
 

@@ -65,13 +65,13 @@ class ResellerController extends Controller
             try {
                 Storage::disk('public')->deleteDirectory('reseller/' . $reseller->user->id);
             } catch (\Exception $exception) {
-                LogHelper::notify('critical', $exception);
+                LogHelper::notify('critical', $exception->getMessage(), $exception);
                 return response()->json(null, 500);
             }
 
             return response()->json();
         } catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json(null, 500);
         }
     }
@@ -87,7 +87,7 @@ class ResellerController extends Controller
                     Whatsapp::sendNotification($withdraw->wallet->customer->info->mobile, "Votre code de retrait est: ".base64_decode($withdraw->code)) :
                     $withdraw->wallet->customer->info->notify(new SendCodeNotification('withdraw', $withdraw->code));
             }catch (\Exception $exception) {
-                LogHelper::notify('critical', $exception);
+                LogHelper::notify('critical', $exception->getMessage(), $exception);
                 return response()->json($exception, 500);
             }
         } else {
@@ -97,7 +97,7 @@ class ResellerController extends Controller
                     Whatsapp::sendNotification($withdraw->wallet->customer->info->mobile, "Votre code de dépot est: ".base64_decode($withdraw->code)) :
                     $withdraw->wallet->customer->info->notify(new SendCodeNotification('withdraw', $withdraw->code));
             }catch (\Exception $exception) {
-                LogHelper::notify('critical', $exception);
+                LogHelper::notify('critical', $exception->getMessage(), $exception);
                 return response()->json($exception, 500);
             }
         }

@@ -296,7 +296,7 @@ class RegisterController extends Controller
                         'client_secret' => $intent->client_secret
                     ]);
                 }catch (\Exception $exception) {
-                    LogHelper::notify('critical', $exception->getMessage());
+                    LogHelper::notify('critical', $exception->getMessage(), $exception);
                     return $exception;
                 }
             }
@@ -447,7 +447,7 @@ class RegisterController extends Controller
 
             config('app.env') == 'local' ? Whatsapp::sendNotification($customer->info->mobile, "Votre mot de passe provisoire est: $password") : null;
         } catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
         }
 
         \Storage::disk('public')->makeDirectory('gdd/' . $customer->id);

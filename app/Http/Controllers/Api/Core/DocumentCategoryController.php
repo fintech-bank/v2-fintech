@@ -23,7 +23,7 @@ class DocumentCategoryController extends Controller
         try {
             $category->update($request->all());
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json(null, 500);
         }
 
@@ -37,7 +37,7 @@ class DocumentCategoryController extends Controller
         try {
             $category->delete();
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json(null, 500);
         }
 

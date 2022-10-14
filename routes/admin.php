@@ -77,6 +77,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::prefix('account')->group(function () {
         Route::prefix('notify')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\Account\NotifyController::class, 'index'])->name('admin.account.notify.index');
+            Route::get('/{notify_id}', [\App\Http\Controllers\Admin\Account\NotifyController::class, 'show'])->name('admin.account.notify.show');
         });
 
         Route::prefix('mailbox')->group(function () {

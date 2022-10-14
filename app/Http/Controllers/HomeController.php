@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\LogHelper;
 use App\Models\Core\Agency;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
@@ -79,6 +80,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        dd(Package::dataTypeCpt()->where('string', 'part')->first());
+        LogHelper::notify('info', 'Ceci est un test de notification');
     }
 }

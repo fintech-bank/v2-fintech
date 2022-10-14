@@ -32,7 +32,7 @@ class VersionController extends Controller
                 $version->types()->attach($ty->id);
             }
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception, 500);
         }
 

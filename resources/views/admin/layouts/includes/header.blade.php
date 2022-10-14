@@ -69,7 +69,7 @@
                                 </div>
                                 <!--end::Section-->
                                 <!--begin::Label-->
-                                <span class="badge badge-light fs-8">{{ $notify['data']['time'] }}</span>
+                                <span class="badge badge-light fs-8">{{ $notify->created_at->shortAbsoluteDiffForHumans() }}</span>
                                 <!--end::Label-->
                             </div>
                             <!--end::Item-->

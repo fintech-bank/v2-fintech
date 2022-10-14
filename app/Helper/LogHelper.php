@@ -11,15 +11,16 @@ class LogHelper
     /**
      * @param $type
      * @param $message
+     * @param null $content
      * @return void
      */
-    public static function notify($type, $message)
+    public static function notify($type, $message, $content = null)
     {
         $users = User::where('admin', 1)->orWhere('agent', 1)->get();
 
         foreach ($users as $user) {
             \Log::$type($message);
-            $user->notify(new LogNotification($type, $message));
+            $user->notify(new LogNotification($type, $message, $content));
         }
     }
 
