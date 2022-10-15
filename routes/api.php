@@ -79,3 +79,17 @@ Route::prefix('core')->group(function () {
 Route::prefix('user')->group(function () {
     Route::get("{user_id}/info", [\App\Http\Controllers\Api\User\UserController::class, 'info']);
 });
+
+Route::prefix('manager')->group(function () {
+    Route::prefix('folders')->group(function () {
+        Route::get("/", [\App\Http\Controllers\Api\Manager\FoldersController::class, 'lists']);
+        Route::post("/", [\App\Http\Controllers\Api\Manager\FoldersController::class, 'store']);
+        Route::delete("/{folder}", [\App\Http\Controllers\Api\Manager\FoldersController::class, 'delete'])->where(['folder' => '.*']);
+    });
+
+    Route::prefix('files')->group(function () {
+        Route::get("/", [\App\Http\Controllers\Api\Manager\FilesController::class, 'lists']);
+        Route::post("/", [\App\Http\Controllers\Api\Manager\FilesController::class, 'store']);
+        Route::delete("/{file}", [\App\Http\Controllers\Api\Manager\FilesController::class, 'delete'])->where(['file' => '.*']);
+    });
+});

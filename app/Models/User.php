@@ -4,15 +4,19 @@ namespace App\Models;
 
 use App\Helper\CustomerHelper;
 use App\Models\Core\Agency;
+use App\Models\Core\DocumentCategory;
 use App\Models\Core\LogBanque;
 use App\Models\Core\Package;
 use App\Models\Core\TicketConversation;
 use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
+use App\Models\User\UserFile;
+use App\Models\User\UserFolder;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 use RTippin\Messenger\Contracts\MessengerProvider;
@@ -153,5 +157,30 @@ class User extends Authenticatable
     public function log()
     {
         return $this->hasMany(LogBanque::class);
+    }
+
+    public function folder()
+    {
+        return $this->hasMany(UserFolder::class);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(UserFile::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            Storage::disk('public')->makeDirectory('gdd/'.$user->id.'/documents');
+            Storage::disk('public')->makeDirectory('gdd/'.$user->id.'/account');
+            Storage::disk('public')->makeDirectory('gdd/'.$user->id.'/personnel');
+
+            foreach (DocumentCategory::all() as $doc) {
+                Storage::disk('public')->makeDirectory('gdd/'.$user->id.'/documents/'.$doc->slug);
+            }
+        });
     }
 }

@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Account;
+namespace App\Http\Controllers\Api\Manager;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
-class DocumentsController extends Controller
+class FoldersController extends Controller
 {
-    public function index()
+    public function lists(Request $request)
     {
-        $user = auth()->user();
-        $folders = collect(Storage::disk('public')->allDirectories('gdd/'.$user->id))->map([$this, 'toArray']);
+        $folders = collect(Storage::disk('public')->allDirectories('gdd/'.$request->query->get('user_id')))->map([$this, 'toArray']);
 
-        return view('admin.account.documents.index', compact('user', 'folders'));
+        return response()->json($folders);
     }
 
     public function toArray(string $file): array
@@ -23,7 +23,7 @@ class DocumentsController extends Controller
         return [
             // use the filepath as an ID
             'id' => $file,
-            'name' => $dirname,
+            'name' => Str::ucfirst($dirname),
             'parent' => implode('/', $path) ?: null,
         ];
     }

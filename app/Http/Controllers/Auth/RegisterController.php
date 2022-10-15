@@ -450,10 +450,10 @@ class RegisterController extends Controller
             LogHelper::notify('critical', $exception->getMessage(), $exception);
         }
 
-        \Storage::disk('public')->makeDirectory('gdd/' . $customer->id);
-        \Storage::disk('public')->makeDirectory('gdd/' . $customer->id . '/account');
+        \Storage::disk('public')->makeDirectory('gdd/' . $user->id.'/documents');
+        \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
         foreach (DocumentCategory::all() as $doc) {
-            \Storage::disk('public')->makeDirectory('gdd/' . $customer->id . '/' . $doc->id);
+            \Storage::disk('public')->makeDirectory('gdd/' . $customer->id . '/documents/' . $doc->id);
         }
 
         /*

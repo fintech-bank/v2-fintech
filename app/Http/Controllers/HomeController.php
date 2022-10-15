@@ -7,6 +7,7 @@ use App\Models\Core\Agency;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
+use App\Models\User\UserFolder;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
 use App\Services\Twilio\Messaging\Whatsapp;
@@ -80,6 +81,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        LogHelper::notify('info', 'Ceci est un test de notification');
+        dd(UserFolder::getFolderInfo(public_path('/storage/gdd/1/account')));
     }
 }

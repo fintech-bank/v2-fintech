@@ -13,10 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('document_categories', function (Blueprint $table) {
+        Schema::create('user_folders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
+            $table->boolean('parent');
+            $table->integer('parent_id')->nullable();
+            $table->timestamps();
+
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 
@@ -27,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('document_categories');
+        Schema::dropIfExists('user_folders');
     }
 };
