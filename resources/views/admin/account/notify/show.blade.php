@@ -18,10 +18,9 @@
             <li class="breadcrumb-item text-dark">Mes Notifications</li>
         </ul>
     </div>
-    <!--<div class="d-flex align-items-center gap-2 gap-lg-3">
-        <a href="#" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Rollover</a>
-        <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">Add Target</a>
-    </div>-->
+    <div class="d-flex align-items-center gap-2 gap-lg-3">
+        <a href="{{ route('admin.account.notify.index') }}" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary"><i class="fa-solid fa-cirlce-left"></i> Retour</a>
+    </div>
 @endsection
 
 @section("content")

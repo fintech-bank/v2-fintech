@@ -17,6 +17,7 @@ class NotifyController extends Controller
 
     public function show($notify_id)
     {
+        auth()->user()->notifications()->find($notify_id)->markAsRead();
         return view('admin.account.notify.show', [
             'user' => auth()->user(),
             'notify' => auth()->user()->notifications()->find($notify_id)
