@@ -65,5 +65,31 @@ Route::prefix('core')->group(function () {
         Route::delete("{service_id}", [\App\Http\Controllers\Api\Core\ServiceController::class, 'delete']);
     });
 
+    Route::prefix('version')->group(function () {
+        Route::get('/types', [\App\Http\Controllers\Api\Core\VersionController::class, 'getTypes']);
+        Route::get("{version_id}", [\App\Http\Controllers\Api\Core\VersionController::class, 'info']);
+        Route::put("{version_id}", [\App\Http\Controllers\Api\Core\VersionController::class, 'update']);
+        Route::delete("{version_id}", [\App\Http\Controllers\Api\Core\VersionController::class, 'delete']);
+    });
+
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);
+
+});
+
+Route::prefix('user')->group(function () {
+    Route::get("{user_id}/info", [\App\Http\Controllers\Api\User\UserController::class, 'info']);
+});
+
+Route::prefix('manager')->group(function () {
+    Route::prefix('folders')->group(function () {
+        Route::get("/", [\App\Http\Controllers\Api\Manager\FoldersController::class, 'lists']);
+        Route::post("/", [\App\Http\Controllers\Api\Manager\FoldersController::class, 'store']);
+        Route::delete("/{folder}", [\App\Http\Controllers\Api\Manager\FoldersController::class, 'delete'])->where(['folder' => '.*']);
+    });
+
+    Route::prefix('files')->group(function () {
+        Route::get("/", [\App\Http\Controllers\Api\Manager\FilesController::class, 'lists']);
+        Route::post("/", [\App\Http\Controllers\Api\Manager\FilesController::class, 'store']);
+        Route::delete("/{file}", [\App\Http\Controllers\Api\Manager\FilesController::class, 'delete'])->where(['file' => '.*']);
+    });
 });

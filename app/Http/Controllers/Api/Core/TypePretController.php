@@ -59,7 +59,7 @@ class TypePretController extends Controller
                 ]);
             }
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception, 500);
         }
 
@@ -73,7 +73,7 @@ class TypePretController extends Controller
         try {
             $type->delete();
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception, 500);
         }
 

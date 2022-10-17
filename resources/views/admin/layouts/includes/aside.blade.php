@@ -144,7 +144,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.config.version.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-code-commit fa-2x"></i>
 						</span>
@@ -161,7 +161,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link" href="{{ route('admin.cms.category.index') }}">
 						<span class="menu-icon">
 							<i class="fa-solid fa-folder-tree fa-2x"></i>
 						</span>

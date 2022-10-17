@@ -14,7 +14,7 @@ class DocumentController extends Controller
             $request->file('file')->storeAs('/public/gdd/'.$request->get('customer_id').'/account/', $request->get('name').'.'.$request->file('file')->getClientOriginalExtension());
             return api()->ok();
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception->getMessage());
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return api()->error($exception->getMessage());
         }
     }

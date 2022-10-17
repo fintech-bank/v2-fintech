@@ -61,11 +61,42 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
             Route::get("/", [\App\Http\Controllers\Admin\Configuration\ServiceController::class, 'index'])->name('admin.config.service.index');
             Route::post("/", [\App\Http\Controllers\Admin\Configuration\ServiceController::class, 'store'])->name('admin.config.service.store');
         });
+
+        Route::prefix('version')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Configuration\VersionController::class, 'index'])->name('admin.config.version.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Configuration\VersionController::class, 'store'])->name('admin.config.version.store');
+        });
     });
 
     Route::prefix('system')->group(function () {
         Route::prefix('log-banque')->group(function () {
             Route::get("/", [\App\Http\Controllers\Admin\System\LogBanqueController::class, 'index'])->name('admin.system.log.index');
+        });
+    });
+
+    Route::prefix('cms')->group(function () {
+        Route::prefix('category')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Cms\CmsCategoryController::class, 'index'])->name('admin.cms.category.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Cms\CmsCategoryController::class, 'store'])->name('admin.cms.category.store');
+        });
+    });
+
+    Route::prefix('account')->group(function () {
+        Route::prefix('notify')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\Account\NotifyController::class, 'index'])->name('admin.account.notify.index');
+            Route::get('/{notify_id}', [\App\Http\Controllers\Admin\Account\NotifyController::class, 'show'])->name('admin.account.notify.show');
+        });
+
+        Route::prefix('mailbox')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Account\MailboxController::class, 'index'])->name('admin.account.mailbox.index');
+        });
+
+        Route::prefix('documents')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Account\DocumentsController::class, 'index'])->name('admin.account.documents.index');
+        });
+
+        Route::prefix('profil')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Account\ProfilController::class, 'index'])->name('admin.account.profil.index');
         });
     });
 });

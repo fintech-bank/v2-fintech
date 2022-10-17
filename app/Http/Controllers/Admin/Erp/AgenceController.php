@@ -36,7 +36,7 @@ class AgenceController extends Controller
 
             return response()->json($agence);
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json(null, 500);
         }
     }
