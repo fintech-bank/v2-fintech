@@ -296,7 +296,7 @@ class RegisterController extends Controller
                         'client_secret' => $intent->client_secret
                     ]);
                 }catch (\Exception $exception) {
-                    LogHelper::notify('critical', $exception->getMessage());
+                    LogHelper::notify('critical', $exception->getMessage(), $exception);
                     return $exception;
                 }
             }
@@ -447,13 +447,13 @@ class RegisterController extends Controller
 
             config('app.env') == 'local' ? Whatsapp::sendNotification($customer->info->mobile, "Votre mot de passe provisoire est: $password") : null;
         } catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
         }
 
-        \Storage::disk('public')->makeDirectory('gdd/' . $customer->id);
-        \Storage::disk('public')->makeDirectory('gdd/' . $customer->id . '/account');
+        \Storage::disk('public')->makeDirectory('gdd/' . $user->id.'/documents');
+        \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
         foreach (DocumentCategory::all() as $doc) {
-            \Storage::disk('public')->makeDirectory('gdd/' . $customer->id . '/' . $doc->id);
+            \Storage::disk('public')->makeDirectory('gdd/' . $customer->id . '/documents/' . $doc->id);
         }
 
         /*

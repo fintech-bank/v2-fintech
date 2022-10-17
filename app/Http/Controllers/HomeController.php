@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\LogHelper;
 use App\Models\Core\Agency;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
+use App\Models\User\UserFolder;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
 use App\Services\Twilio\Messaging\Whatsapp;
@@ -79,6 +81,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        dd(Package::dataTypeCpt()->where('string', 'part')->first());
+        dd(UserFolder::getFolderInfo(public_path('/storage/gdd/1/account')));
     }
 }

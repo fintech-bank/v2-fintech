@@ -11,15 +11,16 @@ class LogHelper
     /**
      * @param $type
      * @param $message
+     * @param null $content
      * @return void
      */
-    public static function notify($type, $message)
+    public static function notify($type, $message, $content = null)
     {
         $users = User::where('admin', 1)->orWhere('agent', 1)->get();
 
         foreach ($users as $user) {
             \Log::$type($message);
-            $user->notify(new LogNotification($type, $message));
+            $user->notify(new LogNotification($type, $message, $content));
         }
     }
 
@@ -34,6 +35,29 @@ class LogHelper
             case 'notice': return 'Notice';
             case 'info': return 'Information';
             default: return 'Debug';
+        }
+    }
+
+    public static function getTypeTitleColor($type)
+    {
+        switch ($type) {
+            case 'emergency' || 'critical' || 'error': return 'danger';
+            case 'alert' || 'warning': return 'warning';
+            case 'notice': return 'primary';
+            case 'info': return 'info';
+            default: return 'light';
+        }
+    }
+
+    public static function getTypeTitleIcon($type)
+    {
+        switch ($type) {
+            case 'emergency' || 'critical': return 'radiation';
+            case 'alert' || 'warning': return 'triangle-exclamation';
+            case 'error': return 'xmark';
+            case 'notice': return 'exclamation';
+            case 'info': return 'info';
+            default: return 'bug';
         }
     }
 

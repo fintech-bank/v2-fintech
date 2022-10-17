@@ -48,7 +48,7 @@ class DocumentFile
                     [],
                     false,
                     true,
-                    public_path('/storage/gdd/'.$customer->id.'/'.\Str::slug($category->name)),
+                    public_path('/storage/gdd/'.$customer->id.'/documents/'.\Str::slug($category->name)),
                     false);
             }
 
@@ -161,7 +161,7 @@ class DocumentFile
                 'document' => $document,
             ]);
 
-            $pdf->save(public_path('/storage/gdd/'.$customer->id.'/'.$category.'/'.$nameless.'.pdf'));
+            $pdf->save(public_path('/storage/gdd/'.$customer->id.'/documents/'.$category.'/'.$nameless.'.pdf'));
         }
 
         return $document;

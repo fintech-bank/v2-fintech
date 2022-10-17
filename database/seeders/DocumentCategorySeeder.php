@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Core\DocumentCategory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DocumentCategorySeeder extends Seeder
 {
@@ -14,10 +15,10 @@ class DocumentCategorySeeder extends Seeder
      */
     public function run()
     {
-        DocumentCategory::create(['name' => 'Assurance']);
-        DocumentCategory::create(['name' => 'Comptes']);
-        DocumentCategory::create(['name' => 'Contrats']);
-        DocumentCategory::create(['name' => 'Epargnes']);
-        DocumentCategory::create(['name' => 'Courriers']);
+        DocumentCategory::create(['name' => 'Assurance', "slug" => Str::slug("Assurance")]);
+        DocumentCategory::create(['name' => 'Comptes', "slug" => Str::slug("Comptes")]);
+        DocumentCategory::create(['name' => 'Contrats', "slug" => Str::slug("Contrats")]);
+        DocumentCategory::create(['name' => 'Epargnes', "slug" => Str::slug("Epargnes")]);
+        DocumentCategory::create(['name' => 'Courriers', "slug" => Str::slug("Courriers")]);
     }
 }

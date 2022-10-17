@@ -65,7 +65,7 @@ class ResellerController extends Controller
                 'customer_withdraw_dabs_id' => $dab->id
             ]);
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
         }
 
@@ -86,7 +86,7 @@ class ResellerController extends Controller
 
             $reseller->user->notify(new ShipTpeNotification($reseller, $shipTPE));
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
         }
 
@@ -94,7 +94,7 @@ class ResellerController extends Controller
         try {
             $request->file('logo')->storeAs('public/reseller/'.$user->id.'/', $user->id.'.'.$request->file('logo')->getClientOriginalExtension());
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
         }
 
@@ -120,7 +120,7 @@ class ResellerController extends Controller
 
             $pdf->save(public_path('storage/reseller/'.$user->id.'/contrat.pdf'));
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
         }
 
@@ -173,7 +173,7 @@ class ResellerController extends Controller
                 'limit_incoming' => $request->has('limit_incoming') ? $request->get('limit_incoming'): null
             ]);
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
         }
 
@@ -183,7 +183,7 @@ class ResellerController extends Controller
                 $request->file('logo')->storeAs('public/reseller/'.$reseller->user->id.'/', $reseller->user->id.'.'.$request->file('logo')->getClientOriginalExtension());
             }
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return redirect()->back()->with('error', "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur");
         }
 

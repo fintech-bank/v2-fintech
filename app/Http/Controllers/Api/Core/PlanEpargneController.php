@@ -23,7 +23,7 @@ class PlanEpargneController extends Controller
         try {
             $plan->update($request->except('_token'));
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception, 500);
         }
 
@@ -37,7 +37,7 @@ class PlanEpargneController extends Controller
         try {
             $plan->delete();
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception, 500);
         }
 

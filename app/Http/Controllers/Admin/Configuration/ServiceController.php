@@ -21,7 +21,7 @@ class ServiceController extends Controller
         try {
             $service = Service::create($request->except('_token'));
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception, 500);
         }
 

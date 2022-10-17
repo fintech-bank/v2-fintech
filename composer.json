@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "ext-curl": "*",
         "ext-json": "*",
+        "1pilotapp/laravel-client": "^1.0",
         "appoly/mail-web": "^4.0",
         "arcanedev/log-viewer": "^9.0",
         "authy/php": "^4.0@RC",
