@@ -23,7 +23,17 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
         });
 
         Route::prefix('mailbox')->group(function () {
-            Route::get("/", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'index'])->name('agent.account.mailbox.index');
+            Route::get("{folder?}", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'index'])->name('agent.account.mailbox.index');
+            Route::get("create", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'create'])->name('agent.account.mailbox.create');
+            Route::post("create", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'store'])->name('agent.account.mailbox.store');
+            Route::get("{id}", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'show'])->name('agent.account.mailbox.show');
+            Route::put("toggle-important", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'toggleImportant'])->name('agent.account.mailbox.toggleImportant');
+            Route::delete("/", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'trash'])->name('agent.account.mailbox.trash');
+            Route::get("{id}/reply", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'getReply'])->name('agent.account.mailbox.getReply');
+            Route::post("{id}/reply", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'postReply'])->name('agent.account.mailbox.postReply');
+            Route::get("{id}/forward", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'getForward'])->name('agent.account.mailbox.getForward');
+            Route::post("{id}/forward", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'postForward'])->name('agent.account.mailbox.postForward');
+            Route::get("{id}/send", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'send'])->name('agent.account.mailbox.send');
         });
 
         Route::prefix('documents')->group(function () {

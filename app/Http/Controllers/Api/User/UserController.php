@@ -18,6 +18,9 @@ class UserController extends Controller
                 'unread' => $user->unreadNotifications()->count(),
                 'unreadLists' => $user->unreadNotifications(),
                 'all' => $user->notifications
+            ],
+            'mailer' => [
+                'unread_count' => count(getUnreadMessages())
             ]
         ];
 

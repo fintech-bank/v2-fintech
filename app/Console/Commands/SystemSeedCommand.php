@@ -100,6 +100,8 @@ class SystemSeedCommand extends Command
         $this->info('Seeding: Liste des Types de version');
         $this->call('db:seed', ['class' => 'TypeVersionSeeder', 'force']);
 
+        $this->info('Seeding: Liste des Dossier Mail par défault');
+        $this->call('db:seed', ['class' => 'MailboxFolderSeeder', 'force']);
 
         return 0;
     }

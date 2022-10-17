@@ -72,6 +72,41 @@ if (! function_exists('getLatestVersion')) {
     }
 }
 
+if (! function_exists('getUnreadMessages')) {
+    function getUnreadMessages($user_id = null)
+    {
+        $folder = \App\Models\Core\MailboxFolder::where('title', 'Inbox')->first();
+
+        if(isset($user_id)) {
+            return \App\Models\Core\Mailbox::join('mailbox_receiver', 'mailbox_receiver.mailbox_id', '=', 'mailbox.id')
+                ->join('mailbox_user_folder', 'mailbox_user_folder.user_id', '=', 'mailbox_receiver.receiver_id')
+                ->join('mailbox_flags', 'mailbox_flags.user_id', '=', 'mailbox_user_folder.user_id')
+                ->where('mailbox_receiver.receiver_id', Auth::user()->id)
+                ->where('mailbox_flags.is_unread', 1)
+                ->where('mailbox_user_folder.folder_id', $folder->id)
+                ->where('sender_id', '!=', Auth::user()->id)
+                ->whereRaw('mailbox.id=mailbox_receiver.mailbox_id')
+                ->whereRaw('mailbox.id=mailbox_flags.mailbox_id')
+                ->whereRaw('mailbox.id=mailbox_user_folder.mailbox_id')
+                ->select(["*", "mailbox.id as id"])
+                ->get();
+        } else {
+            return \App\Models\Core\Mailbox::join('mailbox_receiver', 'mailbox_receiver.mailbox_id', '=', 'mailbox.id')
+                ->join('mailbox_user_folder', 'mailbox_user_folder.user_id', '=', 'mailbox_receiver.receiver_id')
+                ->join('mailbox_flags', 'mailbox_flags.user_id', '=', 'mailbox_user_folder.user_id')
+                ->where('mailbox_receiver.receiver_id', $user_id)
+                ->where('mailbox_flags.is_unread', 1)
+                ->where('mailbox_user_folder.folder_id', $folder->id)
+                ->where('sender_id', '!=', $user_id)
+                ->whereRaw('mailbox.id=mailbox_receiver.mailbox_id')
+                ->whereRaw('mailbox.id=mailbox_flags.mailbox_id')
+                ->whereRaw('mailbox.id=mailbox_user_folder.mailbox_id')
+                ->select(["*", "mailbox.id as id"])
+                ->get();
+        }
+    }
+}
+
 if (! function_exists('sizeFormat')) {
     function sizeFormat($bytes)
     {

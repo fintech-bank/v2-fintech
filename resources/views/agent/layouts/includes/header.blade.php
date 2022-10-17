@@ -106,8 +106,9 @@
                 <!--begin::Notifications-->
                 <div class="app-navbar-item ms-1 ms-lg-3">
                     <!--begin::Menu- wrapper-->
-                    <a href="{{ route('agent.account.mailbox.index') }}" class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-45px h-45px w-md-50px h-md-50px">
+                    <a href="{{ route('agent.account.mailbox.index') }}" class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-45px h-45px w-md-50px h-md-50px position-relative">
                         <i class="fa-regular fa-envelope"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle  badge badge-circle badge-sm badge-danger unreadMailBadge" data-user="{{ auth()->user()->id }}"></span>
                     </a>
                     <!--end::Menu wrapper-->
                 </div>
