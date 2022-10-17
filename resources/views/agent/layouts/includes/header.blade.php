@@ -78,7 +78,7 @@
                         <!--end::Items-->
                         <!--begin::View more-->
                         <div class="py-3 text-center border-top">
-                            <a href="{{ route('admin.account.notify.index') }}" class="btn btn-color-gray-600 btn-active-color-primary">Mes notifications
+                            <a href="{{ route('agent.account.notify.index') }}" class="btn btn-color-gray-600 btn-active-color-primary">Mes notifications
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                 <span class="svg-icon svg-icon-5">
 									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +97,7 @@
                 <!--begin::Notifications-->
                 <div class="app-navbar-item ms-1 ms-lg-3">
                     <!--begin::Menu- wrapper-->
-                    <a href="{{ route('admin.account.documents.index') }}" class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-45px h-45px w-md-50px h-md-50px">
+                    <a href="{{ route('agent.account.documents.index') }}" class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-45px h-45px w-md-50px h-md-50px">
                         <i class="fa-regular fa-folder"></i>
                     </a>
                     <!--end::Menu wrapper-->
@@ -106,7 +106,16 @@
                 <!--begin::Notifications-->
                 <div class="app-navbar-item ms-1 ms-lg-3">
                     <!--begin::Menu- wrapper-->
-                    <a href="{{ route('admin.account.mailbox.index') }}" class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-45px h-45px w-md-50px h-md-50px">
+                    <a href="{{ route('agent.account.mailbox.index') }}" class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-45px h-45px w-md-50px h-md-50px">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                    <!--end::Menu wrapper-->
+                </div>
+                <!--end::Notifications-->
+                <!--begin::Notifications-->
+                <div class="app-navbar-item ms-1 ms-lg-3">
+                    <!--begin::Menu- wrapper-->
+                    <a href="{{ route('agent.account.mailbox.index') }}" class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-45px h-45px w-md-50px h-md-50px">
                         <i class="fa-regular fa-calendar"></i>
                     </a>
                     <!--end::Menu wrapper-->
