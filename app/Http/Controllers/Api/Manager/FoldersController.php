@@ -11,7 +11,9 @@ class FoldersController extends Controller
 {
     public function lists(Request $request)
     {
-        $folders = collect(Storage::disk('public')->allDirectories('gdd/'.$request->query->get('user_id')))->map([$this, 'toArray']);
+        $folders = collect(Storage::disk('public')
+            ->allDirectories('gdd/'.$request->query->get('user_id')))
+            ->map([$this, 'toArray']);
 
         return response()->json($folders);
     }
