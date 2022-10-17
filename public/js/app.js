@@ -2712,14 +2712,6 @@ $.extend(true, $.fn.DataTable.defaults, {
   }
 });
 
-var animateOut = function animateOut(node) {
-  $(node).slideUp();
-};
-
-var animateIn = function animateIn(node) {
-  $(node).slideDown();
-};
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
