@@ -13,14 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-include('auth.php');
-include('front.php');
-include('admin.php');
-include('agent.php');
-
-Auth::routes();
-Route::mailweb();
-
-Route::get('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('auth.logout');
-Route::get('/test', [\App\Http\Controllers\HomeController::class, 'test']);
-Route::post('/push', [\App\Http\Controllers\HomeController::class, 'push'])->middleware(['auth']);
+Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\Agent\HomeController::class, 'index'])->name('agent.dashboard');
+});

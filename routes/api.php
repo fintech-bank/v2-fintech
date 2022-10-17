@@ -93,3 +93,8 @@ Route::prefix('manager')->group(function () {
         Route::delete("/{file}", [\App\Http\Controllers\Api\Manager\FilesController::class, 'delete'])->where(['file' => '.*']);
     });
 });
+
+Route::prefix('stat')->group(function () {
+    Route::get('agentDashboard', [\App\Http\Controllers\Api\Stat\StatController::class, 'agentDashboard']);
+
+});

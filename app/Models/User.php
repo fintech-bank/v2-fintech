@@ -12,6 +12,7 @@ use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
 use App\Models\User\UserFile;
 use App\Models\User\UserFolder;
+use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -93,6 +94,12 @@ use RTippin\Messenger\Traits\Messageable;
  * @method static Builder|User whereAvatar($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|LogBanque[] $log
  * @property-read int|null $log_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|UserFile[] $files
+ * @property-read int|null $files_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|UserFolder[] $folder
+ * @property-read int|null $folder_count
+ * @property-read mixed $avatar_symbol
+ * @property-read mixed $email_verified
  */
 class User extends Authenticatable
 {
@@ -123,6 +130,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ['avatar_symbol', 'email_verified'];
 
     public function routeNotificationForPushbullet()
     {
@@ -183,4 +192,23 @@ class User extends Authenticatable
             }
         });
     }
+
+    public function getAvatarSymbolAttribute()
+    {
+        if(\Gravatar::exists($this->email)) {
+            return "<img src='".Gravatar::get($this->email)."' alt='' />";
+        } else {
+            return '<div class="symbol-label fs-2 fw-bold text-'.random_color().'">'.\Str::limit($this->name, 2).'</div>';
+        }
+    }
+
+    public function getEmailVerifiedAttribute()
+    {
+        if(filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
+        } else {
+            return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Email invalide"></i>';
+        }
+    }
+
 }
