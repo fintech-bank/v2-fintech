@@ -12,7 +12,7 @@ class Update
             ->external('git', 'fetch', 'origin', 'production')
             ->external('git', 'reset', '--hard', 'origin/production')
             ->external('composer', 'install', '--no-dev', '--prefer-dist', '--optimize-autoloader')
-            ->external('npm', 'install', '--production')
+            ->external('npm', 'install')
             ->external('npm', 'run', 'dev')
             ->external('php', 'artisan', 'system:seed')
             ->artisan('system:clear')
