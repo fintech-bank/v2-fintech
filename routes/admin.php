@@ -74,6 +74,13 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         });
     });
 
+    Route::prefix('cms')->group(function () {
+        Route::prefix('category')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Admin\Cms\CmsCategoryController::class, 'index'])->name('admin.cms.category.index');
+            Route::post("/", [\App\Http\Controllers\Admin\Cms\CmsCategoryController::class, 'store'])->name('admin.cms.category.store');
+        });
+    });
+
     Route::prefix('account')->group(function () {
         Route::prefix('notify')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\Account\NotifyController::class, 'index'])->name('admin.account.notify.index');
