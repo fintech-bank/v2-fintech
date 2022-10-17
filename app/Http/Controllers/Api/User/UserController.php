@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function info($user_id)
+    public function info($userId)
     {
-        $user = User::find($user_id);
+        $user = User::find($userId);
         $info = [
             "user" => $user,
             "notifications" => [

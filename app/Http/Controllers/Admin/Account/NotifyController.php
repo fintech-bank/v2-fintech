@@ -15,12 +15,12 @@ class NotifyController extends Controller
         ]);
     }
 
-    public function show($notify_id)
+    public function show($notifyId)
     {
-        auth()->user()->notifications()->find($notify_id)->markAsRead();
+        auth()->user()->notifications()->find($notifyId)->markAsRead();
         return view('admin.account.notify.show', [
             'user' => auth()->user(),
-            'notify' => auth()->user()->notifications()->find($notify_id)
+            'notify' => auth()->user()->notifications()->find($notifyId)
         ]);
     }
 }

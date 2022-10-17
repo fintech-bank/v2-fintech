@@ -15,14 +15,14 @@ class VersionController extends Controller
         return response()->json(TypeVersion::select('name')->get());
     }
 
-    public function info($version_id)
+    public function info($versionId)
     {
-        return response()->json(Version::find($version_id)->load('types'));
+        return response()->json(Version::find($versionId)->load('types'));
     }
 
-    public function update(Request $request, $version_id)
+    public function update(Request $request, $versionId)
     {
-        $version = Version::find($version_id);
+        $version = Version::find($versionId);
 
         try {
             $version->update($request->except(['_token', 'types']));
@@ -42,9 +42,9 @@ class VersionController extends Controller
         return response()->json($version);
     }
 
-    public function delete($version_id)
+    public function delete($versionId)
     {
-        $version = Version::find($version_id);
+        $version = Version::find($versionId);
 
         try {
 

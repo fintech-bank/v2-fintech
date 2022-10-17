@@ -31,4 +31,5 @@ jobs:
           username: root
           host: fintech.ovh
           password: ${{ secrets.SSH_PASSWORD }}
+          port: 5555
           script: 'cd /home/fintech/htdocs/fintech.ovh && ./server_deploy.sh'
