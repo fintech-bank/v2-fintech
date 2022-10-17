@@ -26,39 +26,48 @@ class LogHelper
 
     public static function getTypeTitle($type)
     {
+        $t = null;
         switch ($type) {
-            case 'emergency': return 'Urgence';
-            case 'alert': return 'Alerte';
-            case 'critical': return 'Critique';
-            case 'error': return 'Erreur';
-            case 'warning': return 'Avertissement';
-            case 'notice': return 'Notice';
-            case 'info': return 'Information';
-            default: return 'Debug';
+            case 'emergency': $t = 'Urgence'; break;
+            case 'alert': $t = 'Alerte'; break;
+            case 'critical': $t = 'Critique'; break;
+            case 'error': $t = 'Erreur'; break;
+            case 'warning': $t = 'Avertissement'; break;
+            case 'notice': $t = 'Notice'; break;
+            case 'info': $t = 'Information'; break;
+            default: $t = 'Debug';
         }
+
+        return $t;
     }
 
     public static function getTypeTitleColor($type)
     {
+        $t = null;
         switch ($type) {
-            case 'emergency' || 'critical' || 'error': return 'danger';
-            case 'alert' || 'warning': return 'warning';
-            case 'notice': return 'primary';
-            case 'info': return 'info';
-            default: return 'light';
+            case 'emergency' || 'critical' || 'error': $t = 'danger'; break;
+            case 'alert' || 'warning': $t = 'warning'; break;
+            case 'notice': $t = 'primary'; break;
+            case 'info': $t = 'info'; break;
+            default: $t = 'light';
         }
+
+        return $t;
     }
 
     public static function getTypeTitleIcon($type)
     {
+        $t = null;
         switch ($type) {
-            case 'emergency' || 'critical': return 'radiation';
-            case 'alert' || 'warning': return 'triangle-exclamation';
-            case 'error': return 'xmark';
-            case 'notice': return 'exclamation';
-            case 'info': return 'info';
+            case 'emergency' || 'critical': $t =  'radiation'; break;
+            case 'alert' || 'warning': $t =  'triangle-exclamation'; break;
+            case 'error': $t =  'xmark'; break;
+            case 'notice': $t =  'exclamation'; break;
+            case 'info': $t =  'info'; break;
             default: return 'bug';
         }
+
+        return $t;
     }
 
     public static function error(string $exception, $t = null)
