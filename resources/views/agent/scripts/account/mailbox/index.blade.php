@@ -30,10 +30,26 @@
 
     let Mailbox = {
         toggleImportant: function toggleImportant(ids, cb) {
-
+            $.ajax({
+                url: '{{ route('agent.account.mailbox.toggleImportant') }}',
+                method: "PUT",
+                data: {mailbox_flag_ids: ids, method: "PUT"},
+                dataType: "json",
+                success: function (response) {
+                    cb(response);
+                }
+            })
         },
         trash: function trash(ids, cb) {
-
+            $.ajax({
+                url: '{{ route('agent.account.mailbox.trash') }}',
+                method: "DELETE",
+                data: {mailbox_flag_ids: ids, method: "PUT"},
+                dataType: "json",
+                success: function (response) {
+                    cb(response);
+                }
+            })
         },
         send: function send(mailbox_id) {
             window.location.replace(BASE_URL + "/agence/account/mailbox/" + mailbox_id + '/send');
@@ -44,6 +60,48 @@
         forward: function forward(mailbox_id) {
             window.location.replace(BASE_URL + "/agence/account/mailbox/" + mailbox_id + '/forward');
         },
+    }
+
+    function checkboxCheck()
+    {
+        if($(".check-message:checked").length == 0) {
+            alert("Please select at least one row to process!");
+            return false;
+        }
+        return true;
+    }
+
+    function handleImportant(data)
+    {
+        Mailbox.toggleImportant(data, function (response) {
+            if(response.state === 0) {
+                toastr.warning(response.msg)
+            } else {
+                response.updated.map(function(value) {
+                    if(value.is_important === 1) {
+                        //Switch states
+                        $("tr[data-mailbox-flag-id='"+value.id+"'] td.mailbox-star").find("a > i").removeClass("fa-star-o").addClass("fa-star");
+                    } else {
+                        //Switch states
+                        $("tr[data-mailbox-flag-id='"+value.id+"'] td.mailbox-star").find("a > i").removeClass("fa-star").addClass("fa-star-o");
+                    }
+                });
+                toastr.success(response.msg)
+            }
+        });
+    }
+    function handleTrash(data)
+    {
+        Mailbox.trash(data, function (response) {
+            if(response.state === 0) {
+                alert(response.msg);
+            } else {
+                alert(response.msg);
+                setInterval(function () {
+                    location.reload();
+                }, 3000);
+            }
+        });
     }
 
     $(elements.reply).on('click', e => {
@@ -72,5 +130,31 @@
 
         Mailbox.send($(".form-check-input:checked").parents('tr').attr('data-mailbox-id'))
     })
+
+    $(".mailbox-star").click(function (e) {
+        e.preventDefault();
+        handleImportant([$(this).parents("tr").attr("data-mailbox-flag-id")]);
+    });
+
+    $('[data-action="mailbox-star-all"]').on("click", function (e) {
+        if(!checkboxCheck()) {
+            return;
+        }
+        let checked = [];
+        $(".check-message:checked").each(function (val) {
+            checked.push($(this).parents("tr").attr("data-mailbox-flag-id"));
+        });
+        handleImportant(checked);
+    });
+    $('[data-action="mailbox-trash-all"]').on("click", function (e) {
+        if(!checkboxCheck()) {
+            return;
+        }
+        let checked = [];
+        $(".check-message:checked").each(function (val) {
+            checked.push($(this).parents("tr").attr("data-user-folder-id"));
+        });
+        handleTrash(checked);
+    });
 
 </script>

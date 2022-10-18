@@ -16,6 +16,7 @@ use App\Models\Core\MailboxUserFolder;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class MailboxController extends Controller
@@ -52,6 +53,21 @@ class MailboxController extends Controller
             $unreadMessages = count(getUnreadMessages());
 
             return view('agent.account.mailbox.index', compact('folders', 'messages', 'unreadMessages'));
+        } else {
+            $folders = $this->folders;
+            $unreadMessages = count(getUnreadMessages());
+            $mailbox = Mailbox::find($request->segment(5));
+//        $folder = $mailbox->userFolder()->folder()->first();
+            // if this message from "Inbox" then set is_unread=0
+            if(($flag = $mailbox->flag()) && isset($flag->is_unread) && $flag->is_unread == 1) {
+                $flag->is_unread = 0;
+                $flag->save();
+            }
+            return view('agent.account.mailbox.show', [
+                'mailbox' => $mailbox,
+                'unreadMessages' => $unreadMessages,
+                'folders' => $folders
+            ]);
         }
 
     }
@@ -125,27 +141,90 @@ class MailboxController extends Controller
 
     public function show($id)
     {
-
+        $folders = $this->folders;
+        $unreadMessages = count(getUnreadMessages());
+        $mailbox = Mailbox::find($id);
+//        $folder = $mailbox->userFolder()->folder()->first();
+        // if this message from "Inbox" then set is_unread=0
+        if(($flag = $mailbox->flag()) && isset($flag->is_unread) && $flag->is_unread == 1) {
+            $flag->is_unread = 0;
+            $flag->save();
+        }
+        return view('agent.account.mailbox.show', compact('folders', 'unreadMessages', 'mailbox'));
     }
 
     public function toggleImportant(Request $request)
     {
+        if(!$request->mailbox_flag_ids || count($request->mailbox_flag_ids) == 0)
+            return response()->json(['state' => 0, 'msg' => 'required mailbox_flag_ids'], 500);
 
+        $updated = [];
+
+        foreach ($request->mailbox_flag_ids as $id) {
+            $mailbox_flag = MailboxFlags::find($id);
+            $mailbox_flag->is_important = ($mailbox_flag->is_important==0?1:0);
+            $mailbox_flag->save();
+            $updated[] = $mailbox_flag;
+        }
+
+        return response()->json(['state' => 1, 'msg' => 'Mis à jour avec succès', 'updated' => $updated], 200);
     }
 
     public function trash(Request $request)
     {
+        if(!$request->mailbox_user_folder_ids || count($request->mailbox_user_folder_ids) == 0)
+            return response()->json(['state' => 0, 'msg' => 'required mailbox_user_folder_id'], 500);
 
+        $updated = [];
+        $trashFolder = MailboxFolder::where('title', 'Trash')->first();
+        foreach ($request->mailbox_user_folder_ids as $id) {
+            $mailbox_user_folder = MailboxUserFolder::find($id);
+            $mailbox_user_folder->folder_id = $trashFolder->id;
+            $mailbox_user_folder->save();
+            $updated[] = $mailbox_user_folder;
+        }
+        return response()->json(['state' => 1, 'msg' => 'Messages déplacés vers le dossier de la corbeille', 'updated' => $updated], 200);
     }
 
     public function getReply($id)
     {
-
+        $mailbox = Mailbox::find($id);
+        $folders = $this->folders;
+        $unreadMessages = count(getUnreadMessages());
+        return view('agent.account.mailbox.reply', compact('folders', 'unreadMessages', 'mailbox'));
     }
 
     public function postReply(Request $request, $id)
     {
+        $this->validate($request, [
+            'body' => 'required'
+        ]);
 
+        try {
+            $this->validateAttachments($request);
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', $ex->getMessage());
+        }
+
+        $old_mailbox = Mailbox::find($id);
+        $mailbox = new Mailbox();
+        $mailbox->subject = Str::start($old_mailbox->subject, "RE:")?$old_mailbox->subject:"RE: " . $old_mailbox->subject;
+        $mailbox->body = $request->body;
+        $mailbox->sender_id = Auth::user()->id;
+        $mailbox->time_sent = date("Y-m-d H:i:s");
+        $mailbox->parent_id = $old_mailbox->id;
+        $mailbox->save();
+
+        $receiver_ids = [$old_mailbox->sender_id];
+
+        $this->save(1, $receiver_ids, $mailbox);
+
+        // save attachments if found
+        $this->uploadAttachments($request, $mailbox);
+        // send email
+        $this->mailer->sendMailboxEmail($mailbox);
+
+        return redirect()->back()->with('success', 'Réponse envoyer');
     }
 
     public function getForward($id)

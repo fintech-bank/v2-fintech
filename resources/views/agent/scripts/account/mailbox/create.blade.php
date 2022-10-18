@@ -95,22 +95,25 @@
         )
     }
 
-
-    elements.inputSubject.addEventListener('keyup', e => {
-        if(e.target.value.length === 0) {
-            elements.remap.innerHTML = "Nouveau Message"
-        } else {
-            elements.remap.innerHTML = e.target.value
-        }
-    })
-    elements.inputAttachments.addEventListener('change', () => {
-        let inputInfos = document.querySelector("input[type=file]").files
-
-        inputInfos.forEach(info => {
-            console.log(info)
-            elements.attachmentZone.querySelector('.contentZone').innerHTML += `<li>${info.name} (${formatBytes(info.size, 2)})</li>`
+    if(elements.inputSubject) {
+        elements.inputSubject.addEventListener('keyup', e => {
+            if(e.target.value.length === 0) {
+                elements.remap.innerHTML = "Nouveau Message"
+            } else {
+                elements.remap.innerHTML = e.target.value
+            }
         })
-    })
+    }
+    if(elements.inputAttachments) {
+        elements.inputAttachments.addEventListener('change', () => {
+            let inputInfos = document.querySelector("input[type=file]").files
+
+            inputInfos.forEach(info => {
+                console.log(info)
+                elements.attachmentZone.querySelector('.contentZone').innerHTML += `<li>${info.name} (${formatBytes(info.size, 2)})</li>`
+            })
+        })
+    }
 
 
     $.ajax({
