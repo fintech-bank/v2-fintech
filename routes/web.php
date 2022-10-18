@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 include('auth.php');
 include('front.php');
 include('admin.php');
+include('agent.php');
 
 Auth::routes();
 Route::mailweb();

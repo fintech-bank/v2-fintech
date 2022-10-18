@@ -77,6 +77,7 @@ Route::prefix('core')->group(function () {
 });
 
 Route::prefix('user')->group(function () {
+    Route::get('list', [\App\Http\Controllers\Api\User\UserController::class, 'lists']);
     Route::get("{user_id}/info", [\App\Http\Controllers\Api\User\UserController::class, 'info']);
 });
 
@@ -92,4 +93,9 @@ Route::prefix('manager')->group(function () {
         Route::post("/", [\App\Http\Controllers\Api\Manager\FilesController::class, 'store']);
         Route::delete("/{file}", [\App\Http\Controllers\Api\Manager\FilesController::class, 'delete'])->where(['file' => '.*']);
     });
+});
+
+Route::prefix('stat')->group(function () {
+    Route::get('agentDashboard', [\App\Http\Controllers\Api\Stat\StatController::class, 'agentDashboard']);
+
 });

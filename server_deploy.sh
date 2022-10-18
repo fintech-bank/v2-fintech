@@ -24,7 +24,7 @@ echo "Deploying application ..."
 	screen -dmS queue php artisan queue:work
 
     # Clear cache
-    php artisan optimize
+    php artisan system:clear
 
 # Exit maintenance mode
 php artisan up

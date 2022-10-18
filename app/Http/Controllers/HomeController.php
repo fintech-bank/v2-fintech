@@ -10,6 +10,7 @@ use App\Models\Reseller\Reseller;
 use App\Models\User\UserFolder;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
+use App\Services\Twilio\Lookup;
 use App\Services\Twilio\Messaging\Whatsapp;
 use App\Services\YousignApi;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -81,6 +82,7 @@ class HomeController extends Controller
 
     public function test()
     {
-        dd(UserFolder::getFolderInfo(public_path('/storage/gdd/1/account')));
+        $look = new Lookup();
+        dd($look->verify('+33749061225'));
     }
 }
