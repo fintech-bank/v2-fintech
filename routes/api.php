@@ -77,6 +77,7 @@ Route::prefix('core')->group(function () {
 });
 
 Route::prefix('user')->group(function () {
+    Route::get('list', [\App\Http\Controllers\Api\User\UserController::class, 'lists']);
     Route::get("{user_id}/info", [\App\Http\Controllers\Api\User\UserController::class, 'info']);
 });
 

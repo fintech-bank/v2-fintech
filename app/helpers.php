@@ -134,3 +134,21 @@ if (! function_exists('sizeFormat')) {
         }
     }
 }
+
+/**
+ * check directory exists and try to create it
+ *
+ *
+ * @param $directory
+ */
+function checkDirectory($directory)
+{
+    try {
+        if (!file_exists(public_path('uploads/' . $directory))) {
+            Storage::disk('public')->makeDirectory('uploads/'.$directory);
+            Storage::disk('public')->setVisibility('uploads/'.$directory, 'public');
+        }
+    } catch (\Exception $e) {
+        die($e->getMessage());
+    }
+}
