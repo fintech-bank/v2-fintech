@@ -36,6 +36,13 @@ class Kernel extends ConsoleKernel
             ->daily()
             ->description("Paiement des factures de distributeur")
             ->emailOutputTo(config('mail.from.address'));
+
+
+        // Administration
+        $schedule->command('system:agent calendarAlert')
+            ->everyFiveMinutes()
+            ->description("Alert Evenement")
+            ->emailOutputTo(config('mail.from.address'));
     }
 
     /**

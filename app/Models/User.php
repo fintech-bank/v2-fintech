@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Helper\CustomerHelper;
 use App\Models\Core\Agency;
 use App\Models\Core\DocumentCategory;
+use App\Models\Core\Event;
+use App\Models\Core\EventAttendee;
 use App\Models\Core\LogBanque;
 use App\Models\Core\Package;
 use App\Models\Core\TicketConversation;
@@ -100,6 +102,10 @@ use RTippin\Messenger\Traits\Messageable;
  * @property-read int|null $folder_count
  * @property-read mixed $avatar_symbol
  * @property-read mixed $email_verified
+ * @property-read \Illuminate\Database\Eloquent\Collection|EventAttendee[] $attendees
+ * @property-read int|null $attendees_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Event[] $events
+ * @property-read int|null $events_count
  */
 class User extends Authenticatable
 {
@@ -176,6 +182,16 @@ class User extends Authenticatable
     public function files()
     {
         return $this->hasMany(UserFile::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function attendees()
+    {
+        return $this->hasMany(EventAttendee::class);
     }
 
     public static function boot()

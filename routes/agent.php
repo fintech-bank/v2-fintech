@@ -40,6 +40,10 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
             Route::get("/", [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'index'])->name('agent.account.documents.index');
         });
 
+        Route::prefix('agenda')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Agent\Account\EventController::class, 'index'])->name('agent.account.agenda.index');
+        });
+
         Route::prefix('profil')->group(function () {
             Route::get("/", [\App\Http\Controllers\Agent\Account\ProfilController::class, 'index'])->name('agent.account.profil.index');
         });
