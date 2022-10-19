@@ -24,7 +24,69 @@
 @endsection
 
 @section("content")
-    <div id="app">
+    <div id="app" class="rounded">
+        <div class="row m-10">
+            <div class="col">
+                <div class="card card-xl-stretch mb-xl-8 cardCalendar min-h-450px">
+                    <!--begin::Header-->
+                    <div class="card-header align-items-center border-0 mt-4">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="fw-bold mb-2 text-dark">Mes rendez-vous</span>
+                            <span class="text-muted fw-semibold fs-7">{{ formatDateFrench(now()) }}</span>
+                        </h3>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body pt-5">
+                        <!--begin::Timeline-->
+                        <div class="timeline-label">
+                            <x-base.indicator />
+                        </div>
+                        <!--end::Timeline-->
+                    </div>
+                    <!--end: Card Body-->
+                </div>
+            </div>
+            <div class="col">
+                <div class="card card-xl-stretch mb-5 mb-xl-8 cardNotification min-h-450px">
+                    <!--begin::Header-->
+                    <div class="card-header border-0">
+                        <h3 class="card-title fw-bold text-dark">Dernières notifications</h3>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body pt-0">
+                        <x-base.indicator />
+                    </div>
+                    <!--end::Body-->
+                </div>
+            </div>
+            <div class="col">
+                <div class="card card-xl-stretch mb-5 mb-xl-8 cardMailbox min-h-450px">
+                    <!--begin::Header-->
+                    <div class="card-header border-0">
+                        <h3 class="card-title fw-bold text-dark">Derniers Message</h3>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body pt-0">
+                        <a href="#" class="d-flex flex-row justify-centent-between align-items-center text-black">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="symbol symbol-50px me-5">
+                                    <img src="/assets/media/avatars/300-6.jpg" alt=""/>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <div class="fw-bolder">Test</div>
+                                    <div class="text-muted">Sujet du message</div>
+                                    <div class="fs-9">08:30</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!--end::Body-->
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-3 col-sm-12">
                 <div class="card bg-body hoverable card-xl-stretch mb-xl-8">

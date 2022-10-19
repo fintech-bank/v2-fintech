@@ -42,7 +42,7 @@ class Event extends Model
     use HasFactory;
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at', 'start_at', 'end_at'];
-    protected $appends = ['type_color'];
+    protected $appends = ['type_color', 'type_cl'];
 
     public function user()
     {
@@ -60,6 +60,15 @@ class Event extends Model
             case 'customer': return 'bg-success text-white';
             case 'internal': return 'bg-danger text-white';
             case 'external': return 'bg-info text-white';
+        }
+    }
+
+    public function getTypeClAttribute()
+    {
+        switch ($this->type) {
+            case 'customer': return 'success';
+            case 'internal': return 'danger';
+            case 'external': return 'info';
         }
     }
 }
