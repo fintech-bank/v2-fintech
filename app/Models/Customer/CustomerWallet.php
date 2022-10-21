@@ -74,6 +74,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $deposits_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMoneyDeposit[] $moneys
  * @property-read int|null $moneys_count
+ * @property float $taux_decouvert
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereTauxDecouvert($value)
  */
 class CustomerWallet extends Model
 {
@@ -179,4 +181,5 @@ class CustomerWallet extends Model
             default: return null;
         }
     }
+
 }

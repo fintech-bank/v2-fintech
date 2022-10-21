@@ -1793,31 +1793,31 @@ i.icon-bank {
 }
 
 .bg-primary {
-  color: var(--primary) !important;
+  background-color: var(--primary) !important;
 }
 
 .bg-secondary {
-  color: var(--secondary) !important;
+  background-color: var(--secondary) !important;
 }
 
 .bg-warning {
-  color: var(--warning) !important;
+  background-color: var(--warning) !important;
 }
 
 .bg-danger {
-  color: var(--danger) !important;
+  background-color: var(--danger) !important;
 }
 
 .bg-success {
-  color: var(--success) !important;
+  background-color: var(--success) !important;
 }
 
 .bg-info {
-  color: var(--info) !important;
+  background-color: var(--info) !important;
 }
 
 .bg-bank {
-  color: var(--bank) !important;
+  background-color: var(--bank) !important;
 }
 
 .fw-bold {

@@ -35,13 +35,12 @@ function initPush() {
         if (permissionResult) {
             permissionResult.then(resolve, reject);
         }
-    })
-        .then((permissionResult) => {
-            if (permissionResult !== 'granted') {
-                throw new Error('We weren\'t granted permission.');
-            }
-            subscribeUser();
-        });
+    }).then((permissionResult) => {
+        if (permissionResult !== 'granted') {
+            throw new Error('We weren\'t granted permission.');
+        }
+        subscribeUser();
+    });
 }
 
 function subscribeUser() {

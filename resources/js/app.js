@@ -1,4 +1,7 @@
 import './bootstrap';
+import { initializeApp } from "firebase/app";
+
+let divApp = document.querySelector('#kt_app_wrapper')
 
 $.ajaxSetup({
     headers: {
@@ -249,3 +252,29 @@ $.extend(true, $.fn.DataTable.defaults, {
         "thousands": " "
     }
 })
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAZEoaArO7AuADreoim2sb1kGdK6xiCj7k",
+    authDomain: "fintech-bebb0.firebaseapp.com",
+    projectId: "fintech-bebb0",
+    storageBucket: "fintech-bebb0.appspot.com",
+    messagingSenderId: "589114481130",
+    appId: "1:589114481130:web:0623ed015f136d158a3a93"
+};
+
+const app = initializeApp(firebaseConfig);
+
+window.Echo.channel('mailbox')
+    .listen(".new-mail-in-mailbox", (event) => {
+        event.mailbox.receivers.forEach(receiver => {
+            if(receiver.receiver_id === divApp.dataset.user) {
+                console.log(event.mailbox)
+                toastr.info('Vous avez reçu un nouveau message.', 'Boite de reception')
+            }
+        })
+    })
+
+window.Echo.private('App.Models.User.'+userId)
+    .notification((notification) => {
+        console.log(notification.type)
+    })

@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Helper\CustomerHelper;
 use App\Models\Core\Agency;
 use App\Models\Core\DocumentCategory;
+use App\Models\Core\Event;
+use App\Models\Core\EventAttendee;
 use App\Models\Core\LogBanque;
 use App\Models\Core\Package;
 use App\Models\Core\TicketConversation;
@@ -12,6 +14,8 @@ use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
 use App\Models\User\UserFile;
 use App\Models\User\UserFolder;
+use App\Models\User\UserNotificationSetting;
+use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -93,6 +97,21 @@ use RTippin\Messenger\Traits\Messageable;
  * @method static Builder|User whereAvatar($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|LogBanque[] $log
  * @property-read int|null $log_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|UserFile[] $files
+ * @property-read int|null $files_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|UserFolder[] $folder
+ * @property-read int|null $folder_count
+ * @property-read mixed $avatar_symbol
+ * @property-read mixed $email_verified
+ * @property-read \Illuminate\Database\Eloquent\Collection|EventAttendee[] $attendees
+ * @property-read int|null $attendees_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Event[] $events
+ * @property-read int|null $events_count
+ * @property-read mixed $user_group_color
+ * @property-read mixed $user_group_label
+ * @property-read mixed $user_group_text
+ * @property-read \Illuminate\Database\Eloquent\Collection|UserNotificationSetting[] $settingnotification
+ * @property-read int|null $settingnotification_count
  */
 class User extends Authenticatable
 {
@@ -123,6 +142,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ['avatar_symbol', 'email_verified', 'user_group_label'];
 
     public function routeNotificationForPushbullet()
     {
@@ -169,6 +190,21 @@ class User extends Authenticatable
         return $this->hasMany(UserFile::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function attendees()
+    {
+        return $this->hasMany(EventAttendee::class);
+    }
+
+    public function settingnotification()
+    {
+        return $this->hasOne(UserNotificationSetting::class);
+    }
+
     public static function boot()
     {
         parent::boot();
@@ -183,4 +219,75 @@ class User extends Authenticatable
             }
         });
     }
+
+    public function getAvatarSymbolAttribute()
+    {
+        if(\Gravatar::exists($this->email)) {
+            return "<img src='".Gravatar::get($this->email)."' class='rounded-circle h-40px me-3' alt='' />";
+        } else {
+            return '<div class="symbol-label fs-2 fw-bold text-'.random_color().'">'.\Str::limit($this->name, 2).'</div>';
+        }
+    }
+
+    public function getUserGroupTextAttribute()
+    {
+        if($this->admin == 1) {
+            return 'Administrateur';
+        } elseif($this->agent == 1) {
+            return "Agent Commercial";
+        } elseif($this->reseller == 1) {
+            return "Revendeur / Distributeur";
+        } else {
+            return "Client";
+        }
+    }
+
+    public function getUserGroupColorAttribute()
+    {
+        if($this->admin == 1) {
+            return 'danger';
+        } elseif($this->agent == 1) {
+            return "warning";
+        } elseif($this->reseller == 1) {
+            return "info";
+        } else {
+            return "success";
+        }
+    }
+
+    public function getUserGroupLabelAttribute()
+    {
+        return '<span class="badge badge-'.$this->getUserGroupColorAttribute().'">'.$this->getUserGroupTextAttribute().'</span>';
+    }
+
+    public function getEmailVerifiedAttribute()
+    {
+        if(filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
+        } else {
+            return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Email invalide"></i>';
+        }
+    }
+
+    public function pushNotificationVerifier($notificationClass)
+    {
+        if($this->settingnotification->mail) {
+            \Notification::route('mail', $this->email)
+                ->notify($notificationClass);
+        }
+        if($this->settingnotification->app) {
+            \Notification::route('fcm', $this->customers->info->mobile)
+                ->notify($notificationClass);
+        }
+        if($this->settingnotification->site) {
+            \Notification::route('webpush', $this)
+                ->route('database', $this)
+                ->notify($notificationClass);
+        }
+        if($this->settingnotification->sms) {
+            \Notification::route('sms', $this->customers->info->mobile)
+                ->notify($notificationClass);
+        }
+    }
+
 }

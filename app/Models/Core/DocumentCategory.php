@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|DocumentCategory whereName($value)
  * @mixin \Eloquent
  * @mixin IdeHelperDocumentCategory
+ * @property string $slug
+ * @method static \Illuminate\Database\Eloquent\Builder|DocumentCategory whereSlug($value)
  */
 class DocumentCategory extends Model
 {

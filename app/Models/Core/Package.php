@@ -50,6 +50,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereTypeCpt($value)
  * @property-read mixed $price_format
  * @property-read mixed $type_cpt_label
+ * @property-read mixed $type_cpt_text
+ * @property-read mixed $type_prlv_text
  */
 class Package extends Model
 {

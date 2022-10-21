@@ -225,4 +225,6 @@ return [
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
     ])->toArray(),
 
+    'fintech_loan_balance' => 500000,
+
 ];

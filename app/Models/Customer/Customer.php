@@ -64,6 +64,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $mobilities_count
  * @property-read \Illuminate\Database\Eloquent\Collection|Invoice[] $invoices
  * @property-read int|null $invoices_count
+ * @property-read mixed $status_color
+ * @property-read mixed $status_label
+ * @property-read mixed $status_text
+ * @property-read mixed $sum_account
+ * @property-read mixed $sum_epargne
  */
 class Customer extends Model
 {
@@ -72,6 +77,7 @@ class Customer extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+    protected $appends = ['status_label', 'sum_account', 'sum_epargne'];
 
     public function user()
     {
@@ -135,7 +141,7 @@ class Customer extends Model
 
     public function agent()
     {
-        return $this->hasOne(User::class, 'id');
+        return $this->hasOne(User::class, 'agent_id');
     }
 
     public function prets()
@@ -157,4 +163,50 @@ class Customer extends Model
     {
         return $this->hasMany(Invoice::class);
     }
+
+    public function getStatusTextAttribute()
+    {
+        $t = null;
+        switch ($this->status_open_account) {
+            case 'open': $t = 'Ouverture en cours'; break;
+            case 'completed': $t = 'Dossier complet'; break;
+            case 'accepted': $t = 'Dossier accepté'; break;
+            case 'declined': $t = 'Dossier refusé'; break;
+            case 'suspended': $t = 'Client suspendue'; break;
+            case 'closed': $t = 'Dossier cloturé'; break;
+            default: return 'Client actif'; break;
+        }
+
+        return $t;
+    }
+
+    public function getStatusColorAttribute()
+    {
+        $t = null;
+        switch ($this->status_open_account) {
+            case 'open': $t = 'primary'; break;
+            case 'completed' || 'suspended': $t = 'warning'; break;
+            case 'accepted': $t = 'success'; break;
+            case 'declined' || 'closed': $t = 'danger'; break;
+            default: return 'secondary'; break;
+        }
+
+        return $t;
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return "<span class='badge badge-sm badge-".$this->getStatusColorAttribute()."'>".$this->getStatusTextAttribute()."</span>";
+    }
+
+    public function getSumAccountAttribute()
+    {
+        return $this->wallets()->where('type', 'compte')->where('status', 'active')->sum('balance_actual');
+    }
+
+    public function getSumEpargneAttribute()
+    {
+        return $this->wallets()->where('type', 'epargne')->where('status', 'active')->sum('balance_actual');
+    }
+
 }

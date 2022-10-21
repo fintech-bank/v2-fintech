@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereTypePrlv($value)
  * @mixin \Eloquent
  * @mixin IdeHelperService
+ * @property-read mixed $price_format
+ * @property-read mixed $type_prlv_text
  */
 class Service extends Model
 {

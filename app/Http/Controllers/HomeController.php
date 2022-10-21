@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Helper\LogHelper;
 use App\Models\Core\Agency;
+use App\Models\Core\Event;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
+use App\Models\User;
 use App\Models\User\UserFolder;
+use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
+use App\Services\Twilio\Lookup;
 use App\Services\Twilio\Messaging\Whatsapp;
 use App\Services\YousignApi;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -81,6 +85,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        dd(UserFolder::getFolderInfo(public_path('/storage/gdd/1/account')));
+        $event = Event::find(9);
+
+
     }
 }
