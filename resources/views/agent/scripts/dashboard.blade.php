@@ -46,7 +46,7 @@
             <i class="fa-solid ${notify.data.icon} text-${notify.data.color} fs-1 me-5"></i>
             <div class="flex-grow-1 me-2">
                 <a href="/agence/account/notify/${notify.id}" class="fw-bold text-gray-800 text-hover-primary fs-6">${notify.data.title}</a>
-                <span class="text-muted fw-semibold d-block">${moment(notify.created_at).diff(moment())}</span>
+                <span class="text-muted fw-semibold d-block">${moment(notify.created_at).locale('fr_FR').fromNow()}</span>
             </div>
         </div>
         `

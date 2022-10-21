@@ -42,6 +42,7 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
 
         Route::prefix('agenda')->group(function () {
             Route::get('/', [\App\Http\Controllers\Agent\Account\EventController::class, 'index'])->name('agent.account.agenda.index');
+            Route::post('/', [\App\Http\Controllers\Agent\Account\EventController::class, 'store'])->name('agent.account.agenda.store');
         });
 
         Route::prefix('profil')->group(function () {

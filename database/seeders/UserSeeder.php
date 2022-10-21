@@ -80,6 +80,10 @@ class UserSeeder extends Seeder
             'customer_id' => $customer->id
         ]);
 
+        User\UserNotificationSetting::create([
+            'user_id' => $user->id
+        ]);
+
         CustomerSituation::factory()->create([
             'customer_id' => $customer->id
         ]);

@@ -4878,6 +4878,9 @@ window.Echo.channel('mailbox').listen(".new-mail-in-mailbox", function (event) {
     }
   });
 });
+window.Echo["private"]('App.Models.User.' + userId).notification(function (notification) {
+  console.log(notification.type);
+});
 
 /***/ }),
 

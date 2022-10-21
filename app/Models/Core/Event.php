@@ -36,6 +36,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereUserId($value)
  * @property int $allDay
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereAllDay($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Core\EventAttendee[] $attendees
+ * @property-read int|null $attendees_count
+ * @property-read mixed $type_cl
+ * @property-read mixed $type_color
  */
 class Event extends Model
 {

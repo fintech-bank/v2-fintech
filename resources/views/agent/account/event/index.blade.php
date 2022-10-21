@@ -49,7 +49,7 @@
             <!--begin::Modal content-->
             <div class="modal-content">
                 <!--begin::Form-->
-                <form class="form" action="#" id="kt_modal_add_event_form">
+                <form class="form" action="{{ route('agent.account.agenda.store') }}" id="kt_modal_add_event_form">
                     <!--begin::Modal header-->
                     <div class="modal-header">
                         <!--begin::Modal title-->
@@ -92,6 +92,43 @@
                                 <option value="customer">Rendez-vous clientèle</option>
                                 <option value="internal">Rendez-vous Interne</option>
                                 <option value="external">Rendez-vous Externe</option>
+                            </select>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-9" id="selectAttendee">
+                            <!--begin::Label-->
+                            <label class="fs-6 fw-semibold mb-2">Participant</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <select class="form-control form-control-solid attendeesSelect" name="attendees[]" data-placeholder="Selectionner un type de rendez-vous" multiple="multiple">
+                                <option value=""></option>
+                                @foreach(\App\Models\User::where('admin', 1)->where('id', '!=', auth()->user()->id)->get() as $user)
+                                    <optgroup label="Administrateur">
+                                        <option value="{{ $user->id }}" data-avatar="{{ $user->avatar_symbol }}" data-type="{{ $user->user_group_label }}">
+                                            {{ $user->name }}</option>
+                                    </optgroup>
+                                @endforeach
+                                @foreach(\App\Models\User::where('agent', 1)->where('id', '!=', auth()->user()->id)->get() as $user)
+                                    <optgroup label="Agent Commercial">
+                                        <option value="{{ $user->id }}" data-avatar="{{ $user->avatar_symbol }}" data-type="{{ $user->user_group_label }}">
+                                            {{ $user->name }}</option>
+                                    </optgroup>
+                                @endforeach
+                                @foreach(\App\Models\User::where('reseller', 1)->where('id', '!=', auth()->user()->id)->get() as $user)
+                                    <optgroup label="Distributeur">
+                                        <option value="{{ $user->id }}" data-avatar="{{ $user->avatar_symbol }}" data-type="{{ $user->user_group_label }}">
+                                            {{ $user->name }}</option>
+                                    </optgroup>
+                                @endforeach
+                                @foreach(\App\Models\User::where('customer', 1)->where('id', '!=', auth()->user()->id)->get() as $user)
+                                    <optgroup label="Client">
+                                        <option value="{{ $user->id }}" data-avatar="{{ $user->avatar_symbol }}" data-type="{{ $user->user_group_label }}">
+                                            {{ $user->name }}</option>
+                                    </optgroup>
+                                @endforeach
+
                             </select>
                             <!--end::Input-->
                         </div>
@@ -182,7 +219,7 @@
                         <button type="reset" id="kt_modal_add_event_cancel" class="btn btn-light me-3">Annuler</button>
                         <!--end::Button-->
                         <!--begin::Button-->
-                        <button type="button" id="kt_modal_add_event_submit" class="btn btn-primary">
+                        <button type="submit" id="kt_modal_add_event_submit" class="btn btn-bank">
                             <span class="indicator-label">Valider</span>
                             <span class="indicator-progress">Veuillez patienté...
 															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

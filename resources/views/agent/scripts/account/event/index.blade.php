@@ -136,6 +136,63 @@
     let R = O.clone().subtract(1, "day").format("YYYY-MM-DD")
     let V = O.format("YYYY-MM-DD")
     let P = O.clone().add(1, "day").format("YYYY-MM-DD")
+    let formAddEvent = (calendar) => {
+        $(forms.formAddEvent).on('submit', e => {
+            e.preventDefault()
+            let form = $(forms.formAddEvent)
+            let url = form.attr('action')
+            let data = form.serializeArray()
+            let btn = form.find('.btn-bank')
+
+            btn.attr('data-kt-indicator', 'on')
+
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: data,
+                success: data => {
+                    btn.removeAttr('data-kt-indicator')
+                    m.hide()
+                    calendar.addEvent({
+                        id: A(),
+                        title: t.value,
+                        description: n.value,
+                        location: a.value,
+                        start: d,
+                        end: s,
+                        allDay: o
+                    })
+                    calendar.render()
+
+                    toastr.success(`L'évènement ${data.title} à été ajouté avec succès`, `Rendez-vous`)
+                },
+                error: err => {
+                    btn.removeAttr('data-kt-indicator')
+                    toastr.error(`Erreur lors de l'execution du script serveur`, `Erreur Système`)
+                }
+            })
+        })
+    }
+    let optionAttendeeFormat = (item) => {
+        if (!item.id) {
+            return item.text;
+        }
+
+        let span = document.createElement('span');
+        let template = '';
+
+        template += '<div class="d-flex align-items-center">';
+        template += item.element.getAttribute('data-avatar');
+        template += '<div class="d-flex flex-column">'
+        template += '<span class="fs-4 fw-bold lh-1">' + item.text + '</span>';
+        template += '<span class="text-muted fs-5">' + item.element.getAttribute('data-type') + '</span>';
+        template += '</div>';
+        template += '</div>';
+
+        span.innerHTML = template;
+
+        return $(span);
+    }
 
     let w = new bootstrap.Modal(modals.modalViewEvent)
     let m = new bootstrap.Modal(modals.modalAddEvent)
@@ -158,6 +215,13 @@
         m.show()
     })
 
+    $(".attendeesSelect").select2({
+        placeholder: "Select an option",
+        minimumResultsForSearch: Infinity,
+        templateSelection: optionAttendeeFormat,
+        templateResult: optionAttendeeFormat
+    })
+
     $.ajax({
         url: '/api/calendar/list',
         method: 'POST',
@@ -169,11 +233,20 @@
                     center: "title",
                     right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
                 },
+                initialView: 'timeGridDay',
                 initialDate: "{{ now()->format('Y-m-d') }}",
                 locale: 'fr',
                 buttonIcons: false, // show the prev/next text
                 weekNumbers: true,
                 navLinks: true, // can click day/week names to navigate views
+                nowIndicator: true,
+                businessHours: {
+                    // days of week. an array of zero-based day of week integers (0=Sunday)
+                    daysOfWeek: [ 1, 2, 3, 4, 5 ], // Monday - Thursday
+
+                    startTime: '08:30', // a start time (10am in this example)
+                    endTime: '17:30', // an end time (6pm in this example)
+                },
                 select: function(e) {
                     N(e)
                     x()
@@ -198,6 +271,9 @@
             })
 
             calendar.render()
+            formAddEvent(calendar)
         }
     })
+
+
 </script>
