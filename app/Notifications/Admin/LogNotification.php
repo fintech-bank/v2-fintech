@@ -57,7 +57,7 @@ class LogNotification extends Notification
             'icon' => LogHelper::getTypeTitleIcon($this->type),
             'color' => LogHelper::getTypeTitleColor($this->type),
             'title' => 'Informations',
-            'text' => $this->message,
+            'text' => $this->message ?? 'Aucun Message',
             'content' => $this->content,
             'time' => now()->shortAbsoluteDiffForHumans(),
         ];

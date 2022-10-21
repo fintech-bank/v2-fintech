@@ -316,6 +316,7 @@ class RegisterController extends Controller
             'identifiant' => UserHelper::generateID(),
             'agency_id' => 1,
         ]);
+        $user->settingnotification()->create(['user_id' => $user->id]);
 
         $iden = $pushbullet->createDevice($request['firstname'], $request['lastname']);
 

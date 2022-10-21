@@ -99,3 +99,7 @@ Route::prefix('stat')->group(function () {
     Route::get('agentDashboard', [\App\Http\Controllers\Api\Stat\StatController::class, 'agentDashboard']);
 
 });
+
+Route::prefix('calendar')->group(function () {
+    Route::post("list", [\App\Http\Controllers\Api\Calendar\CalendarController::class, 'list']);
+});

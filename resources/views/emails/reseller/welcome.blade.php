@@ -1,7 +1,7 @@
 @extends("emails.layouts.app")
 
 @section("content")
-    <div class="d-flex flex-column bg-gray-300 ms-20 me-20 mt-20 mb-5 w-600px rounded">
+    <div class="d-flex flex-column bg-gray-400 p-5 ms-20 me-20 mt-20 mb-5 w-600px rounded">
         <div class="ms-10 me-10 mb-5">
             <span class="fw-bolder fs-3 mb-5">Bonjour {{ $reseller->dab->name }}</span>
             <p class="fw-bolder">Bienvenue dans le groupe des distributeurs de la banque FINTECH.</p>

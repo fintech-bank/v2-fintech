@@ -25,9 +25,9 @@ License: For each use you must have a valid license purchased only from above li
 </head>
 <!--end::Head-->
 <!--begin::Body-->
-<body class="body white m-15 fs-5 d-flex flex-center flex-column">
+<body class="body white m-15 fs-5 d-flex flex-column align-items-center">
     <div class="d-flex flex-row justify-content-lg-between align-items-center w-600px">
-        <img src="{{ asset('/storage/logo/logo_carre_80.png') }}" alt="" class="text-start">
+        <img src="{{ config('app.url') }}/storage/logo/logo_carre_80.png" alt="" class="text-start">
         <div class="fs-1 fw-bolder">{{ config('app.name') }} <span class="fw-normal fs-6">vous informe</span></div>
     </div>
     @yield("content")

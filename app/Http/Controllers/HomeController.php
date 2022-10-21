@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Helper\LogHelper;
 use App\Models\Core\Agency;
+use App\Models\Core\Event;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
+use App\Models\User;
 use App\Models\User\UserFolder;
+use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
 use App\Services\Twilio\Lookup;
@@ -82,7 +85,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $look = new Lookup();
-        dd($look->verify('+33749061225'));
+        $event = Event::find(9);
+
+
     }
 }

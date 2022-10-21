@@ -1,13 +1,13 @@
 <?php
 
-if (! function_exists('eur')) {
+if (!function_exists('eur')) {
     function eur($value)
     {
-        return number_format($value, 2, ',', ' ').' €';
+        return number_format($value, 2, ',', ' ') . ' €';
     }
 }
 
-if (! function_exists('random_color')) {
+if (!function_exists('random_color')) {
     function random_color()
     {
         $color = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'dark', 'bank'];
@@ -16,7 +16,7 @@ if (! function_exists('random_color')) {
     }
 }
 
-if (! function_exists('random_string_alpha_upper')) {
+if (!function_exists('random_string_alpha_upper')) {
     function random_string_alpha_upper($len = 10)
     {
         $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -30,7 +30,7 @@ if (! function_exists('random_string_alpha_upper')) {
     }
 }
 
-if (! function_exists('random_numeric')) {
+if (!function_exists('random_numeric')) {
     function random_numeric($len = 10)
     {
         $chars = '0123456789';
@@ -44,12 +44,12 @@ if (! function_exists('random_numeric')) {
     }
 }
 
-if (! function_exists('api_error')) {
+if (!function_exists('api_error')) {
     function api_error($code, $message, $type = 'critical', $detail = null, $help = null)
     {
         \App\Helper\LogHelper::notify(
             $type,
-            $code.' - '.$message.($detail != null ? ' - '.$detail.' - ' : '').($help != null ? $help : ''));
+            $code . ' - ' . $message . ($detail != null ? ' - ' . $detail . ' - ' : '') . ($help != null ? $help : ''));
 
         return [
             'error' => $code,
@@ -60,11 +60,11 @@ if (! function_exists('api_error')) {
     }
 }
 
-if (! function_exists('getLatestVersion')) {
+if (!function_exists('getLatestVersion')) {
     function getLatestVersion()
     {
         $version = \App\Models\Core\Version::where('publish', 1)->orderBy('id', 'desc')->first();
-        if($version) {
+        if ($version) {
             return \App\Models\Core\Version::where('publish', 1)->orderBy('id', 'desc')->first()->name;
         } else {
             return 'None';
@@ -72,12 +72,12 @@ if (! function_exists('getLatestVersion')) {
     }
 }
 
-if (! function_exists('getUnreadMessages')) {
+if (!function_exists('getUnreadMessages')) {
     function getUnreadMessages($user_id = null)
     {
         $folder = \App\Models\Core\MailboxFolder::where('title', 'Inbox')->first();
 
-        if(isset($user_id)) {
+        if (isset($user_id)) {
             return \App\Models\Core\Mailbox::join('mailbox_receiver', 'mailbox_receiver.mailbox_id', '=', 'mailbox.id')
                 ->join('mailbox_user_folder', 'mailbox_user_folder.user_id', '=', 'mailbox_receiver.receiver_id')
                 ->join('mailbox_flags', 'mailbox_flags.user_id', '=', 'mailbox_user_folder.user_id')
@@ -107,7 +107,7 @@ if (! function_exists('getUnreadMessages')) {
     }
 }
 
-if (! function_exists('sizeFormat')) {
+if (!function_exists('sizeFormat')) {
     function sizeFormat($bytes)
     {
         $kb = 1024;
@@ -135,6 +135,21 @@ if (! function_exists('sizeFormat')) {
     }
 }
 
+if (!function_exists('formatDateFrench')) {
+    function formatDateFrench($date, $hours = false)
+    {
+        $dayName = $date->locale('fr_FR')->dayName;
+        $day = $date->day;
+        $monthName = $date->locale('fr_FR')->monthName;
+
+        if ($hours) {
+            return $dayName . " " . $day . " " . $monthName . " " . $date->year . " " . $date->format('H:i');
+        } else {
+            return $dayName . " " . $day . " " . $monthName . " " . $date->year;
+        }
+    }
+}
+
 /**
  * check directory exists and try to create it
  *
@@ -145,8 +160,8 @@ function checkDirectory($directory)
 {
     try {
         if (!file_exists(public_path('uploads/' . $directory))) {
-            Storage::disk('public')->makeDirectory('uploads/'.$directory);
-            Storage::disk('public')->setVisibility('uploads/'.$directory, 'public');
+            Storage::disk('public')->makeDirectory('uploads/' . $directory);
+            Storage::disk('public')->setVisibility('uploads/' . $directory, 'public');
         }
     } catch (\Exception $e) {
         die($e->getMessage());
