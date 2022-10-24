@@ -41,6 +41,7 @@
                         <!--begin::Timeline-->
                         <div class="timeline-label">
                             <x-base.indicator />
+                            <x-base.button />
                         </div>
                         <!--end::Timeline-->
                     </div>
