@@ -273,3 +273,12 @@ window.Echo.channel('mailbox')
             }
         })
     })
+
+$.ajax({
+    url: '/api/core/bank/status',
+    statusCode: {
+        404: () => {
+            toastr.error("Impossible de ce connecter à la base de donnée bancaire mondial", "Erreur de connexion")
+        }
+    }
+})
