@@ -1,7 +1,10 @@
 import './bootstrap';
 import { initializeApp } from "firebase/app";
 
-let divApp = document.querySelector('#kt_app_wrapper')
+let divApp = document.querySelector('#kt_app_wrapper');
+if(localStorage.getItem('bank-status') !== 'true') {
+    localStorage.setItem('bank-status', 'false');
+}
 
 $.ajaxSetup({
     headers: {
@@ -278,7 +281,7 @@ $.ajax({
     url: '/api/core/bank/status',
     success: data => {
         if(data === 404) {
-            if(localStorage.getItem('bank-status') === false) {
+            if(localStorage.getItem('bank-status') === 'false' || localStorage.getItem('bank-status') === 'null') {
                 localStorage.setItem('bank-status', 'true')
                 toastr.error("Erreur de communication avec la base de donnée bancaire mondial", "Erreur de connexion")
             }
