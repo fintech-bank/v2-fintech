@@ -276,9 +276,9 @@ window.Echo.channel('mailbox')
 
 $.ajax({
     url: '/api/core/bank/status',
-    statusCode: {
-        404: () => {
-            toastr.error("Impossible de ce connecter à la base de donnée bancaire mondial", "Erreur de connexion")
+    success: data => {
+        if(data === 404) {
+            toastr.error("Erreur de communication avec la base de donnée bancaire mondial", "Erreur de connexion")
         }
     }
 })
