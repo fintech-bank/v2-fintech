@@ -73,6 +73,10 @@ Route::prefix('core')->group(function () {
     });
 
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);
+    Route::get('/bank/status', function () {
+        $bank = new \App\Services\BankFintech();
+        dd($bank->status());
+    });
 
 });
 

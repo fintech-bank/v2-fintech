@@ -49,4 +49,8 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
             Route::get("/", [\App\Http\Controllers\Agent\Account\ProfilController::class, 'index'])->name('agent.account.profil.index');
         });
     });
+
+    Route::prefix('customer')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+    });
 });
