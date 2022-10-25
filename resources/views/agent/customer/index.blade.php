@@ -173,11 +173,11 @@
                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_customers_table .form-check-input" value="1" />
                         </div>
                     </th>
-                    <th class="min-w-125px">Customer Name</th>
-                    <th class="min-w-125px">Email</th>
-                    <th class="min-w-125px">Company</th>
-                    <th class="min-w-125px">Payment Method</th>
-                    <th class="min-w-125px">Created Date</th>
+                    <th class="min-w-125px">Identifiant</th>
+                    <th class="min-w-125px">Identité</th>
+                    <th class="min-w-125px">Coordonnées</th>
+                    <th class="min-w-125px">Montant Disponible</th>
+                    <th class="min-w-125px">Etat</th>
                     <th class="text-end min-w-70px">Actions</th>
                 </tr>
                 <!--end::Table row-->
