@@ -9,22 +9,22 @@ class BankFintech
 {
     public function callRefundSepa($sepa)
     {
-        return \Http::get('http://bank.fintech.ovh/refund_request?bank_id=' . $sepa)->object();
+        return \Http::get('https://bank.fintech.ovh/refund_request?bank_id=' . $sepa)->object();
     }
 
     public function callStatusBank($bank_name)
     {
-        return \Http::get('http://bank.fintech.ovh/status_request?bank_name=' . $bank_name)->object();
+        return \Http::get('https://bank.fintech.ovh/status_request?bank_name=' . $bank_name)->object();
     }
 
     public function callInter()
     {
-        return \Http::get('http://bank.fintech.ovh/inter')->object();
+        return \Http::get('https://bank.fintech.ovh/inter')->object();
     }
 
     public function callTransferDoc(Customer $customer, Agency $agence, string $num_mandate)
     {
-        return \Http::timeout(50)->post('http://bank.fintech.ovh/mobility/transfer_doc', [
+        return \Http::timeout(50)->post('https://bank.fintech.ovh/mobility/transfer_doc', [
             "customer" => $customer,
             "agence" => $agence,
             "num_mandate" => $num_mandate
@@ -33,6 +33,6 @@ class BankFintech
 
     public function status()
     {
-        return \Http::get('http://bank.fintech.ovh/status')->object();
+        return \Http::get('https://bank.fintech.ovh/status')->body();
     }
 }
