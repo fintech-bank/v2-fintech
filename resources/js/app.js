@@ -278,7 +278,10 @@ $.ajax({
     url: '/api/core/bank/status',
     success: data => {
         if(data === 404) {
-            toastr.error("Erreur de communication avec la base de donnée bancaire mondial", "Erreur de connexion")
+            if(localStorage.getItem('bank-status') === false) {
+                localStorage.setItem('bank-status', 'true')
+                toastr.error("Erreur de communication avec la base de donnée bancaire mondial", "Erreur de connexion")
+            }
         }
     }
 })
