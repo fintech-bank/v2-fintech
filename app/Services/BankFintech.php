@@ -33,6 +33,6 @@ class BankFintech
 
     public function status()
     {
-        return \Http::get('https://bank.fintech.ovh/status')->body();
+        return \Http::get('https://bank.fintech.ovh/status')->status();
     }
 }
