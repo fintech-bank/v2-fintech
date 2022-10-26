@@ -196,12 +196,20 @@
                     <!--end::Checkbox-->
                     <!--begin::Name=-->
                     <td>
-                        <a href="../../demo1/dist/apps/customers/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
+                        {{ $customer->user->identifiant     }}
                     </td>
                     <!--end::Name=-->
                     <!--begin::Email=-->
                     <td>
-                        <a href="#" class="text-gray-600 text-hover-primary mb-1">smith@kpmg.com</a>
+                        <div class="d-flex flex-row">
+                            <div class="symbol symbol-50px">
+                                {!! $customer->user->avatar_symbol !!}
+                            </div>
+                            <div class="d-flex flex-column align-items-center">
+                                <strong>{{ $customer->info->full_name }}</strong>
+                                {!! $customer->info->type_label !!}
+                            </div>
+                        </div>
                     </td>
                     <!--end::Email=-->
                     <!--begin::Company=-->

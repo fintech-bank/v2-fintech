@@ -81,7 +81,7 @@ class CustomerInfo extends Model
     public $timestamps = false;
 
     protected $dates = ['datebirth'];
-    protected $appends = ['type_label', 'phone_verified', 'mobile_verified', 'account_label'];
+    protected $appends = ['type_label', 'phone_verified', 'mobile_verified', 'account_label', 'full_name'];
 
     public function routeNotificationForTwilio()
     {
@@ -100,7 +100,16 @@ class CustomerInfo extends Model
         ]);
     }
 
-    public function getTypeTextAttribute()
+    public function getFullNameAttribute(): ?string
+    {
+        if($this->type == 'part') {
+            return $this->civility.'. '.$this->lastname.' '.$this->firstname;
+        } else {
+            return $this->company;
+        }
+    }
+
+    public function getTypeTextAttribute(): string
     {
         $t = null;
         switch ($this->type) {
