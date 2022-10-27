@@ -177,7 +177,7 @@
                     <th class="min-w-125px">Identité</th>
                     <th class="min-w-125px">Coordonnées</th>
                     <th class="min-w-125px">Montant Disponible</th>
-                    <th class="min-w-125px">Etat</th>
+                    <th class="min-w-125px text-center">Etat</th>
                     <th class="text-end min-w-70px">Actions</th>
                 </tr>
                 <!--end::Table row-->
@@ -260,7 +260,7 @@
                     </td>
                     <!--end::Payment method=-->
                     <!--begin::Date=-->
-                    <td>{!! $customer->status_label !!}</td>
+                    <td class="text-center">{!! $customer->status_label !!}</td>
                     <!--end::Date=-->
                     <!--begin::Action=-->
                     <td class="text-end">
