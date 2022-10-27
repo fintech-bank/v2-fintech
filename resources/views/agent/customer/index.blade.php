@@ -196,28 +196,52 @@
                     <!--end::Checkbox-->
                     <!--begin::Name=-->
                     <td>
-                        {{ $customer->user->identifiant     }}
+                        {{ $customer->user->identifiant }}
                     </td>
                     <!--end::Name=-->
                     <!--begin::Email=-->
                     <td>
-                        <div class="d-flex flex-row">
-                            <div class="symbol symbol-50px">
-                                {!! $customer->user->avatar_symbol !!}
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="d-flex flex-row">
+                                <div class="symbol symbol-50px me-5">
+                                    {!! $customer->user->avatar_symbol !!}
+                                </div>
+                                <div class="d-flex flex-column align-items-center me-10">
+                                    <div class="fw-bolder">{{ $customer->user->name }}</div>
+                                    {!! $customer->info->type_label !!}
+                                </div>
                             </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <strong>{{ $customer->info->full_name }}</strong>
-                                {!! $customer->info->type_label !!}
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                {!! $customer->info->account_verified !!}
                             </div>
                         </div>
                     </td>
                     <!--end::Email=-->
                     <!--begin::Company=-->
-                    <td>-</td>
+                    <td>
+                        <div class="d-flex flex-column">
+                            <div class="d-flex flex-row mb-2 align-items-center">
+                                <i class="fa-solid fa-phone me-2"></i>:
+                                <span class="me-3">{{ $customer->info->phone }}</span>
+                                {!! $customer->info->phone_verified !!}
+                            </div>
+                            <div class="d-flex flex-row mb-2 align-items-center">
+                                <i class="fa-solid fa-mobile me-2"></i>:
+                                <span class="me-3">{{ $customer->info->mobile }}</span>
+                                {!! $customer->info->mobile_verified !!}
+                            </div>
+                            <div class="d-flex flex-row mb-2 align-items-center">
+                                <i class="fa-solid fa-envelope me-2"></i>:
+                                <span class="me-3">{{ $customer->user->email }}</span>
+                                {!! $customer->user->email_verified !!}
+                            </div>
+                        </div>
+                    </td>
                     <!--end::Company=-->
                     <!--begin::Payment method=-->
                     <td data-filter="mastercard">
-                        <img src="assets/media/svg/card-logos/mastercard.svg" class="w-35px me-3" alt="" />**** 1329</td>
+
+                    </td>
                     <!--end::Payment method=-->
                     <!--begin::Date=-->
                     <td>14 Dec 2020, 8:43 pm</td>
