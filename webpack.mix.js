@@ -7,5 +7,8 @@ mix.sass('resources/scss/pdf.scss', 'public/css/pdf.css')
 
 mix.disableNotifications()
 mix.browserSync({
-    proxy: 'v2.fintech.io',
+    proxy: {
+        target: "https://v2.fintech.ovh",
+        ws: true
+    }
 });

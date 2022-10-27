@@ -4624,6 +4624,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var divApp = document.querySelector('#kt_app_wrapper');
+
+if (localStorage.getItem('bank-status') !== 'true') {
+  localStorage.setItem('bank-status', 'false');
+}
+
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -4877,6 +4882,17 @@ window.Echo.channel('mailbox').listen(".new-mail-in-mailbox", function (event) {
       toastr.info('Vous avez reçu un nouveau message.', 'Boite de reception');
     }
   });
+});
+$.ajax({
+  url: '/api/core/bank/status',
+  success: function success(data) {
+    if (data === 404) {
+      if (localStorage.getItem('bank-status') === 'false' || localStorage.getItem('bank-status') === 'null') {
+        localStorage.setItem('bank-status', 'true');
+        toastr.error("Erreur de communication avec la base de donnée bancaire mondial", "Erreur de connexion");
+      }
+    }
+  }
 });
 
 /***/ }),
