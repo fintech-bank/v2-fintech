@@ -242,25 +242,25 @@
                     <td>
                         <div class="d-flex flex-row justify-content-between">
                             <strong>Compte bancaire:</strong>
-                            @if($user->customers->sum_account >= 0)
-                                <span class="text-success">+ {{ eur($user->customers->sum_account) }}</span>
+                            @if($customer->sum_account >= 0)
+                                <span class="text-success">+ {{ eur($customer->sum_account) }}</span>
                             @else
-                                <span class="text-danger">{{ eur($user->customers->sum_account) }}</span>
+                                <span class="text-danger">{{ eur($customer->sum_account) }}</span>
                             @endif
                         </div>
 
                         <div class="d-flex flex-row justify-content-between">
                             <strong>Compte épargne:</strong>
-                            @if($user->customers->sum_epargne >= 0)
-                                <span class="text-success">+ {{ eur($user->customers->sum_epargne) }}</span>
+                            @if($customer->sum_epargne >= 0)
+                                <span class="text-success">+ {{ eur($customer->sum_epargne) }}</span>
                             @else
-                                <span class="text-danger">{{ eur($user->customers->sum_epargne) }}</span>
+                                <span class="text-danger">{{ eur($customer->sum_epargne) }}</span>
                             @endif
                         </div>
                     </td>
                     <!--end::Payment method=-->
                     <!--begin::Date=-->
-                    <td>{!! $user->customers->status_label !!}</td>
+                    <td>{!! $customer->status_label !!}</td>
                     <!--end::Date=-->
                     <!--begin::Action=-->
                     <td class="text-end">
