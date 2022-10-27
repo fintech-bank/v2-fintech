@@ -239,12 +239,28 @@
                     </td>
                     <!--end::Company=-->
                     <!--begin::Payment method=-->
-                    <td data-filter="mastercard">
+                    <td>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Compte bancaire:</strong>
+                            @if($user->customers->sum_account >= 0)
+                                <span class="text-success">+ {{ eur($user->customers->sum_account) }}</span>
+                            @else
+                                <span class="text-danger">{{ eur($user->customers->sum_account) }}</span>
+                            @endif
+                        </div>
 
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Compte épargne:</strong>
+                            @if($user->customers->sum_epargne >= 0)
+                                <span class="text-success">+ {{ eur($user->customers->sum_epargne) }}</span>
+                            @else
+                                <span class="text-danger">{{ eur($user->customers->sum_epargne) }}</span>
+                            @endif
+                        </div>
                     </td>
                     <!--end::Payment method=-->
                     <!--begin::Date=-->
-                    <td>14 Dec 2020, 8:43 pm</td>
+                    <td>{!! $user->customers->status_label !!}</td>
                     <!--end::Date=-->
                     <!--begin::Action=-->
                     <td class="text-end">
