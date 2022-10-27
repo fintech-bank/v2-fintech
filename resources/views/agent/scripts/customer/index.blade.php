@@ -5,9 +5,8 @@
     let elements = {}
     let modals = {}
     let forms = {}
-    let dataTable = {}
+    let dataTable = {
+        datatableCustomer: $(tables.tableCustomer).DataTable()
+    }
     let block = {}
-
-
-    let datatableCustomer = $(tables.tableCustomer).DataTable()
 </script>
