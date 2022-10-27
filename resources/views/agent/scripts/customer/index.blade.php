@@ -10,10 +10,6 @@
             info: !1,
             order: [],
             columnDefs: [{
-                orderable: !1,
-                targets: 0
-            },
-                {
                     orderable: !1,
                     targets: 6
                 }]
