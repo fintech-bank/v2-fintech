@@ -16,4 +16,10 @@
         })
     }
     let block = {}
+
+    document.querySelector('[data-kt-customer-table-filter="search"]').addEventListener('keyup', e => {
+        dataTable.datatableCustomer
+            .search(e.target.value)
+            .draw()
+    })
 </script>
