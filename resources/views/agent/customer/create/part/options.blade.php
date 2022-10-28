@@ -221,7 +221,7 @@
                 <div class="d-flex flex-column w-100">
                     <x-base.underline title="Options de compte" size="3" sizeText="fs-1" color="bank" />
                     <div class="d-flex flex-row justify-content-between">
-                        <a href="#" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeAlerta">
+                        <a href="#" class="card shadow-lg me-5 w-25" data-bs-toggle="modal" data-bs-target="#subscribeAlerta">
                             <div class="card-body">
                                 <div class="d-flex flex-row align-items-center">
                                     <div class="symbol symbol-50px me-5">
@@ -237,7 +237,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeDailyInsurance">
+                        <a href="" class="card shadow-lg me-5 w-25" data-bs-toggle="modal" data-bs-target="#subscribeDailyInsurance">
                             <div class="card-body">
                                 <div class="d-flex flex-row align-items-center">
                                     <div class="symbol symbol-50px me-5">
@@ -253,7 +253,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeWithdraw">
+                        <a href="" class="card shadow-lg me-5 w-25" data-bs-toggle="modal" data-bs-target="#subscribeWithdraw">
                             <div class="card-body">
                                 <div class="d-flex flex-row align-items-center">
                                     <div class="symbol symbol-50px me-5">
@@ -269,7 +269,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeOverdraft">
+                        <a href="" class="card shadow-lg me-5 w-25" data-bs-toggle="modal" data-bs-target="#subscribeOverdraft">
                             <div class="card-body">
                                 <div class="d-flex flex-row align-items-center">
                                     <div class="symbol symbol-50px me-5">
