@@ -64,7 +64,7 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
             });
 
             Route::prefix('pro')->group(function () {
-                Route::get('info', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'index'])->name('agent.customer.create.pro.index');
+                Route::get('info', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'index'])->name('agent.customer.create.pro.info');
                 Route::get('signataire', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'signataire'])->name('agent.customer.create.pro.signataire');
                 Route::get('package', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'package'])->name('agent.customer.create.pro.package');
                 Route::get('card', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'card'])->name('agent.customer.create.pro.card');
@@ -72,7 +72,7 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
             });
 
             Route::prefix('orga')->group(function () {
-                Route::get('info', [\App\Http\Controllers\Agent\Customer\CreateOrgaCustomerController::class, 'index'])->name('agent.customer.create.orga.index');
+                Route::get('info', [\App\Http\Controllers\Agent\Customer\CreateOrgaCustomerController::class, 'index'])->name('agent.customer.create.orga.info');
                 Route::get('signataire', [\App\Http\Controllers\Agent\Customer\CreateOrgaCustomerController::class, 'signataire'])->name('agent.customer.create.orga.signataire');
                 Route::get('package', [\App\Http\Controllers\Agent\Customer\CreateOrgaCustomerController::class, 'package'])->name('agent.customer.create.orga.package');
                 Route::get('card', [\App\Http\Controllers\Agent\Customer\CreateOrgaCustomerController::class, 'card'])->name('agent.customer.create.orga.card');
@@ -80,7 +80,7 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
             });
 
             Route::prefix('assoc')->group(function () {
-                Route::get('info', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'index'])->name('agent.customer.create.assoc.index');
+                Route::get('info', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'index'])->name('agent.customer.create.assoc.info');
                 Route::get('signataire', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'signataire'])->name('agent.customer.create.assoc.signataire');
                 Route::get('package', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'package'])->name('agent.customer.create.assoc.package');
                 Route::get('card', [\App\Http\Controllers\Agent\Customer\CreateProCustomerController::class, 'card'])->name('agent.customer.create.assoc.card');
