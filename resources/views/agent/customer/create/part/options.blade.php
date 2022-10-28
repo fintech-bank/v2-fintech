@@ -223,7 +223,7 @@
                     <div class="d-flex flex-row justify-content-between">
                         <a href="#" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeAlerta">
                             <div class="card-body">
-                                <div class="d-flex flex-row">
+                                <div class="d-flex flex-row align-items-center">
                                     <div class="symbol symbol-50px me-5">
                                         <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-bell fs-2"></i> </div>
                                     </div>
