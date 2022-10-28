@@ -282,6 +282,11 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="modal-footer">
+                    <div class="d-flex flex-wrap">
+                        <button class="btn btn-bank btn-circle w-100">Souscrire</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
