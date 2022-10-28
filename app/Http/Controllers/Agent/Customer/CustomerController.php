@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Agent\Customer;
 
+use App\Helper\CustomerHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
@@ -22,6 +23,8 @@ class CustomerController extends Controller
 
     public function finish()
     {
-        dd(session()->all());
+        $session = (object) session()->all();
+
+        dd(CustomerHelper::createCustomer($session));
     }
 }

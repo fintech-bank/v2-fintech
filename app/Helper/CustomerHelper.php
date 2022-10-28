@@ -209,4 +209,9 @@ class CustomerHelper
         }
     }
 
+    public static function createCustomer($session)
+    {
+        dd($session);
+    }
+
 }
