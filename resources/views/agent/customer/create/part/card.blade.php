@@ -219,7 +219,18 @@
                     <!--end::Nav-->
                 </div>
                 <div class="d-flex flex-column w-100">
-                    
+                    <x-base.underline title="Carte Bancaire" size="3" sizeText="fs-1" color="bank" />
+                    <div class="mb-10">
+                        <label for="card_support" class="required form-label">
+                            Type de carte bancaire
+                        </label>
+                        <select id="card_support" class="form-select form-select-solid" data-placeholder="Selectionner un type de carte" name="card_support" required>
+                            <option value=""></option>
+                            <option value="classic" data-card-img="/storage/card/classic.png">Visa Classic</option>
+                            <option value="premium" data-card-img="/storage/card/premium.png">Visa Gold</option>
+                            <option value="infinite" data-card-img="/storage/card/infinite.png">Visa Infinity</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
