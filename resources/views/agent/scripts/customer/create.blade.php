@@ -45,6 +45,7 @@
                 console.log(data)
                 contentCities.innerHTML = data
                 $("#citybirth").select2()
+                $(contentCities).fadeIn()
             }
         })
     }
