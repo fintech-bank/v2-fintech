@@ -33,7 +33,7 @@
 @section("content")
     <div class="card shadow-sm">
         <div class="card-body">
-            <div class="d-flex flex-row justify-content-between">
+            <div class="d-flex flex-row justify-content-around">
                 <a href="" class="card shadow-lg bg-light-primary">
                     <div class="card-body">
                         <div class="d-flex flex-row align-items-center">
