@@ -8,7 +8,8 @@
         field_differed_card_amount: document.querySelector('#differed_card_amount'),
         blockDivPackage: document.querySelector('#blockDivPackage'),
         divPackage: document.querySelector('#package_info'),
-        btnVerifyCustomer: document.querySelector("#btnVerifyCustomer")
+        btnVerifyCustomer: document.querySelector("#btnVerifyCustomer"),
+        btnSubscribe: document.querySelectorAll('.btnSubscribe')
     }
     let modals = {
         modalVerifyCustomer: document.querySelector("#modalVerifCustomer")
@@ -209,6 +210,28 @@
     })
 
     if(elements.field_datebirth) { $(elements.field_datebirth).flatpickr({"locale": "fr"}) }
+    if(elements.btnSubscribe) {
+        elements.btnSubscribe.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                btn.setAttribute('data-kt-indicator', 'on')
+
+                $.ajax({
+                    url: '/api/customer/subscribe',
+                    method: 'POST',
+                    data: {'action': 'alerta'},
+                    success: data => {
+                        btn.removeAttribute('data-kt-indicator')
+                        toastr.success(`Souscription à Alerta effectuer`, `Souscription pris en compte`)
+                    },
+                    error: () => {
+                        btn.removeAttr('data-kt-indicator')
+                        toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+                    }
+                })
+            })
+        })
+    }
 
     $("#countrybirth").select2({
         templateSelection: countryBirthOptions,

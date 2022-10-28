@@ -284,7 +284,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex">
-                        <button class="btn btn-bank btn-circle w-100">Souscrire</button>
+                        <button class="btn btn-bank btn-circle w-100 btnSubscribe" data-subscribe="alerta">Souscrire</button>
                     </div>
                 </div>
             </div>
