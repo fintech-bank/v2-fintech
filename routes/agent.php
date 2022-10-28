@@ -52,5 +52,40 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
 
     Route::prefix('customer')->group(function () {
         Route::get('/', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        Route::prefix('create')->group(function() {
+            Route::get('start', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+
+            Route::prefix('part')->group(function () {
+                Route::get('info', [\App\Http\Controllers\Agent\Customer\CreatePartCustomerController::class, 'info'])->name('agent.customer.create.part.index');
+                Route::get('pro', [\App\Http\Controllers\Agent\Customer\CreatePartCustomerController::class, 'pro'])->name('agent.customer.create.part.index');
+                Route::get('package', [\App\Http\Controllers\Agent\Customer\CreatePartCustomerController::class, 'package'])->name('agent.customer.create.part.index');
+                Route::get('card', [\App\Http\Controllers\Agent\Customer\CreatePartCustomerController::class, 'card'])->name('agent.customer.create.part.index');
+                Route::get('options', [\App\Http\Controllers\Agent\Customer\CreatePartCustomerController::class, 'options'])->name('agent.customer.create.part.index');
+            });
+
+            Route::prefix('pro')->group(function () {
+                Route::get('info', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+                Route::get('signataire', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+                Route::get('package', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+                Route::get('card', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+                Route::get('options', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+            });
+
+            Route::get('finish', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        });
+
+
+
+        Route::get('create/orga/info', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        Route::get('create/orga/signataire', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        Route::get('create/orga/package', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        Route::get('create/orga/card', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        Route::get('create/orga/options', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+
+        Route::get('create/assoc/info', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        Route::get('create/assoc/signataire', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        Route::get('create/assoc/package', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        Route::get('create/assoc/card', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
+        Route::get('create/assoc/options', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
     });
 });
