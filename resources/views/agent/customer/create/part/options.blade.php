@@ -261,7 +261,7 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <div class="fw-bolder fs-2 text-dark">Retrait DAB Illimité</div>
-                                        <div class="fs-italic text-muted"></div>
+                                        <div class="fs-italic text-muted">Retirez sans frais additionnels dans les distributeurs de toutes les banques.</div>
                                     </div>
                                     @if(session()->has('subscribe.dab') && session()->get('subscribe.dab'))
                                         <i class="fa-solid fa-check-circle fs-1 text-success"></i>
