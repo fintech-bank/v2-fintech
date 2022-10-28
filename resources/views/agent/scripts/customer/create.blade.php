@@ -6,8 +6,12 @@
         blockDivPackage: document.querySelector('#blockDivPackage'),
         divPackage: document.querySelector('#package_info')
     }
-    let modals = {}
-    let forms = {}
+    let modals = {
+        modalVerifyCustomer: document.querySelector("#modalVerifCustomer")
+    }
+    let forms = {
+        formPartPro: document.querySelector('#formPartPro')
+    }
     let dataTable = {}
     let block = {
         blockDivPackage: messageBlock(elements.blockDivPackage)
@@ -199,5 +203,10 @@
     $("#card_support").select2({
         templateSelection: cardsOptions,
         templateResult: cardsOptions
+    })
+    $(forms.formPartPro).on('submit', e => {
+        e.preventDefault()
+        let modal = new bootstrap.Modal(modals.modalVerifyCustomer)
+        modal.show()
     })
 </script>

@@ -33,7 +33,7 @@
 
 @section("content")
     <div class="card shadow-sm">
-        <form id="" action="{{ route('agent.customer.create.part.package') }}" method="GET" enctype="multipart/form-data">
+        <form id="formPartPro" action="{{ route('agent.customer.create.part.package') }}" method="GET" enctype="multipart/form-data">
             <div class="card-body stepper stepper-pills stepper-column d-flex flex-column flex-lg-row">
                 <div class="d-flex flex-row-auto w-100 w-lg-300px">
                     <div class="stepper-nav flex-center flex-wrap mb-10">
@@ -285,6 +285,29 @@
                 <x-form.button />
             </div>
         </form>
+    </div>
+    <div class="modal fade" tabindex="-1" id="modalVerifCustomer">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Vérification clientèle</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-regular fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <div class="d-flex flex-column justify-content-center align-items-center h-300px">
+                        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                           <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
