@@ -19,4 +19,9 @@ class CustomerController extends Controller
     {
         return view('agent.customer.create.start');
     }
+
+    public function finish()
+    {
+        dd(session()->all());
+    }
 }
