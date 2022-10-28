@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereNotifSms($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerSetting
+ * @property int $alerta
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereAlerta($value)
  */
 class CustomerSetting extends Model
 {

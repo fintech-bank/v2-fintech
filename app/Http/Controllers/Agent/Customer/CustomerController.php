@@ -24,7 +24,8 @@ class CustomerController extends Controller
     public function finish()
     {
         $session = (object) session()->all();
+        $customer = CustomerHelper::createCustomer($session);
 
-        dd(CustomerHelper::createCustomer($session));
+        return view('agent.customer.create.finish', compact('customer'));
     }
 }

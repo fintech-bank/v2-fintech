@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('nb_physical_card')->default(1);
             $table->integer('nb_virtual_card')->default(1);
             $table->boolean('check')->default(false);
+            $table->boolean('alerta')->default(false);
+            $table->boolean('card_code')->default(false);
 
             $table->foreignId('customer_id')
                             ->constrained()

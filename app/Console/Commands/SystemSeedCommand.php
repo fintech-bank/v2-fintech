@@ -106,6 +106,18 @@ class SystemSeedCommand extends Command
         $this->info('Seeding: Liste des Dossier Mail par défault');
         $this->call('db:seed', ['class' => 'MailboxFolderSeeder', 'force']);
 
+        $this->info('Seeding: Type d\'assurance');
+        $this->call('db:seed', ['class' => 'InsuranceTypeSeeder', 'force']);
+
+        $this->info('Seeding: Forfait d\'assurance');
+        $this->call('db:seed', ['class' => 'InsurancePackageSeeder', 'force']);
+
+        $this->info('Seeding: Formule des forfaits d\'assurance');
+        $this->call('db:seed', ['class' => 'InsurancePackageFormSeeder', 'force']);
+
+        $this->info('Seeding: Garantie des Formules des forfaits d\'assurance');
+        $this->call('db:seed', ['class' => 'InsurancePackageWarrantySeeder', 'force']);
+
         return 0;
     }
 
