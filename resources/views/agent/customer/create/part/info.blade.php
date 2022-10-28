@@ -218,6 +218,8 @@
                     </div>
                     <!--end::Nav-->
                 </div>
+                <x-base.underline
+                    title="Information personnel" />
             </div>
             <div class="card-footer">
                 <x-form.button />
