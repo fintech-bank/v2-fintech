@@ -31,7 +31,23 @@
 @endsection
 
 @section("content")
-
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="d-flex flex-row justify-content-between">
+                <a href="" class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="fa-solid fa-users-between-lines fa-2x me-5"></i>
+                            <div class="d-flex flex-column">
+                                <div class="fs-1">Particulier</div>
+                                <div class="text-muted">Ouverture d'un compte pour particulier</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
