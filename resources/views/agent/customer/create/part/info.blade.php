@@ -276,6 +276,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="me-5">
+                            <div class="mb-10" id="divCities"></div>
+                        </div>
                     </div>
                 </div>
             </div>
