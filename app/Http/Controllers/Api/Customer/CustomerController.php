@@ -9,12 +9,12 @@ class CustomerController extends Controller
 {
     public function subscribe(Request $request)
     {
-        switch ($request->get('action')) {
-            case 'alerta':
-                return $this->subscribeAlerta();
-            case 'dailyInsurance':
-                return $this->subscribeDailyInsurance();
-        }
+        return match ($request->get('action')) {
+            'alerta' => $this->subscribeAlerta(),
+            'dailyInsurance' => $this->subscribeDailyInsurance(),
+            'dab' => $this->subscribeDab(),
+            default => null,
+        };
     }
 
     private function subscribeAlerta()
@@ -27,5 +27,11 @@ class CustomerController extends Controller
     {
         session()->put('subscribe.daily_insurance', true);
         return response()->json(['offer' => 'Mon Assurance au quotidien']);
+    }
+
+    private function subscribeDab()
+    {
+        session()->put('subscribe.dab', true);
+        return response()->json(['offer' => 'Retrait DAB Illimité']);
     }
 }
