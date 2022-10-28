@@ -81,6 +81,12 @@
             'Pro Gold': {'icon': 'ring', 'color': 'warning'},
         }
 
+        let deleteIconColor = () => {
+            elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('text-secondary')
+            elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('text-warning')
+            elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('text-black')
+        }
+
         $.ajax({
             url: '/api/core/forfait/'+packageId.value,
             success: data => {
@@ -88,9 +94,9 @@
                 block.blockDivPackage.release()
                 block.blockDivPackage.destroy()
 
-                elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('text-')
+                deleteIconColor()
                 elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.add('text-'+iconTemplate[data.name].color)
-                
+
             }
         })
 
