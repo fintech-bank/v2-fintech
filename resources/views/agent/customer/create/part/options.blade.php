@@ -221,7 +221,7 @@
                 <div class="d-flex flex-column w-100">
                     <x-base.underline title="Options de compte" size="3" sizeText="fs-1" color="bank" />
                     <div class="d-flex flex-row justify-content-between">
-                        <a class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeAlerta">
+                        <a href="#" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeAlerta">
                             <div class="card-body">
                                 <div class="d-flex flex-row">
                                     <div class="symbol symbol-50px me-5">
@@ -254,6 +254,25 @@
                 <x-form.button />
             </div>
         </form>
+    </div>
+    <div class="modal fade" tabindex="-1" id="subscribeAlerta">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Abonnement Alerta Plus</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-regular fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body text-center">
+                    <i class="fa-solid fa-bell fs-3hx text-primary"></i>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
