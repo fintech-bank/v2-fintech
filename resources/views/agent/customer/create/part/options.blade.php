@@ -223,7 +223,11 @@
                     <div class="d-flex flex-row justify-content-between">
                         <div class="card shadow-sm">
                             <div class="card-body">
-
+                                <div class="d-flex flex-row">
+                                    <div class="symbol symbol-50px">
+                                        <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-hornbill"></i> </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
