@@ -230,7 +230,7 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="mb-10">
                                 <label for="civility" class="form-label required">Civilité</label>
-                                <select class="form-control" data-controls="select2" name="civility" data-placeholder="Civilité">
+                                <select class="form-control" data-control="select2" name="civility" data-placeholder="Civilité">
                                     <option value=""></option>
                                     <option value="M">Monsieur</option>
                                     <option value="Mme">Madame</option>
