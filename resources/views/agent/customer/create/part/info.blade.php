@@ -218,41 +218,43 @@
                     </div>
                     <!--end::Nav-->
                 </div>
-                <x-base.underline
-                    title="Information personnel"
-                    size-text="fs-1"
-                    class="mb-10"
-                    size="4"
-                    color="bank" />
+                <div class="d-flex">
+                    <x-base.underline
+                        title="Information personnel"
+                        size-text="fs-1"
+                        class="mb-10"
+                        size="4"
+                        color="bank" />
 
-                <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <div class="mb-10">
-                            <label for="civility" class="form-label required">Civilité</label>
-                            <select class="form-control" data-controls="select2" name="civility" data-placeholder="Civilité">
-                                <option value=""></option>
-                                <option value="M">Monsieur</option>
-                                <option value="Mme">Madame</option>
-                                <option value="Mlle">Mademoiselle</option>
-                            </select>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <div class="mb-10">
+                                <label for="civility" class="form-label required">Civilité</label>
+                                <select class="form-control" data-controls="select2" name="civility" data-placeholder="Civilité">
+                                    <option value=""></option>
+                                    <option value="M">Monsieur</option>
+                                    <option value="Mme">Madame</option>
+                                    <option value="Mlle">Mademoiselle</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12">
-                        <x-form.input
-                            name="lastname"
-                            label="Nom de famille"
-                            required="true" />
-                    </div>
-                    <div class="col-md-3 col-sm-12">
-                        <x-form.input
-                            name="middlename"
-                            label="Nom marital" />
-                    </div>
-                    <div class="col-md-3 col-sm-12">
-                        <x-form.input
-                            name="firstname"
-                            label="Prénom"
-                            required="true" />
+                        <div class="col-md-3 col-sm-12">
+                            <x-form.input
+                                name="lastname"
+                                label="Nom de famille"
+                                required="true" />
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <x-form.input
+                                name="middlename"
+                                label="Nom marital" />
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <x-form.input
+                                name="firstname"
+                                label="Prénom"
+                                required="true" />
+                        </div>
                     </div>
                 </div>
             </div>
