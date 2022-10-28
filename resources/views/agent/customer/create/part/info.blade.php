@@ -318,6 +318,83 @@
                             </div>
                         </div>
                     </div>
+
+                    <x-base.underline title="Contact" size="3" sizeText="fs-1" color="bank" />
+                    <div class="row">
+                        <div class="col-4">
+                            <x-form.input
+                                name="phone"
+                                type="text"
+                                label="Domicile" text="Format: +33999999999"/>
+                        </div>
+                        <div class="col-4">
+                            <x-form.input
+                                name="mobile"
+                                type="text"
+                                label="Mobile"
+                                text="Format: +33999999999"
+                                required="true" />
+                        </div>
+                        <div class="col-4">
+                            <x-form.input
+                                name="email"
+                                type="email"
+                                label="Adresse Mail"
+                                required="true" />
+                        </div>
+                    </div>
+
+                    <x-base.underline title="Situation Personnel" size="3" sizeText="fs-1" color="bank" />
+
+                    <div class="row">
+                        <div class="col-6">
+                            <x-form.select
+                                name="legal_capacity"
+                                :datas="\App\Helper\CustomerSituationHelper::dataLegalCapacity()"
+                                label="Capacité Juridique" required="false"/>
+                        </div>
+                        <div class="col-6">
+                            <x-form.select
+                                name="family_situation"
+                                :datas="\App\Helper\CustomerSituationHelper::dataFamilySituation()"
+                                label="Situation Familiale" required="false"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <x-form.select
+                                name="logement"
+                                :datas="\App\Helper\CustomerSituationHelper::dataLogement()"
+                                label="Dans votre logement, vous êtes" required="false"/>
+                        </div>
+                        <div class="col-6">
+                            <x-form.input-date
+                                name="logement_at"
+                                type="text"
+                                label="Depuis le" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <x-form.input-dialer
+                                name="child"
+                                label="Nombre d'enfant"
+                                min="0"
+                                max="99"
+                                step="1"
+                                value="0" />
+                        </div>
+                        <div class="col-6">
+                            <x-form.input-dialer
+                                name="person_charged"
+                                label="Nombre de personne à charge"
+                                min="0"
+                                max="99"
+                                step="1"
+                                value="0" />
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="card-footer">
