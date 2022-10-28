@@ -82,11 +82,11 @@
                                 <!--begin::Label-->
                                 <div class="stepper-label">
                                     <h3 class="stepper-title">
-                                        Professionnel
+                                        Revenues & Charges
                                     </h3>
 
                                     <div class="stepper-desc">
-                                        Informations professionnel du client
+                                        Informations sur les revenues & charges du client
                                     </div>
                                 </div>
                                 <!--end::Label-->
