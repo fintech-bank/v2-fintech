@@ -269,8 +269,17 @@
                 </div>
 
                 <div class="modal-body">
-                    <i class="fa-solid fa-bell fs-3hx text-primary mb-5 text-center"></i>
-
+                    <div class="text-center">
+                        <i class="fa-solid fa-bell fs-3hx text-primary mb-5"></i>
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Tarif:</td>
+                                <td>{{ eur(2.90) }} <span class="fs-5">/ par mois sans engagement</span> </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
