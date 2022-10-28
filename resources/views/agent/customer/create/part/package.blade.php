@@ -301,8 +301,10 @@
                                             <div class="symbol symbol-50px me-5">
                                                 <div class="symbol-label fw-semibold text-primary"><i class="fa-regular fa-credit-card fs-1"></i> </div>
                                             </div>
-                                            <span class="fs-3 fw-bold">Nombre de carte bancaire physique</span>
-                                            <span data-content="nb_carte_physique" class="fs-1 fw-bolder"></span>
+                                            <div class="d-flex flex-column">
+                                                <span class="fs-3 fw-bold">Nombre de carte bancaire physique</span>
+                                                <span data-content="nb_carte_physique" class="fs-1 fw-bolder"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -312,8 +314,10 @@
                                             <div class="symbol symbol-50px me-5">
                                                 <div class="symbol-label fw-semibold text-info"><i class="fa-solid fa-credit-card fs-1"></i> </div>
                                             </div>
-                                            <span class="fs-3 fw-bold">Nombre de carte bancaire virtuel</span>
-                                            <span data-content="nb_carte_virtuel" class="fs-1 fw-bolder"></span>
+                                            <div class="d-flex flex-column">
+                                                <span class="fs-3 fw-bold">Nombre de carte bancaire virtuel</span>
+                                                <span data-content="nb_carte_virtuel" class="fs-1 fw-bolder"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -323,8 +327,10 @@
                                             <div class="symbol symbol-50px me-5">
                                                 <div class="symbol-label fw-semibold text-warning"><i class="fa-solid fa-users-viewfinder fs-1"></i> </div>
                                             </div>
-                                            <span class="fs-3 fw-bold">Nombre de sous compte</span>
-                                            <span data-content="subaccount" class="fs-1 fw-bolder"></span>
+                                            <div class="d-flex flex-column">
+                                                <span class="fs-3 fw-bold">Nombre de sous compte</span>
+                                                <span data-content="subaccount" class="fs-1 fw-bolder"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
