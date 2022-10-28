@@ -131,6 +131,32 @@
                 deleteIconC('payment_withdraw')
                 elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.add('fa-'+checkIfValid[data.payment_withdraw].icon)
                 elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.add('text-'+checkIfValid[data.payment_withdraw].color)
+
+                deleteIconC('overdraft')
+                elements.divPackage.querySelector('[data-content="overdraft"]').querySelector('i').classList.add('fa-'+checkIfValid[data.overdraft].icon)
+                elements.divPackage.querySelector('[data-content="overdraft"]').querySelector('i').classList.add('text-'+checkIfValid[data.overdraft].color)
+
+                deleteIconC('cash_deposit')
+                elements.divPackage.querySelector('[data-content="cash_deposit"]').querySelector('i').classList.add('fa-'+checkIfValid[data.cash_deposit].icon)
+                elements.divPackage.querySelector('[data-content="cash_deposit"]').querySelector('i').classList.add('text-'+checkIfValid[data.cash_deposit].color)
+
+                deleteIconC('withdraw_international')
+                elements.divPackage.querySelector('[data-content="withdraw_international"]').querySelector('i').classList.add('fa-'+checkIfValid[data.withdraw_international].icon)
+                elements.divPackage.querySelector('[data-content="withdraw_international"]').querySelector('i').classList.add('text-'+checkIfValid[data.withdraw_international].color)
+
+                deleteIconC('payment_international')
+                elements.divPackage.querySelector('[data-content="payment_international"]').querySelector('i').classList.add('fa-'+checkIfValid[data.payment_international].icon)
+                elements.divPackage.querySelector('[data-content="payment_international"]').querySelector('i').classList.add('text-'+checkIfValid[data.payment_international].color)
+
+                deleteIconC('payment_insurance')
+                elements.divPackage.querySelector('[data-content="payment_insurance"]').querySelector('i').classList.add('fa-'+checkIfValid[data.payment_insurance].icon)
+                elements.divPackage.querySelector('[data-content="payment_insurance"]').querySelector('i').classList.add('text-'+checkIfValid[data.payment_insurance].color)
+
+                deleteIconC('check')
+                elements.divPackage.querySelector('[data-content="check"]').querySelector('i').classList.add('fa-'+checkIfValid[data.check].icon)
+                elements.divPackage.querySelector('[data-content="check"]').querySelector('i').classList.add('text-'+checkIfValid[data.check].color)
+
+                
             }
         })
 
