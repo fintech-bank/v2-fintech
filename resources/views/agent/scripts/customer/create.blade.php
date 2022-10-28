@@ -92,6 +92,13 @@
             elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('fa-ring')
         }
 
+        let deleteIconC = (name) => {
+            elements.divPackage.querySelector('[data-content="'+name+'"]').querySelector('i').classList.remove('fa-check-circle')
+            elements.divPackage.querySelector('[data-content="'+name+'"]').querySelector('i').classList.remove('fa-check-circle')
+            elements.divPackage.querySelector('[data-content="'+name+'"]').querySelector('i').classList.remove('text-success')
+            elements.divPackage.querySelector('[data-content="'+name+'"]').querySelector('i').classList.remove('text-danger')
+        }
+
         let checkIfValid =  {
             0: {'icon': 'xmark-circle', 'color': 'danger'},
             1: {'icon': 'check-circle', 'color': 'success'},
@@ -113,18 +120,15 @@
                 elements.divPackage.querySelector('[data-content="package_price"]').innerHTML = `${new Intl.NumberFormat('fr', {style: 'currency', currency: 'eur'}).format(data.price)}`
                 elements.divPackage.querySelector('[data-content="package_type_prlv"]').innerHTML = `${data.type_prlv_text}`
 
-                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.remove('fa-check-circle')
-                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.remove('text-success')
+                deleteIconC('visa_classic')
                 elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.add('fa-'+checkIfValid[data.visa_classic].icon)
                 elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.add('text-'+checkIfValid[data.visa_classic].color)
 
-                elements.divPackage.querySelector('[data-content="check_deposit"]').querySelector('i').classList.remove('fa-check-circle')
-                elements.divPackage.querySelector('[data-content="check_deposit"]').querySelector('i').classList.remove('text-success')
+                deleteIconC('check_deposit')
                 elements.divPackage.querySelector('[data-content="check_deposit"]').querySelector('i').classList.add('fa-'+checkIfValid[data.check_deposit].icon)
                 elements.divPackage.querySelector('[data-content="check_deposit"]').querySelector('i').classList.add('text-'+checkIfValid[data.check_deposit].color)
 
-                elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.remove('fa-check-circle')
-                elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.remove('text-success')
+                deleteIconC('payment_withdraw')
                 elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.add('fa-'+checkIfValid[data.payment_withdraw].icon)
                 elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.add('text-'+checkIfValid[data.payment_withdraw].color)
             }
