@@ -14,7 +14,7 @@
             order: [],
             columnDefs: [{
                     orderable: !1,
-                    targets: 6
+                    targets: 5
                 }]
         })
     }
