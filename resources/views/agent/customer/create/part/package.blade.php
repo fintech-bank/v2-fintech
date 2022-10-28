@@ -253,53 +253,53 @@
                                 </div>
                                 <div class="d-flex flex-row justify-content-between w-100">
                                     <div class="d-flex flex-column me-2">
-                                        <div class="d-flex flex-row me-2" data-content="visa_classic">
+                                        <div class="d-flex flex-row mb-2" data-content="visa_classic">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Visa Classic</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="check_deposit">
+                                        <div class="d-flex flex-row mb-2" data-content="check_deposit">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Dépot de Chèque</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="payment_withdraw">
+                                        <div class="d-flex flex-row mb-2" data-content="payment_withdraw">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Retrait et paiement illimité en zone Euro</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="overdraft">
+                                        <div class="d-flex flex-row mb-2" data-content="overdraft">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Mise en place d'un découvert bancaire</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="cash_deposit">
+                                        <div class="d-flex flex-row mb-2" data-content="cash_deposit">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Dépot d'espèce en agent distributeur</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="withdraw_international">
+                                        <div class="d-flex flex-row mb-2" data-content="withdraw_international">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Retrait à l'internationnal</span>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column">
-                                        <div class="d-flex flex-row me-2" data-content="payment_international">
+                                        <div class="d-flex flex-row mb-2" data-content="payment_international">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Paiement à l'internationnal</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="payment_insurance">
+                                        <div class="d-flex flex-row mb-2" data-content="payment_insurance">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Assurance des moyens de paiement</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="check">
+                                        <div class="d-flex flex-row mb-2" data-content="check">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Mise en place d'un chéquier</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="nb_carte_physique">
+                                        <div class="d-flex flex-row mb-2" data-content="nb_carte_physique">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>3 Carte bancaire</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="nb_carte_virtuel">
+                                        <div class="d-flex flex-row mb-2" data-content="nb_carte_virtuel">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>3 Carte bancaire virtuel (e-carte bleu)</span>
                                         </div>
-                                        <div class="d-flex flex-row me-2" data-content="subaccount">
+                                        <div class="d-flex flex-row mb-2" data-content="subaccount">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span class="fw-bolder">Sous compte:</span> 0
                                         </div>
