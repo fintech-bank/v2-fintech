@@ -88,7 +88,7 @@
                 block.blockDivPackage.release()
                 block.blockDivPackage.destroy()
 
-                elements.divPackage.querySelector('[data-content="icon"]').classList.add('text-'+iconTemplate[data.name].color)
+                elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.add('text-'+iconTemplate[data.name].color)
             }
         })
 
