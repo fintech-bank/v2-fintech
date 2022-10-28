@@ -232,7 +232,7 @@
                         </select>
                     </div>
                     <div id="package_info">
-                        <div class="d-flex flex-column justify-content-center">
+                        <div class="d-flex flex-column justify-content-center w-100">
                             <div class="symbol symbol-200px">
                                 <div class="symbol-label fw-semibold" data-content="icon"><i class="fa-regular fa-gem fs-5tx"></i> </div>
                             </div>
