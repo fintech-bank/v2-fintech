@@ -49,12 +49,14 @@ class CreatePartCustomerController extends Controller
         session()->put('card', $request->except('_token'));
         //dd(session()->all());
         $rent = session('rent');
-        dd($rent);
         $incoming = $rent['pro_incoming'] + $rent['patrimoine'];
-        $overdraft = $this->calcOverdraft($incoming, '');
+        $overdraft = $this->calcOverdraft($incoming, $rent['pro_category']);
 
+        dd($overdraft);
 
-        return view('agent.customer.create.part.options');
+        return view('agent.customer.create.part.options', [
+            'overdraft' => $overdraft
+        ]);
     }
 
     private function calcOverdraft($incoming, $situation)
