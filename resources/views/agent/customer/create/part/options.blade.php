@@ -220,72 +220,80 @@
                 </div>
                 <div class="d-flex flex-column w-100">
                     <x-base.underline title="Options de compte" size="3" sizeText="fs-1" color="bank" />
-                    <div class="d-flex flex-row justify-content-between">
-                        <a href="#" class="card shadow-lg me-5 w-25" data-bs-toggle="modal" data-bs-target="#subscribeAlerta">
-                            <div class="card-body">
-                                <div class="d-flex flex-row align-items-center">
-                                    <div class="symbol symbol-50px me-5">
-                                        <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-bell fs-2"></i> </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <a href="#" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeAlerta">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="symbol symbol-50px me-5">
+                                            <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-bell fs-2"></i> </div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder fs-2 text-black">Alerta PLUS</div>
+                                            <div class="fs-italic text-muted">Notification programmer pour vous tenir au courant des mouvements de votre compte au quotidien</div>
+                                        </div>
+                                        @if(session()->has('subscribe.alerta') && session()->get('subscribe.alerta'))
+                                            <i class="fa-solid fa-check-circle fs-1 text-success"></i>
+                                        @endif
                                     </div>
-                                    <div class="d-flex flex-column">
-                                        <div class="fw-bolder fs-2 text-black">Alerta PLUS</div>
-                                        <div class="fs-italic text-muted">Notification programmer pour vous tenir au courant des mouvements de votre compte au quotidien</div>
-                                    </div>
-                                    @if(session()->has('subscribe.alerta') && session()->get('subscribe.alerta'))
-                                        <i class="fa-solid fa-check-circle fs-1 text-success"></i>
-                                    @endif
                                 </div>
-                            </div>
-                        </a>
-                        <a href="" class="card shadow-lg me-5 w-25" data-bs-toggle="modal" data-bs-target="#subscribeDailyInsurance">
-                            <div class="card-body">
-                                <div class="d-flex flex-row align-items-center">
-                                    <div class="symbol symbol-50px me-5">
-                                        <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-umbrella fs-2"></i> </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeDailyInsurance">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="symbol symbol-50px me-5">
+                                            <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-umbrella fs-2"></i> </div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder fs-2 text-dark">Assurance au quotidien</div>
+                                            <div class="fs-italic text-muted">Assurez-vous contre l’utilisation frauduleuse de vos moyens de paiement et la perte ou le vol de vos clés et de vos papiers.</div>
+                                        </div>
+                                        @if(session()->has('subscribe.daily_insurance') && session()->get('subscribe.daily_insurance'))
+                                            <i class="fa-solid fa-check-circle fs-1 text-success"></i>
+                                        @endif
                                     </div>
-                                    <div class="d-flex flex-column">
-                                        <div class="fw-bolder fs-2 text-dark">Assurance au quotidien</div>
-                                        <div class="fs-italic text-muted">Assurez-vous contre l’utilisation frauduleuse de vos moyens de paiement et la perte ou le vol de vos clés et de vos papiers.</div>
-                                    </div>
-                                    @if(session()->has('subscribe.daily_insurance') && session()->get('subscribe.daily_insurance'))
-                                        <i class="fa-solid fa-check-circle fs-1 text-success"></i>
-                                    @endif
                                 </div>
-                            </div>
-                        </a>
-                        <a href="" class="card shadow-lg me-5 w-25" data-bs-toggle="modal" data-bs-target="#subscribeWithdraw">
-                            <div class="card-body">
-                                <div class="d-flex flex-row align-items-center">
-                                    <div class="symbol symbol-50px me-5">
-                                        <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-eur fs-2"></i> </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeWithdraw">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="symbol symbol-50px me-5">
+                                            <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-eur fs-2"></i> </div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder fs-2 text-dark">Retrait DAB Illimité</div>
+                                            <div class="fs-italic text-muted">Retirez sans frais additionnels dans les distributeurs de toutes les banques.</div>
+                                        </div>
+                                        @if(session()->has('subscribe.dab') && session()->get('subscribe.dab'))
+                                            <i class="fa-solid fa-check-circle fs-1 text-success"></i>
+                                        @endif
                                     </div>
-                                    <div class="d-flex flex-column">
-                                        <div class="fw-bolder fs-2 text-dark">Retrait DAB Illimité</div>
-                                        <div class="fs-italic text-muted">Retirez sans frais additionnels dans les distributeurs de toutes les banques.</div>
-                                    </div>
-                                    @if(session()->has('subscribe.dab') && session()->get('subscribe.dab'))
-                                        <i class="fa-solid fa-check-circle fs-1 text-success"></i>
-                                    @endif
                                 </div>
-                            </div>
-                        </a>
-                        <a href="" class="card shadow-lg me-5 w-25" data-bs-toggle="modal" data-bs-target="#subscribeOverdraft">
-                            <div class="card-body">
-                                <div class="d-flex flex-row align-items-center">
-                                    <div class="symbol symbol-50px me-5">
-                                        <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-eur fs-2"></i> </div>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <div class="fw-bolder fs-2 text-dark">Facilité de caisse</div>
-                                        <div class="fs-italic text-muted">Vous souhaitez éviter en fin de mois des décalages de trésorerie et les intérêts débiteurs associés ? Le Forfait d’exonération d’agios est une option simple et sans engagement qui vous permet d’être exonéré d’agios quand votre compte est à découvert.</div>
-                                    </div>
-                                    @if(session()->has('subscribe.overdraft') && session()->get('subscribe.overdraft'))
-                                        <i class="fa-solid fa-check-circle fs-1 text-success"></i>
-                                    @endif
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeOverdraft">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="symbol symbol-50px me-5">
+                                            <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-eur fs-2"></i> </div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder fs-2 text-dark">Facilité de caisse</div>
+                                            <div class="fs-italic text-muted">Vous souhaitez éviter en fin de mois des décalages de trésorerie et les intérêts débiteurs associés ? Le Forfait d’exonération d’agios est une option simple et sans engagement qui vous permet d’être exonéré d’agios quand votre compte est à découvert.</div>
+                                        </div>
+                                        @if(session()->has('subscribe.overdraft') && session()->get('subscribe.overdraft'))
+                                            <i class="fa-solid fa-check-circle fs-1 text-success"></i>
+                                        @endif
 
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                     <x-base.underline title="Options de Carte Bancaire" size="3" sizeText="fs-1" color="bank" />
                 </div>
