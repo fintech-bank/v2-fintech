@@ -86,7 +86,7 @@ class SystemSeedCommand extends Command
         $this->call('db:seed', ['class' => 'ServiceSeeder', 'force']);
 
         $this->info('Seeding: Liste des Types de cartes');
-        $this->call('db:seed', ['class' => 'CreditCardSupport', 'force']);
+        $this->call('db:seed', ['class' => 'CreditCardSupportSeeder', 'force']);
 
         $this->info('Seeding: Liste des Utilisateur de Test');
         $this->call('db:seed', ['class' => 'UserSeeder', 'force']);
