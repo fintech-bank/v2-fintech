@@ -257,13 +257,15 @@
                         </div>
                     </div>
                     <div class="d-flex flex-row-auto justify-content-start">
-                        <x-form.input-date
-                            name="datebirth"
-                            type="text"
-                            label="Date de naissance"
-                            required="true" />
+                        <div class="me-5">
+                            <x-form.input-date
+                                name="datebirth"
+                                type="text"
+                                label="Date de naissance"
+                                required="true" />
+                        </div>
 
-                        <div class="mb-10">
+                        <div class="mb-10 me-5">
                             <label for="countrybirth" class="required form-label">
                                 Pays de Naissance
                             </label>
