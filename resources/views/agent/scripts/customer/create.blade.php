@@ -208,10 +208,34 @@
         e.preventDefault()
         let modal = new bootstrap.Modal(modals.modalVerifyCustomer)
         modal.show()
+
+        let fccTemplate = {
+            'true': {'text': "Inscrit dans le fichier", 'color': 'danger'},
+            'false': {'text': 'Non Inscrit dans le fichier', 'color': 'success'}
+        }
+
+        let ficpTemplate = {
+            'true': {'text': "Inscrit dans le fichier", 'color': 'danger'},
+            'false': {'text': 'Non Inscrit dans le fichier', 'color': 'success'}
+        }
+
         $.ajax({
             url: '/api/connect/customer_verify',
             success: data => {
                 console.log(data)
+                modals.modalVerifyCustomer.querySelector(".icon").querySelector('.spinner').classList.add('d-none')
+                modals.modalVerifyCustomer.querySelector(".icon").innerHTML = '<i class="fa-solid fa-warning text-warning fs-3hx"></i>'
+                modals.modalVerifyCustomer.querySelector('.fw-bolder').classList.add('d-none')
+                modals.modalVerifyCustomer.querySelector('#errors').innerHTML = `
+                <div class="d-flex flex-row justify-content-around">
+                    <strong>Fichier Central des chèques: <span class="text-${fccTemplate[data.fcc].color}">${fccTemplate[data.fcc].text}</span></strong>
+                    <strong>Fichier Incident Crédit Particulier: <span class="text-${ficpTemplate[data.ficp].color}">${ficpTemplate[data.ficp].text}</span></strong>
+                </div>
+                `
+
+                modal.addEventListener('hidden.bs.modal', e => {
+                    $(forms.formPartPro).submit()
+                })
             }
         })
     })
