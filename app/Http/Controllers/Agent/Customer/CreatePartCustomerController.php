@@ -14,7 +14,6 @@ class CreatePartCustomerController extends Controller
 
     public function pro(Request $request)
     {
-        session()->flush();
         session()->put('perso', $request->except('_token'));
 
         return view('agent.customer.create.part.pro');
