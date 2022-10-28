@@ -220,7 +220,7 @@
                 $.ajax({
                     url: '/agence/customer/create/subscribe',
                     method: 'POST',
-                    data: {'action': e.target.dataset.subscribe},
+                    data: {'action': e.target.dataset.subscribe, 'overdraft_amount': document.querySelector('[name="overdraft_amount"]') ? document.querySelector('[name="overdraft_amount"]').value : ''},
                     success: data => {
                         let modal = new bootstrap.Modal(modals.modalSubscribeAlerta)
                         btn.removeAttribute('data-kt-indicator')
