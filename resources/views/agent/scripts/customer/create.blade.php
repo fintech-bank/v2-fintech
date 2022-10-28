@@ -222,7 +222,6 @@
                     method: 'POST',
                     data: {'action': e.target.dataset.subscribe, 'overdraft_amount': document.querySelector('[name="overdraft_amount"]') ? document.querySelector('[name="overdraft_amount"]').value : ''},
                     success: data => {
-                        let modal = new bootstrap.Modal(modals.modalSubscribeAlerta)
                         btn.removeAttribute('data-kt-indicator')
                         toastr.success(`Souscription à l'offre ${data.offer} effectuer`, `Souscription pris en compte`)
                         setTimeout(() => {

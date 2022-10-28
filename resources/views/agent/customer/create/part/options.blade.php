@@ -296,6 +296,26 @@
                         </div>
                     </div>
                     <x-base.underline title="Options de Carte Bancaire" size="3" sizeText="fs-1" color="bank" />
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 mb-3">
+                            <a href="#" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeCardCode">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="symbol symbol-50px me-5">
+                                            <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-credit-card fs-2"></i> </div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder fs-2 text-black">Choisir son Code Secret</div>
+                                            <div class="fs-italic text-muted">Choisissez simplement le code secret de votre carte bancaire par téléphone pour être sûr.e de ne pas l’oublier.</div>
+                                        </div>
+                                        @if(session()->has('subscribe.card_code') && session()->get('subscribe.card_code'))
+                                            <i class="fa-solid fa-check-circle fs-1 text-success"></i>
+                                        @endif
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
@@ -508,6 +528,41 @@
                 <div class="modal-footer">
                     <div class="d-flex">
                         <button class="btn btn-bank btn-circle w-100 btnSubscribe" data-subscribe="overdraft">Souscrire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="subscribeCardCode">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Choisir son code secret</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa-solid fa-eur fs-3hx text-primary mb-5"></i><br>
+                        <p>Codes de carte bancaire, de téléphone, de digicode... le nombre de codes que nous utilisons quotidiennement ne cesse d'augmenter. Pour ne pas oublier celui de votre carte bancaire, Société Générale vous propose de le choisir vous-même.</p>
+                    </div>
+                    <table class="table border gs-5 gy-5">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bolder">Tarif:</td>
+                                <td><span class="badge badge-success">Gratuit</span> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex">
+                        <button class="btn btn-bank btn-circle w-100 btnSubscribe" data-subscribe="card_code">Souscrire</button>
                     </div>
                 </div>
             </div>

@@ -43,4 +43,11 @@ class CustomerController extends Controller
 
         return response()->json(['offer' => 'Facilité de caisse']);
     }
+
+    private function subscribeCardCode()
+    {
+        session()->put('subscribe.card_code', true);
+
+        return response()->json(['offer' => 'Choisir son code secret']);
+    }
 }
