@@ -221,7 +221,7 @@
                 <div class="d-flex flex-column w-100">
                     <x-base.underline title="Options de compte" size="3" sizeText="fs-1" color="bank" />
                     <div class="d-flex flex-row justify-content-between">
-                        <div class="card shadow-lg">
+                        <div class="card shadow-lg me-5">
                             <div class="card-body">
                                 <div class="d-flex flex-row">
                                     <div class="symbol symbol-50px me-5">
