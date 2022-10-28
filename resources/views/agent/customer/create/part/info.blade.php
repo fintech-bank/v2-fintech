@@ -262,6 +262,18 @@
                             type="text"
                             label="Date de naissance"
                             required="true" />
+
+                        <div class="mb-10">
+                            <label for="countrybirth" class="required form-label">
+                                Pays de Naissance
+                            </label>
+                            <select id="countrybirth" class="form-select form-select-solid" data-placeholder="Selectionnez un pays de naissance" name="countrybirth" onchange="citiesFromCountry(this)">
+                                <option value=""></option>
+                                @foreach(\App\Helper\GeoHelper::getAllCountries() as $data)
+                                    <option value="{{ $data->name }}" data-kt-select2-country="{{ $data->flag }}">{{ $data->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
