@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Helper\CustomerWalletHelper;
+use App\Models\Core\CreditCardSupport;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -95,6 +96,11 @@ class CustomerCreditCard extends Model
     public function transactions()
     {
         return $this->hasMany(CustomerTransaction::class);
+    }
+
+    public function support()
+    {
+        return $this->belongsTo(CreditCardSupport::class, 'credit_card_support_id');
     }
 
     public function getLimitWithdrawAttribute()
