@@ -31,11 +31,11 @@ class CreatePartCustomerController extends Controller
     {
         session()->put('package', Package::find($request->get('package_id')));
         $rent = session('rent');
-        $calc_rent = $rent['pro_incoming']+$rent['patrimoine'];
-        $calc_charge = $rent['rent']+$rent['divers']+$rent['credit'];
+        $calc_rent = $rent['pro_incoming'] + $rent['patrimoine'];
+        $calc_charge = $rent['rent'] + $rent['divers'] + $rent['credit'];
 
-        $calc = ($calc_rent-$calc_charge) / 2;
-        if($calc > 7500) {
+        $calc = ($calc_rent - $calc_charge) / 2;
+        if ($calc > 7500) {
             $differed_amount = 7500;
         } else {
             $differed_amount = $calc;
@@ -48,7 +48,47 @@ class CreatePartCustomerController extends Controller
     {
         session()->put('card', $request->except('_token'));
         //dd(session()->all());
+        $rent = session('rent');
+        dd($rent);
+        $incoming = $rent['pro_incoming'] + $rent['patrimoine'];
+        $overdraft = $this->calcOverdraft($incoming, '');
+
 
         return view('agent.customer.create.part.options');
+    }
+
+    private function calcOverdraft($incoming, $situation)
+    {
+        $r = 0;
+        $taux = 5.67;
+
+        $result = $incoming / 3;
+
+        if ($result <= 300) {
+            $r--;
+            $reason = "Votre revenue est inférieur à " . eur(300);
+        } else {
+            $r++;
+        }
+
+        if ($situation != 'Sans Emploie') {
+            $r++;
+        } else {
+            $reason = "Votre situation professionnel ne permet pas un découvert bancaire";
+            $r--;
+        }
+
+        if ($r == 2) {
+            return response()->json([
+                'access' => true,
+                'value' => $result > 1000 ? 1000 : ceil($result / 100) * 100,
+                'taux' => $taux." %"
+            ]);
+        } else {
+            return response()->json([
+                'access' => false,
+                'error' => $reason,
+            ]);
+        }
     }
 }
