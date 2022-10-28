@@ -34,188 +34,190 @@
 @section("content")
     <div class="card shadow-sm">
         <form id="" action="" method="POST" enctype="multipart/form-data">
-            <div class="card-body stepper stepper-pills">
-                <div class="stepper-nav flex-center flex-wrap mb-10">
-                    <!--begin::Step 1-->
-                    <div class="stepper-item mx-8 my-4 current" data-kt-stepper-element="nav">
-                        <!--begin::Wrapper-->
-                        <div class="stepper-wrapper d-flex align-items-center">
-                            <!--begin::Icon-->
-                            <div class="stepper-icon w-40px h-40px">
-                                <i class="stepper-check fas fa-check"></i>
-                                <span class="stepper-number">1</span>
-                            </div>
-                            <!--end::Icon-->
-
-                            <!--begin::Label-->
-                            <div class="stepper-label">
-                                <h3 class="stepper-title">
-                                    Informations
-                                </h3>
-
-                                <div class="stepper-desc">
-                                    Informations personnels du client
+            <div class="card-body stepper stepper-pills stepper-column d-flex flex-column flex-lg-row">
+                <div class="d-flex flex-row-auto w-100 w-lg-300px">
+                    <div class="stepper-nav flex-center flex-wrap mb-10">
+                        <!--begin::Step 1-->
+                        <div class="stepper-item mx-8 my-4 current" data-kt-stepper-element="nav">
+                            <!--begin::Wrapper-->
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">1</span>
                                 </div>
-                            </div>
-                            <!--end::Label-->
-                        </div>
-                        <!--end::Wrapper-->
+                                <!--end::Icon-->
 
-                        <!--begin::Line-->
-                        <div class="stepper-line h-40px"></div>
-                        <!--end::Line-->
-                    </div>
-                    <!--end::Step 1-->
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Informations
+                                    </h3>
 
-                    <!--begin::Step 2-->
-                    <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
-                        <!--begin::Wrapper-->
-                        <div class="stepper-wrapper d-flex align-items-center">
-                            <!--begin::Icon-->
-                            <div class="stepper-icon w-40px h-40px">
-                                <i class="stepper-check fas fa-check"></i>
-                                <span class="stepper-number">2</span>
-                            </div>
-                            <!--begin::Icon-->
-
-                            <!--begin::Label-->
-                            <div class="stepper-label">
-                                <h3 class="stepper-title">
-                                    Professionnel
-                                </h3>
-
-                                <div class="stepper-desc">
-                                    Informations professionnel du client
+                                    <div class="stepper-desc">
+                                        Informations personnels du client
+                                    </div>
                                 </div>
+                                <!--end::Label-->
                             </div>
-                            <!--end::Label-->
+                            <!--end::Wrapper-->
+
+                            <!--begin::Line-->
+                            <div class="stepper-line h-40px"></div>
+                            <!--end::Line-->
                         </div>
-                        <!--end::Wrapper-->
+                        <!--end::Step 1-->
 
-                        <!--begin::Line-->
-                        <div class="stepper-line h-40px"></div>
-                        <!--end::Line-->
-                    </div>
-                    <!--end::Step 2-->
-
-                    <!--begin::Step 3-->
-                    <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
-                        <!--begin::Wrapper-->
-                        <div class="stepper-wrapper d-flex align-items-center">
-                            <!--begin::Icon-->
-                            <div class="stepper-icon w-40px h-40px">
-                                <i class="stepper-check fas fa-check"></i>
-                                <span class="stepper-number">3</span>
-                            </div>
-                            <!--begin::Icon-->
-
-                            <!--begin::Label-->
-                            <div class="stepper-label">
-                                <h3 class="stepper-title">
-                                    Forfait
-                                </h3>
-
-                                <div class="stepper-desc">
-                                    Choix du forfait bancaire et associés
+                        <!--begin::Step 2-->
+                        <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
+                            <!--begin::Wrapper-->
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">2</span>
                                 </div>
-                            </div>
-                            <!--end::Label-->
-                        </div>
-                        <!--end::Wrapper-->
+                                <!--begin::Icon-->
 
-                        <!--begin::Line-->
-                        <div class="stepper-line h-40px"></div>
-                        <!--end::Line-->
-                    </div>
-                    <!--end::Step 3-->
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Professionnel
+                                    </h3>
 
-                    <!--begin::Step 4-->
-                    <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
-                        <!--begin::Wrapper-->
-                        <div class="stepper-wrapper d-flex align-items-center">
-                            <!--begin::Icon-->
-                            <div class="stepper-icon w-40px h-40px">
-                                <i class="stepper-check fas fa-check"></i>
-                                <span class="stepper-number">4</span>
-                            </div>
-                            <!--begin::Icon-->
-
-                            <!--begin::Label-->
-                            <div class="stepper-label">
-                                <h3 class="stepper-title">
-                                    Carte bancaire
-                                </h3>
-
-                                <div class="stepper-desc">
-                                    Choix de la carte bancaire et options
+                                    <div class="stepper-desc">
+                                        Informations professionnel du client
+                                    </div>
                                 </div>
+                                <!--end::Label-->
                             </div>
-                            <!--end::Label-->
+                            <!--end::Wrapper-->
+
+                            <!--begin::Line-->
+                            <div class="stepper-line h-40px"></div>
+                            <!--end::Line-->
                         </div>
-                        <!--end::Wrapper-->
+                        <!--end::Step 2-->
 
-                        <!--begin::Line-->
-                        <div class="stepper-line h-40px"></div>
-                        <!--end::Line-->
-                    </div>
-                    <!--end::Step 4-->
-
-                    <!--begin::Step 4-->
-                    <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
-                        <!--begin::Wrapper-->
-                        <div class="stepper-wrapper d-flex align-items-center">
-                            <!--begin::Icon-->
-                            <div class="stepper-icon w-40px h-40px">
-                                <i class="stepper-check fas fa-check"></i>
-                                <span class="stepper-number">5</span>
-                            </div>
-                            <!--begin::Icon-->
-
-                            <!--begin::Label-->
-                            <div class="stepper-label">
-                                <h3 class="stepper-title">
-                                    Options
-                                </h3>
-
-                                <div class="stepper-desc">
-                                    Choix des options facultatives
+                        <!--begin::Step 3-->
+                        <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
+                            <!--begin::Wrapper-->
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">3</span>
                                 </div>
+                                <!--begin::Icon-->
+
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Forfait
+                                    </h3>
+
+                                    <div class="stepper-desc">
+                                        Choix du forfait bancaire et associés
+                                    </div>
+                                </div>
+                                <!--end::Label-->
                             </div>
-                            <!--end::Label-->
+                            <!--end::Wrapper-->
+
+                            <!--begin::Line-->
+                            <div class="stepper-line h-40px"></div>
+                            <!--end::Line-->
                         </div>
-                        <!--end::Wrapper-->
+                        <!--end::Step 3-->
 
-                        <!--begin::Line-->
-                        <div class="stepper-line h-40px"></div>
-                        <!--end::Line-->
-                    </div>
-                    <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
-                        <!--begin::Wrapper-->
-                        <div class="stepper-wrapper d-flex align-items-center">
-                            <!--begin::Icon-->
-                            <div class="stepper-icon w-40px h-40px">
-                                <i class="stepper-check fas fa-check"></i>
-                                <span class="stepper-number">6</span>
-                            </div>
-                            <!--begin::Icon-->
+                        <!--begin::Step 4-->
+                        <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
+                            <!--begin::Wrapper-->
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">4</span>
+                                </div>
+                                <!--begin::Icon-->
 
-                            <!--begin::Label-->
-                            <div class="stepper-label">
-                                <h3 class="stepper-title">
-                                    Terminer
-                                </h3>
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Carte bancaire
+                                    </h3>
+
+                                    <div class="stepper-desc">
+                                        Choix de la carte bancaire et options
+                                    </div>
+                                </div>
+                                <!--end::Label-->
                             </div>
-                            <!--end::Label-->
+                            <!--end::Wrapper-->
+
+                            <!--begin::Line-->
+                            <div class="stepper-line h-40px"></div>
+                            <!--end::Line-->
                         </div>
-                        <!--end::Wrapper-->
+                        <!--end::Step 4-->
 
-                        <!--begin::Line-->
-                        <div class="stepper-line h-40px"></div>
-                        <!--end::Line-->
+                        <!--begin::Step 4-->
+                        <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
+                            <!--begin::Wrapper-->
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">5</span>
+                                </div>
+                                <!--begin::Icon-->
+
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Options
+                                    </h3>
+
+                                    <div class="stepper-desc">
+                                        Choix des options facultatives
+                                    </div>
+                                </div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Wrapper-->
+
+                            <!--begin::Line-->
+                            <div class="stepper-line h-40px"></div>
+                            <!--end::Line-->
+                        </div>
+                        <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
+                            <!--begin::Wrapper-->
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <!--begin::Icon-->
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">6</span>
+                                </div>
+                                <!--begin::Icon-->
+
+                                <!--begin::Label-->
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Terminer
+                                    </h3>
+                                </div>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Wrapper-->
+
+                            <!--begin::Line-->
+                            <div class="stepper-line h-40px"></div>
+                            <!--end::Line-->
+                        </div>
+                        <!--end::Step 4-->
                     </div>
-                    <!--end::Step 4-->
+                    <!--end::Nav-->
                 </div>
-                <!--end::Nav-->
             </div>
             <div class="card-footer">
                 <x-form.button />
