@@ -56,6 +56,28 @@
                         </div>
                     </div>
                 </a>
+                <a href="" class="card shadow-lg bg-light-warning">
+                    <div class="card-body">
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="fa-solid fa-city fa-2x me-5"></i>
+                            <div class="d-flex flex-column">
+                                <div class="fs-1">Organisation / Economie Public</div>
+                                <div class="text-muted">Ouverture d'un compte pour les Institutions Publics</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="" class="card shadow-lg bg-light-danger">
+                    <div class="card-body">
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="fa-solid fa-handshake-angle fa-2x me-5"></i>
+                            <div class="d-flex flex-column">
+                                <div class="fs-1">Association</div>
+                                <div class="text-muted">Ouverture d'un compte pour les Associations</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
