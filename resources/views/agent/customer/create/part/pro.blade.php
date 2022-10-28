@@ -219,182 +219,66 @@
                     <!--end::Nav-->
                 </div>
                 <div class="d-flex flex-column">
-                    <x-base.underline
-                        title="Information personnel"
-                        size-text="fs-1"
-                        class="mb-10"
-                        size="4"
-                        color="bank" />
-
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12">
-                            <div class="mb-10">
-                                <label for="civility" class="form-label required">Civilité</label>
-                                <select class="form-control" data-control="select2" name="civility" data-placeholder="Civilité">
-                                    <option value=""></option>
-                                    <option value="M">Monsieur</option>
-                                    <option value="Mme">Madame</option>
-                                    <option value="Mlle">Mademoiselle</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                            <x-form.input
-                                name="lastname"
-                                label="Nom de famille"
-                                required="true" />
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                            <x-form.input
-                                name="middlename"
-                                label="Nom marital" />
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                            <x-form.input
-                                name="firstname"
-                                label="Prénom"
-                                required="true" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 col-sm-12">
-                            <x-form.input-date
-                                name="datebirth"
-                                type="text"
-                                label="Date de naissance"
-                                required="true" />
-                        </div>
-
-                        <div class="col-md-4 col-sm-12 mb-10">
-                            <label for="countrybirth" class="required form-label">
-                                Pays de Naissance
-                            </label>
-                            <select id="countrybirth" class="form-select form-select-solid" data-placeholder="Selectionnez un pays de naissance" name="countrybirth" onchange="citiesFromCountry(this)">
-                                <option value=""></option>
-                                @foreach(\App\Helper\GeoHelper::getAllCountries() as $data)
-                                    <option value="{{ $data->name }}" data-kt-select2-country="{{ $data->flag }}">{{ $data->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="mb-10" id="divCities"></div>
-                        </div>
-                    </div>
-
-                    <x-base.underline title="Adresse Postal" size="4" sizeText="fs-1" color="bank"/>
+                    <x-base.underline title="Situation Professionnel" size="3" sizeText="fs-1" color="bank" />
+                    <x-form.select
+                        name="pro_category"
+                        :datas="\App\Helper\CustomerSituationHelper::dataProCategories()"
+                        label="Catégorie sociaux Professionnel" />
 
                     <x-form.input
-                        name="address"
+                        name="pro_profession"
                         type="text"
-                        label="Adresse Postal"
-                        required="true" />
-                    <x-form.input
-                        name="addressbis"
-                        type="text"
-                        label="Complément d'adresse" />
+                        label="Profession" />
 
+                    <x-base.underline title="Revenue" size="3" sizeText="fs-1" color="bank" />
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
+                            <x-form.input-group
+                                name="pro_incoming"
+                                label="Revenue Professionnel"
+                                placement="left"
+                                symbol="€" />
+                        </div>
+                        <div class="col-6">
+                            <x-form.input-group
+                                name="patrimoine"
+                                label="Patrimoine"
+                                placement="left"
+                                symbol="€" />
+                        </div>
+                    </div>
+                    <x-base.underline title="Charges" size="3" sizeText="fs-1" color="bank" />
+                    <div class="row">
+                        <div class="col-6">
+                            <x-form.input-group
+                                name="rent"
+                                label="Loyer, mensualité crédit immobilier"
+                                placement="left"
+                                symbol="€" />
+                        </div>
+                        <div class="col-6">
+                            <x-form.input-group
+                                name="divers"
+                                label="Charges Divers (pension, etc...)"
+                                placement="left"
+                                symbol="€" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
                             <x-form.input
-                                name="postal"
+                                name="nb_credit"
                                 type="text"
-                                label="Code Postal"
-                                required="true" />
+                                label="Nombre de crédit (Crédit Personnel, Renouvelable, etc...)" />
                         </div>
-                        <div class="col-4">
-                            <div class="mb-10" id="divCity"></div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mb-10">
-                                <label for="country" class="required form-label">
-                                    Pays de résidence
-                                </label>
-                                <select id="country" class="form-select form-select-solid" data-placeholder="Selectionnez un pays" name="country">
-                                    <option value=""></option>
-                                    @foreach(\App\Helper\GeoHelper::getAllCountries() as $data)
-                                        <option value="{{ $data->name }}" data-kt-select2-country="{{ $data->flag }}">{{ $data->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                        <div class="col-6">
+                            <x-form.input-group
+                                name="credit"
+                                label="Mensualité de vos crédits"
+                                placement="left"
+                                symbol="€" />
                         </div>
                     </div>
-
-                    <x-base.underline title="Contact" size="3" sizeText="fs-1" color="bank" />
-                    <div class="row">
-                        <div class="col-4">
-                            <x-form.input
-                                name="phone"
-                                type="text"
-                                label="Domicile" text="Format: +33999999999"/>
-                        </div>
-                        <div class="col-4">
-                            <x-form.input
-                                name="mobile"
-                                type="text"
-                                label="Mobile"
-                                text="Format: +33999999999"
-                                required="true" />
-                        </div>
-                        <div class="col-4">
-                            <x-form.input
-                                name="email"
-                                type="email"
-                                label="Adresse Mail"
-                                required="true" />
-                        </div>
-                    </div>
-
-                    <x-base.underline title="Situation Personnel" size="3" sizeText="fs-1" color="bank" />
-
-                    <div class="row">
-                        <div class="col-6">
-                            <x-form.select
-                                name="legal_capacity"
-                                :datas="\App\Helper\CustomerSituationHelper::dataLegalCapacity()"
-                                label="Capacité Juridique" required="false"/>
-                        </div>
-                        <div class="col-6">
-                            <x-form.select
-                                name="family_situation"
-                                :datas="\App\Helper\CustomerSituationHelper::dataFamilySituation()"
-                                label="Situation Familiale" required="false"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <x-form.select
-                                name="logement"
-                                :datas="\App\Helper\CustomerSituationHelper::dataLogement()"
-                                label="Dans votre logement, vous êtes" required="false"/>
-                        </div>
-                        <div class="col-6">
-                            <x-form.input-date
-                                name="logement_at"
-                                type="text"
-                                label="Depuis le" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <x-form.input-dialer
-                                name="child"
-                                label="Nombre d'enfant"
-                                min="0"
-                                max="99"
-                                step="1"
-                                value="0" />
-                        </div>
-                        <div class="col-6">
-                            <x-form.input-dialer
-                                name="person_charged"
-                                label="Nombre de personne à charge"
-                                min="0"
-                                max="99"
-                                step="1"
-                                value="0" />
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <div class="card-footer">
