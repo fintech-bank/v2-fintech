@@ -251,8 +251,8 @@
                                         <span data-content="package_type_prlv"></span>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-row justify-content-between">
-                                    <div class="d-flex flex-column">
+                                <div class="d-flex flex-row justify-content-between w-100">
+                                    <div class="d-flex flex-column ">
                                         <div class="d-flex flex-row" data-content="visa_classic">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Visa Classic</span>
