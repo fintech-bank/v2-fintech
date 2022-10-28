@@ -223,7 +223,7 @@
                     success: data => {
                         btn.removeAttribute('data-kt-indicator')
                         toastr.success(`Souscription à l'offre ${data.offer} effectuer`, `Souscription pris en compte`)
-                        console.log(btn.parentNode.parentNode.parentNode.parentNode.parentNode)
+                        new bootstrap.Modal(btn.parentNode.parentNode.parentNode.parentNode.parentNode).hide()
                     },
                     error: () => {
                         btn.removeAttr('data-kt-indicator')
