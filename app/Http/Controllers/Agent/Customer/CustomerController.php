@@ -17,6 +17,6 @@ class CustomerController extends Controller
 
     public function start()
     {
-        return view('')
+        return view('agent.customer.create.start');
     }
 }
