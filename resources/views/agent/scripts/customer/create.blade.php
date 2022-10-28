@@ -73,6 +73,13 @@
         block.blockDivPackage.block()
         elements.divPackage.classList.remove('d-none')
 
+        $.ajax({
+            url: '/api/core/forfait/'+packageId.value,
+            success: data => {
+                console.log(data)
+            }
+        })
+
     }
 
     document.querySelectorAll('[name="postal"]').forEach(input => {
