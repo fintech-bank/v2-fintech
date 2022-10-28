@@ -341,6 +341,34 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="fw-bolder">Caractéristique:</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="fw-bolder mb-5">Quelles sont les garanties de Mon assurance au quotidien ?</div>
+                                            <p>Sécurité financière : remboursement des pertes pécuniaires subies à l’issue d’un usage frauduleux des moyens de paiement et/ou de retrait suite à la perte ou au vol de ces moyens de paiement. Plafond d’indemnisation : jusque 6 000 € par sinistre et par an.</p>
+                                            <p>Sécurité clés/papiers : remboursement des frais de remplacement de vos clés et/ou papiers en cas de perte ou de vol de ces derniers.</p>
+                                            <p>Plafonds d’indemnisation :</p>
+                                            <ul>
+                                                <li>Clés et serrures : 500 € par sinistre et par an dont 350€ par sinistre pour les clés et serrures autres que celles d’un coffre loué par Société Générale.</li>
+                                                <li>Papiers : 150 € par sinistre et par an.</li>
+                                            </ul>
+                                            <p>Prolongation de la garantie constructeur : prolongation de 2 ans en cas de panne des appareils électroménagers, informatiques, hi-fi et/ou vidéo achetés neufs par l’assuré au moyen de tous moyens de paiement dont il est titulaire ou co-titulaire. Plafond d’indemnisation : 5 000 € par sinistre et par an.</p>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <p>Sécurité vol d’espèces : remboursement des espèces retirées depuis moins de 48h et volées à la suite d’une agression, d’un malaise, ou d’un accident de la circulation.</p>
+                                            <p>Plafonds d’indemnisation :</p>
+                                            <ul>
+                                                <li>1 000 € par sinistre et par an pour les retraits dans les DAB/guichets du groupe Société Générale et Crédit du Nord.</li>
+                                                <li>500 € par sinistre et par an pour les espèces retirées dans les DAB/guichets hors Société Générale.</li>
+                                            </ul>
+                                            <p>Sécurité téléphone mobile : remboursement du montant des communications effectuées frauduleusement dans les 48h suivant le vol de votre téléphone mobile et avant la mise en opposition de la carte SIM. Plafond d’indemnisation : 500 € par sinistre et par an.</p>
+                                            <div class="fw-bolder my-5">Qui peut en bénéficier ?</div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
