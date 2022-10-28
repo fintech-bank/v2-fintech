@@ -209,7 +209,7 @@
                     </td>
                     <!--end::Name=-->
                     <!--begin::Email=-->
-                    <td>
+                    <td data-filter="{{ $customer->info->type }}">
                         <div class="d-flex flex-row justify-content-between">
                             <div class="d-flex flex-row">
                                 <div class="symbol symbol-50px me-5">
