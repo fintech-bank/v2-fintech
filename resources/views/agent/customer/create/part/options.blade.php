@@ -270,7 +270,7 @@
 
                 <div class="modal-body">
                     <div class="text-center">
-                        <i class="fa-solid fa-bell fs-3hx text-primary mb-5"></i>
+                        <i class="fa-solid fa-bell fs-3hx text-primary mb-5"></i><br>
                         Abonnement à un produit offrant des alertes sur la situation du compte par SMS
                     </div>
                     <table class="table border gs-5 gy-5">
