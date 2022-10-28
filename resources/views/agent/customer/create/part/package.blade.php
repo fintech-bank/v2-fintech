@@ -234,7 +234,7 @@
                     <div id="package_info">
                         <div class="d-flex flex-column justify-content-center">
                             <div class="symbol symbol-200px">
-                                <div class="symbol-label fw-semibold" data-content="icon"><i class="fa-regular fa-gem fs-2hx"></i> </div>
+                                <div class="symbol-label fw-semibold" data-content="icon"><i class="fa-regular fa-gem fs-3tx"></i> </div>
                             </div>
                         </div>
                     </div>
