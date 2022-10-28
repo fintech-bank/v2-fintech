@@ -18,4 +18,11 @@ class CreatePartCustomerController extends Controller
 
         return view('agent.customer.create.part.pro');
     }
+
+    public function package(Request $request)
+    {
+        session()->put('rent', $request->except('_token'));
+
+        return view('agent.customer.create.part.package');
+    }
 }

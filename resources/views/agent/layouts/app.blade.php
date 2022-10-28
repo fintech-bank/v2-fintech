@@ -90,9 +90,6 @@
 <!--begin::Global Javascript Bundle(used by all pages)-->
 <script src="/assets/plugins/global/plugins.bundle.js"></script>
 <script src="/assets/js/scripts.bundle.js"></script>
-<script type='text/javascript' id="__bs_script__">//<![CDATA[
-    document.write("<script async src='/browser-sync/browser-sync-client.2.10.1.js'><\/script>".replace("HOST", location.hostname));
-    //]]></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used by this page)-->
 <script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>

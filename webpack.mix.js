@@ -9,7 +9,5 @@ mix.disableNotifications()
 mix.browserSync({
     proxy: {
         target: "https://v2.fintech.ovh",
-        ws: true
-    },
-    https: true
+    }
 });
