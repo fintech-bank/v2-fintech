@@ -71,6 +71,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read mixed $type_color
  * @property-read mixed $type_label
  * @property-read mixed $type_text
+ * @property-read string|null $full_name
  */
 class CustomerInfo extends Model
 {
