@@ -25,7 +25,8 @@ class CreditCardSupportSeeder extends Seeder
             'visa_spec' => true
         ])->insurance()->create([
             'insurance_sante' => true,
-            'insurance_accident_travel' => true
+            'insurance_accident_travel' => true,
+            'credit_card_support_id' => 1
         ]);
 
         CreditCardSupport::query()->create([
@@ -45,6 +46,7 @@ class CreditCardSupportSeeder extends Seeder
             'guarantee_loan' => true,
             'guarantee_purchase' => true,
             'advantage' => true,
+            'credit_card_support_id' => 2
         ]);
 
         CreditCardSupport::query()->create([
@@ -65,6 +67,7 @@ class CreditCardSupportSeeder extends Seeder
             'guarantee_loan' => true,
             'guarantee_purchase' => true,
             'advantage' => true,
+            'credit_card_support_id' => 3
         ]);
 
         CreditCardSupport::query()->create([
@@ -85,7 +88,8 @@ class CreditCardSupportSeeder extends Seeder
             'guarantee_loan' => true,
             'guarantee_purchase' => true,
             'advantage' => true,
-            'business_travel' => true
+            'business_travel' => true,
+            'credit_card_support_id' => 4
         ]);
 
         CreditCardSupport::query()->create([
@@ -106,7 +110,8 @@ class CreditCardSupportSeeder extends Seeder
             'guarantee_loan' => true,
             'guarantee_purchase' => true,
             'advantage' => true,
-            'business_travel' => true
+            'business_travel' => true,
+            'credit_card_support_id' => 5
         ]);
     }
 }
