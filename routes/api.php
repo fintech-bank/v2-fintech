@@ -111,7 +111,3 @@ Route::prefix('stat')->group(function () {
 Route::prefix('calendar')->group(function () {
     Route::post("list", [\App\Http\Controllers\Api\Calendar\CalendarController::class, 'list']);
 });
-
-Route::prefix('customer')->group(function () {
-    Route::post('/subscribe', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'subscribe']);
-});

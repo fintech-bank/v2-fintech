@@ -54,6 +54,7 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
         Route::get('/', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'index'])->name('agent.customer.index');
         Route::prefix('create')->group(function() {
             Route::get('start', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'start'])->name('agent.customer.create.start');
+            Route::post('subscribe', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'subscribe']);
 
             Route::prefix('part')->group(function () {
                 Route::get('info', [\App\Http\Controllers\Agent\Customer\CreatePartCustomerController::class, 'info'])->name('agent.customer.create.part.info');

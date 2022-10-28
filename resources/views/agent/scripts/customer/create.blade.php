@@ -218,7 +218,7 @@
                 btn.setAttribute('data-kt-indicator', 'on')
 
                 $.ajax({
-                    url: '/api/customer/subscribe',
+                    url: '/agence/customer/create/subscribe',
                     method: 'POST',
                     data: {'action': e.target.dataset.subscribe},
                     success: data => {
