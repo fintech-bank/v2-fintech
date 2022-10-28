@@ -38,7 +38,7 @@
         console.log(select.value)
         let contentCities = document.querySelector('#divCities')
         $.ajax({
-            url: '/api/geo/cities',
+            url: '/api/core/geo/cities',
             method: 'post',
             data: {"country": select.value},
             success: data => {
