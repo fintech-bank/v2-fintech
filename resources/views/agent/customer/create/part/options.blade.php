@@ -482,7 +482,13 @@
                             </tr>
                             <tr>
                                 <td class="fw-bolder">Montant Maximal Accordé:</td>
-                                <td>{{ eur(2) }} <span class="fs-6">/ par mois sans engagement</span> </td>
+                                <td>
+                                    @if($overdraft->access)
+                                        {{ eur($overdraft->value) }} ({{ $overdraft->taux }} / par an)
+                                    @else
+                                        {{ $overdraft->reason }}
+                                    @endif
+                                </td>
                             </tr>
                         </tbody>
                     </table>

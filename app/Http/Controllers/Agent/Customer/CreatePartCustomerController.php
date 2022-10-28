@@ -52,10 +52,8 @@ class CreatePartCustomerController extends Controller
         $incoming = $rent['pro_incoming'] + $rent['patrimoine'];
         $overdraft = $this->calcOverdraft($incoming, $rent['pro_category']);
 
-        dd($overdraft);
-
         return view('agent.customer.create.part.options', [
-            'overdraft' => $overdraft
+            'overdraft' => (object) $overdraft
         ]);
     }
 
