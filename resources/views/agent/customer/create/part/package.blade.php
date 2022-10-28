@@ -236,8 +236,8 @@
                             <div class="symbol symbol-200px me-5">
                                 <div class="symbol-label fw-semibold" data-content="icon"><i class="fa-regular fa-gem fs-5tx"></i> </div>
                             </div>
-                            <div class="d-flex flex-column">
-                                <div class="card shadow-sm">
+                            <div class="d-flex flex-column me-5">
+                                <div class="card shadow-sm mb-5">
                                     <div class="card-body">
                                         <div class="d-flex flex-column mb-10">
                                             <div class="d-flex flex-row mb-2">
