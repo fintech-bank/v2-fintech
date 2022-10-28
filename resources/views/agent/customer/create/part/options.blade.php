@@ -492,6 +492,10 @@
                             </tr>
                         </tbody>
                     </table>
+                    <x-form.input
+                        name="overdraft_amount"
+                        label="Montant Souhaité"
+                        required="true" />
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex">
