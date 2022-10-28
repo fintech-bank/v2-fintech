@@ -79,4 +79,9 @@
         templateSelection: countryBirthOptions,
         templateResult: countryBirthOptions
     })
+
+    $("#country").select2({
+        templateSelection: countryOptions,
+        templateResult: countryOptions
+    })
 </script>
