@@ -273,5 +273,5 @@
 @endsection
 
 @section("script")
-    @include("agent.scripts.customer.index")
+    @include("agent.scripts.customer.create")
 @endsection
