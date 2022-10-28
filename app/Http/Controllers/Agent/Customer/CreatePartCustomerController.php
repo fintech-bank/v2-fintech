@@ -14,6 +14,8 @@ class CreatePartCustomerController extends Controller
 
     public function pro(Request $request)
     {
-        dd($request->all());
+        session()->put('info', $request->all());
+
+        return view('agent.customer.create.part.pro');
     }
 }
