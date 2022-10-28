@@ -222,9 +222,10 @@
                     method: 'POST',
                     data: {'action': e.target.dataset.subscribe},
                     success: data => {
+                        let modal = new bootstrap.Modal(modals.modalSubscribeAlerta)
                         btn.removeAttribute('data-kt-indicator')
                         toastr.success(`Souscription à l'offre ${data.offer} effectuer`, `Souscription pris en compte`)
-                        new bootstrap.Modal(modals.modalSubscribeAlerta).hide()
+                        modal.hide()
                     },
                     error: () => {
                         btn.removeAttr('data-kt-indicator')
