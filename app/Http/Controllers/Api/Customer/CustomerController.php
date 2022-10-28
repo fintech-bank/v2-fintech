@@ -11,21 +11,21 @@ class CustomerController extends Controller
     {
         switch ($request->get('action')) {
             case 'alerta':
-                $this->subscribeAlerta();
-                break;
+                return $this->subscribeAlerta();
             case 'daily_insurance':
-                $this->subscribeDailyInsurance();
-                break;
+                return $this->subscribeDailyInsurance();
         }
     }
 
     private function subscribeAlerta()
     {
         session()->put('subscribe.alerta', true);
+        return response()->json(['offer' => 'Alerta']);
     }
 
     private function subscribeDailyInsurance()
     {
         session()->put('subscribe.daily_insurance', true);
+        return response()->json(['offer' => 'Mon Assurance au quotidien']);
     }
 }

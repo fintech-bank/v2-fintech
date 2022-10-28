@@ -219,10 +219,10 @@
                 $.ajax({
                     url: '/api/customer/subscribe',
                     method: 'POST',
-                    data: {'action': 'alerta'},
+                    data: {'action': e.target.dataset.subscribe},
                     success: data => {
                         btn.removeAttribute('data-kt-indicator')
-                        toastr.success(`Souscription à Alerta effectuer`, `Souscription pris en compte`)
+                        toastr.success(`Souscription à l'offre ${data.offer} effectuer`, `Souscription pris en compte`)
                     },
                     error: () => {
                         btn.removeAttr('data-kt-indicator')
