@@ -291,7 +291,7 @@
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="subscribeDailyInsurance">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-bank">
                     <h3 class="modal-title text-white">Mon Assurance au quotidien</h3>
