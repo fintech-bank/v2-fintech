@@ -221,7 +221,7 @@
                 <div class="d-flex flex-column w-100">
                     <x-base.underline title="Options de compte" size="3" sizeText="fs-1" color="bank" />
                     <div class="row">
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-4 col-sm-12 mb-3">
                             <a href="#" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeAlerta">
                                 <div class="card-body">
                                     <div class="d-flex flex-row align-items-center">
@@ -239,7 +239,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-4 col-sm-12 mb-3">
                             <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeDailyInsurance">
                                 <div class="card-body">
                                     <div class="d-flex flex-row align-items-center">
@@ -257,7 +257,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-4 col-sm-12 mb-3">
                             <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeWithdraw">
                                 <div class="card-body">
                                     <div class="d-flex flex-row align-items-center">
@@ -275,7 +275,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-4 col-sm-12 mb-3">
                             <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeOverdraft">
                                 <div class="card-body">
                                     <div class="d-flex flex-row align-items-center">
