@@ -208,5 +208,11 @@
         e.preventDefault()
         let modal = new bootstrap.Modal(modals.modalVerifyCustomer)
         modal.show()
+        $.ajax({
+            url: '/api/connect/customer_verify',
+            success: data => {
+                console.log(data)
+            }
+        })
     })
 </script>

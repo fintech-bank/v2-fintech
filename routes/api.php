@@ -80,6 +80,10 @@ Route::prefix('core')->group(function () {
 
 });
 
+Route::prefix('connect')->group(function () {
+    Route::get('/customer_verify', [\App\Http\Controllers\Api\Connect\ConnectController::class, 'verifyCustomer']);
+});
+
 Route::prefix('user')->group(function () {
     Route::get('list', [\App\Http\Controllers\Api\User\UserController::class, 'lists']);
     Route::get("{user_id}/info", [\App\Http\Controllers\Api\User\UserController::class, 'info']);
