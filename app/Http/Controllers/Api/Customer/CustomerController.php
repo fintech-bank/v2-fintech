@@ -12,7 +12,7 @@ class CustomerController extends Controller
         switch ($request->get('action')) {
             case 'alerta':
                 return $this->subscribeAlerta();
-            case 'daily_insurance':
+            case 'dailyInsurance':
                 return $this->subscribeDailyInsurance();
         }
     }

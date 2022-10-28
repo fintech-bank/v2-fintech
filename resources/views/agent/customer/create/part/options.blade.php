@@ -247,6 +247,9 @@
                                         <div class="fw-bolder fs-2 text-dark">Assurance au quotidien</div>
                                         <div class="fs-italic text-muted">Assurez-vous contre l’utilisation frauduleuse de vos moyens de paiement et la perte ou le vol de vos clés et de vos papiers.</div>
                                     </div>
+                                    @if(session()->has('subscribe.daily_insurance') && session()->get('subscribe.daily_insurance'))
+                                        <i class="fa-solid fa-check-circle fs-1 text-success"></i>
+                                    @endif
                                 </div>
                             </div>
                         </a>
