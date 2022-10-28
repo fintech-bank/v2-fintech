@@ -73,10 +73,22 @@
         block.blockDivPackage.block()
         elements.divPackage.classList.remove('d-none')
 
+        let iconTemplate =  {
+            'Cristal': {'icon': 'gem', 'color': 'secondary'},
+            'Gold': {'icon': 'gem', 'color': 'warning'},
+            'Platine': {'icon': 'gem', 'color': 'black'},
+            'Pro Metal': {'icon': 'ring', 'color': 'secondary'},
+            'Pro Gold': {'icon': 'ring', 'color': 'warning'},
+        }
+
         $.ajax({
             url: '/api/core/forfait/'+packageId.value,
             success: data => {
                 console.log(data)
+                block.blockDivPackage.release()
+                block.blockDivPackage.destroy()
+
+                elements.divPackage.querySelector('[data-content="icon"]').classList.add('text'+iconTemplate[data.name].color)
             }
         })
 
