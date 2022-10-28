@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Agent\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Core\Package;
 use Illuminate\Http\Request;
 
 class CreatePartCustomerController extends Controller
@@ -24,5 +25,12 @@ class CreatePartCustomerController extends Controller
         session()->put('rent', $request->except('_token'));
 
         return view('agent.customer.create.part.package');
+    }
+
+    public function card(Request $request)
+    {
+        session()->put('package', Package::find($request->get('package_id')));
+
+        return view('agent.customer.create.part.card');
     }
 }
