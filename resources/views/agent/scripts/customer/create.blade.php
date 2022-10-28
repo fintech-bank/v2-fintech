@@ -156,9 +156,9 @@
                 elements.divPackage.querySelector('[data-content="check"]').querySelector('i').classList.add('fa-'+checkIfValid[data.check].icon)
                 elements.divPackage.querySelector('[data-content="check"]').querySelector('i').classList.add('text-'+checkIfValid[data.check].color)
 
-                elements.divPackage.querySelector('[data-content="nb_carte_physique"]').querySelector('span').innerHTML = data.nb_carte_physique
-                elements.divPackage.querySelector('[data-content="nb_carte_virtuel"]').querySelector('span').innerHTML = data.nb_carte_virtuel
-                elements.divPackage.querySelector('[data-content="subaccount"]').querySelector('span').innerHTML = data.subaccount
+                elements.divPackage.querySelector('[data-content="nb_carte_physique"]').innerHTML = data.nb_carte_physique
+                elements.divPackage.querySelector('[data-content="nb_carte_virtuel"]').innerHTML = data.nb_carte_virtuel
+                elements.divPackage.querySelector('[data-content="subaccount"]').innerHTML = data.subaccount
 
 
             }
