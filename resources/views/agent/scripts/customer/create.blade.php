@@ -194,6 +194,11 @@
     }
     let getShowDifferedAmount = (debit) => {
         console.log(debit.value)
+        if(debit.value === 'differed') {
+            elements.field_differed_card_amount.classList.remove('d-none')
+        } else {
+            elements.field_differed_card_amount.classList.add('d-none')
+        }
     }
 
     document.querySelectorAll('[name="postal"]').forEach(input => {
