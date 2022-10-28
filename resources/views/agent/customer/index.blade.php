@@ -73,16 +73,18 @@
                             <!--begin::Input group-->
                             <div class="mb-10">
                                 <!--begin::Label-->
-                                <label class="form-label fs-5 fw-semibold mb-3">Month:</label>
+                                <label class="form-label fs-5 fw-semibold mb-3">Status d'ouverture de compte:</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-customer-table-filter="month" data-dropdown-parent="#kt-toolbar-filter">
+                                <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-customer-table-filter="status" data-dropdown-parent="#kt-toolbar-filter">
                                     <option></option>
-                                    <option value="aug">August</option>
-                                    <option value="sep">September</option>
-                                    <option value="oct">October</option>
-                                    <option value="nov">November</option>
-                                    <option value="dec">December</option>
+                                    <option value="open">Dossier Ouvert</option>
+                                    <option value="completed">Dossier Complet</option>
+                                    <option value="accepted">Dossier Accepter</option>
+                                    <option value="declined">Dossier Refuser</option>
+                                    <option value="terminated">Compte Ouvert</option>
+                                    <option value="suspended">Compte Suspendu</option>
+                                    <option value="closed">Compte Clotûrer</option>
                                 </select>
                                 <!--end::Input-->
                             </div>
@@ -90,32 +92,38 @@
                             <!--begin::Input group-->
                             <div class="mb-10">
                                 <!--begin::Label-->
-                                <label class="form-label fs-5 fw-semibold mb-3">Payment Type:</label>
+                                <label class="form-label fs-5 fw-semibold mb-3">Type de client:</label>
                                 <!--end::Label-->
                                 <!--begin::Options-->
-                                <div class="d-flex flex-column flex-wrap fw-semibold" data-kt-customer-table-filter="payment_type">
+                                <div class="d-flex flex-column flex-wrap fw-semibold" data-kt-customer-table-filter="type">
                                     <!--begin::Option-->
                                     <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                        <input class="form-check-input" type="radio" name="payment_type" value="all" checked="checked" />
-                                        <span class="form-check-label text-gray-600">All</span>
+                                        <input class="form-check-input" type="radio" name="type" value="all" checked="checked" />
+                                        <span class="form-check-label text-gray-600">Tous</span>
                                     </label>
                                     <!--end::Option-->
                                     <!--begin::Option-->
                                     <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                        <input class="form-check-input" type="radio" name="payment_type" value="visa" />
-                                        <span class="form-check-label text-gray-600">Visa</span>
+                                        <input class="form-check-input" type="radio" name="type" value="part" />
+                                        <span class="form-check-label text-gray-600">Particulier</span>
                                     </label>
                                     <!--end::Option-->
                                     <!--begin::Option-->
                                     <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                        <input class="form-check-input" type="radio" name="payment_type" value="mastercard" />
-                                        <span class="form-check-label text-gray-600">Mastercard</span>
+                                        <input class="form-check-input" type="radio" name="type" value="pro" />
+                                        <span class="form-check-label text-gray-600">Professionnel</span>
                                     </label>
                                     <!--end::Option-->
                                     <!--begin::Option-->
                                     <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" name="payment_type" value="american_express" />
-                                        <span class="form-check-label text-gray-600">American Express</span>
+                                        <input class="form-check-input" type="radio" name="type" value="orga" />
+                                        <span class="form-check-label text-gray-600">Organisation / Public</span>
+                                    </label>
+                                    <!--end::Option-->
+                                    <!--begin::Option-->
+                                    <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="radio" name="type" value="assoc" />
+                                        <span class="form-check-label text-gray-600">Association</span>
                                     </label>
                                     <!--end::Option-->
                                 </div>
@@ -124,8 +132,8 @@
                             <!--end::Input group-->
                             <!--begin::Actions-->
                             <div class="d-flex justify-content-end">
-                                <button type="reset" class="btn btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true" data-kt-customer-table-filter="reset">Reset</button>
-                                <button type="submit" class="btn btn-primary" data-kt-menu-dismiss="true" data-kt-customer-table-filter="filter">Apply</button>
+                                <button type="reset" class="btn btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true" data-kt-customer-table-filter="reset">Effacer</button>
+                                <button type="submit" class="btn btn-primary" data-kt-menu-dismiss="true" data-kt-customer-table-filter="filter">Appliquer</button>
                             </div>
                             <!--end::Actions-->
                         </div>
