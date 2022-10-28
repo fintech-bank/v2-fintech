@@ -273,12 +273,12 @@
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Dépot d'espèce en agent distributeur</span>
                                         </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
                                         <div class="d-flex flex-row mb-2" data-content="withdraw_international">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Retrait à l'internationnal</span>
                                         </div>
-                                    </div>
-                                    <div class="d-flex flex-column">
                                         <div class="d-flex flex-row mb-2" data-content="payment_international">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Paiement à l'internationnal</span>
@@ -291,14 +291,40 @@
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Mise en place d'un chéquier</span>
                                         </div>
-                                        <div class="d-flex flex-row mb-2" data-content="nb_carte_physique">
-                                            <span class="me-1">3</span> Carte bancaire
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="card shadow-lg bg-light-primary mb-5">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row">
+                                            <div class="symbol symbol-50px me-5">
+                                                <div class="symbol-label fw-semibold text-primary"><i class="fa-regular fa-credit-card fs-1"></i> </div>
+                                            </div>
+                                            <span class="fs-3 fw-bold">Nombre de carte bancaire physique</span>
+                                            <span data-content="nb_carte_physique" class="fs-1 fw-bolder"></span>
                                         </div>
-                                        <div class="d-flex flex-row mb-2" data-content="nb_carte_virtuel">
-                                            <span class="me-1">3</span> Carte bancaire virtuel (e-carte bleu)
+                                    </div>
+                                </div>
+                                <div class="card shadow-lg bg-light-info mb-5">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row">
+                                            <div class="symbol symbol-50px me-5">
+                                                <div class="symbol-label fw-semibold text-info"><i class="fa-solid fa-credit-card fs-1"></i> </div>
+                                            </div>
+                                            <span class="fs-3 fw-bold">Nombre de carte bancaire virtuel</span>
+                                            <span data-content="nb_carte_virtuel" class="fs-1 fw-bolder"></span>
                                         </div>
-                                        <div class="d-flex flex-row mb-2" data-content="subaccount">
-                                            <div class="fw-bolder me-1">Sous compte:</div> <span>0</span>
+                                    </div>
+                                </div>
+                                <div class="card shadow-lg bg-light-warning mb-5">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row">
+                                            <div class="symbol symbol-50px me-5">
+                                                <div class="symbol-label fw-semibold text-warning"><i class="fa-solid fa-users-viewfinder fs-1"></i> </div>
+                                            </div>
+                                            <span class="fs-3 fw-bold">Nombre de sous compte</span>
+                                            <span data-content="subaccount" class="fs-1 fw-bolder"></span>
                                         </div>
                                     </div>
                                 </div>
