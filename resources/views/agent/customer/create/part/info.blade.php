@@ -280,6 +280,44 @@
                             <div class="mb-10" id="divCities"></div>
                         </div>
                     </div>
+
+                    <x-base.underline title="Adresse Postal" size="4" sizeText="fs-1" color="bank"/>
+
+                    <x-form.input
+                        name="address"
+                        type="text"
+                        label="Adresse Postal"
+                        required="true" />
+                    <x-form.input
+                        name="addressbis"
+                        type="text"
+                        label="Complément d'adresse" />
+
+                    <div class="row">
+                        <div class="col-4">
+                            <x-form.input
+                                name="postal"
+                                type="text"
+                                label="Code Postal"
+                                required="true" />
+                        </div>
+                        <div class="col-4">
+                            <div class="mb-10" id="divCity"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mb-10">
+                                <label for="country" class="required form-label">
+                                    Pays de résidence
+                                </label>
+                                <select id="country" class="form-select form-select-solid" data-placeholder="Selectionnez un pays" name="country">
+                                    <option value=""></option>
+                                    @foreach(\App\Helper\GeoHelper::getAllCountries() as $data)
+                                        <option value="{{ $data->name }}" data-kt-select2-country="{{ $data->flag }}">{{ $data->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
