@@ -275,8 +275,8 @@
                     <table class="table border gs-5 gy-5">
                         <tbody>
                             <tr>
-                                <td>Tarif:</td>
-                                <td>{{ eur(2.90) }} <span class="fs-5">/ par mois sans engagement</span> </td>
+                                <td class="fw-bolder">Tarif:</td>
+                                <td>{{ eur(2.90) }} <span class="fs-6">/ par mois sans engagement</span> </td>
                             </tr>
                         </tbody>
                     </table>
