@@ -218,9 +218,9 @@
                     </div>
                     <!--end::Nav-->
                 </div>
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column w-100">
                     <x-base.underline title="Compte bancaire" size="3" sizeText="fs-1" color="bank" />
-                    <div class="mb-10">
+                    <div class="mb-10 w-250px">
                         <label for="package_id" class="required form-label">
                             Plan de compte
                         </label>
@@ -231,9 +231,9 @@
                             @endforeach
                         </select>
                     </div>
-                    <div id="package_info">
-                        <div class="d-flex flex-column justify-content-center">
-                            <div class="symbol symbol-200px">
+                    <div id="package_info" class="border rounded p-10 bg-gray-200">
+                        <div class="d-flex flex-row align-items-center">
+                            <div class="symbol symbol-200px me-5">
                                 <div class="symbol-label fw-semibold" data-content="icon"><i class="fa-regular fa-gem fs-5tx"></i> </div>
                             </div>
                             dsqdsqdqsdqsd
