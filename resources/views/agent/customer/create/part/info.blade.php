@@ -256,6 +256,13 @@
                                 required="true" />
                         </div>
                     </div>
+                    <div class="d-flex flex-row-auto justify-content-start">
+                        <x-form.input-date
+                            name="datebirth"
+                            type="text"
+                            label="Date de naissance"
+                            required="true" />
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
