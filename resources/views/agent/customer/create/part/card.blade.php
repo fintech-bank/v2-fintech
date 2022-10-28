@@ -231,6 +231,29 @@
                             @endforeach
                         </select>
                     </div>
+                    <div id="differed_card_type">
+                        <div class="mb-10">
+                            <label for="card_debit" class="required form-label">
+                                Type de débit
+                            </label>
+                            <select id="card_debit" class="form-select form-select-solid" data-placeholder="Selectionner un type de débit" name="card_debit" required>
+                                <option value=""></option>
+                                <option value="immediat">Débit Immédiat</option>
+                                <option value="differed">Débit Différé</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="differed_card_amount">
+                        <x-form.input-dialer
+                            name="differed_limit"
+                            min="100"
+                            max="7500"
+                            step="100"
+                            value="500"
+                            prefix="€"
+                            required="true"
+                            />
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
