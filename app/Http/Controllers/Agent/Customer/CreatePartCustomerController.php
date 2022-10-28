@@ -34,8 +34,13 @@ class CreatePartCustomerController extends Controller
         $calc_rent = $rent['pro_incoming']+$rent['patrimoine'];
         $calc_charge = $rent['rent']+$rent['divers']+$rent['credit'];
 
-        $calc = $calc_rent-$calc_charge;
-        dd($calc);
+        $calc = ($calc_rent-$calc_charge) / 2;
+        if($calc > 7500) {
+            $differed_amount = 7500;
+        } else {
+            $differed_amount = $calc;
+        }
+        dd($differed_amount);
 
         return view('agent.customer.create.part.card');
     }
