@@ -241,7 +241,7 @@
                                         <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-umbrella fs-2"></i> </div>
                                     </div>
                                     <div class="d-flex flex-column">
-                                        <div class="fw-bolder fs-2">Assurance au quotidien</div>
+                                        <div class="fw-bolder fs-2 text-dark">Assurance au quotidien</div>
                                         <div class="fs-italic text-muted">Assurez-vous contre l’utilisation frauduleuse de vos moyens de paiement et la perte ou le vol de vos clés et de vos papiers.</div>
                                     </div>
                                 </div>
