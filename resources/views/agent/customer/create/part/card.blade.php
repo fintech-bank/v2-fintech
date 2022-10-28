@@ -224,26 +224,26 @@
                         <label for="card_support" class="required form-label">
                             Type de carte bancaire
                         </label>
-                        <select id="card_support" class="form-select form-select-solid" data-placeholder="Selectionner un type de carte" name="card_support" required>
+                        <select id="card_support" class="form-select form-select-solid" data-placeholder="Selectionner un type de carte" name="card_support" required onchange="getShowDifferedType(this)">
                             <option value=""></option>
                             @foreach(\App\Models\Core\CreditCardSupport::where('type_customer', 'part')->get() as $type)
                                 <option value="{{ $type->slug }}" data-card-img="/storage/card/{{ $type->slug }}.png">{{ $type->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div id="differed_card_type">
+                    <div id="differed_card_type" class="d-none">
                         <div class="mb-10">
-                            <label for="card_debit" class="required form-label">
+                            <label for="card_debit" class="form-label">
                                 Type de débit
                             </label>
-                            <select id="card_debit" class="form-select form-select-solid" data-placeholder="Selectionner un type de débit" name="card_debit" required>
+                            <select id="card_debit" class="form-select form-select-solid" data-placeholder="Selectionner un type de débit" name="card_debit">
                                 <option value=""></option>
                                 <option value="immediat">Débit Immédiat</option>
                                 <option value="differed">Débit Différé</option>
                             </select>
                         </div>
                     </div>
-                    <div id="differed_card_amount">
+                    <div id="differed_card_amount" class="d-none">
                         <x-form.input-dialer
                             name="differed_limit"
                             label="Montant disponible"
@@ -252,7 +252,6 @@
                             step="100"
                             value="500"
                             prefix="€"
-                            required="true"
                             />
                     </div>
                 </div>

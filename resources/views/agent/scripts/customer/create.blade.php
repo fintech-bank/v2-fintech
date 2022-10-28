@@ -3,6 +3,9 @@
     let elements = {
         field_datebirth: document.querySelector('[name="datebirth"]'),
         field_package_id: document.querySelector('[name="package_id"]'),
+        field_card_support: document.querySelector('[name="card_support"]'),
+        field_differed_card_type: document.querySelector('#differed_card_type'),
+        field_differed_card_amount: document.querySelector('#differed_card_amount'),
         blockDivPackage: document.querySelector('#blockDivPackage'),
         divPackage: document.querySelector('#package_info'),
         btnVerifyCustomer: document.querySelector("#btnVerifyCustomer")
@@ -180,6 +183,9 @@
             }
         })
 
+    }
+    let getShowDifferedType = (support) => {
+        console.log(support.value)
     }
 
     document.querySelectorAll('[name="postal"]').forEach(input => {
