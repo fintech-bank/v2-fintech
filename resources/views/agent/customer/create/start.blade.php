@@ -34,13 +34,24 @@
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="d-flex flex-row justify-content-between">
-                <a href="" class="card shadow-sm bg-light-primary">
+                <a href="" class="card shadow-lg bg-light-primary">
                     <div class="card-body">
                         <div class="d-flex flex-row align-items-center">
                             <i class="fa-solid fa-users-between-lines fa-2x me-5"></i>
                             <div class="d-flex flex-column">
                                 <div class="fs-1">Particulier</div>
                                 <div class="text-muted">Ouverture d'un compte pour particulier</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="" class="card shadow-lg bg-light-success">
+                    <div class="card-body">
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="fa-solid fa-building fa-2x me-5"></i>
+                            <div class="d-flex flex-column">
+                                <div class="fs-1">Professionnel</div>
+                                <div class="text-muted">Ouverture d'un compte pour les Professionnelles et Entreprises</div>
                             </div>
                         </div>
                     </div>
