@@ -227,7 +227,7 @@
                 modals.modalVerifyCustomer.querySelector(".icon").innerHTML = '<i class="fa-solid fa-warning text-warning fs-3hx"></i>'
                 modals.modalVerifyCustomer.querySelector('.fw-bolder').classList.add('d-none')
                 modals.modalVerifyCustomer.querySelector('#errors').innerHTML = `
-                <div class="d-flex flex-column justify-content-around">
+                <div class="d-flex flex-column justify-content-between">
                     <strong>Fichier Central des chèques: <span class="text-${fccTemplate[data.fcc].color}">${fccTemplate[data.fcc].text}</span></strong>
                     <strong>Fichier Incident Crédit Particulier: <span class="text-${ficpTemplate[data.ficp].color}">${ficpTemplate[data.ficp].text}</span></strong>
                 </div>
