@@ -218,7 +218,7 @@
                     </div>
                     <!--end::Nav-->
                 </div>
-                <div class="d-flex flex-column justify-content-evenly">
+                <div class="d-flex flex-column">
                     <x-base.underline
                         title="Information personnel"
                         size-text="fs-1"
@@ -256,8 +256,8 @@
                                 required="true" />
                         </div>
                     </div>
-                    <div class="d-flex flex-row-auto justify-content-start">
-                        <div class="me-5">
+                    <div class="row">
+                        <div class="col-4">
                             <x-form.input-date
                                 name="datebirth"
                                 type="text"
@@ -265,7 +265,7 @@
                                 required="true" />
                         </div>
 
-                        <div class="mb-10 me-5">
+                        <div class="col-4 mb-10">
                             <label for="countrybirth" class="required form-label">
                                 Pays de Naissance
                             </label>
@@ -276,7 +276,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="me-5">
+                        <div class="col-4">
                             <div class="mb-10" id="divCities"></div>
                         </div>
                     </div>
