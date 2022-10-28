@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class CreatePartCustomerController extends Controller
 {
-    //
+    public function info()
+    {
+        return view('agent.customer.create.part.info');
+    }
 }
