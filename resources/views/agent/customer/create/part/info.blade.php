@@ -257,7 +257,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             <x-form.input-date
                                 name="datebirth"
                                 type="text"
@@ -265,7 +265,7 @@
                                 required="true" />
                         </div>
 
-                        <div class="col-4 col-sm-12 mb-10">
+                        <div class="col-md-4 col-sm-12 mb-10">
                             <label for="countrybirth" class="required form-label">
                                 Pays de Naissance
                             </label>
@@ -276,7 +276,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-4 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             <div class="mb-10" id="divCities"></div>
                         </div>
                     </div>
