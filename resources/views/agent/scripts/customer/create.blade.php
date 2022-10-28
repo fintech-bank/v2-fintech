@@ -4,7 +4,8 @@
         field_datebirth: document.querySelector('[name="datebirth"]'),
         field_package_id: document.querySelector('[name="package_id"]'),
         blockDivPackage: document.querySelector('#blockDivPackage'),
-        divPackage: document.querySelector('#package_info')
+        divPackage: document.querySelector('#package_info'),
+        btnVerifyCustomer: document.querySelector("#btnVerifyCustomer")
     }
     let modals = {
         modalVerifyCustomer: document.querySelector("#modalVerifCustomer")
@@ -204,39 +205,41 @@
         templateSelection: cardsOptions,
         templateResult: cardsOptions
     })
-    $(forms.formPartPro).on('submit', e => {
-        e.preventDefault()
-        let modal = new bootstrap.Modal(modals.modalVerifyCustomer)
-        modal.show()
+    if(elements.btnVerifyCustomer) {
+        elements.btnVerifyCustomer.addEventListener('click', e => {
+            e.preventDefault()
+            let modal = new bootstrap.Modal(modals.modalVerifyCustomer)
+            modal.show()
 
-        let fccTemplate = {
-            'true': {'text': "Inscrit dans le fichier", 'color': 'danger'},
-            'false': {'text': 'Non Inscrit dans le fichier', 'color': 'success'}
-        }
+            let fccTemplate = {
+                'true': {'text': "Inscrit dans le fichier", 'color': 'danger'},
+                'false': {'text': 'Non Inscrit dans le fichier', 'color': 'success'}
+            }
 
-        let ficpTemplate = {
-            'true': {'text': "Inscrit dans le fichier", 'color': 'danger'},
-            'false': {'text': 'Non Inscrit dans le fichier', 'color': 'success'}
-        }
+            let ficpTemplate = {
+                'true': {'text': "Inscrit dans le fichier", 'color': 'danger'},
+                'false': {'text': 'Non Inscrit dans le fichier', 'color': 'success'}
+            }
 
-        $.ajax({
-            url: '/api/connect/customer_verify',
-            success: data => {
-                console.log(data)
-                modals.modalVerifyCustomer.querySelector(".icon").querySelector('.spinner').classList.add('d-none')
-                modals.modalVerifyCustomer.querySelector(".icon").innerHTML = '<i class="fa-solid fa-warning text-warning fs-3hx"></i>'
-                modals.modalVerifyCustomer.querySelector('.fw-bolder').classList.add('d-none')
-                modals.modalVerifyCustomer.querySelector('#errors').innerHTML = `
+            $.ajax({
+                url: '/api/connect/customer_verify',
+                success: data => {
+                    console.log(data)
+                    modals.modalVerifyCustomer.querySelector(".icon").querySelector('.spinner').classList.add('d-none')
+                    modals.modalVerifyCustomer.querySelector(".icon").innerHTML = '<i class="fa-solid fa-warning text-warning fs-3hx"></i>'
+                    modals.modalVerifyCustomer.querySelector('.fw-bolder').classList.add('d-none')
+                    modals.modalVerifyCustomer.querySelector('#errors').innerHTML = `
                 <div class="d-flex flex-column justify-content-between">
                     <strong>Fichier Central des chèques: <span class="text-${fccTemplate[data.fcc].color}">${fccTemplate[data.fcc].text}</span></strong>
                     <strong>Fichier Incident Crédit Particulier: <span class="text-${ficpTemplate[data.ficp].color}">${ficpTemplate[data.ficp].text}</span></strong>
                 </div>
                 `
 
-                modals.modalVerifyCustomer.addEventListener('hidden.bs.modal', e => {
-                    $(forms.formPartPro).submit()
-                })
-            }
+                    modals.modalVerifyCustomer.addEventListener('hidden.bs.modal', e => {
+                        $(forms.formPartPro).submit()
+                    })
+                }
+            })
         })
-    })
+    }
 </script>

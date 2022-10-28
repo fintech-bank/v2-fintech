@@ -283,6 +283,11 @@
             </div>
             <div class="card-footer">
                 <x-form.button />
+                <x-base.button
+                    class="btn btn-light"
+                    text="<i class='fa-solid fa-user-check text-white me-2'></i> Vérifier le client"
+                    id="btnVerifyCustomer"
+                    />
             </div>
         </form>
     </div>
