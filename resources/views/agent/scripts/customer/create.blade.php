@@ -8,5 +8,5 @@
     let dataTable = {}
     let block = {}
 
-    if(elements.field_datebirth) { $(elements.field_datebirth).flatpickr() }
+    if(elements.field_datebirth) { $(elements.field_datebirth).flatpickr({"locale": "fr"}) }
 </script>
