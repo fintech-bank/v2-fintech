@@ -365,6 +365,7 @@
                                             </ul>
                                             <p>Sécurité téléphone mobile : remboursement du montant des communications effectuées frauduleusement dans les 48h suivant le vol de votre téléphone mobile et avant la mise en opposition de la carte SIM. Plafond d’indemnisation : 500 € par sinistre et par an.</p>
                                             <div class="fw-bolder my-5">Qui peut en bénéficier ?</div>
+                                            <p>Toute personne physique titulaire ou cotitulaire d’un compte Société Générale en qualité de particulier dans le cadre de sa vie privée. L’adhésion est possible dès 15 ans.</p>
                                         </div>
                                     </div>
                                 </td>
@@ -374,7 +375,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex">
-                        <button class="btn btn-bank btn-circle w-100 btnSubscribe" data-subscribe="alerta">Souscrire</button>
+                        <button class="btn btn-bank btn-circle w-100 btnSubscribe" data-subscribe="dailyInsurance">Souscrire</button>
                     </div>
                 </div>
             </div>
