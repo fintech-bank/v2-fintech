@@ -219,6 +219,18 @@
                     <!--end::Nav-->
                 </div>
                 <div class="d-flex flex-column">
+                    <x-base.underline title="Compte bancaire" size="3" sizeText="fs-1" color="bank" />
+                    <div class="mb-10">
+                        <label for="package_id" class="required form-label">
+                            Plan de compte
+                        </label>
+                        <select id="package_id" class="form-select form-select-solid" data-control="select2" data-placeholder="Selectionner un plan" name="package_id" required>
+                            <option value=""></option>
+                            @foreach(\App\Models\Core\Package::where('type_cpt', 'part')->get() as $package)
+                                <option value="{{ $package->id }}">{{ $package->name }} - {{ eur($package->price) }} / par mois</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                 </div>
             </div>
