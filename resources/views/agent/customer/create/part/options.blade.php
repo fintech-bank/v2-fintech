@@ -228,7 +228,7 @@
                                         <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-bell fs-2"></i> </div>
                                     </div>
                                     <div class="d-flex flex-column">
-                                        <div class="fw-bolder fs-2">Alerta PLUS</div>
+                                        <div class="fw-bolder fs-2 text-black">Alerta PLUS</div>
                                         <div class="fs-italic text-muted">Notification programmer pour vous tenir au courant des mouvements de votre compte au quotidien</div>
                                     </div>
                                 </div>
