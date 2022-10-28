@@ -87,6 +87,10 @@
             elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('text-black')
         }
 
+        let deleteIcon = () => {
+            elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('fa-gem')
+            elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('fa-ring')
+        }
         $.ajax({
             url: '/api/core/forfait/'+packageId.value,
             success: data => {
@@ -97,6 +101,10 @@
                 deleteIconColor()
                 elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.add('text-'+iconTemplate[data.name].color)
 
+                deleteIcon()
+                elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.add('fa-'+iconTemplate[data.name].icon)
+
+                elements.divPackage.querySelector('[data-content="package_name"]').innerHTML = `Forfait ${data.name}`
             }
         })
 
