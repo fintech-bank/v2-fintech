@@ -13,6 +13,7 @@ class CustomerController extends Controller
             'alerta' => $this->subscribeAlerta(),
             'dailyInsurance' => $this->subscribeDailyInsurance(),
             'dab' => $this->subscribeDab(),
+            'overdraft' => $this->subscribeOverdraft($request->get('overdraft_amount')),
             default => null,
         };
     }
@@ -33,5 +34,13 @@ class CustomerController extends Controller
     {
         session()->put('subscribe.dab', true);
         return response()->json(['offer' => 'Retrait DAB Illimité']);
+    }
+
+    private function subscribeOverdraft($amount)
+    {
+        session()->put('subscribe.overdraft', true);
+        session()->put('subscribe.overdraft_amount', $amount);
+
+        return response()->json(['offer' => 'Facilité de caisse']);
     }
 }
