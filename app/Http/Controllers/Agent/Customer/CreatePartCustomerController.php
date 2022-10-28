@@ -16,6 +16,6 @@ class CreatePartCustomerController extends Controller
     {
         session()->put('info', $request->except('_token'));
 
-        return view('agent.customer.create.part.pro');
+        return view('agent.customer.create.part.pro')->with('info', "Veuillez saisir les informations Professionnel du client");
     }
 }
