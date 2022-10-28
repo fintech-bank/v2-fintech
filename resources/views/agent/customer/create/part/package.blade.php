@@ -237,59 +237,67 @@
                                 <div class="symbol-label fw-semibold" data-content="icon"><i class="fa-regular fa-gem fs-5tx"></i> </div>
                             </div>
                             <div class="d-flex flex-column">
-                                <div class="d-flex flex-column mb-10">
-                                    <div class="d-flex flex-row mb-2">
-                                        <div class="fw-bolder me-3">Nom du forfait:</div>
-                                        <span data-content="package_name"></span>
-                                    </div>
-                                    <div class="d-flex flex-row mb-2">
-                                        <div class="fw-bolder me-3">Tarification:</div>
-                                        <span data-content="package_price"></span>
-                                    </div>
-                                    <div class="d-flex flex-row mb-2">
-                                        <div class="fw-bolder me-3">Type de Prélèvement:</div>
-                                        <span data-content="package_type_prlv"></span>
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-column mb-10">
+                                            <div class="d-flex flex-row mb-2">
+                                                <div class="fw-bolder me-3">Nom du forfait:</div>
+                                                <span data-content="package_name"></span>
+                                            </div>
+                                            <div class="d-flex flex-row mb-2">
+                                                <div class="fw-bolder me-3">Tarification:</div>
+                                                <span data-content="package_price"></span>
+                                            </div>
+                                            <div class="d-flex flex-row mb-2">
+                                                <div class="fw-bolder me-3">Type de Prélèvement:</div>
+                                                <span data-content="package_type_prlv"></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-row justify-content-between w-100">
-                                    <div class="d-flex flex-column me-2">
-                                        <div class="d-flex flex-row mb-2" data-content="visa_classic">
-                                            <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
-                                            <span>Visa Classic</span>
-                                        </div>
-                                        <div class="d-flex flex-row mb-2" data-content="check_deposit">
-                                            <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
-                                            <span>Dépot de Chèque</span>
-                                        </div>
-                                        <div class="d-flex flex-row mb-2" data-content="payment_withdraw">
-                                            <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
-                                            <span>Retrait et paiement illimité en zone Euro</span>
-                                        </div>
-                                        <div class="d-flex flex-row mb-2" data-content="overdraft">
-                                            <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
-                                            <span>Mise en place d'un découvert bancaire</span>
-                                        </div>
-                                        <div class="d-flex flex-row mb-2" data-content="cash_deposit">
-                                            <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
-                                            <span>Dépot d'espèce en agent distributeur</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <div class="d-flex flex-row mb-2" data-content="withdraw_international">
-                                            <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
-                                            <span>Retrait à l'internationnal</span>
-                                        </div>
-                                        <div class="d-flex flex-row mb-2" data-content="payment_international">
-                                            <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
-                                            <span>Paiement à l'internationnal</span>
-                                        </div>
-                                        <div class="d-flex flex-row mb-2" data-content="payment_insurance">
-                                            <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
-                                            <span>Assurance des moyens de paiement</span>
-                                        </div>
-                                        <div class="d-flex flex-row mb-2" data-content="check">
-                                            <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
-                                            <span>Mise en place d'un chéquier</span>
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row justify-content-between w-100">
+                                            <div class="d-flex flex-column me-2">
+                                                <div class="d-flex flex-row mb-2" data-content="visa_classic">
+                                                    <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
+                                                    <span>Visa Classic</span>
+                                                </div>
+                                                <div class="d-flex flex-row mb-2" data-content="check_deposit">
+                                                    <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
+                                                    <span>Dépot de Chèque</span>
+                                                </div>
+                                                <div class="d-flex flex-row mb-2" data-content="payment_withdraw">
+                                                    <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
+                                                    <span>Retrait et paiement illimité en zone Euro</span>
+                                                </div>
+                                                <div class="d-flex flex-row mb-2" data-content="overdraft">
+                                                    <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
+                                                    <span>Mise en place d'un découvert bancaire</span>
+                                                </div>
+                                                <div class="d-flex flex-row mb-2" data-content="cash_deposit">
+                                                    <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
+                                                    <span>Dépot d'espèce en agent distributeur</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <div class="d-flex flex-row mb-2" data-content="withdraw_international">
+                                                    <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
+                                                    <span>Retrait à l'internationnal</span>
+                                                </div>
+                                                <div class="d-flex flex-row mb-2" data-content="payment_international">
+                                                    <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
+                                                    <span>Paiement à l'internationnal</span>
+                                                </div>
+                                                <div class="d-flex flex-row mb-2" data-content="payment_insurance">
+                                                    <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
+                                                    <span>Assurance des moyens de paiement</span>
+                                                </div>
+                                                <div class="d-flex flex-row mb-2" data-content="check">
+                                                    <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
+                                                    <span>Mise en place d'un chéquier</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
