@@ -12,7 +12,8 @@
         btnSubscribe: document.querySelectorAll('.btnSubscribe')
     }
     let modals = {
-        modalVerifyCustomer: document.querySelector("#modalVerifCustomer")
+        modalVerifyCustomer: document.querySelector("#modalVerifCustomer"),
+        modalSubscribeAlerta: document.querySelector("#subscribeAlerta")
     }
     let forms = {
         formPartPro: document.querySelector('#formPartPro')
@@ -223,7 +224,7 @@
                     success: data => {
                         btn.removeAttribute('data-kt-indicator')
                         toastr.success(`Souscription à l'offre ${data.offer} effectuer`, `Souscription pris en compte`)
-                        new bootstrap.Modal(btn.parentNode.parentNode.parentNode.parentNode.parentNode).hide()
+                        new bootstrap.Modal(modals.modalSubscribeAlerta).hide()
                     },
                     error: () => {
                         btn.removeAttr('data-kt-indicator')
