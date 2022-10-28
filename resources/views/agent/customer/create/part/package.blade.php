@@ -236,7 +236,10 @@
                             <div class="symbol symbol-200px me-5">
                                 <div class="symbol-label fw-semibold" data-content="icon"><i class="fa-regular fa-gem fs-5tx"></i> </div>
                             </div>
-                            dsqdsqdqsdqsd
+                            <div class="d-flex flex-row">
+                                <div class="fw-bolder me-3">Nom du forfait:</div>
+                                Forfait Crystal
+                            </div>
                         </div>
                     </div>
                 </div>
