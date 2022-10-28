@@ -283,8 +283,8 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <div class="d-flex flex-wrap">
-                        <button class="btn btn-bank btn-circle w-100">Souscrire</button>
+                    <div class="d-flex flex-wrap w-100">
+                        <button class="btn btn-bank btn-circle">Souscrire</button>
                     </div>
                 </div>
             </div>
