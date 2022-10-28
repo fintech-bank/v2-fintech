@@ -22,6 +22,13 @@ return new class extends Migration {
             $table->boolean('choice_code')->default(false);
 
         });
+
+        Schema::table('customer_credit_cards', function (Blueprint $table) {
+            $table->foreignId('credit_card_support_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+        });
     }
 
     public function down()
