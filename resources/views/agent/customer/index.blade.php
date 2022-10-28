@@ -115,7 +115,7 @@
                                     </label>
                                     <!--end::Option-->
                                     <!--begin::Option-->
-                                    <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
                                         <input class="form-check-input" type="radio" name="type" value="orga" />
                                         <span class="form-check-label text-gray-600">Organisation / Public</span>
                                     </label>
