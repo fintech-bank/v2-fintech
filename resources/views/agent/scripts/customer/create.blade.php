@@ -186,6 +186,14 @@
     }
     let getShowDifferedType = (support) => {
         console.log(support.value)
+        if(support.value !== 'visa-classic') {
+            elements.field_differed_card_type.classList.remove('d-none')
+        } else {
+            elements.field_differed_card_type.classList.add('d-none')
+        }
+    }
+    let getShowDifferedAmount = (debit) => {
+        console.log(debit.value)
     }
 
     document.querySelectorAll('[name="postal"]').forEach(input => {

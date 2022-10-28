@@ -236,7 +236,7 @@
                             <label for="card_debit" class="form-label">
                                 Type de débit
                             </label>
-                            <select id="card_debit" class="form-select form-select-solid" data-placeholder="Selectionner un type de débit" name="card_debit">
+                            <select id="card_debit" class="form-select form-select-solid" data-placeholder="Selectionner un type de débit" name="card_debit" onchange="getShowDifferedAmount(this)">
                                 <option value=""></option>
                                 <option value="immediat">Débit Immédiat</option>
                                 <option value="differed">Débit Différé</option>
