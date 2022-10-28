@@ -69,10 +69,10 @@
             }
         })
     }
-    let getInfoPackage = (package_id) => {
+    let getInfoPackage = (package) => {
         block.blockDivPackage.block()
         elements.divPackage.classList.remove('d-none')
-        
+
     }
 
     document.querySelectorAll('[name="postal"]').forEach(input => {

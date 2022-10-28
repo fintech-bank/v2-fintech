@@ -224,7 +224,7 @@
                         <label for="package_id" class="required form-label">
                             Plan de compte
                         </label>
-                        <select id="package_id" class="form-select form-select-solid" data-control="select2" data-placeholder="Selectionner un plan" name="package_id" required>
+                        <select id="package_id" class="form-select form-select-solid" data-control="select2" data-placeholder="Selectionner un plan" name="package_id" required onchange="getInfoPackage(this)">
                             <option value=""></option>
                             @foreach(\App\Models\Core\Package::where('type_cpt', 'part')->get() as $package)
                                 <option value="{{ $package->id }}">{{ $package->name }} - {{ eur($package->price) }} / par mois</option>
