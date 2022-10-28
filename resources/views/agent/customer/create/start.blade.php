@@ -34,7 +34,7 @@
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="d-flex flex-row justify-content-around">
-                <a href="" class="card shadow-lg bg-light-primary">
+                <a href="" class="card shadow-lg bg-light-primary me-5">
                     <div class="card-body">
                         <div class="d-flex flex-row align-items-center">
                             <i class="fa-solid fa-users-between-lines fa-2x me-5"></i>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="" class="card shadow-lg bg-light-success">
+                <a href="" class="card shadow-lg bg-light-success me-5">
                     <div class="card-body">
                         <div class="d-flex flex-row align-items-center">
                             <i class="fa-solid fa-building fa-2x me-5"></i>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="" class="card shadow-lg bg-light-warning">
+                <a href="" class="card shadow-lg bg-light-warning me-5">
                     <div class="card-body">
                         <div class="d-flex flex-row align-items-center">
                             <i class="fa-solid fa-city fa-2x me-5"></i>
