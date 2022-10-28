@@ -225,7 +225,9 @@
                         let modal = new bootstrap.Modal(modals.modalSubscribeAlerta)
                         btn.removeAttribute('data-kt-indicator')
                         toastr.success(`Souscription à l'offre ${data.offer} effectuer`, `Souscription pris en compte`)
-                        modal.hide()
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1200)
                     },
                     error: () => {
                         btn.removeAttr('data-kt-indicator')
