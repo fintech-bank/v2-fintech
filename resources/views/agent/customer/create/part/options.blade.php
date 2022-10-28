@@ -263,13 +263,14 @@
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-regular fa-xmark fs-1"></i>
+                        <i class="fa-solid fa-xmark fs-1"></i>
                     </div>
                     <!--end::Close-->
                 </div>
 
-                <div class="modal-body text-center">
-                    <i class="fa-solid fa-bell fs-3hx text-primary"></i>
+                <div class="modal-body">
+                    <i class="fa-solid fa-bell fs-3hx text-primary mb-5 text-center"></i>
+
                 </div>
             </div>
         </div>
