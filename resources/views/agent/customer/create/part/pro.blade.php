@@ -294,16 +294,20 @@
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-regular fa-xmark fs-1"></i>
+                        <i class="fa-solid fa-xmark fs-1"></i>
                     </div>
                     <!--end::Close-->
                 </div>
 
                 <div class="modal-body">
                     <div class="d-flex flex-column justify-content-center align-items-center h-300px">
-                        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                           <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-                        </svg>
+                        <div class="icon">
+                            <svg class="spinner mb-5" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                            </svg>
+                        </div>
+                        <div class="fw-bolder fs-2">Vérification des informations du client</div>
+                        <div id="errors" class="text-danger"></div>
                     </div>
                 </div>
             </div>
