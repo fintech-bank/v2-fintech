@@ -33,7 +33,7 @@
 
 @section("content")
     <div class="card shadow-sm">
-        <form id="" action="" method="POST" enctype="multipart/form-data">
+        <form id="" action="{{ route('agent.customer.create.part.pro') }}" method="POST" enctype="multipart/form-data">
             <div class="card-body stepper stepper-pills stepper-column d-flex flex-column flex-lg-row">
                 <div class="d-flex flex-row-auto w-100 w-lg-300px">
                     <div class="stepper-nav flex-center flex-wrap mb-10">
