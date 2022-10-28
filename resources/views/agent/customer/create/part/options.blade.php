@@ -272,7 +272,7 @@
                     <div class="text-center">
                         <i class="fa-solid fa-bell fs-3hx text-primary mb-5"></i>
                     </div>
-                    <table class="table">
+                    <table class="table border gs-5 gy-5">
                         <tbody>
                             <tr>
                                 <td>Tarif:</td>
