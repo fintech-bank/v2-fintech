@@ -246,6 +246,7 @@
                     <div id="differed_card_amount">
                         <x-form.input-dialer
                             name="differed_limit"
+                            label="Montant disponible"
                             min="100"
                             max="7500"
                             step="100"
