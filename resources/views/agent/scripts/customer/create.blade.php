@@ -25,7 +25,6 @@
         span.innerHTML = template;
         return $(span);
     }
-
     let countryOptions = (item) => {
         if ( !item.id ) {
             return item.text;
@@ -34,6 +33,18 @@
         let imgUrl = item.element.getAttribute('data-kt-select2-country');
         let template = '';
         template += '<img src="' + imgUrl + '" class="rounded-circle w-20px h-20px me-2" alt="image" />';
+        template += item.text;
+        span.innerHTML = template;
+        return $(span);
+    }
+    let cardsOptions = (item) => {
+        if ( !item.id ) {
+            return item.text;
+        }
+        let span = document.createElement('span');
+        let imgUrl = item.element.getAttribute('data-card-img');
+        let template = '';
+        template += '<img src="' + imgUrl + '" class="rounded w-auto h-50px me-2" alt="image" />';
         template += item.text;
         span.innerHTML = template;
         return $(span);
@@ -181,9 +192,12 @@
         templateSelection: countryBirthOptions,
         templateResult: countryBirthOptions
     })
-
     $("#country").select2({
         templateSelection: countryOptions,
         templateResult: countryOptions
+    })
+    $("#card_support").select2({
+        templateSelection: cardsOptions,
+        templateResult: cardsOptions
     })
 </script>
