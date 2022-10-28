@@ -105,7 +105,7 @@
                 elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.add('fa-'+iconTemplate[data.name].icon)
 
                 elements.divPackage.querySelector('[data-content="package_name"]').innerHTML = `Forfait ${data.name}`
-                elements.divPackage.querySelector('[data-content="package_price"]').innerHTML = `${new Intl.NumberFormat('fr_FR', {style: 'currency', currency: 'eur'}).format(data.price)}`
+                elements.divPackage.querySelector('[data-content="package_price"]').innerHTML = `${new Intl.NumberFormat('fr', {style: 'currency', currency: 'eur'}).format(data.price)}`
                 elements.divPackage.querySelector('[data-content="package_type_prlv"]').innerHTML = `${data.type_prlv_text}`
             }
         })
