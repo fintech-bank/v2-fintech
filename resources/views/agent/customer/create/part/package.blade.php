@@ -273,12 +273,12 @@
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Dépot d'espèce en agent distributeur</span>
                                         </div>
-                                    </div>
-                                    <div class="d-flex flex-column">
                                         <div class="d-flex flex-row" data-content="withdraw_international">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Retrait à l'internationnal</span>
                                         </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
                                         <div class="d-flex flex-row" data-content="payment_international">
                                             <i class="fa-solid fa-check-circle fs-2 text-success me-3"></i>
                                             <span>Paiement à l'internationnal</span>
