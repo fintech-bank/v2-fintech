@@ -185,7 +185,6 @@
 
     }
     let getShowDifferedType = (support) => {
-        console.log(support.value)
         if(support.value !== 'visa-classic') {
             elements.field_differed_card_type.classList.remove('d-none')
         } else {
@@ -193,7 +192,6 @@
         }
     }
     let getShowDifferedAmount = (debit) => {
-        console.log(debit.value)
         if(debit.value === 'differed') {
             elements.field_differed_card_amount.classList.remove('d-none')
         } else {
