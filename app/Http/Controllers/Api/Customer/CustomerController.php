@@ -14,6 +14,7 @@ class CustomerController extends Controller
             'dailyInsurance' => $this->subscribeDailyInsurance(),
             'dab' => $this->subscribeDab(),
             'overdraft' => $this->subscribeOverdraft($request->get('overdraft_amount')),
+            'card_code' => $this->subscribeCardCode(),
             default => null,
         };
     }
