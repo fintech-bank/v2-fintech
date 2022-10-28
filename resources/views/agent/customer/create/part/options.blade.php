@@ -219,9 +219,9 @@
                     <!--end::Nav-->
                 </div>
                 <div class="d-flex flex-column w-100">
-                    <x-base.underline title="Carte Bancaire" size="3" sizeText="fs-1" color="bank" />
+                    <x-base.underline title="Options de compte" size="3" sizeText="fs-1" color="bank" />
                     <div class="d-flex flex-row justify-content-between">
-                        <div class="card shadow-sm bg-gray-200">
+                        <div class="card shadow-lg">
                             <div class="card-body">
                                 <div class="d-flex flex-row">
                                     <div class="symbol symbol-50px me-5">
@@ -230,6 +230,19 @@
                                     <div class="d-flex flex-column">
                                         <div class="fw-bolder fs-2">Alerta PLUS</div>
                                         <div class="fs-italic text-muted">Notification programmer pour vous tenir au courant des mouvements de votre compte au quotidien</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow-lg">
+                            <div class="card-body">
+                                <div class="d-flex flex-row">
+                                    <div class="symbol symbol-50px me-5">
+                                        <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-umbrella fs-2"></i> </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <div class="fw-bolder fs-2">Assurance au quotidien</div>
+                                        <div class="fs-italic text-muted">Assurez-vous contre l’utilisation frauduleuse de vos moyens de paiement et la perte ou le vol de vos clés et de vos papiers.</div>
                                     </div>
                                 </div>
                             </div>
