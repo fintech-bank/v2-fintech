@@ -55,7 +55,7 @@
         })
         block.block();
         $.ajax({
-            url: '/api/geo/cities/'+select.value,
+            url: '/api/core/geo/cities/'+select.value,
             success: data => {
                 block.release()
                 contentCities.innerHTML = data
