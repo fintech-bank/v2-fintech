@@ -231,7 +231,9 @@
                                         <div class="fw-bolder fs-2 text-black">Alerta PLUS</div>
                                         <div class="fs-italic text-muted">Notification programmer pour vous tenir au courant des mouvements de votre compte au quotidien</div>
                                     </div>
-                                    <i class="fa-solid fa-check-circle fs-1 text-success"></i>
+                                    @if(session()->has('subscribe.alerta') && session()->get('subscribe.alerta'))
+                                        <i class="fa-solid fa-check-circle fs-1 text-success"></i>
+                                    @endif
                                 </div>
                             </div>
                         </a>
