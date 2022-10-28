@@ -47,6 +47,7 @@ class CreatePartCustomerController extends Controller
     public function options(Request $request)
     {
         session()->put('card', $request->except('_token'));
+        dd(session()->all());
 
         return view('agent.customer.create.part.options');
     }
