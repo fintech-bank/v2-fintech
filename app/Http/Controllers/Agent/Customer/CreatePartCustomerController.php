@@ -32,7 +32,7 @@ class CreatePartCustomerController extends Controller
         session()->put('package', Package::find($request->get('package_id')));
         $rent = session('rent');
         $calc_rent = $rent['pro_incoming']+$rent['patrimoine'];
-        $calc_charge = $rent['rent']+$rent['divers']+['credit'];
+        $calc_charge = $rent['rent']+$rent['divers']+$rent['credit'];
 
         $calc = $calc_rent-$calc_charge;
         dd($calc);
