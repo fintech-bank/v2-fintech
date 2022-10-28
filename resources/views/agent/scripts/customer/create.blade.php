@@ -69,7 +69,7 @@
             }
         })
     }
-    let getInfoPackage = (package) => {
+    let getInfoPackage = (packageId) => {
         block.blockDivPackage.block()
         elements.divPackage.classList.remove('d-none')
 
