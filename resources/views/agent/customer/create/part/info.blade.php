@@ -219,7 +219,11 @@
                     <!--end::Nav-->
                 </div>
                 <x-base.underline
-                    title="Information personnel" />
+                    title="Information personnel"
+                    size-text="fs-1"
+                    class="mb-10"
+                    size="2"
+                    color="bank" />
             </div>
             <div class="card-footer">
                 <x-form.button />
