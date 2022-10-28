@@ -14,4 +14,9 @@ class CustomerController extends Controller
             "customers" => Customer::all()
         ]);
     }
+
+    public function start()
+    {
+        return view('')
+    }
 }
