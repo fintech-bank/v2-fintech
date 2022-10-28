@@ -123,4 +123,5 @@ class CustomerCreditCard extends Model
     {
         return \App\Helper\CustomerCreditCard::getTransactionsMonthWithdraw($this) - (-$this->limit_retrait);
     }
+
 }
