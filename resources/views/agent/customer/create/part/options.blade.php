@@ -219,7 +219,14 @@
                     <!--end::Nav-->
                 </div>
                 <div class="d-flex flex-column w-100">
+                    <x-base.underline title="Carte Bancaire" size="3" sizeText="fs-1" color="bank" />
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
