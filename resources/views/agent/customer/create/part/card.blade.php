@@ -250,7 +250,7 @@
                             min="100"
                             max="7500"
                             step="100"
-                            value="500"
+                            value="{{ $differed_amount }}"
                             prefix="€"
                             />
                     </div>

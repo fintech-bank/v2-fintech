@@ -40,8 +40,7 @@ class CreatePartCustomerController extends Controller
         } else {
             $differed_amount = $calc;
         }
-        dd($differed_amount);
 
-        return view('agent.customer.create.part.card');
+        return view('agent.customer.create.part.card', ['differed_amount' => $differed_amount]);
     }
 }
