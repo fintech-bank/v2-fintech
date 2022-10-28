@@ -34,7 +34,7 @@
 @section("content")
     <div class="card shadow-sm">
         <form id="" action="" method="POST" enctype="multipart/form-data">
-            <div class="card-body">
+            <div class="card-body stepper stepper-pills">
                 <div class="stepper-nav flex-center flex-wrap mb-10">
                     <!--begin::Step 1-->
                     <div class="stepper-item mx-8 my-4 current" data-kt-stepper-element="nav">
