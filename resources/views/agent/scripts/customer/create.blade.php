@@ -91,6 +91,11 @@
             elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('fa-gem')
             elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.remove('fa-ring')
         }
+
+        let checkIfValid =  {
+            0: {'icon': 'xmark-circle', 'color': 'danger'},
+            1: {'icon': 'check-circle', 'color': 'success'},
+        }
         $.ajax({
             url: '/api/core/forfait/'+packageId.value,
             success: data => {
@@ -107,6 +112,11 @@
                 elements.divPackage.querySelector('[data-content="package_name"]').innerHTML = `Forfait ${data.name}`
                 elements.divPackage.querySelector('[data-content="package_price"]').innerHTML = `${new Intl.NumberFormat('fr', {style: 'currency', currency: 'eur'}).format(data.price)}`
                 elements.divPackage.querySelector('[data-content="package_type_prlv"]').innerHTML = `${data.type_prlv_text}`
+
+                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.remove('fa-check-circle')
+                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.remove('text-success')
+                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.add('fa-'+checkIfValid[data.visa_classic].icon)
+                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.add('text-'+checkIfValid[data.visa_classic].color)
             }
         })
 
