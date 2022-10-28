@@ -11,4 +11,9 @@ class CreatePartCustomerController extends Controller
     {
         return view('agent.customer.create.part.info');
     }
+
+    public function pro(Request $request)
+    {
+        dd($request->all());
+    }
 }
