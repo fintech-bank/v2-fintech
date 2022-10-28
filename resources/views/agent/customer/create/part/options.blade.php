@@ -234,7 +234,7 @@
                                 </div>
                             </div>
                         </a>
-                        <div class="card shadow-lg">
+                        <div class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeDailyInsurance">
                             <div class="card-body">
                                 <div class="d-flex flex-row">
                                     <div class="symbol symbol-50px me-5">
