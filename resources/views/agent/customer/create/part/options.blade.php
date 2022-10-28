@@ -290,6 +290,68 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="subscribeDailyInsurance">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Mon Assurance au quotidien</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa-solid fa-umbrella fs-3hx text-primary mb-5"></i><br>
+                        Avec Mon assurance au quotidien(1) vous êtes assuré contre l’utilisation frauduleuse de vos moyens de paiement et la perte et le vol de vos clés et de vos papiers. L’assurance prolonge votre garantie Constructeur en cas de panne de vos appareils domestiques.
+                    </div>
+                    <table class="table border gs-5 gy-5">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bolder">Tarif:</td>
+                                <td>{{ eur(24) }} <span class="fs-6">/ par an</span> </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bolder">Avantages:</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="fw-bolder">Offre Complète</div>
+                                            <ul>
+                                                <li>Nombreuses garanties</li>
+                                                <li>Plafonds élevés</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="fw-bolder">Rapide</div>
+                                            <ul>
+                                                <li>Prise en charge du sinistre dès sa déclaration</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="fw-bolder">Solution simple</div>
+                                            <ul>
+                                                <li>Prélèvement mensuel</li>
+                                                <li>Possibilité de modifier son compte de prélèvement</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex">
+                        <button class="btn btn-bank btn-circle w-100 btnSubscribe" data-subscribe="alerta">Souscrire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
