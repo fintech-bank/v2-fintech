@@ -292,13 +292,13 @@
                                             <span>Mise en place d'un chéquier</span>
                                         </div>
                                         <div class="d-flex flex-row mb-2" data-content="nb_carte_physique">
-                                            <span>3</span> Carte bancaire
+                                            <span class="me-1">3</span> Carte bancaire
                                         </div>
                                         <div class="d-flex flex-row mb-2" data-content="nb_carte_virtuel">
-                                            <span>3</span> Carte bancaire virtuel (e-carte bleu)
+                                            <span class="me-1">3</span> Carte bancaire virtuel (e-carte bleu)
                                         </div>
                                         <div class="d-flex flex-row mb-2" data-content="subaccount">
-                                            <div class="fw-bolder">Sous compte:</div> <span>0</span>
+                                            <div class="fw-bolder me-1">Sous compte:</div> <span>0</span>
                                         </div>
                                     </div>
                                 </div>
