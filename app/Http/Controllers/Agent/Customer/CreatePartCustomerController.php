@@ -30,7 +30,8 @@ class CreatePartCustomerController extends Controller
     public function card(Request $request)
     {
         session()->put('package', Package::find($request->get('package_id')));
-        dd(session()->all());
+        $rent = session('rent');
+        dd($rent);
 
         return view('agent.customer.create.part.card');
     }
