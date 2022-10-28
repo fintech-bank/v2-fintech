@@ -1,12 +1,17 @@
 <script type="text/javascript">
     let tables = {}
     let elements = {
-        field_datebirth: document.querySelector('[name="datebirth"]')
+        field_datebirth: document.querySelector('[name="datebirth"]'),
+        field_package_id: document.querySelector('[name="package_id"]'),
+        blockDivPackage: document.querySelector('#blockDivPackage'),
+        divPackage: document.querySelector('#package_info')
     }
     let modals = {}
     let forms = {}
     let dataTable = {}
-    let block = {}
+    let block = {
+        blockDivPackage: messageBlock(elements.blockDivPackage)
+    }
 
     let countryBirthOptions = (item) => {
         if ( !item.id ) {
@@ -64,6 +69,12 @@
             }
         })
     }
+    let getInfoPackage = (package_id) => {
+        block.blockDivPackage.block()
+        elements.divPackage.classList.remove('d-none')
+        
+    }
+
     document.querySelectorAll('[name="postal"]').forEach(input => {
         input.addEventListener('keyup', e => {
             console.log(e.target.value.length)

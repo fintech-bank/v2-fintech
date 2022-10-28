@@ -116,4 +116,11 @@ let formatBytes = (bytes,decimals) => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
+let messageBlock = (blockDiv, message = 'Veuillez PAtienter...') => {
+    return new KTBlockUI(blockDiv, {
+        message: `<div class="blockui-message"><span class="spinner-border text-primary"></span> ${message}</div>`,
+        overlayClass: "bg-gray-600",
+    })
+}
+
 getHeaderBadger()
