@@ -218,7 +218,7 @@
                     </div>
                     <!--end::Nav-->
                 </div>
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column flex-wrap">
                     <x-base.underline
                         title="Information personnel"
                         size-text="fs-1"
