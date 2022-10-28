@@ -225,11 +225,11 @@
                             <div class="card-body">
                                 <div class="d-flex flex-row">
                                     <div class="symbol symbol-50px me-5">
-                                        <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-bell"></i> </div>
+                                        <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-bell fs-2"></i> </div>
                                     </div>
                                     <div class="d-flex flex-column">
-                                        <div class="">Alerta PLUS</div>
-                                        <div class="">Notification programmer pour vous tenir au courant des mouvements de votre compte au quotidien</div>
+                                        <div class="fw-bolder fs-2">Alerta PLUS</div>
+                                        <div class="fs-italic text-muted">Notification programmer pour vous tenir au courant des mouvements de votre compte au quotidien</div>
                                     </div>
                                 </div>
                             </div>
