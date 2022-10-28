@@ -43,4 +43,9 @@ class CreatePartCustomerController extends Controller
 
         return view('agent.customer.create.part.card', ['differed_amount' => $differed_amount]);
     }
+
+    public function options(Request $request)
+    {
+        dd($request->all());
+    }
 }
