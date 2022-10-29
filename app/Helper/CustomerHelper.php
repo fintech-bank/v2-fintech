@@ -353,7 +353,7 @@ class CustomerHelper
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents');
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
         foreach (DocumentCategory::all() as $doc) {
-            \Storage::disk('public')->makeDirectory('gdd/' . $customer->id . '/documents/' . $doc->id);
+            \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents/' . $doc->id);
         }
 
         DocumentFile::createDoc(
@@ -440,14 +440,14 @@ class CustomerHelper
             false,
             ["wallet" => $wallet]);
 
-        \Storage::disk('public')->copy('gdd/shared/info_tarif.pdf', 'gdd/' . $customer->id . '/5/info_tarif.pdf');
+        \Storage::disk('public')->copy('gdd/shared/info_tarif.pdf', 'gdd/' . $user->id . '/5/info_tarif.pdf');
 
         $documents = [];
 
         $docs = $customer->documents()->where('document_category_id', 3)->get();
         foreach ($docs as $document) {
             $documents[] = [
-                'url' => 'gdd/' . $customer->id . '/3/' . $document->name . '.pdf'
+                'url' => 'gdd/' . $user->id . '/3/' . $document->name . '.pdf'
             ];
         }
 
