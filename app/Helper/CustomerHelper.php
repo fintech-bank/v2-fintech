@@ -255,7 +255,7 @@ class CustomerHelper
             'email' => $session->perso['email'],
             'password' => \Hash::make($password),
             'identifiant' => UserHelper::generateID(),
-            'agency_id' => auth()->user()->agency_id
+            'agency_id' => 2
         ]);
 
         $user->settingnotification()->create(['user_id' => $user->id]);
@@ -265,7 +265,7 @@ class CustomerHelper
         ]);
         $twilio->create($session->perso['mobile']);
 
-        $this->createCustomer($session, $user, $password);
+        $this->createsCustomer($session, $user, $password);
 
         return $user;
     }
