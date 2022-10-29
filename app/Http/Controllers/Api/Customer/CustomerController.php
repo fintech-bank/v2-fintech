@@ -15,6 +15,7 @@ class CustomerController extends Controller
             'dab' => $this->subscribeDab(),
             'overdraft' => $this->subscribeOverdraft($request->get('overdraft_amount')),
             'card_code' => $this->subscribeCardCode(),
+            'offert' => $this->subscribeOffert(),
             default => null,
         };
     }
@@ -50,5 +51,12 @@ class CustomerController extends Controller
         session()->put('subscribe.card_code', true);
 
         return response()->json(['offer' => 'Choisir son code secret']);
+    }
+
+    private function subscribeOffert()
+    {
+        session()->put('subscribe.offert', true);
+
+        return response()->json(['offer' => "Offre de bienvenue"]);
     }
 }

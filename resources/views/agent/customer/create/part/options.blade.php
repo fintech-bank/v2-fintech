@@ -294,6 +294,25 @@
                                 </div>
                             </a>
                         </div>
+                        <div class="col-md-4 col-sm-12 mb-3">
+                            <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeOffert">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="symbol symbol-50px me-5">
+                                            <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-percent fs-2"></i> </div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder fs-2 text-dark">Offre de bienvenue</div>
+                                            <div class="fs-italic text-muted">Offre de 80€ pour les nouveaux clients particulier</div>
+                                        </div>
+                                        @if(session()->has('subscribe.offert') && session()->get('subscribe.offert'))
+                                            <i class="fa-solid fa-check-circle fs-1 text-success"></i>
+                                        @endif
+
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                     <x-base.underline title="Options de Carte Bancaire" size="3" sizeText="fs-1" color="bank" />
                     <div class="row">
@@ -563,6 +582,41 @@
                 <div class="modal-footer">
                     <div class="d-flex">
                         <button class="btn btn-bank btn-circle w-100 btnSubscribe" data-subscribe="card_code">Souscrire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="subscribeCardCode">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Offre de bienvenue</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa-solid fa-percent fs-3hx text-primary mb-5"></i><br>
+                        <p>Offre de bienvenue pour les nouveaux clients particulier</p>
+                    </div>
+                    <table class="table border gs-5 gy-5">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bolder">Avantage:</td>
+                                <td><span class="badge badge-success">80€</span> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex">
+                        <button class="btn btn-bank btn-circle w-100 btnSubscribe" data-subscribe="offert">Souscrire</button>
                     </div>
                 </div>
             </div>
