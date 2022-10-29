@@ -653,7 +653,7 @@ class CustomerHelper
         $docs = $customer->documents()->where('document_category_id', 1)->get();
         foreach ($docs as $document) {
             $documents[] = [
-                'url' => 'gdd/' . $customer->user->id . '/document/Assurance/' . $document->name . '.pdf'
+                'url' => 'gdd/' . $customer->user->id . '/documents/Assurance/' . $document->name . '.pdf'
             ];
         }
 
