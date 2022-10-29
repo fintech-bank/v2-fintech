@@ -143,21 +143,25 @@ class CustomerInfo extends Model
 
     public function getPhoneVerifiedAttribute()
     {
-        $lookup = new Lookup();
-        if($lookup->verify($this->phone)) {
-            return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
-        } else {
-            return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';
+        if($this->phone != null) {
+            $lookup = new Lookup();
+            if($lookup->verify($this->phone)) {
+                return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
+            } else {
+                return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';
+            }
         }
     }
 
     public function getMobileVerifiedAttribute()
     {
-        $lookup = new Lookup();
-        if($lookup->verify($this->mobile)) {
-            return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
-        } else {
-            return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';
+        if($this->mobile != null) {
+            $lookup = new Lookup();
+            if($lookup->verify($this->mobile)) {
+                return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
+            } else {
+                return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';
+            }
         }
     }
 
