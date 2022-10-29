@@ -140,6 +140,7 @@ class DocumentFile
 
     public static function createDoc(Customer $customer, $name, $nameless = null, $category = 3, $reference = null, $signable = false, $signed_bank = false, $signed_client = false, $pdf = false, $pdfData = [])
     {
+        $categorie = DocumentCategory::find($category);
         $document = CustomerDocument::create([
             'name' => $nameless == null ? $name : $nameless,
             'reference' => $reference == null ? \Str::upper(\Str::random(8)) : $reference,
@@ -161,7 +162,7 @@ class DocumentFile
                 'document' => $document,
             ]);
 
-            $pdf->save(public_path('/storage/gdd/'.$customer->id.'/documents/'.$category.'/'.$nameless.'.pdf'));
+            $pdf->save(public_path('/storage/gdd/'.$customer->user->id.'/documents/'.$categorie->name.'/'.$nameless.'.pdf'));
         }
 
         return $document;
