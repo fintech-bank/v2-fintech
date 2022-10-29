@@ -555,10 +555,23 @@ class CustomerHelper
             $this->createDailyAssuranceContract($customer);
         }
 
-        if(isset($session->subscribe['card_code'])) {
+        if (isset($session->subscribe['card_code'])) {
             $setting->update([
                 'card_code' => true
             ]);
+        }
+
+        if (isset($session->subscribe['offert'])) {
+            CustomerTransactionHelper::create(
+                'credit',
+                'autre',
+                'Chèque cadeau 80 EUR OFFERTS',
+                80,
+                $wallet->id,
+                true,
+                'Chèque cadeau 80 EUR OFFERTS',
+                now()
+            );
         }
     }
 
