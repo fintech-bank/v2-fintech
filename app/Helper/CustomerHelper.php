@@ -252,19 +252,19 @@ class CustomerHelper
         $twilio = new Verify();
 
         $user = User::create([
-            'name' => $session->perso->lastname . ' ' . $session->perso->firstname,
-            'email' => $session->perso->email,
+            'name' => $session->perso['lastname'] . ' ' . $session->perso['firstname'],
+            'email' => $session->perso['email'],
             'password' => \Hash::make($password),
             'identifiant' => UserHelper::generateID(),
             'agency_id' => auth()->user()->agency_id
         ]);
 
         $user->settingnotification()->create(['user_id' => $user->id]);
-        $iden = $pushbullet->createDevice($session->perso->firstname, $session->perso->lastname);
+        $iden = $pushbullet->createDevice($session->perso['firstname'], $session->perso['lastname']);
         $user->update([
             'pushbullet_device_id' => $iden->iden
         ]);
-        $twilio->create($session->perso->mobile);
+        $twilio->create($session->perso['mobile']);
 
         $this->createCustomer($session, $user, $password);
 
@@ -289,20 +289,20 @@ class CustomerHelper
 
         $info = CustomerInfo::create([
             'type' => 'part',
-            'civility' => $session->perso->civility,
-            'lastname' => $session->perso->lastname,
-            'middlename' => $session->perso->middlename,
-            'firstname' => $session->perso->firstname,
-            'datebirth' => Carbon::createFromTimestamp(strtotime($session->perso->datebirth)),
-            'citybirth' => $session->perso->citybirth,
-            'countrybirth' => $session->perso->countrybirth,
-            'address' => $session->perso->address,
-            'addressbis' => $session->perso->addressbis,
-            'postal' => $session->perso->postal,
-            'city' => $session->perso->city,
-            'country' => $session->perso->country,
-            'phone' => $session->perso->phone,
-            'mobile' => $session->perso->mobile,
+            'civility' => $session->perso['civility'],
+            'lastname' => $session->perso['lastname'],
+            'middlename' => $session->perso['middlename'],
+            'firstname' => $session->perso['firstname'],
+            'datebirth' => Carbon::createFromTimestamp(strtotime($session->perso['datebirth'])),
+            'citybirth' => $session->perso['citybirth'],
+            'countrybirth' => $session->perso['countrybirth'],
+            'address' => $session->perso['address'],
+            'addressbis' => $session->perso['addressbis'],
+            'postal' => $session->perso['postal'],
+            'city' => $session->perso['city'],
+            'country' => $session->perso['country'],
+            'phone' => $session->perso['phone'],
+            'mobile' => $session->perso['mobile'],
             'country_code' => '+33',
             'customer_id' => $customer->id,
         ]);
@@ -312,28 +312,28 @@ class CustomerHelper
         ]);
 
         $situation = CustomerSituation::create([
-            'legal_capacity' => $session->perso->legal_capacity,
-            'family_situation' => $session->perso->family_situation,
-            'logement' => $session->perso->logement,
-            'logement_at' => $session->perso->logement_at,
-            'child' => $session->perso->child,
-            'person_charged' => $session->perso->person_charged,
-            'pro_category' => $session->rent->pro_category,
-            'pro_profession' => $session->rent->pro_profession,
+            'legal_capacity' => $session->perso['legal_capacity'],
+            'family_situation' => $session->perso['family_situation'],
+            'logement' => $session->perso['logement'],
+            'logement_at' => $session->perso['logement_at'],
+            'child' => $session->perso['child'],
+            'person_charged' => $session->perso['person_charged'],
+            'pro_category' => $session->rent['pro_category'],
+            'pro_profession' => $session->rent['pro_profession'],
             'customer_id' => $customer->id,
         ]);
 
         $income = CustomerSituationIncome::create([
-            'pro_incoming' => $session->rent->pro_incoming,
-            'patrimoine' => $session->rent->patrimoine,
+            'pro_incoming' => $session->rent['pro_incoming'],
+            'patrimoine' => $session->rent['patrimoine'],
             'customer_id' => $customer->id,
         ]);
 
         $charge = CustomerSituationCharge::create([
-            'rent' => $session->rent->rent,
-            'nb_credit' => $session->rent->nb_credit,
-            'credit' => $session->rent->credit,
-            'divers' => $session->rent->divers,
+            'rent' => $session->rent['rent'],
+            'nb_credit' => $session->rent['nb_credit'],
+            'credit' => $session->rent['credit'],
+            'divers' => $session->rent['divers'],
             'customer_id' => $customer->id,
         ]);
 
@@ -495,8 +495,8 @@ class CustomerHelper
         $card = \App\Models\Customer\CustomerCreditCard::create([
             'exp_month' => \Str::length(now()->month) <= 1 ? '0' . now()->month : now()->month,
             'number' => $card_number,
-            'credit_card_support_id' => CreditCardSupport::where('slug', $session->card->card_support)->first()->id,
-            'debit' => $session->card->card_debit != null ? 'differed' : 'immediate',
+            'credit_card_support_id' => CreditCardSupport::where('slug', $session->card['card_support'])->first()->id,
+            'debit' => $session->card['card_debit'] != null ? 'differed' : 'immediate',
             'cvc' => rand(100, 999),
             'code' => base64_encode($card_code),
             'limit_payment' => \App\Helper\CustomerCreditCard::calcLimitPayment(CustomerSituationHelper::calcDiffInSituation($wallet->customer)),
@@ -516,7 +516,7 @@ class CustomerHelper
     private function setOptions($session, Customer $customer, CustomerWallet $wallet, CustomerCreditCard $card, CustomerSetting $setting)
     {
         // Configuration par rapport au package choisie
-        switch ($session->package->name) {
+        switch ($session->package['name']) {
             case 'Cristal':
                 $setting->update([
                     'nb_physical_card' => 1,
@@ -539,24 +539,24 @@ class CustomerHelper
                     'nb_virtual_card' => 5,
                     'check' => 1,
                 ]);
-                if ($session->subscribe->overdraft) {
+                if ($session->subscribe['overdraft']) {
                     $wallet->update([
                         'decouvert' => 1,
-                        'balance_decouvert' => $session->subscribe->ouverdraft_amount
+                        'balance_decouvert' => $session->subscribe['ouverdraft_amount']
                     ]);
                 }
         }
-        if (isset($session->subscribe->alerta)) {
+        if (isset($session->subscribe['alerta'])) {
             $setting->update([
                 'alerta' => 1
             ]);
         }
 
-        if (isset($session->subscribe->daily_insurance)) {
+        if (isset($session->subscribe['daily_insurance'])) {
             $this->createDailyAssuranceContract($customer);
         }
 
-        if(isset($session->subscribe->card_code)) {
+        if(isset($session->subscribe['card_code'])) {
             $setting->update([
                 'card_code' => true
             ]);
