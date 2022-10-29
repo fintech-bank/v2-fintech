@@ -246,7 +246,6 @@ class CustomerHelper
      */
     public function createCustomer($session): Model|User
     {
-        dd($session);
         $password = \Str::random(8);
         $pushbullet = new PushbulletApi();
         $twilio = new Verify();
