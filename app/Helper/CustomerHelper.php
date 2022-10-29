@@ -538,7 +538,7 @@ class CustomerHelper
                     'nb_virtual_card' => 5,
                     'check' => 1,
                 ]);
-                if ($session->subscribe['overdraft']) {
+                if (isset($session->subscribe['overdraft'])) {
                     $wallet->update([
                         'decouvert' => 1,
                         'balance_decouvert' => $session->subscribe['ouverdraft_amount']
