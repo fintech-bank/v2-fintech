@@ -310,7 +310,7 @@
                                         <div class="d-flex flex-row mb-2 align-items-center">
                                             <i class="fa-solid fa-phone me-2"></i>:
                                             <span class="me-3">{{ $user->customers->info->phone }}</span>
-                                            {!! $user->customers->info->phone_verified !!}
+                                            {!! $user->customers->info->phone_verified ?? '' !!}
                                         </div>
                                         <div class="d-flex flex-row mb-2 align-items-center">
                                             <i class="fa-solid fa-mobile me-2"></i>:
