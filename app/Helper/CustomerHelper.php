@@ -576,7 +576,7 @@ class CustomerHelper
         ]);
 
         $contract->update([
-            'mensuality' => $contract->form()->typed_price
+            'mensuality' => $contract->form->typed_price
         ]);
 
         DocumentFile::createDoc($customer,
