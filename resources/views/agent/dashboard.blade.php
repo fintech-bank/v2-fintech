@@ -309,12 +309,12 @@
                                     <div class="d-flex flex-column">
                                         <div class="d-flex flex-row mb-2 align-items-center">
                                             <i class="fa-solid fa-phone me-2"></i>:
-                                            <span class="me-3">{{ $user->customers->info->phone }}</span>
+                                            <span class="me-3">{{ $user->customers->info->phone ?? 'Non Renseigné' }}</span>
                                             {!! $user->customers->info->phone_verified ?? '' !!}
                                         </div>
                                         <div class="d-flex flex-row mb-2 align-items-center">
                                             <i class="fa-solid fa-mobile me-2"></i>:
-                                            <span class="me-3">{{ $user->customers->info->mobile }}</span>
+                                            <span class="me-3">{{ $user->customers->info->mobile ?? 'Non Renseigné' }}</span>
                                             {!! $user->customers->info->mobile_verified ?? '' !!}
                                         </div>
                                         <div class="d-flex flex-row mb-2 align-items-center">
