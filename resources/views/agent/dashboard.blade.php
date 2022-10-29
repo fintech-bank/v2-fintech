@@ -315,7 +315,7 @@
                                         <div class="d-flex flex-row mb-2 align-items-center">
                                             <i class="fa-solid fa-mobile me-2"></i>:
                                             <span class="me-3">{{ $user->customers->info->mobile }}</span>
-                                            {!! $user->customers->info->mobile_verified !!}
+                                            {!! $user->customers->info->mobile_verified ?? '' !!}
                                         </div>
                                         <div class="d-flex flex-row mb-2 align-items-center">
                                             <i class="fa-solid fa-envelope me-2"></i>:
