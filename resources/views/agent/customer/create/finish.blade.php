@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-8">
                         <!--begin::Bullet-->
-                        <span class="bullet bullet-vertical h-40px bg-success"></span>
+                        <span class="bullet bullet-vertical h-40px bg-success me-5"></span>
                         <!--end::Bullet-->
                         <!--begin::Description-->
                         <div class="flex-grow-1">
@@ -54,7 +54,7 @@
                     </div>
                     <div class="d-flex align-items-center mb-8">
                         <!--begin::Bullet-->
-                        <span class="bullet bullet-vertical h-40px bg-success"></span>
+                        <span class="bullet bullet-vertical h-40px bg-success me-5"></span>
                         <!--end::Bullet-->
                         <!--begin::Description-->
                         <div class="flex-grow-1">
@@ -66,7 +66,7 @@
                     @if(isset($session->subscribe['daily_insurance']))
                         <div class="d-flex align-items-center mb-8">
                             <!--begin::Bullet-->
-                            <span class="bullet bullet-vertical h-40px bg-success"></span>
+                            <span class="bullet bullet-vertical h-40px bg-success me-5"></span>
                             <!--end::Bullet-->
                             <!--begin::Description-->
                             <div class="flex-grow-1">
@@ -78,7 +78,7 @@
                     @endif
                     <div class="d-flex align-items-center mb-8">
                         <!--begin::Bullet-->
-                        <span class="bullet bullet-vertical h-40px bg-success"></span>
+                        <span class="bullet bullet-vertical h-40px bg-success me-5"></span>
                         <!--end::Bullet-->
                         <!--begin::Description-->
                         <div class="flex-grow-1">
