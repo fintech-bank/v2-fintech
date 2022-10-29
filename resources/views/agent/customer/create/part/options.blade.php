@@ -587,7 +587,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" id="subscribeCardCode">
+    <div class="modal fade" tabindex="-1" id="subscribeOffert">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-bank">
