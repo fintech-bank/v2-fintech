@@ -60,7 +60,7 @@ class NewContractInsurance extends Notification
         foreach ($this->documents as $document) {
             $message->attach(public_path('/storage/'.$document['url']));
         }
-        $message->subject("Votre Contrat d'assurance: ".$this->contract->form->name);
+        $message->subject("Votre Contrat d'assurance: ".$this->contract->package->name);
 
         return $message;
     }
