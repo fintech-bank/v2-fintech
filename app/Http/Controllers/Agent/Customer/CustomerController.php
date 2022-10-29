@@ -27,6 +27,6 @@ class CustomerController extends Controller
         $help = new CustomerHelper();
         $customer = $help->createCustomer($session);
 
-        return view('agent.customer.create.finish', compact('customer'));
+        return view('agent.customer.create.finish', compact('customer', 'session'));
     }
 }

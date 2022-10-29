@@ -31,7 +31,64 @@
 @endsection
 
 @section("content")
+    <div class="rwo">
+        <div class="col-md-8 col-sm-12">
 
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">Que faire ensuite ?</h3>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-8">
+                        <!--begin::Bullet-->
+                        <span class="bullet bullet-vertical h-40px bg-success"></span>
+                        <!--end::Bullet-->
+                        <!--begin::Description-->
+                        <div class="flex-grow-1">
+                            <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Vérifier l'identité du client</a>
+                        </div>
+                        <!--end::Description-->
+                        <a href="" class="btn btn-sm btn-primary">Vérifier</a>
+                    </div>
+                    <div class="d-flex align-items-center mb-8">
+                        <!--begin::Bullet-->
+                        <span class="bullet bullet-vertical h-40px bg-success"></span>
+                        <!--end::Bullet-->
+                        <!--begin::Description-->
+                        <div class="flex-grow-1">
+                            <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Signer la convention de compte</a>
+                        </div>
+                        <!--end::Description-->
+                        <a href="" class="btn btn-sm btn-primary">Signer</a>
+                    </div>
+                    @if(isset($session->subscribe['daily_insurance']))
+                        <div class="d-flex align-items-center mb-8">
+                            <!--begin::Bullet-->
+                            <span class="bullet bullet-vertical h-40px bg-success"></span>
+                            <!--end::Bullet-->
+                            <!--begin::Description-->
+                            <div class="flex-grow-1">
+                                <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Signer la souscription d'assurance</a>
+                            </div>
+                            <!--end::Description-->
+                            <a href="" class="btn btn-sm btn-primary">Signer</a>
+                        </div>
+                    @endif
+                    <div class="d-flex align-items-center mb-8">
+                        <!--begin::Bullet-->
+                        <span class="bullet bullet-vertical h-40px bg-success"></span>
+                        <!--end::Bullet-->
+                        <!--begin::Description-->
+                        <div class="flex-grow-1">
+                            <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Aider le client à installer l'application mobile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
