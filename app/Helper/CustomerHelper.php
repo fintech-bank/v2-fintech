@@ -591,7 +591,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'ddac' . $contract->package->name,
+            'ddac ' . $contract->package->name,
             'DDAC ' . $contract->package->name,
             1,
             $contract->reference,
@@ -602,7 +602,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            "Document information produit assurance" . $contract->package->name,
+            "Document information produit assurance " . $contract->package->name,
             "Document d'information sur le produit d'assurance " . $contract->package->name,
             1,
             $contract->reference,
@@ -614,7 +614,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'synthese echange' . $contract->package->name,
+            'synthese echange ' . $contract->package->name,
             "Synthèse des echanges " . $contract->package->name,
             1,
             $contract->reference,
