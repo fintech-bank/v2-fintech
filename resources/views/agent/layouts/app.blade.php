@@ -98,6 +98,7 @@
 <script src="https://cdn.tiny.cloud/1/7e8bt37j9pf0xsp4b6heb0wj0l35laqvukhjasu2jdq7gt83/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@2/dist/tinymce-jquery.min.js"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+<script src="https://cdn.withpersona.com/dist/persona-v4.2.0.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/function.js"></script>
 @auth
