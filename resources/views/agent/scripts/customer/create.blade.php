@@ -269,6 +269,36 @@
             })
         })
     }
+    if(elements.startPersonnaDomicile) {
+        elements.startPersonnaDomicile.addEventListener('click', e => {
+            e.preventDefault()
+            const persona = new Persona.Client({
+                templateId: 'itmpl_qvuQuXt48aMJYd6o345x7Ldm',
+                environmentId: 'env_4dTQPEjvQqhdSBciNzE7YzBi',
+                onReady: () => persona.open(),
+                onComplete: ({ inquiryId, status, fields }) => {
+                    console.log(`Completed inquiry ${inquiryId} with status ${status}`);
+                    if(status === 'completed') {
+                        window.location.href='{{ route('auth.register.personnal.identity', ['action' => 'verifyIdentity', 'status' => 'success', "customer_id" => isset($customer->id) ? $customer->id : null]) }}'
+                    } else {
+                        window.location.href='{{ route('auth.register.personnal.identity', ['action' => 'verifyIdentity', 'status' => 'error', "customer_id" => isset($customer->id) ? $customer->id : null]) }}'
+                    }
+                },
+                fields: {
+                    nameFirst: "{{ $customer->info->firstname }}",
+                    nameLast: "{{ $customer->info->lastname }}",
+                    birthdate: "{{ $customer->info->birthdate->format('Y-m-d') }}",
+                    addressStreet1: "{{ $customer->info->address }}",
+                    addressCity: "{{ $customer->info->city }}",
+                    addressPostalCode: "{{ $customer->info->postal }}",
+                    addressCountryCode: {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::limit($customer->info->country, 2, '')) }},
+                    phoneNumber: "{{ $customer->info->mobile }}",
+                    emailAddress: "{{ $customer->user->email }}",
+                    customAttribute: "{{ $customer->user->identifiant }}",
+                }
+            })
+        })
+    }
 
     $("#countrybirth").select2({
         templateSelection: countryBirthOptions,
