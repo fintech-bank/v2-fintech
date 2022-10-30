@@ -242,31 +242,14 @@
     if(elements.startPersonnaCustomer) {
         elements.startPersonnaCustomer.addEventListener('click', e => {
             e.preventDefault()
-            const persona = new Persona.Client({
+            const client = new Persona.Client({
                 templateId: 'itmpl_dtC4KRK6GMLCzXtRcRZ68gVv',
-                environment: 'sandbox',
-                onReady: () => persona.open(),
+                environmentId: 'env_4dTQPEjvQqhdSBciNzE7YzBi',
+                onReady: () => client.open(),
                 onComplete: ({ inquiryId, status, fields }) => {
                     console.log(`Completed inquiry ${inquiryId} with status ${status}`);
-                    if(status === 'completed') {
-                        window.location.href='{{ route('auth.register.personnal.identity', ['action' => 'verifyIdentity', 'status' => 'success', "customer_id" => isset($customer->id) ? $customer->id : null]) }}'
-                    } else {
-                        window.location.href='{{ route('auth.register.personnal.identity', ['action' => 'verifyIdentity', 'status' => 'error', "customer_id" => isset($customer->id) ? $customer->id : null]) }}'
-                    }
-                },
-                fields: {
-                    nameFirst: "{{ $customer->customers->info->firstname }}",
-                    nameLast: "{{ $customer->customers->info->lastname }}",
-                    birthdate: "{{ $customer->customers->info->datebirth->format('Y-m-d') }}",
-                    addressStreet1: "{{ $customer->customers->info->address }}",
-                    addressCity: "{{ $customer->customers->info->city }}",
-                    addressPostalCode: "{{ $customer->customers->info->postal }}",
-                    addressCountryCode: "{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::limit($customer->customers->info->country, 2, '')) }}",
-                    phoneNumber: "{{ $customer->customers->info->mobile }}",
-                    emailAddress: "{{ $customer->customers->user->email }}",
-                    customAttribute: "{{ $customer->customers->user->identifiant }}",
                 }
-            })
+            });
         })
     }
     if(elements.startPersonnaDomicile) {
