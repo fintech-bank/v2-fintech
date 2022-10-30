@@ -255,16 +255,16 @@
                     }
                 },
                 fields: {
-                    nameFirst: "{{ $customer->customer->info->firstname }}",
-                    nameLast: "{{ $customer->customer->info->lastname }}",
-                    birthdate: "{{ $customer->customer->info->birthdate->format('Y-m-d') }}",
-                    addressStreet1: "{{ $customer->customer->info->address }}",
-                    addressCity: "{{ $customer->customer->info->city }}",
-                    addressPostalCode: "{{ $customer->customer->info->postal }}",
-                    addressCountryCode: {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::limit($customer->customer->info->country, 2, '')) }},
-                    phoneNumber: "{{ $customer->customer->info->mobile }}",
-                    emailAddress: "{{ $customer->customer->user->email }}",
-                    customAttribute: "{{ $customer->customer->user->identifiant }}",
+                    nameFirst: "{{ $customer->customers->info->firstname }}",
+                    nameLast: "{{ $customer->customers->info->lastname }}",
+                    birthdate: "{{ $customer->customers->info->birthdate->format('Y-m-d') }}",
+                    addressStreet1: "{{ $customer->customers->info->address }}",
+                    addressCity: "{{ $customer->customers->info->city }}",
+                    addressPostalCode: "{{ $customer->customers->info->postal }}",
+                    addressCountryCode: {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::limit($customer->customers->info->country, 2, '')) }},
+                    phoneNumber: "{{ $customer->customers->info->mobile }}",
+                    emailAddress: "{{ $customer->customers->user->email }}",
+                    customAttribute: "{{ $customer->customers->user->identifiant }}",
                 }
             })
         })
@@ -285,16 +285,16 @@
                     }
                 },
                 fields: {
-                    nameFirst: "{{ $customer->customer->info->firstname }}",
-                    nameLast: "{{ $customer->customer->info->lastname }}",
-                    birthdate: "{{ $customer->customer->info->birthdate->format('Y-m-d') }}",
-                    addressStreet1: "{{ $customer->customer->info->address }}",
-                    addressCity: "{{ $customer->customer->info->city }}",
-                    addressPostalCode: "{{ $customer->customer->info->postal }}",
-                    addressCountryCode: {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::limit($customer->customer->info->country, 2, '')) }},
-                    phoneNumber: "{{ $customer->customer->info->mobile }}",
-                    emailAddress: "{{ $customer->customer->user->email }}",
-                    customAttribute: "{{ $customer->customer->user->identifiant }}",
+                    nameFirst: "{{ $customer->customers->info->firstname }}",
+                    nameLast: "{{ $customer->customers->info->lastname }}",
+                    birthdate: "{{ $customer->customers->info->birthdate->format('Y-m-d') }}",
+                    addressStreet1: "{{ $customer->customers->info->address }}",
+                    addressCity: "{{ $customer->customers->info->city }}",
+                    addressPostalCode: "{{ $customer->customers->info->postal }}",
+                    addressCountryCode: {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::limit($customer->customers->info->country, 2, '')) }},
+                    phoneNumber: "{{ $customer->customers->info->mobile }}",
+                    emailAddress: "{{ $customer->customers->user->email }}",
+                    customAttribute: "{{ $customer->customers->user->identifiant }}",
                 }
             })
         })
