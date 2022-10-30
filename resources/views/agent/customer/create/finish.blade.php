@@ -50,7 +50,18 @@
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Vérifier l'identité du client</a>
                         </div>
                         <!--end::Description-->
-                        <a href="" class="btn btn-sm btn-primary">Vérifier</a>
+                        <a href="" class="btn btn-sm btn-primary startPersonnaCustomer">Vérifier</a>
+                    </div>
+                    <div class="d-flex align-items-center mb-8">
+                        <!--begin::Bullet-->
+                        <span class="bullet bullet-vertical h-40px bg-success me-5"></span>
+                        <!--end::Bullet-->
+                        <!--begin::Description-->
+                        <div class="flex-grow-1">
+                            <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Vérifier l'adresse du client</a>
+                        </div>
+                        <!--end::Description-->
+                        <a href="" class="btn btn-sm btn-primary startPersonnaDomicile">Vérifier</a>
                     </div>
                     <div class="d-flex align-items-center mb-8">
                         <!--begin::Bullet-->

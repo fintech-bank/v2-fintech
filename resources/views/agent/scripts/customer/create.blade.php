@@ -9,7 +9,10 @@
         blockDivPackage: document.querySelector('#blockDivPackage'),
         divPackage: document.querySelector('#package_info'),
         btnVerifyCustomer: document.querySelector("#btnVerifyCustomer"),
-        btnSubscribe: document.querySelectorAll('.btnSubscribe')
+        btnSubscribe: document.querySelectorAll('.btnSubscribe'),
+        startPersonnaCustomer: document.querySelector('.startPersonnaCustomer'),
+        startPersonnaDomicile: document.querySelector('.startPersonnaDomicile'),
+
     }
     let modals = {
         modalVerifyCustomer: document.querySelector("#modalVerifCustomer"),
@@ -233,6 +236,36 @@
                         toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                     }
                 })
+            })
+        })
+    }
+    if(elements.startPersonnaCustomer) {
+        elements.startPersonnaCustomer.addEventListener('click', e => {
+            e.preventDefault()
+            const persona = new Persona.Client({
+                templateId: 'itmpl_dtC4KRK6GMLCzXtRcRZ68gVv',
+                environmentId: 'env_4dTQPEjvQqhdSBciNzE7YzBi',
+                onReady: () => persona.open(),
+                onComplete: ({ inquiryId, status, fields }) => {
+                    console.log(`Completed inquiry ${inquiryId} with status ${status}`);
+                    if(status === 'completed') {
+                        window.location.href='{{ route('auth.register.personnal.identity', ['action' => 'verifyIdentity', 'status' => 'success', "customer_id" => isset($customer->id) ? $customer->id : null]) }}'
+                    } else {
+                        window.location.href='{{ route('auth.register.personnal.identity', ['action' => 'verifyIdentity', 'status' => 'error', "customer_id" => isset($customer->id) ? $customer->id : null]) }}'
+                    }
+                },
+                fields: {
+                    nameFirst: "{{ $customer->info->firstname }}",
+                    nameLast: "{{ $customer->info->lastname }}",
+                    birthdate: "{{ $customer->info->birthdate->format('Y-m-d') }}",
+                    addressStreet1: "{{ $customer->info->address }}",
+                    addressCity: "{{ $customer->info->city }}",
+                    addressPostalCode: "{{ $customer->info->postal }}",
+                    addressCountryCode: {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::limit($customer->info->country, 2, '')) }},
+                    phoneNumber: "{{ $customer->info->mobile }}",
+                    emailAddress: "{{ $customer->user->email }}",
+                    customAttribute: "{{ $customer->user->identifiant }}",
+                }
             })
         })
     }
