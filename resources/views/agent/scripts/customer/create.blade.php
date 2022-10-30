@@ -257,7 +257,7 @@
                 fields: {
                     nameFirst: "{{ $customer->customers->info->firstname }}",
                     nameLast: "{{ $customer->customers->info->lastname }}",
-                    birthdate: "{{ $customer->customers->info->birthdate->format('Y-m-d') }}",
+                    birthdate: "{{ $customer->customers->info->datebirth->format('Y-m-d') }}",
                     addressStreet1: "{{ $customer->customers->info->address }}",
                     addressCity: "{{ $customer->customers->info->city }}",
                     addressPostalCode: "{{ $customer->customers->info->postal }}",
@@ -287,7 +287,7 @@
                 fields: {
                     nameFirst: "{{ $customer->customers->info->firstname }}",
                     nameLast: "{{ $customer->customers->info->lastname }}",
-                    birthdate: "{{ $customer->customers->info->birthdate->format('Y-m-d') }}",
+                    birthdate: "{{ $customer->customers->info->datebirth->format('Y-m-d') }}",
                     addressStreet1: "{{ $customer->customers->info->address }}",
                     addressCity: "{{ $customer->customers->info->city }}",
                     addressPostalCode: "{{ $customer->customers->info->postal }}",
