@@ -244,7 +244,7 @@
             e.preventDefault()
             const persona = new Persona.Client({
                 templateId: 'itmpl_dtC4KRK6GMLCzXtRcRZ68gVv',
-                environmentId: 'env_4dTQPEjvQqhdSBciNzE7YzBi',
+                environment: 'sandbox',
                 onReady: () => persona.open(),
                 onComplete: ({ inquiryId, status, fields }) => {
                     console.log(`Completed inquiry ${inquiryId} with status ${status}`);
@@ -274,7 +274,7 @@
             e.preventDefault()
             const persona = new Persona.Client({
                 templateId: 'itmpl_qvuQuXt48aMJYd6o345x7Ldm',
-                environmentId: 'env_4dTQPEjvQqhdSBciNzE7YzBi',
+                environment: 'sandbox',
                 onReady: () => persona.open(),
                 onComplete: ({ inquiryId, status, fields }) => {
                     console.log(`Completed inquiry ${inquiryId} with status ${status}`);
