@@ -18,6 +18,11 @@ include('front.php');
 include('admin.php');
 include('agent.php');
 
+Route::prefix('signate')->group(function () {
+    Route::get('{token}', [\App\Http\Controllers\Signate\SignateController::class, 'show'])->name('signate.show');
+    Route::post('{token}', [\App\Http\Controllers\Signate\SignateController::class, 'signate'])->name('signate');
+});
+
 Auth::routes();
 Route::mailweb();
 
