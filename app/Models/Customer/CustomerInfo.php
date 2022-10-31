@@ -72,6 +72,8 @@ use Illuminate\Notifications\Notifiable;
  * @property-read mixed $type_label
  * @property-read mixed $type_text
  * @property-read string|null $full_name
+ * @property int $addressVerified
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo whereAddressVerified($value)
  */
 class CustomerInfo extends Model
 {

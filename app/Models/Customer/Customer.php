@@ -72,6 +72,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Customer\CustomerInfoInsurance|null $info_insurance
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerInsurance[] $insurances
  * @property-read int|null $insurances_count
+ * @property string|null $persona_reference_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Customer wherePersonaReferenceId($value)
  */
 class Customer extends Model
 {

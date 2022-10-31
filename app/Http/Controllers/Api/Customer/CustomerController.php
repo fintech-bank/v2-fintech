@@ -34,7 +34,7 @@ class CustomerController extends Controller
     public function verifyDomicile(Request $request, Persona $persona)
     {
         $customer = Customer::find($request->get('customer_id'));
-
+        $customer->info->update(['addressVerified' => true]);
 
         return response()->json();
     }

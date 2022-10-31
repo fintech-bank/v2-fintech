@@ -63,7 +63,9 @@
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Vérifier l'adresse du client</a>
                         </div>
                         <!--end::Description-->
-                        <a href="" class="btn btn-sm btn-primary startPersonnaDomicile">Vérifier</a>
+                        @if(!$customer->info->addressVerified)
+                            <a href="" class="btn btn-sm btn-primary startPersonnaDomicile">Vérifier</a>
+                        @endif
                     </div>
                     <div class="d-flex align-items-center mb-8">
                         <!--begin::Bullet-->
