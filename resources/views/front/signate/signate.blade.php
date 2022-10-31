@@ -27,7 +27,9 @@
             </div>
         </div>
         <div class="card-body">
-            <canvas id="pdfcontent"></canvas>
+            <div class="d-flex flex-center">
+                <canvas id="pdfcontent"></canvas>
+            </div>
         </div>
         <div class="card-footer">
             <div class="d-flex justify-content-end">
