@@ -149,6 +149,11 @@
             // Initial/first page rendering
             renderPage(pageNum);
             console.log(document.querySelector("#page_num").innerHTML)
+            if(pageNum === pdfDoc.numPages) {
+                btnSignate.removeAttribute('disabled')
+            } else {
+                btnSignate.setAttribute('disabled', '')
+            }
         });
 
     </script>
