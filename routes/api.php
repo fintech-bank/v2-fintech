@@ -124,5 +124,5 @@ Route::prefix('webhook')->group(function () {
 });
 
 Route::prefix('customer')->group(function () {
-    Route::get('verifSecure/{code}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifSecure']);
+    Route::post('verifSecure/{code}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifSecure']);
 });
