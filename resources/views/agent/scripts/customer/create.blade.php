@@ -10,6 +10,7 @@
         divPackage: document.querySelector('#package_info'),
         btnVerifyCustomer: document.querySelector("#btnVerifyCustomer"),
         btnSubscribe: document.querySelectorAll('.btnSubscribe'),
+        btnSignate: document.querySelectorAll('.btnSignate'),
         startPersonnaCustomer: document.querySelector('.startPersonnaCustomer'),
         startPersonnaDomicile: document.querySelector('.startPersonnaDomicile'),
 
@@ -318,6 +319,21 @@
                     emailAddress: "{{ $customer->user->email }}",
                 }
             });
+        })
+    }
+    if(elements.btnSignate) {
+        elements.btnSignate.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                $.ajax({
+                    url: '/api/user/signate',
+                    method: 'POST',
+                    data: {'document_id': e.target.dataset.document},
+                    success: data => {
+
+                    }
+                })
+            })
         })
     }
     @endif

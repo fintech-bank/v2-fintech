@@ -49,6 +49,11 @@ class CustomerController extends Controller
         return response()->json();
     }
 
+    public function signateDocument(Request $request)
+    {
+        dd($request->all());
+    }
+
     private function subscribeAlerta()
     {
         session()->put('subscribe.alerta', true);
