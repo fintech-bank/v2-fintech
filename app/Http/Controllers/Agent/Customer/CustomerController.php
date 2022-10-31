@@ -36,7 +36,6 @@ class CustomerController extends Controller
             $customer = Customer::find(session()->get('customer_id'));
         }
         session()->flush();
-        dd($customer, $session);
 
         return view('agent.customer.create.finish', compact('customer'));
     }
