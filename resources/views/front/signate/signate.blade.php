@@ -1,38 +1,17 @@
 @extends("front.layouts.app")
 
 @section("content")
-    <div class="d-flex flex-row justify-content-between align-items-center w-100 bg-white p-5 shadow-lg">
-        <div class="fw-bolder fs-2tx">{{ $document->name }}</div>
-        <div class="">
-            <x-base.button
-                text="<i class='fa-solid fa-check-circle'></i> Accepter"
-                class="btn btn-success"
-            />
-            <x-base.button
-                text="<i class='fa-solid fa-xmark-circle'></i> Refuser"
-                class="btn btn-danger"
-            />
-        </div>
-    </div>
     <div class="card shadow-sm">
         <div class="card-header">
             <div class="card-title">
+                <div class="fw-bolder fs-2tx">{{ $document->name }}</div>
                 <button class="btn btn-circle btn-light btn-sm me-2" id="previous"><i class="fa-solid fa-arrow-left"></i> </button>
                 <button class="btn btn-circle btn-light btn-sm me-5" id="next"><i class="fa-solid fa-arrow-right"></i> </button>
                 <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
             </div>
             <div class="card-toolbar">
                 <button class="btn btn-circle btn-light btn-sm me-2" id="zoomin"><i class="fa-solid fa-plus-circle"></i> </button>
-                <button class="btn btn-circle btn-light btn-sm" id="zoomout"><i class="fa-solid fa-minus-circle"></i> </button>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="d-flex flex-center scroll h-650px">
-                <canvas id="pdfcontent"></canvas>
-            </div>
-        </div>
-        <div class="card-footer">
-            <div class="d-flex justify-content-end">
+                <button class="btn btn-circle btn-light btn-sm me-6" id="zoomout"><i class="fa-solid fa-minus-circle"></i> </button>
                 <button id="signateDocument" class="btn btn-bank btn-circle" disabled>
                     <span class="indicator-label">
                         <i class="fa-solid fa-signature me-2"></i> Signer le document
@@ -41,6 +20,11 @@
                         Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                     </span>
                 </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-center scroll h-650px">
+                <canvas id="pdfcontent"></canvas>
             </div>
         </div>
     </div>
