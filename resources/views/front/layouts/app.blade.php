@@ -32,6 +32,7 @@
     <script src="/assets/plugins/global/plugins.bundle.js"></script>
     <script src="/assets/js/scripts.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <script src="https://cdnjs.com/libraries/pdf.js"></script>
     <script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <script src="/js/app.js"></script>
     @yield("scripts")

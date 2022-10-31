@@ -12,6 +12,7 @@ class SignateController extends Controller
     {
         $token_d = base64_decode($token);
         $document = CustomerDocument::find($token_d);
-        dd($document);
+
+        return view('front.signate.signate', compact('document'));
     }
 }
