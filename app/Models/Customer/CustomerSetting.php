@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin IdeHelperCustomerSetting
  * @property int $alerta
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereAlerta($value)
+ * @property int $card_code
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereCardCode($value)
  */
 class CustomerSetting extends Model
 {

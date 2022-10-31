@@ -13,14 +13,9 @@ class PersonnaWebbhookEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $paylod;
 
-    /**
-     * @param $paylod
-     */
-    public function __construct($paylod)
+    public function __construct()
     {
-        $this->paylod = $paylod;
     }
 
     public function broadcastOn(): Channel

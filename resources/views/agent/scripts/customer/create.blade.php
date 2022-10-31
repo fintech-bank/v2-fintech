@@ -242,14 +242,15 @@
     if(elements.startPersonnaCustomer) {
         elements.startPersonnaCustomer.addEventListener('click', e => {
             e.preventDefault()
-            $.ajax({
-                url: '/api/user/verify/customer',
-                method: 'POST',
-                data: {"customer_id": {{$customer->customers->id ?? 0}}},
-                success: () => {
-                    toastr.success(`Lien envoyer au client`, `Vérification d'identité`)
-                }
-            })
+            const client = new Persona.Client({
+                templateId: "itmpl_Ygs16MKTkA6obnF8C3Rb17dm",
+                environment: "sandbox",
+                referenceId: "{{ $customer ? $customer->persona_reference_id : '' }}",
+                onReady: () => client.open(),
+                onComplete: ({inquiryId, status, fields}) => console.log("onComplete"),
+                onCancel: ({inquiryId, sessionToken}) => console.log('onCancel'),
+                onError: (error) => console.log("onError"),
+            });
         })
     }
     if(elements.startPersonnaDomicile) {

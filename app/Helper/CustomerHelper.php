@@ -21,6 +21,7 @@ use App\Services\BankFintech;
 use App\Services\PushbulletApi;
 use App\Services\Twilio\Messaging\Whatsapp;
 use App\Services\Twilio\Verify;
+use Doinc\PersonaKyc\Persona;
 use IbanGenerator\Generator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -285,6 +286,7 @@ class CustomerHelper
             'ficp' => $ficp->ficp ? 1 : 0,
             'fcc' => $ficp->fcc ? 1 : 0,
         ]);
+        $customer->update(['persona_reference_id' => 'customer_'.$customer->id]);
 
         $info = CustomerInfo::create([
             'type' => 'part',
@@ -335,7 +337,7 @@ class CustomerHelper
             'divers' => $session->rent['divers'],
             'customer_id' => $customer->id,
         ]);
-
+        $persona = Persona::init()->accounts()->create($customer->persona_reference_id);
         $wallet = $this->createWallet($customer);
         $card = $this->createCreditCard($wallet, $session);
 
