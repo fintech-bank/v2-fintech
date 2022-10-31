@@ -122,3 +122,7 @@ Route::prefix('webhook')->group(function () {
         event(new \App\Events\Core\PersonnaWebbhookEvent($request->all()));
     });
 });
+
+Route::prefix('customer')->group(function () {
+    Route::get('verifSecure/{code}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifSecure']);
+});
