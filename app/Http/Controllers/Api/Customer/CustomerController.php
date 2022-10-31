@@ -26,9 +26,7 @@ class CustomerController extends Controller
     public function verifyCustomer(Request $request, Persona $persona)
     {
         $customer = Customer::find($request->get('customer_id'));
-        $link = $persona->verificationLink($customer);
-
-        $customer->user->notify(new SendVerificationLinkNotification($customer, $link));
+        $customer->info->update(['isVerified' => true]);
 
         return response()->json();
     }
@@ -36,9 +34,7 @@ class CustomerController extends Controller
     public function verifyDomicile(Request $request, Persona $persona)
     {
         $customer = Customer::find($request->get('customer_id'));
-        $link = $persona->verificationLink($customer,'domicile');
 
-        $customer->user->notify(new SendVerificationLinkNotification($customer, $link));
 
         return response()->json();
     }

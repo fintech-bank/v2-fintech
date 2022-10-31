@@ -247,6 +247,7 @@
             })
         })
     }
+    @if(isset($customer))
     if (elements.startPersonnaCustomer) {
         elements.startPersonnaCustomer.addEventListener('click', e => {
             e.preventDefault()
@@ -258,11 +259,29 @@
                 onComplete: ({inquiryId, status, fields}) => {
                     console.log("onComplete")
                     @if(isset($customer))
-                        window.location.href = "/agence/customer/create/finish?refresh&customer_id=" + {{ $customer->id }}
-                        @endif
+                    $.ajax({
+                        url: '/api/user/verify/customer',
+                        method: 'POST',
+                        data: {"customer_id": {{ $customer->id }}},
+                        success: () => {
+                            window.location.href = "/agence/customer/create/finish?refresh&customer_id=" + {{ $customer->id }}
+                        }
+                    })
+                    @endif
                 },
                 onCancel: ({inquiryId, sessionToken}) => console.log('onCancel'),
                 onError: (error) => console.log("onError"),
+                fields: {
+                    nameFirst: "{{ $customer->info->firstname }}",
+                    nameLast: "{{ $customer->info->lastname }}",
+                    birthdate: "{{ $customer->info->datebirth->format('Y-m-d') }}",
+                    addressStreet1: "{{ $customer->info->address }}",
+                    addressCity: "{{ $customer->info->city }}",
+                    addressPostalCode: "{{ $customer->info->postal }}",
+                    addressCountryCode: "{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::limit($customer->info->address, 2, '')) }}",
+                    phoneNumber: "{{ $customer->info->mobile }}",
+                    emailAddress: "{{ $customer->user->email }}",
+                }
             });
         })
     }
@@ -276,15 +295,32 @@
                 onReady: () => client.open(),
                 onComplete: ({inquiryId, status, fields}) => {
                     console.log("onComplete")
-                    @if(isset($customer))
-                        window.location.href = "/agence/customer/create/finish?refresh&customer_id=" + {{ $customer->id }}
-                    @endif
+                        $.ajax({
+                        url: '/api/user/verify/domicile',
+                        method: 'POST',
+                        data: {"customer_id": {{ $customer->id }}},
+                        success: () => {
+                            window.location.href = "/agence/customer/create/finish?refresh&customer_id=" + {{ $customer->id }}
+                        }
+                    })
                 },
                 onCancel: ({inquiryId, sessionToken}) => console.log('onCancel'),
                 onError: (error) => console.log("onError"),
+                fields: {
+                    nameFirst: "{{ $customer->info->firstname }}",
+                    nameLast: "{{ $customer->info->lastname }}",
+                    birthdate: "{{ $customer->info->datebirth->format('Y-m-d') }}",
+                    addressStreet1: "{{ $customer->info->address }}",
+                    addressCity: "{{ $customer->info->city }}",
+                    addressPostalCode: "{{ $customer->info->postal }}",
+                    addressCountryCode: "{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::limit($customer->info->address, 2, '')) }}",
+                    phoneNumber: "{{ $customer->info->mobile }}",
+                    emailAddress: "{{ $customer->user->email }}",
+                }
             });
         })
     }
+    @endif
 
     $("#countrybirth").select2({
         templateSelection: countryBirthOptions,
