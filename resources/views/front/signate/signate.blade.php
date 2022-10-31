@@ -144,6 +144,7 @@
         pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
             pdfDoc = pdfDoc_;
             document.getElementById('page_count').textContent = pdfDoc.numPages;
+            console.log(pdfDoc.numPages)
 
             // Initial/first page rendering
             renderPage(pageNum);
