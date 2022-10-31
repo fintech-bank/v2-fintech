@@ -29,7 +29,8 @@ class CustomerController extends Controller
         if($request->has('refresh')) {
             $customer = Customer::find($request->get('customer_id'));
         } else {
-            $customer = $help->createCustomer($session);
+            $create = $help->createCustomer($session);
+            $customer = $create->customers;
             session()->flush();
         }
 
