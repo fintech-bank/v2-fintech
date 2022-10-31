@@ -34,6 +34,7 @@ class CustomerController extends Controller
         } else {
             $customer = Customer::find(session()->get('customer_id'));
         }
+        dd($customer, $session);
 
         return view('agent.customer.create.finish', compact('customer'));
     }
