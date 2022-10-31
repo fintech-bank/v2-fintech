@@ -42,6 +42,7 @@ Route::prefix('register/pro')->group(function () {
 });
 
 Route::prefix('auth')->group(function () {
+    Route::get('/register', [\App\Http\Controllers\Auth\TwilioController::class, 'register'])->name('auth.verify.register');
     Route::get("/verify", [\App\Http\Controllers\Auth\TwilioController::class, 'verifyView'])->name('auth.verify.view');
     Route::post("/verify", [\App\Http\Controllers\Auth\TwilioController::class, 'verify'])->name('auth.verify.check');
 });

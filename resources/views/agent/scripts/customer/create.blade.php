@@ -13,6 +13,7 @@
         btnSignate: document.querySelectorAll('.btnSignate'),
         startPersonnaCustomer: document.querySelector('.startPersonnaCustomer'),
         startPersonnaDomicile: document.querySelector('.startPersonnaDomicile'),
+        startAuthyRegister: document.querySelector('.startAuthyRegister'),
 
     }
     let modals = {
@@ -350,6 +351,18 @@
                         }, 3000)
                     }
                 })
+            })
+        })
+    }
+    if(elements.startAuthyRegister) {
+        elements.startAuthyRegister.addEventListener('click', e => {
+            e.preventDefault()
+            $.ajax({
+                url: '/auth/register',
+                data: {"customer_id": {{ $customer->id }}},
+                success: data => {
+                    toastr.success(`L'authentification forte à été paramétré`, `Authentification 2FA`)
+                }
             })
         })
     }

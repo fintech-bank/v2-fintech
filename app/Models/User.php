@@ -112,6 +112,12 @@ use RTippin\Messenger\Traits\Messageable;
  * @property-read mixed $user_group_text
  * @property-read \Illuminate\Database\Eloquent\Collection|UserNotificationSetting[] $settingnotification
  * @property-read int|null $settingnotification_count
+ * @property string|null $authy_id
+ * @property string|null $authy_status
+ * @property string|null $authy_one_touch_uuid
+ * @method static Builder|User whereAuthyId($value)
+ * @method static Builder|User whereAuthyOneTouchUuid($value)
+ * @method static Builder|User whereAuthyStatus($value)
  */
 class User extends Authenticatable
 {
@@ -148,6 +154,34 @@ class User extends Authenticatable
     public function routeNotificationForPushbullet()
     {
         return new \NotificationChannels\Pushbullet\Targets\Device($this->pushbullet_device_id);
+    }
+
+    /**
+     * @param $authy_id string
+     */
+    public function updateAuthyId($authy_id) {
+        if($this->authy_id != $authy_id) {
+            $this->authy_id = $authy_id;
+            $this->save();
+        }
+    }
+
+    /**
+     * @param $status string
+     */
+    public function updateVerificationStatus($status) {
+        // reset oneTouch status
+        if ($this->authy_status != $status) {
+            $this->authy_status = $status;
+            $this->save();
+        }
+    }
+
+    public function updateOneTouchUuid($uuid) {
+        if ($this->authy_one_touch_uuid != $uuid) {
+            $this->authy_one_touch_uuid = $uuid;
+            $this->save();
+        }
     }
 
     public function customers()
