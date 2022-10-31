@@ -31,9 +31,11 @@ class CustomerController extends Controller
             session()->flush();
             session()->put('customer_id', $customer->id);
             session()->put('finish', true);
+            $customer = Customer::find(session()->get('customer_id'));
         } else {
             $customer = Customer::find(session()->get('customer_id'));
         }
+        session()->flush();
         dd($customer, $session);
 
         return view('agent.customer.create.finish', compact('customer'));
