@@ -330,7 +330,24 @@
                     method: 'POST',
                     data: {'document_id': e.target.dataset.document},
                     success: data => {
-
+                        toastr.success(`Un email à été envoyer au client`, `Signature de document`)
+                        setInterval(() => {
+                            $.ajax({
+                                url: '/api/user/signate/verify',
+                                method: 'GET',
+                                data: {'document_id': data.id},
+                                success: data => {
+                                    if(data.status === 'signed') {
+                                        toastr.success(`Le document à été signé`, `Signature de document`)
+                                        setTimeout(() => {
+                                            window.location.href = "/agence/customer/create/finish?refresh&customer_id=" + {{ $customer->id }}
+                                        }, 500)
+                                    } else {
+                                        console.log("En attente de signature")
+                                    }
+                                }
+                            })
+                        }, 3000)
                     }
                 })
             })

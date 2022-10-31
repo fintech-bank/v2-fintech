@@ -91,6 +91,7 @@ Route::prefix('user')->group(function () {
     Route::post('verify/domicile', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifyDomicile']);
     Route::post('verify/revenue', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifyRevenue']);
     Route::post('signate', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'signateDocument']);
+    Route::get('signate/verify', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifySign']);
 });
 
 Route::prefix('manager')->group(function () {

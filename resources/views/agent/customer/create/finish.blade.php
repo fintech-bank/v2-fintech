@@ -76,7 +76,9 @@
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Signer la convention de compte</a>
                         </div>
                         <!--end::Description-->
+                        @if(!$customer->documents()->where('name', 'LIKE', "%Convention de compte%")->first()->signed_by_client)
                         <a href="" class="btn btn-sm btn-primary btnSignate" data-document="{{ $customer->documents()->where('name', 'LIKE', "%Convention de compte%")->first()->id }}">Signer</a>
+                        @endif
                     </div>
                     <div class="d-flex align-items-center mb-8">
                         <!--begin::Bullet-->

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Customer\SendSignateDocumentRequestMail;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerDocument;
 use App\Notifications\Customer\SendVerificationLinkNotification;
 use App\Services\Persona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends Controller
 {
@@ -51,7 +54,17 @@ class CustomerController extends Controller
 
     public function signateDocument(Request $request)
     {
-        dd($request->all());
+        $document = CustomerDocument::find($request->get('document_id'));
+        $customer = $document->customer;
+
+        Mail::to($customer->user)->send(new SendSignateDocumentRequestMail($customer, base64_encode($request->get('document_id'))));
+
+        return response()->json($document);
+    }
+
+    public function verifySign(Request $request)
+    {
+        
     }
 
     private function subscribeAlerta()
