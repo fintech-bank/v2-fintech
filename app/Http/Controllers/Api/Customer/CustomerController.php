@@ -64,7 +64,12 @@ class CustomerController extends Controller
 
     public function verifySign(Request $request)
     {
+        $document = CustomerDocument::find($request->get('document_id'));
+        $document->update([
+            'signed_by_client' => true
+        ]);
 
+        return response()->json();
     }
 
     public function verifSecure(Request $request, $code)
