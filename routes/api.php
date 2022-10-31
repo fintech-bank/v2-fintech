@@ -116,5 +116,5 @@ Route::prefix('calendar')->group(function () {
 });
 
 Route::prefix('webhook')->group(function () {
-    Route::get('personna', fn($data) => event(new \App\Events\Core\PersonnaWebbhookEvent($data)));
+    Route::post('personna', fn($data) => event(new \App\Events\Core\PersonnaWebbhookEvent($data)));
 });
