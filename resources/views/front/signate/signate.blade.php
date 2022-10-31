@@ -31,10 +31,6 @@
         </div>
         <div class="card-footer">
             <div class="d-flex justify-content-end">
-                <x-base.button
-                    class="btn btn-bank btn-circle"
-                    text="Signer le document"
-                    id="signateDocument" />
                 <button id="signateDocument" class="btn btn-bank btn-circle" disabled>
                     <span class="indicator-label">
                         <i class="fa-solid fa-signature me-2"></i> Signer le document
@@ -66,7 +62,7 @@
             pageNum = 1,
             pageRendering = false,
             pageNumPending = null,
-            scale = 0.8,
+            scale = 1.1,
             canvas = document.getElementById('pdfcontent'),
             ctx = canvas.getContext('2d');
 
