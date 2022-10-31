@@ -275,6 +275,7 @@
                                 </div>
                             </a>
                         </div>
+                        @if(session()->get('package')['overdraft'] == 1)
                         <div class="col-md-4 col-sm-12 mb-3">
                             <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeOverdraft">
                                 <div class="card-body">
@@ -294,6 +295,7 @@
                                 </div>
                             </a>
                         </div>
+                        @endif
                         <div class="col-md-4 col-sm-12 mb-3">
                             <a href="" class="card shadow-lg me-5" data-bs-toggle="modal" data-bs-target="#subscribeOffert">
                                 <div class="card-body">
