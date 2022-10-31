@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="card shadow-sm">
-        <div class="card-header" data-kt-sticky="true" data-kt-sticky-top="auto" data-kt-sticky-offset="{default: false, xl: '350px'}">
+        <div class="card-header">
             <div class="card-title">
                 <button class="btn btn-circle btn-light btn-sm me-2" id="previous"><i class="fa-solid fa-arrow-left"></i> </button>
                 <button class="btn btn-circle btn-light btn-sm me-5" id="next"><i class="fa-solid fa-arrow-right"></i> </button>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="d-flex flex-center">
+            <div class="d-flex flex-center scroll h-400px">
                 <canvas id="pdfcontent"></canvas>
             </div>
         </div>
