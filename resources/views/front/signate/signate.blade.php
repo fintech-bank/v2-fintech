@@ -37,7 +37,7 @@
                     id="signateDocument" />
                 <button id="signateDocument" class="btn btn-bank btn-circle" disabled>
                     <span class="indicator-label">
-                        <i class="fa-solid fa-sign me-2"></i> Signer le document
+                        <i class="fa-solid fa-signature me-2"></i> Signer le document
                     </span>
                     <span class="indicator-progress">
                         Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
