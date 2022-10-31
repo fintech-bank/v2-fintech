@@ -243,11 +243,14 @@
         elements.startPersonnaCustomer.addEventListener('click', e => {
             e.preventDefault()
             const client = new Persona.Client({
-                templateId: "itmpl_Ygs16MKTkA6obnF8C3Rb17dm",
+                templateId: "itmpl_dtC4KRK6GMLCzXtRcRZ68gVv",
                 environment: "sandbox",
                 referenceId: "{{ isset($customer) ? $customer->persona_reference_id : '' }}",
                 onReady: () => client.open(),
-                onComplete: ({inquiryId, status, fields}) => console.log("onComplete"),
+                onComplete: ({inquiryId, status, fields}) => {
+                    console.log("onComplete")
+                    window.location.href="/agence/customer/create/finish?refresh&customer_id="+{{ $customer->id }}
+                },
                 onCancel: ({inquiryId, sessionToken}) => console.log('onCancel'),
                 onError: (error) => console.log("onError"),
             });
@@ -256,14 +259,18 @@
     if(elements.startPersonnaDomicile) {
         elements.startPersonnaDomicile.addEventListener('click', e => {
             e.preventDefault()
-            $.ajax({
-                url: '/api/user/verify/domicile',
-                method: 'POST',
-                data: {"customer_id": {{$customer->customers->id ?? 0}}},
-                success: () => {
-                    toastr.success(`Lien envoyer au client`, `Vérification d'identité`)
-                }
-            })
+            const client = new Persona.Client({
+                templateId: "itmpl_qvuQuXt48aMJYd6o345x7Ldm",
+                environment: "sandbox",
+                referenceId: "{{ isset($customer) ? $customer->persona_reference_id : '' }}",
+                onReady: () => client.open(),
+                onComplete: ({inquiryId, status, fields}) => {
+                    console.log("onComplete")
+                    window.location.href="/agence/customer/create/finish?refresh&customer_id="+{{ $customer->id }}
+                },
+                onCancel: ({inquiryId, sessionToken}) => console.log('onCancel'),
+                onError: (error) => console.log("onError"),
+            });
         })
     }
 
