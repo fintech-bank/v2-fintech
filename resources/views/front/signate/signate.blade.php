@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="card shadow-sm">
-        <div class="card-header" data-kt-sticky="true" data-kt-sticky-top="100px">
+        <div class="card-header" data-kt-sticky="true" data-kt-sticky-top="100px" data-kt-sticky-offset="{default: false, xl: '200px'}">
             <div class="card-title">
                 <button class="btn btn-circle btn-light btn-sm me-2" id="previous"><i class="fa-solid fa-arrow-left"></i> </button>
                 <button class="btn btn-circle btn-light btn-sm me-5" id="next"><i class="fa-solid fa-arrow-right"></i> </button>
