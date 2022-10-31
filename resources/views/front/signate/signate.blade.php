@@ -155,7 +155,7 @@
                     $.ajax({
                         url: '/api/customer/verifSecure/'+code,
                         method: 'POST',
-                        data: {'customer_id': {{ $customer->id }}},
+                        data: {'customer_id': {{ isset($customer) ? $customer->id : '' }}},
                         success: data => {
                             console.log(data)
                             $.ajax({
