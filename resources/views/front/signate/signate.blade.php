@@ -52,7 +52,7 @@
         let btnSignate = document.querySelector("#signateDocument")
         let url = `/storage/gdd/{{ $document->customer->id }}/documents/Contrats/{{ $document->name }}.pdf`
         let pdfjsLib = window['pdfjs-dist/build/pdf'];
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.0.279/pdf.worker.min.js';
 
         var pdfDoc = null,
             pageNum = 1,
