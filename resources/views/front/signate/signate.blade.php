@@ -17,8 +17,8 @@
     <div class="card shadow-sm">
         <div class="card-header">
             <div class="card-title">
-                <button class="btn btn-circle btn-light btn-sm"><i class="fa-solid fa-arrow-left"></i> </button>
-                <button class="btn btn-circle btn-light btn-sm"><i class="fa-solid fa-arrow-right"></i> </button>
+                <button class="btn btn-rounded btn-light btn-sm"><i class="fa-solid fa-arrow-left"></i> </button>
+                <button class="btn btn-rounded btn-light btn-sm"><i class="fa-solid fa-arrow-right"></i> </button>
             </div>
             <div class="card-toolbar">
                 <!--<button type="button" class="btn btn-sm btn-light">
