@@ -28,7 +28,7 @@ class CustomerController extends Controller
         $customer = Customer::find($request->get('customer_id'));
         $link = $persona->verificationLink($customer);
 
-        $customer->info->notify(new SendVerificationLinkNotification($customer, $link));
+        $customer->user->notify(new SendVerificationLinkNotification($customer, $link));
 
         return response()->json();
     }
@@ -38,7 +38,7 @@ class CustomerController extends Controller
         $customer = Customer::find($request->get('customer_id'));
         $link = $persona->verificationLink($customer,'domicile');
 
-        $customer->info->notify(new SendVerificationLinkNotification($customer, $link));
+        $customer->user->notify(new SendVerificationLinkNotification($customer, $link));
 
         return response()->json();
     }
@@ -48,7 +48,7 @@ class CustomerController extends Controller
         $customer = Customer::find($request->get('customer_id'));
         $link = $persona->verificationLink($customer, 'revenue');
 
-        $customer->info->notify(new SendVerificationLinkNotification($customer, $link));
+        $customer->user->notify(new SendVerificationLinkNotification($customer, $link));
 
         return response()->json();
     }
