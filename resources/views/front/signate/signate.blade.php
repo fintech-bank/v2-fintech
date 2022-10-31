@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="d-flex flex-center scroll h-400px">
+            <div class="d-flex flex-center scroll h-500px">
                 <canvas id="pdfcontent"></canvas>
             </div>
         </div>
