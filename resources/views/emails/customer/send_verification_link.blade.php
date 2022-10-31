@@ -11,7 +11,6 @@
                 </p>
             </td>
         </tr>
-        @include("emails.layouts.salutation")
     </div>
 @endsection
 
