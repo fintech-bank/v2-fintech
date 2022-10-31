@@ -29,10 +29,12 @@
 
         </div>
         <div class="card-footer">
-            <x-base.button
-                class="btn btn-bank btn-circle"
-                text="Signer le document"
-                id="signateDocument" />
+            <div class="d-flex align-items-end">
+                <x-base.button
+                    class="btn btn-bank btn-circle"
+                    text="Signer le document"
+                    id="signateDocument" />
+            </div>
         </div>
     </div>
 @endsection
