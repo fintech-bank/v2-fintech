@@ -50,7 +50,7 @@
         }
         let pdfContent = document.querySelector('.pdfcontent')
         let btnSignate = document.querySelector("#signateDocument")
-        let url = `/storage/gdd/{{ $document->customer->id }}/documents/Contrats/{{ $document->name }}.pdf`
+        let url = `/storage/gdd/{{ $document->customer->user->id }}/documents/Contrats/{{ $document->name }}.pdf`
         let pdfjsLib = window['pdfjs-dist/build/pdf'];
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.0.279/pdf.worker.min.js';
 
