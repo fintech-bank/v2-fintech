@@ -21,21 +21,17 @@ class CustomerController extends Controller
         return view('agent.customer.create.start');
     }
 
-    public function finish()
+    public function finish(Request $request)
     {
         $session = (object) session()->all();
         $help = new CustomerHelper();
 
-        if(!$session->finish) {
+        if($request->has('refresh')) {
+            $customer = Customer::find($request->get('customer_id'));
+        } else {
             $customer = $help->createCustomer($session);
             session()->flush();
-            session()->put('customer_id', $customer->id);
-            session()->put('finish', true);
-            $customer = Customer::find(session()->get('customer_id'));
-        } else {
-            $customer = Customer::find(session()->get('customer_id'));
         }
-        session()->flush();
 
         return view('agent.customer.create.finish', compact('customer'));
     }
