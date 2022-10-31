@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer\Customer;
+use App\Notifications\Customer\SendVerificationLinkNotification;
+use App\Services\Persona;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -18,6 +21,36 @@ class CustomerController extends Controller
             'offert' => $this->subscribeOffert(),
             default => null,
         };
+    }
+
+    public function verifyCustomer(Request $request, Persona $persona)
+    {
+        $customer = Customer::find($request->get('customer_id'));
+        $link = $persona->verificationLink($customer);
+
+        $customer->info->notify(new SendVerificationLinkNotification($customer, $link));
+
+        return response()->json();
+    }
+
+    public function verifyDomicile(Request $request, Persona $persona)
+    {
+        $customer = Customer::find($request->get('customer_id'));
+        $link = $persona->verificationLink($customer,'domicile');
+
+        $customer->info->notify(new SendVerificationLinkNotification($customer, $link));
+
+        return response()->json();
+    }
+
+    public function verifyRevenue(Request $request, Persona $persona)
+    {
+        $customer = Customer::find($request->get('customer_id'));
+        $link = $persona->verificationLink($customer, 'revenue');
+
+        $customer->info->notify(new SendVerificationLinkNotification($customer, $link));
+
+        return response()->json();
     }
 
     private function subscribeAlerta()
