@@ -286,7 +286,7 @@ class CustomerHelper
             'ficp' => $ficp->ficp ? 1 : 0,
             'fcc' => $ficp->fcc ? 1 : 0,
         ]);
-        $customer->update(['persona_reference_id' => 'customer_'.$customer->id]);
+        $customer->update(['persona_reference_id' => 'customer_'.now()->format('dmYhi')."_".$customer->id]);
 
         $info = CustomerInfo::create([
             'type' => 'part',
