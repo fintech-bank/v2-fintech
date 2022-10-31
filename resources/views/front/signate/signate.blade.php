@@ -25,8 +25,14 @@
                 <button class="btn btn-circle btn-light btn-sm zoomout"><i class="fa-solid fa-minus-circle"></i> </button>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body pdfcontent">
 
+        </div>
+        <div class="card-footer">
+            <x-base.button
+                class="btn btn-bank btn-circle"
+                text="Signer le document"
+                id="signateDocument" />
         </div>
     </div>
 @endsection
