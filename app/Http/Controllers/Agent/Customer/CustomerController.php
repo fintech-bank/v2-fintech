@@ -25,13 +25,14 @@ class CustomerController extends Controller
     {
         $session = (object) session()->all();
         $help = new CustomerHelper();
+        dd($session);
 
         if($request->has('refresh')) {
             $customer = Customer::find($request->get('customer_id'));
         } else {
             $create = $help->createCustomer($session);
             $customer = $create->customers;
-            session()->flush();
+            session()->forget('');
         }
 
         return view('agent.customer.create.finish', compact('customer'));
