@@ -89,7 +89,7 @@
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Activer 2FA (Authy)</a>
                         </div>
                         <!--end::Description-->
-                        @if(!$customer->info->isVerified)
+                        @if(!$customer->user->authy_id)
                             <a href="" class="btn btn-sm btn-primary startAuthyRegister">Vérifier</a>
                         @endif
                     </div>
