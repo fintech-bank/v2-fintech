@@ -1,7 +1,7 @@
 @extends("front.layouts.app")
 
 @section("content")
-    <div class="d-flex flex-row justify-content-between align-items-center w-100 bg-light">
+    <div class="d-flex flex-row justify-content-between align-items-center w-100 bg-white p-5 shadow-lg">
         <div class="fw-bolder fs-2tx">{{ $document->name }}</div>
         <div class="">
             <x-base.button
@@ -14,4 +14,5 @@
             />
         </div>
     </div>
+
 @endsection
