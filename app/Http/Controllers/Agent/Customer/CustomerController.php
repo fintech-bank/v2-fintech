@@ -23,7 +23,6 @@ class CustomerController extends Controller
 
     public function finish()
     {
-        session()->put('finish', true);
         $session = (object) session()->all();
         $help = new CustomerHelper();
 
@@ -31,6 +30,7 @@ class CustomerController extends Controller
             $customer = $help->createCustomer($session);
             session()->flush();
             session()->put('customer_id', $customer->id);
+            session()->put('finish', true);
         } else {
             $customer = Customer::find(session()->get('customer_id'));
         }
