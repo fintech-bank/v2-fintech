@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class SignateController extends Controller
 {
-    public function signate($token)
+    public function show($token)
     {
         $token_d = base64_decode($token);
         $document = CustomerDocument::find($token_d);
