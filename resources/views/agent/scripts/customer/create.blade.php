@@ -27,7 +27,7 @@
     }
 
     let countryBirthOptions = (item) => {
-        if ( !item.id ) {
+        if (!item.id) {
             return item.text;
         }
         let span = document.createElement('span');
@@ -39,7 +39,7 @@
         return $(span);
     }
     let countryOptions = (item) => {
-        if ( !item.id ) {
+        if (!item.id) {
             return item.text;
         }
         let span = document.createElement('span');
@@ -51,7 +51,7 @@
         return $(span);
     }
     let cardsOptions = (item) => {
-        if ( !item.id ) {
+        if (!item.id) {
             return item.text;
         }
         let span = document.createElement('span');
@@ -85,7 +85,7 @@
         })
         block.block();
         $.ajax({
-            url: '/api/core/geo/cities/'+select.value,
+            url: '/api/core/geo/cities/' + select.value,
             success: data => {
                 block.release()
                 contentCities.innerHTML = data
@@ -97,7 +97,7 @@
         block.blockDivPackage.block()
         elements.divPackage.classList.remove('d-none')
 
-        let iconTemplate =  {
+        let iconTemplate = {
             'Cristal': {'icon': 'gem', 'color': 'secondary'},
             'Gold': {'icon': 'gem', 'color': 'warning'},
             'Platine': {'icon': 'gem', 'color': 'black'},
@@ -117,68 +117,71 @@
         }
 
         let deleteIconC = (name) => {
-            elements.divPackage.querySelector('[data-content="'+name+'"]').querySelector('i').classList.remove('fa-check-circle')
-            elements.divPackage.querySelector('[data-content="'+name+'"]').querySelector('i').classList.remove('fa-check-circle')
-            elements.divPackage.querySelector('[data-content="'+name+'"]').querySelector('i').classList.remove('text-success')
-            elements.divPackage.querySelector('[data-content="'+name+'"]').querySelector('i').classList.remove('text-danger')
+            elements.divPackage.querySelector('[data-content="' + name + '"]').querySelector('i').classList.remove('fa-check-circle')
+            elements.divPackage.querySelector('[data-content="' + name + '"]').querySelector('i').classList.remove('fa-check-circle')
+            elements.divPackage.querySelector('[data-content="' + name + '"]').querySelector('i').classList.remove('text-success')
+            elements.divPackage.querySelector('[data-content="' + name + '"]').querySelector('i').classList.remove('text-danger')
         }
 
-        let checkIfValid =  {
+        let checkIfValid = {
             0: {'icon': 'xmark-circle', 'color': 'danger'},
             1: {'icon': 'check-circle', 'color': 'success'},
         }
         $.ajax({
-            url: '/api/core/forfait/'+packageId.value,
+            url: '/api/core/forfait/' + packageId.value,
             success: data => {
                 console.log(data)
                 block.blockDivPackage.release()
                 block.blockDivPackage.destroy()
 
                 deleteIconColor()
-                elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.add('text-'+iconTemplate[data.name].color)
+                elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.add('text-' + iconTemplate[data.name].color)
 
                 deleteIcon()
-                elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.add('fa-'+iconTemplate[data.name].icon)
+                elements.divPackage.querySelector('[data-content="icon"]').querySelector('i').classList.add('fa-' + iconTemplate[data.name].icon)
 
                 elements.divPackage.querySelector('[data-content="package_name"]').innerHTML = `Forfait ${data.name}`
-                elements.divPackage.querySelector('[data-content="package_price"]').innerHTML = `${new Intl.NumberFormat('fr', {style: 'currency', currency: 'eur'}).format(data.price)}`
+                elements.divPackage.querySelector('[data-content="package_price"]').innerHTML = `${new Intl.NumberFormat('fr', {
+                    style: 'currency',
+                    currency: 'eur'
+                }).format(data.price)}`
                 elements.divPackage.querySelector('[data-content="package_type_prlv"]').innerHTML = `${data.type_prlv_text}`
 
                 deleteIconC('visa_classic')
-                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.add('fa-'+checkIfValid[data.visa_classic].icon)
-                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.add('text-'+checkIfValid[data.visa_classic].color)
+                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.add('fa-' + checkIfValid[data.visa_classic].icon)
+                elements.divPackage.querySelector('[data-content="visa_classic"]').querySelector('i').classList.add('text-' + checkIfValid[data.visa_classic].color)
 
                 deleteIconC('check_deposit')
-                elements.divPackage.querySelector('[data-content="check_deposit"]').querySelector('i').classList.add('fa-'+checkIfValid[data.check_deposit].icon)
-                elements.divPackage.querySelector('[data-content="check_deposit"]').querySelector('i').classList.add('text-'+checkIfValid[data.check_deposit].color)
+                elements.divPackage.querySelector('[data-content="check_deposit"]').querySelector('i').classList.add('fa-' + checkIfValid[data.check_deposit].icon)
+                elements.divPackage.querySelector('[data-content="check_deposit"]').querySelector('i').classList.add('text-' + checkIfValid[data.check_deposit].color)
 
                 deleteIconC('payment_withdraw')
-                elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.add('fa-'+checkIfValid[data.payment_withdraw].icon)
-                elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.add('text-'+checkIfValid[data.payment_withdraw].color)
+                elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.add('fa-' + checkIfValid[data.payment_withdraw].icon)
+                elements.divPackage.querySelector('[data-content="payment_withdraw"]').querySelector('i').classList.add('text-' + checkIfValid[data.payment_withdraw].color)
 
                 deleteIconC('overdraft')
-                elements.divPackage.querySelector('[data-content="overdraft"]').querySelector('i').classList.add('fa-'+checkIfValid[data.overdraft].icon)
-                elements.divPackage.querySelector('[data-content="overdraft"]').querySelector('i').classList.add('text-'+checkIfValid[data.overdraft].color)
+                elements.divPackage.querySelector('[data-content="overdraft"]').querySelector('i').classList.add('fa-' + checkIfValid[data.overdraft].icon)
+                elements.divPackage.querySelector('[data-content="overdraft"]').querySelector('i').classList.add('text-' + checkIfValid[data.overdraft].color)
 
                 deleteIconC('cash_deposit')
-                elements.divPackage.querySelector('[data-content="cash_deposit"]').querySelector('i').classList.add('fa-'+checkIfValid[data.cash_deposit].icon)
-                elements.divPackage.querySelector('[data-content="cash_deposit"]').querySelector('i').classList.add('text-'+checkIfValid[data.cash_deposit].color)
+                elements.divPackage.querySelector('[data-content="cash_deposit"]').querySelector('i').classList.add('fa-' + checkIfValid[data.cash_deposit].icon)
+                elements.divPackage.querySelector('[data-content="cash_deposit"]').querySelector('i').classList.add('text-' + checkIfValid[data.cash_deposit].color)
 
                 deleteIconC('withdraw_international')
-                elements.divPackage.querySelector('[data-content="withdraw_international"]').querySelector('i').classList.add('fa-'+checkIfValid[data.withdraw_international].icon)
-                elements.divPackage.querySelector('[data-content="withdraw_international"]').querySelector('i').classList.add('text-'+checkIfValid[data.withdraw_international].color)
+                elements.divPackage.querySelector('[data-content="withdraw_international"]').querySelector('i').classList.add('fa-' + checkIfValid[data.withdraw_international].icon)
+                elements.divPackage.querySelector('[data-content="withdraw_international"]').querySelector('i').classList.add('text-' + checkIfValid[data.withdraw_international].color)
 
                 deleteIconC('payment_international')
-                elements.divPackage.querySelector('[data-content="payment_international"]').querySelector('i').classList.add('fa-'+checkIfValid[data.payment_international].icon)
-                elements.divPackage.querySelector('[data-content="payment_international"]').querySelector('i').classList.add('text-'+checkIfValid[data.payment_international].color)
+                elements.divPackage.querySelector('[data-content="payment_international"]').querySelector('i').classList.add('fa-' + checkIfValid[data.payment_international].icon)
+                elements.divPackage.querySelector('[data-content="payment_international"]').querySelector('i').classList.add('text-' + checkIfValid[data.payment_international].color)
 
                 deleteIconC('payment_insurance')
-                elements.divPackage.querySelector('[data-content="payment_insurance"]').querySelector('i').classList.add('fa-'+checkIfValid[data.payment_insurance].icon)
-                elements.divPackage.querySelector('[data-content="payment_insurance"]').querySelector('i').classList.add('text-'+checkIfValid[data.payment_insurance].color)
+                elements.divPackage.querySelector('[data-content="payment_insurance"]').querySelector('i').classList.add('fa-' + checkIfValid[data.payment_insurance].icon)
+                elements.divPackage.querySelector('[data-content="payment_insurance"]').querySelector('i').classList.add('text-' + checkIfValid[data.payment_insurance].color)
 
                 deleteIconC('check')
-                elements.divPackage.querySelector('[data-content="check"]').querySelector('i').classList.add('fa-'+checkIfValid[data.check].icon)
-                elements.divPackage.querySelector('[data-content="check"]').querySelector('i').classList.add('text-'+checkIfValid[data.check].color)
+                elements.divPackage.querySelector('[data-content="check"]').querySelector('i').classList.add('fa-' + checkIfValid[data.check].icon)
+                elements.divPackage.querySelector('[data-content="check"]').querySelector('i').classList.add('text-' + checkIfValid[data.check].color)
 
                 elements.divPackage.querySelector('[data-content="nb_carte_physique"]').innerHTML = data.nb_carte_physique
                 elements.divPackage.querySelector('[data-content="nb_carte_virtuel"]').innerHTML = data.nb_carte_virtuel
@@ -190,14 +193,14 @@
 
     }
     let getShowDifferedType = (support) => {
-        if(support.value !== 'visa-classic') {
+        if (support.value !== 'visa-classic') {
             elements.field_differed_card_type.classList.remove('d-none')
         } else {
             elements.field_differed_card_type.classList.add('d-none')
         }
     }
     let getShowDifferedAmount = (debit) => {
-        if(debit.value === 'differed') {
+        if (debit.value === 'differed') {
             elements.field_differed_card_amount.classList.remove('d-none')
         } else {
             elements.field_differed_card_amount.classList.add('d-none')
@@ -207,14 +210,16 @@
     document.querySelectorAll('[name="postal"]').forEach(input => {
         input.addEventListener('keyup', e => {
             console.log(e.target.value.length)
-            if(e.target.value.length === 5) {
+            if (e.target.value.length === 5) {
                 citiesFromPostal(e.target)
             }
         })
     })
 
-    if(elements.field_datebirth) { $(elements.field_datebirth).flatpickr({"locale": "fr"}) }
-    if(elements.btnSubscribe) {
+    if (elements.field_datebirth) {
+        $(elements.field_datebirth).flatpickr({"locale": "fr"})
+    }
+    if (elements.btnSubscribe) {
         elements.btnSubscribe.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
@@ -223,7 +228,10 @@
                 $.ajax({
                     url: '/agence/customer/create/subscribe',
                     method: 'POST',
-                    data: {'action': e.target.dataset.subscribe, 'overdraft_amount': document.querySelector('[name="overdraft_amount"]') ? document.querySelector('[name="overdraft_amount"]').value : ''},
+                    data: {
+                        'action': e.target.dataset.subscribe,
+                        'overdraft_amount': document.querySelector('[name="overdraft_amount"]') ? document.querySelector('[name="overdraft_amount"]').value : ''
+                    },
                     success: data => {
                         btn.removeAttribute('data-kt-indicator')
                         toastr.success(`Souscription à l'offre ${data.offer} effectuer`, `Souscription pris en compte`)
@@ -239,7 +247,7 @@
             })
         })
     }
-    if(elements.startPersonnaCustomer) {
+    if (elements.startPersonnaCustomer) {
         elements.startPersonnaCustomer.addEventListener('click', e => {
             e.preventDefault()
             const client = new Persona.Client({
@@ -249,14 +257,16 @@
                 onReady: () => client.open(),
                 onComplete: ({inquiryId, status, fields}) => {
                     console.log("onComplete")
-                    window.location.href="/agence/customer/create/finish?refresh&customer_id="+{{ isset($customer) ? $customer->id : '' }}
+                    @if(isset($customer))
+                        window.location.href = "/agence/customer/create/finish?refresh&customer_id=" + {{ $customer->id }}
+                        @endif
                 },
                 onCancel: ({inquiryId, sessionToken}) => console.log('onCancel'),
                 onError: (error) => console.log("onError"),
             });
         })
     }
-    if(elements.startPersonnaDomicile) {
+    if (elements.startPersonnaDomicile) {
         elements.startPersonnaDomicile.addEventListener('click', e => {
             e.preventDefault()
             const client = new Persona.Client({
@@ -266,7 +276,9 @@
                 onReady: () => client.open(),
                 onComplete: ({inquiryId, status, fields}) => {
                     console.log("onComplete")
-                    window.location.href="/agence/customer/create/finish?refresh&customer_id="+{{ isset($customer) ? $customer->id : '' }}
+                    @if(isset($customer))
+                        window.location.href = "/agence/customer/create/finish?refresh&customer_id=" + {{ $customer->id }}
+                    @endif
                 },
                 onCancel: ({inquiryId, sessionToken}) => console.log('onCancel'),
                 onError: (error) => console.log("onError"),
@@ -286,7 +298,7 @@
         templateSelection: cardsOptions,
         templateResult: cardsOptions
     })
-    if(elements.btnVerifyCustomer) {
+    if (elements.btnVerifyCustomer) {
         elements.btnVerifyCustomer.addEventListener('click', e => {
             e.preventDefault()
             let modal = new bootstrap.Modal(modals.modalVerifyCustomer)
