@@ -29,7 +29,7 @@
 
         </div>
         <div class="card-footer">
-            <div class="d-flex align-items-end">
+            <div class="d-flex justify-content-end">
                 <x-base.button
                     class="btn btn-bank btn-circle"
                     text="Signer le document"
