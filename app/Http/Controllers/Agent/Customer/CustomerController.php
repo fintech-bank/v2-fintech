@@ -25,6 +25,7 @@ class CustomerController extends Controller
     {
         $session = (object) session()->all();
         $help = new CustomerHelper();
+        dd($session);
 
         if($request->has('refresh')) {
             $customer = Customer::find($request->get('customer_id'));
