@@ -100,6 +100,12 @@
 
             // Update page counters
             document.getElementById('page_num').textContent = num;
+            console.log(document.querySelector("#page_num").innerHTML)
+            if(pageNum === pdfDoc.numPages) {
+                btnSignate.removeAttribute('disabled')
+            } else {
+                btnSignate.setAttribute('disabled', '')
+            }
         }
 
         /**
@@ -148,12 +154,7 @@
 
             // Initial/first page rendering
             renderPage(pageNum);
-            console.log(document.querySelector("#page_num").innerHTML)
-            if(pageNum === pdfDoc.numPages) {
-                btnSignate.removeAttribute('disabled')
-            } else {
-                btnSignate.setAttribute('disabled', '')
-            }
+
         });
 
     </script>
