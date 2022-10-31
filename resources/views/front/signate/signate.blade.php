@@ -26,8 +26,8 @@
                 <button class="btn btn-circle btn-light btn-sm" id="zoomout"><i class="fa-solid fa-minus-circle"></i> </button>
             </div>
         </div>
-        <div class="card-body" id="pdfcontent">
-
+        <div class="card-body">
+            <canvas id="pdfcontent"></canvas>
         </div>
         <div class="card-footer">
             <div class="d-flex justify-content-end">
