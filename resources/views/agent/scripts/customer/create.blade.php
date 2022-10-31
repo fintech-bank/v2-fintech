@@ -249,7 +249,7 @@
                 onReady: () => client.open(),
                 onComplete: ({inquiryId, status, fields}) => {
                     console.log("onComplete")
-                    window.location.href="/agence/customer/create/finish?refresh&customer_id="+{{ $customer->id }}
+                    window.location.href="/agence/customer/create/finish?refresh&customer_id="+{{ isset($customer) ? $customer->id : '' }}
                 },
                 onCancel: ({inquiryId, sessionToken}) => console.log('onCancel'),
                 onError: (error) => console.log("onError"),
@@ -266,7 +266,7 @@
                 onReady: () => client.open(),
                 onComplete: ({inquiryId, status, fields}) => {
                     console.log("onComplete")
-                    window.location.href="/agence/customer/create/finish?refresh&customer_id="+{{ $customer->id }}
+                    window.location.href="/agence/customer/create/finish?refresh&customer_id="+{{ isset($customer) ? $customer->id : '' }}
                 },
                 onCancel: ({inquiryId, sessionToken}) => console.log('onCancel'),
                 onError: (error) => console.log("onError"),
