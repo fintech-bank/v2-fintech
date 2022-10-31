@@ -54,6 +54,7 @@ class SendVerificationLinkMail extends Mailable
             with: [
                 'actionText' => 'Vérifier mon identité',
                 'actionUrl' => $this->link,
+                'introLines' => []
             ]
         );
     }
