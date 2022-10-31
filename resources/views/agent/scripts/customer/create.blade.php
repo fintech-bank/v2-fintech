@@ -245,7 +245,7 @@
             $.ajax({
                 url: '/api/user/verify/customer',
                 method: 'POST',
-                data: {"customer_id": {{$customer->customers->id}}},
+                data: {"customer_id": {{$customer->customers->id ?? 0}}},
                 success: () => {
                     toastr.success(`Lien envoyer au client`, `Vérification d'identité`)
                 }
