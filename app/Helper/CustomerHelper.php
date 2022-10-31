@@ -543,7 +543,7 @@ class CustomerHelper
                 if (isset($session->subscribe['overdraft'])) {
                     $wallet->update([
                         'decouvert' => 1,
-                        'balance_decouvert' => $session->subscribe['ouverdraft_amount']
+                        'balance_decouvert' => $session->subscribe['overdraft_amount']
                     ]);
                 }
         }
