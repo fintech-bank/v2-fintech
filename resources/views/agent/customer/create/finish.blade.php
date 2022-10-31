@@ -50,7 +50,9 @@
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Vérifier l'identité du client</a>
                         </div>
                         <!--end::Description-->
+                        @if(!$customer->info->isVerified)
                         <a href="" class="btn btn-sm btn-primary startPersonnaCustomer">Vérifier</a>
+                        @endif
                     </div>
                     <div class="d-flex align-items-center mb-8">
                         <!--begin::Bullet-->
@@ -74,19 +76,6 @@
                         <!--end::Description-->
                         <a href="" class="btn btn-sm btn-primary">Signer</a>
                     </div>
-                    @if(isset($session->subscribe['daily_insurance']))
-                        <div class="d-flex align-items-center mb-8">
-                            <!--begin::Bullet-->
-                            <span class="bullet bullet-vertical h-40px bg-success me-5"></span>
-                            <!--end::Bullet-->
-                            <!--begin::Description-->
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-6">Signer la souscription d'assurance</a>
-                            </div>
-                            <!--end::Description-->
-                            <a href="" class="btn btn-sm btn-primary">Signer</a>
-                        </div>
-                    @endif
                     <div class="d-flex align-items-center mb-8">
                         <!--begin::Bullet-->
                         <span class="bullet bullet-vertical h-40px bg-success me-5"></span>

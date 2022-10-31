@@ -23,10 +23,18 @@ class CustomerController extends Controller
 
     public function finish()
     {
+        session()->put('finish', true);
         $session = (object) session()->all();
         $help = new CustomerHelper();
-        $customer = $help->createCustomer($session);
 
-        return view('agent.customer.create.finish', compact('customer', 'session'));
+        if(!$session->finish) {
+            $customer = $help->createCustomer($session);
+            session()->flush();
+            session()->put('customer_id', $customer->id);
+        } else {
+            $customer = Customer::find(session()->get('customer_id'));
+        }
+
+        return view('agent.customer.create.finish', compact('customer'));
     }
 }
