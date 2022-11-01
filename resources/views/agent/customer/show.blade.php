@@ -136,6 +136,25 @@
                                     <div class="menu-item px-3">
                                         <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Communication</div>
                                     </div>
+                                    <div
+                                        class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold py-4 w-250px fs-6"
+                                        data-kt-menu="true">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-5">
+                                            <a href="tel:{{ $customer->info->phone }}" class="menu-link px-5"><i class="fa-solid fa-phone me-3"></i> Téléphone Fixe</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <div class="menu-item px-5">
+                                            <a href="tel:{{ $customer->info->mobile }}" class="menu-link px-5"><i class="fa-solid fa-mobile me-3"></i> Téléphone Mobile</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <div class="menu-item px-5">
+                                            <a href="#write-sms" data-bs-toggle="modal" class="menu-link px-5"><i class="fa-solid fa-comment-sms me-3"></i> Envoyer un sms</a>
+                                        </div>
+                                        <div class="menu-item px-5">
+                                            <a href="#write-mail" data-bs-toggle="modal" class="menu-link px-5"><i class="fa-solid fa-envelope me-3"></i> Envoyer un Email</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!--end::Menu 3-->
                             </div>
