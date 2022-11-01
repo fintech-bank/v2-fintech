@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 use RTippin\Messenger\Contracts\MessengerProvider;
@@ -154,34 +155,6 @@ class User extends Authenticatable
     public function routeNotificationForPushbullet()
     {
         return new \NotificationChannels\Pushbullet\Targets\Device($this->pushbullet_device_id);
-    }
-
-    /**
-     * @param $authy_id string
-     */
-    public function updateAuthyId($authy_id) {
-        if($this->authy_id != $authy_id) {
-            $this->authy_id = $authy_id;
-            $this->save();
-        }
-    }
-
-    /**
-     * @param $status string
-     */
-    public function updateVerificationStatus($status) {
-        // reset oneTouch status
-        if ($this->authy_status != $status) {
-            $this->authy_status = $status;
-            $this->save();
-        }
-    }
-
-    public function updateOneTouchUuid($uuid) {
-        if ($this->authy_one_touch_uuid != $uuid) {
-            $this->authy_one_touch_uuid = $uuid;
-            $this->save();
-        }
     }
 
     public function customers()

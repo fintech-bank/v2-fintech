@@ -46,6 +46,7 @@
         "rtippin/messenger-ui": "^2.6",
         "skagarwal/google-places-api": "^2.0",
         "spatie/laravel-backup": "^8.1",
+        "spomky-labs/otphp": "^11.0",
         "stripe/stripe-php": "^9.6",
         "torann/geoip": "^3.0",
         "twilio/sdk": "^6.42",
