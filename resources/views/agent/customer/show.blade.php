@@ -53,7 +53,7 @@
                             <div class="d-flex align-items-center mb-2">
                                 <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $customer->info->full_name }}</a>
 
-                                <a href="#">
+                                <a href="#" class="me-1">
                                     <i class="fa-solid fa-user-check fs-3 {{ $customer->info->isVerified ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->isVerified ? "Client Vérifié" : "Client non vérifier" }}"></i>
                                 </a>
                                 <a href="#">
