@@ -59,21 +59,14 @@
                                 <a href="#">
                                     <i class="fa-solid fa-house-circle-check fs-3 {{ $customer->info->addressVerified ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->addressVerified ? "Adresse Postal Vérifié" : "Adresse Postal non vérifier" }}"></i>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-light-success fw-bold ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade to Pro</a>
                             </div>
                             <!--end::Name-->
                             <!--begin::Info-->
                             <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                 <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
-                                    <!--begin::Svg Icon | path: icons/duotune/communication/com006.svg-->
-                                    <span class="svg-icon svg-icon-4 me-1">
-																	<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-																		<path opacity="0.3" d="M16.5 9C16.5 13.125 13.125 16.5 9 16.5C4.875 16.5 1.5 13.125 1.5 9C1.5 4.875 4.875 1.5 9 1.5C13.125 1.5 16.5 4.875 16.5 9Z" fill="currentColor"></path>
-																		<path d="M9 16.5C10.95 16.5 12.75 15.75 14.025 14.55C13.425 12.675 11.4 11.25 9 11.25C6.6 11.25 4.57499 12.675 3.97499 14.55C5.24999 15.75 7.05 16.5 9 16.5Z" fill="currentColor"></path>
-																		<rect x="7" y="6" width="4" height="4" rx="2" fill="currentColor"></rect>
-																	</svg>
-																</span>
-                                    <!--end::Svg Icon-->Developer</a>
+                                    <i class="fa-solid fa-boxes-packing me-1"></i>
+                                    <span>Developer</span>
+                                </a>
                                 <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen018.svg-->
                                     <span class="svg-icon svg-icon-4 me-1">
