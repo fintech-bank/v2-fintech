@@ -250,7 +250,7 @@
                                 @else
                                     <div class="bg-success rounded h-5px" role="progressbar" style="width: {{ $customer->cotation * 10 }}%;" aria-valuenow="{{ $customer->cotation * 10 }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 @endif
-                                <span class="text-muted fs-7">Basée sur l'ensemble des mouvements de tous les comptes</span>
+                                <span class="text-muted fs-8">Basée sur l'ensemble des mouvements de tous les comptes</span>
                             </div>
                         </div>
                         <!--end::Progress-->
@@ -264,42 +264,22 @@
             <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="/metronic8/demo1/../demo1/account/overview.html">Overview</a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 active" data-bs-toggle="tab" href="/metronic8/demo1/../demo1/account/overview.html">Tableau de Bord</a>
                 </li>
                 <!--end::Nav item-->
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/metronic8/demo1/../demo1/account/settings.html">Settings</a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="/metronic8/demo1/../demo1/account/settings.html">Fiche client</a>
                 </li>
                 <!--end::Nav item-->
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/metronic8/demo1/../demo1/account/security.html">Security</a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="/metronic8/demo1/../demo1/account/security.html">Compte bancaire</a>
                 </li>
                 <!--end::Nav item-->
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/metronic8/demo1/../demo1/account/billing.html">Billing</a>
-                </li>
-                <!--end::Nav item-->
-                <!--begin::Nav item-->
-                <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/metronic8/demo1/../demo1/account/statements.html">Statements</a>
-                </li>
-                <!--end::Nav item-->
-                <!--begin::Nav item-->
-                <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/metronic8/demo1/../demo1/account/referrals.html">Referrals</a>
-                </li>
-                <!--end::Nav item-->
-                <!--begin::Nav item-->
-                <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/metronic8/demo1/../demo1/account/api-keys.html">API Keys</a>
-                </li>
-                <!--end::Nav item-->
-                <!--begin::Nav item-->
-                <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" href="/metronic8/demo1/../demo1/account/logs.html">Logs</a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="/metronic8/demo1/../demo1/account/billing.html">Fichiers</a>
                 </li>
                 <!--end::Nav item-->
             </ul>
