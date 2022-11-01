@@ -65,7 +65,7 @@
                             <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                 <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                     <i class="fa-solid fa-boxes-packing me-1"></i>
-                                    <span>Forfait {{ $customer->package->name }}</span>
+                                    <span data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->package->price_format }} / par mois">Forfait {{ $customer->package->name }}</span>
                                 </a>
                                 <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                     <i class="fa-solid fa-user-tie me-1"></i>
