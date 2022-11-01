@@ -40,4 +40,13 @@ class CustomerController extends Controller
 
         return view('agent.customer.create.finish', compact('customer'));
     }
+
+    public function show($id)
+    {
+        $customer = Customer::find($id);
+
+        return view('agent.customer.show', [
+            'customer' => $customer
+        ]);
+    }
 }

@@ -242,7 +242,7 @@
                     <!--end::Date=-->
                     <!--begin::Action=-->
                     <td class="text-end">
-                        <a href="#" class="btn btn-sm btn-primary">Fiche client</a>
+                        <a href="{{ route('agent.customer.show', $customer->id) }}" class="btn btn-sm btn-primary">Fiche client</a>
                     </td>
                     <!--end::Action=-->
                 </tr>
