@@ -91,67 +91,47 @@
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
                                     <!--begin::Heading-->
                                     <div class="menu-item px-3">
-                                        <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Payments</div>
+                                        <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Général</div>
                                     </div>
                                     <!--end::Heading-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">Create Invoice</a>
+                                        <a href="#" class="menu-link px-3">Changer l'état du compte client</a>
                                     </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link flex-stack px-3">Create Payment
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" aria-label="Specify a target name for future usage and reference" data-bs-original-title="Specify a target name for future usage and reference" data-kt-initialized="1"></i></a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">Generate Bill</a>
+                                        <a href="#" class="menu-link px-3">Changer le type de compte</a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
                                         <a href="#" class="menu-link px-3">
-                                            <span class="menu-title">Subscription</span>
+                                            <span class="menu-title">Nouveau compte</span>
                                             <span class="menu-arrow"></span>
                                         </a>
                                         <!--begin::Menu sub-->
                                         <div class="menu-sub menu-sub-dropdown w-175px py-4">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Plans</a>
+                                                <a href="#" class="menu-link px-3">Compte Bancaire</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Billing</a>
+                                                <a href="#" class="menu-link px-3">Compte Epargne</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Statements</a>
+                                                <a href="#" class="menu-link px-3">Pret Bancaire</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu separator-->
                                             <div class="separator my-2"></div>
                                             <!--end::Menu separator-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <div class="menu-content px-3">
-                                                    <!--begin::Switch-->
-                                                    <label class="form-check form-switch form-check-custom form-check-solid">
-                                                        <!--begin::Input-->
-                                                        <input class="form-check-input w-30px h-20px" type="checkbox" value="1" checked="checked" name="notifications">
-                                                        <!--end::Input-->
-                                                        <!--end::Label-->
-                                                        <span class="form-check-label text-muted fs-6">Recuring</span>
-                                                        <!--end::Label-->
-                                                    </label>
-                                                    <!--end::Switch-->
-                                                </div>
-                                            </div>
-                                            <!--end::Menu item-->
+                                            <a href="#" class="menu-link px-3">
+                                                <span class="menu-title">Communication</span>
+                                                <span class="menu-arrow"></span>
+                                            </a>
                                         </div>
                                         <!--end::Menu sub-->
                                     </div>
