@@ -237,22 +237,22 @@
             <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5 active" data-bs-toggle="tab" href="/metronic8/demo1/../demo1/account/overview.html">Tableau de Bord</a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 active" data-bs-toggle="tab" href="#dashboard">Tableau de Bord</a>
                 </li>
                 <!--end::Nav item-->
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="/metronic8/demo1/../demo1/account/settings.html">Fiche client</a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#customer">Fiche client</a>
                 </li>
                 <!--end::Nav item-->
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="/metronic8/demo1/../demo1/account/security.html">Compte bancaire</a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#wallets">Compte bancaire</a>
                 </li>
                 <!--end::Nav item-->
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="/metronic8/demo1/../demo1/account/billing.html">Fichiers</a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#files">Fichiers</a>
                 </li>
                 <!--end::Nav item-->
             </ul>
@@ -261,7 +261,7 @@
     </div>
     <div class="tab-content" id="myTabContent">
         <!--begin:::Tab pane-->
-        <div class="tab-pane fade show active" id="overview" role="tabpanel">
+        <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
         </div>
     </div>
 @endsection
