@@ -204,11 +204,11 @@
 																			</svg>
 																		</span>
                                         <!--end::Svg Icon-->
-                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="4500" data-kt-countup-prefix="$" data-kt-initialized="1">$4,500</div>
+                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ \App\Helper\CustomerHelper::getAmountAllDeposit($customer) }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ \App\Helper\CustomerHelper::getAmountAllDeposit($customer) }}</div>
                                     </div>
                                     <!--end::Number-->
                                     <!--begin::Label-->
-                                    <div class="fw-semibold fs-6 text-gray-400">Earnings</div>
+                                    <div class="fw-semibold fs-6 text-gray-400">Dépots</div>
                                     <!--end::Label-->
                                 </div>
                                 <!--end::Stat-->
