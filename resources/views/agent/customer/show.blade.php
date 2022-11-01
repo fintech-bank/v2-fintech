@@ -133,15 +133,9 @@
                                     </div>
                                     <div class="separator my-2"></div>
                                     <!--end::Menu item-->
-                                    <a href="#" class="menu-link px-3">
-                                        <span class="menu-title">Communication</span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3 my-1">
-                                        <a href="#" class="menu-link px-3">Settings</a>
+                                    <div class="menu-item px-3">
+                                        <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Communication</div>
                                     </div>
-                                    <!--end::Menu item-->
                                 </div>
                                 <!--end::Menu 3-->
                             </div>
