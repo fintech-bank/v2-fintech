@@ -360,7 +360,7 @@
             $.ajax({
                 url: '/auth/register',
                 data: {"customer_id": {{ $customer->id }}},
-                success: data => {
+                success: () => {
                     toastr.success(`L'authentification forte à été paramétré`, `Authentification 2FA`)
                 }
             })
