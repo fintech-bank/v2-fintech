@@ -250,6 +250,7 @@
                                 @else
                                     <div class="bg-success rounded h-5px" role="progressbar" style="width: {{ $customer->cotation * 10 }}%;" aria-valuenow="{{ $customer->cotation * 10 }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 @endif
+                                <span class="text-muted">Basée sur l'ensemble des mouvements de tous les comptes</span>
                             </div>
                         </div>
                         <!--end::Progress-->
