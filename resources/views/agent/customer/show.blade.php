@@ -31,9 +31,9 @@
 @endsection
 
 @section("content")
-
+    <div id="app"></div>
 @endsection
 
 @section("script")
-    @include("agent.scripts.customer.index")
+    @include("agent.scripts.customer.show")
 @endsection
