@@ -54,9 +54,10 @@
                                 <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $customer->info->full_name }}</a>
 
                                 <a href="#">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen026.svg-->
                                     <i class="fa-solid fa-user-check fs-3 {{ $customer->info->isVerified ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->isVerified ? "Client Vérifié" : "Client non vérifier" }}"></i>
-                                    <!--end::Svg Icon-->
+                                </a>
+                                <a href="#">
+                                    <i class="fa-solid fa-house-circle-check fs-3 {{ $customer->info->addressVerified ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->addressVerified ? "Adresse Postal Vérifié" : "Adresse Postal non vérifier" }}"></i>
                                 </a>
                                 <a href="#" class="btn btn-sm btn-light-success fw-bold ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade to Pro</a>
                             </div>
