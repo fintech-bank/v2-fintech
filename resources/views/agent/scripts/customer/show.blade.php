@@ -5,7 +5,10 @@
     let forms = {}
     let dataTable = {}
     let block = {
-        blockApp: messageBlock(document.querySelector('#app'), 'Chargement en cours..')
+        blockApp: new KTBlockUI(document.querySelector("#app"), {
+            message: `<div class="blockui-message"><span class="spinner-border text-primary"></span> Chargement en cours...</div>`,
+            overlayClass: "bg-gray-600",
+        })
     }
 
     block.blockApp.block()
