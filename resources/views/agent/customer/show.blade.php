@@ -232,26 +232,6 @@
                                     <!--end::Label-->
                                 </div>
                                 <!--end::Stat-->
-                                <!--begin::Stat-->
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <!--begin::Number-->
-                                    <div class="d-flex align-items-center">
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                        <span class="svg-icon svg-icon-3 svg-icon-success me-2">
-																			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																				<rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor"></rect>
-																				<path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor"></path>
-																			</svg>
-																		</span>
-                                        <!--end::Svg Icon-->
-                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="60" data-kt-countup-prefix="%" data-kt-initialized="1">%60</div>
-                                    </div>
-                                    <!--end::Number-->
-                                    <!--begin::Label-->
-                                    <div class="fw-semibold fs-6 text-gray-400">Success Rate</div>
-                                    <!--end::Label-->
-                                </div>
-                                <!--end::Stat-->
                             </div>
                             <!--end::Stats-->
                         </div>
@@ -259,11 +239,17 @@
                         <!--begin::Progress-->
                         <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
                             <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                <span class="fw-semibold fs-6 text-gray-400">Profile Compleation</span>
-                                <span class="fw-bold fs-6">50%</span>
+                                <span class="fw-semibold fs-6 text-gray-400">Cotation du client</span>
+                                <span class="fw-bold fs-6">{{ $customer->cotation * 10 }}%</span>
                             </div>
                             <div class="h-5px mx-3 w-100 bg-light mb-3">
-                                <div class="bg-success rounded h-5px" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                @if($customer->cotation < 4)
+                                    <div class="bg-danger rounded h-5px" role="progressbar" style="width: {{ $customer->cotation * 10 }}%;" aria-valuenow="{{ $customer->cotation * 10 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                @elseif($customer->cotation >= 4 && $customer->cotation <= 7)
+                                    <div class="bg-warning rounded h-5px" role="progressbar" style="width: {{ $customer->cotation * 10 }}%;" aria-valuenow="{{ $customer->cotation * 10 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                @else
+                                    <div class="bg-success rounded h-5px" role="progressbar" style="width: {{ $customer->cotation * 10 }}%;" aria-valuenow="{{ $customer->cotation * 10 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                @endif
                             </div>
                         </div>
                         <!--end::Progress-->
