@@ -259,6 +259,11 @@
             <!--begin::Navs-->
         </div>
     </div>
+    <div class="tab-content" id="myTabContent">
+        <!--begin:::Tab pane-->
+        <div class="tab-pane fade show active" id="overview" role="tabpanel">
+        </div>
+    </div>
 @endsection
 
 @section("script")
