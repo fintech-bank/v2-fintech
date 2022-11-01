@@ -55,7 +55,7 @@
 
                                 <a href="#">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen026.svg-->
-                                    <i class="fa-solid fa-user-check fs-2"></i>
+                                    <i class="fa-solid fa-user-check fs-3 {{ $customer->info->isVerified ? 'text-success' : 'text-secondary' }}"></i>
                                     <!--end::Svg Icon-->
                                 </a>
                                 <a href="#" class="btn btn-sm btn-light-success fw-bold ms-2 fs-8 py-1 px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade to Pro</a>
