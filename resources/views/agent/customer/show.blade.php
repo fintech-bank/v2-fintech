@@ -442,6 +442,41 @@
                     </a>
                 </div>
             </div>
+            <div class="row g-5 g-xl-8">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Dernière transactions</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table border table-striped gx-5 gy-5">
+                                <thead>
+                                    <tr>
+                                        <th>Libellé</th>
+                                        <th>Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($customer->wallets()->where('type', '!=', 'pret')->get() as $wallet)
+                                        @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at')->limit(5)->get() as $transaction)
+                                            <tr>
+                                                <td>
+                                                    <span>{{ $transaction->designation }}</span>
+                                                    <span>{{ $transaction->type }}</span>
+                                                </td>
+                                                <td>{{ $transaction->amount }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
