@@ -262,6 +262,186 @@
     <div class="tab-content" id="myTabContent">
         <!--begin:::Tab pane-->
         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
+            <div class="row g-5 g-xl-8">
+                <div class="col-xl-3">
+                    <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
+                            <span class="svg-icon svg-icon-success svg-icon-3x ms-n1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M13 9.59998V21C13 21.6 12.6 22 12 22C11.4 22 11 21.6 11 21V9.59998H13Z"
+                                                fill="currentColor"/>
+                                            <path opacity="0.3"
+                                                  d="M4 9.60002H20L12.7 2.3C12.3 1.9 11.7 1.9 11.3 2.3L4 9.60002Z"
+                                                  fill="currentColor"/>
+                                            </svg>
+										</span>
+                            <!--end::Svg Icon-->
+                            <div
+                                class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">{{ \App\Helper\CustomerHelper::getAmountAllDeposit($customer) }}</div>
+                            <div class="fw-bold text-gray-400">Total déposé</div>
+                        </div>
+                        <!--end::Body-->
+                    </a>
+                </div>
+                <div class="col-xl-3">
+                    <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
+                            <span class="svg-icon svg-icon-danger svg-icon-3x ms-n1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none">
+                                            <path opacity="0.5"
+                                                  d="M13 14.4V3.00003C13 2.40003 12.6 2.00003 12 2.00003C11.4 2.00003 11 2.40003 11 3.00003V14.4H13Z"
+                                                  fill="currentColor"/>
+                                            <path
+                                                d="M5.7071 16.1071C5.07714 15.4771 5.52331 14.4 6.41421 14.4H17.5858C18.4767 14.4 18.9229 15.4771 18.2929 16.1071L12.7 21.7C12.3 22.1 11.7 22.1 11.3 21.7L5.7071 16.1071Z"
+                                                fill="currentColor"/>
+                                            </svg>
+										</span>
+                            <!--end::Svg Icon-->
+                            <div
+                                class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">{{ \App\Helper\CustomerHelper::getAmountAllWithdraw($customer) }}</div>
+                            <div class="fw-bold text-gray-400">Total Retiré</div>
+                        </div>
+                        <!--end::Body-->
+                    </a>
+                </div>
+                <div class="col-xl-3">
+                    <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
+                            <span class="svg-icon svg-icon-primary svg-icon-3x ms-n1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M7 6.59998V20C7 20.6 7.4 21 8 21C8.6 21 9 20.6 9 20V6.59998H7ZM15 17.4V4C15 3.4 15.4 3 16 3C16.6 3 17 3.4 17 4V17.4H15Z"
+                                                fill="currentColor"/>
+                                            <path opacity="0.3"
+                                                  d="M3 6.59999H13L8.7 2.3C8.3 1.9 7.7 1.9 7.3 2.3L3 6.59999ZM11 17.4H21L16.7 21.7C16.3 22.1 15.7 22.1 15.3 21.7L11 17.4Z"
+                                                  fill="currentColor"/>
+                                            </svg>
+										</span>
+                            <!--end::Svg Icon-->
+                            <div
+                                class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">{{ \App\Helper\CustomerHelper::getAmountAllTransfers($customer) }}</div>
+                            <div class="fw-bold text-gray-400">Total Transféré</div>
+                        </div>
+                        <!--end::Body-->
+                    </a>
+                </div>
+                <div class="col-xl-3">
+                    <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
+                            <span class="svg-icon svg-icon-primary svg-icon-3x ms-n1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none">
+                                            <path opacity="0.3"
+                                                  d="M3.20001 5.91897L16.9 3.01895C17.4 2.91895 18 3.219 18.1 3.819L19.2 9.01895L3.20001 5.91897Z"
+                                                  fill="currentColor"/>
+                                            <path opacity="0.3"
+                                                  d="M13 13.9189C13 12.2189 14.3 10.9189 16 10.9189H21C21.6 10.9189 22 11.3189 22 11.9189V15.9189C22 16.5189 21.6 16.9189 21 16.9189H16C14.3 16.9189 13 15.6189 13 13.9189ZM16 12.4189C15.2 12.4189 14.5 13.1189 14.5 13.9189C14.5 14.7189 15.2 15.4189 16 15.4189C16.8 15.4189 17.5 14.7189 17.5 13.9189C17.5 13.1189 16.8 12.4189 16 12.4189Z"
+                                                  fill="currentColor"/>
+                                            <path
+                                                d="M13 13.9189C13 12.2189 14.3 10.9189 16 10.9189H21V7.91895C21 6.81895 20.1 5.91895 19 5.91895H3C2.4 5.91895 2 6.31895 2 6.91895V20.9189C2 21.5189 2.4 21.9189 3 21.9189H19C20.1 21.9189 21 21.0189 21 19.9189V16.9189H16C14.3 16.9189 13 15.6189 13 13.9189Z"
+                                                fill="currentColor"/>
+                                            </svg>
+										</span>
+                            <!--end::Svg Icon-->
+                            <div
+                                class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">{{ \App\Helper\CustomerHelper::getAmountAllTransactions($customer) }}</div>
+                            <div class="fw-bold text-gray-400">Transactions</div>
+                        </div>
+                        <!--end::Body-->
+                    </a>
+                </div>
+                <div class="col-xl-3">
+                    <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
+                            <span class="svg-icon svg-icon-primary svg-icon-3x ms-n1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none">
+                                            <path opacity="0.3"
+                                                  d="M15.8 11.4H6C5.4 11.4 5 11 5 10.4C5 9.80002 5.4 9.40002 6 9.40002H15.8C16.4 9.40002 16.8 9.80002 16.8 10.4C16.8 11 16.3 11.4 15.8 11.4ZM15.7 13.7999C15.7 13.1999 15.3 12.7999 14.7 12.7999H6C5.4 12.7999 5 13.1999 5 13.7999C5 14.3999 5.4 14.7999 6 14.7999H14.8C15.3 14.7999 15.7 14.2999 15.7 13.7999Z"
+                                                  fill="currentColor"/>
+                                            <path
+                                                d="M18.8 15.5C18.9 15.7 19 15.9 19.1 16.1C19.2 16.7 18.7 17.2 18.4 17.6C17.9 18.1 17.3 18.4999 16.6 18.7999C15.9 19.0999 15 19.2999 14.1 19.2999C13.4 19.2999 12.7 19.2 12.1 19.1C11.5 19 11 18.7 10.5 18.5C10 18.2 9.60001 17.7999 9.20001 17.2999C8.80001 16.8999 8.49999 16.3999 8.29999 15.7999C8.09999 15.1999 7.80001 14.7 7.70001 14.1C7.60001 13.5 7.5 12.8 7.5 12.2C7.5 11.1 7.7 10.1 8 9.19995C8.3 8.29995 8.79999 7.60002 9.39999 6.90002C9.99999 6.30002 10.7 5.8 11.5 5.5C12.3 5.2 13.2 5 14.1 5C15.2 5 16.2 5.19995 17.1 5.69995C17.8 6.09995 18.7 6.6 18.8 7.5C18.8 7.9 18.6 8.29998 18.3 8.59998C18.2 8.69998 18.1 8.69993 18 8.79993C17.7 8.89993 17.4 8.79995 17.2 8.69995C16.7 8.49995 16.5 7.99995 16 7.69995C15.5 7.39995 14.9 7.19995 14.2 7.19995C13.1 7.19995 12.1 7.6 11.5 8.5C10.9 9.4 10.5 10.6 10.5 12.2C10.5 13.3 10.7 14.2 11 14.9C11.3 15.6 11.7 16.1 12.3 16.5C12.9 16.9 13.5 17 14.2 17C15 17 15.7 16.8 16.2 16.4C16.8 16 17.2 15.2 17.9 15.1C18 15 18.5 15.2 18.8 15.5Z"
+                                                fill="currentColor"/>
+                                            </svg>
+										</span>
+                            <!--end::Svg Icon-->
+                            <div
+                                class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">{{ \App\Helper\CustomerHelper::getCountAllLoan($customer) }}</div>
+                            <div class="fw-bold text-gray-400">Prets</div>
+                        </div>
+                        <!--end::Body-->
+                    </a>
+                </div>
+                <div class="col-xl-4">
+                    <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
+                            <span class="svg-icon svg-icon-primary svg-icon-3x ms-n1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M6 20C6 20.6 5.6 21 5 21C4.4 21 4 20.6 4 20H6ZM18 20C18 20.6 18.4 21 19 21C19.6 21 20 20.6 20 20H18Z"
+                                                fill="currentColor"/>
+                                            <path opacity="0.3"
+                                                  d="M21 20H3C2.4 20 2 19.6 2 19V3C2 2.4 2.4 2 3 2H21C21.6 2 22 2.4 22 3V19C22 19.6 21.6 20 21 20ZM12 10H10.7C10.5 9.7 10.3 9.50005 10 9.30005V8C10 7.4 9.6 7 9 7C8.4 7 8 7.4 8 8V9.30005C7.7 9.50005 7.5 9.7 7.3 10H6C5.4 10 5 10.4 5 11C5 11.6 5.4 12 6 12H7.3C7.5 12.3 7.7 12.5 8 12.7V14C8 14.6 8.4 15 9 15C9.6 15 10 14.6 10 14V12.7C10.3 12.5 10.5 12.3 10.7 12H12C12.6 12 13 11.6 13 11C13 10.4 12.6 10 12 10Z"
+                                                  fill="currentColor"/>
+                                            <path
+                                                d="M18.5 11C18.5 10.2 17.8 9.5 17 9.5C16.2 9.5 15.5 10.2 15.5 11C15.5 11.4 15.7 11.8 16 12.1V13C16 13.6 16.4 14 17 14C17.6 14 18 13.6 18 13V12.1C18.3 11.8 18.5 11.4 18.5 11Z"
+                                                fill="currentColor"/>
+                                            </svg>
+										</span>
+                            <!--end::Svg Icon-->
+                            <div
+                                class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">{{ \App\Helper\CustomerHelper::getCoutAllEpargnes($customer) }}</div>
+                            <div class="fw-bold text-gray-400">Epargnes</div>
+                        </div>
+                        <!--end::Body-->
+                    </a>
+                </div>
+                <div class="col-xl-5">
+                    <a href="#" class="card bg-body hoverable card-xl-stretch mb-xl-8">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
+                            <span class="svg-icon svg-icon-primary svg-icon-3x ms-n1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M16.0173 9H15.3945C14.2833 9 13.263 9.61425 12.7431 10.5963L12.154 11.7091C12.0645 11.8781 12.1072 12.0868 12.2559 12.2071L12.6402 12.5183C13.2631 13.0225 13.7556 13.6691 14.0764 14.4035L14.2321 14.7601C14.2957 14.9058 14.4396 15 14.5987 15H18.6747C19.7297 15 20.4057 13.8774 19.912 12.945L18.6686 10.5963C18.1487 9.61425 17.1285 9 16.0173 9Z"
+                                                fill="currentColor"/>
+                                            <rect opacity="0.3" x="14" y="4" width="4" height="4" rx="2"
+                                                  fill="currentColor"/>
+                                            <path
+                                                d="M4.65486 14.8559C5.40389 13.1224 7.11161 12 9 12C10.8884 12 12.5961 13.1224 13.3451 14.8559L14.793 18.2067C15.3636 19.5271 14.3955 21 12.9571 21H5.04292C3.60453 21 2.63644 19.5271 3.20698 18.2067L4.65486 14.8559Z"
+                                                fill="currentColor"/>
+                                            <rect opacity="0.3" x="6" y="5" width="6" height="6" rx="3"
+                                                  fill="currentColor"/>
+                                            </svg>
+										</span>
+                            <!--end::Svg Icon-->
+                            <div
+                                class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">{{ \App\Helper\CustomerHelper::getCountAllBeneficiaires($customer) }}</div>
+                            <div class="fw-bold text-gray-400">Bénéficiaires</div>
+                        </div>
+                        <!--end::Body-->
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
