@@ -463,7 +463,7 @@
                                                 <td>
                                                     <div class="d-flex flex-row">
                                                         {!! $transaction->type_symbol !!}
-                                                        <span data-bs-toggle="popover" data-bs-placement="bottom" title="Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
+                                                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="bottom" title="Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
                                                     </div>
                                                 </td>
                                                 <td>{{ $transaction->amount }}</td>
