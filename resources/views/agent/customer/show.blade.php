@@ -31,7 +31,12 @@
 @endsection
 
 @section("content")
-    <div class="card mb-5 mb-xl-10" data-kt-sticky="true" data-kt-sticky-top="200px" data-kt-sticky-zindex="99">
+    <div class="card mb-5 mb-xl-10" data-kt-sticky="true" data-kt-sticky-offset="{default: false, xl: '200px'}"
+         data-kt-sticky-width="{lg: '250px', xl: '300px'}"
+         data-kt-sticky-left="auto"
+         data-kt-sticky-top="100px"
+         data-kt-sticky-animation="false"
+         data-kt-sticky-zindex="95">
         <div class="card-body pt-9 pb-0">
             <!--begin::Details-->
             <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
