@@ -91,7 +91,7 @@
         block.block()
 
         $.ajax({
-            url: '/api/epargne/' + item.value,
+            url: '/api/core/epargne/' + item.value,
             success: data => {
                 block.release()
                 console.log(data)
