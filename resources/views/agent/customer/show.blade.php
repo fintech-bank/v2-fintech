@@ -96,15 +96,15 @@
                                     <!--end::Heading-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">Changer l'état du compte client</a>
+                                        <a href="#updateStatus" class="menu-link px-3" data-bs-toggle="modal">Changer l'état du compte client</a>
                                     </div>
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">Changer le type de compte</a>
+                                        <a href="#updateAccount" data-bs-toggle="modal" class="menu-link px-3">Changer le type de compte</a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
-                                        <a href="#" class="menu-link px-3">
+                                        <a href="" class="menu-link px-3">
                                             <span class="menu-title">Nouveau compte</span>
                                             <span class="menu-arrow"></span>
                                         </a>
@@ -112,17 +112,17 @@
                                         <div class="menu-sub menu-sub-dropdown w-175px py-4">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Compte Bancaire</a>
+                                                <a href="#createWallet" data-bs-toggle="modal" class="menu-link px-3">Compte Bancaire</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Compte Epargne</a>
+                                                <a href="#createEpargne" data-bs-toggle="modal" class="menu-link px-3">Compte Epargne</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Pret Bancaire</a>
+                                                <a href="#createPret" data-bs-toggle="modal" class="menu-link px-3">Pret Bancaire</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu separator-->
