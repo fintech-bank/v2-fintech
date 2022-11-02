@@ -2,6 +2,8 @@
 
 namespace App\Notifications\Customer;
 
+use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
+use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -38,11 +40,9 @@ class SendSecurePassCodeNotification extends Notification
         return $this->choiceChannel();
     }
 
-    public function toMail($notifiable)
+    public function toFreeMobile($notifiable)
     {
-        return (new MailMessage)
-            ->subject("Votre mot de passe")
-            ->line("Votre code SECUREPASS est: " . $this->code);
+        return (new FreeMobileMessage("Votre code SECUREPASS est: ".$this->code));
     }
 
     public function toTwilio($notifiable)
@@ -54,7 +54,7 @@ class SendSecurePassCodeNotification extends Notification
     private function choiceChannel()
     {
         if(config('app.env') == 'local') {
-            return ['mail'];
+            return [FreeMobileChannel::class];
         } else {
             return [TwilioChannel::class];
         }

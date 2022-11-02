@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3b89f5e71699a91951a7845d1dcdc3e",
+    "content-hash": "ec9c788c83a84ea3dfb97a78428a7986",
     "packages": [
         {
             "name": "1pilotapp/laravel-client",
@@ -69,6 +69,57 @@
                 "source": "https://github.com/1PilotApp/laravel-client/tree/1.0.9"
             },
             "time": "2022-02-09T13:31:27+00:00"
+        },
+        {
+            "name": "akibatech/laravel-free-mobile-sms",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MarceauKa/laravel-free-mobile-sms.git",
+                "reference": "1afadc8fbde3f977a6d957eaac959007aa5145c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MarceauKa/laravel-free-mobile-sms/zipball/1afadc8fbde3f977a6d957eaac959007aa5145c2",
+                "reference": "1afadc8fbde3f977a6d957eaac959007aa5145c2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.1",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Akibatech\\FreeMobileSms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marceau Casals",
+                    "email": "marceau@casals.fr"
+                }
+            ],
+            "description": "Intégration de l'envoi de SMS avec Free Mobile pour Laravel 5",
+            "keywords": [
+                "api",
+                "channel",
+                "free",
+                "laravel",
+                "laravel5",
+                "mobile",
+                "notification",
+                "sms"
+            ],
+            "support": {
+                "issues": "https://github.com/MarceauKa/laravel-free-mobile-sms/issues",
+                "source": "https://github.com/MarceauKa/laravel-free-mobile-sms/tree/1.0.3"
+            },
+            "time": "2017-01-24T17:29:15+00:00"
         },
         {
             "name": "appoly/mail-web",

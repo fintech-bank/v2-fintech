@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Agent\Customer;
 
 use App\Helper\CustomerHelper;
+use App\Helper\DocumentFile;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use App\Notifications\Customer\LogNotification;
+use App\Notifications\Customer\UpdateStatusAccountNotification;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -128,10 +130,26 @@ class CustomerController extends Controller
 
     private function updateStatus(Customer $customer, Request $request)
     {
+        if ($request->get('status_open_account') == 'closed') {
+            DocumentFile::createDoc(
+                $customer,
+                'account close',
+                'Cloture du compte',
+                5,
+                null,
+                false,
+                false,
+                false,
+                true
+            );
+        }
         try {
             $customer->update([
                 'status_open_account' => $request->get('status_open_account')
             ]);
+
+            $customer->user->notify(new UpdateStatusAccountNotification($customer, $customer->status_text));
+
         }catch (\Exception $exception) {
             LogHelper::notify('critical', $exception->getMessage());
             return response()->json($exception->getMessage(), 500);
@@ -140,7 +158,7 @@ class CustomerController extends Controller
         return response()->json();
     }
 
-    private function updateStatus(Customer $customer, Request $request)
+    private function updateType(Customer $customer, Request $request)
     {
         try {
             $customer->update([

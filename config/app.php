@@ -189,6 +189,7 @@ return [
         \Torann\GeoIP\GeoIPServiceProvider::class,
         Obiefy\API\ApiResponseServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
+        Akibatech\FreeMobileSms\ServiceProvider::class,
 
 
         /*
@@ -223,6 +224,7 @@ return [
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+        'Freemobile' => Akibatech\FreeMobileSms\Facade::class,
     ])->toArray(),
 
     'fintech_loan_balance' => 500000,
