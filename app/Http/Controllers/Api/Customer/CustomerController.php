@@ -125,6 +125,28 @@ class CustomerController extends Controller
         return response()->json();
     }
 
+    public function verifAllSolde($customer_id)
+    {
+        $customer = Customer::find($customer_id);
+        $wallets = [];
+
+        foreach ($customer->wallets as $wallet) {
+            if ($wallet->balance_actual < 0 && $wallet->decouvert == 0) {
+                $wallets[] = [
+                    'compte' => $wallet->number_account,
+                    'status' => 'outdated',
+                ];
+            } else {
+                $wallets[] = [
+                    'compte' => $wallet->number_account,
+                    'status' => 'ok',
+                ];
+            }
+        }
+
+        return $wallets;
+    }
+
     private function subscribeAlerta()
     {
         session()->put('subscribe.alerta', true);
