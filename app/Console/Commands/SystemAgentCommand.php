@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Core\Event;
+use App\Models\Customer\Customer;
 use App\Notifications\Agent\CalendarAlert;
+use App\Services\CotationClient;
 use Illuminate\Console\Command;
 
 class SystemAgentCommand extends Command
@@ -33,6 +35,9 @@ class SystemAgentCommand extends Command
             case 'calendarAlert':
                 $this->calendarAlert();
                 break;
+            case 'updateCotation':
+                $this->updateCotation();
+                break;
         }
         return Command::SUCCESS;
     }
@@ -49,5 +54,20 @@ class SystemAgentCommand extends Command
                 }
             }
         }
+    }
+
+    private function updateCotation()
+    {
+        $cotation = new CotationClient();
+        $customers = Customer::all();
+        $arr = [];
+        foreach ($customers as $customer) {
+            $customer->update(['cotation' => $cotation->calc($customer)]);
+            $arr[] = [
+                "client" => $customer->info->full_name,
+                "cotation" => $customer->cotation
+            ];
+        }
+        $this->output->table(["client", "cotation"], $arr);
     }
 }
