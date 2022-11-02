@@ -1,8 +1,8 @@
 @if(session()->has('error'))
-    <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+    <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row w-100 p-5 mb-10 align-items-center">
         <!--begin::Icon-->
         <!--begin::Svg Icon | path: icons/duotune/communication/com003.svg-->
-        <i class="fa fa-times-circle text-white fa-2x"></i>
+        <i class="fa fa-times-circle text-white fs-2tx"></i>
         <!--end::Svg Icon-->
         <!--end::Icon-->
         <!--begin::Content-->
@@ -15,10 +15,10 @@
 @endif
 
 @if(session()->has('info'))
-    <div class="alert alert-dismissible bg-bank d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+    <div class="alert alert-dismissible bg-bank d-flex flex-column flex-sm-row w-100 p-5 mb-10 align-items-center">
         <!--begin::Icon-->
         <!--begin::Svg Icon | path: icons/duotune/communication/com003.svg-->
-        <i class="fa fa-info-circle text-white fa-2x"></i>
+        <i class="fa fa-info-circle text-white fs-2tx"></i>
         <!--end::Svg Icon-->
         <!--end::Icon-->
         <!--begin::Content-->
@@ -31,10 +31,10 @@
 @endif
 
 @if(session()->has('warning'))
-    <div class="alert alert-dismissible bg-warning d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+    <div class="alert alert-dismissible bg-warning d-flex flex-column flex-sm-row w-100 p-5 mb-10 align-items-center">
         <!--begin::Icon-->
         <!--begin::Svg Icon | path: icons/duotune/communication/com003.svg-->
-        <i class="fa fa-exclamation-triangle text-white fa-2x"></i>
+        <i class="fa fa-exclamation-triangle text-white fs-2tx"></i>
         <!--end::Svg Icon-->
         <!--end::Icon-->
         <!--begin::Content-->
@@ -47,10 +47,10 @@
 @endif
 
 @if(session()->has('success'))
-    <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+    <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row w-100 p-5 mb-10 align-items-center">
         <!--begin::Icon-->
         <!--begin::Svg Icon | path: icons/duotune/communication/com003.svg-->
-        <i class="fa fa-check-circle text-white fa-2x"></i>
+        <i class="fa fa-check-circle text-white fs-2tx"></i>
         <!--end::Svg Icon-->
         <!--end::Icon-->
         <!--begin::Content-->
@@ -64,10 +64,10 @@
 
 
 @if ($errors->any())
-    <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+    <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row w-100 p-5 mb-10 align-items-center">
         <!--begin::Icon-->
         <!--begin::Svg Icon | path: icons/duotune/communication/com003.svg-->
-        <i class="fa fa-times-circle text-white fa-2x"></i>
+        <i class="fa fa-times-circle text-white fs-2tx"></i>
         <!--end::Svg Icon-->
         <!--end::Icon-->
         <!--begin::Content-->
