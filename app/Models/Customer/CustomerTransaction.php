@@ -51,12 +51,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMoneyDeposit[] $money_deposits
  * @property-read int|null $money_deposits_count
  * @property-read InvoicePayment|null $invoice_payment
+ * @property-read mixed $type_icon
+ * @property-read mixed $type_symbol
+ * @property-read mixed $type_text
  */
 class CustomerTransaction extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+    protected $appends = ['type_text', 'type_symbol'];
 
     protected $dates = ['created_at', 'updated_at', 'confirmed_at', 'differed_at'];
 
@@ -88,5 +92,32 @@ class CustomerTransaction extends Model
     public function invoice_payment()
     {
         return $this->hasOne(InvoicePayment::class);
+    }
+
+    public function getTypeTextAttribute()
+    {
+        return \Str::ucfirst($this->type);
+    }
+    public function getTypeIconAttribute()
+    {
+        return match ($this->type) {
+            'depot' => 'vaadin:money-deposit',
+            'retrait' => 'vaadin:money-withdraw',
+            'payment' => 'fluent:wallet-credit-card-16-filled',
+            'virement' => 'mdi:bank-transfer',
+            'sepa' => 'mdi:bank-transfer-out',
+            'frais' => 'fluent:feed-16-regular',
+            'souscription' => 'eos-icons:activate-subscriptions-outlined',
+            'autre' => 'fluent-mdl2:checked-out-by-other-12',
+            'facelia' => 'fluent:panel-left-contract-16-filled',
+            default => 'carbon:warning-square',
+        };
+    }
+
+    public function getTypeSymbolAttribute()
+    {
+        return '<div class="symbol symbol-50px symbol-circle" data-bs-toggle="tooltip" title="'.$this->getTypeTextAttribute().'">
+                    <div class="symbol-label"><span class="iconify" data-icon="'.$this->getTypeIconAttribute().'"></span></div>
+                </div>';
     }
 }

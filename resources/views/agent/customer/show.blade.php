@@ -461,8 +461,10 @@
                                         @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at')->limit(5)->get() as $transaction)
                                             <tr>
                                                 <td>
-                                                    <span>{{ $transaction->designation }}</span>
-                                                    <span>{{ $transaction->type }}</span>
+                                                    <div class="d-flex flex-row">
+                                                        {!! $transaction->type_symbol !!}
+                                                        <span data-bs-toggle="popover" data-bs-placement="bottom" title="Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
+                                                    </div>
                                                 </td>
                                                 <td>{{ $transaction->amount }}</td>
                                             </tr>
