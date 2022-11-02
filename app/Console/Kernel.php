@@ -41,8 +41,7 @@ class Kernel extends ConsoleKernel
         // Agent
         $schedule->command('system:agent calendarAlert')
             ->everyFiveMinutes()
-            ->description("Alert Evenement")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Alert Evenement");
 
         $schedule->command('system:agent updateCotation')
             ->daily()
