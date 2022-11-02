@@ -619,6 +619,7 @@
                                         <x-form.select
                                             name="family_situation"
                                             :datas="\App\Helper\CustomerSituationHelper::dataFamilySituation()"
+                                            :value="['key' => $customer->situation->family_situation, 'value' => $customer->situation->family_situation]"
                                             label="Situation Familiale" required="false"/>
                                     </div>
                                 </div>
@@ -627,6 +628,7 @@
                                         <x-form.select
                                             name="logement"
                                             :datas="\App\Helper\CustomerSituationHelper::dataLogement()"
+                                            :value="['key' => $customer->situation->logement, 'value' => $customer->situation->logement]"
                                             label="Dans votre logement, vous êtes" required="false"/>
                                     </div>
                                     <div class="col-6">
