@@ -12,6 +12,7 @@ use App\Models\Reseller\Reseller;
 use App\Models\User;
 use App\Models\User\UserFolder;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
+use App\Services\CotationClient;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
 use App\Services\Twilio\Lookup;
@@ -86,6 +87,9 @@ class HomeController extends Controller
 
     public function test()
     {
+        $cot = new CotationClient();
+        $customer = Customer::find(1);
 
+        dd($cot->calc($customer));
     }
 }
