@@ -4,11 +4,38 @@
         btnPass: document.querySelector('#btnPass'),
         btnCode: document.querySelector('#btnCode'),
         btnAuth: document.querySelector('#btnAuth'),
+        outstanding: document.querySelector('#outstanding'),
+        epargnePlanInfo: document.querySelector("#epargne_plan_info"),
+        pretPlanInfo: document.querySelector("#pret_plan_info"),
     }
-    let modals = {}
+    let modals = {
+        modalUpdateStatusAccount: document.querySelector('#updateStatus'),
+        modalUpdateTypeAccount: document.querySelector('#updateAccount'),
+        modalWriteSms: document.querySelector('#write-sms'),
+        modalWriteMail: document.querySelector('#write-mail'),
+        modalCreateWallet: document.querySelector('#createWallet'),
+        modalCreateEpargne: document.querySelector('#createEpargne'),
+        modalCreatePret: document.querySelector('#createPret'),
+    }
     let forms = {}
     let dataTable = {}
     let block = {}
+
+    let verifSoldesAllWallets = () => {
+        $.ajax({
+            url: `/api/customer/{{ $customer->id }}/verifAllSolde`,
+            success: data => {
+                let arr = Array.from(data)
+
+                arr.forEach(item => {
+                    if (item.status === 'outdated') {
+                        toastr.error(`Le compte ${item.compte} est débiteur, veuillez contacter le client`, 'Compte Débiteur')
+                    }
+                })
+            }
+        })
+    }
+    verifSoldesAllWallets()
 
     elements.btnPass.addEventListener('click', e => {
         e.preventDefault()
