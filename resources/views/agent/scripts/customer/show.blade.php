@@ -94,6 +94,7 @@
             url: '/api/core/epargne/' + item.value,
             success: data => {
                 block.release()
+                block.destroy()
                 console.log(data)
                 modals.modalCreateEpargne.querySelector(".profit_percent").innerHTML = data.profit_percent + ' %'
                 modals.modalCreateEpargne.querySelector(".lock_days").innerHTML = data.lock_days + ' jours'
@@ -121,6 +122,7 @@
             url: '/api/core/pret/' + item.value,
             success: data => {
                 block.release()
+                block.destroy()
                 console.log(data)
                 modals.modalCreatePret.querySelector(".min").innerHTML = new Intl.NumberFormat('fr-FR', {
                     style: 'currency',
