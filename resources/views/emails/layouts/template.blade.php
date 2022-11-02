@@ -289,6 +289,8 @@
             }
         }
     </style>
+    <link href="{{ config('app.url') }}/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{ config('app.url') }}/css/email.css" rel="stylesheet" type="text/css" />
 </head>
 <body
     style="width:100%;font-family:arial, 'helvetica neue', helvetica, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">

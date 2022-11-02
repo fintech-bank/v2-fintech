@@ -6,6 +6,7 @@ use App\Helper\CustomerHelper;
 use App\Helper\DocumentFile;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Notifications\Customer\LogNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
@@ -155,11 +156,35 @@ class CustomerController extends Controller
             return response()->json($exception->getMessage(), 500);
         }
 
-        return response()->json();
+        return response()->json(['status' => $customer->status_text]);
     }
 
     private function updateType(Customer $customer, Request $request)
     {
+        if ($customer->package_id != $request->get('package_id')) {
+            $customer->package_id = $request->get('package_id');
+            $customer->save();
+
+            $package = Package::find($request->get('package_id'));
+
+            $document = $documentFile->createDocument('Avenant Contrat Particulier', $customer, 3, null, true, true, true, now(), true, 'agence.convention_part');
+            $doc = DocumentFile::createDoc(
+                $customer,
+                'convention part',
+                'Avenant Contrat Particulier',
+                3,
+                null,
+                true,
+                true,
+                true,
+                true,
+            );
+
+            LogHelper::insertLogSystem('success', "Avenant à un contrat bancaire pour le client {$customer->info->full_name}", auth()->user());
+
+            // Notification Client
+            $customer->user->notify(new \App\Notifications\Customer\UpdateTypeAccountNotification($customer, $package));
+        }
         try {
             $customer->update([
                 'status_open_account' => $request->get('status_open_account')
