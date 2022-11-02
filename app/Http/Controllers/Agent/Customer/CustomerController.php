@@ -111,6 +111,9 @@ class CustomerController extends Controller
                         'notif_mail' => $request->has('notif_mail') ? 1 : 0,
                     ]);
                     break;
+
+                case 'status':
+
             }
         }catch (\Exception $exception) {
             LogHelper::notify('critical', "Erreur Système", $exception->getMessage());
@@ -121,5 +124,33 @@ class CustomerController extends Controller
         $customer->user->notify(new LogNotification('info', 'Vos informations personnel ont été mise à jours', null));
         return redirect()->back()->with('success', 'Les informations du client ont été mise à jours.');
 
+    }
+
+    private function updateStatus(Customer $customer, Request $request)
+    {
+        try {
+            $customer->update([
+                'status_open_account' => $request->get('status_open_account')
+            ]);
+        }catch (\Exception $exception) {
+            LogHelper::notify('critical', $exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
+        }
+
+        return response()->json();
+    }
+
+    private function updateStatus(Customer $customer, Request $request)
+    {
+        try {
+            $customer->update([
+                'status_open_account' => $request->get('status_open_account')
+            ]);
+        }catch (\Exception $exception) {
+            LogHelper::notify('critical', $exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
+        }
+
+        return response()->json();
     }
 }

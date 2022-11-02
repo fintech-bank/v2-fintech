@@ -894,7 +894,7 @@
                         <div class="mb-10">
                             <label for="package_id" class="form-label">Type de compte</label>
                             <select id="package_id" name="package_id" class="form-control" data-control="select2">
-                                @foreach(\App\Models\Core\Package::all() as $package)
+                                @foreach(\App\Models\Core\Package::where('type_cpt', $customer->info->type)->get() as $package)
                                     <option value="{{ $package->id }}"
                                             @if($customer->package_id == $package->id) selected @endif>{{ $package->name }}
                                         ({{ eur($package->price) }} / par mois)
