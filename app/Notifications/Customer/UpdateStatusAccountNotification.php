@@ -70,7 +70,7 @@ class UpdateStatusAccountNotification extends Notification
             ->subject('Votre compte en ligne')
             ->view('emails.customer.update_status_account', [
                 'customer' => $this->customer,
-                'statusLib' => CustomerHelper::getStatusOpenAccount($this->status),
+                'statusLib' => $this->customer->status_text,
                 'status' => $this->status,
                 'reason' => $this->reason,
             ]);
@@ -88,7 +88,7 @@ class UpdateStatusAccountNotification extends Notification
             'icon' => 'fa-euro-sign',
             'color' => 'primary',
             'title' => 'Votre compte bancaire',
-            'text' => 'Le status de votre compte est passée à: '.CustomerHelper::getStatusOpenAccount($this->status),
+            'text' => 'Le status de votre compte est passée à: '.$this->customer->status_text,
             'time' => now()->shortAbsoluteDiffForHumans(),
         ];
     }
