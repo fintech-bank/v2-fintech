@@ -182,4 +182,9 @@ class CustomerWallet extends Model
         }
     }
 
+    public function ()
+    {
+        
+    }
+
 }
