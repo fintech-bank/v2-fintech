@@ -461,9 +461,9 @@
                                         @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at')->limit(5)->get() as $transaction)
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex flex-row">
+                                                    <div class="d-flex flex-row align-items-center">
                                                         {!! $transaction->type_symbol !!}
-                                                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info me-2'></i>Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
+                                                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
                                                     </div>
                                                 </td>
                                                 <td>{{ $transaction->amount }}</td>
