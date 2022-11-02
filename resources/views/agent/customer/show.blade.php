@@ -479,7 +479,7 @@
                                                             data-bs-placement="right"
                                                             data-bs-html="true"
                                                             title="Mouvement différé"
-                                                            data-bs-content="<div class='d-flex flex-column'><span class='fw-bolder'>Date de différé:</span> {{ $transaction->differed_at->format('d/m/Y') }}</div>"></span>
+                                                            data-bs-content="<div class='d-flex flex-column'><span class='fw-bolder'>Date de différé</span> {{ $transaction->differed_at->format('d/m/Y') }}</div>"></span>
                                                     @endif
                                                 </td>
                                             </tr>
