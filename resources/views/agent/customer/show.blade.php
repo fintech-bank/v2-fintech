@@ -31,12 +31,7 @@
 @endsection
 
 @section("content")
-    <div class="card mb-5 mb-xl-10" data-kt-sticky="true" data-kt-sticky-offset="{default: false, xl: '200px'}"
-         data-kt-sticky-width="{lg: '250px', xl: '300px'}"
-         data-kt-sticky-left="auto"
-         data-kt-sticky-top="100px"
-         data-kt-sticky-animation="false"
-         data-kt-sticky-zindex="95">
+    <div class="card mb-5 mb-xl-10">
         <div class="card-body pt-9 pb-0">
             <!--begin::Details-->
             <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
@@ -495,6 +490,67 @@
                         </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="customer" role="tabpanel">
+            <div class="accordion" id="accordion_customer">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="accordion_customer_header_1">
+                        <button class="accordion-button fs-4 fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion_customer_body_1" aria-expanded="true" aria-controls="accordion_customer_body_1">
+                            <i class="fa-solid fa-house me-3"></i> Adresse Postal
+                        </button>
+                    </h2>
+                    <div id="accordion_customer_body_1" class="accordion-collapse collapse" aria-labelledby="accordion_customer_header_1" data-bs-parent="#accordion_customer">
+                        <div class="accordion-body">
+                            <form action="{{ route('agent.customer.update', $customer->id) }}" method="post">
+                                @csrf
+                                @method('put')
+                                <input type="hidden" name="control" value="address">
+                                <x-form.input
+                                    name="address"
+                                    type="text"
+                                    label="Adresse Postal"
+                                    required="true"
+                                    value="{{ $customer->info->address }}" />
+                                <x-form.input
+                                    name="addressbis"
+                                    type="text"
+                                    label="Complément d'adresse"
+                                    value="{{ $customer->info->addressbis }}"/>
+
+                                <div class="row">
+                                    <div class="col-4">
+                                        <x-form.input
+                                            name="postal"
+                                            type="text"
+                                            label="Code Postal"
+                                            required="true"
+                                            value="{{ $customer->info->postal }}"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-10" id="divCity"></div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-10">
+                                            <label for="country" class="required form-label">
+                                                Pays de résidence
+                                            </label>
+                                            <select id="country" class="form-select form-select-solid" data-placeholder="Selectionnez un pays" name="country">
+                                                <option value=""></option>
+                                                @foreach(\App\Helper\GeoHelper::getAllCountries() as $data)
+                                                    <option value="{{ $data->name }}" @if($customer->info->country == $data->name) selected @endif data-kt-select2-country="{{ $data->flag }}">{{ $data->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <x-form.button />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
