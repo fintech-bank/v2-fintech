@@ -46,6 +46,26 @@ class ServiceSeeder extends Seeder
             'name' => 'TPE Distributeur',
             'price' => 0.00,
             'type_prlv' => 'mensual',
+        ])->create([
+            'name' => 'Changement Code Carte Bancaire',
+            'price' => 0.30,
+            'type_prlv' => 'ponctual',
+        ])->create([
+            'name' => 'Choisir Code Secret',
+            'price' => 0.00,
+            'type_prlv' => 'mensual',
+        ])->create([
+            'name' => 'Assurance Au Quotidien',
+            'price' => 24.00,
+            'type_prlv' => 'annual',
+        ])->create([
+            'name' => 'Retraits DAB illimités',
+            'price' => 2,
+            'type_prlv' => 'mensual',
+        ])->create([
+            'name' => 'Service E-carte Bleu',
+            'price' => 12,
+            'type_prlv' => 'annual',
         ]);
     }
 }

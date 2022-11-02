@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('ficp')->default(false);
             $table->boolean('fcc')->default(false);
             $table->unsignedBigInteger('agent_id')->unsigned()->nullable();
+            $table->string('persona_reference_id')->nullable();
 
             $table->foreignId('user_id')
                             ->constrained()

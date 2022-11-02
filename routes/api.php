@@ -73,12 +73,25 @@ Route::prefix('core')->group(function () {
     });
 
     Route::post('/document', [\App\Http\Controllers\Api\Core\DocumentController::class, 'upload']);
+    Route::get('/bank/status', function () {
+        $bank = new \App\Services\BankFintech();
+        return response()->json($bank->status());
+    });
 
+});
+
+Route::prefix('connect')->group(function () {
+    Route::get('/customer_verify', [\App\Http\Controllers\Api\Connect\ConnectController::class, 'verifyCustomer']);
 });
 
 Route::prefix('user')->group(function () {
     Route::get('list', [\App\Http\Controllers\Api\User\UserController::class, 'lists']);
     Route::get("{user_id}/info", [\App\Http\Controllers\Api\User\UserController::class, 'info']);
+    Route::post('verify/customer', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifyCustomer']);
+    Route::post('verify/domicile', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifyDomicile']);
+    Route::post('verify/revenue', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifyRevenue']);
+    Route::post('signate', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'signateDocument']);
+    Route::get('signate/verify', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifySign']);
 });
 
 Route::prefix('manager')->group(function () {
@@ -102,4 +115,14 @@ Route::prefix('stat')->group(function () {
 
 Route::prefix('calendar')->group(function () {
     Route::post("list", [\App\Http\Controllers\Api\Calendar\CalendarController::class, 'list']);
+});
+
+Route::prefix('webhook')->group(function () {
+    Route::post('personna', function (Request $request) {
+        event(new \App\Events\Core\PersonnaWebbhookEvent($request->all()));
+    });
+});
+
+Route::prefix('customer')->group(function () {
+    Route::post('verifSecure/{code}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifSecure']);
 });

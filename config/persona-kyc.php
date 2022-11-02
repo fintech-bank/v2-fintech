@@ -40,5 +40,5 @@ return [
      | <webhook_prefix>/persona/hook
      |
      */
-    "webhook_prefix" => env("PERSONA_WEBHOOK_PREFIX", ""),
+    "webhook_prefix" => env("PERSONA_WEBHOOK_PREFIX", "/api/webhook/personna"),
 ];

@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 use RTippin\Messenger\Contracts\MessengerProvider;
@@ -112,6 +113,12 @@ use RTippin\Messenger\Traits\Messageable;
  * @property-read mixed $user_group_text
  * @property-read \Illuminate\Database\Eloquent\Collection|UserNotificationSetting[] $settingnotification
  * @property-read int|null $settingnotification_count
+ * @property string|null $authy_id
+ * @property string|null $authy_status
+ * @property string|null $authy_one_touch_uuid
+ * @method static Builder|User whereAuthyId($value)
+ * @method static Builder|User whereAuthyOneTouchUuid($value)
+ * @method static Builder|User whereAuthyStatus($value)
  */
 class User extends Authenticatable
 {

@@ -103,7 +103,8 @@ class UserSeeder extends Seeder
             'status' => 'active',
             'support' => 'infinite',
             'debit' => 'differed',
-            'facelia' => false
+            'facelia' => false,
+            'credit_card_support_id' => 1
         ]);
 
 

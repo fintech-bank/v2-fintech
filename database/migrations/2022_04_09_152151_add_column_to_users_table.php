@@ -22,6 +22,9 @@ return new class extends Migration
             $table->timestamp('last_seen')->nullable();
             $table->string('pushbullet_device_id')->nullable();
             $table->string('avatar')->nullable();
+            $table->string('authy_id')->nullable();
+            $table->string('authy_status')->nullable();
+            $table->uuid('authy_one_touch_uuid')->nullable();
         });
     }
 

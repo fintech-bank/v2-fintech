@@ -69,6 +69,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $status_text
  * @property-read mixed $sum_account
  * @property-read mixed $sum_epargne
+ * @property-read \App\Models\Customer\CustomerInfoInsurance|null $info_insurance
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerInsurance[] $insurances
+ * @property-read int|null $insurances_count
+ * @property string|null $persona_reference_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Customer wherePersonaReferenceId($value)
  */
 class Customer extends Model
 {
@@ -162,6 +167,16 @@ class Customer extends Model
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function info_insurance()
+    {
+        return $this->hasOne(CustomerInfoInsurance::class);
+    }
+
+    public function insurances()
+    {
+        return $this->hasMany(CustomerInsurance::class);
     }
 
     public function getStatusTextAttribute()

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('number');
             $table->enum('status', ['active', 'inactive', 'canceled'])->default('inactive');
             $table->enum('type', ['physique', 'virtuel'])->default('physique');
-            $table->enum('support', ['classic', 'premium', 'infinite'])->default('classic');
+            $table->enum('support', ['classic', 'premium', 'infinite', 'business', 'business_gold', 'affaire', 'affaire_gold', 'corporate'])->default('classic');
             $table->enum('debit', ['immediate', 'differed'])->default('immediate');
             $table->string('cvc', 4);
             $table->boolean('payment_internet')->default(true);
@@ -39,6 +39,11 @@ return new class extends Migration
                             ->constrained()
                             ->cascadeOnUpdate()
                             ->cascadeOnDelete();
+
+            $table->foreignId('credit_card_support_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 

@@ -85,6 +85,9 @@ class SystemSeedCommand extends Command
         $this->info('Seeding: Liste des Services');
         $this->call('db:seed', ['class' => 'ServiceSeeder', 'force']);
 
+        $this->info('Seeding: Liste des Types de cartes');
+        $this->call('db:seed', ['class' => 'CreditCardSupportSeeder', 'force']);
+
         $this->info('Seeding: Liste des Utilisateur de Test');
         $this->call('db:seed', ['class' => 'UserSeeder', 'force']);
 
@@ -102,6 +105,18 @@ class SystemSeedCommand extends Command
 
         $this->info('Seeding: Liste des Dossier Mail par défault');
         $this->call('db:seed', ['class' => 'MailboxFolderSeeder', 'force']);
+
+        $this->info('Seeding: Type d\'assurance');
+        $this->call('db:seed', ['class' => 'InsuranceTypeSeeder', 'force']);
+
+        $this->info('Seeding: Forfait d\'assurance');
+        $this->call('db:seed', ['class' => 'InsurancePackageSeeder', 'force']);
+
+        $this->info('Seeding: Formule des forfaits d\'assurance');
+        $this->call('db:seed', ['class' => 'InsurancePackageFormSeeder', 'force']);
+
+        $this->info('Seeding: Garantie des Formules des forfaits d\'assurance');
+        $this->call('db:seed', ['class' => 'InsurancePackageWarrantySeeder', 'force']);
 
         return 0;
     }

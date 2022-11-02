@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Helper\CustomerWalletHelper;
+use App\Models\Core\CreditCardSupport;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -67,6 +68,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read bool $access_withdraw
  * @property-read mixed $actual_limit_withdraw
  * @property-read mixed $limit_withdraw
+ * @property int $credit_card_support_id
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerCreditCard whereCreditCardSupportId($value)
  */
 class CustomerCreditCard extends Model
 {
@@ -97,6 +100,11 @@ class CustomerCreditCard extends Model
         return $this->hasMany(CustomerTransaction::class);
     }
 
+    public function support()
+    {
+        return $this->belongsTo(CreditCardSupport::class, 'credit_card_support_id');
+    }
+
     public function getLimitWithdrawAttribute()
     {
         return \App\Helper\CustomerCreditCard::getTransactionsMonthWithdraw($this);
@@ -115,4 +123,5 @@ class CustomerCreditCard extends Model
     {
         return \App\Helper\CustomerCreditCard::getTransactionsMonthWithdraw($this) - (-$this->limit_retrait);
     }
+
 }

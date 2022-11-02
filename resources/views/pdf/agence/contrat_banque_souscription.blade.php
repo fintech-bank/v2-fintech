@@ -136,7 +136,7 @@
         rendus dans le cadre de la Convention d’ouverture de compte, la gestion du compte donnera lieu, le cas échéant, à la
         perception de frais de tenue de compte dont le montant et les conditions sont indiqués dans le document « Conditions
         appliquées aux opérations bancaires – particuliers »(1), remis avec le dossier d’ouverture de compte et tenu à la
-        disposition de la clientèle dans les agences SOCIETE GENERALE et sur le site Internet
+        disposition de la clientèle dans les agences {{ config('app.name') }} et sur le site Internet
         {{ config('app.url') }}.
     </p>
     <div class="page-break"></div>
@@ -147,16 +147,15 @@
         <li>Des conditions générales de compte de particuliers</li>
         <li>Des conditions particulières</li>
         <li>De la brochure tarifaire (document intitulé « Tarifs – conditions appliquées aux opérations bancaires ») ;</li>
-        <li>Et de tous les éventuels courriers ou courriels émanant de SOCIETE GENERALE</li>
+        <li>Et de tous les éventuels courriers ou courriels émanant de {{ config('app.name') }}</li>
     </ul>
     <p>
-        L’ouverture du compte dans les livres de SOCIETE GENERALE est réputée effective après vérification du dossier d’ouverture de
-        compte, dûment rempli et signé par le demandeur et accompagné des pièces requises par SOCIETE GENERALE et lorsque les fonds
-        requis pour cette ouverture sont crédités sur le compte ouvert dans les livres de SOCIETE GENERALE.
+        L’ouverture du compte dans les livres de {{ config('app.name') }} est réputée effective après vérification du dossier d’ouverture de
+        compte, dûment rempli et signé par le demandeur et accompagné des pièces requises par {{ config('app.name') }} et lorsque les fonds
+        requis pour cette ouverture sont crédités sur le compte ouvert dans les livres de {{ config('app.name') }}.
     </p>
     <p>
-        SOCIETE GENERALE demeure libre, à tout moment, d'accepter ou de refuser le dossier d’ouverture de compte tant que la SOCIETE
-        GENERALE n’a pas adressé la lettre d’agrément au client.
+        {{ config('app.name') }} demeure libre, à tout moment, d'accepter ou de refuser le dossier d’ouverture de compte tant que la {{ config('app.name') }} n’a pas adressé la lettre d’agrément au client.
     </p>
     <p class="fs-underline">En signant les présentes Conditions Particulières,</p>
     <ul>
@@ -198,14 +197,14 @@
     <div class="mt-10 mb-10 text-center" style="border: solid 2px #000000; background-color: #a4a4a4">Carte de Paiement</div>
     <div class="mb-10">
         <div class="fs-2 fs-underline">NOM DE LA CARTE CHOISIE</div>
-        <p>Carte Visa {{ $data->card->support }} à débit {{ \App\Helper\CustomerCreditCard::getDebit($data->card->debit) }} de {{ \App\Helper\CustomerHelper::getName($customer) }}</p>
+        <p>Carte {{ $data->card->support->name }} à débit {{ \App\Helper\CustomerCreditCard::getDebit($data->card->debit) }} de {{ \App\Helper\CustomerHelper::getName($customer) }}</p>
     </div>
     <div class="mb-10">
         <div class="fs-2 fs-underline">TITULAIRE DE LA CARTE</div>
         {{ \App\Helper\CustomerInfoHelper::getCivility($customer->info->civility) }} {{ $customer->info->lastname }}
     </div>
     <div class="mb-10">
-        <div class="fs-2 fs-underline">Carte Visa {{ Str::ucfirst($data->card->support) }}</div>
+        <div class="fs-2 fs-underline">Carte {{ Str::ucfirst($data->card->support->name) }}</div>
         <p>Carte de débit à autorisation systématique - CB VISA de {{ Str::upper(\App\Helper\CustomerHelper::getName($customer)) }}</p>
         <table class="table table-bordered table-sm gs-5 gy-5">
             <tbody>
@@ -232,7 +231,7 @@
             </tbody>
         </table>
         <p>
-            J'autorise SOCIETE GENERALE à débiter du compte visé ci-dessus le montant de la cotisation annuelle ainsi que les
+            J'autorise {{ config('app.name') }} à débiter du compte visé ci-dessus le montant de la cotisation annuelle ainsi que les
             sommes correspondant aux utilisations de la carte conformément aux dispositions des Conditions Générales de
             fonctionnement des cartes.
         </p>

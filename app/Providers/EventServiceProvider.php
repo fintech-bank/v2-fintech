@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\Core\PersonnaWebbhookEvent;
+use App\Listeners\Core\PersonnaWebhookListener;
 use App\Listeners\Mailbox\ReceiverMailbox;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -20,6 +22,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         \App\Events\Mailbox\ReceiverMailbox::class => [ReceiverMailbox::class],
+        PersonnaWebbhookEvent::class => [PersonnaWebhookListener::class]
     ];
 
     /**

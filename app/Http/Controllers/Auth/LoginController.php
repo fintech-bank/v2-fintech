@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use App\Services\Authy\Authy;
+use App\Services\Authy\AuthyService;
 use App\Services\Registrar;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -34,10 +37,7 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     */
+
     public function __construct()
     {
 
@@ -54,6 +54,7 @@ class LoginController extends Controller
         return view('auths.login');
     }
 
+
     /**
      * The user has been authenticated.
      *
@@ -68,7 +69,7 @@ class LoginController extends Controller
     /**
      * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function logout(Request $request)

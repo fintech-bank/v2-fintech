@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('mobile')->unique();
             $table->string('country_code')->nullable();
             $table->boolean('isVerified')->default(false);
+            $table->boolean('addressVerified')->default(false);
 
             $table->foreignId('customer_id')
                             ->constrained()

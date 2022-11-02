@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Core\PersonnaWebbhookEvent;
 use App\Helper\LogHelper;
 use App\Models\Core\Agency;
 use App\Models\Core\Event;
@@ -85,8 +86,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        $event = Event::find(9);
-
 
     }
 }
