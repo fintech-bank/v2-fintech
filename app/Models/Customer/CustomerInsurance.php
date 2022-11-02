@@ -41,6 +41,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsurance whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsurance whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $type_prlv
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsurance whereTypePrlv($value)
  */
 class CustomerInsurance extends Model
 {

@@ -116,6 +116,9 @@ class CustomerController extends Controller
                     break;
 
                 case 'status':
+                    return $this->updateStatus($customer, $request);
+                case 'type':
+                    return $this->updateType($customer, $request);
 
             }
         }catch (\Exception $exception) {
@@ -182,17 +185,8 @@ class CustomerController extends Controller
             LogHelper::insertLogSystem('success', "Avenant à un contrat bancaire pour le client {$customer->info->full_name}", auth()->user());
 
             // Notification Client
-            $customer->user->notify(new \App\Notifications\Customer\UpdateTypeAccountNotification($customer, $package, "/storage/gdd/{$customer->user->id}/documents/Contrats/"));
+            $customer->user->notify(new \App\Notifications\Customer\UpdateTypeAccountNotification($customer, $package, $doc->url_forlder));
         }
-        try {
-            $customer->update([
-                'status_open_account' => $request->get('status_open_account')
-            ]);
-        }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception->getMessage());
-            return response()->json($exception->getMessage(), 500);
-        }
-
         return response()->json();
     }
 }

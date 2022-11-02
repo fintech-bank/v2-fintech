@@ -42,6 +42,7 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin IdeHelperCustomerDocument
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerDocument signedByClient()
  * @property-read mixed $signed_by_client_label
+ * @property-read mixed $url_forlder
  */
 class CustomerDocument extends Model
 {
