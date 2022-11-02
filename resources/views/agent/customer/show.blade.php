@@ -466,7 +466,7 @@
                                                         <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
                                                     </div>
                                                 </td>
-                                                <td>{{ $transaction->amount }}</td>
+                                                <td>{{ $transaction->amount_format }}</td>
                                             </tr>
                                         @endforeach
                                     @endforeach

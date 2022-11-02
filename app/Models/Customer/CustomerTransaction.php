@@ -54,13 +54,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $type_icon
  * @property-read mixed $type_symbol
  * @property-read mixed $type_text
+ * @property-read mixed $amount_format
  */
 class CustomerTransaction extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['type_text', 'type_symbol'];
+    protected $appends = ['type_text', 'type_symbol', 'amount_format'];
 
     protected $dates = ['created_at', 'updated_at', 'confirmed_at', 'differed_at'];
 
@@ -119,5 +120,10 @@ class CustomerTransaction extends Model
         return '<div class="symbol symbol-'.$size.' symbol-circle me-2" data-bs-toggle="tooltip" title="'.$this->getTypeTextAttribute().'">
                     <div class="symbol-label"><span class="iconify" data-icon="'.$this->getTypeIconAttribute().'"  data-width="30" data-height="30"></span></div>
                 </div>';
+    }
+
+    public function getAmountFormatAttribute()
+    {
+        return eur($this->amount);
     }
 }
