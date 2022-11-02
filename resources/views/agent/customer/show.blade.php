@@ -748,20 +748,24 @@
                                 @csrf
                                 @method("put")
                                 <input type="hidden" name="control" value="communication">
+
                                 <x-form.checkbox
                                     name="notif_sms"
                                     label="Notification commercial SMS"
-                                    value="{{ $customer->setting->notif_sms }}" />
+                                    value="{{ $customer->setting->notif_sms }}"
+                                    checked="{{ $customer->setting->notif_sms ?? false }}"/>
 
                                 <x-form.checkbox
                                     name="notif_app"
                                     label="Notification commercial Application"
-                                    value="{{ $customer->setting->notif_app }}" />
+                                    value="{{ $customer->setting->notif_app }}"
+                                />
 
                                 <x-form.checkbox
                                     name="notif_mail"
                                     label="Notification commercial EMAIL"
-                                    value="{{ $customer->setting->notif_mail }}" />
+                                    value="{{ $customer->setting->notif_mail }}"
+                                />
 
                                 <div class="d-flex justify-content-end">
                                     <x-form.button />
