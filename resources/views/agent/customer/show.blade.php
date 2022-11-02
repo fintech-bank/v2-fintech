@@ -442,56 +442,52 @@
                     </a>
                 </div>
             </div>
-            <div class="row g-5 g-xl-8">
-                <div class="col-md-6">
-                    <div class="card shadow-sm">
-                        <div class="card-header">
-                            <h3 class="card-title">Dernière transactions</h3>
-                        </div>
-                        <div class="card-body">
-                            <table class="table border table-striped gx-5 gy-5">
-                                <thead>
-                                    <tr>
-                                        <th>Libellé</th>
-                                        <th>Montant</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($customer->wallets()->where('type', '!=', 'pret')->get() as $wallet)
-                                        @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at')->limit(5)->get() as $transaction)
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex flex-row align-items-center">
-                                                        {!! $transaction->getTypeSymbolAttribute('20px') !!}
-                                                        <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <span class="me-2">{{ $transaction->amount_format }}</span>
-                                                    @if($transaction->differed)
-                                                        <span
-                                                            class="iconify text-warning"
-                                                            data-icon="fe:difference"
-                                                            data-width="20"
-                                                            data-height="20"
-                                                            data-bs-toggle="popover"
-                                                            data-bs-trigger="hover"
-                                                            data-bs-placement="right"
-                                                            data-bs-html="true"
-                                                            title="Mouvement différé"
-                                                            data-bs-content="<div class='d-flex flex-column'><span class='fw-bolder'>Date de différé</span> {{ $transaction->differed_at->format('d/m/Y') }}</div>"></span>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endforeach
-                                    <tr>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">Dernière transactions</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table border table-striped gx-5 gy-5">
+                        <thead>
+                        <tr>
+                            <th>Libellé</th>
+                            <th>Montant</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($customer->wallets()->where('type', '!=', 'pret')->get() as $wallet)
+                            @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at')->limit(5)->get() as $transaction)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex flex-row align-items-center">
+                                            {!! $transaction->getTypeSymbolAttribute('20px') !!}
+                                            <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="me-2">{{ $transaction->amount_format }}</span>
+                                        @if($transaction->differed)
+                                            <span
+                                                class="iconify text-warning"
+                                                data-icon="fe:difference"
+                                                data-width="20"
+                                                data-height="20"
+                                                data-bs-toggle="popover"
+                                                data-bs-trigger="hover"
+                                                data-bs-placement="right"
+                                                data-bs-html="true"
+                                                title="Mouvement différé"
+                                                data-bs-content="<div class='d-flex flex-column'><span class='fw-bolder'>Date de différé</span> {{ $transaction->differed_at->format('d/m/Y') }}</div>"></span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endforeach
+                        <tr>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
