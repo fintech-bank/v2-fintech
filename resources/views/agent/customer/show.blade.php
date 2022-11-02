@@ -986,7 +986,7 @@
                     @csrf
                     <input type="hidden" name="action" value="wallet">
                     <div class="modal-body">
-                        <div class="d-flex flex-column justify-content-center">
+                        <div class="d-flex flex-column justify-content-center text-center">
                             <i class="fa-solid fa-info-circle fs-2tx text-primary"></i>
                             <div class="fs-2">Vous allez créer un nouveau compte bancaire pour le client: {{ $customer->info->full_name }}</div>
                             <div class="fs-2">Etes-vous sur ?</div>
