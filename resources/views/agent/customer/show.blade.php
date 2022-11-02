@@ -766,6 +766,7 @@
                                     name="notif_mail"
                                     label="Notification commercial EMAIL"
                                     value="{{ $customer->setting->notif_mail }}"
+                                    checked="{{ $customer->setting->notif_mail ?? false }}"
                                 />
 
                                 <div class="d-flex justify-content-end">
