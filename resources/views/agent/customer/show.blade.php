@@ -981,7 +981,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formCreateWallet" action="{{ route('agent.customer.wallet.store', $customer->id) }}"
+                <form id="formCreateWallet" action="/api/customer/{{ $customer->id }}/wallet"
                       method="post">
                     @csrf
                     <input type="hidden" name="action" value="wallet">
