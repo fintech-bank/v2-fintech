@@ -45,6 +45,7 @@ class Select extends Component
         $this->placeholder = $placeholder;
         $this->required = $required;
         $this->value = $value;
+        dd($value);
     }
 
     /**
