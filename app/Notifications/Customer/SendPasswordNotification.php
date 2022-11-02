@@ -43,7 +43,7 @@ class SendPasswordNotification extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -52,23 +52,23 @@ class SendPasswordNotification extends Notification
     }
 
 
-    public function toSlack($notifiable)
+    public function toMail($notifiable)
     {
-        return (new SlackMessage)
-            ->info()
-            ->content("Votre mot de passe provisoire: ".$this->password);
-   }
+        return (new MailMessage)
+            ->subject("Votre mot de passe")
+            ->line("Votre mot de passe est: " . $this->password);
+    }
 
     public function toTwilio($notifiable)
     {
         return (new TwilioSmsMessage())
-            ->content("Votre mot de passe provisoire: ".$this->password);
-   }
+            ->content("Votre mot de passe provisoire: " . $this->password);
+    }
 
     private function choiceChannel()
     {
-        if(config('app.env') == 'local') {
-            return ['slack'];
+        if (config('app.env') == 'local') {
+            return ['mail'];
         } else {
             return [TwilioChannel::class];
         }

@@ -38,11 +38,11 @@ class SendSecurePassCodeNotification extends Notification
         return $this->choiceChannel();
     }
 
-    public function toSlack($notifiable)
+    public function toMail($notifiable)
     {
-        return (new SlackMessage)
-            ->info()
-            ->content("Votre code SECUREPASS est: ".$this->code);
+        return (new MailMessage)
+            ->subject("Votre mot de passe")
+            ->line("Votre code SECUREPASS est: " . $this->code);
     }
 
     public function toTwilio($notifiable)
@@ -54,7 +54,7 @@ class SendSecurePassCodeNotification extends Notification
     private function choiceChannel()
     {
         if(config('app.env') == 'local') {
-            return ['slack'];
+            return ['mail'];
         } else {
             return [TwilioChannel::class];
         }
