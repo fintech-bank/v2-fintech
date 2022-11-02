@@ -811,6 +811,498 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="updateStatus">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Mise à jour du status du compte client</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formUpdateStatus" action="{{ route('agent.customer.updateStatus', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    @method("put")
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="status_open_account" class="form-label">Etat du compte</label>
+                            <select id="status_open_account" name="status_open_account" class="form-control"
+                                    data-control="select2">
+                                <option value="open" @if($customer->status_open_account == 'open') selected @endif>
+                                    Ouverture en cours
+                                </option>
+                                <option value="completed"
+                                        @if($customer->status_open_account == 'completed') selected @endif>Dossier
+                                    Complet
+                                </option>
+                                <option value="accepted"
+                                        @if($customer->status_open_account == 'accepted') selected @endif>Dossier
+                                    Accepter
+                                </option>
+                                <option value="declined"
+                                        @if($customer->status_open_account == 'declined') selected @endif>Dossier
+                                    Refuser
+                                </option>
+                                <option value="terminated"
+                                        @if($customer->status_open_account == 'terminated') selected @endif>Compte actif
+                                </option>
+                                <option value="suspended"
+                                        @if($customer->status_open_account == 'suspended') selected @endif>Compte
+                                    suspendue
+                                </option>
+                                <option value="closed" @if($customer->status_open_account == 'closed') selected @endif>
+                                    Compte clotûrer
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="updateAccount">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Changement de type de compte</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formUpdateAccount" action="{{ route('agent.customer.updateTypeAccount', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    @method("put")
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="package_id" class="form-label">Type de compte</label>
+                            <select id="package_id" name="package_id" class="form-control" data-control="select2">
+                                @foreach(\App\Models\Core\Package::all() as $package)
+                                    <option value="{{ $package->id }}"
+                                            @if($customer->package_id == $package->id) selected @endif>{{ $package->name }}
+                                        ({{ eur($package->price) }} / par mois)
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="write-sms">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Ecrire un sms</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formWriteSms" action="{{ route('agent.customer.writeSms', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <x-form.textarea name="message" label="Message" required="true" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="write-mail">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Ecrire un Email</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formWriteMail" action="{{ route('agent.customer.writeMail', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <x-form.textarea name="message" label="Message" required="true" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="createWallet">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Nouveau compte bancaire</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formCreateWallet" action="{{ route('agent.customer.wallet.store', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    <input type="hidden" name="action" value="wallet">
+                    <div class="modal-body">
+                        <x-base.underline
+                            title="Choix de la carte bancaire" sizeText="fs-2" size="1"/>
+                        <div class="mb-10">
+                            <label for="card_support" class="required form-label">
+                                Type de carte bancaire
+                            </label>
+                            <select id="card_support" class="form-select form-select-solid" data-placeholder="Selectionner un type de carte" name="card_support" required>
+                                <option value=""></option>
+                                <option value="classic" data-card-img="/storage/card/classic.png">Visa Classic</option>
+                                <option value="premium" data-card-img="/storage/card/premium.png">Visa Gold</option>
+                                <option value="infinite" data-card-img="/storage/card/infinite.png">Visa Infinity</option>
+                            </select>
+                        </div>
+                        <div class="mb-10">
+                            <label for="card_debit" class="required form-label">
+                                Type de débit
+                            </label>
+                            <select id="card_debit" class="form-select form-select-solid" data-control="select2" data-placeholder="Selectionner un type de débit" name="card_debit" required>
+                                <option value=""></option>
+                                <option value="immediate">Débit immédiat</option>
+                                <option value="differed">Débit Différé</option>
+                            </select>
+                        </div>
+                        <x-base.underline
+                            title="Découvert" sizeText="fs-2" size="1"/>
+                        <div id="outstanding"></div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="createEpargne">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Nouveau compte épargne</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formCreateEpargne" action="{{ route('agent.customer.wallet.store', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    <input type="hidden" name="action" value="epargne">
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="epargne_plan_id" class="form-label">Plan du compte</label>
+                            <select class="form-select form-select-solid" id="epargne_plan_id" name="epargne_plan_id" data-dropdown-parent="#createEpargne" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un plan d'épargne" onchange="getInfoEpargnePlan(this)">
+                                <option value=""></option>
+                                @foreach(\App\Models\Core\EpargnePlan::all() as $epargne)
+                                    <option value="{{ $epargne->id }}">{{ $epargne->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div id="epargne_plan_info" class="bg-gray-300">
+                            <table class="table gy-5 gs-5">
+                                <tbody>
+                                <tr>
+                                    <td class="fw-bolder">Profit par mois %</td>
+                                    <td class="profit_percent text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Durée de blocage des fond</td>
+                                    <td class="lock_days text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Conditionnement</td>
+                                    <td class="profit_days text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Montant initial obligatoire</td>
+                                    <td class="init text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Limite du compte</td>
+                                    <td class="limit text-right"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-10">
+                            <label for="wallet_payment_id" class="form-label">Compte de retrait</label>
+                            <select class="form-select form-select-solid" id="wallet_payment_id" name="wallet_payment_id" data-dropdown-parent="#createEpargne" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un compte à débiter">
+                                <option value=""></option>
+                                @foreach(\App\Models\Customer\CustomerWallet::where('customer_id', $customer->id)->where('type', 'compte')->where('status', 'active')->get() as $wallet)
+                                    <option value="{{ $wallet->id }}">{{ \App\Helper\CustomerWalletHelper::getNameAccount($wallet) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <x-form.input
+                            name="initial_payment"
+                            type="text"
+                            label="Montant Initial"
+                            placeholder="Montant initial à déposer sur le compte épargne"
+                            required="true" />
+
+                        <x-form.input
+                            name="monthly_payment"
+                            type="text"
+                            label="Montant par mois"
+                            placeholder="Montant à déposer sur le compte épargne tous les mois"
+                            required="true" />
+
+                        <x-form.input
+                            name="monthly_days"
+                            type="text"
+                            label="Jour de prélèvement" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="createPret">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Nouveau pret bancaire</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formCreatePret" action="{{ route('agent.customer.wallet.store', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    <input type="hidden" name="action" value="pret">
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="loan_plan_id" class="form-label">Type de Pret</label>
+                            <select class="form-select form-select-solid" id="loan_plan_id" name="loan_plan_id" data-dropdown-parent="#createPret" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un type de pret" onchange="getInfoPretPlan(this)">
+                                <option value=""></option>
+                                @foreach(\App\Models\Core\LoanPlan::all() as $loan)
+                                    <option value="{{ $loan->id }}">{{ $loan->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div id="pret_plan_info" class="bg-gray-300">
+                            <table class="table gy-5 gs-5">
+                                <tbody>
+                                <tr>
+                                    <td class="fw-bolder">Montant Minimum</td>
+                                    <td class="min text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Montant Maximum</td>
+                                    <td class="max text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Durée Maximal de remboursement</td>
+                                    <td class="duration text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Interet débiteur</td>
+                                    <td class="interest text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Information supplémentaire</td>
+                                    <td class="instruction text-right"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-10">
+                            <label for="wallet_payment_id" class="form-label">Compte de payment</label>
+                            <select class="form-select form-select-solid" id="wallet_payment_id" name="wallet_payment_id" data-dropdown-parent="#createPret" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un compte à débiter">
+                                <option value=""></option>
+                                @foreach(\App\Models\Customer\CustomerWallet::where('customer_id', $customer->id)->where('type', 'compte')->where('status', 'active')->get() as $wallet)
+                                    <option value="{{ $wallet->id }}">{{ \App\Helper\CustomerWalletHelper::getNameAccount($wallet) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <x-form.input
+                            name="amount_loan"
+                            type="text"
+                            label="Montant du pret"
+                            required="true" />
+
+                        <x-form.input
+                            name="duration"
+                            type="text"
+                            label="Durée du pret (Années)"
+                            required="true" />
+
+                        <x-form.input
+                            name="prlv_day"
+                            type="text"
+                            label="Jour de prélèvement" />
+
+                        <div class="mb-10">
+                            <label for="assurance_type" class="form-label">Type d'assurance</label>
+                            <select class="form-select form-select-solid" id="assurance_type" name="assurance_type" data-dropdown-parent="#createPret" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un type d'assurance">
+                                <option value=""></option>
+                                <option value="D">Décès</option>
+                                <option value="DIM">Décès, Invalidité, Maladie</option>
+                                <option value="DIMC">Décès, Invalidité, Maladie, Travail</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="add_credit_card">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white"><i class="fa-solid fa-credit-card me-2"></i> Nouvelle carte bancaire</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formCreateCard" action="{{ route('agent.customer.card.store', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="customer_wallet_id" class="form-label required">Compte Attaché à la carte</label>
+                            <select class="form-select" id="customer_wallet_id" name="customer_wallet_id" data-parent="#add_credit_card" data-control="select2" data-placeholder="Selectionner un compte bancaire" required>
+                                <option value=""></option>
+                                @foreach($customer->wallets()->where('status', 'active')->get() as $wallet)
+                                    <option value="{{ $wallet->id }}">{{ \App\Helper\CustomerWalletHelper::getNameAccount($wallet) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-10">
+                            <label for="type" class="form-label required">Type de carte bancaire</label>
+                            <select class="form-select" id="type" name="type" data-parent="#add_credit_card" data-control="select2" data-placeholder="Selectionner un type de carte" required onchange="getPhysicalInfo(this)">
+                                <option value=""></option>
+                                <option value="physique">Carte Physique</option>
+                                <option value="virtuel">Carte Virtuel</option>
+                            </select>
+                        </div>
+                        <div id="physical_card" class="d-none">
+                            <div class="mb-10">
+                                <label for="support" class="form-label required">Catégorie de la carte bancaire</label>
+                                <select class="form-select" id="support" name="support" data-parent="#add_credit_card" data-placeholder="Selectionner un type de carte">
+                                    <option value=""></option>
+                                    <option value="classic" data-card-img="/storage/card/classic.png">Carte Visa Classic</option>
+                                    <option value="premium" data-card-img="/storage/card/premium.png">Carte Visa Premium</option>
+                                    <option value="infinite" data-card-img="/storage/card/infinite.png">Carte Visa Infinite</option>
+                                </select>
+                            </div>
+                            <div class="mb-10">
+                                <label for="debit" class="form-label required">Type de débit de la carte bancaire</label>
+                                <select class="form-select" id="debit" name="debit" data-parent="#add_credit_card" data-control="select2" data-placeholder="Selectionner un type de débit">
+                                    <option value=""></option>
+                                    <option value="immediate">Débit Immédiat</option>
+                                    <option value="differed">Débit différé</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="virtual_card"></div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="viewChecks">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white" data-content="title"></h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <table class="table table-striped table-hover gs-7" id="liste_remise_checks">
+                        <thead>
+                        <tr>
+                            <th>Numéro de chèque</th>
+                            <th>Identité du chèque</th>
+                            <th>Montant</th>
+                            <th>Date de dépot</th>
+                            <th>Vérifié ?</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="lists"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
