@@ -125,13 +125,13 @@
                 modals.modalCreatePret.querySelector(".min").innerHTML = new Intl.NumberFormat('fr-FR', {
                     style: 'currency',
                     currency: 'EUR'
-                }).format(data.min)
+                }).format(data.minimum)
                 modals.modalCreatePret.querySelector(".max").innerHTML = new Intl.NumberFormat('fr-FR', {
                     style: 'currency',
                     currency: 'EUR'
-                }).format(data.max)
+                }).format(data.maximum)
                 modals.modalCreatePret.querySelector(".duration").innerHTML = data.duration + ' mois'
-                modals.modalCreatePret.querySelector(".interest").innerHTML = data.interests[0].interest + ' %'
+                modals.modalCreatePret.querySelector(".interest").innerHTML = data.tarif[0].interest + ' %'
                 modals.modalCreatePret.querySelector(".instruction").innerHTML = data.instruction
             },
             error: err => {
