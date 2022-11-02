@@ -552,6 +552,252 @@
                         </div>
                     </div>
                 </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="kt_accordion_1_header_2">
+                        <button class="accordion-button fs-4 fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_2" aria-expanded="false" aria-controls="kt_accordion_1_body_2">
+                            <i class="fa-solid fa-phone me-3"></i> Coordonnées
+                        </button>
+                    </h2>
+                    <div id="kt_accordion_1_body_2" class="accordion-collapse collapse" aria-labelledby="kt_accordion_1_header_2" data-bs-parent="#kt_accordion_1">
+                        <div class="accordion-body">
+                            <form action="{{ route('agent.customer.update', $customer->id) }}" method="post">
+                                @csrf
+                                @method("put")
+                                <input type="hidden" name="control" value="coordonnee">
+                                <x-form.input-group
+                                    name="phone"
+                                    label="Numéro de téléphone fixe"
+                                    symbol="<i class='fa-solid fa-phone'></i>"
+                                    placement="left"
+                                    value="{{ $customer->info->phone }}" />
+
+                                <x-form.input-group
+                                    name="mobile"
+                                    label="Numéro de téléphone Portable"
+                                    symbol="<i class='fa-solid fa-mobile'></i>"
+                                    placement="left"
+                                    value="{{ $customer->info->mobile }}" />
+
+                                <x-form.input-group
+                                    name="email"
+                                    label="Adresse Mail"
+                                    symbol="<i class='fa-solid fa-envelope'></i>"
+                                    placement="left"
+                                    value="{{ $customer->user->email }}" />
+
+                                <div class="d-flex justify-content-end">
+                                    <x-form.button />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="kt_accordion_1_header_3">
+                        <button class="accordion-button fs-4 fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_3" aria-expanded="false" aria-controls="kt_accordion_1_body_3">
+                            <i class="fa-solid fa-user me-3"></i> Situation
+                        </button>
+                    </h2>
+                    <div id="kt_accordion_1_body_3" class="accordion-collapse collapse" aria-labelledby="kt_accordion_1_header_3" data-bs-parent="#kt_accordion_1">
+                        <div class="accordion-body">
+                            <form action="{{ route('agent.customer.update', $customer->id) }}" method="post">
+                                @csrf
+                                @method("put")
+                                <input type="hidden" name="control" value="situation">
+
+                                <x-base.underline title="Situation Personnel" size="3" sizeText="fs-1" color="bank" />
+                                <div class="row">
+                                    <div class="col-6">
+                                        <x-form.select
+                                            name="legal_capacity"
+                                            :datas="\App\Helper\CustomerSituationHelper::dataLegalCapacity()"
+                                            label="Capacité Juridique" required="false"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <x-form.select
+                                            name="family_situation"
+                                            :datas="\App\Helper\CustomerSituationHelper::dataFamilySituation()"
+                                            label="Situation Familiale" required="false"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <x-form.select
+                                            name="logement"
+                                            :datas="\App\Helper\CustomerSituationHelper::dataLogement()"
+                                            label="Dans votre logement, vous êtes" required="false"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <x-form.input-date
+                                            name="logement_at"
+                                            type="text"
+                                            label="Depuis le"
+                                            value="{{ $customer->situation->logement_at }}" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <x-form.input-dialer
+                                            name="child"
+                                            label="Nombre d'enfant"
+                                            min="0"
+                                            max="99"
+                                            step="1"
+                                            value="{{ $customer->situation->nb_child }}" />
+                                    </div>
+                                    <div class="col-6">
+                                        <x-form.input-dialer
+                                            name="person_charged"
+                                            label="Nombre de personne à charge"
+                                            min="0"
+                                            max="99"
+                                            step="1"
+                                            value="{{ $customer->situation->person_charged }}" />
+                                    </div>
+                                </div>
+                                <x-base.underline title="Situation Professionnel" size="3" sizeText="fs-1" color="bank" />
+                                <x-form.select
+                                    name="pro_category"
+                                    :datas="\App\Helper\CustomerSituationHelper::dataProCategories()"
+                                    label="Catégorie sociaux Professionnel" />
+
+                                <x-form.input
+                                    name="pro_profession"
+                                    type="text"
+                                    label="Profession"
+                                    value="{{ $customer->situation->pro_profession }}"/>
+
+                                <x-base.underline title="Revenue" size="3" sizeText="fs-1" color="bank" />
+                                <div class="row">
+                                    <div class="col-6">
+                                        <x-form.input-group
+                                            name="pro_incoming"
+                                            label="Revenue Professionnel"
+                                            placement="left"
+                                            symbol="€"
+                                            value="{{ $customer->income->pro_incoming }}" />
+                                    </div>
+                                    <div class="col-6">
+                                        <x-form.input-group
+                                            name="patrimoine"
+                                            label="Patrimoine"
+                                            placement="left"
+                                            symbol="€"
+                                            value="{{ $customer->income->patrimoine }}" />
+                                    </div>
+                                </div>
+                                <x-base.underline title="Charges" size="3" sizeText="fs-1" color="bank" />
+                                <div class="row">
+                                    <div class="col-6">
+                                        <x-form.input-group
+                                            name="rent"
+                                            label="Loyer, mensualité crédit immobilier"
+                                            placement="left"
+                                            symbol="€"
+                                            value="{{ $customer->charge->rent }}"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <x-form.input-group
+                                            name="divers"
+                                            label="Charges Divers (pension, etc...)"
+                                            placement="left"
+                                            symbol="€"
+                                            value="{{ $customer->charge->divers }}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <x-form.input
+                                            name="nb_credit"
+                                            type="text"
+                                            label="Nombre de crédit (Crédit Personnel, Renouvelable, etc...)"
+                                            value="{{ $customer->charge->nb_credit }}"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <x-form.input-group
+                                            name="credit"
+                                            label="Mensualité de vos crédits"
+                                            placement="left"
+                                            symbol="€"
+                                            value="{{ $customer->charge->credit }}"/>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <x-form.button />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="kt_accordion_1_header_4">
+                        <button class="accordion-button fs-4 fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_4" aria-expanded="false" aria-controls="kt_accordion_1_body_3">
+                            <i class="fa-solid fa-message me-3"></i> Communication
+                        </button>
+                    </h2>
+                    <div id="kt_accordion_1_body_4" class="accordion-collapse collapse" aria-labelledby="kt_accordion_1_header_4" data-bs-parent="#kt_accordion_1">
+                        <div class="accordion-body">
+                            <form action="{{ route('agent.customer.update', $customer->id) }}" method="post">
+                                @csrf
+                                @method("put")
+                                <input type="hidden" name="control" value="communication">
+                                <x-form.checkbox
+                                    name="notif_sms"
+                                    label="Notification commercial SMS"
+                                    value="{{ $customer->setting->notif_sms }}" />
+
+                                <x-form.checkbox
+                                    name="notif_app"
+                                    label="Notification commercial Application"
+                                    value="{{ $customer->setting->notif_app }}" />
+
+                                <x-form.checkbox
+                                    name="notif_mail"
+                                    label="Notification commercial EMAIL"
+                                    value="{{ $customer->setting->notif_mail }}" />
+
+                                <div class="d-flex justify-content-end">
+                                    <x-form.button />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header " id="kt_accordion_1_header_5">
+                        <button class="accordion-button bg-light-danger text-hover-danger text-active-danger fs-4 fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_5" aria-expanded="false" aria-controls="kt_accordion_1_body_3">
+                            <i class="fa-solid fa-user-shield me-3"></i> Sécurité
+                        </button>
+                    </h2>
+                    <div id="kt_accordion_1_body_5" class="accordion-collapse collapse" aria-labelledby="kt_accordion_1_header_5" data-bs-parent="#kt_accordion_1">
+                        <div class="accordion-body">
+                            <x-form.button id="btnPass" text="Réinitialiser le mot de passe" :dataset="[
+                                            [
+                                            'name' => 'customer',
+                                            'value' => $customer->id,
+                                            ]
+                                        ]"/>
+                            <x-form.button id="btnCode" text="Réinitialiser le code SECURIPASS" data-customer="{{ $customer->id }}" :dataset="[
+                                            [
+                                            'name' => 'customer',
+                                            'value' => $customer->id,
+                                            ]
+                                        ]"/>
+                            @isset($customer->user->two_factor_secret)
+                                <x-form.button id="btnAuth" text="Réinitialiser l'authentification Double Facteur" data-customer="{{ $customer->id }}" :dataset="[
+                                            [
+                                            'name' => 'customer',
+                                            'value' => $customer->id,
+                                            ]
+                                        ]"/>
+                            @endisset
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
