@@ -753,12 +753,13 @@
                                     name="notif_sms"
                                     label="Notification commercial SMS"
                                     value="{{ $customer->setting->notif_sms }}"
-                                    checked="{{ $customer->setting->notif_sms ?? false }}"/>
+                                    checked="{{ $customer->setting->notif_sms ?? false }}" />
 
                                 <x-form.checkbox
                                     name="notif_app"
                                     label="Notification commercial Application"
                                     value="{{ $customer->setting->notif_app }}"
+                                    checked="{{ $customer->setting->notif_app ?? false }}"
                                 />
 
                                 <x-form.checkbox
