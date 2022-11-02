@@ -125,6 +125,8 @@ Route::prefix('webhook')->group(function () {
 
 Route::prefix('customer')->group(function () {
     Route::post('verifSecure/{code}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifSecure']);
+    Route::post('{customer_id}/write-sms', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'writeSms']);
+    Route::post('{customer_id}/write-mail', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'writeMail']);
     Route::put('{customer_id}/reinitPass', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitPass']);
     Route::put('{customer_id}/reinitCode', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitCode']);
     Route::put('{customer_id}/reinitAuth', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitAuth']);

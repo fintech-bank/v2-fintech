@@ -384,4 +384,83 @@
             })
         })
     })
+
+    $("#country").select2({
+        templateSelection: countryOptions,
+        templateResult: countryOptions
+    })
+    $("#card_support").select2({
+        templateSelection: cardsOptions,
+        templateResult: cardsOptions
+    })
+
+    $("#formCreateWallet").on('submit', e => {
+        e.preventDefault()
+        let form = $("#formCreateWallet")
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+                console.log(data)
+            },
+            error: err => {
+                btn.removeAttr('data-kt-indicator')
+                console.error(err)
+            }
+        })
+    })
+    $("#formCreateEpargne").on('submit', e => {
+        e.preventDefault()
+        let form = $("#formCreateEpargne")
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+                console.log(data)
+            },
+            error: err => {
+                btn.removeAttr('data-kt-indicator')
+                console.error(err)
+            }
+        })
+    })
+    $("#formCreatePret").on('submit', e => {
+        e.preventDefault()
+        let form = $("#formCreatePret")
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+                console.log(data)
+            },
+            error: err => {
+                btn.removeAttr('data-kt-indicator')
+                console.error(err)
+            }
+        })
+    })
 </script>

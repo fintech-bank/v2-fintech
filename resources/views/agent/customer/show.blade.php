@@ -825,10 +825,11 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formUpdateStatus" action="{{ route('agent.customer.updateStatus', $customer->id) }}"
+                <form id="formUpdateStatus" action="{{ route('agent.customer.update', $customer->id) }}"
                       method="post">
                     @csrf
                     @method("put")
+                    <input type="hidden" name="control" value="status">
                     <div class="modal-body">
                         <div class="mb-10">
                             <label for="status_open_account" class="form-label">Etat du compte</label>
@@ -884,10 +885,11 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formUpdateAccount" action="{{ route('agent.customer.updateTypeAccount', $customer->id) }}"
+                <form id="formUpdateAccount" action="{{ route('agent.customer.update', $customer->id) }}"
                       method="post">
                     @csrf
                     @method("put")
+                    <input type="hidden" name="control" value="type">
                     <div class="modal-body">
                         <div class="mb-10">
                             <label for="package_id" class="form-label">Type de compte</label>
@@ -923,7 +925,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formWriteSms" action="{{ route('agent.customer.writeSms', $customer->id) }}"
+                <form id="formWriteSms" action="/api/customer/{{ $customer->id }}/write-sms"
                       method="post">
                     @csrf
                     <div class="modal-body">
@@ -951,7 +953,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formWriteMail" action="{{ route('agent.customer.writeMail', $customer->id) }}"
+                <form id="formWriteMail" action="/api/customer/{{ $customer->id }}/write-mail"
                       method="post">
                     @csrf
                     <div class="modal-body">
@@ -1205,37 +1207,6 @@
                         <x-form.button/>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" tabindex="-1" id="viewChecks">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header bg-bank">
-                    <h3 class="modal-title text-white" data-content="title"></h3>
-
-                    <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-solid fa-xmark text-white"></i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-
-                <div class="modal-body">
-                    <table class="table table-striped table-hover gs-7" id="liste_remise_checks">
-                        <thead>
-                        <tr>
-                            <th>Numéro de chèque</th>
-                            <th>Identité du chèque</th>
-                            <th>Montant</th>
-                            <th>Date de dépot</th>
-                            <th>Vérifié ?</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody id="lists"></tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
