@@ -612,6 +612,7 @@
                                         <x-form.select
                                             name="legal_capacity"
                                             :datas="\App\Helper\CustomerSituationHelper::dataLegalCapacity()"
+                                            :value="['key' => $customer->situation->legal_capacity, 'value' => $customer->situation->legal_capacity]"
                                             label="Capacité Juridique" required="false"/>
                                     </div>
                                     <div class="col-6">
