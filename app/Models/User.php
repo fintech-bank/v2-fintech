@@ -157,6 +157,17 @@ class User extends Authenticatable
         return new \NotificationChannels\Pushbullet\Targets\Device($this->pushbullet_device_id);
     }
 
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForSlack($notification)
+    {
+        return 'https://hooks.slack.com/services/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';
+    }
+
     public function customers()
     {
         return $this->hasOne(Customer::class);

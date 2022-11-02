@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Api\Customer;
 
+use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
+use App\Notifications\Customer\SendPasswordNotification;
+use App\Notifications\Customer\SendSecurePassCodeNotification;
 use App\Notifications\Customer\SendVerificationLinkNotification;
 use App\Services\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class CustomerController extends Controller
 {
@@ -77,11 +81,48 @@ class CustomerController extends Controller
         $customer = Customer::find($request->get('customer_id'));
         $code_customer = base64_decode($customer->auth_code);
 
-        if($code == $code_customer) {
+        if ($code == $code_customer) {
             return response()->json();
         } else {
             return response()->json(['errors' => ['Le code SECURPASS est invalide']], 401);
         }
+    }
+
+    public function reinitPass($customer_id)
+    {
+        $password = \Str::random(8);
+        $customer = Customer::find($customer_id);
+
+        try {
+            $customer->user->update([
+                'password' => \Hash::make($password)
+            ]);
+
+            $customer->user->notify(new SendPasswordNotification($customer, $password));
+        } catch (\Exception $exception) {
+            LogHelper::error($exception, $exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
+        }
+
+        return response()->json();
+    }
+
+    public function reinitCode($customer_id)
+    {
+        $code = random_numeric(4);
+        $customer = Customer::find($customer_id);
+
+        try {
+            $customer->update([
+                'auth_code' => base64_encode($code),
+            ]);
+
+            $customer->user->notify(new SendSecurePassCodeNotification($code));
+        } catch (\Exception $exception) {
+            LogHelper::error($exception, $exception->getMessage());
+            return response()->json($exception->getMessage(), 500);
+        }
+        return response()->json();
     }
 
     private function subscribeAlerta()

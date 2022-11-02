@@ -2,42 +2,29 @@
 
 namespace App\Notifications\Customer;
 
-use App\Models\Customer\Customer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Pushbullet\PushbulletChannel;
-use NotificationChannels\Pushbullet\PushbulletMessage;
-use NotificationChannels\Pushover\PushoverChannel;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
 
-class SendPasswordNotification extends Notification
+class SendSecurePassCodeNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * @var Customer
-     */
-    public $customer;
-    /**
-     * @var string|string
-     */
-    public $password;
+    private $code;
 
     /**
      * Create a new notification instance.
      *
-     * @param Customer $customer
-     * @param string $password
+     * @param $code
      */
-    public function __construct(Customer $customer, string $password)
+    public function __construct($code)
     {
         //
-        $this->customer = $customer;
-        $this->password = $password;
+        $this->code = $code;
     }
 
     /**
@@ -51,19 +38,18 @@ class SendPasswordNotification extends Notification
         return $this->choiceChannel();
     }
 
-
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
             ->info()
-            ->content("Votre mot de passe provisoire: ".$this->password);
-   }
+            ->content("Votre code SECUREPASS est: ".$this->code);
+    }
 
     public function toTwilio($notifiable)
     {
         return (new TwilioSmsMessage())
-            ->content("Votre mot de passe provisoire: ".$this->password);
-   }
+            ->content("Votre code SECUREPASS est: ".$this->code);
+    }
 
     private function choiceChannel()
     {
