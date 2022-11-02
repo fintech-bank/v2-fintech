@@ -100,7 +100,7 @@ class CustomerController extends Controller
 
             $customer->user->notify(new SendPasswordNotification($customer, $password));
         } catch (\Exception $exception) {
-            LogHelper::error($exception->getMessage(), $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception->getMessage(), 500);
         }
 
@@ -119,7 +119,7 @@ class CustomerController extends Controller
 
             $customer->user->notify(new SendSecurePassCodeNotification($code));
         } catch (\Exception $exception) {
-            LogHelper::error($exception->getMessage(), $exception);
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json($exception->getMessage(), 500);
         }
         return response()->json();
