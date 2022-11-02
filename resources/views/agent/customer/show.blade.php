@@ -213,7 +213,7 @@
                         <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
                             <div class="d-flex justify-content-between w-100 mt-auto mb-2">
                                 <span class="fw-semibold fs-6 text-gray-400">Cotation du client</span>
-                                <span class="fw-bold fs-6">{{ $customer->cotation }}%</span>
+                                <span class="fw-bold fs-6">{{ $customer->cotation }}</span>
                             </div>
                             <div class="h-5px mx-3 w-100 bg-light mb-3">
                                 @if($customer->cotation < 4)
