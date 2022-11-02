@@ -118,7 +118,7 @@
         block.block()
 
         $.ajax({
-            url: '/api/pret/' + item.value,
+            url: '/api/core/pret/' + item.value,
             success: data => {
                 block.release()
                 console.log(data)
