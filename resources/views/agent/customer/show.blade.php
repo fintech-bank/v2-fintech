@@ -986,33 +986,11 @@
                     @csrf
                     <input type="hidden" name="action" value="wallet">
                     <div class="modal-body">
-                        <x-base.underline
-                            title="Choix de la carte bancaire" sizeText="fs-2" size="1"/>
-                        <div class="mb-10">
-                            <label for="card_support" class="required form-label">
-                                Type de carte bancaire
-                            </label>
-                            <select id="card_support" class="form-select form-select-solid" data-placeholder="Selectionner un type de carte" name="card_support" required>
-                                <option value=""></option>
-                                <option value="classic" data-card-img="/storage/card/classic.png">Visa Classic</option>
-                                <option value="premium" data-card-img="/storage/card/premium.png">Visa Gold</option>
-                                <option value="infinite" data-card-img="/storage/card/infinite.png">Visa Infinity</option>
-                            </select>
+                        <div class="d-flex flex-column justify-content-center">
+                            <i class="fa-solid fa-info-circle fs-2tx text-primary"></i>
+                            <div class="fs-2">Vous allez créer un nouveau compte bancaire pour le client: {{ $customer->info->full_name }}</div>
+                            <div class="fs-2">Etes-vous sur ?</div>
                         </div>
-                        <div class="mb-10">
-                            <label for="card_debit" class="required form-label">
-                                Type de débit
-                            </label>
-                            <select id="card_debit" class="form-select form-select-solid" data-control="select2" data-placeholder="Selectionner un type de débit" name="card_debit" required>
-                                <option value=""></option>
-                                <option value="immediate">Débit immédiat</option>
-                                <option value="differed">Débit Différé</option>
-                            </select>
-                        </div>
-                        <x-base.underline
-                            title="Découvert" sizeText="fs-2" size="1"/>
-                        <div id="outstanding"></div>
-
                     </div>
 
                     <div class="modal-footer">
@@ -1081,7 +1059,7 @@
                             <select class="form-select form-select-solid" id="wallet_payment_id" name="wallet_payment_id" data-dropdown-parent="#createEpargne" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un compte à débiter">
                                 <option value=""></option>
                                 @foreach(\App\Models\Customer\CustomerWallet::where('customer_id', $customer->id)->where('type', 'compte')->where('status', 'active')->get() as $wallet)
-                                    <option value="{{ $wallet->id }}">{{ \App\Helper\CustomerWalletHelper::getNameAccount($wallet) }}</option>
+                                    <option value="{{ $wallet->id }}">{{ $wallet->name_account }}</option>
                                 @endforeach
                             </select>
                         </div>
