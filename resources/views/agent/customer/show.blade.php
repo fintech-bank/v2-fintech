@@ -663,6 +663,7 @@
                                 <x-form.select
                                     name="pro_category"
                                     :datas="\App\Helper\CustomerSituationHelper::dataProCategories()"
+                                    :value="['key' => $customer->situation->pro_category, 'value' => $customer->situation->pro_category]"
                                     label="Catégorie sociaux Professionnel" />
 
                                 <x-form.input
