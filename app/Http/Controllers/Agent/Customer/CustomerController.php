@@ -167,7 +167,6 @@ class CustomerController extends Controller
 
             $package = Package::find($request->get('package_id'));
 
-            $document = $documentFile->createDocument('Avenant Contrat Particulier', $customer, 3, null, true, true, true, now(), true, 'agence.convention_part');
             $doc = DocumentFile::createDoc(
                 $customer,
                 'convention part',
@@ -183,7 +182,7 @@ class CustomerController extends Controller
             LogHelper::insertLogSystem('success', "Avenant à un contrat bancaire pour le client {$customer->info->full_name}", auth()->user());
 
             // Notification Client
-            $customer->user->notify(new \App\Notifications\Customer\UpdateTypeAccountNotification($customer, $package));
+            $customer->user->notify(new \App\Notifications\Customer\UpdateTypeAccountNotification($customer, $package, "/storage/gdd/{$customer->user->id}/documents/Contrats/"));
         }
         try {
             $customer->update([

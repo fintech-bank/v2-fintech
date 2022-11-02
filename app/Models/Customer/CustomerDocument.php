@@ -50,7 +50,7 @@ class CustomerDocument extends Model
     protected $guarded = [];
 
     protected $dates = ['created_at', 'updated_at', 'signed_at'];
-    protected $append = ['signed_by_client_label'];
+    protected $append = ['signed_by_client_label', 'url_folder'];
 
     public function customer()
     {
@@ -76,5 +76,10 @@ class CustomerDocument extends Model
         } else {
             return "<div class='badge badge-success'>Signé</div>";
         }
+    }
+
+    public function getUrlForlderAttribute()
+    {
+        return '/storage/gdd/'.$this->customer->user->id.'/documents/'.$this->category->name.'/'.$this->name.'.pdf';
     }
 }
