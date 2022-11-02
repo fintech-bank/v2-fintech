@@ -466,7 +466,12 @@
                                                         <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
                                                     </div>
                                                 </td>
-                                                <td>{{ $transaction->amount_format }}</td>
+                                                <td>
+                                                    <span class="me-2">{{ $transaction->amount_format }}</span>
+                                                    @if($transaction->differed)
+                                                        <span class="iconify text-warning" data-icon="fe:difference" data-width="16" data-height="16"></span>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     @endforeach
