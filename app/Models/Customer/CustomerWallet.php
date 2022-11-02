@@ -76,6 +76,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $moneys_count
  * @property float $taux_decouvert
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereTauxDecouvert($value)
+ * @property int $nb_alert
+ * @property-read mixed $name_account
+ * @property-read mixed $name_account_generic
+ * @property-read mixed $status_label
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereNbAlert($value)
+ * @property-read mixed $solde_remaining
+ * @property-read mixed $sum_month_operation
  */
 class CustomerWallet extends Model
 {
@@ -87,7 +94,7 @@ class CustomerWallet extends Model
 
     protected $dates = ['alert_date'];
 
-    protected $appends = ['type_text'];
+    protected $appends = ['type_text', 'status_label', 'name_account', 'name_account_generic', 'sum_month_operation', 'solde_remaining'];
 
     public function customer()
     {
@@ -174,17 +181,66 @@ class CustomerWallet extends Model
      */
     public function getTypeTextAttribute(): ?string
     {
-        switch ($this->type) {
-            case 'compte': return 'Compte Courant';
-            case 'pret': return 'Pret Bancaire';
-            case 'epargne': return 'Compte Epargne';
-            default: return null;
+        return match ($this->type) {
+            'compte' => 'Compte Courant',
+            'pret' => 'Pret Bancaire',
+            'epargne' => 'Compte Epargne',
+            default => null,
+        };
+    }
+
+    public function getStatus($status, $type = null)
+    {
+        if ($type == 'text') {
+            return match ($status) {
+                'pending' => 'En attente',
+                'active' => 'Actif',
+                'suspended' => 'Suspendue',
+                default => 'Clôturer'
+            };
+        } elseif ($type == 'color') {
+            return match ($status) {
+                'pending' => 'info',
+                'active' => 'success',
+                'suspended' => 'warning',
+                default => 'danger'
+            };
+        } else {
+            return match ($status) {
+                'pending' => 'spinner-third',
+                'active' => 'check-circle',
+                'suspended' => 'triangle-exclamation',
+                default => 'xmark-cirlce'
+            };
         }
     }
 
-    public function ()
+    public function getStatusLabelAttribute()
     {
-        
+        return '<span class="badge badge-' . $this->getStatus($this->status, 'color') . '"><i class="fa-solid fa-'.$this->getStatus($this->status).'"></i> ' . $this->getStatus($this->status, 'text') . '</span>';
+    }
+
+    public function getNameAccountAttribute()
+    {
+        return $this->customer->info->full_name.' - '.$this->type_text.' N°'.$this->number_account;
+    }
+
+    public function getNameAccountGenericAttribute()
+    {
+        return $this->type_text.' N°'.$this->number_account;
+    }
+
+    public function getSoldeRemainingAttribute()
+    {
+        return $this->balance_actual + $this->balance_decouvert;
+    }
+
+    public function getSumMonthOperationAttribute()
+    {
+        return $this->transactions()->whereBetween('updated_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->where('confirmed', false)
+            ->orderBy('updated_at', 'desc')
+            ->sum('amount');
     }
 
 }
