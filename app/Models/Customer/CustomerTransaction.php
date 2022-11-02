@@ -116,8 +116,8 @@ class CustomerTransaction extends Model
 
     public function getTypeSymbolAttribute()
     {
-        return '<div class="symbol symbol-50px symbol-circle me-2" data-bs-toggle="tooltip" title="'.$this->getTypeTextAttribute().'">
-                    <div class="symbol-label"><span class="iconify" data-icon="'.$this->getTypeIconAttribute().'"  data-width="32" data-height="32"></span></div>
+        return '<div class="symbol symbol-30px symbol-circle me-2" data-bs-toggle="tooltip" title="'.$this->getTypeTextAttribute().'">
+                    <div class="symbol-label"><span class="iconify" data-icon="'.$this->getTypeIconAttribute().'"  data-width="30" data-height="30"></span></div>
                 </div>';
     }
 }
