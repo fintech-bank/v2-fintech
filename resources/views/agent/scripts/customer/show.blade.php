@@ -34,7 +34,7 @@
         e.target.setAttribute('data-kt-indicator', 'on')
 
         $.ajax({
-            url: `/agence/customers/${elements.btnCode.dataset.customer}/reinitCode`,
+            url: `/api/customer/${elements.btnCode.dataset.customer}/reinitCode`,
             method: 'put',
             success: data => {
                 e.target.removeAttribute('data-kt-indicator')
@@ -53,7 +53,7 @@
             e.target.setAttribute('data-kt-indicator', 'on')
 
             $.ajax({
-                url: `/agence/customers/${elements.btnCode.dataset.customer}/reinitAuth`,
+                url: `/api/customer/${elements.btnCode.dataset.customer}/reinitAuth`,
                 method: 'put',
                 success: data => {
                     e.target.removeAttribute('data-kt-indicator')
