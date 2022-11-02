@@ -309,57 +309,6 @@
             })
         })
     }
-    elements.btnCreateWallet.addEventListener('click', e => {
-        e.preventDefault()
-
-        $.ajax({
-            url: `/agence/customers/{{ $customer->id }}/wallets/decouvert`,
-            method: 'POST',
-            success: data => {
-                if (data.access == true) {
-                    let eur = new Intl.NumberFormat('fr-FR', {style: 'currency', currency: 'eur'}).format(data.value)
-                    elements.outstanding.innerHTML = `
-                    <div class="alert alert-dismissible bg-light-success d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
-                        <i class="fa-solid fa-check-circle fa-5x text-success"></i>
-                        <div class="text-center">
-                            <h1 class="fw-bolder mb-5">Demande de découvert bancaire</h1>
-                            <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
-                            <div class="mb-9 text-black">
-                                Votre demande de découvert bancaire à été pré-accepter pour un montant maximal de <strong>${new Intl.NumberFormat('fr-FR', {
-                        style: 'currency',
-                        currency: 'eur'
-                    }).format(data.value)}</strong> au taux débiteur de ${data.taux}.
-                            </div>
-                        </div>
-                    </div>
-                    <x-form.checkbox
-                            name="decouvert"
-                            label="Je demande mon découvert bancaire de ${eur}" value="true"/>
-                    <input type="hidden" name="balance_decouvert" value="${data.value}">
-                    `
-                } else {
-                    elements.outstanding.innerHTML = `
-                    <div class="alert bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
-                        <i class="fa-solid fa-times-circle fa-5x text-danger"></i>
-                        <div class="text-center">
-                            <h1 class="fw-bolder mb-5">Demande de découvert bancaire</h1>
-                            <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
-                            <div class="mb-9 text-black">
-                                Votre demande de découvert bancaire à été refuser pour la raison suivante:<br>
-                                <i>${data.error}</i>
-                            </div>
-                        </div>
-                    </div>
-                    `
-                }
-
-                let mods = new bootstrap.Modal(modals.modalCreateWallet).toggle()
-            },
-            error: err => {
-                console.error(err)
-            }
-        })
-    })
     document.querySelectorAll('.callCategory').forEach(call => {
         call.addEventListener('click', e => {
             e.preventDefault();
