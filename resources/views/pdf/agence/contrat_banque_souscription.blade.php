@@ -226,7 +226,7 @@
                 </tr>
                 <tr>
                     <td> Compte Débité:</td>
-                    <td>{{ \App\Helper\CustomerWalletHelper::getNameAccount($data->wallet) }}</td>
+                    <td>{{ $data->wallet->name_account_generic }}</td>
                 </tr>
             </tbody>
         </table>

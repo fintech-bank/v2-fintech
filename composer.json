@@ -40,6 +40,7 @@
         "mmockelyn/laravel-insee": "dev-master",
         "mmockelyn/pushover": "dev-master",
         "pavel-mironchik/laravel-backup-panel": "^2.2",
+        "predis/predis": "^2.0",
         "pusher/pusher-php-server": "^7.2",
         "rplansky/credit-card": "dev-master",
         "rtippin/messenger": "^1.21",
