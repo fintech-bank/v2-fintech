@@ -4,7 +4,7 @@
     </label>
     <select id="{{ $name }}" class="form-select form-select-solid" data-control="select2" @isset($placeholder) data-placeholder="{{ $placeholder }}" @else data-placeholder="{{ $label }}" @endisset name="{{ $name }}">
         @if(isset($value))
-            <option value="{{ $value[0]['key'] }}">{{ $value[0]['value'] }}</option>
+            <option value="{{ $value['key'] }}">{{ $value['value'] }}</option>
         @else
             <option value=""></option>
         @endif
