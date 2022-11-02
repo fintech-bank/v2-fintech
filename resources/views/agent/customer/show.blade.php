@@ -1036,7 +1036,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formCreateEpargne" action="{{ route('agent.customer.wallet.store', $customer->id) }}"
+                <form id="formCreateEpargne" action="/api/customer/{{ $customer->id }}/wallet"
                       method="post">
                     @csrf
                     <input type="hidden" name="action" value="epargne">
@@ -1126,7 +1126,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formCreatePret" action="{{ route('agent.customer.wallet.store', $customer->id) }}"
+                <form id="formCreatePret" action="/api/customer/{{ $customer->id }}/wallet"
                       method="post">
                     @csrf
                     <input type="hidden" name="action" value="pret">
