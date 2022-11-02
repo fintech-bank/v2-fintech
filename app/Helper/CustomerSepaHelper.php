@@ -2,6 +2,9 @@
 
 namespace App\Helper;
 
+use App\Models\Customer\CustomerSepa;
+use Illuminate\Support\Str;
+
 class CustomerSepaHelper
 {
     public static function getStatus($status, $labeled = true)
@@ -35,5 +38,37 @@ class CustomerSepaHelper
                 default: return null;
             }
         }
+    }
+
+    public static function generateMandate()
+    {
+        return "00000/".now()->format('dmY')."/".random_numeric(6);
+    }
+
+    public static function createPrlv($amount, $wallet, $designation, $date_prlv)
+    {
+        $mandate = self::generateMandate();
+
+        $transaction = CustomerTransactionHelper::create(
+            'debit',
+            'sepa',
+            'PRLV EUROPE '.$mandate,
+            $amount,
+            $wallet->id,
+            false,
+            $designation,
+            null,
+            $date_prlv,
+        );
+
+        CustomerSepa::create([
+            'uuid' => Str::uuid(),
+            'creditor' => "FINTECH ASSURANCE",
+            'number_mandate' => self::generateMandate(),
+            'amount' => $amount,
+            'status' => 'waiting',
+            'transaction_id' => $transaction->id,
+            'customer_wallet_id' => $wallet->id
+        ]);
     }
 }

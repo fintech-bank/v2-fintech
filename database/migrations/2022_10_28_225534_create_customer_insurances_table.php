@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('effect_date');
             $table->timestamp('end_date');
             $table->float('mensuality')->default(0);
+            $table->enum('type_prlv', ['mensuel', 'trim', 'annuel', 'ponctuel'])->default('mensuel');
             $table->timestamps();
 
             $table->foreignId('customer_id')

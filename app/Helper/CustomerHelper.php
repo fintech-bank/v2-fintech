@@ -2,6 +2,8 @@
 
 namespace App\Helper;
 
+use App\Jobs\Core\PaymentFirstInsuranceJob;
+use App\Jobs\Core\PaymentSubscriptionJob;
 use App\Models\Core\CreditCardSupport;
 use App\Models\Core\DocumentCategory;
 use App\Models\Customer\Customer;
@@ -547,6 +549,9 @@ class CustomerHelper
                     ]);
                 }
         }
+
+        dispatch(new PaymentSubscriptionJob($customer, $wallet))->delay(now()->addHour());
+
         if (isset($session->subscribe['alerta'])) {
             $setting->update([
                 'alerta' => 1
@@ -673,6 +678,7 @@ class CustomerHelper
         }
 
         $customer->user->notify(new NewContractInsurance($customer, $contract, $documents));
+        dispatch(new PaymentFirstInsuranceJob($customer, $contract, $customer->wallets()->where('type', 'compte')->first()))->delay(now()->addDay());
 
         return $contract;
     }
