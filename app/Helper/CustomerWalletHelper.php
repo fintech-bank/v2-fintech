@@ -4,6 +4,7 @@ namespace App\Helper;
 
 use App\Models\Customer\CustomerWallet;
 use IbanGenerator\Generator;
+use Illuminate\Support\Str;
 
 class CustomerWalletHelper
 {
@@ -37,6 +38,20 @@ class CustomerWalletHelper
             'balance_decouvert' => $bal_decouvert,
             'customer_id' => $customer->id,
         ]);
+
+        $docs = [];
+        $docs[] = DocumentFile::createDoc(
+            $customer,
+            'convention compte',
+            'Convention de compte',
+            3,
+            Str::upper(Str::random(6)),
+            true,
+            true,
+            true,
+            true,
+            ["wallet" => $wallet]
+        );
 
         return $wallet;
     }

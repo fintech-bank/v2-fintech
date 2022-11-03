@@ -255,6 +255,9 @@
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#files">Fichiers</a>
                 </li>
                 <!--end::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#subscriptions">Souscriptions</a>
+                </li>
             </ul>
             <!--begin::Navs-->
         </div>
@@ -457,7 +460,7 @@
                         </thead>
                         <tbody>
                         @foreach($customer->wallets()->where('type', '!=', 'pret')->get() as $wallet)
-                            @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at')->limit(5)->get() as $transaction)
+                            @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at', 'desc')->limit(5)->get() as $transaction)
                                 <tr>
                                     <td>
                                         <div class="d-flex flex-row align-items-center">
