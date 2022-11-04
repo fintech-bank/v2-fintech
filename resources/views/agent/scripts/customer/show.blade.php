@@ -6,11 +6,13 @@
         btnPass: document.querySelector('#btnPass'),
         btnCode: document.querySelector('#btnCode'),
         btnAuth: document.querySelector('#btnAuth'),
+        btnShowFiles: document.querySelectorAll('.showFiles'),
         outstanding: document.querySelector('#outstanding'),
         epargnePlanInfo: document.querySelector("#epargne_plan_info"),
         pretPlanInfo: document.querySelector("#pret_plan_info"),
         filterType: $('[data-kt-wallet-table-filter="type"]'),
         filterStatus: $('[data-kt-wallet-table-filter="status"]'),
+        cardShowFiles: document.querySelector("#showFiles"),
     }
     let modals = {
         modalUpdateStatusAccount: document.querySelector('#updateStatus'),
@@ -32,7 +34,9 @@
             }]
         })
     }
-    let block = {}
+    let block = {
+        blockShowFiles: messageBlock(elements.cardShowFiles, "Chargement des fichiers")
+    }
 
     let verifSoldesAllWallets = () => {
         $.ajax({
@@ -321,6 +325,20 @@
                     e.target.removeAttribute('data-kt-indicator')
                     toastr.error("Erreur lors de la réinitialisation du code", "Erreur système")
                 }
+            })
+        })
+    }
+    if(elements.btnShowFiles) {
+        elements.btnShowFiles.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                $.ajax({
+                    url: '/api/manager/files',
+                    data: {'folder': btn.dataset.folder},
+                    success: data => {
+                        console.log(data)
+                    }
+                })
             })
         })
     }
