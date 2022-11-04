@@ -334,7 +334,7 @@
                 e.preventDefault()
                 $.ajax({
                     url: '/api/manager/files',
-                    data: {'folder': btn.dataset.folder},
+                    data: {'folder': btn.dataset.folder, 'customer': {{ $customer }}},
                     success: data => {
                         console.log(data)
                     }

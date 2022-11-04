@@ -10,6 +10,7 @@ class FilesController extends Controller
 {
     public function lists(Request $request)
     {
+        dd($request->all());
         $folder = $request->query->get('folder');
         $files = Storage::disk("public")->files($folder);
         dd($files);
