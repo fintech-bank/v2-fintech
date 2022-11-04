@@ -43,7 +43,7 @@
                     </div>
                     <div class="card-body py-5">
                         <div class="d-flex flex-row justify-content-between">
-                            <div class="fs-3">{!! $notify['data']['title'] !!}</div>
+                            <div class="fs-3">{!! $notify['data']['text'] !!}</div>
                             <div class="text-end">
                                 <a href="{{ route('admin.account.notify.show', $notify->id) }}" class="text-{{ $notify['data']['color'] }}"><span class="fa-regular fa-circle-right fa-2x"></span> </a>
                             </div>
