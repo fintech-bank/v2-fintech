@@ -949,7 +949,7 @@
                         <div class="card-body">
                             <div class="d-flex flex-column">
                                 @foreach(\App\Models\Core\DocumentCategory::all() as $category)
-                                    <a href="" class="d-flex flex-row align-items-center p-5" data-folder="{{ $category->slug }}">
+                                    <a href="" class="d-flex flex-row align-items-center p-5 fs-2" data-folder="{{ $category->slug }}">
                                         <i class="fa-solid fa-folder me-2 text-primary"></i>
                                         <span class="">{{ $category->name }} ({{ $customer->documents()->where('document_category_id', $category->id)->count() }})</span>
                                     </a>
