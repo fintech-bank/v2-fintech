@@ -11,7 +11,7 @@ class FilesController extends Controller
     public function lists(Request $request)
     {
         $folder = $request->query->get('folder');
-        $files = Storage::disk()->files($folder);
+        $files = Storage::disk("public")->files($folder);
         dd($files);
         return collect($files)
             ->filter(fn(string $file) => !str_starts_with($file, '.'))
