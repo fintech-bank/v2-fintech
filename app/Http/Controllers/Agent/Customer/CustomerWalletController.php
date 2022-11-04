@@ -20,7 +20,6 @@ class CustomerWalletController extends Controller
 {
     public function store(Request $request, $customer_id)
     {
-        dd($request->all());
         $customer = Customer::find($customer_id);
 
         $wallet = CustomerWalletHelper::createWallet(
@@ -33,6 +32,11 @@ class CustomerWalletController extends Controller
             'epargne' => $this->createEpargne($customer, $wallet, $request),
             'pret' => $this->createPret($customer, $wallet, $request)
         };
+
+        return response()->json([
+            'customer' => $customer,
+            'wallet' => $wallet
+        ]);
     }
 
     private function createCompte(Customer $customer, CustomerWallet $wallet)
