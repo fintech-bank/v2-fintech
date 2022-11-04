@@ -964,7 +964,7 @@
                             <h3 class="card-title"></h3>
                         </div>
                         <div class="card-body">
-                            <div class="d-flex flex-stack">
+                            <div class="d-flex flex-stack folderPath">
                                 <!--begin::Folder path-->
                                 <div class="badge badge-lg badge-light-primary">
                                     <div class="d-flex align-items-center flex-wrap">
