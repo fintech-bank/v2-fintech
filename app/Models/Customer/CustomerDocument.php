@@ -88,7 +88,7 @@ class CustomerDocument extends Model
     public function getUrlBreadAttribute()
     {
         $url = $this->getUrlFolderAttribute();
-        $d = explode('/', $url, 2);
+        $d = explode('/', $url, 4);
         return $d;
     }
 }
