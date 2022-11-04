@@ -150,6 +150,13 @@ if (!function_exists('formatDateFrench')) {
     }
 }
 
+if (!function_exists('generateReference')) {
+    function generateReference($length = 8)
+    {
+        return Str::upper(Str::random($length));
+    }
+}
+
 /**
  * check directory exists and try to create it
  *

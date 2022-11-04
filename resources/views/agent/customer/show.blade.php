@@ -987,7 +987,7 @@
                 <form id="formCreateWallet" action="/api/customer/{{ $customer->id }}/wallet"
                       method="post">
                     @csrf
-                    <input type="hidden" name="action" value="wallet">
+                    <input type="hidden" name="action" value="compte">
                     <div class="modal-body">
                         <div class="d-flex flex-column justify-content-center text-center">
                             <i class="fa-solid fa-info-circle fs-2tx text-primary"></i>
