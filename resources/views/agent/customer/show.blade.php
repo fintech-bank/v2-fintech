@@ -943,7 +943,22 @@
             </div>
         </div>
         <div class="tab-pane fade" id="files" role="tabpanel">
-
+            <div class="row">
+                <div class="col-md-4 col-sm-12 mb-10">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex flex-column">
+                                @foreach(\App\Models\Core\DocumentCategory::all() as $category)
+                                    <a href="" class="d-flex flex-row align-items-center" data-folder="{{ $category->slug }}">
+                                        <i class="fa-solid fa-folder me-2 text-primary"></i>
+                                        <span class="">{{ $category->name }} ({{ $category->documents_count }})</span>
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="updateStatus">
