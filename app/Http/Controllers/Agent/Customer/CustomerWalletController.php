@@ -39,9 +39,10 @@ class CustomerWalletController extends Controller
         ]);
     }
 
-    public function show($wallet_id)
+    public function show($number_account)
     {
-
+        $wallet = CustomerWallet::where('number_account', $number_account)->first();
+        dd($wallet);
     }
 
     private function createCompte(Customer $customer, CustomerWallet $wallet)
