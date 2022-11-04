@@ -14,7 +14,7 @@ class Lookup extends Twilio
             $result = $this->client->lookups->v1->phoneNumbers($phone)
                 ->fetch();
         }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception);
+            LogHelper::notify('critical', 'Numéro Inconnue');
             return $exception->getMessage();
         }
 
