@@ -9,6 +9,8 @@
         outstanding: document.querySelector('#outstanding'),
         epargnePlanInfo: document.querySelector("#epargne_plan_info"),
         pretPlanInfo: document.querySelector("#pret_plan_info"),
+        filterType: $('[data-kt-wallet-table-filter="type"]'),
+        filterStatus: $('[data-kt-wallet-table-filter="status"]'),
     }
     let modals = {
         modalUpdateStatusAccount: document.querySelector('#updateStatus'),
@@ -350,6 +352,13 @@
         dataTable.datatableWallet
             .search(e.target.value)
             .draw()
+    })
+    document.querySelector('[data-kt-wallet-table-filter="filter"]').addEventListener("click", () => {
+        const n = elements.filterStatus.val()
+        const c = elements.filterType.val()
+
+        const r = `${n} ${c}`
+        dataTable.datatableWallet.search(r).draw()
     })
 
     $("#country").select2({
