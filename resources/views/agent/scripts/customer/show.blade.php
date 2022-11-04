@@ -346,7 +346,7 @@
             })
         })
     })
-    document.querySelector('[data-kt-customer-table-filter="search"]').addEventListener('keyup', e => {
+    document.querySelector('[data-kt-wallet-table-filter="search"]').addEventListener('keyup', e => {
         dataTable.datatableWallet
             .search(e.target.value)
             .draw()
