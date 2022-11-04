@@ -42,7 +42,9 @@ class CustomerWalletController extends Controller
     public function show($number_account)
     {
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
-        dd($wallet);
+        return view('agent.customer.wallet.show', [
+            'wallet' => $wallet
+        ]);
     }
 
     private function createCompte(Customer $customer, CustomerWallet $wallet)
