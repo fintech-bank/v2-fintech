@@ -896,6 +896,49 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_wallet_table">
+                        <thead>
+                            <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                <th class="min-w-125px">Compte</th>
+                                <th class="min-w-125px">Type de compte</th>
+                                <th class="min-w-125px">Etat du compte</th>
+                                <th class="min-w-125px">Balance</th>
+                                <th class="text-end min-w-70px">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fw-bold text-gray-600">
+                        @foreach($customer->wallets as $wallet)
+                            <tr>
+                                <!--begin::Name=-->
+                                <td>
+                                    {{ $wallet->number_account }}
+                                </td>
+                                <!--end::Name=-->
+                                <!--begin::Email=-->
+                                <td data-filter="{{ $wallet->type }}">
+                                    {!! \App\Helper\CustomerWalletHelper::getTypeWallet($wallet->type, true) !!}
+                                </td>
+
+                                <td data-filter="{{ $wallet->status }}">
+                                    {!! \App\Helper\CustomerWalletHelper::getStatusWallet($wallet->status, true) !!}
+                                </td>
+
+                                <td>
+                                    <strong>Balance Actuel:</strong> {{ eur($wallet->balance_actual) }}<br>
+                                    @if($wallet->balance_coming != 0)
+                                        <strong class="text-muted">A venir:</strong> {{ eur($wallet->balance_coming) }}<br>
+                                    @endif
+                                </td>
+                                <!--end::Email=-->
+                                <!--begin::Action=-->
+                                <td class="text-end">
+                                    <a href="{{ route('agent.customer.wallet.show', [$customer->id, $wallet->id]) }}" class="btn btn-sm btn-circle btn-icon btn-bank" data-bs-toggle="tooltip" data-bs-placement="left" title="Détail"><i class="fa fa-desktop"></i> </a>
+                                </td>
+                                <!--end::Action=-->
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
