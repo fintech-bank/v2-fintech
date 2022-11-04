@@ -1,5 +1,7 @@
 <script type="text/javascript">
-    let tables = {}
+    let tables = {
+        tableWallet: document.querySelector("#kt_wallet_table"),
+    }
     let elements = {
         btnPass: document.querySelector('#btnPass'),
         btnCode: document.querySelector('#btnCode'),
@@ -18,7 +20,16 @@
         modalCreatePret: document.querySelector('#createPret'),
     }
     let forms = {}
-    let dataTable = {}
+    let dataTable = {
+        datatableWallet: $(tables.tableWallet).DataTable({
+            info: !1,
+            order: [],
+            columnDefs: [{
+                orderable: !1,
+                targets: 4
+            }]
+        })
+    }
     let block = {}
 
     let verifSoldesAllWallets = () => {
@@ -334,6 +345,11 @@
                 }
             })
         })
+    })
+    document.querySelector('[data-kt-customer-table-filter="search"]').addEventListener('keyup', e => {
+        dataTable.datatableWallet
+            .search(e.target.value)
+            .draw()
     })
 
     $("#country").select2({
