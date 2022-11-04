@@ -344,10 +344,7 @@
                     success: data => {
                         block.blockShowFiles.release()
                         block.blockShowFiles.destroy()
-                            templateShowFiles(null)
-                        Array.from(data).forEach(d => {
-                            templateShowFiles(d)
-                        })
+                        templateShowFiles(data)
                     }
                 })
             })

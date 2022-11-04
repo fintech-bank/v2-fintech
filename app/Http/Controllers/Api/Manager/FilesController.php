@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Manager;
 
 use App\Http\Controllers\Controller;
+use App\Models\Core\DocumentCategory;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
 use Illuminate\Http\Request;
@@ -15,8 +16,12 @@ class FilesController extends Controller
         $customer = Customer::find($request->get('customer'));
         $folder = $request->query->get('folder');
         $files = $customer->documents()->where('document_category_id', $folder)->with('category')->get();
+        $category = DocumentCategory::find($folder);
 
-        return response()->json($files);
+        return response()->json([
+            'category' => $category,
+            'files' => $files
+        ]);
     }
 
     public function store(UploadFileRequest $request)
