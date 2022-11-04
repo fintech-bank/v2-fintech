@@ -336,7 +336,9 @@
                     url: '/api/manager/files',
                     data: {'folder': btn.dataset.folder, 'customer': {{ $customer->id }}},
                     success: data => {
-                        console.log(data)
+                        Array.from(data).forEach(d => {
+                            console.log(d)
+                        })
                     }
                 })
             })
