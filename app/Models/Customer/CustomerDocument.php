@@ -43,6 +43,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerDocument signedByClient()
  * @property-read mixed $signed_by_client_label
  * @property-read mixed $url_forlder
+ * @property-read mixed $url_folder
  */
 class CustomerDocument extends Model
 {
