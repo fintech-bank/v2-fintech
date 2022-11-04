@@ -337,7 +337,7 @@
                     data: {'folder': btn.dataset.folder, 'customer': {{ $customer->id }}},
                     success: data => {
                         Array.from(data).forEach(d => {
-                            console.log(d)
+                            console.log(d.url_folder)
                         })
                     }
                 })
