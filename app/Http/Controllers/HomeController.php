@@ -87,9 +87,7 @@ class HomeController extends Controller
 
     public function test()
     {
-        $cot = new CotationClient();
-        $customer = Customer::find(1);
-
-        dd($cot->calc($customer));
+        $twilio = new Lookup();
+        dd($twilio->verify("+33407082248"));
     }
 }
