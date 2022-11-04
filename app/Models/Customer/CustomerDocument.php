@@ -51,7 +51,7 @@ class CustomerDocument extends Model
     protected $guarded = [];
 
     protected $dates = ['created_at', 'updated_at', 'signed_at'];
-    protected $append = ['signed_by_client_label', 'url_folder'];
+    protected array $append = ['signed_by_client_label', 'url_folder'];
 
     public function customer()
     {
