@@ -217,7 +217,7 @@ class CustomerWallet extends Model
 
     public function getStatusLabelAttribute()
     {
-        return '<span class="badge badge-' . $this->getStatus($this->status, 'color') . '"><i class="fa-solid fa-'.$this->getStatus($this->status).'"></i> ' . $this->getStatus($this->status, 'text') . '</span>';
+        return '<span class="badge badge-' . $this->getStatus($this->status, 'color') . '"><i class="fa-solid fa-'.$this->getStatus($this->status).' text-white me-2"></i> ' . $this->getStatus($this->status, 'text') . '</span>';
     }
 
     public function getNameAccountAttribute()
