@@ -22,7 +22,8 @@ class FilesController extends Controller
             'category' => $category,
             'files' => $files,
             'bread' => collect(["Documents", $category->name]),
-            'last_bread' => $category->name
+            'last_bread' => $category->name,
+            'count' => $files->count()
         ]);
     }
 
