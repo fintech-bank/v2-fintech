@@ -178,6 +178,7 @@
     }
 
     let templateShowFiles = (data) => {
+        console.log(data)
         elements.cardShowFiles.querySelector('.card-title').innerHTML = `Categorie: ${data.category.name}`
     }
 
