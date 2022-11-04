@@ -39,6 +39,11 @@ class CustomerWalletController extends Controller
         ]);
     }
 
+    public function show($wallet_id)
+    {
+
+    }
+
     private function createCompte(Customer $customer, CustomerWallet $wallet)
     {
         $doc_compte = DocumentFile::createDoc(
