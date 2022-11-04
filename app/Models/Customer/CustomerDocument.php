@@ -43,6 +43,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerDocument signedByClient()
  * @property-read mixed $signed_by_client_label
  * @property-read mixed $url_folder
+ * @property-read mixed $url_bread
  */
 class CustomerDocument extends Model
 {
@@ -51,7 +52,7 @@ class CustomerDocument extends Model
     protected $guarded = [];
 
     protected $dates = ['created_at', 'updated_at', 'signed_at'];
-    protected array $append = ['signed_by_client_label', 'url_folder'];
+    protected array $append = ['signed_by_client_label', 'url_folder', 'url_bread'];
 
     public function customer()
     {
@@ -82,5 +83,12 @@ class CustomerDocument extends Model
     public function getUrlFolderAttribute()
     {
         return '/storage/gdd/'.$this->customer->user->id.'/documents/'.$this->category->name.'/'.$this->name.'.pdf';
+    }
+
+    public function getUrlBreadAttribute()
+    {
+        $url = $this->getUrlFolderAttribute();
+        $d = explode('/', $url);
+        return $d;
     }
 }
