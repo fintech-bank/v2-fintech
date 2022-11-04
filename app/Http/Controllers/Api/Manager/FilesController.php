@@ -12,6 +12,7 @@ class FilesController extends Controller
     {
         $folder = $request->query->get('folder');
         $files = Storage::disk()->files($folder);
+        dd($files);
         return collect($files)
             ->filter(fn(string $file) => !str_starts_with($file, '.'))
             ->values()
