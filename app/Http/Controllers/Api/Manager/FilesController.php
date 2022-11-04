@@ -20,7 +20,9 @@ class FilesController extends Controller
 
         return response()->json([
             'category' => $category,
-            'files' => $files
+            'files' => $files,
+            'bread' => collect(["Documents", $category->name]),
+            'last_bread' => $category->name
         ]);
     }
 
