@@ -14,7 +14,7 @@ class FilesController extends Controller
     {
         $customer = Customer::find($request->get('customer'));
         $folder = $request->query->get('folder');
-        $files = $customer->documents()->where('document_category_id', $folder)->get();
+        $files = $customer->documents()->where('document_category_id', $folder)->with('category')->get();
 
         return response()->json($files);
     }

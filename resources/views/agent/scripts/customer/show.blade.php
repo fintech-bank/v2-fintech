@@ -177,6 +177,10 @@
         })
     }
 
+    let templateShowFiles = (data) => {
+        elements.cardShowFiles.querySelector('.card-title').innerHTML = `Categorie: ${data.}`
+    }
+
     verifSoldesAllWallets()
     citiesFromPostal(document.querySelector("#postal"))
 
@@ -332,12 +336,16 @@
         elements.btnShowFiles.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
+                block.blockShowFiles.block()
                 $.ajax({
                     url: '/api/manager/files',
                     data: {'folder': btn.dataset.folder, 'customer': {{ $customer->id }}},
                     success: data => {
+                        block.blockShowFiles.release()
+                        block.blockShowFiles.destroy()
+
                         Array.from(data).forEach(d => {
-                            console.log(d.url_folder)
+
                         })
                     }
                 })
