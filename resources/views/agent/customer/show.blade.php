@@ -944,14 +944,14 @@
         </div>
         <div class="tab-pane fade" id="files" role="tabpanel">
             <div class="row">
-                <div class="col-md-4 col-sm-12 mb-10">
+                <div class="col-md-3 col-sm-12 mb-10">
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <div class="d-flex flex-column">
                                 @foreach(\App\Models\Core\DocumentCategory::all() as $category)
-                                    <a href="" class="d-flex flex-row align-items-center" data-folder="{{ $category->slug }}">
+                                    <a href="" class="d-flex flex-row align-items-center p-5" data-folder="{{ $category->slug }}">
                                         <i class="fa-solid fa-folder me-2 text-primary"></i>
-                                        <span class="">{{ $category->name }} ({{ $category->documents_count }})</span>
+                                        <span class="">{{ $category->name }} ({{ $customer->documents()->where('document_category_id', $category->id)->count() }})</span>
                                     </a>
                                 @endforeach
                             </div>
