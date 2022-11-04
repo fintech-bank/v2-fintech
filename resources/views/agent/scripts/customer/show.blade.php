@@ -206,7 +206,7 @@
         <!--end::Folder path-->
         <!--begin::Folder Stats-->
         <div class="badge badge-lg badge-primary">
-            <span id="kt_file_manager_items_counter">${data.count} ${ data.count <== 1 ? 'Fichier' : 'Fichiers' }</span>
+            <span id="kt_file_manager_items_counter">${data.count} ${ data.count <= 1 ? 'Fichier' : 'Fichiers' }</span>
         </div>
         <!--end::Folder Stats-->
         `
