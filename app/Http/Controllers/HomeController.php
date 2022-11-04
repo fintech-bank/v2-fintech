@@ -88,6 +88,6 @@ class HomeController extends Controller
     public function test()
     {
         $twilio = new Lookup();
-        dd($twilio->verify("+33407082248"));
+        dd($twilio->verify("+33407082248")->toArray());
     }
 }
