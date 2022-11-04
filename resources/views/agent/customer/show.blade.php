@@ -916,11 +916,11 @@
                                 <!--end::Name=-->
                                 <!--begin::Email=-->
                                 <td data-filter="{{ $wallet->type }}">
-                                    {!! \App\Helper\CustomerWalletHelper::getTypeWallet($wallet->type, true) !!}
+                                    {!! $wallet->type_text !!}
                                 </td>
 
                                 <td data-filter="{{ $wallet->status }}">
-                                    {!! \App\Helper\CustomerWalletHelper::getStatusWallet($wallet->status, true) !!}
+                                    {!! $wallet->status_label !!}
                                 </td>
 
                                 <td>
