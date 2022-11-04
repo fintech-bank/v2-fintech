@@ -1,7 +1,7 @@
 @extends("agent.layouts.app")
 
 @section("css")
-
+    <link href="/assets/plugins/custom/jstree/jstree.bundle.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('toolbar')
@@ -942,6 +942,9 @@
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="files" role="tabpanel">
+
+        </div>
     </div>
     <div class="modal fade" tabindex="-1" id="updateStatus">
         <div class="modal-dialog">
@@ -1323,5 +1326,6 @@
 @endsection
 
 @section("script")
+    <script src="/assets/plugins/custom/jstree/jstree.bundle.js"></script>
     @include("agent.scripts.customer.show")
 @endsection
