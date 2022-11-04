@@ -818,7 +818,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Liste des comptes bancaires</h3>
                     <div class="card-toolbar">
-                        <div class="d-flex align-items-center position-relative my-1">
+                        <div class="d-flex align-items-center position-relative my-1 me-3">
                             <span class="svg-icon svg-icon-1 position-absolute ms-6">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
@@ -833,10 +833,10 @@
                             <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
                                 <span class="svg-icon svg-icon-2">
-							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="currentColor" />
-							</svg>
-						</span>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="currentColor" />
+                                    </svg>
+                                </span>
                                 Filtrer
                             </button>
                             <!--begin::Menu 1-->
@@ -854,67 +854,36 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10">
                                         <!--begin::Label-->
-                                        <label class="form-label fs-5 fw-semibold mb-3">Status d'ouverture de compte:</label>
+                                        <label class="form-label fs-5 fw-semibold mb-3">Type de compte:</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-customer-table-filter="status" data-dropdown-parent="#kt-toolbar-filter">
+                                        <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-wallet-table-filter="type" data-dropdown-parent="#kt-toolbar-filter">
                                             <option></option>
-                                            <option value="open">Dossier Ouvert</option>
-                                            <option value="completed">Dossier Complet</option>
-                                            <option value="accepted">Dossier Accepter</option>
-                                            <option value="declined">Dossier Refuser</option>
-                                            <option value="terminated">Compte Ouvert</option>
-                                            <option value="suspended">Compte Suspendu</option>
-                                            <option value="closed">Compte Clotûrer</option>
+                                            <option value="compte">Compte Bancaire</option>
+                                            <option value="epargne">Livret d'épargne</option>
+                                            <option value="pret">Crédit</option>
                                         </select>
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
-                                    <!--begin::Input group-->
                                     <div class="mb-10">
                                         <!--begin::Label-->
-                                        <label class="form-label fs-5 fw-semibold mb-3">Type de client:</label>
+                                        <label class="form-label fs-5 fw-semibold mb-3">Status:</label>
                                         <!--end::Label-->
-                                        <!--begin::Options-->
-                                        <div class="d-flex flex-column flex-wrap fw-semibold" data-kt-customer-table-filter="type">
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="type" value="all" checked="checked" />
-                                                <span class="form-check-label text-gray-600">Tous</span>
-                                            </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="type" value="part" />
-                                                <span class="form-check-label text-gray-600">Particulier</span>
-                                            </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" name="type" value="pro" />
-                                                <span class="form-check-label text-gray-600">Professionnel</span>
-                                            </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" name="type" value="orga" />
-                                                <span class="form-check-label text-gray-600">Organisation / Public</span>
-                                            </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="radio" name="type" value="assoc" />
-                                                <span class="form-check-label text-gray-600">Association</span>
-                                            </label>
-                                            <!--end::Option-->
-                                        </div>
-                                        <!--end::Options-->
+                                        <!--begin::Input-->
+                                        <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-wallet-table-filter="status" data-dropdown-parent="#kt-toolbar-filter">
+                                            <option></option>
+                                            <option value="pending">En attente</option>
+                                            <option value="active">Actif</option>
+                                            <option value="suspended">Suspendue</option>
+                                            <option value="closed">Clôturer</option>
+                                        </select>
+                                        <!--end::Input-->
                                     </div>
-                                    <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="d-flex justify-content-end">
-                                        <button type="reset" class="btn btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true" data-kt-customer-table-filter="reset">Effacer</button>
-                                        <button type="submit" class="btn btn-primary" data-kt-menu-dismiss="true" data-kt-customer-table-filter="filter">Appliquer</button>
+                                        <button type="reset" class="btn btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true" data-kt-wallet-table-filter="reset">Effacer</button>
+                                        <button type="submit" class="btn btn-primary" data-kt-menu-dismiss="true" data-kt-wallet-table-filter="filter">Appliquer</button>
                                     </div>
                                     <!--end::Actions-->
                                 </div>
@@ -922,9 +891,6 @@
                             </div>
                             <!--end::Menu 1-->
                             <!--end::Filter-->
-                            <!--begin::Add customer-->
-                            <a  href="{{ route('agent.customer.create.start') }}" class="btn btn-primary"><i class="fa-regular fa-plus fa-lg me-2"></i> Nouveau client</a>
-                            <!--end::Add customer-->
                         </div>
                         <!--end::Toolbar-->
                     </div>
