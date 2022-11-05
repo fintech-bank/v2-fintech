@@ -103,6 +103,7 @@ Route::prefix('manager')->group(function () {
 
     Route::prefix('files')->group(function () {
         Route::get("/", [\App\Http\Controllers\Api\Manager\FilesController::class, 'lists']);
+        Route::get("{reference_id}", [\App\Http\Controllers\Api\Manager\FilesController::class, 'getFile']);
         Route::post("/", [\App\Http\Controllers\Api\Manager\FilesController::class, 'store']);
         Route::delete("/{file}", [\App\Http\Controllers\Api\Manager\FilesController::class, 'delete'])->where(['file' => '.*']);
     });

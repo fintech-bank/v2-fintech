@@ -1367,7 +1367,7 @@
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="content_file">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-bank">
                     <h3 class="modal-title text-white"></h3>

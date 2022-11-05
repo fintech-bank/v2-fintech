@@ -30,6 +30,13 @@ class FilesController extends Controller
         ]);
     }
 
+    public function getFile($reference_id)
+    {
+        $file = CustomerDocument::where('reference', $reference_id)->first();
+
+        return response()->json($file);
+    }
+
     public function store(UploadFileRequest $request)
     {
         $file = $request->file('file');

@@ -180,7 +180,12 @@
 
     let getFile = (file) => {
         let modal = new bootstrap.Modal(modals.modalContentFile)
-        modal.show()
+        $.ajax({
+            url: `/api/manager/files/${file.dataset.documentReference}`,
+            success: data => {
+                console.log(data)
+            }
+        })
     }
 
     let templateShowFiles = (data) => {
@@ -251,7 +256,7 @@
                     ${signate[file.signable].fn}
                 </td>
                 <td class="text-end">
-                    <button class="btn btn-icon btn-sm btn-secondary" data-document-id="${file.id}" onclick="getFile(this)"><i class="fa-solid fa-eye"></i> </button>
+                    <button class="btn btn-icon btn-sm btn-secondary" data-document-reference="${file.reference}" onclick="getFile(this)"><i class="fa-solid fa-eye"></i> </button>
                 </td>
             </tr>
             `
