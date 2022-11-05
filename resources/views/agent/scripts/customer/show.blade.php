@@ -244,48 +244,8 @@
                 <td>
                     ${signate[file.signable].fn}
                 </td>
-                <td class="text-end" data-kt-filemanager-table="action_dropdown"><div class="d-flex justify-content-end">
-
-                       <!--begin::More-->
-                       <div class="ms-2">
-                           <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                               <!--begin::Svg Icon | path: icons/duotune/general/gen052.svg-->
-                               <span class="svg-icon svg-icon-5 m-0">
-														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<rect x="10" y="10" width="4" height="4" rx="2" fill="currentColor"></rect>
-															<rect x="17" y="10" width="4" height="4" rx="2" fill="currentColor"></rect>
-															<rect x="3" y="10" width="4" height="4" rx="2" fill="currentColor"></rect>
-														</svg>
-													</span>
-                               <!--end::Svg Icon-->
-                           </button>
-                           <!--begin::Menu-->
-                           <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4" data-kt-menu="true">
-                               <!--begin::Menu item-->
-                               <div class="menu-item px-3">
-                                   <a href="#" class="menu-link px-3">Download File</a>
-                               </div>
-                               <!--end::Menu item-->
-                               <!--begin::Menu item-->
-                               <div class="menu-item px-3">
-                                   <a href="#" class="menu-link px-3" data-kt-filemanager-table="rename">Rename</a>
-                               </div>
-                               <!--end::Menu item-->
-                               <!--begin::Menu item-->
-                               <div class="menu-item px-3">
-                                   <a href="#" class="menu-link px-3" data-kt-filemanager-table-filter="move_row" data-bs-toggle="modal" data-bs-target="#kt_modal_move_to_folder">Move to folder</a>
-                               </div>
-                               <!--end::Menu item-->
-                               <!--begin::Menu item-->
-                               <div class="menu-item px-3">
-                                   <a href="#" class="menu-link text-danger px-3" data-kt-filemanager-table-filter="delete_row">Delete</a>
-                               </div>
-                               <!--end::Menu item-->
-                           </div>
-                           <!--end::Menu-->
-                       </div>
-                       <!--end::More-->
-                   </div>
+                <td class="text-end">
+                    <button class="btn btn-icon btn-sm btn-secondary"><i class="fa-solid fa-eye"></i> </button>
                 </td>
             </tr>
             `
