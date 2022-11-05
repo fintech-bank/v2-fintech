@@ -214,10 +214,6 @@
         elements.cardShowFiles.querySelector("#table_files_content").innerHTML = ''
 
         Array.from(data.files).forEach(file => {
-            let signate = {
-                0: null,
-                1: templateSign(file)
-            }
             let templateSign = (data) => {
                 return `
                     <div class="d-flex flex-row">
@@ -225,6 +221,11 @@
                         ${data.signed_by_client_label}
                     </div>
                 `
+            }
+
+            let signate = {
+                0: null,
+                1: templateSign(file)
             }
             elements.cardShowFiles.querySelector("#table_files_content").innerHTML += `
             <tr>
