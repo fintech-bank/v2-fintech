@@ -177,6 +177,10 @@
         })
     }
 
+    let getFile = (file) => {
+        console.log(file)
+    }
+
     let templateShowFiles = (data) => {
         console.log(data)
         elements.cardShowFiles.querySelector('.card-title').innerHTML = `Categorie: ${data.category.name}`
@@ -245,7 +249,7 @@
                     ${signate[file.signable].fn}
                 </td>
                 <td class="text-end">
-                    <button class="btn btn-icon btn-sm btn-secondary"><i class="fa-solid fa-eye"></i> </button>
+                    <button class="btn btn-icon btn-sm btn-secondary" data-document-id="${file.id}" onclick="getFile(this)"><i class="fa-solid fa-eye"></i> </button>
                 </td>
             </tr>
             `
