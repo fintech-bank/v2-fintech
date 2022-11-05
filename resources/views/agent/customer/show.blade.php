@@ -1366,6 +1366,13 @@
             </div>
         </div>
     </div>
+    <div id="content_file" class="bg-white"
+         data-kt-drawer="true"
+         data-kt-drawer-overlay="true"
+         data-kt-drawer-width="{default:'300px', 'md': '500px'}"
+         data-kt-drawer-direction="start">
+        ...
+    </div>
 @endsection
 
 @section("script")
