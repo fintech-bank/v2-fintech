@@ -180,7 +180,7 @@
     let getFile = (file) => {
         let drawerElement = document.querySelector("#content_file")
         let drawer = new KTDrawer(drawerElement, {overlay: 'true'})
-        drawer.toggle()
+        drawer.show()
     }
 
     let templateShowFiles = (data) => {
