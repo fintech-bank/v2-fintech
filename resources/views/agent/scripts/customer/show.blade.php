@@ -224,8 +224,8 @@
             }
 
             let signate = {
-                0: null,
-                1: templateSign(file)
+                0: {'fn': null},
+                1: {'fn': templateSign(file)}
             }
             elements.cardShowFiles.querySelector("#table_files_content").innerHTML += `
             <tr>
@@ -241,7 +241,7 @@
                     </div>
                 </td>
                 <td>
-                    ${signate[file.signate]}
+                    ${signate[file.signate].fn}
                 </td>
                 <td class="text-end" data-kt-filemanager-table="action_dropdown"><div class="d-flex justify-content-end">
                        <!--begin::Share link-->
