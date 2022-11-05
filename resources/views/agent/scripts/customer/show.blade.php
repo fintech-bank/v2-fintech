@@ -214,6 +214,18 @@
         elements.cardShowFiles.querySelector("#table_files_content").innerHTML = ''
 
         Array.from(data.files).forEach(file => {
+            let signate = {
+                0: null,
+                1: templateSign(file)
+            }
+            let templateSign = (data) => {
+                return `
+                    <div class="d-flex flex-row">
+                        <strong>Signé par le client:</strong>
+                        ${data.signed_by_client_label}
+                    </div>
+                `
+            }
             elements.cardShowFiles.querySelector("#table_files_content").innerHTML += `
             <tr>
                 <td>
@@ -227,7 +239,9 @@
                         </div>
                     </div>
                 </td>
-                <td>${file.size_format}</td>
+                <td>
+                    ${signate}
+                </td>
                 <td class="text-end" data-kt-filemanager-table="action_dropdown"><div class="d-flex justify-content-end">
                        <!--begin::Share link-->
                        <div class="ms-2" data-kt-filemanger-table="copy_link">

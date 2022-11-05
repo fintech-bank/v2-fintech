@@ -971,7 +971,7 @@
                                 <!--begin::Table row-->
                                 <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                     <th class="min-w-250px sorting_disabled" rowspan="1" colspan="1" style="width: 520.141px;">Name</th>
-                                    <th class="min-w-10px sorting_disabled" rowspan="1" colspan="1" style="width: 117.594px;">Size</th>
+                                    <th class="min-w-10px sorting_disabled" rowspan="1" colspan="1" style="width: 117.594px;">Signature</th>
                                     <th class="w-125px sorting_disabled" rowspan="1" colspan="1" style="width: 125px;"></th>
                                 </tr>
                                 <!--end::Table row-->
