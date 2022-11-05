@@ -218,7 +218,7 @@
             <tr>
                 <td>
                     <div class="d-flex align-items-center">
-                        <i class="fa-solid fa-file-pdf-o fs-2"></i>
+                        <i class="fa-solid fa-file-pdf-o fs-2 me-2"></i>
                         <a href="" data-url="${file.url_folder}" class="text-gray-800 text-hover-primary">${file.name}</a>
                     </div>
                 </td>
