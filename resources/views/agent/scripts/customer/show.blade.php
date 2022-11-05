@@ -22,6 +22,7 @@
         modalCreateWallet: document.querySelector('#createWallet'),
         modalCreateEpargne: document.querySelector('#createEpargne'),
         modalCreatePret: document.querySelector('#createPret'),
+        modalContentFile: document.querySelector("#content_file"),
     }
     let forms = {}
     let dataTable = {
@@ -178,9 +179,8 @@
     }
 
     let getFile = (file) => {
-        let drawerElement = document.querySelector("#content_file")
-        let drawer = new KTDrawer(drawerElement)
-        drawer.show()
+        let modal = new bootstrap.Modal(modals.modalContentFile)
+        modal.show()
     }
 
     let templateShowFiles = (data) => {

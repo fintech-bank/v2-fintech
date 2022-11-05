@@ -1366,10 +1366,24 @@
             </div>
         </div>
     </div>
-    <div id="content_file" class="bg-white"
-         data-kt-drawer-width="{default:'300px', 'md': '500px'}"
-         data-kt-drawer-direction="start">
-        ...
+    <div class="modal fade" tabindex="-1" id="content_file">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white"></h3>
+    
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">                   
+                        <i class="fa-regular fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+    
+                <div class="modal-body">
+                    
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
