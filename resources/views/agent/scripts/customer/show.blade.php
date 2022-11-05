@@ -178,7 +178,9 @@
     }
 
     let getFile = (file) => {
-        console.log(file)
+        let drawerElement = document.querySelector("#content_file")
+        let drawer = new KTDrawer(drawerElement, {overlay: 'true'})
+        drawer.toggle()
     }
 
     let templateShowFiles = (data) => {
