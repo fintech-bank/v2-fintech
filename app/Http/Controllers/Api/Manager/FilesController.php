@@ -15,7 +15,10 @@ class FilesController extends Controller
     {
         $customer = Customer::find($request->get('customer'));
         $folder = $request->query->get('folder');
-        $files = $customer->documents()->where('document_category_id', $folder)->with('category')->get()->append('url_folder')->append('url_bread');
+        $files = $customer->documents()->where('document_category_id', $folder)->with('category')->get()
+            ->append('url_folder')
+            ->append('url_bread')
+            ->append('signed_by_client_label');
         $category = DocumentCategory::find($folder);
 
         return response()->json([
