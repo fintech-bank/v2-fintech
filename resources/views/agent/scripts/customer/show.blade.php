@@ -241,7 +241,7 @@
                     </div>
                 </td>
                 <td>
-                    ${signate[file.signate].fn}
+                    ${signate[file.signable].fn}
                 </td>
                 <td class="text-end" data-kt-filemanager-table="action_dropdown"><div class="d-flex justify-content-end">
                        <!--begin::Share link-->
