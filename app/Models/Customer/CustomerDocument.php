@@ -52,7 +52,7 @@ class CustomerDocument extends Model
     protected $guarded = [];
 
     protected $dates = ['created_at', 'updated_at', 'signed_at'];
-    protected array $append = ['signed_by_client_label', 'url_folder', 'url_bread'];
+    protected array $append = ['signed_by_client_label', 'url_folder', 'url_bread', 'size_file'];
 
     public function customer()
     {
@@ -90,5 +90,10 @@ class CustomerDocument extends Model
         $url = $this->getUrlFolderAttribute();
         $d = explode('/', $url, 4);
         return $d;
+    }
+
+    public function getSizeFileAttribute()
+    {
+        return sizeFormat(filesize($this->url_folder));
     }
 }
