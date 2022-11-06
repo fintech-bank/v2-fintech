@@ -47,6 +47,41 @@ class Kernel extends ConsoleKernel
             ->daily()
             ->description("Mise à jour des cotation client")
             ->emailOutputTo(config('mail.from.address'));
+
+        // Life
+        $schedule->command("life generateCustomers")
+            ->dailyAt('08:00')
+            ->dailyAt('11:00')
+            ->dailyAt('14:00')
+            ->dailyAt('18:00')
+            ->description("Nouveau client")
+            ->emailOutputTo(config('mail.from.address'));
+
+        $schedule->command("life generateSalary")
+            ->monthlyOn(1)->at('08:00')
+            ->description("Virement des Salaires")
+            ->emailOutputTo(config('mail.from.address'));
+
+        $schedule->command("life generateDebit")
+            ->everyFifteenMinutes()
+            ->description("Génération des débits bancaires")
+            ->emailOutputTo(config('mail.from.address'));
+
+        $schedule->command("life generatePrlvSepa")
+            ->dailyAt('08:00')
+            ->dailyAt('14:00')
+            ->description("Nouveau prélèvement SEPA")
+            ->emailOutputTo(config('mail.from.address'));
+
+        $schedule->command("life generateMensualReleve")
+            ->monthlyOn(30)->at('08:00')
+            ->description("Génération des débits bancaires")
+            ->emailOutputTo(config('mail.from.address'));
+
+        $schedule->command("life limitWithdraw")
+            ->dailyAt('08:00')
+            ->description("Suppression des retraits bancaire non effectuer/valider")
+            ->emailOutputTo(config('mail.from.address'));
     }
 
     /**
