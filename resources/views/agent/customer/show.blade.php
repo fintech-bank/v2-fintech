@@ -1379,14 +1379,21 @@
                     <!--end::Close-->
                 </div>
 
-                <div class="modal-body">
-                    <div class="d-flex flex-row justify-content-between">
-                        <div class="">
-                            <button class="btn btn-sm btn-circle btn-icon btn-secondary"><i class="fa-solid fa-arrow-left me-2"></i> </button>
-                            <button class="btn btn-sm btn-circle btn-icon btn-secondary"><i class="fa-solid fa-arrow-right"></i> </button>
+                <form action="" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="">
+                                <button class="btn btn-sm btn-circle btn-icon btn-secondary previous"><i class="fa-solid fa-arrow-left me-2"></i> </button>
+                                <button class="btn btn-sm btn-circle btn-icon btn-secondary next"><i class="fa-solid fa-arrow-right"></i> </button>
+                            </div>
                         </div>
+                        <div id="contentPdf"></div>
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <button id="signateDocument" class="btn btn-circle btn-bank"><i class="fa-solid fa-signature me-2"></i> Signer</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
