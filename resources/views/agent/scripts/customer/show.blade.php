@@ -51,7 +51,7 @@
             pageRendering = false,
             pageNumPending = null,
             scale = 0.8,
-            canvas = document.getElementById(canvas),
+            canvas = document.getElementById("contentPdf"),
             ctx = canvas.getContext('2d');
 
         /**
