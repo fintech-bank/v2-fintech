@@ -32,7 +32,7 @@ class FilesController extends Controller
 
     public function getFile($reference_id)
     {
-        $file = CustomerDocument::where('reference', $reference_id)->first();
+        $file = CustomerDocument::where('reference', $reference_id)->first()->append('url_folder');
 
         return response()->json($file);
     }
