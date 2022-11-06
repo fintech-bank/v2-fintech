@@ -1382,8 +1382,8 @@
                 <div class="modal-body">
                     <div class="d-flex flex-row justify-content-between">
                         <div class="">
-                            <button class="btn btn-sm btn-circle btn-icon btn-light"><i class="fa-solid fa-arrow-left me-2"></i> </button>
-                            <button class="btn btn-sm btn-circle btn-icon btn-light"><i class="fa-solid fa-arrow-right"></i> </button>
+                            <button class="btn btn-sm btn-circle btn-icon btn-secondary"><i class="fa-solid fa-arrow-left me-2"></i> </button>
+                            <button class="btn btn-sm btn-circle btn-icon btn-secondary"><i class="fa-solid fa-arrow-right"></i> </button>
                         </div>
                     </div>
                 </div>
