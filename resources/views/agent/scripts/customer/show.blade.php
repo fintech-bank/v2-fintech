@@ -184,6 +184,7 @@
             url: `/api/manager/files/${file.dataset.documentReference}`,
             success: data => {
                 console.log(data)
+
             }
         })
     }

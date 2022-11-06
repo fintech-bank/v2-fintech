@@ -1380,7 +1380,12 @@
                 </div>
 
                 <div class="modal-body">
-
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="">
+                            <button class="btn btn-sm btn-circle btn-icon btn-light"><i class="fa-solid fa-arrow-right me-2"></i> </button>
+                            <button class="btn btn-sm btn-circle btn-icon btn-light"><i class="fa-solid fa-arrow-left"></i> </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
