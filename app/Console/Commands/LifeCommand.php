@@ -335,6 +335,7 @@ class LifeCommand extends Command
     {
         $customers = Customer::where('status_open_account', 'terminated')->get();
         $nb = 0;
+        $arr = [];
 
         foreach ($customers as $customer) {
             $wallet = $customer->wallets()->where('type', 'compte')->where('status', 'active')->first();
@@ -348,7 +349,7 @@ class LifeCommand extends Command
                             $confirmed = rand(0, 1);
                             switch ($select) {
                                 case 0:
-                                    CustomerTransactionHelper::create(
+                                    $transaction = CustomerTransactionHelper::create(
                                         'credit',
                                         'depot',
                                         'Dépot sur votre compte',
@@ -361,7 +362,7 @@ class LifeCommand extends Command
                                     break;
 
                                 case 1:
-                                    CustomerTransactionHelper::create(
+                                    $transaction = CustomerTransactionHelper::create(
                                         'debit',
                                         'retrait',
                                         'Retrait sur votre compte',
@@ -377,7 +378,7 @@ class LifeCommand extends Command
                                     if ($wallet->cards()->first()->status == 'active') {
                                         if ($wallet->cards()->first()->debit == 'differed') {
                                             $differed = rand(0, 1);
-                                            CustomerTransactionHelper::create(
+                                            $transaction = CustomerTransactionHelper::create(
                                                 'debit',
                                                 'payment',
                                                 'Paiement par Carte Bancaire',
@@ -389,7 +390,7 @@ class LifeCommand extends Command
                                                 $confirmed == 0 ? now()->addDays(rand(1, 5)) : now(), $wallet->cards()->first()->id,
                                                 $differed == 1 ? true : false);
                                         } else {
-                                            CustomerTransactionHelper::create(
+                                            $transaction = CustomerTransactionHelper::create(
                                                 'debit',
                                                 'payment',
                                                 'Paiement par Carte Bancaire',
@@ -406,6 +407,11 @@ class LifeCommand extends Command
                                     throw new \Exception('Unexpected value');
                             }
                             $nb++;
+                            $arr[] = [
+                                $transaction->wallet->customer->info->full_name,
+                                $transaction->designation,
+                                $transaction->amount_format
+                            ];
                         }
                     } catch (\Exception $exception) {
                         $this->error($exception->getMessage());
@@ -414,6 +420,7 @@ class LifeCommand extends Command
             }
         }
         $this->line('Génération des Transactions: '.$nb);
+        $this->output->table(['Client', 'Mouvement', 'Montant'], $arr);
     }
 
     /**
