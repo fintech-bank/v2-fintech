@@ -1010,6 +1010,10 @@
                                         <td class="fw-bolder">Modalité de souscription</td>
                                         <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->first()->getSubAttribute()->type_prlv_text }}</td>
                                     </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Prochain Prélèvement</td>
+                                        <td>{{ $customer->user->next_debit_package->format('d/m/Y') }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

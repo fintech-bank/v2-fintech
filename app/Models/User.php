@@ -16,6 +16,7 @@ use App\Models\User\UserFile;
 use App\Models\User\UserFolder;
 use App\Models\User\UserNotificationSetting;
 use App\Models\User\UserSubscription;
+use Carbon\Carbon;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -122,6 +123,7 @@ use RTippin\Messenger\Traits\Messageable;
  * @method static Builder|User whereAuthyStatus($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|UserSubscription[] $subscriptions
  * @property-read int|null $subscriptions_count
+ * @property-read mixed $next_debit_package
  */
 class User extends Authenticatable
 {
@@ -153,7 +155,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['avatar_symbol', 'email_verified', 'user_group_label'];
+    protected $appends = ['avatar_symbol', 'email_verified', 'user_group_label', 'next_debit_package'];
 
     public function routeNotificationForPushbullet()
     {
@@ -314,6 +316,16 @@ class User extends Authenticatable
             \Notification::route('sms', $this->customers->info->mobile)
                 ->notify($notificationClass);
         }
+    }
+
+    public function getNextDebitPackageAttribute()
+    {
+        match ($this->package->type_prlv) {
+            "mensual" => Carbon::parse($this->created_at->day.now()->addMonth()->month.now()->year),
+            "trim" => Carbon::parse($this->created_at->day.now()->addMonths(3)->month.now()->year),
+            "sem" => Carbon::parse($this->created_at->day.now()->addMonths(6)->month.now()->year),
+            "annual" => Carbon::parse($this->created_at->day.$this->created_at->month.now()->addYear()->year),
+        };
     }
 
 }
