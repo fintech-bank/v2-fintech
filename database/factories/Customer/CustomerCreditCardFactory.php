@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Customer;
 
+use App\Models\Core\CreditCardSupport;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -27,13 +28,13 @@ class CustomerCreditCardFactory extends Factory
             'number' => $this->faker->creditCardNumber(),
             'status' => $status[rand(0, 2)],
             'type' => 'physique',
-            'support' => $support[rand(0, 2)],
             'debit' => $debit[rand(0, 1)],
             'cvc' => rand(100, 999),
             'code' => base64_encode(rand(1000, 9999)),
             'limit_retrait' => rand(100, 999),
             'limit_payment' => 2500,
             'facelia' => $this->faker->boolean(33),
+            'credit_card_support_id' => CreditCardSupport::all()->random()->id
         ];
 
         if ($card['debit'] == 'differed') {
