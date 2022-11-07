@@ -45,7 +45,7 @@ class SendAlertaInfoNotification extends Notification
     {
         $message = config('app.name')."\n";
         $message .= 'Le ' . now()->format('d/m/Y à H:i')."\n";
-        $message .= "RELEVE FLASH<br>";
+        $message .= "RELEVE FLASH\n";
         $message .= "Compte: " . $this->wallet->balance_actual;
 
         if (isset($this->waiting)) {

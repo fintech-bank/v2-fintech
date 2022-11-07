@@ -94,7 +94,15 @@ class CustomerWallet extends Model
 
     protected $dates = ['alert_date'];
 
-    protected $appends = ['type_text', 'status_label', 'name_account', 'name_account_generic', 'sum_month_operation', 'solde_remaining'];
+    protected $appends = [
+        'type_text',
+        'status_label',
+        'name_account',
+        'name_account_generic',
+        'sum_month_operation',
+        'solde_remaining',
+        'balance_actual_format'
+    ];
 
     public function customer()
     {
@@ -241,6 +249,15 @@ class CustomerWallet extends Model
             ->where('confirmed', false)
             ->orderBy('updated_at', 'desc')
             ->sum('amount');
+    }
+
+    public function getBalanceActualFormatAttribute()
+    {
+        if($this->balance_actual < 0) {
+            return eur($this->balance_actual);
+        } else {
+            return "+ ".eur($this->balance_actual);
+        }
     }
 
 }
