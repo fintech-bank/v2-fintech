@@ -10,6 +10,7 @@ use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerTransaction;
 use App\Notifications\Agent\CalendarAlert;
 use App\Notifications\Customer\ChargeLoanAcceptedNotification;
+use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\CotationClient;
 use Illuminate\Console\Command;
@@ -44,6 +45,7 @@ class SystemAgentCommand extends Command
             "chargeLoanAccepted" => $this->chargeLoanAccepted(),
             "executeSepaOrders" => $this->executeSepaOrders(),
             "executeTransactionComing" => $this->executeTransactionComing(),
+            "executeActiveAccount" => $this->executeActiveAccount(),
         };
 
         return Command::SUCCESS;
@@ -227,5 +229,26 @@ class SystemAgentCommand extends Command
 
         $this->error("Liste des transactions entrante rejeté");
         $this->output->table(['Client', 'Type', 'Compte', 'Montant', "Raison"], $arr_reject);
+    }
+
+    private function executeActiveAccount()
+    {
+        $accounts = Customer::where('status_open_account', 'accepted')->get();
+        $arr = [];
+
+        foreach ($accounts as $account) {
+            $account->update([
+                'status_open_account' => 'terminated'
+            ]);
+
+            $account->info->notify(new UpdateStatusAccountNotification($account, $account->status_open_account));
+
+            $arr[] = [
+                $account->info->full_name,
+                "Accepted => Terminated",
+            ];
+        }
+
+        $this->output->table(['Client', "Etat"], $arr);
     }
 }

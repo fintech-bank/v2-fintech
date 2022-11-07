@@ -68,6 +68,11 @@ class Kernel extends ConsoleKernel
             ->description("Execution des transactions entrente")
             ->emailOutputTo(config('mail.from.address'));
 
+        $schedule->command('system:agent executeActiveAccount')
+            ->everySixHours()
+            ->description("Passage des compte accepté à terminer'")
+            ->emailOutputTo(config('mail.from.address'));
+
         // Life
         $schedule->command("life generateCustomers")
             ->everyFourHours()
