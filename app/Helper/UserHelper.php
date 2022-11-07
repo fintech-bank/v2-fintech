@@ -71,30 +71,29 @@ class UserHelper
 
     public static function getChannelNotification(UserNotificationSetting $settingNotification)
     {
-        $channel = collect();
+        $channel = [];
         if($settingNotification->mail) {
-            $mail = collect("mail");
+            $channel[0] = ['mail'];
         } else {
             $mail = null;
         }
 
         if($settingNotification->site) {
-            $site = collect('database');
+            $channel[0] = ['database'];
         } else {
             $site = null;
         }
 
         if(isset($settingNotification->sms)) {
             if(config('app.env') == 'local') {
-                $sms = collect(FreeMobileChannel::class);
+                $channel[0] = [FreeMobileChannel::class];
             } else {
-                $sms = collect(TwilioChannel::class);
+                $channel[0] = [TwilioChannel::class];
             }
         } else {
             $sms = null;
-        }
-        $a = $channel->union($mail, $site, $sms)->union($site)->union($sms)->all();
+        };
 
-        dd($a);
+        dd($channel);
     }
 }
