@@ -89,7 +89,7 @@ class HomeController extends Controller
 
     public function test()
     {
-        $loan = LoanPlan::find(6);
-        dd($loan->tarif->interest);
+        $user = User::find(4);
+        dd($user);
     }
 }

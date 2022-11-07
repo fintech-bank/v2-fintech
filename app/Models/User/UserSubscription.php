@@ -24,4 +24,9 @@ class UserSubscription extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function sub()
+    {
+        return $this->morphTo($this->subscribe_type, $this->subscribe_id);
+    }
 }
