@@ -89,7 +89,7 @@ class HomeController extends Controller
 
     public function test()
     {
-        $user = User::find(4);
+        $user = User::find(17);
         dd($user->subscriptions()->first()->getSubAttribute());
     }
 }
