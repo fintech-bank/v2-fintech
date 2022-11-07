@@ -98,11 +98,7 @@ class UserHelper
             return $item;
         });
 
-        $chan = '';
-
-        foreach ($const as $item) {
-            $chan += $item;
-        }
+        $chan = implode(',', $const);
 
         dd($chan);
     }
