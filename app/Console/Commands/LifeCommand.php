@@ -77,6 +77,7 @@ class LifeCommand extends Command
     {
         $r = rand(0,5);
         $twilio = new Verify();
+        $arr = [];
 
         $users = User::factory($r)->create([
             'identifiant' => UserHelper::generateID(),
@@ -296,8 +297,15 @@ class LifeCommand extends Command
                     );
                 }
             }
-            $this->line('Nombre de nouveau client: '.$r);
+
+            $arr [] = [
+                $customer->info->full_name,
+                $customer->status_open_account
+            ];
         }
+
+        $this->line('Nombre de nouveau client: '.$r);
+        $this->output->table(['client', 'Etat du compte'], $arr);
     }
 
     /**
@@ -355,10 +363,9 @@ class LifeCommand extends Command
                                         'Dépot sur votre compte',
                                         rand(100, 900),
                                         $wallet->id,
-                                        $confirmed == 1 ? true : false,
+                                        true,
                                         'Dépot sur votre compte | Ref: '.Str::upper(Str::random(8)),
-                                        $confirmed == 1 ? now() : null,
-                                        $confirmed == 0 ? now()->addDays(rand(1, 5)) : now());
+                                        now());
                                     break;
 
                                 case 1:
@@ -368,10 +375,9 @@ class LifeCommand extends Command
                                         'Retrait sur votre compte',
                                         rand(100, 900),
                                         $wallet->id,
-                                        $confirmed == 1 ? true : false,
+                                        true,
                                         'Retrait sur votre compte | Ref: '.Str::upper(Str::random(8)),
-                                        $confirmed == 1 ? now() : null,
-                                        $confirmed == 0 ? now()->addDays(rand(1, 5)) : now());
+                                        now());
                                     break;
 
                                 case 2:
