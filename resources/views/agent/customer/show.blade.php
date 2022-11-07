@@ -1000,7 +1000,7 @@
                                 <tbody>
                                     <tr>
                                         <td>Offre</td>
-                                        <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->getSubAttribute()->name }}</td>
+                                        <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->first()->getSubAttribute()->name }}</td>
                                     </tr>
                                 </tbody>
                             </table>
