@@ -12,50 +12,24 @@ use NotificationChannels\Twilio\TwilioSmsMessage;
 class VerifRequestLoanNotification extends Notification
 {
 
+    private CustomerPret $pret;
     public string $title;
     public string $link;
     public string $message;
-    private CustomerPret $pret;
 
     public function __construct(CustomerPret $pret)
     {
+        $this->pret = $pret;
         $this->title = "Votre demande de pret bancaire";
         $this->message = $this->getMessage();
         $this->link = "";
-        $this->pret = $pret;
     }
 
     private function getMessage()
     {
-        $message = "Votre demande de pret <strong>N°{$this->pret->reference}</strong> à été enregistré en date du <strong>{$this->pret->created_at->format('d/m/Y')}</strong> et est maintenant en cours d'étude.";
+        $message = "Votre demande de pret <strong>N°".$this->pret->reference."</strong> à été enregistré en date du <strong>".$this->pret->created_at->format('d/m/Y')."</strong> et est maintenant en cours d'étude.";
         $message .= "Une notification vous sera envoyer lors de son acceptation ou de son refus par le service financier.";
         return $message;
-    }
-
-    private function choiceChannel()
-    {
-        if (config("app.env") == "local") {
-            if($this->pret->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
-            }
-
-            if($this->pret->customer->setting->notif_mail) {
-                return "mail";
-            }
-
-            return "database";
-        } else {
-
-            if($this->pret->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
-            }
-
-            if($this->pret->customer->setting->notif_mail) {
-                return "mail";
-            }
-
-            return "database";
-        }
     }
 
     public function via($notifiable)
@@ -105,6 +79,32 @@ class VerifRequestLoanNotification extends Notification
         $message->content(strip_tags($this->message));
 
         return $message;
+    }
+
+    private function choiceChannel()
+    {
+        if (config("app.env") == "local") {
+            if($this->pret->customer->setting->notif_sms) {
+                return [FreeMobileChannel::class];
+            }
+
+            if($this->pret->customer->setting->notif_mail) {
+                return "mail";
+            }
+
+            return "database";
+        } else {
+
+            if($this->pret->customer->setting->notif_sms) {
+                return [TwilioChannel::class];
+            }
+
+            if($this->pret->customer->setting->notif_mail) {
+                return "mail";
+            }
+
+            return "database";
+        }
     }
 }
 ?>
