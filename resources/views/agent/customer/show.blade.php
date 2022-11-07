@@ -1075,16 +1075,22 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped border gy-5 gx-5">
-                                <thead>
+                            @if($customer->mobilities()->count() == 0)
+                                <div class="d-flex flex-row justify-content-center align-items-center p-5 bg-gray-200 rounded-2">
+                                    <i class="fa-solid fa-exclamation-triangle fs-1 text-warning me-2"></i>
+                                    <span>Aucun dossier de mobilité bancaire ouvert</span>
+                                </div>
+                            @else
+                                <table class="table table-striped border gy-5 gx-5">
+                                    <thead>
                                     <tr>
                                         <th>Mandat</th>
                                         <th>Banque</th>
                                         <th>Etat</th>
                                         <th></th>
                                     </tr>
-                                </thead>
-                                <tbody>
+                                    </thead>
+                                    <tbody>
                                     @foreach($customer->mobilities()->orderBy('updated_at', 'desc')->limit(5)->get() as $mobility)
                                         <tr>
                                             <td>{{ $mobility->mandate }}</td>
@@ -1093,8 +1099,9 @@
                                             <td></td>
                                         </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            @endif
                         </div>
                     </div>
                 </div>
