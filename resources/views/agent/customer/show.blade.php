@@ -1394,7 +1394,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="signateDocument" class="btn btn-circle btn-bank"><i class="fa-solid fa-signature me-2"></i> Signer</button>
+                        <button id="btnSignate" class="btn btn-circle btn-bank"><i class="fa-solid fa-signature me-2"></i> Signer</button>
                     </div>
                 </form>
             </div>
