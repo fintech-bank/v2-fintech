@@ -304,12 +304,14 @@ class LifeCommand extends Command
         $arr = [];
 
         foreach ($customers as $customer) {
-            foreach ($customer->wallets()->where('status', 'active')->where('type', 'compte')->first() as $wallet) {
+            foreach ($customer->wallets()->where('status', 'active')->where('type', 'compte')->get() as $wallet) {
                 if (rand(0, 1) == 1) {
+                    $amount = -rand(5,3500);
+                    $updated_at = now()->addDays(rand(1,5));
                     $sepas = CustomerSepa::factory(rand(1, 5))->create([
-                        'amount' => -rand(5, 3500),
+                        'amount' => $amount,
                         'customer_wallet_id' => $wallet->id,
-                        'updated_at' => now()->addDays(rand(1, 5)),
+                        'updated_at' => $updated_at,
                         'status' => 'waiting',
                     ]);
 

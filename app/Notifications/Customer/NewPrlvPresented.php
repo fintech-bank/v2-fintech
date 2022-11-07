@@ -52,6 +52,7 @@ class NewPrlvPresented extends Notification
      */
     public function via($notifiable)
     {
+        dd($this->choiceChannel());
         return $this->choiceChannel();
     }
 
@@ -139,6 +140,6 @@ class NewPrlvPresented extends Notification
 
         }
 
-        return $arr;
+        return $arr->values();
     }
 }
