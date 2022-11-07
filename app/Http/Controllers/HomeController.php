@@ -10,6 +10,7 @@ use App\Models\Core\Event;
 use App\Models\Core\LoanPlan;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerTransfer;
 use App\Models\Reseller\Reseller;
 use App\Models\User;
 use App\Models\User\UserFolder;
@@ -89,7 +90,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $user = User::find(15);
-        dd($user->subscriptions()->where('subscribe_type', Package::class)->first()->getSubAttribute()->name);
+        $transfer = CustomerTransfer::find(1);
+
+        dd($transfer);
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerTransaction;
+use App\Models\Customer\CustomerTransfer;
 use App\Notifications\Agent\CalendarAlert;
 use App\Notifications\Customer\ChargeLoanAcceptedNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
@@ -46,6 +47,7 @@ class SystemAgentCommand extends Command
             "executeSepaOrders" => $this->executeSepaOrders(),
             "executeTransactionComing" => $this->executeTransactionComing(),
             "executeActiveAccount" => $this->executeActiveAccount(),
+            "executeVirement" => $this->executeVirement(),
         };
 
         return Command::SUCCESS;
@@ -250,5 +252,43 @@ class SystemAgentCommand extends Command
         }
 
         $this->output->table(['Client', "Etat"], $arr);
+    }
+
+    private function executeVirement()
+    {
+        $transfer_transits = CustomerTransfer::where('status', 'in_transit')->get();
+        $transfer_pendings = CustomerTransfer::where('status', 'pending')->get();
+        $arr_transit_paid = [];
+        $arr_transit_failed = [];
+        $arr_pending_transit = [];
+        $arr_pending_failed = [];
+
+        foreach ($transfer_transits as $transit) {
+            $transaction = CustomerTransaction::find($transit->transaction_id);
+
+        }
+        $this->info("Passage des virements bancaire");
+        $this->output->table(['Client', 'Reference', 'Montant'], $arr_transit_paid);
+
+        $this->info("Passage des virements bancaire en erreur");
+        $this->output->table(['Client', 'Reference', 'Montant', "Raison"], $arr_transit_failed);
+    }
+
+    private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)
+    {
+        if($transfer->amount <= $transfer->wallet->solde_remaining) {
+            CustomerTransactionHelper::updated($transaction);
+
+            $transfer->update([
+                'status' => 'paid'
+            ]);
+            return [
+                $transfer->wallet->customer->info->full_name,
+                $transfer->reference,
+                $transfer->amount_format
+            ];
+        } else {
+
+        }
     }
 }

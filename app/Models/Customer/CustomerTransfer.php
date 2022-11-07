@@ -52,6 +52,7 @@ class CustomerTransfer extends Model
     public $timestamps = false;
 
     protected $dates = ['transfer_date', 'recurring_start', 'recurring_end'];
+    protected $appends = ['amount_format'];
 
     public function wallet()
     {
@@ -61,5 +62,10 @@ class CustomerTransfer extends Model
     public function beneficiaire()
     {
         return $this->belongsTo(CustomerBeneficiaire::class, 'customer_beneficiaire_id');
+    }
+
+    public function getAmountFormatAttribute()
+    {
+        return eur($this->amount);
     }
 }
