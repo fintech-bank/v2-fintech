@@ -85,6 +85,7 @@ class SystemAgentCommand extends Command
             $pret->update([
                 'status' => 'study'
             ]);
+            dd($pret);
 
             $pret->customer->info->notify(new VerifRequestLoanNotification($pret));
             $arr[] = [
