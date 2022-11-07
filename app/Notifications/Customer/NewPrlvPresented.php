@@ -52,15 +52,6 @@ class NewPrlvPresented extends Notification
      */
     public function via($notifiable)
     {
-        $d =  $notifiable
-            ->customers
-            ->setting()
-            ->where('notif_sms', 1)
-            ->orWhere('notif_mail', 1)
-            ->pluck('channel')
-            ->toArray();
-
-        dd($d);
         return $this->choiceChannel();
     }
 
@@ -77,7 +68,7 @@ class NewPrlvPresented extends Notification
 
         $message->view('emails.customer.new_prlv', [
             'sepa' => $this->sepa,
-            'message' => $this->message
+            'content' => $this->message
         ]);
 
         $message->actionUrl = $this->link;
