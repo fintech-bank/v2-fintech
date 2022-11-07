@@ -1002,6 +1002,14 @@
                                         <td class="fw-bolder">Offre</td>
                                         <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->first()->getSubAttribute()->name }}</td>
                                     </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Montant</td>
+                                        <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->first()->getSubAttribute()->price_format }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Modalité de souscription</td>
+                                        <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->first()->getSubAttribute()->type_prlv_text }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
