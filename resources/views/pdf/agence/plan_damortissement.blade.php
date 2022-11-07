@@ -21,7 +21,7 @@
                                 @if($data->loan->plan->tarif->type_taux == 'fixe')
                                     {{ $data->loan->plan->tarif->interest }} %
                                 @else
-                                    {{ \App\Helper\CustomerLoanHelper::calcVariableTaxeInterest($card->facelia_vitesse) }} %
+                                    {{ \App\Helper\CustomerLoanHelper::calcVariableTaxeInterest($data->card->facelia_vitesse) }} %
                                 @endif
                             </td>
                         </tr>
