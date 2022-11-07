@@ -89,7 +89,7 @@ class HomeController extends Controller
 
     public function test()
     {
-        $user = User::find(17);
-        dd($user->subscriptions);
+        $user = User::find(15);
+        dd($user->subscriptions()->where('subscribe_type', Package::class)->get());
     }
 }
