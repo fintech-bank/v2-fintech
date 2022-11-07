@@ -70,6 +70,7 @@ class UserHelper
     public static function getChannelNotification(UserNotificationSetting $settingNotification)
     {
         $a = collect(['channel']);
+        $a[0]->push('toArray');
 
         dd($a);
     }
