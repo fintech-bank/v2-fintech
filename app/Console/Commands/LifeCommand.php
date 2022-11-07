@@ -304,7 +304,7 @@ class LifeCommand extends Command
         $arr = [];
 
         foreach ($customers as $customer) {
-            foreach ($customer->wallets->where('status', 'active')->where('type', 'compte')->first() as $wallet) {
+            foreach ($customer->wallets()->where('status', 'active')->where('type', 'compte')->first() as $wallet) {
                 if (rand(0, 1) == 1) {
                     $sepas = CustomerSepa::factory(rand(1, 5))->create([
                         'amount' => -rand(5, 3500),
