@@ -87,7 +87,7 @@ class ChargeLoanAcceptedNotification extends Notification
         $message = (new MailMessage);
         $message->view('emails.customer.charge_loan_accepted', [
             'content' => $this->message,
-            'customer' => $this->customer
+            'customer' => $this->customer,
         ]);
 
         return $message;
