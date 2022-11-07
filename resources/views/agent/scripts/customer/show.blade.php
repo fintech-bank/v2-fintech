@@ -285,8 +285,8 @@
             url: `/api/manager/files/${file.dataset.documentReference}`,
             success: data => {
                 console.log(data)
-                pdf('contentPdf', data.url_folder)
                 modal.show()
+                pdf(data.url_folder)
 
             }
         })
