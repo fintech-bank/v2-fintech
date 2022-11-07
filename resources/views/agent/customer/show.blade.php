@@ -988,6 +988,27 @@
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="subscription">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Offre</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Offre</td>
+                                        <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->getSubAttribute()->name }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal fade" tabindex="-1" id="updateStatus">
         <div class="modal-dialog">
