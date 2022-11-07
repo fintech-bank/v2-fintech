@@ -25,10 +25,10 @@ class SendAlertaInfoNotification extends Notification
      * Create a new notification instance.
      *
      * @param CustomerWallet $wallet
-     * @param CustomerTransaction $waiting
-     * @param CustomerTransaction $mouvement
+     * @param CustomerTransaction|null $waiting
+     * @param CustomerTransaction|null $mouvement
      */
-    public function __construct(CustomerWallet $wallet, CustomerTransaction $waiting, CustomerTransaction $mouvement)
+    public function __construct(CustomerWallet $wallet, CustomerTransaction $waiting = null, CustomerTransaction $mouvement = null)
     {
         //
         $this->wallet = $wallet;
