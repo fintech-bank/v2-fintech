@@ -1030,16 +1030,22 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped border">
-                                <thead>
+                            @if($customer->insurances()->count() == 0)
+                                <div class="d-flex flex-row align-items-center">
+                                    <i class="fa-solid fa-exclamation-triangle fs-1 text-warning me-2"></i>
+                                    <span>Aucune assurance souscrite</span>
+                                </div>
+                            @else
+                                <table class="table table-striped border">
+                                    <thead>
                                     <tr>
                                         <th>Référence</th>
                                         <th>Désignation</th>
                                         <th>Etat</th>
                                         <th></th>
                                     </tr>
-                                </thead>
-                                <tbody>
+                                    </thead>
+                                    <tbody>
                                     @foreach($customer->insurances()->orderBy('updated_at', 'desc')->limit(5)->get() as $insurance)
                                         <tr>
                                             <td>{{ $insurance->reference }}</td>
@@ -1052,8 +1058,9 @@
                                             <td>{!! $insurance->status_label !!}</td>
                                         </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            @endif
                         </div>
                     </div>
                 </div>
