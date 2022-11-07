@@ -988,7 +988,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="subscription">
+        <div class="tab-pane fade" id="subscriptions">
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="card shadow-sm">
