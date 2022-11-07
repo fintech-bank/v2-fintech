@@ -93,7 +93,7 @@ class UserHelper
         } else {
             $sms = null;
         }
-        $a = $channel->union($mail)->union($site)->union($sms)->all();
+        $a = $channel->union($mail, $site, $sms)->union($site)->union($sms)->all();
 
         dd($a);
     }
