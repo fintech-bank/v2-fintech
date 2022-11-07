@@ -100,6 +100,6 @@ class UserHelper
 
         $chan = implode(',', $const);
 
-        dd($chan);
+        dd($const);
     }
 }
