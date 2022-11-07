@@ -1030,7 +1030,28 @@
                             </div>
                         </div>
                         <div class="card-body">
-
+                            <table class="table table-striped border">
+                                <thead>
+                                    <tr>
+                                        <th>Référence</th>
+                                        <th>Désignation</th>
+                                        <th>Etat</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($customer->insurances()->orderBy('updated_at', 'desc')->limit(5)->get() as $insurance)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex flex-column">
+                                                    <div class="fw-bolder">{{ $insurance->package->name }}</div>
+                                                    <div class="text-muted">Offre: {{ $insurance->form->name }} ({{ $insurance->form->typed_price_format }})</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

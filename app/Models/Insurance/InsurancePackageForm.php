@@ -38,6 +38,7 @@ class InsurancePackageForm extends Model
     use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
+    protected $appends = ['typed_price_format'];
 
     public function package()
     {
@@ -52,5 +53,10 @@ class InsurancePackageForm extends Model
     public function insurances()
     {
         return $this->hasMany(CustomerInsurance::class);
+    }
+
+    public function getTypedPriceFormatAttribute()
+    {
+        return eur($this->typed_price);
     }
 }
