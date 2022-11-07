@@ -35,7 +35,7 @@ class MensualReleverNotification extends Notification
 
     private function getMessage()
     {
-        $message = "Nous vous informons que de nouveaux documents ont été mis à disposition sur votre Espace Client";
+        $message = "Nous vous informons que de nouveaux documents ont été mis à disposition sur votre Espace Client.<br>";
         $message .= "Pensez à sauvegarder régulièrement vos documents sur le support de votre choix";
 
         return $message;
