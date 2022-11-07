@@ -270,6 +270,21 @@ class SystemAgentCommand extends Command
                 'immediat' => $this->immediateTransfer($transit, $transaction),
                 'differed' => $this->differedTransfer($transit, $transaction),
             };
+
+            if($transit->status == 'paid') {
+                $arr_transit_paid[] = [
+                    $transit->wallet->customer->info->full_name,
+                    $transit->reference,
+                    eur($transit->amount)
+                ];
+            } else {
+                $arr_transit_failed[] = [
+                    $transit->wallet->customer->info->full_name,
+                    $transit->reference,
+                    eur($transit->amount),
+                    null
+                ];
+            }
         }
 
         foreach ($transfer_pendings as $pending) {
@@ -279,11 +294,32 @@ class SystemAgentCommand extends Command
                 'immediat' => $this->immediateTransfer($transit, $transaction),
                 'differed' => $this->differedTransfer($transit, $transaction),
             };
+
+            if($transit->status == 'in_transit') {
+                $arr_transit_paid[] = [
+                    $transit->wallet->customer->info->full_name,
+                    $transit->reference,
+                    eur($transit->amount)
+                ];
+            } else {
+                $arr_transit_failed[] = [
+                    $transit->wallet->customer->info->full_name,
+                    $transit->reference,
+                    eur($transit->amount),
+                    null
+                ];
+            }
         }
         $this->info("Passage des virements bancaire");
         $this->output->table(['Client', 'Reference', 'Montant'], $arr_transit_paid);
 
         $this->info("Passage des virements bancaire en erreur");
+        $this->output->table(['Client', 'Reference', 'Montant', "Raison"], $arr_transit_failed);
+
+        $this->info("Préparation des virements bancaire");
+        $this->output->table(['Client', 'Reference', 'Montant'], $arr_transit_paid);
+
+        $this->info("Préparation des virements bancaire en erreur");
         $this->output->table(['Client', 'Reference', 'Montant', "Raison"], $arr_transit_failed);
     }
 
