@@ -1389,7 +1389,9 @@
                             </div>
                             <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
                         </div>
-                        <canvas id="contentPdf"></canvas>
+                        <div class="d-flex flex-center scroll h-650px">
+                            <canvas id="contentPdf"></canvas>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button id="signateDocument" class="btn btn-circle btn-bank"><i class="fa-solid fa-signature me-2"></i> Signer</button>
