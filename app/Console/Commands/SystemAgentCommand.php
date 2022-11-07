@@ -129,7 +129,7 @@ class SystemAgentCommand extends Command
         $sepas = CustomerSepa::where('status', 'waiting')->get();
 
         foreach ($sepas as $sepa) {
-            dd($sepa->amount, $sepa->wallet->solde_remaining);
+            dd(+$sepa->amount, $sepa->wallet->solde_remaining);
         }
     }
 }
