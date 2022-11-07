@@ -12,6 +12,6 @@ class Transfers
             'uuid' => $transfer->uuid,
             'amount' => $transfer->amount,
             'beneficiaire' => $transfer->beneficiaire
-        ])->body();
+        ])->status();
     }
 }
