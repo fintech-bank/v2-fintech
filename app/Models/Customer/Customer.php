@@ -229,10 +229,10 @@ class Customer extends Model
     public function getNextDebitPackageAttribute()
     {
         return match ($this->package->type_prlv) {
-            "mensual" => Carbon::parse($this->created_at->day.now()->addMonth()->month.now()->year),
-            "trim" => Carbon::parse($this->created_at->day.now()->addMonths(3)->month.now()->year),
-            "sem" => Carbon::parse($this->created_at->day.now()->addMonths(6)->month.now()->year),
-            "annual" => Carbon::parse($this->created_at->day.$this->created_at->month.now()->addYear()->year),
+            "mensual" => Carbon::parse($this->user->created_at->day.now()->addMonth()->month.now()->year),
+            "trim" => Carbon::parse($this->user->created_at->day.now()->addMonths(3)->month.now()->year),
+            "sem" => Carbon::parse($this->user->created_at->day.now()->addMonths(6)->month.now()->year),
+            "annual" => Carbon::parse($this->user->created_at->day.$this->user->created_at->month.now()->addYear()->year),
         };
     }
 
