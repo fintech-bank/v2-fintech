@@ -98,7 +98,7 @@ class UserHelper
             return $item;
         });
 
-        $chan = null;
+        $chan = '';
 
         foreach ($const as $item) {
             $chan += $item;
