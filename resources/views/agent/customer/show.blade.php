@@ -1116,7 +1116,28 @@
                             </div>
                         </div>
                         <div class="card-body">
-
+                            <table class="table table-striped border gy-5 gx-5">
+                                <thead>
+                                <tr>
+                                    <th>Référence</th>
+                                    <th>Type de pret</th>
+                                    <th>Montant accordée</th>
+                                    <th>Etat</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($customer->prets()->orderBy('updated_at', 'desc')->limit(5)->get() as $pret)
+                                    <tr>
+                                        <td>{{ $pret->reference }}</td>
+                                        <td>{{ $pret->plan->name }}</td>
+                                        <td>{{ eur($pret->amount_loan) }}</td>
+                                        <td>{{ $pret->status_label }}</td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
