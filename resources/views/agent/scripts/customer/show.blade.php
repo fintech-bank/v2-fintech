@@ -285,6 +285,7 @@
             url: `/api/manager/files/${file.dataset.documentReference}`,
             success: data => {
                 console.log(data)
+                data.signate === 1 ? modals.modalContentFile.querySelector('.modal-footer').classList.add('d-none') : modals.modalContentFile.querySelector('.modal-footer').classList.remove('d-none');
                 modal.show()
                 pdf(data.url_folder)
 
