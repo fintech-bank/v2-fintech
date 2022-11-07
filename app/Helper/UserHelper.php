@@ -2,10 +2,12 @@
 
 namespace App\Helper;
 
+use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
 use App\Models\User;
 use App\Models\User\UserNotificationSetting;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Support\Facades\Hash;
+use NotificationChannels\Twilio\TwilioChannel;
 
 class UserHelper
 {
@@ -69,9 +71,23 @@ class UserHelper
 
     public static function getChannelNotification(UserNotificationSetting $settingNotification)
     {
-        $a = collect(['channel' => null]);
-        $a->put('channel', 'mail');
-        $a->put('channel', 'database');
+        $channel = collect();
+        if($settingNotification->mail) {
+            $mail = collect("mail");
+        }
+
+        if($settingNotification->site) {
+            $site = collect('database');
+        }
+
+        if($settingNotification->sms) {
+            if(config('app.env') == 'local') {
+                $sms = collect(FreeMobileChannel::class);
+            } else {
+                $sms = collect(TwilioChannel::class);
+            }
+        }
+        $a = $channel->union($mail)->union($site)->union($sms);
 
         dd($a);
     }
