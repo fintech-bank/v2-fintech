@@ -70,6 +70,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $limit_withdraw
  * @property int $credit_card_support_id
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerCreditCard whereCreditCardSupportId($value)
+ * @property string $facelia_vitesse
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerCreditCard whereFaceliaVitesse($value)
  */
 class CustomerCreditCard extends Model
 {

@@ -301,6 +301,7 @@ class LifeCommand extends Command
     private function generatePrlvSepa()
     {
         $customers = Customer::where('status_open_account', 'terminated')->get();
+        $arr = [];
 
         foreach ($customers as $customer) {
             foreach ($customer->wallets->where('status', 'active')->where('type', 'compte')->first() as $wallet) {
@@ -330,13 +331,19 @@ class LifeCommand extends Command
                             LogHelper::notify('critical', $exception);
                         }
 
-                        if ($customer->setting->notif_mail == 1) {
-                            $customer->user->notify(new NewPrlvPresented($sepa));
-                        }
+                        $customer->user->notify(new NewPrlvPresented($sepa));
+                        $arr[] = [
+                            $customer->info->full_name,
+                            $sepa->creditor,
+                            $sepa->amount_format,
+                            $sepa->updated_at->format("d/m/Y")
+                        ];
                     }
                 }
             }
         }
+
+        $this->output->table(['Client', 'Mandataire', 'Montant', 'Date de Prélèvement'], $arr);
     }
 
     /**

@@ -36,12 +36,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSepa whereUuid($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerSepa
+ * @property-read mixed $amount_format
  */
 class CustomerSepa extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+    protected $appends = ['amount_format'];
 
     public function wallet()
     {
@@ -51,5 +53,10 @@ class CustomerSepa extends Model
     public function creditor()
     {
         return $this->hasMany(CustomerCreditor::class);
+    }
+
+    public function getAmountFormatAttribute()
+    {
+        return eur($this->amount);
     }
 }
