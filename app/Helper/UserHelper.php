@@ -80,7 +80,7 @@ class UserHelper
             $site = collect('database');
         }
 
-        if($settingNotification->sms) {
+        if(isset($settingNotification->sms)) {
             if(config('app.env') == 'local') {
                 $sms = collect(FreeMobileChannel::class);
             } else {
