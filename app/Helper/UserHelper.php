@@ -73,22 +73,22 @@ class UserHelper
     {
         $channel = [];
         if($settingNotification->mail) {
-            $channel[0] += ['mail'];
+            $channel[] += ['mail'];
         } else {
             $mail = null;
         }
 
         if($settingNotification->site) {
-            $channel[0] += ['database'];
+            $channel[] += ['database'];
         } else {
             $site = null;
         }
 
         if(isset($settingNotification->sms)) {
             if(config('app.env') == 'local') {
-                $channel[0] += [FreeMobileChannel::class];
+                $channel[] += [FreeMobileChannel::class];
             } else {
-                $channel[0] += [TwilioChannel::class];
+                $channel[] += [TwilioChannel::class];
             }
         } else {
             $sms = null;
