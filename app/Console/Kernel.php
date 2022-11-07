@@ -63,6 +63,11 @@ class Kernel extends ConsoleKernel
             ->description("Execution des prélèvements bancaires")
             ->emailOutputTo(config('mail.from.address'));
 
+        $schedule->command('system:agent executeTransactionComing')
+            ->everySixHours()
+            ->description("Execution des transactions entrente")
+            ->emailOutputTo(config('mail.from.address'));
+
         // Life
         $schedule->command("life generateCustomers")
             ->everyFourHours()

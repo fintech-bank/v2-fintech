@@ -7,6 +7,7 @@ use App\Models\Core\Event;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerSepa;
+use App\Models\Customer\CustomerTransaction;
 use App\Notifications\Agent\CalendarAlert;
 use App\Notifications\Customer\ChargeLoanAcceptedNotification;
 use App\Notifications\Customer\VerifRequestLoanNotification;
@@ -41,7 +42,8 @@ class SystemAgentCommand extends Command
             "updateCotation" => $this->updateCotation(),
             "verifRequestLoanOpen" => $this->verifRequestLoanOpen(),
             "chargeLoanAccepted" => $this->chargeLoanAccepted(),
-            "executeSepaOrders" => $this->executeSepaOrders()
+            "executeSepaOrders" => $this->executeSepaOrders(),
+            "executeTransactionComing" => $this->executeTransactionComing(),
         };
 
         return Command::SUCCESS;
@@ -184,5 +186,46 @@ class SystemAgentCommand extends Command
 
         $this->output->table(['Client', 'Mandat', 'Montant'], $arr_accepted);
         $this->output->table(['Client', 'Mandat', 'Montant', 'Raison du rejet'], $arr_rejected);
+    }
+
+    private function executeTransactionComing()
+    {
+        $transactions = CustomerTransaction::where('confirmed', true)
+            ->where('designation', 'NOT LIKE', '%Remise%')
+            ->get();
+        $arr_effect = [];
+        $arr_reject = [];
+
+        foreach ($transactions as $transaction) {
+            if($transaction->withdraw->count() != 1) {
+                if($transaction->updated_at->between(now()->startOfDay(), now()->endOfDay())) {
+                    if($transaction->amount <= $transaction->wallet->solde_remaining) {
+                        CustomerTransactionHelper::updated($transaction);
+
+                        $arr_effect[] = [
+                            $transaction->wallet->customer->info->full_name,
+                            $transaction->type_text,
+                            $transaction->wallet->name_account_generic,
+                            $transaction->amount_format,
+                        ];
+
+                    } else {
+                        $arr_reject[] = [
+                            $transaction->wallet->customer->info->full_name,
+                            $transaction->type_text,
+                            $transaction->wallet->name_account_generic,
+                            $transaction->amount_format,
+                            "Solde Insuffisant"
+                        ];
+                    }
+                }
+            }
+        }
+
+        $this->info("Liste des transactions entrante mise à jours");
+        $this->output->table(['Client', 'Type', 'Compte', 'Montant'], $arr_effect);
+
+        $this->error("Liste des transactions entrante rejeté");
+        $this->output->table(['Client', 'Type', 'Compte', 'Montant', "Raison"], $arr_reject);
     }
 }
