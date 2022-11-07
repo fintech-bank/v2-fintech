@@ -99,7 +99,7 @@ class NewPrlvPresented extends Notification
     public function toFreeMobile($notifiable)
     {
         $message = (new FreeMobileMessage());
-        $message->message($this->message);
+        $message->message(strip_tags($this->message));
 
         return $message;
 
@@ -108,7 +108,7 @@ class NewPrlvPresented extends Notification
     public function toTwilio($notifiable)
     {
         $message = (new TwilioSmsMessage());
-        $message->content($this->message);
+        $message->content(strip_tags($this->message));
 
         return $message;
     }
