@@ -43,11 +43,11 @@ class CustomerCreditCardFactory extends Factory
             ];
         }
 
-        if ($card['support'] == 'premium') {
+        if ($card['credit_card_support_id'] == 2) {
             $card += [
                 'payment_abroad' => true,
             ];
-        } elseif ($card['support'] == 'infinite') {
+        } elseif ($card['credit_card_support_id'] == 3) {
             $card += [
                 'payment_abroad' => true,
             ];
