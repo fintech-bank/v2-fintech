@@ -68,7 +68,8 @@ class NewPrlvPresented extends Notification
 
         $message->view('emails.customer.new_prlv', [
             'sepa' => $this->sepa,
-            'content' => $this->message
+            'content' => $this->message,
+            'customer' => $this->sepa->wallet->customer
         ]);
 
         $message->actionUrl = $this->link;
