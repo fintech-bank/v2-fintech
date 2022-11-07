@@ -90,6 +90,6 @@ class HomeController extends Controller
     public function test()
     {
         $user = User::find(15);
-        dd($user->subscriptions()->where('subscribe_type', Package::class)->first()->getSubAttribute());
+        dd($user->subscriptions()->where('subscribe_type', Package::class)->first()->getSubAttribute()->name);
     }
 }
