@@ -94,6 +94,6 @@ class UserHelper
             $sms = null;
         };
 
-        dd($channel);
+        dd($channel->all());
     }
 }
