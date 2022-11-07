@@ -93,8 +93,7 @@ class UserHelper
         } else {
             $sms = null;
         }
-        $a = $channel->add($mail)
-        ->add($site)->all();
+        $a = $channel->add($site)->all();
 
         dd($a);
     }
