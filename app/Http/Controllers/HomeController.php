@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\Core\PersonnaWebbhookEvent;
 use App\Helper\LogHelper;
+use App\Helper\UserHelper;
 use App\Models\Core\Agency;
 use App\Models\Core\Event;
 use App\Models\Core\Package;
@@ -87,7 +88,7 @@ class HomeController extends Controller
 
     public function test()
     {
-        $twilio = new Lookup();
-        dd($twilio->verify("+33720086617"));
+        $user = User::find(3);
+        dd(UserHelper::getChannelNotification($user->settingnotification));
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Helper;
 
 use App\Models\User;
+use App\Models\User\UserNotificationSetting;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Support\Facades\Hash;
 
@@ -64,5 +65,12 @@ class UserHelper
             'identifiant' => self::generateID(),
             'agency_id' => 1
         ]);
+    }
+
+    public static function getChannelNotification(UserNotificationSetting $settingNotification)
+    {
+        $a = collect(['channel']);
+
+        dd($a);
     }
 }

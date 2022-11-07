@@ -52,7 +52,15 @@ class NewPrlvPresented extends Notification
      */
     public function via($notifiable)
     {
-        dd($this->choiceChannel());
+        $d =  $notifiable
+            ->customers
+            ->setting()
+            ->where('notif_sms', 1)
+            ->orWhere('notif_mail', 1)
+            ->pluck('channel')
+            ->toArray();
+
+        dd($d);
         return $this->choiceChannel();
     }
 
@@ -115,31 +123,29 @@ class NewPrlvPresented extends Notification
 
     private function choiceChannel()
     {
-        $arr = null;
         if (config('app.env') == 'local') {
             if($this->sepa->wallet->customer->setting->notif_sms) {
-                $arr .= FreeMobileChannel::class;
+                return [FreeMobileChannel::class];
             }
 
             if($this->sepa->wallet->customer->setting->notif_mail) {
-                $arr .= 'mail';
+                return 'mail';
             }
 
-            $arr .= 'database';
+            return 'database';
         } else {
 
             if($this->sepa->wallet->customer->setting->notif_sms) {
-                $arr .= TwilioChannel::class;
+                return [TwilioChannel::class];
             }
 
             if($this->sepa->wallet->customer->setting->notif_mail) {
-                $arr .= 'mail';
+                return 'mail';
             }
 
-            $arr .= 'database';
+            return 'database';
 
         }
 
-        return $arr;
     }
 }
