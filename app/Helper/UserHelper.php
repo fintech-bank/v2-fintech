@@ -95,7 +95,7 @@ class UserHelper
         };
 
         $const = $channel->map(function ($item) {
-            return $item;
+            return [$item];
         })->toArray();
 
         $chan = implode(',', $const);
