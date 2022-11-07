@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Core\Event;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerPret;
 use App\Notifications\Agent\CalendarAlert;
 use App\Services\CotationClient;
 use Illuminate\Console\Command;
@@ -38,6 +39,9 @@ class SystemAgentCommand extends Command
             case 'updateCotation':
                 $this->updateCotation();
                 break;
+
+            case 'verifRequestLoanOpen':
+                $this->verifRequestLoanOpen();
         }
         return Command::SUCCESS;
     }
@@ -69,5 +73,19 @@ class SystemAgentCommand extends Command
             ];
         }
         $this->output->table(["client", "cotation"], $arr);
+    }
+
+    private function verifRequestLoanOpen()
+    {
+        $prets = CustomerPret::where('status', 'open')->get();
+        $arr = [];
+
+        foreach ($prets as $pret) {
+            $pret->update([
+                'status' => 'study'
+            ]);
+
+            $pret->customer->info->notify();
+        }
     }
 }
