@@ -101,7 +101,6 @@ class UserSeeder extends Seeder
         CustomerCreditCard::factory()->create([
             'customer_wallet_id' => $wallet->id,
             'status' => 'active',
-            'support' => 'infinite',
             'debit' => 'differed',
             'facelia' => false,
             'credit_card_support_id' => 1
