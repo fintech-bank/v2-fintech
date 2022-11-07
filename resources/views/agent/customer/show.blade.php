@@ -996,10 +996,10 @@
                             <h3 class="card-title">Offre</h3>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped">
+                            <table class="table table-striped gy-5 gx-5">
                                 <tbody>
                                     <tr>
-                                        <td>Offre</td>
+                                        <td class="fw-bolder">Offre</td>
                                         <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->first()->getSubAttribute()->name }}</td>
                                     </tr>
                                 </tbody>
