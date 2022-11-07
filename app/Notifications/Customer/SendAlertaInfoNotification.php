@@ -49,7 +49,7 @@ class SendAlertaInfoNotification extends Notification
         $message .= "Compte: " . $this->wallet->balance_actual;
 
         if (isset($this->waiting)) {
-            $message .= "Dernière opération en cours: " . $this->waiting->amount_format . ' (' . $this->waiting->updated_at->format('d/m') . ')'
+            $message .= "Dernière opération en cours: " . $this->waiting->amount_format . ' (' . $this->waiting->updated_at->format('d/m') . ')';
         } else {
             $message .= "Pas d'opération en cours.";
         }
