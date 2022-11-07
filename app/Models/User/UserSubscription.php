@@ -25,7 +25,7 @@ class UserSubscription extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function sub()
+    public function getSubAttribute()
     {
         return $this->subscribe_type::find($this->subscribe_id);
     }
