@@ -1387,6 +1387,7 @@
                                 <button class="btn btn-sm btn-circle btn-icon btn-secondary" id="previous"><i class="fa-solid fa-arrow-left me-2"></i> </button>
                                 <button class="btn btn-sm btn-circle btn-icon btn-secondary" id="next"><i class="fa-solid fa-arrow-right"></i> </button>
                             </div>
+                            <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
                         </div>
                         <canvas id="contentPdf"></canvas>
                     </div>
