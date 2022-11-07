@@ -37,7 +37,7 @@ class NewPrlvPresented extends Notification
 
     private function getMessage()
     {
-        $message = "Nous vous informons de l'arrivé d'un nouveau prélèvement sur votre compte ".$this->sepa->wallet->name_account.".\n";
+        $message = "Nous vous informons de l'arrivé d'un nouveau prélèvement sur votre compte ".$this->sepa->wallet->name_account_generic.".\n";
         $message .= "Pour plus d'information, nous vous invitons à consulter le details.";
 
         return $message;
