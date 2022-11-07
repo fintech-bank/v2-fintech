@@ -107,4 +107,4 @@ class VerifRequestLoanNotification extends Notification
         }
     }
 }
-?>
+
