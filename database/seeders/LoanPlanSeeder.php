@@ -64,6 +64,16 @@ class LoanPlanSeeder extends Seeder
             'avantage' => '{"report_echeance": false, "adapt_mensuality": true, "online_subscription": false}',
             'condition' => '{"report_echeance_max": "0", "adapt_mensuality_month": "2"}',
             'tarif' => '{"interest": "1.20", "type_taux": "fixe", "max_interest": null, "min_interest": null}'
+        ])->create([
+            'name' => 'Crédit Renouvelable Alterna',
+            'minimum' => 1,
+            'maximum' => 21500,
+            'duration' => 580,
+            'type_pret' => 'particulier',
+            'instruction' => "L’option Crédit associée au crédit renouvelable Alterna(1), vous offre la possibilité de payer au comptant ou à crédit(2) lors de vos achats ou retraits. Vous pouvez l’ajouter gratuitement(3) à votre carte bancaire actuelle : cartes CB Visa, CB Visa Premier, CB Mastercard, CB Gold Mastercard(3) .",
+            'avantage' => '{"report_echeance": false, "adapt_mensuality": false, "online_subscription": true}',
+            'condition' => '{"report_echeance_max": "0", "adapt_mensuality_month": "0"}',
+            'tarif' => '{"interest": null, "type_taux": "variable", "max_interest": "4.39", "min_interest": "16.90"}'
         ]);
     }
 }

@@ -272,4 +272,22 @@ class CustomerLoanHelper
         return $ass;
     }
 
+    public static function calcVariableTaxeInterest($vitesse = 'low')
+    {
+        return match ($vitesse) {
+            'low' => 16.90,
+            'middle' => 9.30,
+            default => 4.39,
+        };
+    }
+
+    public static function getPeriodicMensualityFromVitess($vitesse = 'low')
+    {
+        return match ($vitesse) {
+            'low' => 36,
+            'middle' => 24,
+            default => 12,
+        };
+    }
+
 }

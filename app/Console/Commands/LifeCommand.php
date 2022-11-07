@@ -31,6 +31,8 @@ use App\Notifications\Customer\Automate\GenerateMensualReleverNotification;
 use App\Notifications\Customer\Automate\NewPrlvPresented;
 use App\Notifications\Customer\SendAlertaInfoNotification;
 use App\Services\Twilio\Verify;
+use Carbon\Carbon;
+use IbanGenerator\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -127,148 +129,8 @@ class LifeCommand extends Command
                     'customer_wallet_id' => $account->id,
                 ]);
 
-                foreach (CustomerCreditCard::query()->where('facelia', 1)->where('customer_wallet_id', $account->id)->get() as $card) {
-                    $amount = [500, 1000, 1500, 2000, 2500, 3000];
-                    $amount_loan = $amount[rand(0, 5)];
-                    $interest = CustomerLoanHelper::getLoanInterest($amount_loan, LoanPlan::find(8)->interests[0]->interest);
-                    $du = $amount_loan + $interest;
-
-                    $number_account = random_numeric(9);
-                    $ibanG = new Generator($customer->user->agency->code_banque, $number_account, 'fr');
-
-                    $cpt_pret = CustomerWallet::query()->create([
-                        'uuid' => Str::uuid(),
-                        'number_account' => $number_account,
-                        'iban' => $ibanG->generate($customer->user->agency->code_banque, $number_account, 'fr'),
-                        'rib_key' => $ibanG->getBban($customer->user->agency->code_banque, $number_account),
-                        'type' => 'pret',
-                        'status' => 'active',
-                        'balance_actual' => $amount_loan,
-                        'customer_id' => $customer->id,
-                    ]);
-
-                    $pr = CustomerPret::factory()->create([
-                        'amount_loan' => $amount_loan,
-                        'amount_interest' => $interest,
-                        'amount_du' => $du,
-                        'mensuality' => $du / 36,
-                        'prlv_day' => 30,
-                        'duration' => 36,
-                        'status' => 'accepted',
-                        'customer_wallet_id' => $cpt_pret->id,
-                        'wallet_payment_id' => $card->wallet->id,
-                        'first_payment_at' => Carbon::create(now()->year, now()->addMonth()->month, 30),
-                        'loan_plan_id' => 8,
-                        'customer_id' => $customer->id,
-                    ]);
-
-                    $card->update([
-                        'customer_pret_id' => $pr->id,
-                    ]);
-
-                    CustomerFacelia::query()->create([
-                        'reference' => CustomerFaceliaHelper::generateReference(),
-                        'amount_available' => $amount_loan,
-                        'amount_interest' => 0,
-                        'amount_du' => 0,
-                        'mensuality' => 0,
-                        'next_expiration' => null,
-                        'customer_pret_id' => $pr->id,
-                        'customer_credit_card_id' => $card->id,
-                        'customer_wallet_id' => $cpt_pret->id,
-                        'wallet_payment_id' => $card->wallet->id,
-                    ]);
-
-                    DocumentFile::createDoc(
-                        $customer,
-                        'Plan d\'amortissement',
-                        $pr->reference." - Plan d'amortissement",
-                        3,
-                        null,
-                        false,
-                        false,
-                        false,
-                        true,
-                        ['loan' => $pr]
-                    );
-
-                    DocumentFile::createDoc(
-                        $customer,
-                        'Assurance Emprunteur',
-                        $pr->reference.' - Assurance Emprunteur',
-                        3,
-                        null,
-                        false,
-                        false,
-                        false,
-                        true,
-                        []
-                    );
-
-                    DocumentFile::createDoc(
-                        $customer,
-                        'Avis de conseil relatif assurance',
-                        $pr->reference.' - Avis de conseil Relatif au assurance emprunteur',
-                        3,
-                        null,
-                        false,
-                        false,
-                        false,
-                        true,
-                        []
-                    );
-
-                    DocumentFile::createDoc(
-                        $customer,
-                        'contrat de credit facelia',
-                        $pr->reference.' - Contrat de Crédit FACELIA',
-                        3,
-                        null,
-                        true,
-                        true,
-                        false,
-                        true,
-                        ['loan' => $pr]
-                    );
-
-                    DocumentFile::createDoc(
-                        $customer,
-                        'Fiche de dialogue',
-                        $pr->reference.' - Fiche de Dialogue',
-                        3,
-                        null,
-                        false,
-                        false,
-                        false,
-                        true,
-                        []
-                    );
-
-                    DocumentFile::createDoc(
-                        $customer,
-                        'Information précontractuel normalise',
-                        $pr->reference.' - Information Précontractuel Normalisé',
-                        3,
-                        null,
-                        true,
-                        true,
-                        false,
-                        true,
-                        ['loan' => $pr]
-                    );
-
-                    DocumentFile::createDoc(
-                        $customer,
-                        'Mandat Prélevement sepa',
-                        $pr->reference.' - Mandat Prélèvement SEPA',
-                        3,
-                        null,
-                        false,
-                        false,
-                        false,
-                        true,
-                        ['loan' => $pr]
-                    );
+                if($card->facelia == 1) {
+                    $this->createFacelia($customer, $card);
                 }
 
                 // Transfers du salaire
@@ -288,11 +150,11 @@ class LifeCommand extends Command
                     CustomerTransactionHelper::create(
                         'debit',
                         'souscription',
-                        'Cotisation Pack'.$customer->package->name.' - '.now()->monthName,
+                        'Cotisation Pack '.$customer->package->name.' - '.now()->monthName,
                         $customer->package->price,
                         $account->id,
                         true,
-                        'Cotisation Pack'.$customer->package->name.' - '.now()->monthName,
+                        'Cotisation Pack '.$customer->package->name.' - '.now()->monthName,
                         now()
                     );
                 }
@@ -556,5 +418,154 @@ class LifeCommand extends Command
                 $customer->info->notify(new SendAlertaInfoNotification($wallet, $waiting, $mouvement));
             }
         }
+    }
+
+    private function createFacelia(Customer $customer, CustomerCreditCard $card)
+    {
+        $amount = [500, 1000, 1500, 2000, 2500, 3000];
+        $duration = ['low', 'middle', 'fast'];
+        $amount_loan = $amount[rand(0, 5)];
+        $vitesse = $duration[rand(0,2)];
+        $interestTaxe = CustomerLoanHelper::calcVariableTaxeInterest($vitesse);
+        $interest = CustomerLoanHelper::getLoanInterest($amount_loan, $interestTaxe);
+        $du = $amount_loan + $interest;
+
+        $number_account = random_numeric(9);
+        $ibanG = new Generator($customer->user->agency->code_banque, $number_account, 'fr');
+
+        $cpt_pret = CustomerWallet::query()->create([
+            'uuid' => Str::uuid(),
+            'number_account' => $number_account,
+            'iban' => $ibanG->generate($customer->user->agency->code_banque, $number_account, 'fr'),
+            'rib_key' => $ibanG->getBban($customer->user->agency->code_banque, $number_account),
+            'type' => 'pret',
+            'status' => 'active',
+            'balance_actual' => $amount_loan,
+            'customer_id' => $customer->id,
+        ]);
+
+        $pr = CustomerPret::factory()->create([
+            'amount_loan' => $amount_loan,
+            'amount_interest' => $interest,
+            'amount_du' => $du,
+            'mensuality' => $du / CustomerLoanHelper::getPeriodicMensualityFromVitess($vitesse),
+            'prlv_day' => 30,
+            'duration' => CustomerLoanHelper::getPeriodicMensualityFromVitess($vitesse),
+            'status' => 'accepted',
+            'customer_wallet_id' => $cpt_pret->id,
+            'wallet_payment_id' => $card->wallet->id,
+            'first_payment_at' => Carbon::create(now()->year, now()->addMonth()->month, 30),
+            'loan_plan_id' => 6,
+            'customer_id' => $customer->id,
+        ]);
+
+        $card->update([
+            'customer_pret_id' => $pr->id,
+        ]);
+
+        $facelia = CustomerFacelia::query()->create([
+            'reference' => generateReference(),
+            'amount_available' => $amount_loan,
+            'amount_interest' => 0,
+            'amount_du' => 0,
+            'mensuality' => 0,
+            'next_expiration' => null,
+            'customer_pret_id' => $pr->id,
+            'customer_credit_card_id' => $card->id,
+            'customer_wallet_id' => $cpt_pret->id,
+            'wallet_payment_id' => $card->wallet->id,
+        ]);
+
+        DocumentFile::createDoc(
+            $customer,
+            'Plan d\'amortissement',
+            $pr->reference." - Plan d'amortissement",
+            3,
+            null,
+            false,
+            false,
+            false,
+            true,
+            ['loan' => $pr]
+        );
+
+        DocumentFile::createDoc(
+            $customer,
+            'Assurance Emprunteur',
+            $pr->reference.' - Assurance Emprunteur',
+            3,
+            null,
+            false,
+            false,
+            false,
+            true,
+            []
+        );
+
+        DocumentFile::createDoc(
+            $customer,
+            'Avis de conseil relatif assurance',
+            $pr->reference.' - Avis de conseil Relatif au assurance emprunteur',
+            3,
+            null,
+            false,
+            false,
+            false,
+            true,
+            []
+        );
+
+        DocumentFile::createDoc(
+            $customer,
+            'contrat de credit facelia',
+            $pr->reference.' - Contrat de Crédit FACELIA',
+            3,
+            null,
+            true,
+            true,
+            false,
+            true,
+            ['loan' => $pr]
+        );
+
+        DocumentFile::createDoc(
+            $customer,
+            'Fiche de dialogue',
+            $pr->reference.' - Fiche de Dialogue',
+            3,
+            null,
+            false,
+            false,
+            false,
+            true,
+            []
+        );
+
+        DocumentFile::createDoc(
+            $customer,
+            'Information précontractuel normalise',
+            $pr->reference.' - Information Précontractuel Normalisé',
+            3,
+            null,
+            true,
+            true,
+            false,
+            true,
+            ['loan' => $pr]
+        );
+
+        DocumentFile::createDoc(
+            $customer,
+            'Mandat Prélevement sepa',
+            $pr->reference.' - Mandat Prélèvement SEPA',
+            3,
+            null,
+            false,
+            false,
+            false,
+            true,
+            ['loan' => $pr]
+        );
+
     }
 }
