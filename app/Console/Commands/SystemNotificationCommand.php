@@ -54,14 +54,14 @@ class SystemNotificationCommand extends Command
             if($this->files->isFile($f))
                 $this->error($file." Le fichier existe déja !");
 
-            if(!$this->files->put($f, $this->content($folder, $file)))
+            if(!$this->files->put($f, $this->content($folder, $file, $viewFileName)))
                 $this->error('Something went wrong!');
 
 
             $this->info("Fichier Généré: ".$f);
         } else {
             $this->files->makeDirectory($pathNotif, 0777, true, true);
-            if(!$this->files->put($f, $this->content($folder, $file)))
+            if(!$this->files->put($f, $this->content($folder, $file, $viewFileName)))
                 $this->error('Something went wrong!');
             $this->info("Fichier Généré: ".$f);
         }
@@ -69,10 +69,10 @@ class SystemNotificationCommand extends Command
 
     }
 
-    private function content($folder, $file)
+    private function content($folder, $file, $viewFileName)
     {
         $namespace = "App\Notifications\\${folder}";
-        $view_mail = \Str::camel($file);
+
 $content = '
 <?php
 namespace '.$namespace.';
@@ -143,7 +143,7 @@ class '.$file.' extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
-        $message->view("emails.customer.'.$view_mail.'", [
+        $message->view("emails.customer.'.$viewFileName.'", [
             "content" => $this->message,
             "customer" => $this->customer
         ]);

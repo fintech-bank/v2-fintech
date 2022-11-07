@@ -59,4 +59,20 @@ class CustomerSepa extends Model
     {
         return eur($this->amount);
     }
+
+    public function getReasonFromRejected($reason)
+    {
+        $arr = [
+            'reject.debit' => "Solde insuffisant",
+        ];
+
+        $collect = collect([
+            [
+                'key' => 'reject.debit',
+                'reason' => "Solde Insuffisant"
+            ]
+        ]);
+        $search = $collect->where('key', $reason)->first();
+        return $search['reason'];
+    }
 }
