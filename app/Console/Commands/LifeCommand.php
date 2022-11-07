@@ -29,6 +29,7 @@ use App\Models\Customer\CustomerWithdraw;
 use App\Models\User;
 use App\Notifications\Customer\Automate\GenerateMensualReleverNotification;
 use App\Notifications\Customer\Automate\NewPrlvPresented;
+use App\Notifications\Customer\SendAlertaInfoNotification;
 use App\Services\Twilio\Verify;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -63,6 +64,7 @@ class LifeCommand extends Command
             'generatePrlvSepa' => $this->generatePrlvSepa(),
             'generateMensualReleve' => $this->generateMensualReleve(),
             'limitWithdraw' => $this->limitWithdraw(),
+            'alerta' => $this->sendAlertaInfo()
         };
         return Command::SUCCESS;
     }
@@ -515,5 +517,31 @@ class LifeCommand extends Command
 
         $this->table(['Reference', 'Montant', 'Client'], $arr);
         return 0;
+    }
+
+    private function sendAlertaInfo()
+    {
+        $customers = Customer::where('status_open_account', 'terminated')->get();
+
+        foreach ($customers as $customer) {
+            if($customer->setting->alerta) {
+                $wallet = $customer->wallets()
+                    ->where('type', 'compte')
+                    ->where('status', 'active')->first();
+
+                $waiting = $wallet->transactions()
+                    ->where('confirmed', false)
+                    ->whereBetween('updated_at', [now()->startOfWeek(), now()->endOfWeek()])
+                    ->orderBy('updated_at', 'desc')
+                    ->first();
+
+                $mouvement = $wallet->transactions()
+                    ->whereBetween('confirmed_at', [now()->startOfWeek(), now()->endOfWeek()])
+                    ->orderBy('confirmed_at', 'desc')
+                    ->first();
+
+                $customer->info->notify(new SendAlertaInfoNotification($wallet, $waiting, $mouvement));
+            }
+        }
     }
 }

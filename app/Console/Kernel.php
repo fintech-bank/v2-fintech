@@ -81,6 +81,12 @@ class Kernel extends ConsoleKernel
             ->dailyAt('08:00')
             ->description("Suppression des retraits bancaire non effectuer/valider")
             ->emailOutputTo(config('mail.from.address'));
+
+        $schedule->command("life alerta")
+            ->weeklyOn(7)
+            ->between('08:00', '17:00')
+            ->description("Envoie d'un relevé flash")
+            ->emailOutputTo(config('mail.from.address'));
     }
 
     /**
