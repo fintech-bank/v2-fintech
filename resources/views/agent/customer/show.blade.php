@@ -465,7 +465,7 @@
                                     <td>
                                         <div class="d-flex flex-row align-items-center">
                                             {!! $transaction->getTypeSymbolAttribute('20px') !!}
-                                            <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
+                                            <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->designation }}">{{ $transaction->description }}</span>
                                         </div>
                                     </td>
                                     <td>{{ $transaction->confirmed_at->format("d/m/Y") }}</td>
@@ -488,9 +488,6 @@
                                 </tr>
                             @endforeach
                         @endforeach
-                        <tr>
-                            <td></td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
