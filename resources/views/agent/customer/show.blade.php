@@ -1019,6 +1019,51 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Assurance</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Mobilité Bancaire</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Pret bancaire</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
