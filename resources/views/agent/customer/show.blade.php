@@ -990,7 +990,7 @@
         </div>
         <div class="tab-pane fade" id="subscriptions">
             <div class="row">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12 mb-5">
                     <div class="card shadow-sm">
                         <div class="card-header">
                             <h3 class="card-title">Offre</h3>
@@ -1019,7 +1019,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12 mb-5">
                     <div class="card shadow-sm">
                         <div class="card-header">
                             <h3 class="card-title">Assurance</h3>
@@ -1034,7 +1034,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12 mb-5">
                     <div class="card shadow-sm">
                         <div class="card-header">
                             <h3 class="card-title">Mobilité Bancaire</h3>
@@ -1049,7 +1049,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12 mb-5">
                     <div class="card shadow-sm">
                         <div class="card-header">
                             <h3 class="card-title">Pret bancaire</h3>
