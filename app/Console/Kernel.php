@@ -58,6 +58,11 @@ class Kernel extends ConsoleKernel
             ->description("Libération du montant du pret bancaire")
             ->emailOutputTo(config('mail.from.address'));
 
+        $schedule->command('system:agent chargeLoanAccepted')
+            ->everySixHours()
+            ->description("Execution des prélèvements bancaires")
+            ->emailOutputTo(config('mail.from.address'));
+
         // Life
         $schedule->command("life generateCustomers")
             ->everyFourHours()

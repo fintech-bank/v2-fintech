@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Core\Event;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerPret;
+use App\Models\Customer\CustomerSepa;
 use App\Notifications\Agent\CalendarAlert;
 use App\Notifications\Customer\ChargeLoanAcceptedNotification;
 use App\Notifications\Customer\VerifRequestLoanNotification;
@@ -38,7 +39,8 @@ class SystemAgentCommand extends Command
             "calendarAlert" => $this->calendarAlert(),
             "updateCotation" => $this->updateCotation(),
             "verifRequestLoanOpen" => $this->verifRequestLoanOpen(),
-            "chargeLoanAccepted" => $this->chargeLoanAccepted()
+            "chargeLoanAccepted" => $this->chargeLoanAccepted(),
+            "executeSepaOrders" => $this->executeSepaOrders()
         };
 
         return Command::SUCCESS;
@@ -120,5 +122,14 @@ class SystemAgentCommand extends Command
         }
 
         $this->output->table(['Client', "Type de Pret", 'Référence', 'Montant', 'Etat'], $arr);
+    }
+
+    private function executeSepaOrders()
+    {
+        $sepas = CustomerSepa::where('status', 'waiting')->get();
+
+        foreach ($sepas as $sepa) {
+            dd($sepa->amount, $sepa->wallet->solde_remaining);
+        }
     }
 }
