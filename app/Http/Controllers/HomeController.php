@@ -90,6 +90,6 @@ class HomeController extends Controller
     public function test()
     {
         $user = User::find(4);
-        dd($user->subscriptions);
+        dd($user->subscriptions()->first());
     }
 }
