@@ -41,16 +41,23 @@ class SystemNotificationCommand extends Command
         $file = $this->argument('notification');
 
         $f = "${file}.php";
+        $camel = \Str::snake($file);
+        $viewFileName = \Str::replace('_notification', '', $camel);
         $path = app_path('Notifications');
 
         $f = $path."/${folder}/$f";
         $pathNotif = $path."/${folder}";
+        $pathView = "/resources/views/emails";
+        $fileView = "${viewFileName}.blade.php";
 
         if($this->files->isDirectory($pathNotif)) {
             if($this->files->isFile($f))
                 $this->error($file." Le fichier existe déja !");
 
             if(!$this->files->put($f, $this->content($folder, $file)))
+                $this->error('Something went wrong!');
+
+            if(!$this->files->put($pathView.'/'.$fileView, null))
                 $this->error('Something went wrong!');
 
             $this->info("Fichier Généré: ".$f);
@@ -60,11 +67,14 @@ class SystemNotificationCommand extends Command
                 $this->error('Something went wrong!');
             $this->info("Fichier Généré: ".$f);
         }
+
+
     }
 
     private function content($folder, $file)
     {
         $namespace = "App\Notifications\\${folder}";
+        $view_mail = \Str::camel($file);
 $content = '
 <?php
 namespace '.$namespace.';
@@ -72,6 +82,7 @@ namespace '.$namespace.';
 use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
 use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
 use App\Models\Customer\CustomerSepa;
+use App\Models\Customer\Customer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -84,12 +95,14 @@ class '.$file.' extends Notification
     public string $title;
     public string $link;
     public string $message;
+    public Customer $customer;
 
-    public function __construct()
+    public function __construct(Customer $customer)
     {
         $this->title = "";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->customer = $customer
     }
 
     private function getMessage()
@@ -101,22 +114,22 @@ class '.$file.' extends Notification
     private function choiceChannel()
     {
         if (config("app.env") == "local") {
-            if($this->sepa->wallet->customer->setting->notif_sms) {
+            if($this->customer->setting->notif_sms) {
                 return [FreeMobileChannel::class];
             }
 
-            if($this->sepa->wallet->customer->setting->notif_mail) {
+            if($this->customer->setting->notif_mail) {
                 return "mail";
             }
 
             return "database";
         } else {
 
-            if($this->sepa->wallet->customer->setting->notif_sms) {
+            if($this->customer->setting->notif_sms) {
                 return [TwilioChannel::class];
             }
 
-            if($this->sepa->wallet->customer->setting->notif_mail) {
+            if($this->customer->setting->notif_mail) {
                 return "mail";
             }
 
@@ -132,6 +145,10 @@ class '.$file.' extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
+        $message->view("emails.customer.'.$view_mail.'", [
+            "content" => $this->message,
+            "customer" => $this->customer
+        ]);
 
         return $message;
     }
@@ -167,5 +184,10 @@ class '.$file.' extends Notification
 ?>
 ';
     return $content;
+    }
+
+    private function contentView()
+    {
+
     }
 }

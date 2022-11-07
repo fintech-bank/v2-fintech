@@ -6,6 +6,7 @@ use App\Models\Core\Event;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerPret;
 use App\Notifications\Agent\CalendarAlert;
+use App\Notifications\Customer\ChargeLoanAcceptedNotification;
 use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\CotationClient;
 use Illuminate\Console\Command;
@@ -33,17 +34,13 @@ class SystemAgentCommand extends Command
      */
     public function handle()
     {
-        switch ($this->argument('action')) {
-            case 'calendarAlert':
-                $this->calendarAlert();
-                break;
-            case 'updateCotation':
-                $this->updateCotation();
-                break;
+        match ($this->argument('action')) {
+            "calendarAlert" => $this->calendarAlert(),
+            "updateCotation" => $this->updateCotation(),
+            "verifRequestLoanOpen" => $this->verifRequestLoanOpen(),
+            "chargeLoanAccepted" => $this->chargeLoanAccepted()
+        };
 
-            case 'verifRequestLoanOpen':
-                $this->verifRequestLoanOpen();
-        }
         return Command::SUCCESS;
     }
 
@@ -52,7 +49,7 @@ class SystemAgentCommand extends Command
         $events = Event::all();
 
         foreach ($events as $event) {
-            if($event->start_at->subMinutes(15)->format('d/m/Y H:i') == now()->format('d/m/Y H:i')) {
+            if ($event->start_at->subMinutes(15)->format('d/m/Y H:i') == now()->format('d/m/Y H:i')) {
                 $event->user->notify(new CalendarAlert($event));
                 foreach ($event->attendees as $attendee) {
                     $attendee->user->notify(new \App\Notifications\Customer\CalendarAlert($event));
@@ -94,6 +91,32 @@ class SystemAgentCommand extends Command
                 eur($pret->amount_loan),
                 $pret->status
             ];
+        }
+
+        $this->output->table(['Client', "Type de Pret", 'Référence', 'Montant', 'Etat'], $arr);
+    }
+
+    private function chargeLoanAccepted()
+    {
+        $prets = CustomerPret::where('status', 'accepted')->get();
+        $arr = [];
+
+        foreach ($prets as $pret) {
+            if($pret->updated_at > now()->addDays(8)) {
+                $pret->wallet->update([
+                    'balance_coming' => $pret->wallet->balance_coming - $pret->amount_loan,
+                    'balance_actual' => $pret->wallet->balance_actual + $pret->amount_loan
+                ]);
+
+                $pret->customer->info->notify(new ChargeLoanAcceptedNotification($pret));
+                $arr[] = [
+                    $pret->customer->info->full_name,
+                    $pret->plan->name,
+                    $pret->reference,
+                    eur($pret->amount_loan),
+                    $pret->status
+                ];
+            }
         }
 
         $this->output->table(['Client', "Type de Pret", 'Référence', 'Montant', 'Etat'], $arr);
