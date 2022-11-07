@@ -7,6 +7,7 @@ use App\Helper\LogHelper;
 use App\Helper\UserHelper;
 use App\Models\Core\Agency;
 use App\Models\Core\Event;
+use App\Models\Core\LoanPlan;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Reseller\Reseller;
@@ -88,7 +89,7 @@ class HomeController extends Controller
 
     public function test()
     {
-        $user = User::find(3);
-        dd(UserHelper::getChannelNotification($user->settingnotification));
+        $loan = LoanPlan::find(6);
+        dd($loan);
     }
 }
