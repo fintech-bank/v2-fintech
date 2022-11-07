@@ -29,7 +29,7 @@ class MensualReleverNotification extends Notification
     {
         $this->title = "De nouveaux relevés sont disponible";
         $this->message = $this->getMessage();
-        $this->link = null;
+        $this->link = '';
         $this->file = $file;
     }
 
