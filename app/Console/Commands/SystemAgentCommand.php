@@ -89,12 +89,13 @@ class SystemAgentCommand extends Command
             $pret->customer->info->notify(new VerifRequestLoanNotification($pret));
             $arr[] = [
                 $pret->customer->info->full_name,
+                $pret->plan->name,
                 $pret->reference,
                 eur($pret->amount_loan),
                 $pret->status
             ];
         }
 
-        $this->output->table(['Client', 'Référence', 'Montant', 'Etat'], $arr);
+        $this->output->table(['Client', "Type de Pret", 'Référence', 'Montant', 'Etat'], $arr);
     }
 }
