@@ -6,9 +6,11 @@ use App\Jobs\Core\PaymentFirstInsuranceJob;
 use App\Jobs\Core\PaymentSubscriptionJob;
 use App\Models\Core\CreditCardSupport;
 use App\Models\Core\DocumentCategory;
+use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCreditCard;
 use App\Models\Customer\CustomerInfo;
+use App\Models\Customer\CustomerInsurance;
 use App\Models\Customer\CustomerSetting;
 use App\Models\Customer\CustomerSituation;
 use App\Models\Customer\CustomerSituationCharge;
@@ -273,7 +275,7 @@ class CustomerHelper
         return $user;
     }
 
-    private function createsCustomer($session, $user, $password)
+    private function createsCustomer($session, User $user, $password)
     {
         $code_auth = rand(1000, 9999);
         $bank = new BankFintech();
@@ -289,6 +291,11 @@ class CustomerHelper
             'fcc' => $ficp->fcc ? 1 : 0,
         ]);
         $customer->update(['persona_reference_id' => 'customer_'.now()->format('dmYhi')."_".$customer->id]);
+
+        $user->subscriptions()->create([
+            'subscribe_type' => Package::class,
+            'subscribe_id' => $customer->package_id
+        ]);
 
         $info = CustomerInfo::create([
             'type' => 'part',
@@ -556,6 +563,10 @@ class CustomerHelper
             $setting->update([
                 'alerta' => 1
             ]);
+            $customer->user->subscriptions()->create([
+                'subscribe_type' => CustomerSetting::class,
+                'subscribe_id' => $setting->id
+            ]);
         }
 
         if (isset($session->subscribe['daily_insurance'])) {
@@ -597,6 +608,11 @@ class CustomerHelper
 
         $contract->update([
             'mensuality' => $contract->form->typed_price
+        ]);
+
+        $customer->user->subscriptions()->create([
+            'subscribe_type' => CustomerInsurance::class,
+            'subscribe_id' => $contract->id
         ]);
 
         DocumentFile::createDoc($customer,

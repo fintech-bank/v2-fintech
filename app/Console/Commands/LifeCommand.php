@@ -96,6 +96,11 @@ class LifeCommand extends Command
             ]);
             $customer->update(['persona_reference_id' => 'customer_' . now()->format('dmYhi') . "_" . $customer->id]);
 
+            $user->subscriptions()->create([
+                'subscribe_type' => Package::class,
+                'subscribe_id' => $customer->package_id,
+                'user_id' => $user->id
+            ]);
 
             CustomerInfo::factory()->create([
                 'customer_id' => $customer->id,
@@ -162,6 +167,8 @@ class LifeCommand extends Command
                         now()
                     );
                 }
+
+
             }
 
             $arr [] = [
@@ -487,6 +494,11 @@ class LifeCommand extends Command
             'customer_credit_card_id' => $card->id,
             'customer_wallet_id' => $cpt_pret->id,
             'wallet_payment_id' => $card->wallet->id,
+        ]);
+
+        $customer->user->subscriptions()->create([
+            'subscribe_type' => CustomerPret::class,
+            'subscribe_id' => $pr->id
         ]);
 
         DocumentFile::createDoc(
