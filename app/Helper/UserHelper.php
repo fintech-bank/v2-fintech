@@ -94,6 +94,10 @@ class UserHelper
             $sms = null;
         };
 
-        dd($channel->all());
+        $const = $channel->map(function ($item) {
+            return $item;
+        });
+
+        dd($const->all());
     }
 }
