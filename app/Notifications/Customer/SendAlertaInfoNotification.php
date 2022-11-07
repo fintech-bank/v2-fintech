@@ -46,18 +46,18 @@ class SendAlertaInfoNotification extends Notification
         $message = config('app.name')."\n";
         $message .= 'Le ' . now()->format('d/m/Y à H:i')."\n";
         $message .= "RELEVE FLASH\n";
-        $message .= "Compte: " . $this->wallet->balance_actual;
+        $message .= "Compte: " . $this->wallet->balance_actual_format."\n";
 
         if (isset($this->waiting)) {
-            $message .= "Dernière opération en cours: " . $this->waiting->amount_format . ' (' . $this->waiting->updated_at->format('d/m') . ')';
+            $message .= "Dernière opération en cours: " . $this->waiting->amount_format . ' (' . $this->waiting->updated_at->format('d/m') . ')'."\n";
         } else {
-            $message .= "Pas d'opération en cours.";
+            $message .= "Pas d'opération en cours.\n";
         }
 
         if(isset($this->mouvement)) {
-            $message .= "Dernière opération: " . $this->mouvement->amount_format . '(' . $this->mouvement->confirmed_at->format('d/m') . ')';
+            $message .= "Dernière opération: " . $this->mouvement->amount_format . '(' . $this->mouvement->confirmed_at->format('d/m') . ')'."\n";
         } else {
-            $message .= "Pas de nouvelle opération";
+            $message .= "Pas de nouvelle opération \n";
         }
 
         $message .= "Bonne journée !";

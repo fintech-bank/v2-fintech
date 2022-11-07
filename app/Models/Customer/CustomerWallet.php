@@ -83,6 +83,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereNbAlert($value)
  * @property-read mixed $solde_remaining
  * @property-read mixed $sum_month_operation
+ * @property-read mixed $balance_actual_format
  */
 class CustomerWallet extends Model
 {

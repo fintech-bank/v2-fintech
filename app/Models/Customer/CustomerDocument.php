@@ -44,6 +44,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $signed_by_client_label
  * @property-read mixed $url_folder
  * @property-read mixed $url_bread
+ * @property-read mixed $size_file
  */
 class CustomerDocument extends Model
 {
