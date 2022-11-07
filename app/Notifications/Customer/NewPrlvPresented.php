@@ -115,31 +115,31 @@ class NewPrlvPresented extends Notification
 
     private function choiceChannel()
     {
-        $arr = collect();
+        $arr = null;
         if (config('app.env') == 'local') {
             if($this->sepa->wallet->customer->setting->notif_sms) {
-                $arr->push(FreeMobileChannel::class);
+                $arr .= FreeMobileChannel::class;
             }
 
             if($this->sepa->wallet->customer->setting->notif_mail) {
-                $arr->push('mail');
+                $arr .= 'mail';
             }
 
-            $arr->push('database');
+            $arr .= 'database';
         } else {
 
             if($this->sepa->wallet->customer->setting->notif_sms) {
-                $arr->push(TwilioChannel::class);
+                $arr .= TwilioChannel::class;
             }
 
             if($this->sepa->wallet->customer->setting->notif_mail) {
-                $arr->push('mail');
+                $arr .= 'mail';
             }
 
-            $arr->push('database');
+            $arr .= 'database';
 
         }
 
-        return [implode(',', $arr->all())];
+        return $arr;
     }
 }
