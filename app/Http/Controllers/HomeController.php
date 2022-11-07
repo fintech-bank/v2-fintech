@@ -90,6 +90,6 @@ class HomeController extends Controller
     public function test()
     {
         $loan = LoanPlan::find(6);
-        dd(json_decode($loan->tarif));
+        dd($loan->tarif);
     }
 }
