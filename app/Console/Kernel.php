@@ -74,7 +74,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command("life generateMensualReleve")
             ->monthlyOn(30)->at('08:00')
-            ->description("Génération des débits bancaires")
+            ->description("Génération des relevés bancaires")
             ->emailOutputTo(config('mail.from.address'));
 
         $schedule->command("life limitWithdraw")
