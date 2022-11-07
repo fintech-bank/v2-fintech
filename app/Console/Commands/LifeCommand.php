@@ -28,6 +28,7 @@ use App\Models\Customer\CustomerWallet;
 use App\Models\Customer\CustomerWithdraw;
 use App\Models\User;
 use App\Notifications\Customer\Automate\GenerateMensualReleverNotification;
+use App\Notifications\Customer\MensualReleverNotification;
 use App\Notifications\Customer\NewPrlvPresented;
 use App\Notifications\Customer\SendAlertaInfoNotification;
 use App\Services\Twilio\Verify;
@@ -373,7 +374,7 @@ class LifeCommand extends Command
                 ]
             );
 
-            $wallet->customer->user->notify(new GenerateMensualReleverNotification($file));
+            $wallet->customer->user->notify(new MensualReleverNotification($file));
             $i++;
         }
 
