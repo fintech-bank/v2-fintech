@@ -95,22 +95,22 @@ class MensualReleverNotification extends Notification
     private function choiceChannel()
     {
         if (config('app.env') == 'local') {
-            if($this->sepa->wallet->customer->setting->notif_sms) {
+            if($this->file->customer->setting->notif_sms) {
                 return [FreeMobileChannel::class];
             }
 
-            if($this->sepa->wallet->customer->setting->notif_mail) {
+            if($this->file->customer->setting->notif_mail) {
                 return 'mail';
             }
 
             return 'database';
         } else {
 
-            if($this->sepa->wallet->customer->setting->notif_sms) {
+            if($this->file->customer->setting->notif_sms) {
                 return [TwilioChannel::class];
             }
 
-            if($this->sepa->wallet->customer->setting->notif_mail) {
+            if($this->file->customer->setting->notif_mail) {
                 return 'mail';
             }
 
