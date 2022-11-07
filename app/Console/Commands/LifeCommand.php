@@ -306,16 +306,12 @@ class LifeCommand extends Command
         foreach ($customers as $customer) {
             foreach ($customer->wallets->where('status', 'active')->where('type', 'compte')->first() as $wallet) {
                 if (rand(0, 1) == 1) {
-                    try {
-                        $sepas = CustomerSepa::factory(rand(1, 5))->create([
-                            'amount' => -rand(5, 3500),
-                            'customer_wallet_id' => $wallet->id,
-                            'updated_at' => now()->addDays(rand(1, 5)),
-                            'status' => 'waiting',
-                        ]);
-                    } catch (Exception $exception) {
-                        LogHelper::notify('critical', $exception);
-                    }
+                    $sepas = CustomerSepa::factory(rand(1, 5))->create([
+                        'amount' => -rand(5, 3500),
+                        'customer_wallet_id' => $wallet->id,
+                        'updated_at' => now()->addDays(rand(1, 5)),
+                        'status' => 'waiting',
+                    ]);
 
                     foreach ($sepas as $sepa) {
                         try {
