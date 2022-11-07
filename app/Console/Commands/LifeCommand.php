@@ -28,10 +28,11 @@ use App\Models\Customer\CustomerWallet;
 use App\Models\Customer\CustomerWithdraw;
 use App\Models\User;
 use App\Notifications\Customer\Automate\GenerateMensualReleverNotification;
-use App\Notifications\Customer\Automate\NewPrlvPresented;
+use App\Notifications\Customer\NewPrlvPresented;
 use App\Notifications\Customer\SendAlertaInfoNotification;
 use App\Services\Twilio\Verify;
 use Carbon\Carbon;
+use Exception;
 use IbanGenerator\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -77,7 +78,7 @@ class LifeCommand extends Command
      */
     private function generateCustomers()
     {
-        $r = rand(0,5);
+        $r = rand(0, 5);
         $twilio = new Verify();
         $arr = [];
 
@@ -92,7 +93,7 @@ class LifeCommand extends Command
                 'package_id' => Package::all()->random()->id,
                 'agent_id' => User::where('agent', 1)->get()->random()->id,
             ]);
-            $customer->update(['persona_reference_id' => 'customer_'.now()->format('dmYhi')."_".$customer->id]);
+            $customer->update(['persona_reference_id' => 'customer_' . now()->format('dmYhi') . "_" . $customer->id]);
 
 
             CustomerInfo::factory()->create([
@@ -129,13 +130,13 @@ class LifeCommand extends Command
                     'customer_wallet_id' => $account->id,
                 ]);
 
-                if($card->facelia == 1) {
+                if ($card->facelia == 1) {
                     $this->createFacelia($customer, $card);
                 }
 
-                if($customer->info->type == 'part') {
+                if ($customer->info->type == 'part') {
                     // Transfers du salaire
-                    $title = 'Virement Salaire '.now()->monthName;
+                    $title = 'Virement Salaire ' . now()->monthName;
                     CustomerTransactionHelper::create(
                         'credit',
                         'virement',
@@ -152,11 +153,11 @@ class LifeCommand extends Command
                     CustomerTransactionHelper::create(
                         'debit',
                         'souscription',
-                        'Cotisation Pack '.$customer->package->name.' - '.now()->monthName,
+                        'Cotisation Pack ' . $customer->package->name . ' - ' . now()->monthName,
                         $customer->package->price,
                         $account->id,
                         true,
-                        'Cotisation Pack '.$customer->package->name.' - '.now()->monthName,
+                        'Cotisation Pack ' . $customer->package->name . ' - ' . now()->monthName,
                         now()
                     );
                 }
@@ -168,7 +169,7 @@ class LifeCommand extends Command
             ];
         }
 
-        $this->line('Nombre de nouveau client: '.$r);
+        $this->line('Nombre de nouveau client: ' . $r);
         $this->output->table(['client', 'Etat du compte'], $arr);
     }
 
@@ -182,7 +183,7 @@ class LifeCommand extends Command
 
         foreach ($customers as $customer) {
             $wallet = $customer->wallets()->where('type', 'compte')->first();
-            $title = "Virement Salaire ".now()->monthName;
+            $title = "Virement Salaire " . now()->monthName;
 
             CustomerTransactionHelper::create(
                 'credit',
@@ -228,7 +229,7 @@ class LifeCommand extends Command
                                         rand(100, 900),
                                         $wallet->id,
                                         true,
-                                        'Dépot sur votre compte | Ref: '.Str::upper(Str::random(8)),
+                                        'Dépot sur votre compte | Ref: ' . Str::upper(Str::random(8)),
                                         now());
                                     break;
 
@@ -240,7 +241,7 @@ class LifeCommand extends Command
                                         rand(100, 900),
                                         $wallet->id,
                                         true,
-                                        'Retrait sur votre compte | Ref: '.Str::upper(Str::random(8)),
+                                        'Retrait sur votre compte | Ref: ' . Str::upper(Str::random(8)),
                                         now());
                                     break;
 
@@ -255,7 +256,7 @@ class LifeCommand extends Command
                                                 rand(100, 900),
                                                 $wallet->id,
                                                 $confirmed == 1 ? true : false,
-                                                'Paiement par Carte Bancaire | Ref: '.Str::upper(Str::random(8)),
+                                                'Paiement par Carte Bancaire | Ref: ' . Str::upper(Str::random(8)),
                                                 $confirmed == 1 ? now() : null,
                                                 $confirmed == 0 ? now()->addDays(rand(1, 5)) : now(), $wallet->cards()->first()->id,
                                                 $differed == 1 ? true : false);
@@ -267,14 +268,14 @@ class LifeCommand extends Command
                                                 rand(100, 900),
                                                 $wallet->id,
                                                 $confirmed == 1 ? true : false,
-                                                'Paiement par Carte Bancaire | Ref: '.Str::upper(Str::random(8)),
+                                                'Paiement par Carte Bancaire | Ref: ' . Str::upper(Str::random(8)),
                                                 $confirmed == 1 ? now() : null,
                                                 $confirmed == 0 ? now()->addDays(rand(1, 5)) : now(), $wallet->cards()->first()->id);
                                         }
                                     }
                                     break;
                                 default:
-                                    throw new \Exception('Unexpected value');
+                                    throw new Exception('Unexpected value');
                             }
                             $nb++;
                             $arr[] = [
@@ -283,13 +284,13 @@ class LifeCommand extends Command
                                 $transaction->amount_format
                             ];
                         }
-                    } catch (\Exception $exception) {
+                    } catch (Exception $exception) {
                         $this->error($exception->getMessage());
                     }
                 }
             }
         }
-        $this->line('Génération des Transactions: '.$nb);
+        $this->line('Génération des Transactions: ' . $nb);
         $this->output->table(['Client', 'Mouvement', 'Montant'], $arr);
     }
 
@@ -302,7 +303,7 @@ class LifeCommand extends Command
         $customers = Customer::where('status_open_account', 'terminated')->get();
 
         foreach ($customers as $customer) {
-            foreach ($customer->wallets->where('status', 'active')->where('type', 'compte') as $wallet) {
+            foreach ($customer->wallets->where('status', 'active')->where('type', 'compte')->first() as $wallet) {
                 if (rand(0, 1) == 1) {
                     try {
                         $sepas = CustomerSepa::factory(rand(1, 5))->create([
@@ -311,13 +312,13 @@ class LifeCommand extends Command
                             'updated_at' => now()->addDays(rand(1, 5)),
                             'status' => 'waiting',
                         ]);
-                    } catch (\Exception $exception) {
+                    } catch (Exception $exception) {
                         LogHelper::notify('critical', $exception);
                     }
 
                     foreach ($sepas as $sepa) {
                         try {
-                            $creditor = CustomerCreditor::where('name', 'LIKE', '%'.$sepa->creditor.'%')->count();
+                            $creditor = CustomerCreditor::where('name', 'LIKE', '%' . $sepa->creditor . '%')->count();
                             if ($creditor == 0) {
                                 CustomerCreditor::create([
                                     'name' => $sepa->creditor,
@@ -325,7 +326,7 @@ class LifeCommand extends Command
                                     'customer_sepa_id' => $sepa->id,
                                 ]);
                             }
-                        } catch (\Exception $exception) {
+                        } catch (Exception $exception) {
                             LogHelper::notify('critical', $exception);
                         }
 
@@ -351,7 +352,7 @@ class LifeCommand extends Command
             $file = DocumentFile::createDoc(
                 $wallet->customer,
                 'Relever Mensuel',
-                'Relever Mensuel '.now()->monthName,
+                'Relever Mensuel ' . now()->monthName,
                 2,
                 null,
                 false,
@@ -367,7 +368,7 @@ class LifeCommand extends Command
             $i++;
         }
 
-        $this->info('Nombre de relevé généré: '.$i);
+        $this->info('Nombre de relevé généré: ' . $i);
     }
 
     /**
@@ -381,7 +382,7 @@ class LifeCommand extends Command
 
         foreach ($withdraws as $withdraw) {
             $limit = $withdraw->created_at->addDays(5);
-            if($limit->startOfDay() == now()->startOfDay()) {
+            if ($limit->startOfDay() == now()->startOfDay()) {
                 $withdraw->transaction()->delete();
                 $withdraw->delete();
                 $arr[] = [
@@ -401,7 +402,7 @@ class LifeCommand extends Command
         $customers = Customer::where('status_open_account', 'terminated')->get();
 
         foreach ($customers as $customer) {
-            if($customer->setting->alerta) {
+            if ($customer->setting->alerta) {
                 $wallet = $customer->wallets()
                     ->where('type', 'compte')
                     ->where('status', 'active')->first();
@@ -427,7 +428,7 @@ class LifeCommand extends Command
         $amount = [500, 1000, 1500, 2000, 2500, 3000];
         $duration = ['low', 'middle', 'fast'];
         $amount_loan = $amount[rand(0, 5)];
-        $vitesse = $duration[rand(0,2)];
+        $vitesse = $duration[rand(0, 2)];
         $interestTaxe = CustomerLoanHelper::calcVariableTaxeInterest($vitesse);
         $interest = CustomerLoanHelper::getLoanInterest($amount_loan, $interestTaxe);
         $du = $amount_loan + $interest;
@@ -481,7 +482,7 @@ class LifeCommand extends Command
         DocumentFile::createDoc(
             $customer,
             'Plan d\'amortissement',
-            $pr->reference." - Plan d'amortissement",
+            $pr->reference . " - Plan d'amortissement",
             3,
             null,
             false,
@@ -494,7 +495,7 @@ class LifeCommand extends Command
         DocumentFile::createDoc(
             $customer,
             'Assurance Emprunteur',
-            $pr->reference.' - Assurance Emprunteur',
+            $pr->reference . ' - Assurance Emprunteur',
             3,
             null,
             false,
@@ -507,7 +508,7 @@ class LifeCommand extends Command
         DocumentFile::createDoc(
             $customer,
             'Avis de conseil relatif assurance',
-            $pr->reference.' - Avis de conseil Relatif au assurance emprunteur',
+            $pr->reference . ' - Avis de conseil Relatif au assurance emprunteur',
             3,
             null,
             false,
@@ -520,7 +521,7 @@ class LifeCommand extends Command
         DocumentFile::createDoc(
             $customer,
             'contrat de credit facelia',
-            $pr->reference.' - Contrat de Crédit FACELIA',
+            $pr->reference . ' - Contrat de Crédit FACELIA',
             3,
             null,
             true,
@@ -533,7 +534,7 @@ class LifeCommand extends Command
         DocumentFile::createDoc(
             $customer,
             'Fiche de dialogue',
-            $pr->reference.' - Fiche de Dialogue',
+            $pr->reference . ' - Fiche de Dialogue',
             3,
             null,
             false,
@@ -546,7 +547,7 @@ class LifeCommand extends Command
         DocumentFile::createDoc(
             $customer,
             'Information précontractuel normalise',
-            $pr->reference.' - Information Précontractuel Normalisé',
+            $pr->reference . ' - Information Précontractuel Normalisé',
             3,
             null,
             true,
@@ -559,7 +560,7 @@ class LifeCommand extends Command
         DocumentFile::createDoc(
             $customer,
             'Mandat Prélevement sepa',
-            $pr->reference.' - Mandat Prélèvement SEPA',
+            $pr->reference . ' - Mandat Prélèvement SEPA',
             3,
             null,
             false,
