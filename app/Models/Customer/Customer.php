@@ -198,13 +198,13 @@ class Customer extends Model
     public function getStatusColorAttribute()
     {
         $t = null;
-        switch ($this->status_open_account) {
-            case 'open': $t = 'primary'; break;
-            case 'completed' || 'suspended': $t = 'warning'; break;
-            case 'accepted': $t = 'success'; break;
-            case 'declined' || 'closed': $t = 'danger'; break;
-            default: return 'secondary'; break;
-        }
+        match ($this->status_open_account) {
+            'open' => $t = 'primary',
+            'completed', 'suspended' => $t = 'warning',
+            'accepted' => $t = 'success',
+            'declined', 'closed' => $t = 'danger',
+            default => $t = 'secondary',
+        };
 
         return $t;
     }
