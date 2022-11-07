@@ -83,7 +83,7 @@ class RejectedSepaNotification extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
-        $message->view("emails.customer.rejectedSepaNotification", [
+        $message->view("emails.customer.reject_sepa", [
             "content" => $this->message,
             "customer" => $this->customer
         ]);
@@ -94,8 +94,8 @@ class RejectedSepaNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            "icon" => "",
-            "color" => "",
+            "icon" => "fa-exclamation-triangle",
+            "color" => "warning",
             "title" => $this->title,
             "text" => $this->message,
             "time" => now(),
@@ -119,4 +119,3 @@ class RejectedSepaNotification extends Notification
         return $message;
     }
 }
-?>

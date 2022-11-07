@@ -128,6 +128,8 @@ class SystemAgentCommand extends Command
     private function executeSepaOrders()
     {
         $sepas = CustomerSepa::where('status', 'waiting')->get();
+        $arr_accepted = [];
+        $arr_rejected = [];
 
         foreach ($sepas as $sepa) {
             if($sepa->amount >= $sepa->wallet->solde_remaining) {
@@ -146,15 +148,41 @@ class SystemAgentCommand extends Command
                     $sepa->update([
                         'status' => 'processed'
                     ]);
+
+                    $arr_accepted[] = [
+                        $sepa->wallet->customer->info->full_name,
+                        $sepa->number_mandate,
+                        $sepa->amount
+                    ];
                 }
             } else {
                 $sepa->update([
                     'status' => 'rejected'
                 ]);
 
+                CustomerTransactionHelper::create(
+                    'debit',
+                    'frais',
+                    "Commission d'intervention",
+                    2.5,
+                    $sepa->wallet->id,
+                    true,
+                    "Rejet de prélèvement - ".$sepa->number_mandate." | Créancier: ".$sepa->creditor,
+                    now()
+                );
 
+                $arr_rejected[] = [
+                    $sepa->wallet->customer->info->full_name,
+                    $sepa->number_mandate,
+                    $sepa->amount,
+                    $sepa->getReasonFromRejected('reject.debit')
+                ];
             }
 
+
         }
+
+        $this->output->table(['Client', 'Mandat', 'Montant'], $arr_accepted);
+        $this->output->table(['Client', 'Mandat', 'Montant', 'Raison du rejet'], $arr_rejected);
     }
 }
