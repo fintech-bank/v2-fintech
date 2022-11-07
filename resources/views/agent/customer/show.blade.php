@@ -1132,7 +1132,7 @@
                                         <td>{{ $pret->reference }}</td>
                                         <td>{{ $pret->plan->name }}</td>
                                         <td>{{ eur($pret->amount_loan) }}</td>
-                                        <td>{!! $pret->status_label  !!}/td>
+                                        <td>{!! $pret->status_label  !!}</td>
                                         <td></td>
                                     </tr>
                                 @endforeach
