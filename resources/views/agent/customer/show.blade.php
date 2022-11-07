@@ -1042,12 +1042,14 @@
                                 <tbody>
                                     @foreach($customer->insurances()->orderBy('updated_at', 'desc')->limit(5)->get() as $insurance)
                                         <tr>
+                                            <td>{{ $insurance->reference }}</td>
                                             <td>
                                                 <div class="d-flex flex-column">
                                                     <div class="fw-bolder">{{ $insurance->package->name }}</div>
                                                     <div class="text-muted">Offre: {{ $insurance->form->name }} ({{ $insurance->form->typed_price_format }})</div>
                                                 </div>
                                             </td>
+                                            <td>{!! $insurance->status_label !!}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
