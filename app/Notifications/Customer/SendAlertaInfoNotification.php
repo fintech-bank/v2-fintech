@@ -43,8 +43,8 @@ class SendAlertaInfoNotification extends Notification
      */
     public function getMessage(): string
     {
-        $message = config('app.name')."<br>";
-        $message .= 'Le ' . now()->format('d/m/Y à H:i').'<br>';
+        $message = config('app.name')."\n";
+        $message .= 'Le ' . now()->format('d/m/Y à H:i')."\n";
         $message .= "RELEVE FLASH<br>";
         $message .= "Compte: " . $this->wallet->balance_actual;
 
