@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Helper\CustomerHelper;
 use App\Helper\UserHelper;
+use App\Models\Core\DocumentCategory;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCreditCard;
 use App\Models\Customer\CustomerInfo;
@@ -105,6 +106,12 @@ class UserSeeder extends Seeder
             'facelia' => false,
             'credit_card_support_id' => 1
         ]);
+
+        \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents');
+        \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
+        foreach (DocumentCategory::all() as $doc) {
+            \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents/' . $doc->name);
+        }
 
 
     }
