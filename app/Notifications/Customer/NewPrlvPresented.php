@@ -140,6 +140,6 @@ class NewPrlvPresented extends Notification
 
         }
 
-        return $arr->values();
+        return [implode(',', $arr->all())];
     }
 }
