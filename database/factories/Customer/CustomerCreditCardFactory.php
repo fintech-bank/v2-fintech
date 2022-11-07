@@ -45,19 +45,14 @@ class CustomerCreditCardFactory extends Factory
 
         if ($card['support'] == 'premium') {
             $card += [
-                'visa_spec' => true,
                 'payment_abroad' => true,
             ];
         } elseif ($card['support'] == 'infinite') {
             $card += [
-                'visa_spec' => true,
-                'warranty' => true,
                 'payment_abroad' => true,
             ];
         } else {
             $card += [
-                'visa_spec' => false,
-                'warranty' => false,
                 'payment_abroad' => false,
             ];
         }
