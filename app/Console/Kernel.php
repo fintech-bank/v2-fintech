@@ -73,6 +73,11 @@ class Kernel extends ConsoleKernel
             ->description("Passage des compte accepté à terminer'")
             ->emailOutputTo(config('mail.from.address'));
 
+        $schedule->command('system:agent executeVirement')
+            ->everySixHours()
+            ->description("Exécution des virements bancaires")
+            ->emailOutputTo(config('mail.from.address'));
+
         // Life
         $schedule->command("life generateCustomers")
             ->everyFourHours()
