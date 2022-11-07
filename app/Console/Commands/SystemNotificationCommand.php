@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use NotificationChannels\Twilio\TwilioSmsMessage;
 
 class SystemNotificationCommand extends Command
 {
@@ -42,7 +41,7 @@ class SystemNotificationCommand extends Command
         $file = $this->argument('notification');
 
         $f = "${file}.php";
-        $path = app_path('/app/Notifications');
+        $path = app_path('Notifications');
 
         $f = $path."/${folder}/$f";
         $pathNotif = $path."/${folder}";
@@ -65,9 +64,10 @@ class SystemNotificationCommand extends Command
 
     private function content($folder, $file)
     {
+        $namespace = "App\Notifications\\${folder}";
 $content = '
 <?php
-namespace App\Notification\.'.$folder.'
+namespace '.$namespace.';
 
 use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
 use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
@@ -78,7 +78,7 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
 
-class '.$file.'
+class '.$file.' extends Notification
 {
 
     public string $title;

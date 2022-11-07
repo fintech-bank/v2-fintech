@@ -48,6 +48,11 @@ class Kernel extends ConsoleKernel
             ->description("Mise à jour des cotation client")
             ->emailOutputTo(config('mail.from.address'));
 
+        $schedule->command('system:agent verifRequestLoanOpen')
+            ->everySixHours()
+            ->description("Vérification des pret ouvert et les met en étude")
+            ->emailOutputTo(config('mail.from.address'));
+
         // Life
         $schedule->command("life generateCustomers")
             ->everyFourHours()

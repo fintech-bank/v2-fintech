@@ -6,6 +6,7 @@ use App\Models\Core\Event;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerPret;
 use App\Notifications\Agent\CalendarAlert;
+use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\CotationClient;
 use Illuminate\Console\Command;
 
@@ -85,7 +86,15 @@ class SystemAgentCommand extends Command
                 'status' => 'study'
             ]);
 
-            $pret->customer->info->notify();
+            $pret->customer->info->notify(new VerifRequestLoanNotification($pret));
+            $arr[] = [
+                $pret->customer->info->full_name,
+                $pret->reference,
+                eur($pret->amount_loan),
+                $pret->status
+            ];
         }
+
+        $this->output->table(['Client', 'Référence', 'Montant', 'Etat'], $arr);
     }
 }
