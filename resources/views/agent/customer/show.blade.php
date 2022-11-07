@@ -1388,7 +1388,7 @@
                                 <button class="btn btn-sm btn-circle btn-icon btn-secondary next"><i class="fa-solid fa-arrow-right"></i> </button>
                             </div>
                         </div>
-                        <div id="contentPdf"></div>
+                        <canvas id="contentPdf"></canvas>
                     </div>
                     <div class="modal-footer">
                         <button id="signateDocument" class="btn btn-circle btn-bank"><i class="fa-solid fa-signature me-2"></i> Signer</button>
