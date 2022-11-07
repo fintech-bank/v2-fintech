@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\User\UserFolder;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Services\CotationClient;
+use App\Services\Fintech\Payment\Transfers;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
 use App\Services\Twilio\Lookup;
@@ -91,7 +92,8 @@ class HomeController extends Controller
     public function test()
     {
         $transfer = CustomerTransfer::find(1);
+        $t = new Transfers();
 
-        dd($transfer);
+        dd($t->callTransfer($transfer));
     }
 }
