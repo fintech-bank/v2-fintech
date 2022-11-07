@@ -4,8 +4,6 @@ namespace App\Notifications\Customer;
 use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
 use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
 use App\Models\Customer\CustomerPret;
-use App\Models\Customer\CustomerSepa;
-use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Twilio\TwilioChannel;
@@ -17,11 +15,8 @@ class VerifRequestLoanNotification extends Notification
     public string $title;
     public string $link;
     public string $message;
-    public $pret;
+    private CustomerPret $pret;
 
-    /**
-     * @param CustomerPret $pret
-     */
     public function __construct(CustomerPret $pret)
     {
         $this->title = "Votre demande de pret bancaire";
