@@ -57,8 +57,6 @@ class SystemNotificationCommand extends Command
             if(!$this->files->put($f, $this->content($folder, $file)))
                 $this->error('Something went wrong!');
 
-            if(!$this->files->put($pathView.'/'.$fileView, null))
-                $this->error('Something went wrong!');
 
             $this->info("Fichier Généré: ".$f);
         } else {
