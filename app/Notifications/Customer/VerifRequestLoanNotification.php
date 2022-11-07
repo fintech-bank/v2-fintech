@@ -17,7 +17,7 @@ class VerifRequestLoanNotification extends Notification
     public string $title;
     public string $link;
     public string $message;
-    public CustomerPret $pret;
+    public $pret;
 
     /**
      * @param CustomerPret $pret
