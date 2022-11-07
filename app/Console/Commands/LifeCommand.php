@@ -133,17 +133,19 @@ class LifeCommand extends Command
                     $this->createFacelia($customer, $card);
                 }
 
-                // Transfers du salaire
-                $title = 'Virement Salaire '.now()->monthName;
-                CustomerTransactionHelper::create(
-                    'credit',
-                    'virement',
-                    $title,
-                    $customer->income->pro_incoming,
-                    $account->id,
-                    true,
-                    $title,
-                    now());
+                if($customer->info->type == 'part') {
+                    // Transfers du salaire
+                    $title = 'Virement Salaire '.now()->monthName;
+                    CustomerTransactionHelper::create(
+                        'credit',
+                        'virement',
+                        $title,
+                        $customer->income->pro_incoming,
+                        $account->id,
+                        true,
+                        $title,
+                        now());
+                }
 
                 // Prise de la souscription
                 if ($customer->package->price > 0) {
