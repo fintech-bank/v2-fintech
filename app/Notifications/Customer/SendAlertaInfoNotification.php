@@ -20,6 +20,7 @@ class SendAlertaInfoNotification extends Notification
     public CustomerWallet $wallet;
     public $waiting;
     public $mouvement;
+    public $message;
 
     /**
      * Create a new notification instance.
@@ -34,12 +35,40 @@ class SendAlertaInfoNotification extends Notification
         $this->wallet = $wallet;
         $this->waiting = $waiting;
         $this->mouvement = $mouvement;
+        $this->message = $this->getMessage();
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        $message = config('app.name');
+        $message .= 'Le ' . now()->format('d/m/Y à H:i');
+        $message .= "RELEVE FLASH";
+        $message .= "Compte: " . $this->wallet->balance_actual;
+
+        if (isset($this->waiting)) {
+            $message .= "Dernière opération en cours: " . $this->waiting->amount_format . ' (' . $this->waiting->updated_at->format('d/m') . ')'
+        } else {
+            $message .= "Pas d'opération en cours.";
+        }
+
+        if(isset($this->mouvement)) {
+            $message .= "Dernière opération: " . $this->mouvement->amount_format . '(' . $this->mouvement->confirmed_at->format('d/m') . ')';
+        } else {
+            $message .= "Pas de nouvelle opération";
+        }
+
+        $message .= "Bonne journée !";
+
+        return $message;
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -50,73 +79,40 @@ class SendAlertaInfoNotification extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function toArray($notifiable)
     {
-        $message = 'Le '.now()->format('d/m/Y à H:i');
-        $message .= "RELEVE FLASH";
-        $message .= "Compte: ".$this->wallet->balance_actual;
-
         return [
             'icon' => 'fa-bolt',
             'color' => 'primary',
             'title' => "Relevé Flash",
-            'text' => $message,
+            'text' => $this->message,
             'time' => now()->shortAbsoluteDiffForHumans(),
         ];
     }
 
     public function toFreeMobile($notifiable)
     {
-        $message =  (new FreeMobileMessage(config('app.name')));
-        $message->message('Le '.now()->format('d/m/Y à H:i'));
-        $message->message("RELEVE FLASH");
-        $message->message("Compte: ".$this->wallet->balance_actual);
-        if(isset($this->waiting)) {
-            $message->message("Dernière opération en cours: ".$this->waiting->amount_format.' ('.$this->waiting->updated_at->format('d/m').')');
-        } else {
-            $message->message("Pas d'opération en cours.");
-        }
-
-        if(isset($this->mouvement)) {
-            $message->message("Dernière opération: ".$this->mouvement->amount_format.'('.$this->mouvement->confirmed_at->format('d/m').')');
-        } else {
-            $message->message("Pas de nouvelle opération.");
-        }
-
-        $message->message("Bonne journée !");
+        $message = (new FreeMobileMessage());
+        $message->message($this->message);
 
         return $message;
+
     }
 
     public function toTwilio($notifiable)
     {
         $message = (new TwilioSmsMessage());
-        $message->content('Le '.now()->format('d/m/Y à H:i'));
-        $message->content("RELEVE FLASH");
-        $message->content("Compte: ".$this->wallet->balance_actual);
-        if(isset($this->waiting)) {
-            $message->content("Dernière opération en cours: ".$this->waiting->amount_format.' ('.$this->waiting->updated_at->format('d/m').')');
-        } else {
-            $message->content("Pas d'opération en cours.");
-        }
-
-        if(isset($this->mouvement)) {
-            $message->content("Dernière opération: ".$this->mouvement->amount_format.'('.$this->mouvement->confirmed_at->format('d/m').')');
-        } else {
-            $message->content("Pas de nouvelle opération.");
-        }
-
-        $message->content("Bonne journée !");
+        $message->content($this->message);
 
         return $message;
     }
 
     private function choiceChannel()
     {
-        if(config('app.env') == 'local') {
+        if (config('app.env') == 'local') {
             return [FreeMobileChannel::class, 'database'];
         } else {
             return [TwilioChannel::class, 'database'];
