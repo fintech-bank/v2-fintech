@@ -7,6 +7,7 @@ use App\Models\Core\Invoice;
 use App\Models\Core\Package;
 use App\Models\Document\DocumentTransmiss;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -74,6 +75,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $insurances_count
  * @property string|null $persona_reference_id
  * @method static \Illuminate\Database\Eloquent\Builder|Customer wherePersonaReferenceId($value)
+ * @property-read mixed $next_debit_package
  */
 class Customer extends Model
 {
@@ -82,7 +84,7 @@ class Customer extends Model
     protected $guarded = [];
 
     public $timestamps = false;
-    protected $appends = ['status_label', 'sum_account', 'sum_epargne'];
+    protected $appends = ['status_label', 'sum_account', 'sum_epargne', 'next_debit_package'];
 
     public function user()
     {
@@ -222,6 +224,16 @@ class Customer extends Model
     public function getSumEpargneAttribute()
     {
         return $this->wallets()->where('type', 'epargne')->where('status', 'active')->sum('balance_actual');
+    }
+
+    public function getNextDebitPackageAttribute()
+    {
+        return match ($this->package->type_prlv) {
+            "mensual" => Carbon::parse($this->created_at->day.now()->addMonth()->month.now()->year),
+            "trim" => Carbon::parse($this->created_at->day.now()->addMonths(3)->month.now()->year),
+            "sem" => Carbon::parse($this->created_at->day.now()->addMonths(6)->month.now()->year),
+            "annual" => Carbon::parse($this->created_at->day.$this->created_at->month.now()->addYear()->year),
+        };
     }
 
 }

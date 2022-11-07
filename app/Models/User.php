@@ -155,7 +155,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['avatar_symbol', 'email_verified', 'user_group_label', 'next_debit_package'];
+    protected $appends = ['avatar_symbol', 'email_verified', 'user_group_label'];
 
     public function routeNotificationForPushbullet()
     {
@@ -316,16 +316,6 @@ class User extends Authenticatable
             \Notification::route('sms', $this->customers->info->mobile)
                 ->notify($notificationClass);
         }
-    }
-
-    public function getNextDebitPackageAttribute()
-    {
-        return match ($this->package->type_prlv) {
-            "mensual" => Carbon::parse($this->created_at->day.now()->addMonth()->month.now()->year),
-            "trim" => Carbon::parse($this->created_at->day.now()->addMonths(3)->month.now()->year),
-            "sem" => Carbon::parse($this->created_at->day.now()->addMonths(6)->month.now()->year),
-            "annual" => Carbon::parse($this->created_at->day.$this->created_at->month.now()->addYear()->year),
-        };
     }
 
 }
