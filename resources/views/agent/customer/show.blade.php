@@ -1075,7 +1075,26 @@
                             </div>
                         </div>
                         <div class="card-body">
-
+                            <table class="table table-striped border gy-5 gx-5">
+                                <thead>
+                                    <tr>
+                                        <th>Mandat</th>
+                                        <th>Banque</th>
+                                        <th>Etat</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($customer->mobilities()->orderBy('updated_at', 'desc')->limit(5)->get() as $mobility)
+                                        <tr>
+                                            <td>{{ $mobility->mandate }}</td>
+                                            <td>{!! $mobility->bank->bank_symbol !!}</td>
+                                            <td>{{ $mobility->status_text }}</td>
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

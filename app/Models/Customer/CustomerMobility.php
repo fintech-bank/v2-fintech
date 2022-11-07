@@ -66,6 +66,7 @@ class CustomerMobility extends Model
     public $timestamps = false;
 
     protected $dates = ['start', 'end_prov', 'end_real', 'end_prlv', 'updated_at'];
+    protected $appends = ['status_text'];
 
     public function customer()
     {
@@ -108,5 +109,16 @@ class CustomerMobility extends Model
         return Attribute::make(
             get: fn($value) => $value == 0 ? 'Non' : 'Oui',
         );
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return match ($this->status) {
+            "bank_start" => "Dossier Transmis (Banque)",
+            "bank_return" => "Dossier reçu (Banque)",
+            "creditor_start" => "Dossier transmis (Créancier)",
+            "creditor_end" => "Dossier reçu (Créancier)",
+            "terminate" => "Dossier Terminer",
+        };
     }
 }

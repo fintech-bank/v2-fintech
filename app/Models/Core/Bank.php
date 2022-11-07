@@ -45,6 +45,8 @@ class Bank extends Model
 
     public $timestamps = false;
 
+    protected $appends = ['bank_symbol'];
+
     public function beneficiaires()
     {
         return $this->hasMany(CustomerBeneficiaire::class);
@@ -63,5 +65,22 @@ class Bank extends Model
     public function setCountryAttribute($value)
     {
         $this->attributes['country'] = \Str::upper(\Str::limit($value, 2, ''));
+    }
+
+    public function getBankSymbolAttribute()
+    {
+        ob_start();
+        ?>
+        <div class="d-flex flex-row align-items-center">
+            <div class="symbol symbol-50px me-3">
+                <div class="symbol-label" style="background-image:url('<?= $this->logo ?>')"></div>
+            </div>
+            <div class="d-flex flex-column">
+                <strong><?= $this->name ?></strong>
+                <div class="text-muted">BIC: <?= $this->bic ?></div>
+            </div>
+        </div>
+        <?php
+        return ob_get_clean();
     }
 }
