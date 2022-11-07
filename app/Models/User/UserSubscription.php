@@ -27,6 +27,6 @@ class UserSubscription extends Model
 
     public function sub()
     {
-        return $this->hasOne($this->subscribe_type, $this->subscribe_id);
+        return $this->belongsTo($this->subscribe_type);
     }
 }
