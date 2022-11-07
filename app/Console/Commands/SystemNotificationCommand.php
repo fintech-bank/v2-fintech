@@ -47,7 +47,7 @@ class SystemNotificationCommand extends Command
 
         $f = $path."/${folder}/$f";
         $pathNotif = $path."/${folder}";
-        $pathView = "/resources/views/emails";
+        $pathView = "/resources/views/emails/".\Str::lower($folder);
         $fileView = "${viewFileName}.blade.php";
 
         if($this->files->isDirectory($pathNotif)) {

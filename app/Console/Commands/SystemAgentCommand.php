@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Helper\CustomerTransactionHelper;
 use App\Models\Core\Event;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerPret;
@@ -129,7 +130,31 @@ class SystemAgentCommand extends Command
         $sepas = CustomerSepa::where('status', 'waiting')->get();
 
         foreach ($sepas as $sepa) {
-            dd($sepa->amount + ($sepa->amount * 2), $sepa->wallet->solde_remaining);
+            if($sepa->amount >= $sepa->wallet->solde_remaining) {
+                if($sepa->updated_at->startOfDay() == now()->startOfDay()) {
+                    CustomerTransactionHelper::create(
+                        'debit',
+                        'sepa',
+                        'Prélèvement SEPA '.$sepa->number_mandate." DE: ".$sepa->creditor,
+                        $sepa->amount,
+                        $sepa->wallet->id,
+                        true,
+                        'PRLV EUROPEEN SEPA DE: '.$sepa->creditor.' ID: '.$sepa->uuid.' MANDAT '.$sepa->number_mandate,
+                        now(),
+                    );
+
+                    $sepa->update([
+                        'status' => 'processed'
+                    ]);
+                }
+            } else {
+                $sepa->update([
+                    'status' => 'rejected'
+                ]);
+
+
+            }
+
         }
     }
 }
