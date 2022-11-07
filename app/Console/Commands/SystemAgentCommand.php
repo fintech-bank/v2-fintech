@@ -112,7 +112,7 @@ class SystemAgentCommand extends Command
         $arr = [];
 
         foreach ($prets as $pret) {
-            if($pret->updated_at > now()->addDays(8)) {
+            if ($pret->updated_at > now()->addDays(8)) {
                 $pret->wallet->update([
                     'balance_coming' => $pret->wallet->balance_coming - $pret->amount_loan,
                     'balance_actual' => $pret->wallet->balance_actual + $pret->amount_loan
@@ -139,16 +139,16 @@ class SystemAgentCommand extends Command
         $arr_rejected = [];
 
         foreach ($sepas as $sepa) {
-            if($sepa->amount >= $sepa->wallet->solde_remaining) {
-                if($sepa->updated_at->startOfDay() == now()->startOfDay()) {
+            if ($sepa->amount >= $sepa->wallet->solde_remaining) {
+                if ($sepa->updated_at->startOfDay() == now()->startOfDay()) {
                     CustomerTransactionHelper::create(
                         'debit',
                         'sepa',
-                        'Prélèvement SEPA '.$sepa->number_mandate." DE: ".$sepa->creditor,
+                        'Prélèvement SEPA ' . $sepa->number_mandate . " DE: " . $sepa->creditor,
                         $sepa->amount,
                         $sepa->wallet->id,
                         true,
-                        'PRLV EUROPEEN SEPA DE: '.$sepa->creditor.' ID: '.$sepa->uuid.' MANDAT '.$sepa->number_mandate,
+                        'PRLV EUROPEEN SEPA DE: ' . $sepa->creditor . ' ID: ' . $sepa->uuid . ' MANDAT ' . $sepa->number_mandate,
                         now(),
                     );
 
@@ -174,7 +174,7 @@ class SystemAgentCommand extends Command
                     2.5,
                     $sepa->wallet->id,
                     true,
-                    "Rejet de prélèvement - ".$sepa->number_mandate." | Créancier: ".$sepa->creditor,
+                    "Rejet de prélèvement - " . $sepa->number_mandate . " | Créancier: " . $sepa->creditor,
                     now()
                 );
 
@@ -202,9 +202,9 @@ class SystemAgentCommand extends Command
         $arr_reject = [];
 
         foreach ($transactions as $transaction) {
-            if($transaction->withdraw->count() != 1) {
-                if($transaction->updated_at->between(now()->startOfDay(), now()->endOfDay())) {
-                    if($transaction->amount <= $transaction->wallet->solde_remaining) {
+            if ($transaction->withdraw->count() != 1) {
+                if ($transaction->updated_at->between(now()->startOfDay(), now()->endOfDay())) {
+                    if ($transaction->amount <= $transaction->wallet->solde_remaining) {
                         CustomerTransactionHelper::updated($transaction);
 
                         $arr_effect[] = [
@@ -267,8 +267,18 @@ class SystemAgentCommand extends Command
         foreach ($transfer_transits as $transit) {
             $transaction = CustomerTransaction::find($transit->transaction_id);
             match ($transit->type) {
-                'immediat' => ""
-            }
+                'immediat' => $this->immediateTransfer($transit, $transaction),
+                'differed' => $this->differedTransfer($transit, $transaction),
+            };
+        }
+
+        foreach ($transfer_pendings as $pending) {
+            $transaction = CustomerTransaction::find($pending->transaction_id);
+
+            match ($transit->type) {
+                'immediat' => $this->immediateTransfer($transit, $transaction),
+                'differed' => $this->differedTransfer($transit, $transaction),
+            };
         }
         $this->info("Passage des virements bancaire");
         $this->output->table(['Client', 'Reference', 'Montant'], $arr_transit_paid);
@@ -280,12 +290,12 @@ class SystemAgentCommand extends Command
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)
     {
         $trans = new Transfers();
-        if($transfer->amount <= $transfer->wallet->solde_remaining) {
-            if($trans->callTransfer($transfer) == 201) {
+        if ($transfer->amount <= $transfer->wallet->solde_remaining) {
+            if ($trans->callTransfer($transfer) == 201) {
                 CustomerTransactionHelper::updated($transaction);
 
                 $transfer->update([
-                    'status' => 'paid'
+                    'status' => $transfer->status == 'in_transit' ? 'paid' : 'in_transit'
                 ]);
 
             } else {
@@ -309,7 +319,44 @@ class SystemAgentCommand extends Command
                 $transfer->amount * 1.25 / 100,
                 $transfer->wallet->id,
                 true,
-                "Frais Rejet Virement bancaire | ".$transfer->reference,
+                "Frais Rejet Virement bancaire | " . $transfer->reference,
+                now()
+            );
+        }
+    }
+
+    private function differedTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)
+    {
+        $trans = new Transfers();
+        if ($transfer->amount <= $transfer->wallet->solde_remaining) {
+            if ($transfer->transfer_date->startOfDay() == now()->startOfDay()) {
+                if ($trans->callTransfer($transfer) == '201') {
+                    CustomerTransactionHelper::updated($transaction);
+                    $transfer->update([
+                        'status' => $transfer->status == 'in_transit' ? 'paid' : 'in_transit'
+                    ]);
+                } else {
+                    CustomerTransactionHelper::deleteTransaction($transaction);
+                    $transfer->update([
+                        'status' => 'failed'
+                    ]);
+                }
+            }
+        } else {
+            CustomerTransactionHelper::deleteTransaction($transaction);
+
+            $transfer->update([
+                'status' => 'failed'
+            ]);
+
+            CustomerTransactionHelper::create(
+                'debit',
+                'frais',
+                "Commission d'intervention",
+                $transfer->amount * 1.25 / 100,
+                $transfer->wallet->id,
+                true,
+                "Frais Rejet Virement bancaire | " . $transfer->reference,
                 now()
             );
         }
