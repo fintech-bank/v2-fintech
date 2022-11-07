@@ -74,10 +74,14 @@ class UserHelper
         $channel = collect();
         if($settingNotification->mail) {
             $mail = collect("mail");
+        } else {
+            $mail = null;
         }
 
         if($settingNotification->site) {
             $site = collect('database');
+        } else {
+            $site = null;
         }
 
         if(isset($settingNotification->sms)) {
@@ -86,6 +90,8 @@ class UserHelper
             } else {
                 $sms = collect(TwilioChannel::class);
             }
+        } else {
+            $sms = null;
         }
         $a = $channel->union($mail)->union($site)->union($sms);
 
