@@ -320,7 +320,7 @@ class User extends Authenticatable
 
     public function getNextDebitPackageAttribute()
     {
-        match ($this->package->type_prlv) {
+        return match ($this->package->type_prlv) {
             "mensual" => Carbon::parse($this->created_at->day.now()->addMonth()->month.now()->year),
             "trim" => Carbon::parse($this->created_at->day.now()->addMonths(3)->month.now()->year),
             "sem" => Carbon::parse($this->created_at->day.now()->addMonths(6)->month.now()->year),

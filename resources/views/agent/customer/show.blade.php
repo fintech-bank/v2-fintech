@@ -1012,7 +1012,7 @@
                                     </tr>
                                     <tr>
                                         <td class="fw-bolder">Prochain Prélèvement</td>
-                                        <td>{{ $customer->user->getNextDebitPackageAttribute() }}</td>
+                                        <td>{{ $customer->user->next_debit_package->format('d/m/Y') }}</td>
                                     </tr>
                                 </tbody>
                             </table>
