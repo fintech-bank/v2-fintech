@@ -98,7 +98,7 @@ class UserHelper
             return [$item];
         })->toArray();
 
-        $chan = implode(',', $const);
+        //$chan = implode(',', $const);
 
         dd($const);
     }
