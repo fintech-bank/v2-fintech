@@ -1031,7 +1031,7 @@
                         </div>
                         <div class="card-body">
                             @if($customer->insurances()->count() == 0)
-                                <div class="d-flex flex-row justify-content-center align-items-center p-5">
+                                <div class="d-flex flex-row justify-content-center align-items-center p-5 bg-gray-200 rounded-2">
                                     <i class="fa-solid fa-exclamation-triangle fs-1 text-warning me-2"></i>
                                     <span>Aucune assurance souscrite</span>
                                 </div>
