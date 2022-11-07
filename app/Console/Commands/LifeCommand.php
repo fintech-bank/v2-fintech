@@ -373,9 +373,8 @@ class LifeCommand extends Command
                     'wallet' => $wallet,
                 ]
             );
-            dd($file->append('url_folder'));
 
-            $wallet->customer->user->notify(new MensualReleverNotification($file));
+            $wallet->customer->user->notify(new MensualReleverNotification($file->append('url_folder')));
             $i++;
         }
 

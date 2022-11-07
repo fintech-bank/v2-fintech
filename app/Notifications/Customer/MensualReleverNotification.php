@@ -60,6 +60,7 @@ class MensualReleverNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        dd($this->file->url_folder);
         $message =  (new MailMessage);
         $message->subject($this->title);
 
