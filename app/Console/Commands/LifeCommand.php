@@ -329,7 +329,11 @@ class LifeCommand extends Command
                             LogHelper::notify('critical', $exception);
                         }
 
-                        $customer->user->notify(new NewPrlvPresented($sepa));
+                        try {
+                            $customer->user->notify(new NewPrlvPresented($sepa));
+                        }catch (Exception $exception) {
+                            LogHelper::notify('critical', $exception);
+                        }
                         $arr[] = [
                             $customer->info->full_name,
                             $sepa->creditor,
