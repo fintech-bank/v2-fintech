@@ -98,6 +98,12 @@ class UserHelper
             return $item;
         });
 
-        dd($const->all());
+        $chan = null;
+
+        foreach ($const as $item) {
+            $chan += $item;
+        }
+
+        dd($chan);
     }
 }
