@@ -486,7 +486,7 @@ class LifeCommand extends Command
             false,
             false,
             true,
-            ['loan' => $pr]
+            ['loan' => $pr, 'card' => $card]
         );
 
         DocumentFile::createDoc(

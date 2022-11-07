@@ -19,6 +19,7 @@ class CustomerCreditCardFactory extends Factory
     {
         $status = ['active', 'inactive', 'canceled'];
         $support = ['classic', 'premium', 'infinite'];
+        $vitesse = ['low', 'middle', 'fast'];
         $debit = ['immediate', 'differed'];
         $diff_limit = [500, 1000, 1500, 2000, 2500, 3000];
         $card = [
@@ -36,6 +37,12 @@ class CustomerCreditCardFactory extends Factory
             'facelia' => $this->faker->boolean(33),
             'credit_card_support_id' => CreditCardSupport::all()->random()->id
         ];
+
+        if($card['facelia']) {
+            $card += [
+                'facelia_vitesse' => $vitesse[rand(0,2)]
+            ];
+        }
 
         if ($card['debit'] == 'differed') {
             $card += [

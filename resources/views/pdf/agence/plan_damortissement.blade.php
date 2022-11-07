@@ -17,7 +17,13 @@
                         </tr>
                         <tr style="border: none">
                             <td class="fw-bolder">Taux:</td>
-                            <td class="text-right">{{ $data->loan->plan->interests[0]->interest }} %</td>
+                            <td class="text-right">
+                                @if(json_decode($data->loan->plan->tarif, true)['type_taux'] == 'fixe')
+                                    {{ json_decode($data->loan->plan->tarif, true)['interest'] }}
+                                @else
+                                    {{ \App\Helper\CustomerLoanHelper::calcVariableTaxeInterest($card->facelia_vitesse) }} %
+                                @endif
+                            </td>
                         </tr>
                         <tr style="border: none">
                             <td class="fw-bolder">Durée:</td>

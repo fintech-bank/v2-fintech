@@ -31,6 +31,7 @@ return new class extends Migration
             $table->float('limit_payment', 50);
             $table->float('differed_limit', 50)->default(0);
             $table->boolean('facelia')->default(false);
+            $table->enum('facelia_vitesse', ['low', 'middle', 'fast'])->default('low');
 
             $table->foreignId('customer_wallet_id')
                             ->constrained()
