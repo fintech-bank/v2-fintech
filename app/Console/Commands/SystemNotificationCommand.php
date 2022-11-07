@@ -102,7 +102,7 @@ class '.$file.' extends Notification
         $this->title = "";
         $this->message = $this->getMessage();
         $this->link = "";
-        $this->customer = $customer
+        $this->customer = $customer;
     }
 
     private function getMessage()
