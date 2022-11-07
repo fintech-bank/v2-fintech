@@ -14,6 +14,7 @@ use App\Notifications\Customer\ChargeLoanAcceptedNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\CotationClient;
+use App\Services\Fintech\Payment\Transfers;
 use Illuminate\Console\Command;
 
 class SystemAgentCommand extends Command
@@ -265,7 +266,9 @@ class SystemAgentCommand extends Command
 
         foreach ($transfer_transits as $transit) {
             $transaction = CustomerTransaction::find($transit->transaction_id);
-
+            match ($transit->type) {
+                'immediat' => ""
+            }
         }
         $this->info("Passage des virements bancaire");
         $this->output->table(['Client', 'Reference', 'Montant'], $arr_transit_paid);
@@ -276,19 +279,39 @@ class SystemAgentCommand extends Command
 
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)
     {
+        $trans = new Transfers();
         if($transfer->amount <= $transfer->wallet->solde_remaining) {
-            CustomerTransactionHelper::updated($transaction);
+            if($trans->callTransfer($transfer) == 201) {
+                CustomerTransactionHelper::updated($transaction);
+
+                $transfer->update([
+                    'status' => 'paid'
+                ]);
+
+            } else {
+                CustomerTransactionHelper::deleteTransaction($transaction);
+
+                $transfer->update([
+                    'status' => 'failed'
+                ]);
+            }
+        } else {
+            CustomerTransactionHelper::deleteTransaction($transaction);
 
             $transfer->update([
-                'status' => 'paid'
+                'status' => 'failed'
             ]);
-            return [
-                $transfer->wallet->customer->info->full_name,
-                $transfer->reference,
-                $transfer->amount_format
-            ];
-        } else {
 
+            CustomerTransactionHelper::create(
+                'debit',
+                'frais',
+                "Commission d'intervention",
+                $transfer->amount * 1.25 / 100,
+                $transfer->wallet->id,
+                true,
+                "Frais Rejet Virement bancaire | ".$transfer->reference,
+                now()
+            );
         }
     }
 }
