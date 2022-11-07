@@ -156,7 +156,7 @@ class DocumentFile
             $pdf = Pdf::loadView('pdf.agence.'.\Str::slug($name, '_'), [
                 'customer' => $customer,
                 'data' => (object)$pdfData,
-                'agence' => $customer->user->agency,
+                'agence' => $customer->agency,
                 'title' => $name,
                 'header_type' => 'address',
                 'document' => $document,
