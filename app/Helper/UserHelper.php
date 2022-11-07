@@ -70,8 +70,8 @@ class UserHelper
     public static function getChannelNotification(UserNotificationSetting $settingNotification)
     {
         $a = collect(['channel' => null]);
-        $a->push(['channel' => 'mail']);
-        $a->push(['channel' => 'database']);
+        $a->put('channel', 'mail');
+        $a->put('channel', 'database');
 
         dd($a);
     }
