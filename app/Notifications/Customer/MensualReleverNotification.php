@@ -27,7 +27,7 @@ class MensualReleverNotification extends Notification
      */
     public function __construct(CustomerDocument $file)
     {
-        $this->title = "Un nouveau prélèvement est arrivé sur votre compte";
+        $this->title = "De nouveaux relevés sont disponible";
         $this->message = $this->getMessage();
         $this->link = null;
         $this->file = $file;
@@ -35,11 +35,10 @@ class MensualReleverNotification extends Notification
 
     private function getMessage()
     {
-        $message = "Nous vous informons de l'arrivé d'un nouveau prélèvement sur votre compte <strong>".$this->sepa->wallet->name_account_generic.".</strong>\n";
-        $message .= "Pour plus d'information, nous vous invitons à consulter le details.";
+        $message = "Nous vous informons que de nouveaux documents ont été mis à disposition sur votre Espace Client";
+        $message .= "Pensez à sauvegarder régulièrement vos documents sur le support de votre choix";
 
         return $message;
-
     }
 
     /**
