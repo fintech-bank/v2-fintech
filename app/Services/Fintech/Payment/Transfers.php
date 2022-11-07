@@ -6,7 +6,11 @@ use App\Models\Customer\CustomerTransfer;
 
 class Transfers
 {
-    public function callTransfer(CustomerTransfer $transfer)
+    /**
+     * @param CustomerTransfer $transfer
+     * @return int
+     */
+    public function callTransfer(CustomerTransfer $transfer): int
     {
         return \Http::get('https://payment.fintech.ovh/api/transfer/call', [
             'uuid' => $transfer->uuid,
