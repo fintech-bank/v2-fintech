@@ -127,10 +127,10 @@
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Progress-->
-                        <div class="d-flex w-200px w-sm-300px align-items-center mt-3">
-                            <div class="d-flex flex-row justify-content-between">
-                                <div class="fw-bolder">Solde</div>
-                                <div class="">{{ $wallet->balance_actual_format }}</div>
+                        <div class="d-flex flex-column w-200px w-sm-300px mt-3">
+                            <div class="d-flex flex-row align-items-center justify-content-around mb-2 p-5 border border-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} rounded-2">
+                                <div class="fw-bolder fs-2">Solde</div>
+                                <div class="text-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} fs-3">-40 731,64 €</div>
                             </div>
                         </div>
                         <!--end::Progress-->
