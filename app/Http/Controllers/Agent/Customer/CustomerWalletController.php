@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 
 class CustomerWalletController extends Controller
 {
-    public function info($number_account)
+    public function info($customer_id, $number_account)
     {
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
