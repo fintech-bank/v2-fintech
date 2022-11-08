@@ -121,4 +121,28 @@ class CustomerMobility extends Model
             "terminate" => "Dossier Terminer",
         };
     }
+
+    public function getStatusColorAttribute()
+    {
+        return match ($this->status) {
+            "bank_start", "creditor_start" => "danger",
+            "bank_return", "terminate", "creditor_end" => "success",
+        };
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return '<span class="badge badge-'.$this->getStatusColorAttribute().' badge-sm">'.$this->getStatusTextAttribute().'</span>';
+    }
+
+    public function getCommentTextAttribute()
+    {
+        return match($this->status) {
+            "bank_start" => "Votre dossier à été transmis à la banque de départ",
+            "bank_return" => "Votre dossier à été traité par la banque de départ et les informations sont dans notre banque",
+            "creditor_start" => "Votre dossier à été transmis aux créancier",
+            "creditor_end" => "Votre dossier à été traité par vos créancier et les informations sont dans notre banque",
+            "terminate" => "Votre dossier est à présent clôturer",
+        };
+    }
 }
