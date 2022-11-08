@@ -84,6 +84,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $solde_remaining
  * @property-read mixed $sum_month_operation
  * @property-read mixed $balance_actual_format
+ * @property-read mixed $alert_status_comment
+ * @property-read mixed $alert_status_text
  */
 class CustomerWallet extends Model
 {
@@ -102,7 +104,9 @@ class CustomerWallet extends Model
         'name_account_generic',
         'sum_month_operation',
         'solde_remaining',
-        'balance_actual_format'
+        'balance_actual_format',
+        'alert_status_text',
+        'alert_status_comment'
     ];
 
     public function customer()
@@ -258,6 +262,28 @@ class CustomerWallet extends Model
             return eur($this->balance_actual);
         } else {
             return "+ ".eur($this->balance_actual);
+        }
+    }
+
+    public function getAlertStatusTextAttribute()
+    {
+        if($this->nb_alert == 1) {
+            return 'Compte Problématique';
+        } elseif ($this->nb_alert > 1 && $this->nb_alert <= 3) {
+            return 'Compte en danger';
+        } else {
+            return "Compte dangereux";
+        }
+    }
+
+    public function getAlertStatusCommentAttribute()
+    {
+        if($this->nb_alert == 1) {
+            return 'Ce compte présente une alerte de débit de niveau 1.<br> Une alerte a été envoyer au client.';
+        } elseif ($this->nb_alert > 1 && $this->nb_alert <= 3) {
+            return 'Ce compte présente une alerte de débit de niveau 2 ou 3.<br>Veuillez prendre contact avec le client.';
+        } else {
+            return 'Ce compte présente une alerte de débit de niveau 4.<br>Veuillez prendre contact avec le client afin de lui proposer un compte plus en adéquation.';
         }
     }
 

@@ -72,9 +72,9 @@
                                     <span>{{ $wallet->type_text }}</span>
                                 </a>
                                 @if($wallet->alert_debit)
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2" data-bs-toggle="popover" data-bs-trigger="hover" title="{{ $wallet->alert_status_text }}" data-bs-html="true" data-bs-content="{{ $wallet->alert_status_comment }}">
                                         <i class="fa-solid fa-exclamation-triangle text-warning me-1"></i>
-                                        <span>Compte problématique</span>
+                                        <span>Alert sur le compte</span>
                                     </a>
                                 @endif
                             </div>
@@ -106,7 +106,7 @@
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <!--begin::Number-->
                                     <div class="d-flex align-items-center">
-                                        <i class="fa-solid fa-arrow-down fs-1 text-success me-2"></i>
+                                        <i class="fa-solid fa-arrow-down fs-1 text-danger me-2"></i>
                                         <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ \App\Helper\CustomerHelper::getAmountAllWithdraw($wallet->customer) }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ \App\Helper\CustomerHelper::getAmountAllWithdraw($wallet->customer) }}</div>
                                     </div>
                                     <!--end::Number-->
