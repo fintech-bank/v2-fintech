@@ -115,7 +115,7 @@
                                     <!--begin::Number-->
                                     <div class="d-flex align-items-center">
                                         <i class="fa-solid fa-money-bill-transfer fs-1 text-danger me-2"></i>
-                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ $wallet->transfers()->sum('amount') }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ $wallet->transfers()->sum('amount') }}</div>
+                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ $wallet->transfers()->sum('amount') }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ eur($wallet->transfers()->sum('amount')) }}</div>
                                     </div>
                                     <!--end::Number-->
                                     <!--begin::Label-->
