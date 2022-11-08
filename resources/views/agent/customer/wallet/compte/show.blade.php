@@ -42,5 +42,5 @@
 @endsection
 
 @section("script")
-    @include("agent.scripts.customer.wallet.index")
+    @include("agent.scripts.customer.wallet.compte")
 @endsection
