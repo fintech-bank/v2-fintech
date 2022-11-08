@@ -203,7 +203,7 @@ class SystemAgentCommand extends Command
         $arr_reject = [];
 
         foreach ($transactions as $transaction) {
-            if ($transaction->withdraw->count() != 1) {
+            if ($transaction->withdraw()->count() != 1) {
                 if ($transaction->updated_at->between(now()->startOfDay(), now()->endOfDay())) {
                     if ($transaction->amount <= $transaction->wallet->solde_remaining) {
                         CustomerTransactionHelper::updated($transaction);
