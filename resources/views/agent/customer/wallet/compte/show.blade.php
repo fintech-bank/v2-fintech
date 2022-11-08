@@ -263,7 +263,7 @@
                         <div class="mb-10">
                             <label for="status" class="form-label required">Etat</label>
                             <select name="status" class="form-select form-select-solid" data-control="select2">
-                                <option value="{{ $wallet->status }}">{{ $wallet->status_text }}</option>
+                                <option value=""></option>
                                 @foreach(\App\Models\Customer\CustomerWallet::getState() as $state)
                                     <option value="{{ $state['slug'] }}" {{ $wallet->status == $state['slug'] ? 'selected' : '' }}>{{ $state['name'] }}</option>
                                 @endforeach
