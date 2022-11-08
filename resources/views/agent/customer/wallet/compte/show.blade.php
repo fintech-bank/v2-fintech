@@ -260,10 +260,15 @@
 
                 <form action="">
                     <div class="modal-body">
-                        <x-form.select-ajax
-                            name="state"
-                            url="/api/core/state/wallet"
-                            label="Etat" />
+                        <div class="mb-10">
+                            <label for="status" class="form-label required">Etat</label>
+                            <select name="status" class="form-select form-select-solid" data-control="select2">
+                                <option value=""></option>
+                                @foreach(\App\Models\Customer\CustomerWallet::getState() as $state)
+                                    <option value="{{ $state->slug }}">{{ $state->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <div class="d-flex align-items-end">

@@ -113,6 +113,30 @@ class CustomerWallet extends Model
         'alert_status_comment'
     ];
 
+    public static function getState()
+    {
+        $arr = [
+            [
+                'name' => 'En attente',
+                'slug' => 'pending'
+            ],
+            [
+                'name' => 'Actif',
+                'slug' => 'active'
+            ],
+            [
+                'name' => 'Suspendu',
+                'slug' => 'suspended'
+            ],
+            [
+                'name' => 'Clôturer',
+                'slug' => 'closed'
+            ]
+        ];
+
+        return collect($arr);
+    }
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);
