@@ -13,7 +13,7 @@
     elements.btnShowRib.addEventListener('click', e => {
         e.preventDefault()
         $.ajax({
-            url: '/api/customer/{{ $wallet->customer->id }}/{{ $wallet->number_account }}',
+            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}',
             success: data => {
                 console.log(data)
             }
