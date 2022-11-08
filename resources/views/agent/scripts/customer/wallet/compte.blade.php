@@ -22,6 +22,7 @@
                 console.log(data)
                 block.release()
                 block.destroy()
+
             }
         })
     })
