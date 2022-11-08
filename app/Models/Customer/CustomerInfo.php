@@ -84,7 +84,7 @@ class CustomerInfo extends Model
     public $timestamps = false;
 
     protected $dates = ['datebirth'];
-    protected $appends = ['type_label', 'phone_verified', 'mobile_verified', 'full_name'];
+    protected $appends = ['type_label', 'phone_verified', 'mobile_verified', 'account_verified', 'full_name'];
 
     public function routeNotificationForTwilio()
     {
