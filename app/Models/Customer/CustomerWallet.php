@@ -100,6 +100,7 @@ class CustomerWallet extends Model
     protected $appends = [
         'type_text',
         'status_label',
+        'status_color',
         'name_account',
         'name_account_generic',
         'sum_month_operation',
@@ -231,6 +232,11 @@ class CustomerWallet extends Model
     public function getStatusLabelAttribute()
     {
         return '<span class="badge badge-' . $this->getStatus($this->status, 'color') . '"><i class="fa-solid fa-'.$this->getStatus($this->status).' text-white me-2"></i> ' . $this->getStatus($this->status, 'text') . '</span>';
+    }
+
+    public function getStatusColorAttribute()
+    {
+        return $this->getStatus($this->status, 'color');
     }
 
     public function getNameAccountAttribute()
