@@ -93,7 +93,7 @@
                                     <a href="#" class="menu-link px-3 updateStateAccount"><span class="iconify fs-3 me-2" data-icon="fluent-mdl2:status-circle-checkmark"></span> Changer le status du compte</a>
                                 </div>
                                 <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 requestOverdraft"><x-base.icon icon="fa6-solid:money-bill-trend-up" /> Demander un découvert bancaire</a>
+                                    <a href="#" class="menu-link px-3 requestOverdraft"><span class="iconify fs-3 me-2" data-icon="fa6-solid:money-bill-trend-up"></span> Demander un découvert bancaire</a>
                                 </div>
                             </div>
                         </div>
