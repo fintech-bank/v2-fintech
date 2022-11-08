@@ -134,6 +134,7 @@ Route::prefix('customer')->group(function () {
     Route::put('{customer_id}/reinitAuth', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitAuth']);
 
     Route::prefix('{customer_id}/wallet')->group(function () {
+        Route::get('{number_account}', [\App\Http\Controllers\Agent\Customer\CustomerWalletController::class, 'info']);
         Route::post('/', [\App\Http\Controllers\Agent\Customer\CustomerWalletController::class, 'store']);
     });
 });

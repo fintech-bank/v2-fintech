@@ -18,6 +18,13 @@ use Illuminate\Http\Request;
 
 class CustomerWalletController extends Controller
 {
+    public function info($number_account)
+    {
+        $wallet = CustomerWallet::where('number_account', $number_account)->first();
+
+        return response()->json($wallet);
+    }
+
     public function store(Request $request, $customer_id)
     {
         $customer = Customer::find($customer_id);
