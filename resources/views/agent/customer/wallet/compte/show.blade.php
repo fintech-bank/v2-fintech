@@ -201,11 +201,20 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="d-flex flex-row border rounded-2 justify-content-center border-gray-200">
+                    <div class="d-flex flex-row border rounded-2 justify-content-center border-gray-200 mb-15">
                         <div class="d-flex flex-column align-items-center p-2">
                             <strong>{{ $wallet->type_text }}</strong>
                             <p>{{ $wallet->name_account }}</p>
                         </div>
+                    </div>
+                    <div class="d-flex flex-row border justify-content-between mb-2">
+                        <div class="d-flex flex-column">
+                            <div class="fs-2">IBAN</div>
+                            <div class="fs-3 ibanText">{{ $wallet->iban }}</div>
+                        </div>
+                        <button class="btn btn-icon btn-sm btn-light" data-clipboard-target="#kt_clipboard_4">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
                     </div>
                 </div>
             </div>
