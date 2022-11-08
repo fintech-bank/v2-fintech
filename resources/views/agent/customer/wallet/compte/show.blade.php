@@ -201,7 +201,11 @@
                 </div>
 
                 <div class="modal-body">
-
+                    <div class="d-flex flex-row border rounded-2 border-gray-200">
+                        <div class="d-flex flex-column justify-content-center">
+                            <strong>{{ $wallet->type_text }}</strong>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -239,11 +243,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="d-flex flex-row border rounded-2 border-gray-200">
-                        <div class="d-flex flex-column justify-content-center">
-                            <strong>{{ $wallet->type_text }}</strong>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
