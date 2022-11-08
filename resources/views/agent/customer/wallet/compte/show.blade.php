@@ -195,7 +195,7 @@
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-regular fa-xmark text-white fs-1"></i>
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
                     </div>
                     <!--end::Close-->
                 </div>
@@ -249,18 +249,25 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header bg-bank">
-                    <h3 class="modal-title text-white"></h3>
+                    <h3 class="modal-title text-white">Changement du status du compte</h3>
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-regular fa-xmark text-white fs-1"></i>
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
                     </div>
                     <!--end::Close-->
                 </div>
 
-                <div class="modal-body">
+                <form action="">
+                    <div class="modal-body">
 
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-flex align-items-end">
+                            <x-form.button />
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
