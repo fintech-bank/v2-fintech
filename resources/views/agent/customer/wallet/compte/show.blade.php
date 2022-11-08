@@ -127,7 +127,12 @@
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Progress-->
-
+                        <div class="d-flex">
+                            <div class="d-flex flex-row justify-content-between">
+                                <div class="fw-bolder">Solde</div>
+                                <div class="">{{ $wallet->balance_actual_format }}</div>
+                            </div>
+                        </div>
                         <!--end::Progress-->
                     </div>
                     <!--end::Stats-->
