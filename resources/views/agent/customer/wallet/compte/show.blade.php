@@ -89,7 +89,6 @@
                         <div class="d-flex flex-column flex-grow-1 pe-8">
                             <!--begin::Stats-->
                             <div class="d-flex flex-wrap">
-                                <!--begin::Stat-->
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <!--begin::Number-->
                                     <div class="d-flex align-items-center">
@@ -101,8 +100,6 @@
                                     <div class="fw-semibold fs-6 text-gray-400">Dépots</div>
                                     <!--end::Label-->
                                 </div>
-                                <!--end::Stat-->
-                                <!--begin::Stat-->
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <!--begin::Number-->
                                     <div class="d-flex align-items-center">
@@ -114,7 +111,17 @@
                                     <div class="fw-semibold fs-6 text-gray-400">Retraits</div>
                                     <!--end::Label-->
                                 </div>
-                                <!--end::Stat-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                    <!--begin::Number-->
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-money-bill-transfer fs-1 text-danger me-2"></i>
+                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ $wallet->transfers()->sum('amount') }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ $wallet->transfers()->sum('amount') }}</div>
+                                    </div>
+                                    <!--end::Number-->
+                                    <!--begin::Label-->
+                                    <div class="fw-semibold fs-6 text-gray-400">Virements Bancaires</div>
+                                    <!--end::Label-->
+                                </div>
                             </div>
                             <!--end::Stats-->
                         </div>
