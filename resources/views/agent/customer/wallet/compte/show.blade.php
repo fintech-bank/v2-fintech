@@ -204,7 +204,7 @@
                     <div class="d-flex flex-row border rounded-2 justify-content-center border-gray-200">
                         <div class="d-flex flex-column align-items-center p-2">
                             <strong>{{ $wallet->type_text }}</strong>
-                            <p>{{ $wallet->name_account_generic }}</p>
+                            <p>{{ $wallet->name_account }}</p>
                         </div>
                     </div>
                 </div>
