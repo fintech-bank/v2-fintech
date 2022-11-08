@@ -78,6 +78,10 @@ Route::prefix('core')->group(function () {
         return response()->json($bank->status());
     });
 
+    Route::prefix('state')->group(function () {
+        Route::get('wallet', [\App\Http\Controllers\Api\Core\StateController::class, 'wallet']);
+    });
+
 });
 
 Route::prefix('connect')->group(function () {

@@ -260,7 +260,10 @@
 
                 <form action="">
                     <div class="modal-body">
-
+                        <x-form.select-ajax
+                            name="state"
+                            url="/api/core/state/wallet"
+                            label="Etat" />
                     </div>
                     <div class="modal-footer">
                         <div class="d-flex align-items-end">
