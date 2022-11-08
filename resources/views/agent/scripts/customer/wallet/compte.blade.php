@@ -12,9 +12,11 @@
 
     elements.btnShowRib.addEventListener('click', e => {
         e.preventDefault()
+        let modal = new bootstrap.Modal(modals.modalShowRib)
         $.ajax({
             url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}',
             success: data => {
+                modal.show()
                 console.log(data)
             }
         })
