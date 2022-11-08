@@ -130,7 +130,15 @@
                         <div class="d-flex flex-column w-200px w-sm-300px mt-3">
                             <div class="d-flex flex-row align-items-center justify-content-around mb-2 p-5 border border-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} rounded-2">
                                 <div class="fw-bolder fs-2">Solde</div>
-                                <div class="text-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} fs-3">-40 731,64 €</div>
+                                <div class="text-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} fs-3">{{ $wallet->balance_actual_format }}</div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center justify-content-around mb-2 p-5 border border-gray-500 rounded-2">
+                                <div class="fw-bolder fs-2">Découvert Bancaire</div>
+                                <div class="fs-3">{{ eur($wallet->balance_decouvert) }}</div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center justify-content-around mb-2 p-5 border border-gray-500 rounded-2">
+                                <div class="fw-bolder fs-2">A Venir</div>
+                                <div class="fs-3">{{ eur($wallet->balance_coming) }}</div>
                             </div>
                         </div>
                         <!--end::Progress-->
