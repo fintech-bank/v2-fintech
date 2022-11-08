@@ -212,7 +212,7 @@
                             <div class="fs-2">IBAN</div>
                             <div class="fs-3 ibanText">{{ $wallet->iban }}</div>
                         </div>
-                        <button class="btn btn-icon btn-sm btn-light" data-clipboard-target="#kt_clipboard_4">
+                        <button class="btn btn-icon btn-sm btn-light btnCopyIban" data-clipboard-target="#kt_clipboard_4">
                             <i class="fa-solid fa-copy"></i>
                         </button>
                     </div>
