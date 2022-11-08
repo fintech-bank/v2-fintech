@@ -11,6 +11,7 @@ use App\Models\Customer\CustomerTransaction;
 use App\Models\Customer\CustomerTransfer;
 use App\Notifications\Agent\CalendarAlert;
 use App\Notifications\Customer\ChargeLoanAcceptedNotification;
+use App\Notifications\Customer\RejectedTransferNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\CotationClient;
@@ -340,6 +341,8 @@ class SystemAgentCommand extends Command
                 $transfer->update([
                     'status' => 'failed'
                 ]);
+
+                $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Rejet de la banque distante"));
             }
         } else {
             CustomerTransactionHelper::deleteTransaction($transaction);
@@ -358,6 +361,8 @@ class SystemAgentCommand extends Command
                 "Frais Rejet Virement bancaire | " . $transfer->reference,
                 now()
             );
+
+            $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Solde Insuffisant"));
         }
     }
 
@@ -376,6 +381,7 @@ class SystemAgentCommand extends Command
                     $transfer->update([
                         'status' => 'failed'
                     ]);
+                    $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Rejet de la banque distante"));
                 }
             }
         } else {
@@ -395,6 +401,8 @@ class SystemAgentCommand extends Command
                 "Frais Rejet Virement bancaire | " . $transfer->reference,
                 now()
             );
+
+            $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Solde Insuffisant"));
         }
     }
 }
