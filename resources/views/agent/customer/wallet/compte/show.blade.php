@@ -212,9 +212,30 @@
                             <div class="fs-2">IBAN</div>
                             <div class="fs-3 ibanText">{{ $wallet->iban }}</div>
                         </div>
-                        <button class="btn btn-icon btn-sm btn-light btnCopyIban" data-clipboard-target="#kt_clipboard_4">
-                            <i class="fa-solid fa-copy"></i>
-                        </button>
+                    </div>
+                    <div class="d-flex flex-row border justify-content-between align-items-center p-2 mb-2">
+                        <div class="d-flex flex-column">
+                            <div class="fs-2">BIC</div>
+                            <div class="fs-3 ibanText">{{ $wallet->customer->agency->bic }}</div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row border justify-content-between align-items-center p-2 mb-2">
+                        <div class="d-flex flex-column">
+                            <div class="fs-2">Code Banque</div>
+                            <div class="fs-3 ibanText">{{ $wallet->customer->agency->code_banque }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <div class="fs-2">Code Agence</div>
+                            <div class="fs-3 ibanText">{{ $wallet->customer->agency->code_agence }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <div class="fs-2">N° du compte</div>
+                            <div class="fs-3 ibanText">{{ $wallet->number_account }}</div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <div class="fs-2">Clé RIB</div>
+                            <div class="fs-3 ibanText">{{ $wallet->rib_key}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
