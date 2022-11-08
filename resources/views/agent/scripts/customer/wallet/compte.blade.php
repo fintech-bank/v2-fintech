@@ -15,7 +15,7 @@
     clipboard = new ClipboardJS(elements.btnCopyIban, {
         target: elements.targetCopyIban,
         text: () => {
-            return target.innerHTML
+            return elements.targetCopyIban.innerHTML
         }
     }).on('success', (e) => {
         let checkIcon = elements.btnCopyIban.querySelector('.fa-check')
