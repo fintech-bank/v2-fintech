@@ -265,7 +265,7 @@
                             <select name="status" class="form-select form-select-solid" data-control="select2">
                                 <option value=""></option>
                                 @foreach(\App\Models\Customer\CustomerWallet::getState() as $state)
-                                    <option value="{{ $state->slug }}">{{ $state->name }}</option>
+                                    <option value="{{ $state['slug'] }}">{{ $state['name'] }}</option>
                                 @endforeach
                             </select>
                         </div>
