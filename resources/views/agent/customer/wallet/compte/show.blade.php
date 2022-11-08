@@ -81,84 +81,6 @@
                             <!--end::Info-->
                         </div>
                         <!--end::User-->
-                        <!--begin::Actions-->
-                        <div class="d-flex my-4">
-
-                            <!--begin::Menu-->
-                            <div class="me-0">
-                                <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <i class="bi bi-three-dots fs-3"></i>
-                                </button>
-                                <!--begin::Menu 3-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
-                                    <!--begin::Heading-->
-                                    <div class="menu-item px-3">
-                                        <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Général</div>
-                                    </div>
-                                    <!--end::Heading-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#updateStatus" class="menu-link px-3" data-bs-toggle="modal">Changer l'état du compte client</a>
-                                    </div>
-                                    <div class="menu-item px-3">
-                                        <a href="#updateAccount" data-bs-toggle="modal" class="menu-link px-3">Changer le type de compte</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
-                                        <a href="" class="menu-link px-3">
-                                            <span class="menu-title">Nouveau compte</span>
-                                            <span class="menu-arrow"></span>
-                                        </a>
-                                        <!--begin::Menu sub-->
-                                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#createWallet" data-bs-toggle="modal" class="menu-link px-3">Compte Bancaire</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#createEpargne" data-bs-toggle="modal" class="menu-link px-3">Compte Epargne</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#createPret" data-bs-toggle="modal" class="menu-link px-3">Pret Bancaire</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu separator-->
-                                            <div class="separator my-2"></div>
-                                            <!--end::Menu separator-->
-                                        </div>
-                                        <!--end::Menu sub-->
-                                    </div>
-                                    <div class="separator my-2"></div>
-                                    <!--end::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Communication</div>
-                                    </div>
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-5">
-                                        <a href="tel:{{ $customer->info->phone }}" class="menu-link px-5"><i class="fa-solid fa-phone me-3"></i> Téléphone Fixe</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <div class="menu-item px-5">
-                                        <a href="tel:{{ $customer->info->mobile }}" class="menu-link px-5"><i class="fa-solid fa-mobile me-3"></i> Téléphone Mobile</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <div class="menu-item px-5">
-                                        <a href="#write-sms" data-bs-toggle="modal" class="menu-link px-5"><i class="fa-solid fa-comment-sms me-3"></i> Envoyer un sms</a>
-                                    </div>
-                                    <div class="menu-item px-5">
-                                        <a href="#write-mail" data-bs-toggle="modal" class="menu-link px-5"><i class="fa-solid fa-envelope me-3"></i> Envoyer un Email</a>
-                                    </div>
-                                </div>
-                                <!--end::Menu 3-->
-                            </div>
-                            <!--end::Menu-->
-                        </div>
-                        <!--end::Actions-->
                     </div>
                     <!--end::Title-->
                     <!--begin::Stats-->
@@ -171,14 +93,7 @@
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <!--begin::Number-->
                                     <div class="d-flex align-items-center">
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                        <span class="svg-icon svg-icon-3 svg-icon-success me-2">
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor"></rect>
-												<path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor"></path>
-											</svg>
-										</span>
-                                        <!--end::Svg Icon-->
+                                        <i class="fa-solid fa-arrow-up fs-1 text-success me-2"></i>
                                         <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ \App\Helper\CustomerHelper::getAmountAllDeposit($customer) }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ \App\Helper\CustomerHelper::getAmountAllDeposit($customer) }}</div>
                                     </div>
                                     <!--end::Number-->
@@ -191,15 +106,8 @@
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                     <!--begin::Number-->
                                     <div class="d-flex align-items-center">
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr065.svg-->
-                                        <span class="svg-icon svg-icon-3 svg-icon-danger me-2">
-											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<rect opacity="0.5" x="11" y="18" width="13" height="2" rx="1" transform="rotate(-90 11 18)" fill="currentColor"></rect>
-												<path d="M11.4343 15.4343L7.25 11.25C6.83579 10.8358 6.16421 10.8358 5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75L11.2929 18.2929C11.6834 18.6834 12.3166 18.6834 12.7071 18.2929L18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25C17.8358 10.8358 17.1642 10.8358 16.75 11.25L12.5657 15.4343C12.2533 15.7467 11.7467 15.7467 11.4343 15.4343Z" fill="currentColor"></path>
-											</svg>
-										</span>
-                                        <!--end::Svg Icon-->
-                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ \App\Helper\CustomerHelper::getAmountAllWithdraw($customer) }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ \App\Helper\CustomerHelper::getAmountAllWithdraw($customer) }}</div>
+                                        <i class="fa-solid fa-arrow-down fs-1 text-success me-2"></i>
+                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ \App\Helper\CustomerHelper::getAmountAllWithdraw($wallet->customer) }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ \App\Helper\CustomerHelper::getAmountAllWithdraw($wallet->customer) }}</div>
                                     </div>
                                     <!--end::Number-->
                                     <!--begin::Label-->
@@ -212,22 +120,7 @@
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Progress-->
-                        <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
-                            <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                <span class="fw-semibold fs-6 text-gray-400">Cotation du client</span>
-                                <span class="fw-bold fs-6">{{ $customer->cotation }}</span>
-                            </div>
-                            <div class="h-5px mx-3 w-100 bg-light mb-3">
-                                @if($customer->cotation < 4)
-                                    <div class="bg-danger rounded h-5px" role="progressbar" style="width: {{ $customer->cotation * 10 }}%;" aria-valuenow="{{ $customer->cotation * 10 }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                @elseif($customer->cotation >= 4 && $customer->cotation <= 7)
-                                    <div class="bg-warning rounded h-5px" role="progressbar" style="width: {{ $customer->cotation * 10 }}%;" aria-valuenow="{{ $customer->cotation * 10 }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                @else
-                                    <div class="bg-success rounded h-5px" role="progressbar" style="width: {{ $customer->cotation * 10 }}%;" aria-valuenow="{{ $customer->cotation * 10 }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                @endif
-                                <span class="text-muted fs-8">Basée sur l'ensemble des mouvements de tous les comptes</span>
-                            </div>
-                        </div>
+
                         <!--end::Progress-->
                     </div>
                     <!--end::Stats-->
