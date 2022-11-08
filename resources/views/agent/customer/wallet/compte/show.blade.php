@@ -94,7 +94,7 @@
                                     <!--begin::Number-->
                                     <div class="d-flex align-items-center">
                                         <i class="fa-solid fa-arrow-up fs-1 text-success me-2"></i>
-                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ \App\Helper\CustomerHelper::getAmountAllDeposit($customer) }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ \App\Helper\CustomerHelper::getAmountAllDeposit($customer) }}</div>
+                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ \App\Helper\CustomerHelper::getAmountAllDeposit($wallet->customer) }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ \App\Helper\CustomerHelper::getAmountAllDeposit($wallet->customer) }}</div>
                                     </div>
                                     <!--end::Number-->
                                     <!--begin::Label-->
