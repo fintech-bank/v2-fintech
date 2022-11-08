@@ -237,6 +237,10 @@
                             <div class="fs-4 ibanText">{{ $wallet->rib_key}}</div>
                         </div>
                     </div>
+                    <div class="d-flex flex-column p-2 mt-2">
+                        {{ config('app.name') }}
+                        <p>Agence: {{ $wallet->customer->agency->name }}</p>
+                    </div>
                 </div>
             </div>
         </div>
