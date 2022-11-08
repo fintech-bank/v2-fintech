@@ -134,7 +134,7 @@ class CustomerWallet extends Model
             ]
         ];
 
-        return collect($arr);
+        return (object) collect($arr);
     }
 
     public function customer()
