@@ -42,6 +42,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerTransfer whereUuid($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerTransfer
+ * @property-read mixed $amount_format
  */
 class CustomerTransfer extends Model
 {

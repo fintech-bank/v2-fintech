@@ -95,7 +95,7 @@ class MobilityCommand extends Command
 
                 $mobility->update([
                     'status' => 'bank_return',
-                    'comment' => CustomerMobilityHelper::getStatus('bank_return', 'comment'),
+                    'comment' => $mobility->comment_text,
                     'updated_at' => now()
                 ]);
             }

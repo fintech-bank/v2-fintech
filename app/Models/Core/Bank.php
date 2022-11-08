@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin IdeHelperBank
  * @property-read \Illuminate\Database\Eloquent\Collection|CustomerMobility[] $mobility
  * @property-read int|null $mobility_count
+ * @property-read mixed $bank_symbol
  */
 class Bank extends Model
 {

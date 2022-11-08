@@ -58,6 +58,10 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereStatus($value)
  * @property Carbon $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereUpdatedAt($value)
+ * @property-read mixed $comment_text
+ * @property-read mixed $status_color
+ * @property-read mixed $status_label
+ * @property-read mixed $status_text
  */
 class CustomerMobility extends Model
 {
@@ -66,7 +70,7 @@ class CustomerMobility extends Model
     public $timestamps = false;
 
     protected $dates = ['start', 'end_prov', 'end_real', 'end_prlv', 'updated_at'];
-    protected $appends = ['status_text'];
+    protected $appends = ['status_text', 'status_label', 'comment_text'];
 
     public function customer()
     {
