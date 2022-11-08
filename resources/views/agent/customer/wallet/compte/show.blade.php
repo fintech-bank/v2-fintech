@@ -85,15 +85,15 @@
                             <button class="btn btn-sm btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                 <i class="fa-solid fa-chevron-down fs-3 me-2"></i> Outils
                             </button>
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
+                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-300px py-3" data-kt-menu="true">
                                 <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 showRib">Afficher le RIB</a>
+                                    <a href="#" class="menu-link px-3 showRib"><span class="iconify" data-icon="icon-park-twotone:bank-card"></span> Afficher le RIB</a>
                                 </div>
                                 <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 updateStateAccount">Changer le status du compte</a>
+                                    <a href="#" class="menu-link px-3 updateStateAccount"><span class="iconify" data-icon="fluent-mdl2:status-circle-checkmark"></span> Changer le status du compte</a>
                                 </div>
                                 <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 requestOverdraft">Demander un découvert bancaire</a>
+                                    <a href="#" class="menu-link px-3 requestOverdraft"><span class="iconify" data-icon="fa6-solid:money-bill-trend-up"></span> Demander un découvert bancaire</a>
                                 </div>
                             </div>
                         </div>
