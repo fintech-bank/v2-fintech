@@ -83,7 +83,7 @@
                         <!--end::User-->
                         <div class="d-flex my-4">
                             <button class="btn btn-sm btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                <i class="fa-solid fa-caret-down fs-3 me-2"></i> Outils
+                                <i class="fa-solid fa-chevron-down fs-3 me-2"></i> Outils
                             </button>
                         </div>
                     </div>
