@@ -86,6 +86,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $balance_actual_format
  * @property-read mixed $alert_status_comment
  * @property-read mixed $alert_status_text
+ * @property-read mixed $status_color
+ * @property-read mixed $status_text
  */
 class CustomerWallet extends Model
 {
@@ -101,6 +103,7 @@ class CustomerWallet extends Model
         'type_text',
         'status_label',
         'status_color',
+        'status_text',
         'name_account',
         'name_account_generic',
         'sum_month_operation',
@@ -237,6 +240,11 @@ class CustomerWallet extends Model
     public function getStatusColorAttribute()
     {
         return $this->getStatus($this->status, 'color');
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return $this->getStatus($this->status, 'text');
     }
 
     public function getNameAccountAttribute()
