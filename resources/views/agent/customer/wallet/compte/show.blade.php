@@ -81,6 +81,11 @@
                             <!--end::Info-->
                         </div>
                         <!--end::User-->
+                        <div class="d-flex my-4">
+                            <button class="btn btn-sm btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <i class="fa-solid fa-caret-down fs-3 me-2"></i> Outils
+                            </button>
+                        </div>
                     </div>
                     <!--end::Title-->
                     <!--begin::Stats-->
@@ -109,17 +114,6 @@
                                     <!--end::Number-->
                                     <!--begin::Label-->
                                     <div class="fw-semibold fs-6 text-gray-400">Retraits</div>
-                                    <!--end::Label-->
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <!--begin::Number-->
-                                    <div class="d-flex align-items-center">
-                                        <i class="fa-solid fa-money-bill-transfer fs-1 text-danger me-2"></i>
-                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ $wallet->transfers()->sum('amount') }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ eur($wallet->transfers()->sum('amount')) }}</div>
-                                    </div>
-                                    <!--end::Number-->
-                                    <!--begin::Label-->
-                                    <div class="fw-semibold fs-6 text-gray-400">Virements Bancaires</div>
                                     <!--end::Label-->
                                 </div>
                             </div>
