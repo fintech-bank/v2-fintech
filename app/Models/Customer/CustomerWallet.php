@@ -371,7 +371,7 @@ class CustomerWallet extends Model
         } else {
             return response()->json([
                 'access' => false,
-                'errors' => $r->toArray()
+                'errors' => $r
             ]);
         }
     }
