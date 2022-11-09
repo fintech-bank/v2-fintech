@@ -2,13 +2,30 @@
     let tables = {}
     let elements = {}
     let modals = {
-        modalUpdateStateAccount: document.querySelector("#updateStateAccount")
+        modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
+        modalRequestOverdraft: document.querySelector("#requestOverdraft")
     }
     let forms = {
         formUpdateStateAccount: document.querySelector("#formUpdateStateAccount")
     }
     let dataTable = {}
     let block = {}
+
+    document.querySelector('.requestOverdraft').addEventListener('click', e => {
+        e.preventDefault()
+        let block = new KTBlockUI(modals.modalRequestOverdraft.querySelector(".modal-body"))
+        block.block()
+
+        $.ajax({
+            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->id }}/request/overdraft',
+            method: 'POST',
+            success: data => {
+                block.release()
+                block.destroy()
+                console.log(data)
+            }
+        })
+    })
 
     $(forms.formUpdateStateAccount).on('submit', e => {
         e.preventDefault()

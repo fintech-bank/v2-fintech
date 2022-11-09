@@ -143,4 +143,8 @@ Route::prefix('customer')->group(function () {
         Route::put('{number_account}', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'update']);
         Route::post('/', [\App\Http\Controllers\Agent\Customer\CustomerWalletController::class, 'store']);
     });
+
+    Route::prefix('{customer_id}/subscribe')->group(function () {
+        Route::post('overdraft', [\App\Http\Controllers\Api\Customer\SubscribeController::class, 'overdraft']);
+    });
 });

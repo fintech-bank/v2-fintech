@@ -325,4 +325,55 @@ class CustomerWallet extends Model
         }
     }
 
+    public function requestOverdraftPart()
+    {
+        $r = collect();
+        $c = 0;
+        $taux = 9.98;
+        $incoming = $this->customer->income->pro_incoming;
+
+        $result = $incoming / 3;
+
+        if($result <= 300) {
+            $c--;
+            $r->push(["income" => "Votre revenue es inférieur à ".eur(1000)]);
+        } else {
+            $c++;
+        }
+
+        if($this->customer->situation->pro_category !== 'Sans Emploie') {
+            $c++;
+        } else {
+            $c--;
+            $r->push(['situation' => "Votre situation professionnel ne permet pas un découvert bancaire"]);
+        }
+
+        if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_actual') >= 0) {
+            $c++;
+        } else {
+            $c--;
+            $r->push(["debit" => "La somme de vos comptes bancaires est débiteur."]);
+        }
+
+        if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_decouvert') > 0) {
+            $c--;
+            $r->push(['overdraft' => "Vous avez déjà un découvert"]);
+        } else {
+            $c++;
+        }
+
+        if($c == 4) {
+            return response()->json([
+                'access' => true,
+                'value' => $result > 1000 ? 1000 : ceil($result/100) * 100,
+                'taux' => $taux." %"
+            ]);
+        } else {
+            return response()->json([
+                'access' => false,
+                'errors' => $r->toArray()
+            ]);
+        }
+    }
+
 }

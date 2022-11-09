@@ -93,7 +93,7 @@
                                     <a href="#updateStateAccount" class="menu-link px-3" data-bs-toggle="modal"><span class="iconify fs-3 me-2" data-icon="fluent-mdl2:status-circle-checkmark"></span> Changer le status du compte</a>
                                 </div>
                                 <div class="menu-item px-3">
-                                    <a href="#requestOverdraft" class="menu-link px-3" data-bs-toggle="modal"><span class="iconify fs-3 me-2" data-icon="fa6-solid:money-bill-trend-up"></span> Demander un découvert bancaire</a>
+                                    <a href="#requestOverdraft" class="menu-link px-3 requestOverdraft" data-bs-toggle="modal"><span class="iconify fs-3 me-2" data-icon="fa6-solid:money-bill-trend-up"></span> Demander un découvert bancaire</a>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +282,7 @@
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="requestOverdraft">
-        <div class="modal-dialog ">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-bank">
                     <h3 class="modal-title text-white">Demande de découvert bancaire</h3>
@@ -294,7 +294,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/request/overdraft" method="post">
+                <form action="/api/customer/{{ $wallet->customer->id }}/subscribe/overdraft" method="post">
                     <div class="modal-body">
                         <div id="overdraft"></div>
                     </div>
