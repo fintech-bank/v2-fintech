@@ -17,7 +17,7 @@
         block.block()
 
         $.ajax({
-            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->id }}/request/overdraft',
+            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/request/overdraft',
             method: 'POST',
             success: data => {
                 block.release()
