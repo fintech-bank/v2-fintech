@@ -26,7 +26,10 @@ class CustomerWalletController extends Controller
 
     public function requestOverdraft($customer_id, $number_account, Request $request)
     {
+        $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
+        $result = $wallet->requestOverdraftPart();
+        return response()->json($result);
     }
 
     private function updateStateWallet($number_account, Request $request)
