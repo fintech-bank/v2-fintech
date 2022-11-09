@@ -37,7 +37,7 @@ class UpdateStatusWalletNotification extends Notification
         $this->status = $status;
     }
 
-    private function getMessage()
+    public function getMessage()
     {
         $message = "Votre compte N°".$this->wallet->number_account." est maintenant <span class='fw-bolder text-'".$this->wallet->status_color."'>".$this->wallet->status_text."</span>";
         switch ($this->wallet->status) {
