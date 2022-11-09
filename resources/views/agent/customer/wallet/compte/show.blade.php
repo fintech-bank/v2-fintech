@@ -289,14 +289,21 @@
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-regular fa-xmark text-white fs-1"></i>
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
                     </div>
                     <!--end::Close-->
                 </div>
 
-                <div class="modal-body">
-
-                </div>
+                <form action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/request/overdraft" method="post">
+                    <div class="modal-body">
+                        <div id="overdraft"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-flex justify-content-end">
+                            <x-form.button />
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
