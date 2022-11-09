@@ -363,16 +363,16 @@ class CustomerWallet extends Model
         }
 
         if($c == 4) {
-            return response()->json([
+            return [
                 'access' => true,
                 'value' => $result > 1000 ? 1000 : ceil($result/100) * 100,
                 'taux' => $taux." %"
-            ]);
+            ];
         } else {
-            return response()->json([
+            return [
                 'access' => false,
                 'errors' => $r
-            ]);
+            ];
         }
     }
 
