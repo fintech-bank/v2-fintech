@@ -258,7 +258,9 @@
                     <!--end::Close-->
                 </div>
 
-                <form action="">
+                <form id="formUpdateStateAccount" action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="action" value="state">
                     <div class="modal-body">
                         <div class="mb-10">
                             <label for="status" class="form-label required">Etat</label>
