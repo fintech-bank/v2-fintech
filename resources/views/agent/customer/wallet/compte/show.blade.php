@@ -204,7 +204,7 @@
                             <tr class="fw-semibold fs-6 text-gray-600">
                                 <th>Date</th>
                                 <th>Libelle</th>
-                                <th>Montant</th>
+                                <th class="text-end">Montant</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -224,7 +224,9 @@
                                     <td class="text-end">
                                         {{ $transaction->amount_format }}
                                     </td>
-                                    <td></td>
+                                    <td class="text-end">
+                                        <button class="btn btn-icon btn-sm btn-success"></button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
