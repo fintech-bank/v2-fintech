@@ -372,20 +372,22 @@
     }
 
     let updateBusiness = (field) => {
-        document.querySelector('[name="'+field+'"]').addEventListener('blur', e => {
-            e.preventDefault()
-            let data = $('[name="'+field+'"]').serializeArray()
-            $.ajax({
-                url: '/api/customer/{{ $customer->id }}/business',
-                method: 'PUT',
-                data: data,
-                success: data => {
-                    elements.businessResultat.innerHTML = data.business.result_format;
-                    elements.businessFinance.innerHTML = data.business.result_finance_format;
-                    elements.businessIndicator.innerHTML = data.business.indicator_format;
-                }
+        if(document.querySelector('[name="'+field+'"]')) {
+            document.querySelector('[name="'+field+'"]').addEventListener('blur', e => {
+                e.preventDefault()
+                let data = $('[name="'+field+'"]').serializeArray()
+                $.ajax({
+                    url: '/api/customer/{{ $customer->id }}/business',
+                    method: 'PUT',
+                    data: data,
+                    success: data => {
+                        elements.businessResultat.innerHTML = data.business.result_format;
+                        elements.businessFinance.innerHTML = data.business.result_finance_format;
+                        elements.businessIndicator.innerHTML = data.business.indicator_format;
+                    }
+                })
             })
-        })
+        }
     }
 
     verifSoldesAllWallets()
