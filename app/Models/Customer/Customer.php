@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use App\Models\Business\BusinessParam;
 use App\Models\Core\Agency;
 use App\Models\Core\Invoice;
 use App\Models\Core\Package;
@@ -179,6 +180,11 @@ class Customer extends Model
     public function insurances()
     {
         return $this->hasMany(CustomerInsurance::class);
+    }
+
+    public function business()
+    {
+        return $this->hasOne(BusinessParam::class);
     }
 
     public function getStatusTextAttribute()

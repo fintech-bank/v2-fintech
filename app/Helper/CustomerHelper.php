@@ -317,6 +317,13 @@ class CustomerHelper
             'customer_id' => $customer->id,
         ]);
 
+        if($info->type != 'part') {
+            \DB::connection('business')->table('users')->insert([
+                'id' => $customer->id,
+                'name' => $customer->info->full_name
+            ]);
+        }
+
         $setting = CustomerSetting::create([
             'customer_id' => $customer->id,
         ]);

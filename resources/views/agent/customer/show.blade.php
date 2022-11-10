@@ -1147,7 +1147,40 @@
             </div>
         </div>
         @if($customer->info->type != 'part')
-        <div class="tab-pane fade" id="business_plan" role="tabpanel"></div>
+        <div class="tab-pane fade" id="business_plan" role="tabpanel">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 mb-10">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Information structurel</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bolder">Société</td>
+                                        <td>{{ $customer->business->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Forme juridique</td>
+                                        <td>{{ $customer->business->forme }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Possible demande de financement</td>
+                                        <td>{{ $customer->business->financement }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endif
     </div>
     <div class="modal fade" tabindex="-1" id="updateStatus">
