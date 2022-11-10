@@ -33,6 +33,8 @@ class SubscribeController extends Controller
             ['wallet' => $wallet]
         );
 
+        dd($doc);
+
         $token = base64_encode(\Str::random());
         $wallet->customer->info->notify(new SendLinkForContractNotification($wallet->customer, $token, $doc));
 
