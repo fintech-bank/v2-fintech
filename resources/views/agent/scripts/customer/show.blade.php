@@ -374,7 +374,7 @@
     let updateBusiness = (field) => {
         document.querySelector('[name="'+field+'"]').addEventListener('blur', e => {
             e.preventDefault()
-            let data = $(this).serializeArray()
+            let data = $('[name="'+field+'"]').serializeArray()
             console.log(data)
             $.ajax({
                 url: '/api/customer/{{ $customer->id }}/business',
