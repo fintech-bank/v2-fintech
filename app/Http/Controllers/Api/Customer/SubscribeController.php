@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class SubscribeController extends Controller
 {
-    //
+    public function overdraft($customer_id, Request $request)
+    {
+
+    }
 }

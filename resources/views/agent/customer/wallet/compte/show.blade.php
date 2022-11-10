@@ -294,8 +294,9 @@
                     <!--end::Close-->
                 </div>
 
-                <form action="/api/customer/{{ $wallet->customer->id }}/subscribe/overdraft" method="post">
+                <form id="formSubscribeOverdraft" action="/api/customer/{{ $wallet->customer->id }}/subscribe/overdraft" method="post">
                     <div class="modal-body">
+                        <input type="hidden" name="wallet_id" value="{{ $wallet->id }}">
                         <div id="overdraft"></div>
                     </div>
                     <div class="modal-footer">

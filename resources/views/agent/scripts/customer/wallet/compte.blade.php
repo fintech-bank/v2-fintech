@@ -6,7 +6,8 @@
         modalRequestOverdraft: document.querySelector("#requestOverdraft")
     }
     let forms = {
-        formUpdateStateAccount: document.querySelector("#formUpdateStateAccount")
+        formUpdateStateAccount: document.querySelector("#formUpdateStateAccount"),
+        formRequestOverdraft: document.querySelector("#formSubscribeOverdraft")
     }
     let dataTable = {}
     let block = {}
@@ -83,6 +84,34 @@
                 btn.removeAttr('data-kt-indicator')
 
                 toastr.success(`L'état du compte à été mise à jours`, `Changement de l'état du compte`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
+        })
+    })
+    $(forms.formRequestOverdraft).on('submit', e => {
+        e.preventDefault()
+        let block = new KTBlockUI(modals.modalRequestOverdraft.querySelector(".modal-body"))
+        let form = $(forms.formRequestOverdraft)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+        block.block()
+
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: data,
+            success: () => {
+                block.release()
+                block.destroy()
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.success(`La souscription au découvert bancaire à été enregistré`, `Souscription au découvert bancaire`)
 
                 setTimeout(() => {
                     window.location.reload()
