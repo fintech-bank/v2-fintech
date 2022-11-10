@@ -44,7 +44,7 @@
                     modals.modalRequestOverdraft.querySelector(".btn-bank").removeAttribute('disabled')
                     divOverdraft.innerHTML = `
                     <div class="d-flex flex-column align-items-center">
-                        <i class="fa-solid fa-check-circle success fs-4tx mb-2"></i>
+                        <i class="fa-solid fa-check-circle text-success fs-4tx mb-2"></i>
                         <span class="fs-2tx fw-bolder success mb-5">Découvert Possible</span>
                         <div class="p-5 border rounded border-success mb-5">
                             <p>Votre demande de découvert bancaire à été pré-accepter pour un montant maximal de <strong>${data.value}</strong> au taux débiteur de ${data.taux}</p>
