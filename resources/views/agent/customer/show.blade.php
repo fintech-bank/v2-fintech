@@ -1241,19 +1241,19 @@
                                     <tr>
                                         <td class="fw-bolder text-end">Résultat</td>
                                         <td>
-                                            <div class="text-end fs-3 business_resultat">0,00 €</div>
+                                            <div class="text-end fs-3 business_resultat">{{ $customer->business->result_format }}</div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bolder text-end">Financement</td>
                                         <td>
-                                            <div class="text-end fs-3 business_finance">0,00 €</div>
+                                            <div class="text-end fs-3 business_finance">{{ $customer->business->result_finance_format }}</div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bolder text-end">Indicateur</td>
                                         <td>
-                                            <div class="text-end fs-3 business_indicator">Favorable</div>
+                                            <div class="text-end fs-3 business_indicator">{!! $customer->business->indicator_format !!}</div>
                                         </td>
                                     </tr>
                                 </tfoot>
