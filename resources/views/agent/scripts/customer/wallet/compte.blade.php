@@ -2,7 +2,11 @@
     let tables = {
         tableComing: document.querySelector("#table_coming")
     }
-    let elements = {}
+    let elements = {
+        btnAcceptTransaction: document.querySelectorAll('.btnAcceptTransaction'),
+        btnRejectTransaction: document.querySelectorAll('.btnRejectTransaction'),
+        btnOppositPayment: document.querySelectorAll('.btnOppositPayment'),
+    }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
         modalRequestOverdraft: document.querySelector("#requestOverdraft")
@@ -19,7 +23,9 @@
             "dom": "<'table-responsive'tr>"
         })
     }
-    let block = {}
+    let block = {
+        blockTableComing: messageBlock(tables.tableComing.querySelector("tbody"))
+    }
 
     document.querySelector('.requestOverdraft').addEventListener('click', e => {
         e.preventDefault()
@@ -71,6 +77,25 @@
             }
         })
     })
+    if(elements.btnAcceptTransaction) {
+        elements.btnAcceptTransaction.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableComing.block()
+
+                $.ajax({
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->id }}/transaction/'+btn.dataset.transaction,
+                    method: 'POST',
+                    data: {"action": "accept"},
+                    success: data => {
+                        block.blockTableComing.release()
+                        block.blockTableComing.destroy()
+                        console.log(data)
+                    }
+                })
+            })
+        })
+    }
 
     $(forms.formUpdateStateAccount).on('submit', e => {
         e.preventDefault()

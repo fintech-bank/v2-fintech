@@ -202,7 +202,7 @@
                     <table class="table table-striped table-row-bordered gy-5 gs-7" id="table_coming">
                         <thead>
                             <tr class="fw-semibold fs-6 text-gray-600">
-                                <th>Date</th>
+                                <th>Date de paiement</th>
                                 <th>Libelle</th>
                                 <th class="text-end">Montant</th>
                                 <th></th>
@@ -227,12 +227,12 @@
                                     <td class="text-end">
                                         @if($transaction->type == 'virement' || $transaction->type == 'sepa')
                                             <div class="btn-group" role="group">
-                                                <button class="btn btn-xs btn-success btn-icon btnAcceptTransaction" data-bs-toggle="tooltip" title="Accepter"><i class="fa-solid fa-check"></i> </button>
-                                                <button class="btn btn-xs btn-danger btn-icon btnRejectTransaction" data-bs-toggle="tooltip" title="Refuser"><i class="fa-solid fa-xmark"></i> </button>
+                                                <button class="btn btn-xs btn-success btn-icon btnAcceptTransaction" data-transaction="{{ $transaction->id }}" data-bs-toggle="tooltip" title="Accepter"><i class="fa-solid fa-check"></i> </button>
+                                                <button class="btn btn-xs btn-danger btn-icon btnRejectTransaction" data-transaction="{{ $transaction->id }}" data-bs-toggle="tooltip" title="Refuser"><i class="fa-solid fa-xmark"></i> </button>
                                             </div>
                                         @endif
                                         @if($transaction->type == 'payment')
-                                            <button class="btn btn-xs btn-danger btn-icon btnOppositPayment" data-bs-toggle="tooltip" title="Opposition"><i class="fa-solid fa-ban"></i> </button>
+                                            <button class="btn btn-xs btn-danger btn-icon btnOppositPayment" data-transaction="{{ $transaction->id }}" data-bs-toggle="tooltip" title="Opposition"><i class="fa-solid fa-ban"></i> </button>
                                         @endif
                                     </td>
                                 </tr>
