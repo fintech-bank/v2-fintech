@@ -24,14 +24,18 @@
                 block.destroy()
                 console.log(data)
                 let divOverdraft = document.querySelector("#overdraft")
-                Object.keys(data.errors).forEach((key, k) => {
-                    console.log(data.errors[key][k])
+                let contentError = '';
+                data.errors.forEach(error => {
+                    contentError += `<li>${error}</li>`
                 })
                 if (data.access === false) {
                     divOverdraft.innerHTML = `
                     <div class="d-flex flex-column align-items-center">
                         <i class="fa-solid fa-exclamation-triangle text-warning fs-4tx mb-2"></i>
                         <span>Découvert Impossible</span>
+                        <ul>
+                            ${contentError}
+                        </ul>
                     </div>
                     `
                 }
