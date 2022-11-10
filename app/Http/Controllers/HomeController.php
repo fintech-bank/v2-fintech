@@ -91,12 +91,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        $call = \Http::post('http://192.168.1.114/servlet?m=mod_account&p=call&q=dial&Rajax=0.8669914758302679', [
-            'num' => '0749061225',
-            'acc' => 0,
-            'type' => 3,
-        ]);
 
-        return $call->status();
     }
 }
