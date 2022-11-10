@@ -595,6 +595,13 @@
 
     updateBusiness('ca')
     updateBusiness('achat')
+    updateBusiness('frais')
+    updateBusiness('salaire')
+    updateBusiness('impot')
+    updateBusiness('other_product')
+    updateBusiness('other_charge')
+    updateBusiness('apport_personnel')
+    updateBusiness('finance')
 
 
     $("#country").select2({
