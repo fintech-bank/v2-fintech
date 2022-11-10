@@ -112,7 +112,7 @@ class CustomerWalletController extends Controller
 
         $doc_epargne = DocumentFile::createDoc(
             $customer,
-            'contrat_epargne',
+            'wallet.contrat_epargne',
             "Contrat d'épargne",
             3,
             generateReference(),
