@@ -24,9 +24,8 @@
                 block.destroy()
                 console.log(data)
                 let divOverdraft = document.querySelector("#overdraft")
-                let errors = data.errors
-                errors.forEach(error => {
-                    console.log(error)
+                Object.keys(data.errors).forEach(key => {
+                    console.log(key)
                 })
                 if (data.access === false) {
                     divOverdraft.innerHTML = `
