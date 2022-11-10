@@ -213,10 +213,12 @@
                                 <tr>
                                     <td>{{ $transaction->updated_at->format('d/m/Y') }}</td>
                                     <td>
-                                        <div class="d-flex flex-row">
+                                        <div class="d-flex flex-row align-items-center">
                                             {!! $transaction->type_symbol !!}
-                                            {{ $transaction->description }}
-                                            <div class="text-muted">{{ $transaction->designation }}</div>
+                                            <div class="d-flex flex-column">
+                                                {{ $transaction->description }}
+                                                <div class="text-muted">{{ $transaction->designation }}</div>
+                                            </div>
                                         </div>
                                     </td>
                                     <td class="text-end">
