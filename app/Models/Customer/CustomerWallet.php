@@ -331,7 +331,7 @@ class CustomerWallet extends Model
 
         $info = match ($this->customer->info->type) {
             'part' => $this->calcOverdraftPart(),
-            'pro' || 'orga' || 'assoc' => $this->calcOverdraftPro(),
+            'pro', 'orga', 'assoc' => $this->calcOverdraftPro(),
         };
 
 
