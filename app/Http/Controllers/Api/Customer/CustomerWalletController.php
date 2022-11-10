@@ -28,7 +28,7 @@ class CustomerWalletController extends Controller
     {
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
-        $result = $wallet->requestOverdraftPart();
+        $result = $wallet->requestOverdraft();
         return response()->json($result);
     }
 

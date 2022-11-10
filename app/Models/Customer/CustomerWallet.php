@@ -325,7 +325,7 @@ class CustomerWallet extends Model
         }
     }
 
-    public function requestOverdraftPart()
+    public function requestOverdraft()
     {
         $r = collect();
         $c = 0;
