@@ -26,11 +26,11 @@ class NewWalletNotification extends Notification
      */
     public function __construct(Customer $customer, CustomerWallet $wallet)
     {
+        $this->customer = $customer;
+        $this->wallet = $wallet;
         $this->title = "Nouveau compte bancaire disponible";
         $this->message = $this->getMessage();
         $this->link = "";
-        $this->customer = $customer;
-        $this->wallet = $wallet;
     }
 
     private function getMessage()
