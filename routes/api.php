@@ -144,6 +144,10 @@ Route::prefix('customer')->group(function () {
         Route::post('{number_account}/request/overdraft', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'requestOverdraft']);
         Route::put('{number_account}', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'update']);
         Route::post('/', [\App\Http\Controllers\Agent\Customer\CustomerWalletController::class, 'store']);
+
+        Route::prefix('{number_account}/transaction')->group(function () {
+            Route::post('{transaction_uuid}', [\App\Http\Controllers\Api\Customer\TransactionController::class, 'update']);
+        });
     });
 
     Route::prefix('{customer_id}/subscribe')->group(function () {

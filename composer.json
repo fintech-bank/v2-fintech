@@ -22,6 +22,7 @@
         "globalcitizen/php-iban": "^4.1",
         "gotenberg/gotenberg-php": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
+        "infureal/artisan-gui": "^2.0",
         "intervention/validation": "^3.2",
         "jenssegers/agent": "^2.6",
         "kylekatarnls/vicopo": "^1.3",

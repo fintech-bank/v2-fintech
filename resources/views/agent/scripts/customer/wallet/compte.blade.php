@@ -84,13 +84,16 @@
                 block.blockTableComing.block()
 
                 $.ajax({
-                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->id }}/transaction/'+btn.dataset.transaction,
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+btn.dataset.transaction,
                     method: 'POST',
                     data: {"action": "accept"},
                     success: data => {
                         block.blockTableComing.release()
                         block.blockTableComing.destroy()
                         console.log(data)
+                    },
+                    error: err => {
+                        console.error(err)
                     }
                 })
             })

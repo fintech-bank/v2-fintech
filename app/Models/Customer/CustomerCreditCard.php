@@ -74,6 +74,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerCreditCard whereFaceliaVitesse($value)
  * @property-read mixed $number_card_oscure
  * @property-read mixed $number_format
+ * @property-read mixed $debit_format
+ * @property-read mixed $expiration
  */
 class CustomerCreditCard extends Model
 {

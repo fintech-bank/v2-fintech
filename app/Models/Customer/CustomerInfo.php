@@ -74,6 +74,8 @@ use Illuminate\Notifications\Notifiable;
  * @property-read string|null $full_name
  * @property int $addressVerified
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo whereAddressVerified($value)
+ * @property string $email
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo whereEmail($value)
  */
 class CustomerInfo extends Model
 {

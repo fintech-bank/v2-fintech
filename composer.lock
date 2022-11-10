@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec9c788c83a84ea3dfb97a78428a7986",
+    "content-hash": "36fe3f096f3612040d76ba5cddff221d",
     "packages": [
         {
             "name": "1pilotapp/laravel-client",
@@ -3093,6 +3093,48 @@
                 }
             ],
             "time": "2022-10-26T14:07:24+00:00"
+        },
+        {
+            "name": "infureal/artisan-gui",
+            "version": "v2.0.1-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/infureal/artisan-gui.git",
+                "reference": "506d6c9652afae7583bec5fb1670489318fdf5f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/infureal/artisan-gui/zipball/506d6c9652afae7583bec5fb1670489318fdf5f4",
+                "reference": "506d6c9652afae7583bec5fb1670489318fdf5f4",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.0|^9.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Infureal\\Providers\\GuiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Infureal\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Beautiful package for [laravel:artisan] gui for cool kids.",
+            "support": {
+                "issues": "https://github.com/infureal/artisan-gui/issues",
+                "source": "https://github.com/infureal/artisan-gui/tree/v2.0.1-beta2"
+            },
+            "time": "2022-03-02T11:09:23+00:00"
         },
         {
             "name": "intervention/image",

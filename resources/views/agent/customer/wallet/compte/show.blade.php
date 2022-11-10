@@ -232,7 +232,7 @@
                                             </div>
                                         @endif
                                         @if($transaction->type == 'payment')
-                                            <button class="btn btn-xs btn-danger btn-icon btnOppositPayment" data-transaction="{{ $transaction->id }}" data-bs-toggle="tooltip" title="Opposition"><i class="fa-solid fa-ban"></i> </button>
+                                            <button class="btn btn-xs btn-danger btn-icon btnOppositPayment" data-transaction="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Opposition"><i class="fa-solid fa-ban"></i> </button>
                                         @endif
                                     </td>
                                 </tr>
