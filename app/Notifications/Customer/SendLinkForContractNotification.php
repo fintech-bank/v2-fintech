@@ -27,13 +27,13 @@ class SendLinkForContractNotification extends Notification
      */
     public function __construct(Customer $customer, string $token, $doc)
     {
-        $this->title = "Nouveau document en attente de signature";
-        $this->message = $this->getMessage();
-        $this->token = $token;
-        $this->link = route('signate.show', $token);
         $this->customer = $customer;
         $this->doc = $doc;
-        dd($this->doc);
+        $this->token = $token;
+        $this->title = "Nouveau document en attente de signature";
+        $this->message = $this->getMessage();
+        $this->link = route('signate.show', $token);
+
     }
 
     private function getMessage()
