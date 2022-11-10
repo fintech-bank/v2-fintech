@@ -373,6 +373,7 @@ class RegisterController extends Controller
             'mobile' => $personal->mobile,
             'country_code' => '+33',
             'customer_id' => $customer->id,
+            'email' => $user->email
         ]);
 
 
