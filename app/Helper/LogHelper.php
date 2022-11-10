@@ -4,7 +4,7 @@ namespace App\Helper;
 
 use App\Models\Core\LogBanque;
 use App\Models\User;
-use App\Notifications\Customer\Customer\Admin\LogNotification;
+use App\Notifications\Admin\LogNotification;
 
 class LogHelper
 {
