@@ -329,7 +329,7 @@ class CustomerWallet extends Model
     {
         $r = collect();
         $c = 0;
-        $taux = 9.98;
+        $taux = $this->getTauxOverdraftByType();
         $incoming = $this->customer->income->pro_incoming;
 
         $result = $incoming / 3;
@@ -374,6 +374,16 @@ class CustomerWallet extends Model
                 'errors' => $r
             ];
         }
+    }
+
+    private function getTauxOverdraftByType()
+    {
+        return match ($this->customer->info->type) {
+            'part' => 9.98,
+            'pro' => 8.39,
+            'orga' => 3.38,
+            'assoc' => 2.00
+        };
     }
 
 }
