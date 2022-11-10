@@ -377,7 +377,7 @@
             $.ajax({
                 url: '/api/customer/{{ $customer->id }}/business',
                 method: 'PUT',
-                data: {field: e.target.value},
+                data: {"'+field+'": e.target.value},
                 success: data => {
                     elements.businessResultat.innerHTML = data.result_format;
                     elements.businessFinance.innerHTML = data.result_finance_format;
