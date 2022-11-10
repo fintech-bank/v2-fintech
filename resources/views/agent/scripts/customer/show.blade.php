@@ -374,10 +374,12 @@
     let updateBusiness = (field) => {
         document.querySelector('[name="'+field+'"]').addEventListener('blur', e => {
             e.preventDefault()
+            let data = $(this).serializeArray()
+            console.log(data)
             $.ajax({
                 url: '/api/customer/{{ $customer->id }}/business',
                 method: 'PUT',
-                data: {e.target.getAttribute('name'): e.target.value},
+                data: {"": e.target.value},
                 success: data => {
                     elements.businessResultat.innerHTML = data.result_format;
                     elements.businessFinance.innerHTML = data.result_finance_format;
