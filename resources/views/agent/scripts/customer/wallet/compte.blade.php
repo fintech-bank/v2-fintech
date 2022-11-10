@@ -25,9 +25,6 @@
                 console.log(data)
                 let divOverdraft = document.querySelector("#overdraft")
                 let contentError = '';
-                Object.keys(data.errors).forEach(key => {
-                    console.log(data.errors[key]['debit'])
-                })
                 data.errors.forEach(error => {
                     contentError += `<li><span class="bullet me-5"></span> ${error}</li>`
                 })
