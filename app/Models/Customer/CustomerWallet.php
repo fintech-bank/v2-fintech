@@ -338,7 +338,7 @@ class CustomerWallet extends Model
         if($info['result'] == 4) {
             return [
                 'access' => true,
-                'value' => $info['amount'] > $this->getLimitOverdraftByType() ? eur($this->getLimitOverdraftByType()) : eur(ceil($info['result']/100) * 10),
+                'value' => $info['amount'] > $this->getLimitOverdraftByType() ? eur($this->getLimitOverdraftByType()) : eur(ceil($info['amount']/100) * 100),
                 'taux' => $taux." %"
             ];
         } else {
