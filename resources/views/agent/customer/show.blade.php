@@ -259,7 +259,7 @@
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#subscriptions">Souscriptions</a>
                 </li>
 
-                @if($customer->info->type == 'pro' || $customer->info->type == 'orga' || $customer->info->type == 'assoc')
+                @if($customer->info->type != 'part')
                     <li class="nav-item mt-2">
                         <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#business_plan">Calcul Prévisionnel</a>
                     </li>
@@ -991,7 +991,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="subscriptions">
+        <div class="tab-pane fade" id="subscriptions" role="tabpanel">
             <div class="row">
                 <div class="col-md-6 col-sm-12 mb-5">
                     <div class="card shadow-sm">
@@ -1146,6 +1146,9 @@
                 </div>
             </div>
         </div>
+        @if($customer->info->type != 'part')
+        <div class="tab-pane fade" id="business_plan" role="tabpanel"></div>
+        @endif
     </div>
     <div class="modal fade" tabindex="-1" id="updateStatus">
         <div class="modal-dialog">
