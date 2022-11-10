@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('business_params', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('forme', ['EI', 'EURL', 'SASU', 'SARL', 'SAS', 'SCI', 'Other']);
+            $table->enum('forme', ['EI', 'EURL', 'SASU', 'SARL', 'SAS', 'SCI', 'Other'])->default('SAS');
             $table->boolean('financement')->default(false);
 
             $table->float('ca')->default(0);

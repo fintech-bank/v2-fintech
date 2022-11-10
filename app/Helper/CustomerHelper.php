@@ -318,9 +318,9 @@ class CustomerHelper
         ]);
 
         if($info->type != 'part') {
-            \DB::connection('business')->table('users')->insert([
-                'id' => $customer->id,
-                'name' => $customer->info->full_name
+            $customer->business()->create([
+                'name' => $info->full_name,
+                'customer_id' => $customer->id
             ]);
         }
 
