@@ -9,8 +9,8 @@ use App\Helper\CustomerTransactionHelper;
 use App\Helper\DocumentFile;
 use App\Helper\LogHelper;
 use App\Helper\UserHelper;
+use App\Models\Business\BusinessParam;
 use App\Models\Core\Agency;
-use App\Models\Core\LoanPlan;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerBeneficiaire;
@@ -27,7 +27,6 @@ use App\Models\Customer\CustomerSituationIncome;
 use App\Models\Customer\CustomerWallet;
 use App\Models\Customer\CustomerWithdraw;
 use App\Models\User;
-use App\Notifications\Customer\Automate\GenerateMensualReleverNotification;
 use App\Notifications\Customer\MensualReleverNotification;
 use App\Notifications\Customer\NewPrlvPresented;
 use App\Notifications\Customer\SendAlertaInfoNotification;
@@ -102,9 +101,16 @@ class LifeCommand extends Command
                 'user_id' => $user->id
             ]);
 
-            CustomerInfo::factory()->create([
+            $info = CustomerInfo::factory()->create([
                 'customer_id' => $customer->id,
             ]);
+
+            if($info->type != 'part') {
+                BusinessParam::create([
+                    'name' => $info->full_name,
+                    'customer_id' => $customer->id,
+                ]);
+            }
 
             CustomerSetting::factory()->create([
                 'customer_id' => $customer->id,
