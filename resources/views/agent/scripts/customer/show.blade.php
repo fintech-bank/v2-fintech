@@ -371,6 +371,22 @@
         })
     }
 
+    let updateBusiness = (field) => {
+        document.querySelector('[name="'+field+'"]').addEventListener('blur', e => {
+            e.preventDefault()
+            $.ajax({
+                url: '/api/customer/{{ $customer->id }}/business',
+                method: 'PUT',
+                data: {field: e.target.value},
+                success: data => {
+                    elements.businessResultat.innerHTML = data.result_format;
+                    elements.businessFinance.innerHTML = data.result_finance_format;
+                    elements.businessIndicator.innerHTML = data.indicator_format;
+                }
+            })
+        })
+    }
+
     verifSoldesAllWallets()
     citiesFromPostal(document.querySelector("#postal"))
 
@@ -576,20 +592,9 @@
         dataTable.datatableWallet.search(r).draw()
     })
 
-    document.querySelector('[name="ca"]').addEventListener('blur', e => {
-        e.preventDefault()
-        $.ajax({
-            url: '/api/customer/{{ $customer->id }}/business',
-            method: 'PUT',
-            data: {"ca": e.target.value},
-            success: data => {
-                elements.businessResultat.innerHTML = data.result_format;
-                elements.businessFinance.innerHTML = data.result_finance_format;
-                elements.businessIndicator.innerHTML = data.indicator_format;
+    updateBusiness('ca')
+    updateBusiness('achat')
 
-            }
-        })
-    })
 
     $("#country").select2({
         templateSelection: countryOptions,
