@@ -258,6 +258,12 @@
                 <li class="nav-item mt-2">
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#subscriptions">Souscriptions</a>
                 </li>
+
+                @if($customer->info->type == 'pro' || $customer->info->type == 'orga' || $customer->info->type == 'assoc')
+                    <li class="nav-item mt-2">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#business_plan">Calcul Prévisionnel</a>
+                    </li>
+                @endif
             </ul>
             <!--begin::Navs-->
         </div>

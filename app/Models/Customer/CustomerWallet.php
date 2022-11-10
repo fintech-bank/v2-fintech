@@ -327,9 +327,32 @@ class CustomerWallet extends Model
 
     public function requestOverdraft()
     {
-        $r = collect();
-        $c = 0;
         $taux = $this->getTauxOverdraftByType();
+
+        $info = match ($this->customer->info->type) {
+            'part' => $this->calcOverdraftPart(),
+            'pro' || 'orga' || 'assoc' => $this->calcOverdraftPro(),
+        };
+
+
+        if($info['result'] == 4) {
+            return [
+                'access' => true,
+                'value' => $info['result'] > $this->getLimitOverdraftByType() ? eur($this->getLimitOverdraftByType()) : eur(ceil($info['result']/100) * 100),
+                'taux' => $taux." %"
+            ];
+        } else {
+            return [
+                'access' => false,
+                'errors' => $info['messages']
+            ];
+        }
+    }
+
+    private function calcOverdraftPart()
+    {
+        $c = 0;
+        $r = collect();
         $incoming = $this->customer->income->pro_incoming;
 
         $result = $incoming / 3;
@@ -362,18 +385,43 @@ class CustomerWallet extends Model
             $c++;
         }
 
-        if($c == 4) {
-            return [
-                'access' => true,
-                'value' => $result > $this->getLimitOverdraftByType() ? eur($this->getLimitOverdraftByType()) : eur(ceil($result/100) * 100),
-                'taux' => $taux." %"
-            ];
+        return [
+            'result' => $c,
+            'messages' => $r
+        ];
+    }
+    private function calcOverdraftPro()
+    {
+        $c = 0;
+        $r = collect();
+
+        $result = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual');
+
+        if($result <= 3000) {
+            $c--;
+            $r->push(["Votre Chiffre d'affaire est inférieur à ".eur(3000)]);
         } else {
-            return [
-                'access' => false,
-                'errors' => $r
-            ];
+            $c++;
         }
+
+        if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_actual') >= 0) {
+            $c++;
+        } else {
+            $c--;
+            $r->push(["La somme de vos comptes bancaires est débiteur."]);
+        }
+
+        if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_decouvert') > 0) {
+            $c--;
+            $r->push(["Vous avez déjà un découvert"]);
+        } else {
+            $c++;
+        }
+
+        return [
+            'result' => $c,
+            'messages' => $r
+        ];
     }
 
     private function getTauxOverdraftByType()
