@@ -225,7 +225,10 @@
                                         {{ $transaction->amount_format }}
                                     </td>
                                     <td class="text-end">
-                                        <button class="btn btn-icon btn-sm btn-success"></button>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-xs btn-success btn-icon"><i class="fa-solid fa-check"></i> </button>
+                                            <button class="btn btn-xs btn-danger btn-icon"><i class="fa-solid fa-xmark"></i> </button>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
