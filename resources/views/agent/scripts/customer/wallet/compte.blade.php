@@ -26,14 +26,14 @@
                 let divOverdraft = document.querySelector("#overdraft")
                 let contentError = '';
                 data.errors.forEach(error => {
-                    contentError += `<li>${error}</li>`
+                    contentError += `<li><span class="bullet me-5"></span> ${error}</li>`
                 })
                 if (data.access === false) {
                     divOverdraft.innerHTML = `
                     <div class="d-flex flex-column align-items-center">
                         <i class="fa-solid fa-exclamation-triangle text-warning fs-4tx mb-2"></i>
                         <span>Découvert Impossible</span>
-                        <ul>
+                        <ul class="list-unstyled">
                             ${contentError}
                         </ul>
                     </div>
