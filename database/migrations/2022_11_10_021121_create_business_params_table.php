@@ -19,6 +19,9 @@ return new class extends Migration
             $table->enum('forme', ['EI', 'EURL', 'SASU', 'SARL', 'SAS', 'SCI', 'Other'])->default('SAS');
             $table->boolean('financement')->default(false);
 
+            $table->float('apport_personnel')->default(0);
+            $table->float('finance')->default(0);
+
             $table->float('ca')->default(0);
             $table->float('achat')->default(0);
             $table->float('frais')->default(0);

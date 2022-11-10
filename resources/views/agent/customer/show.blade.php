@@ -1224,14 +1224,28 @@
                                         <td>Autre Produit</td>
                                         <td><input type="text" class="form-control form-control-solid" name="other_product" value="{{ $customer->business->other_product }}"></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="border-bottom-3">
                                         <td>Autre Charge</td>
                                         <td><input type="text" class="form-control form-control-solid" name="other_charge" value="{{ $customer->business->other_charge }}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apport Personnel (Capital, etc...)</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="apport_personnel" value="{{ $customer->business->apport_personnel }}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Financement existant</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="finance" value="{{ $customer->business->finance }}"></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td class="fw-bolder text-end">Résultat</td>
+                                        <td>
+                                            <div class="text-end fs-3 business_resultat">0,00 €</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder text-end">Financement</td>
                                         <td>
                                             <div class="text-end fs-3 business_resultat">0,00 €</div>
                                         </td>
