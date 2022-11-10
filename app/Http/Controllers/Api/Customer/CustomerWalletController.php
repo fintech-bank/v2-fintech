@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerWallet;
-use App\Notifications\Customer\Customer\Customer\UpdateStatusWalletNotification;
+use App\Notifications\Customer\UpdateStatusWalletNotification;
 use Illuminate\Http\Request;
 
 class CustomerWalletController extends Controller
