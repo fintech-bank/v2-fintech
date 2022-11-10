@@ -29,12 +29,13 @@ class UpdateStatusWalletNotification extends Notification
      */
     public function __construct(Customer $customer, CustomerWallet $wallet, string $status)
     {
-        $this->title = "Information sur votre compte bancaire";
-        $this->message = $this->getMessage();
-        $this->link = "";
         $this->customer = $customer;
         $this->wallet = $wallet;
         $this->status = $status;
+        $this->title = "Information sur votre compte bancaire";
+        $this->message = $this->getMessage();
+        $this->link = "";
+
     }
 
     public function getMessage()
