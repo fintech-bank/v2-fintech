@@ -155,7 +155,7 @@ class CustomerController extends Controller
     public function updateBusiness($customer_id, Request $request)
     {
         $customer = Customer::find($customer_id);
-        $customer->update($request->except('_token'));
+        $customer->business->update($request->except('_token'));
 
         return response()->json($customer);
     }
