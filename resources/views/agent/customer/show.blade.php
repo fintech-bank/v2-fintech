@@ -1200,31 +1200,33 @@
                                 <tbody>
                                     <tr>
                                         <td>Chiffre d'affaire</td>
-                                        <td>{{ $customer->business->ca }}</td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-solid" name="ca" value="{{ $customer->business->ca }}">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Achat</td>
-                                        <td>{{ $customer->business->achat }}</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="achat" value="{{ $customer->business->achat }}"></td>
                                     </tr>
                                     <tr>
                                         <td>Frais Généraux</td>
-                                        <td>{{ $customer->business->frais }}</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="frais" value="{{ $customer->business->frais }}"></td>
                                     </tr>
                                     <tr>
                                         <td>Salaires & Charges Sociales</td>
-                                        <td>{{ $customer->business->salaire }}</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="salaire" value="{{ $customer->business->salaire }}"></td>
                                     </tr>
                                     <tr>
                                         <td>Impôt</td>
-                                        <td>{{ $customer->business->impot }}</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="impot" value="{{ $customer->business->impot }}"></td>
                                     </tr>
                                     <tr>
                                         <td>Autre Produit</td>
-                                        <td>{{ $customer->business->other_produit }}</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="other_product" value="{{ $customer->business->other_product }}"></td>
                                     </tr>
                                     <tr>
                                         <td>Autre Charge</td>
-                                        <td>{{ $customer->business->other_charge }}</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="other_charge" value="{{ $customer->business->other_charge }}"></td>
                                     </tr>
                                 </tbody>
                             </table>
