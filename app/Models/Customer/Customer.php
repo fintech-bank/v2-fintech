@@ -77,6 +77,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $persona_reference_id
  * @method static \Illuminate\Database\Eloquent\Builder|Customer wherePersonaReferenceId($value)
  * @property-read mixed $next_debit_package
+ * @property-read BusinessParam|null $business
  */
 class Customer extends Model
 {

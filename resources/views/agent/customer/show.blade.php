@@ -1190,7 +1190,44 @@
                             </div>
                         </div>
                         <div class="card-body">
-
+                            <table class="table table-striped border gy-5 gx-5">
+                                <thead>
+                                    <tr>
+                                        <th>Libellé</th>
+                                        <th>Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Chiffre d'affaire</td>
+                                        <td>{{ $customer->business->ca }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Achat</td>
+                                        <td>{{ $customer->business->achat }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Frais Généraux</td>
+                                        <td>{{ $customer->business->frais }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salaires & Charges Sociales</td>
+                                        <td>{{ $customer->business->salaire }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Impôt</td>
+                                        <td>{{ $customer->business->impot }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Autre Produit</td>
+                                        <td>{{ $customer->business->other_produit }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Autre Charge</td>
+                                        <td>{{ $customer->business->other_charge }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

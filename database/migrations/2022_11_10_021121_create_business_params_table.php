@@ -24,7 +24,8 @@ return new class extends Migration
             $table->float('frais')->default(0);
             $table->float('salaire')->default(0);
             $table->float('impot')->default(0);
-            $table->float('other')->default(0);
+            $table->float('other_product')->default(0);
+            $table->float('other_charge')->default(0);
 
             $table->foreignId('customer_id')
                 ->constrained()
