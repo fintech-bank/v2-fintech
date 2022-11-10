@@ -225,10 +225,12 @@
                                         {{ $transaction->amount_format }}
                                     </td>
                                     <td class="text-end">
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-xs btn-success btn-icon"><i class="fa-solid fa-check"></i> </button>
-                                            <button class="btn btn-xs btn-danger btn-icon"><i class="fa-solid fa-xmark"></i> </button>
-                                        </div>
+                                        @if($transaction->type == 'virement' || $transaction->type == 'sepa')
+                                            <div class="btn-group" role="group">
+                                                <button class="btn btn-xs btn-success btn-icon btnAcceptTransaction"><i class="fa-solid fa-check"></i> </button>
+                                                <button class="btn btn-xs btn-danger btn-icon btnRejectTransaction"><i class="fa-solid fa-xmark"></i> </button>
+                                            </div>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
