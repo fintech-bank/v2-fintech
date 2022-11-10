@@ -30,7 +30,7 @@ return new class extends Migration
             $table->float('other_product')->default(0);
             $table->float('other_charge')->default(0);
 
-            $table->float('result');
+            $table->float('result')->default(0);
             $table->float('result_finance')->default(0);
             $table->boolean('indicator')->default(0);
 

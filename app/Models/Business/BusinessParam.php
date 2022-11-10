@@ -36,15 +36,52 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|BusinessParam whereOther($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BusinessParam whereSalaire($value)
  * @mixin \Eloquent
+ * @property float $apport_personnel
+ * @property float $finance
+ * @property float $other_product
+ * @property float $other_charge
+ * @property-read mixed $result_format
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessParam whereApportPersonnel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessParam whereFinance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessParam whereOtherCharge($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessParam whereOtherProduct($value)
+ * @property float $result
+ * @property float $result_finance
+ * @property int $indicator
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessParam whereIndicator($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessParam whereResult($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessParam whereResultFinance($value)
+ * @property-read mixed $indicator_format
+ * @property-read mixed $result_finance_format
  */
 class BusinessParam extends Model
 {
     use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
+    protected $appends = ['result_format', 'result_finance_format', 'indicator_format'];
 
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
+    public function getResultFormatAttribute()
+    {
+        return eur($this->result);
+    }
+
+    public function getResultFinanceFormatAttribute()
+    {
+        return eur($this->result_finance);
+    }
+
+    public function getIndicatorFormatAttribute()
+    {
+        if($this->indicator) {
+            return '<span class="text-success"><i class="fa-solid fa-check-circle text-success me-2"></i> Favorable</span>';
+        } else {
+            return '<span class="text-danger"><i class="fa-solid fa-xmark-circle text-danger me-2"></i> Défavorable</span>';
+        }
     }
 }

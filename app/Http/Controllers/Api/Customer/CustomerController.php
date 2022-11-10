@@ -152,6 +152,14 @@ class CustomerController extends Controller
         return $wallets;
     }
 
+    public function updateBusiness($customer_id, Request $request)
+    {
+        $customer = Customer::find($customer_id);
+        $customer->update($request->except('_token'));
+
+        return response()->json($customer);
+    }
+
     private function subscribeAlerta()
     {
         session()->put('subscribe.alerta', true);

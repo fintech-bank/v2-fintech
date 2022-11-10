@@ -582,7 +582,10 @@
             url: '/api/customer/{{ $customer->id }}/business',
             method: 'PUT',
             data: {"ca": e.target.value},
-            success: () => {
+            success: data => {
+                elements.businessResultat.innerHTML = data.result_format;
+                elements.businessFinance.innerHTML = data.result_finance_format;
+                elements.businessIndicator.innerHTML = data.indicator_format;
 
             }
         })
