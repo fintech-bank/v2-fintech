@@ -153,11 +153,11 @@ class DocumentFile
         ]);
 
         if ($pdf == true) {
-            $pdf = Pdf::loadView('pdf.agence.'.\Str::slug($name, '_'), [
+            $pdf = Pdf::loadView('pdf.agence.'.$name, [
                 'customer' => $customer,
                 'data' => (object)$pdfData,
                 'agence' => $customer->agency,
-                'title' => $name,
+                'title' => $nameless,
                 'header_type' => 'address',
                 'document' => $document,
             ]);
