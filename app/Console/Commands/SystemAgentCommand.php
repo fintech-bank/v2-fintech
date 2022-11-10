@@ -9,11 +9,11 @@ use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerTransaction;
 use App\Models\Customer\CustomerTransfer;
-use App\Notifications\Customer\Customer\Agent\CalendarAlert;
-use App\Notifications\Customer\Customer\Customer\ChargeLoanAcceptedNotification;
-use App\Notifications\Customer\Customer\Customer\RejectedTransferNotification;
-use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
-use App\Notifications\Customer\Customer\Customer\VerifRequestLoanNotification;
+use App\Notifications\Agent\CalendarAlert;
+use App\Notifications\Customer\ChargeLoanAcceptedNotification;
+use App\Notifications\Customer\RejectedTransferNotification;
+use App\Notifications\Customer\UpdateStatusAccountNotification;
+use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Transfers;
 use Illuminate\Console\Command;
@@ -63,7 +63,7 @@ class SystemAgentCommand extends Command
             if ($event->start_at->subMinutes(15)->format('d/m/Y H:i') == now()->format('d/m/Y H:i')) {
                 $event->user->notify(new CalendarAlert($event));
                 foreach ($event->attendees as $attendee) {
-                    $attendee->user->notify(new \App\Notifications\Customer\Customer\Customer\CalendarAlert($event));
+                    $attendee->user->notify(new \App\Notifications\Customer\CalendarAlert($event));
                 }
             }
         }
