@@ -79,9 +79,9 @@ class BusinessParam extends Model
     public function getIndicatorFormatAttribute()
     {
         if($this->indicator) {
-            return '<span class="text-success"><i class="fa-solid fa-check-circle text-success me-2"></i> Favorable</span>';
+            return '<span class="text-success"><i class="fa-solid fa-check-circle fs-2 text-success me-2"></i> Favorable</span>';
         } else {
-            return '<span class="text-danger"><i class="fa-solid fa-xmark-circle text-danger me-2"></i> Défavorable</span>';
+            return '<span class="text-danger"><i class="fa-solid fa-xmark-circle fs-2 text-danger me-2"></i> Défavorable</span>';
         }
     }
 }
