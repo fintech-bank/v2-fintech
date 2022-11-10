@@ -25,7 +25,7 @@
                 console.log(data)
                 let divOverdraft = document.querySelector("#overdraft")
                 Object.keys(data.errors).forEach(key => {
-                    console.log(key)
+                    console.log(errors[key])
                 })
                 if (data.access === false) {
                     divOverdraft.innerHTML = `
