@@ -231,6 +231,9 @@
                                                 <button class="btn btn-xs btn-danger btn-icon btnRejectTransaction"><i class="fa-solid fa-xmark"></i> </button>
                                             </div>
                                         @endif
+                                        @if($transaction->type == 'payment')
+                                            <button class="btn btn-xs btn-danger btn-icon btnOppositPayment"><i class="fa-solid fa-ban"></i> </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
