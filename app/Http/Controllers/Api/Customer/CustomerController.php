@@ -158,6 +158,9 @@ class CustomerController extends Controller
         if ($request->has('ca')) {
             $customer->business->result -= $customer->business->ca;
             $customer->business->result += $request->get('ca');
+
+            $customer->business->result_finance -= $customer->business->apport_personnel;
+            $customer->business->result_finance += $request->get('apport_personnel');
         } elseif ($request->has('achat')) {
             $customer->business->result += $customer->business->achat;
             $customer->business->result -= $request->get('achat');
@@ -176,6 +179,9 @@ class CustomerController extends Controller
         }elseif ($request->has('other_product')) {
             $customer->business->result -= $customer->business->other_product;
             $customer->business->result += $request->get('other_product');
+
+            $customer->business->result_finance -= $customer->business->apport_personnel;
+            $customer->business->result_finance += $request->get('apport_personnel');
         }elseif ($request->has('apport_personnel')) {
             $customer->business->result_finance -= $customer->business->apport_personnel;
             $customer->business->result_finance += $request->get('apport_personnel');
