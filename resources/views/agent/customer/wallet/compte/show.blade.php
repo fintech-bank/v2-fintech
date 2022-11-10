@@ -187,6 +187,50 @@
             <!--begin::Navs-->
         </div>
     </div>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="transactions" role="tabpanel">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">A venir</h3>
+                    <div class="card-toolbar">
+                        <!--<button type="button" class="btn btn-sm btn-light">
+                            Action
+                        </button>-->
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-row-bordered gy-5 gs-7">
+                        <thead>
+                            <tr class="fw-semibold fs-6 text-gray-600">
+                                <th>Date</th>
+                                <th>Libelle</th>
+                                <th>Montant</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($wallet->transactions()->where('confirmed', false)->get() as $transaction)
+                                <tr>
+                                    <td>{{ $transaction->updated_at->format('d/m/Y') }}</td>
+                                    <td>
+                                        <div class="d-flex flex-row">
+                                            {!! $transaction->type_symbol !!}
+                                            {{ $transaction->description }}
+                                            <div class="text-muted">{{ $transaction->designation }}</div>
+                                        </div>
+                                    </td>
+                                    <td class="text-end">
+                                        {{ $transaction->amount_format }}
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" tabindex="-1" id="showRib">
         <div class="modal-dialog ">
             <div class="modal-content">
