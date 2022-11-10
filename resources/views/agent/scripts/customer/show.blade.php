@@ -15,7 +15,10 @@
         cardShowFiles: document.querySelector("#showFiles"),
         previous: document.querySelector('.previous'),
         next: document.querySelector('.previous'),
-        btnSignate: document.querySelector("#signateDocument")
+        btnSignate: document.querySelector("#signateDocument"),
+        businessResultat: document.querySelector('.business_resultat'),
+        businessFinance: document.querySelector('.business_finance'),
+        businessIndicator: document.querySelector('.business_indicator'),
     }
     let modals = {
         modalUpdateStatusAccount: document.querySelector('#updateStatus'),
@@ -571,6 +574,18 @@
 
         const r = `${n} ${c}`
         dataTable.datatableWallet.search(r).draw()
+    })
+
+    document.querySelector('[name="ca"]').addEventListener('blur', e => {
+        e.preventDefault()
+        $.ajax({
+            url: '/api/customer/{{ $customer->id }}/business',
+            method: 'PUT',
+            data: {"ca": e.target.value},
+            success: () => {
+
+            }
+        })
     })
 
     $("#country").select2({
