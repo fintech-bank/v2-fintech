@@ -1231,7 +1231,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td>Résultat</td>
+                                        <td class="fw-bolder text-right">Résultat</td>
                                         <td>
                                             <div class="text-right business_resultat">0,00 €</div>
                                         </td>
