@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Pluralizer;
 
 class SystemNotificationCommand extends Command
 {
@@ -12,7 +13,7 @@ class SystemNotificationCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'system:notification {dossier} {notification}';
+    protected $signature = 'system:notification {dossier} {notification} {--no-sms}';
 
     /**
      * The console command description.
@@ -32,38 +33,114 @@ class SystemNotificationCommand extends Command
     }
 
     /**
+     * Renvoie le nom en majuscule singulier
+     * @param $notification
+     * @return string
+     */
+    public function getSingularClassName($notification)
+    {
+        return ucwords(Pluralizer:: singular($notification));
+    }
+
+    /**
+     * Renvoie le chemin du fichier stub
+     * @return string
+     *
+     */
+    public function getStubPath()
+    {
+        if ($this->option('no-sms')) {
+            return __DIR__ . '/../../../Stubs/notification_no_sms.stub';
+        } else {
+            return __DIR__ . '/../../../Stubs/notification.stub';
+        }
+    }
+
+    /**
+     **
+     * Mappez les variables de stub présentes dans stub à sa valeur
+     *
+     * @return array
+     *
+     */
+    public function getStubVariables()
+    {
+        return [
+            'NAMESPACE' => 'App\\Notifications',
+            'CLASS_NAME' => $this->getSingularClassName($this->argument('notification')),
+        ];
+    }
+
+    /**
+     * Récupère le chemin du stub et les variables du stub
+     *
+     * @return bool|mixed|string
+     *
+     */
+    public function getSourceFile()
+    {
+        return $this->getStubContents($this->getStubPath(), $this->getStubVariables ());
+    }
+
+    /**
+     * Replace the stub variables(key) with the desire value
+     *
+     * @param $stub
+     * @param array $stubVariables
+     * @return bool|mixed|string
+     */
+    public function getStubContents($stub , $stubVariables = [])
+    {
+        $contents = file_get_contents($stub);
+
+        foreach ($stubVariables as $search => $replace)
+        {
+            $contents = str_replace('$'.$search.'$' , $replace, $contents);
+        }
+
+        return $contents;
+
+    }
+
+    /**
+     * Récupère le chemin complet de la classe de génération
+     *
+     * @return string
+     */
+    public function getSourceFilePath()
+    {
+        return base_path('app\\Notifications') .'\\'.$this->argument('dossier').'\\' .$this->getSingularClassName($this->argument('notification')) . 'Notification.php';
+    }
+
+    /**
+     * Build the directory for the class if necessary.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    protected function makeDirectory($path)
+    {
+        if (! $this->files->isDirectory($path)) {
+            $this->files->makeDirectory($path, 0777, true, true);
+        }
+
+        return $path;
+    }
+
+    /**
      * Execute the console command.
      *
      */
     public function handle()
     {
-        $folder = $this->argument('dossier');
-        $file = $this->argument('notification');
-
-        $f = "${file}.php";
-        $camel = \Str::snake($file);
-        $viewFileName = \Str::replace('_notification', '', $camel);
-        $path = app_path('Notifications');
-
-        $f = $path."/${folder}/$f";
-        $pathNotif = $path."/${folder}";
-        $pathView = "/resources/views/emails/".\Str::lower($folder);
-        $fileView = "${viewFileName}.blade.php";
-
-        if($this->files->isDirectory($pathNotif)) {
-            if($this->files->isFile($f))
-                $this->error($file." Le fichier existe déja !");
-
-            if(!$this->files->put($f, $this->content($folder, $file, $viewFileName)))
-                $this->error('Something went wrong!');
-
-
-            $this->info("Fichier Généré: ".$f);
+        $path = $this->getSourceFilePath();
+        $this->makeDirectory(dirname($path));
+        $contents = $this->getSourceFile();
+        if (!$this->files->exists($path)) {
+            $this->files->put($path, $contents);
+            $this->info("File : {$path} created");
         } else {
-            $this->files->makeDirectory($pathNotif, 0777, true, true);
-            if(!$this->files->put($f, $this->content($folder, $file, $viewFileName)))
-                $this->error('Something went wrong!');
-            $this->info("Fichier Généré: ".$f);
+            $this->info("File : {$path} already exits");
         }
 
 
@@ -73,115 +150,11 @@ class SystemNotificationCommand extends Command
     {
         $namespace = "App\Notifications\\${folder}";
 
-$content = '
-<?php
-namespace '.$namespace.';
+        $content = '
 
-use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
-use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
-use App\Models\Customer\CustomerSepa;
-use App\Models\Customer\Customer;
-use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
-use NotificationChannels\Twilio\TwilioChannel;
-use NotificationChannels\Twilio\TwilioSmsMessage;
-
-class '.$file.' extends Notification
-{
-
-    public string $title;
-    public string $link;
-    public string $message;
-    public Customer $customer;
-
-    public function __construct(Customer $customer)
-    {
-        $this->title = "";
-        $this->message = $this->getMessage();
-        $this->link = "";
-        $this->customer = $customer;
-    }
-
-    private function getMessage()
-    {
-        $message = "";
-        return $message;
-    }
-
-    private function choiceChannel()
-    {
-        if (config("app.env") == "local") {
-            if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
-            }
-
-            if($this->customer->setting->notif_mail) {
-                return "mail";
-            }
-
-            return "database";
-        } else {
-
-            if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
-            }
-
-            if($this->customer->setting->notif_mail) {
-                return "mail";
-            }
-
-            return "database";
-        }
-    }
-
-    public function via($notifiable)
-    {
-        return $this->choiceChannel();
-    }
-
-    public function toMail($notifiable)
-    {
-        $message = (new MailMessage);
-        $message->view("emails.customer.'.$viewFileName.'", [
-            "content" => $this->message,
-            "customer" => $this->customer
-        ]);
-
-        return $message;
-    }
-
-    public function toArray($notifiable)
-    {
-        return [
-            "icon" => "",
-            "color" => "",
-            "title" => $this->title,
-            "text" => $this->message,
-            "time" => now(),
-            "link" => $this->link,
-        ];
-    }
-
-    public function toFreeMobile($notifiable)
-    {
-        $message = (new FreeMobileMessage());
-        $message->message(strip_tags($this->message));
-
-        return $message;
-    }
-
-    public function toTwilio($notifiable)
-    {
-        $message = (new TwilioSmsMessage());
-        $message->content(strip_tags($this->message));
-
-        return $message;
-    }
-}
 ?>
 ';
-    return $content;
+        return $content;
     }
 
     private function contentView()
