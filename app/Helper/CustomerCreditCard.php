@@ -2,8 +2,7 @@
 
 namespace App\Helper;
 
-use App\Notifications\Customer\Customer\Agent\Customer\CreateCreditCardNotification;
-use App\Notifications\Customer\Customer\Customer\SendCodeCardNotification;
+use App\Notifications\Customer\SendCreditCardCodeNotification;
 use Plansky\CreditCard\Generator;
 
 class CustomerCreditCard
@@ -120,9 +119,8 @@ class CustomerCreditCard
             );
 
             // Notification Code Carte Bleu
-            $customer->info->notify(new SendCodeCardNotification($customer, base64_decode($card->code), $card));
+            $customer->info->notify(new SendCreditCardCodeNotification(base64_decode($card->code), $card));
 
-            auth()->user()->notify(new CreateCreditCardNotification($customer, $card, $doc));
             $customer->user->notify(new \App\Notifications\Customer\Customer\Customer\CreateCreditCardNotification($customer, $card, $doc));
         } else {
             $card = $wallet->cards()->create([

@@ -126,4 +126,14 @@ class CustomerCreditCard extends Model
         return \App\Helper\CustomerCreditCard::getTransactionsMonthWithdraw($this) - (-$this->limit_retrait);
     }
 
+    public function getNumberCardOscureAttribute()
+    {
+        return 'XXXX XXXX XXXX '.\Str::substr($this->number, 12, 16);
+    }
+
+    public function getNumberFormatAttribute()
+    {
+        return \Str::ucsplit();
+    }
+
 }
