@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Notification;
 
 class CustomerController extends Controller
 {
+    public function search(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function subscribe(Request $request)
     {
         return match ($request->get('action')) {

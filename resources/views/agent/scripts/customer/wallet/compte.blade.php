@@ -23,6 +23,19 @@
                 block.release()
                 block.destroy()
                 console.log(data)
+                let divOverdraft = document.querySelector("#overdraft")
+                let errors = data.errors
+                errors.forEach(error => {
+                    console.log(error)
+                })
+                if (data.access === false) {
+                    divOverdraft.innerHTML = `
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fa-solid fa-exclamation-triangle text-warning fs-4tx mb-2"></i>
+                        <span>Découvert Impossible</span>
+                    </div>
+                    `
+                }
             }
         })
     })

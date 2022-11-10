@@ -129,6 +129,7 @@ Route::prefix('webhook')->group(function () {
 });
 
 Route::prefix('customer')->group(function () {
+    Route::get('/search', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'search']);
     Route::post('verifSecure/{code}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifSecure']);
     Route::get('{customer_id}/verifAllSolde', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifAllSolde']);
     Route::post('{customer_id}/write-sms', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'writeSms']);
