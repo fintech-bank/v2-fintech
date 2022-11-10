@@ -380,9 +380,9 @@
                 method: 'PUT',
                 data: data,
                 success: data => {
-                    elements.businessResultat.innerHTML = data.result_format;
-                    elements.businessFinance.innerHTML = data.result_finance_format;
-                    elements.businessIndicator.innerHTML = data.indicator_format;
+                    elements.businessResultat.innerHTML = data.business.result_format;
+                    elements.businessFinance.innerHTML = data.business.result_finance_format;
+                    elements.businessIndicator.innerHTML = data.business.indicator_format;
                 }
             })
         })
