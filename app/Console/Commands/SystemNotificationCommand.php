@@ -109,7 +109,7 @@ class SystemNotificationCommand extends Command
      */
     public function getSourceFilePath()
     {
-        return base_path('app\\Notifications') .'\\'.$this->argument('dossier').'\\' .$this->getSingularClassName($this->argument('notification')) . 'Notification.php';
+        return base_path('app/Notifications') .'/'.$this->argument('dossier').'/' .$this->getSingularClassName($this->argument('notification')) . 'Notification.php';
     }
 
     /**
