@@ -11,9 +11,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerEpargne;
 use App\Models\Customer\CustomerWallet;
-use App\Notifications\Customer\Customer\Customer\NewEpargneNotification;
-use App\Notifications\Customer\Customer\Customer\NewPretNotification;
-use App\Notifications\Customer\Customer\Customer\NewWalletNotification;
+use App\Notifications\Customer\NewEpargneNotification;
+use App\Notifications\Customer\NewPretNotification;
+use App\Notifications\Customer\NewWalletNotification;
 use Illuminate\Http\Request;
 
 class CustomerWalletController extends Controller
@@ -61,23 +61,38 @@ class CustomerWalletController extends Controller
 
     private function createCompte(Customer $customer, CustomerWallet $wallet)
     {
-        $doc_compte = DocumentFile::createDoc(
-            $customer,
-            'convention_compte',
-            'Convention de compte bancaire',
-            3,
-            generateReference(),
-            true,
-            true,
-            false,
-            true,
-            ['wallet' => $wallet]
-        );
+        if ($customer->info->type != 'part') {
+            $doc_compte = DocumentFile::createDoc(
+                $customer,
+                'customer.convention_compte_pro',
+                'Convention de compte bancaire Professionnel',
+                3,
+                generateReference(),
+                true,
+                true,
+                false,
+                true,
+                ['wallet' => $wallet]
+            );
+        } else {
+            $doc_compte = DocumentFile::createDoc(
+                $customer,
+                'customer.convention_compte',
+                'Convention de compte bancaire',
+                3,
+                generateReference(),
+                true,
+                true,
+                false,
+                true,
+                ['wallet' => $wallet]
+            );
+        }
 
         $docs = ["url" => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc_compte->category->name}/{$doc_compte->name}.pdf")];
 
         //Notification de création de compte
-        $customer->user->notify(new NewWalletNotification($customer, $docs));
+        $customer->user->notify(new NewWalletNotification($customer, $wallet, $docs));
     }
 
     private function createEpargne(Customer $customer, CustomerWallet $wallet, Request $request)

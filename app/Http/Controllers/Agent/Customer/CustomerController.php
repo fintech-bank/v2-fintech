@@ -8,8 +8,8 @@ use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
-use App\Notifications\Customer\Customer\Customer\LogNotification;
-use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
+use App\Notifications\Customer\LogNotification;
+use App\Notifications\Customer\UpdateStatusAccountNotification;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller

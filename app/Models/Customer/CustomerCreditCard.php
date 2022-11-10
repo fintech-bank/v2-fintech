@@ -72,6 +72,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerCreditCard whereCreditCardSupportId($value)
  * @property string $facelia_vitesse
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerCreditCard whereFaceliaVitesse($value)
+ * @property-read mixed $number_card_oscure
+ * @property-read mixed $number_format
  */
 class CustomerCreditCard extends Model
 {
@@ -80,7 +82,7 @@ class CustomerCreditCard extends Model
     protected $guarded = [];
 
     public $timestamps = false;
-    protected $appends = ['limit_withdraw', 'access_withdraw', 'actual_limit_withdraw'];
+    protected $appends = ['limit_withdraw', 'access_withdraw', 'actual_limit_withdraw', 'number_card_oscure', 'number_format', 'expiration', 'debit_format'];
 
     public function wallet()
     {
@@ -133,7 +135,21 @@ class CustomerCreditCard extends Model
 
     public function getNumberFormatAttribute()
     {
-        return \Str::ucsplit();
+        return \Str::mask($this->number, 'X', 12);
+    }
+
+    public function getExpirationAttribute()
+    {
+        return $this->exp_month <= 9 ? "0".$this->exp_month : $this->exp_month."/".$this->exp_year;
+    }
+
+    public function getDebitFormatAttribute()
+    {
+        if($this->debit == 'immediat') {
+            return "Débit Immédiat";
+        } else {
+            return "Débit Différé";
+        }
     }
 
 }
