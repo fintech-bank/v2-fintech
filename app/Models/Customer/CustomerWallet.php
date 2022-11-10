@@ -334,6 +334,7 @@ class CustomerWallet extends Model
             'pro', 'orga', 'assoc' => $this->calcOverdraftPro(),
         };
 
+        dd($info['amount']);
 
         if($info['result'] == 4) {
             return [
