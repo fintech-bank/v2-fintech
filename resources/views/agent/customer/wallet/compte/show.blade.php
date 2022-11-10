@@ -227,12 +227,12 @@
                                     <td class="text-end">
                                         @if($transaction->type == 'virement' || $transaction->type == 'sepa')
                                             <div class="btn-group" role="group">
-                                                <button class="btn btn-xs btn-success btn-icon btnAcceptTransaction"><i class="fa-solid fa-check"></i> </button>
-                                                <button class="btn btn-xs btn-danger btn-icon btnRejectTransaction"><i class="fa-solid fa-xmark"></i> </button>
+                                                <button class="btn btn-xs btn-success btn-icon btnAcceptTransaction" data-bs-toggle="tooltip" title="Accepter"><i class="fa-solid fa-check"></i> </button>
+                                                <button class="btn btn-xs btn-danger btn-icon btnRejectTransaction" data-bs-toggle="tooltip" title="Refuser"><i class="fa-solid fa-xmark"></i> </button>
                                             </div>
                                         @endif
                                         @if($transaction->type == 'payment')
-                                            <button class="btn btn-xs btn-danger btn-icon btnOppositPayment"><i class="fa-solid fa-ban"></i> </button>
+                                            <button class="btn btn-xs btn-danger btn-icon btnOppositPayment" data-bs-toggle="tooltip" title="Opposition"><i class="fa-solid fa-ban"></i> </button>
                                         @endif
                                     </td>
                                 </tr>
