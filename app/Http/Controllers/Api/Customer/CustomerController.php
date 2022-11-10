@@ -186,9 +186,12 @@ class CustomerController extends Controller
 
         $customer->business->update($request->except('_token'));
 
-        $calc = $customer->business->result_finance / ($customer->business->result + $customer->business->result_finance);
-        dd($calc);
-
+        $calc = intval($customer->business->result_finance / ($customer->business->result + $customer->business->result_finance) * 100);
+        if($calc <= 20) {
+            $customer->business->update(['indicator' => false]);
+        } else {
+            $customer->business->update(['indicator' => true]);
+        }
 
         return response()->json($customer);
     }
