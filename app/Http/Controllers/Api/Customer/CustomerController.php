@@ -155,7 +155,40 @@ class CustomerController extends Controller
     public function updateBusiness($customer_id, Request $request)
     {
         $customer = Customer::find($customer_id);
+        if ($request->has('ca')) {
+            $customer->business->result -= $customer->business->ca;
+            $customer->business->result += $request->get('ca');
+        } elseif ($request->has('achat')) {
+            $customer->business->result += $customer->business->achat;
+            $customer->business->result -= $request->get('achat');
+        } elseif ($request->has('frais')) {
+            $customer->business->result += $customer->business->frais;
+            $customer->business->result -= $request->get('frais');
+        }elseif ($request->has('salaire')) {
+            $customer->business->result += $customer->business->salaire;
+            $customer->business->result -= $request->get('salaire');
+        }elseif ($request->has('impot')) {
+            $customer->business->result += $customer->business->impot;
+            $customer->business->result -= $request->get('impot');
+        }elseif ($request->has('other_charge')) {
+            $customer->business->result += $customer->business->other_charge;
+            $customer->business->result -= $request->get('other_charge');
+        }elseif ($request->has('other_product')) {
+            $customer->business->result -= $customer->business->other_product;
+            $customer->business->result += $request->get('other_product');
+        }elseif ($request->has('apport_personnel')) {
+            $customer->business->result_finance -= $customer->business->apport_personnel;
+            $customer->business->result_finance += $request->get('apport_personnel');
+        }elseif ($request->has('finance')) {
+            $customer->business->result_finance -= $customer->business->finance;
+            $customer->business->result_finance += $request->get('finance');
+        }
+
         $customer->business->update($request->except('_token'));
+
+        $calc = $customer->business->result_finance / ($customer->business->result + $customer->business->result_finance);
+        dd($calc);
+
 
         return response()->json($customer);
     }
