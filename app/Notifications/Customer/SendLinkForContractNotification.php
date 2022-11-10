@@ -1,5 +1,5 @@
 <?php
-namespace $NAMESPACE$;
+namespace App\Notifications\Customer;
 
 use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
 use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
@@ -10,46 +10,46 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
 
-class $CLASS_NAME$ extends Notification
+class SendLinkForContractNotification extends Notification
 {
 
     public string $title;
     public string $link;
     public string $message;
     public Customer $customer;
+    public string $token;
+    public $doc;
 
-    public function __construct(Customer $customer)
+    /**
+     * @param Customer $customer
+     * @param string $token
+     * @param $doc
+     */
+    public function __construct(Customer $customer, string $token, $doc)
     {
-        $this->title = "";
+        $this->title = "Nouveau document en attente de signature";
         $this->message = $this->getMessage();
-        $this->link = "";
+        $this->token = $token;
+        $this->link = route('signate.show', $token);
         $this->customer = $customer;
+        $this->doc = $doc;
     }
 
     private function getMessage()
     {
-        $message = "";
+        $message = "Un nouveau document eléctronique est en attente de signature: <strong>{$this->doc->name}</strong>.";
         return $message;
     }
 
     private function choiceChannel()
     {
         if (config("app.env") == "local") {
-            if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
-            }
-
             if($this->customer->setting->notif_mail) {
                 return "mail";
             }
 
             return "database";
         } else {
-
-            if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
-            }
-
             if($this->customer->setting->notif_mail) {
                 return "mail";
             }
@@ -66,10 +66,13 @@ class $CLASS_NAME$ extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
-        $message->view("emails.customer.$VIEW_FILE_NAME$", [
+        $message->view("emails.customer.link_for_contract", [
             "content" => $this->message,
             "customer" => $this->customer
         ]);
+
+        $message->actionText = "Signer le document";
+        $message->actionUrl = $this->link;
 
         return $message;
     }
@@ -77,28 +80,12 @@ class $CLASS_NAME$ extends Notification
     public function toArray($notifiable)
     {
         return [
-            "icon" => "",
-            "color" => "",
+            "icon" => "fa-signate",
+            "color" => "primary",
             "title" => $this->title,
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
         ];
-    }
-
-    public function toFreeMobile($notifiable)
-    {
-        $message = (new FreeMobileMessage());
-        $message->message(strip_tags($this->message));
-
-        return $message;
-    }
-
-    public function toTwilio($notifiable)
-    {
-        $message = (new TwilioSmsMessage());
-        $message->content(strip_tags($this->message));
-
-        return $message;
     }
 }

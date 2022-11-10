@@ -6,6 +6,7 @@ use App\Helper\DocumentFile;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\SendLinkForContract;
+use App\Notifications\Customer\SendLinkForContractNotification;
 use Illuminate\Http\Request;
 
 class SubscribeController extends Controller
@@ -32,6 +33,9 @@ class SubscribeController extends Controller
             ['wallet' => $wallet]
         );
 
-        $wallet->customer->info->notify(new SendLinkForContractNo);
+        $token = base64_encode(\Str::random());
+        $wallet->customer->info->notify(new SendLinkForContractNotification($wallet->customer, $token, $doc));
+
+        return response()->json();
     }
 }

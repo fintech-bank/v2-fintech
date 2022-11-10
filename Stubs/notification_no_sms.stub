@@ -57,7 +57,7 @@ class $CLASS_NAME$ extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
-        $message->view("emails.customer.'.$viewFileName.'", [
+        $message->view("emails.customer.$VIEW_FILE_NAME$", [
             "content" => $this->message,
             "customer" => $this->customer
         ]);

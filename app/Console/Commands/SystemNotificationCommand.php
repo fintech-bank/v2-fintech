@@ -68,7 +68,7 @@ class SystemNotificationCommand extends Command
         return [
             'NAMESPACE' => 'App\\Notifications\\'.$this->argument('dossier'),
             'CLASS_NAME' => $this->getSingularClassName($this->argument('notification'))."Notification",
-            'VIEW_FILE_NAME' => \Str::replace('Send', '', \Str::snake($this->getSingularClassName($this->argument('notification'))))
+            'VIEW_FILE_NAME' => \Str::snake($this->getSingularClassName($this->argument('notification')))
         ];
     }
 
