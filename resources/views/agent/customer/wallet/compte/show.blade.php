@@ -210,7 +210,7 @@
                         </thead>
                         <tbody>
                             @foreach($wallet->transactions()->where('confirmed', false)->get() as $transaction)
-                                <tr class="align-items-center">
+                                <tr class="align-middle">
                                     <td>{{ $transaction->updated_at->format('d/m/Y') }}</td>
                                     <td>
                                         <div class="d-flex flex-row align-items-center">
