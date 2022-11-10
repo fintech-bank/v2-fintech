@@ -371,6 +371,7 @@
         })
     }
 
+    @if($customer->info->type != 'part')
     let updateBusiness = (field) => {
         if(document.querySelector('[name="'+field+'"]')) {
             document.querySelector('[name="'+field+'"]').addEventListener('blur', e => {
@@ -390,7 +391,18 @@
         }
     }
 
-    verifSoldesAllWallets()
+    updateBusiness('ca')
+    updateBusiness('achat')
+    updateBusiness('frais')
+    updateBusiness('salaire')
+    updateBusiness('impot')
+    updateBusiness('other_product')
+    updateBusiness('other_charge')
+    updateBusiness('apport_personnel')
+    updateBusiness('finance')
+    @endif
+
+    verifSoldesAllWallets();
     citiesFromPostal(document.querySelector("#postal"))
 
     modals.modalUpdateStatusAccount.querySelector('form').addEventListener('submit', e => {
@@ -594,16 +606,6 @@
         const r = `${n} ${c}`
         dataTable.datatableWallet.search(r).draw()
     })
-
-    updateBusiness('ca')
-    updateBusiness('achat')
-    updateBusiness('frais')
-    updateBusiness('salaire')
-    updateBusiness('impot')
-    updateBusiness('other_product')
-    updateBusiness('other_charge')
-    updateBusiness('apport_personnel')
-    updateBusiness('finance')
 
 
     $("#country").select2({
