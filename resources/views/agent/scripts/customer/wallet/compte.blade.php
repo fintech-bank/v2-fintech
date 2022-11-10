@@ -24,11 +24,12 @@
                 block.destroy()
                 console.log(data)
                 let divOverdraft = document.querySelector("#overdraft")
-                let contentError = '';
-                data.errors.forEach(error => {
-                    contentError += `<li><span class="bullet me-5"></span> ${error}</li>`
-                })
+
                 if (data.access === false) {
+                    let contentError = '';
+                    data.errors.forEach(error => {
+                        contentError += `<li><span class="bullet me-5"></span> ${error}</li>`
+                    })
                     modals.modalRequestOverdraft.querySelector(".btn-bank").setAttribute('disabled', '')
                     divOverdraft.innerHTML = `
                     <div class="d-flex flex-column align-items-center">
