@@ -1,5 +1,7 @@
 <script type="text/javascript">
-    let tables = {}
+    let tables = {
+        tableComing: document.querySelector("#table_coming")
+    }
     let elements = {}
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -9,7 +11,14 @@
         formUpdateStateAccount: document.querySelector("#formUpdateStateAccount"),
         formRequestOverdraft: document.querySelector("#formSubscribeOverdraft")
     }
-    let dataTable = {}
+    let dataTable = {
+        datatableComing: $(tables.tableComing).DataTable({
+            "scrollY": "200px",
+            "scrollCollapse": true,
+            "paging": false,
+            "dom": "<'table-responsive'tr>"
+        })
+    }
     let block = {}
 
     document.querySelector('.requestOverdraft').addEventListener('click', e => {
