@@ -103,6 +103,11 @@ class LifeCommand extends Command
 
             $info = CustomerInfo::factory()->create([
                 'customer_id' => $customer->id,
+                'email' => $user->email
+            ]);
+
+            $user->update([
+                'name' => $info->type != 'part' ? $info->company : $info->firstname." ".$info->lastname
             ]);
 
             if($info->type != 'part') {
