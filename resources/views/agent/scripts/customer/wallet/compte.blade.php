@@ -33,7 +33,7 @@
                     <div class="d-flex flex-column align-items-center">
                         <i class="fa-solid fa-exclamation-triangle text-warning fs-4tx mb-2"></i>
                         <span class="fs-2tx fw-bolder text-warning mb-5">Découvert Impossible</span>
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled fs-3">
                             ${contentError}
                         </ul>
                     </div>
