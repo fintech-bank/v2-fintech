@@ -1,5 +1,5 @@
 <?php
-namespace App\Notifications\Customer\Customer\Customer;
+namespace App\Notifications\Customer;
 
 use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
 use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;

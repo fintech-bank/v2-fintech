@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Customer\Customer\Agent;
+namespace App\Notifications\Agent;
 
 use App\Models\Core\Event;
 use Illuminate\Bus\Queueable;
