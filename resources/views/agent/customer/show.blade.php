@@ -1247,7 +1247,13 @@
                                     <tr>
                                         <td class="fw-bolder text-end">Financement</td>
                                         <td>
-                                            <div class="text-end fs-3 business_resultat">0,00 €</div>
+                                            <div class="text-end fs-3 business_finance">0,00 €</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder text-end">Indicateur</td>
+                                        <td>
+                                            <div class="text-end fs-3 business_indicator">Favorable</div>
                                         </td>
                                     </tr>
                                 </tfoot>
