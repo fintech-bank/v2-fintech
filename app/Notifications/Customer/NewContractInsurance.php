@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Customer;
+namespace App\Notifications\Customer\Customer\Customer;
 
 use App\Helper\CustomerHelper;
 use App\Models\Customer\Customer;

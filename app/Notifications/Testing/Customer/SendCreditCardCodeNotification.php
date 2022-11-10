@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Testing\Customer;
+namespace App\Notifications\Customer\Customer\Testing\Customer;
 
 use App\Models\Customer\CustomerCreditCard;
 use Illuminate\Bus\Queueable;

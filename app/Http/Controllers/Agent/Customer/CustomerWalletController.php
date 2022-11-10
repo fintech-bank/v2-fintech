@@ -11,9 +11,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerEpargne;
 use App\Models\Customer\CustomerWallet;
-use App\Notifications\Customer\NewEpargneNotification;
-use App\Notifications\Customer\NewPretNotification;
-use App\Notifications\Customer\NewWalletNotification;
+use App\Notifications\Customer\Customer\Customer\NewEpargneNotification;
+use App\Notifications\Customer\Customer\Customer\NewPretNotification;
+use App\Notifications\Customer\Customer\Customer\NewWalletNotification;
 use Illuminate\Http\Request;
 
 class CustomerWalletController extends Controller

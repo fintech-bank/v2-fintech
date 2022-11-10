@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Core;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Reseller\Reseller;
-use App\Notifications\Customer\SendCodeNotification;
+use App\Notifications\Customer\Customer\Customer\SendCodeNotification;
 use App\Services\Twilio\Messaging\Whatsapp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;

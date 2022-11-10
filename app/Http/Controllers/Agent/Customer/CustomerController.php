@@ -8,8 +8,8 @@ use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
-use App\Notifications\Customer\LogNotification;
-use App\Notifications\Customer\UpdateStatusAccountNotification;
+use App\Notifications\Customer\Customer\Customer\LogNotification;
+use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -185,7 +185,7 @@ class CustomerController extends Controller
             LogHelper::insertLogSystem('success', "Avenant à un contrat bancaire pour le client {$customer->info->full_name}", auth()->user());
 
             // Notification Client
-            $customer->user->notify(new \App\Notifications\Customer\UpdateTypeAccountNotification($customer, $package, $doc->url_forlder));
+            $customer->user->notify(new \App\Notifications\Customer\Customer\Customer\UpdateTypeAccountNotification($customer, $package, $doc->url_forlder));
         }
         return response()->json();
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Mailbox;
+namespace App\Notifications\Customer\Customer\Mailbox;
 
 use App\Models\Core\Mailbox;
 use App\Models\User;

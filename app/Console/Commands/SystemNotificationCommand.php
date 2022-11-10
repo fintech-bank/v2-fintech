@@ -66,8 +66,9 @@ class SystemNotificationCommand extends Command
     public function getStubVariables()
     {
         return [
-            'NAMESPACE' => 'App\\Notifications',
-            'CLASS_NAME' => $this->getSingularClassName($this->argument('notification')),
+            'NAMESPACE' => 'App\\Notifications\\'.$this->argument('dossier'),
+            'CLASS_NAME' => $this->getSingularClassName($this->argument('notification'))."Notification",
+            'VIEW_FILE_NAME' => \Str::replace('Send', '', \Str::snake($this->getSingularClassName($this->argument('notification'))))
         ];
     }
 

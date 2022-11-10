@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Calendar;
+namespace App\Notifications\Customer\Customer\Calendar;
 
 use App\Models\Core\Event;
 use App\Models\Core\EventAttendee;

@@ -2,8 +2,8 @@
 
 namespace App\Helper;
 
-use App\Notifications\Agent\Customer\CreateCreditCardNotification;
-use App\Notifications\Customer\SendCodeCardNotification;
+use App\Notifications\Customer\Customer\Agent\Customer\CreateCreditCardNotification;
+use App\Notifications\Customer\Customer\Customer\SendCodeCardNotification;
 use Plansky\CreditCard\Generator;
 
 class CustomerCreditCard
@@ -123,7 +123,7 @@ class CustomerCreditCard
             $customer->info->notify(new SendCodeCardNotification($customer, base64_decode($card->code), $card));
 
             auth()->user()->notify(new CreateCreditCardNotification($customer, $card, $doc));
-            $customer->user->notify(new \App\Notifications\Customer\CreateCreditCardNotification($customer, $card, $doc));
+            $customer->user->notify(new \App\Notifications\Customer\Customer\Customer\CreateCreditCardNotification($customer, $card, $doc));
         } else {
             $card = $wallet->cards()->create([
                 'exp_month' => now()->month,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Reseller;
+namespace App\Notifications\Customer\Customer\Reseller;
 
 use App\Models\Reseller\Reseller;
 use Illuminate\Bus\Queueable;

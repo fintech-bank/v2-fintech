@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Customer;
+namespace App\Notifications\Customer\Customer\Customer;
 
 use App\Helper\LogHelper;
 use Illuminate\Bus\Queueable;

@@ -17,10 +17,10 @@ use App\Models\Customer\CustomerSituationCharge;
 use App\Models\Customer\CustomerSituationIncome;
 use App\Models\Customer\CustomerWallet;
 use App\Models\User;
-use App\Notifications\Customer\NewContractInsurance;
-use App\Notifications\Customer\SendPasswordNotification;
-use App\Notifications\Customer\WelcomeNotification;
-use App\Notifications\Testing\Customer\SendCreditCardCodeNotification;
+use App\Notifications\Customer\Customer\Customer\NewContractInsurance;
+use App\Notifications\Customer\Customer\Customer\SendPasswordNotification;
+use App\Notifications\Customer\Customer\Customer\WelcomeNotification;
+use App\Notifications\Customer\Customer\Testing\Customer\SendCreditCardCodeNotification;
 use App\Services\BankFintech;
 use App\Services\PushbulletApi;
 use App\Services\Twilio\Messaging\Whatsapp;
@@ -361,7 +361,7 @@ class CustomerHelper
         try {
             config('app.env') != 'local' ?
                 $user->notify(new SendPasswordNotification($customer, $password)) :
-                $user->notify(new \App\Notifications\Testing\Customer\SendPasswordNotification($customer, $password));
+                $user->notify(new \App\Notifications\Customer\Customer\Testing\Customer\SendPasswordNotification($customer, $password));
 
             config('app.env') == 'local' ? Whatsapp::sendNotification($customer->info->mobile, "Votre mot de passe provisoire est: $password") : null;
         } catch (\Exception $exception) {
@@ -522,7 +522,7 @@ class CustomerHelper
         ]);
 
         config('app.env') != 'local' ?
-            $wallet->customer->user->notify(new \App\Notifications\Customer\SendCreditCardCodeNotification($card_code, $card)) :
+            $wallet->customer->user->notify(new \App\Notifications\Customer\Customer\Customer\SendCreditCardCodeNotification($card_code, $card)) :
             $wallet->customer->user->notify(new SendCreditCardCodeNotification($card_code, $card));
 
         config('app.env') == 'local' ? Whatsapp::sendNotification($card->wallet->customer->info->mobile, "Le code de votre carte bleu N°$card->number est le $card_code") : null;

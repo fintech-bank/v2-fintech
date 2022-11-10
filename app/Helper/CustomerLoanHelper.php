@@ -6,7 +6,7 @@ use App\Models\Core\LoanPlan;
 use App\Models\Customer\CustomerFacelia;
 use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerSepa;
-use App\Notifications\Agent\Customer\CreatePretNotification;
+use App\Notifications\Customer\Customer\Agent\Customer\CreatePretNotification;
 use Carbon\Carbon;
 
 class CustomerLoanHelper
@@ -242,7 +242,7 @@ class CustomerLoanHelper
         if(auth()->user()->agent == 1) {
             auth()->user()->notify(new CreatePretNotification($customer, $wallet, $doc_pret));
         }
-        $customer->user->notify(new \App\Notifications\Customer\CreatePretNotification($customer, $wallet, $doc_pret, $loan));
+        $customer->user->notify(new \App\Notifications\Customer\Customer\Customer\CreatePretNotification($customer, $wallet, $doc_pret, $loan));
 
         return $loan;
     }

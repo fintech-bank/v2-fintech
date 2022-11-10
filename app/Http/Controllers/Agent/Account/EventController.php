@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Agent\Account;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Event;
-use App\Notifications\Calendar\NewEventNotification;
+use App\Notifications\Customer\Customer\Calendar\NewEventNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Customer;
 use App\Helper\DocumentFile;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerWallet;
+use App\Notifications\Customer\SendLinkForContract;
 use Illuminate\Http\Request;
 
 class SubscribeController extends Controller
@@ -31,6 +32,6 @@ class SubscribeController extends Controller
             ['wallet' => $wallet]
         );
 
-        $wallet->customer->info->notify(new );
+        $wallet->customer->info->notify(new SendLinkForContractNo);
     }
 }

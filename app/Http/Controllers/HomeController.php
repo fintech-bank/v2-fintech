@@ -14,7 +14,7 @@ use App\Models\Customer\CustomerTransfer;
 use App\Models\Reseller\Reseller;
 use App\Models\User;
 use App\Models\User\UserFolder;
-use App\Notifications\Customer\UpdateStatusAccountNotification;
+use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
 use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\GeoPortailLook;
