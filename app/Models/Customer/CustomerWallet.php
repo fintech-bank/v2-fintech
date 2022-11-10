@@ -399,7 +399,7 @@ class CustomerWallet extends Model
         $ca = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual') + $this->customer->business->ca;
         $result = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual') + ($this->customer->business->resultat / 8);
 
-        if($result <= 3000) {
+        if($ca <= 3000) {
             $c--;
             $r->push(["Votre Chiffre d'affaire est inférieur à ".eur(3000)]);
         } else {
