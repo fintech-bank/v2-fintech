@@ -365,7 +365,7 @@ class CustomerWallet extends Model
         if($c == 4) {
             return [
                 'access' => true,
-                'value' => $result > 1000 ? 1000 : ceil($result/100) * 100,
+                'value' => $result > 1000 ? eur(1000) : eur(ceil($result/100) * 100),
                 'taux' => $taux." %"
             ];
         } else {
