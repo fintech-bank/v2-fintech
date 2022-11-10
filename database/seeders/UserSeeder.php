@@ -68,7 +68,8 @@ class UserSeeder extends Seeder
             'firstname' => 'User',
             'lastname' => 'Demo',
             'isVerified' => true,
-            'customer_id' => $customer->id
+            'customer_id' => $customer->id,
+            'email' => $user->email
         ]);
 
         CustomerSetting::factory()->create([

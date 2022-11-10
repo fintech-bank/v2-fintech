@@ -42,6 +42,7 @@ class CustomerInfoFactory extends Factory
             'country' => 'FR',
             'phone' => $this->faker->e164PhoneNumber(),
             'mobile' => "+33".rand(6,7).rand(10000000,99999999),
+            'email' => $this->faker->email,
             'isVerified' => $this->faker->boolean,
         ];
     }

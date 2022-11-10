@@ -315,6 +315,7 @@ class CustomerHelper
             'mobile' => $session->perso['mobile'],
             'country_code' => '+33',
             'customer_id' => $customer->id,
+            'email' => $user->email
         ]);
 
         if($info->type != 'part') {
