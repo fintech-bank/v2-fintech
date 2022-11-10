@@ -14,8 +14,8 @@ class NewWalletNotification extends Notification
     use Queueable;
 
     public Customer $customer;
-    public array $documents;
     public CustomerWallet $wallet;
+    public array $documents;
 
     /**
      * Create a new notification instance.
