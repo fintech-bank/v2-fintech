@@ -334,8 +334,6 @@ class CustomerWallet extends Model
             'pro', 'orga', 'assoc' => $this->calcOverdraftPro(),
         };
 
-        dd($info['amount']);
-
         if($info['result'] == 4) {
             return [
                 'access' => true,
@@ -398,7 +396,7 @@ class CustomerWallet extends Model
         $r = collect();
 
         $ca = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual') + $this->customer->business->ca;
-        $result = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual') + $this->customer->business->resultat;
+        $result = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual') + $this->customer->business->result;
 
         if($ca <= 3000) {
             $c--;
