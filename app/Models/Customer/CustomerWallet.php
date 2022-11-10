@@ -398,6 +398,7 @@ class CustomerWallet extends Model
 
         $ca = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual') + $this->customer->business->ca;
         $result = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual') + $this->customer->business->resultat;
+        dd($ca);
 
         if($ca <= 3000) {
             $c--;
