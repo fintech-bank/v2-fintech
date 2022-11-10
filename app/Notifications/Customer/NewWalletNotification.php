@@ -56,10 +56,6 @@ class NewWalletNotification extends Notification
             'wallet' => $this->wallet
         ]);
 
-        foreach ($this->documents as $document) {
-            $message->attach($document['url']);
-        }
-
         $message->success();
         $message->introLines = [
             'Bien évidement nous continuons à vous accompagnés dans votre quotidien !'
