@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('mobile')->unique();
             $table->string('country_code')->nullable();
+            $table->string('email');
             $table->boolean('isVerified')->default(false);
             $table->boolean('addressVerified')->default(false);
 
