@@ -375,11 +375,10 @@
         document.querySelector('[name="'+field+'"]').addEventListener('blur', e => {
             e.preventDefault()
             let data = $('[name="'+field+'"]').serializeArray()
-            console.log(data)
             $.ajax({
                 url: '/api/customer/{{ $customer->id }}/business',
                 method: 'PUT',
-                data: {"": e.target.value},
+                data: data,
                 success: data => {
                     elements.businessResultat.innerHTML = data.result_format;
                     elements.businessFinance.innerHTML = data.result_finance_format;
