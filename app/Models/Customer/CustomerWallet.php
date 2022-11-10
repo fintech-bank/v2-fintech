@@ -336,7 +336,7 @@ class CustomerWallet extends Model
 
         if($result <= 300) {
             $c--;
-            $r->push(["Votre revenue es inférieur à ".eur(1000)]);
+            $r->push(["income" => "Votre revenue es inférieur à ".eur(1000)]);
         } else {
             $c++;
         }
@@ -345,19 +345,19 @@ class CustomerWallet extends Model
             $c++;
         } else {
             $c--;
-            $r->push(["Votre situation professionnel ne permet pas un découvert bancaire"]);
+            $r->push(['situation' => "Votre situation professionnel ne permet pas un découvert bancaire"]);
         }
 
         if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_actual') >= 0) {
             $c++;
         } else {
             $c--;
-            $r->push(["La somme de vos comptes bancaires est débiteur."]);
+            $r->push(["debit" => "La somme de vos comptes bancaires est débiteur."]);
         }
 
         if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_decouvert') > 0) {
             $c--;
-            $r->push(["Vous avez déjà un découvert"]);
+            $r->push(['overdraft' => "Vous avez déjà un découvert"]);
         } else {
             $c++;
         }
