@@ -90,12 +90,10 @@ class CustomerWalletController extends Controller
             );
         }
 
-        dd($doc_compte);
-
         $docs = ["url" => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc_compte->category->name}/{$doc_compte->name}.pdf")];
 
         //Notification de création de compte
-        $customer->user->notify(new NewWalletNotification($customer, $wallet, $docs));
+        $customer->user->notify(new NewWalletNotification($customer, $wallet));
         $customer->user->notify(new SendLinkForContractNotification($customer, base64_encode(\Str::random()), $doc_compte));
     }
 

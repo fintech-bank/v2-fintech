@@ -33,6 +33,7 @@ class SendLinkForContractNotification extends Notification
         $this->link = route('signate.show', $token);
         $this->customer = $customer;
         $this->doc = $doc;
+        dd($this->doc);
     }
 
     private function getMessage()
