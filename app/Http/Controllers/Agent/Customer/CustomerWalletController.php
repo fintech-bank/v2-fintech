@@ -14,6 +14,7 @@ use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\NewEpargneNotification;
 use App\Notifications\Customer\NewPretNotification;
 use App\Notifications\Customer\NewWalletNotification;
+use App\Notifications\Customer\SendLinkForContractNotification;
 use Illuminate\Http\Request;
 
 class CustomerWalletController extends Controller
@@ -93,6 +94,7 @@ class CustomerWalletController extends Controller
 
         //Notification de création de compte
         $customer->user->notify(new NewWalletNotification($customer, $wallet, $docs));
+        $customer->user->notify(new SendLinkForContractNotification($customer, base64_encode(\Str::random()), $doc_compte));
     }
 
     private function createEpargne(Customer $customer, CustomerWallet $wallet, Request $request)
