@@ -411,6 +411,13 @@ class CustomerWallet extends Model
             $r->push(["La somme de vos comptes bancaires est débiteur."]);
         }
 
+        if($this->customer->business->indicator) {
+            $c++;
+        } else {
+            $c--;
+            $r->push(["L'indicateur prévisionnel indique un avis défavorable"]);
+        }
+
         if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_decouvert') > 0) {
             $c--;
             $r->push(["Vous avez déjà un découvert"]);
