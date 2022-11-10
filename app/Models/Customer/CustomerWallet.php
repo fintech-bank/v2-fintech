@@ -338,7 +338,7 @@ class CustomerWallet extends Model
         if($info['result'] == 4) {
             return [
                 'access' => true,
-                'value' => $info['result'] > $this->getLimitOverdraftByType() ? eur($this->getLimitOverdraftByType()) : eur(ceil($info['result']/100) * 100),
+                'value' => $info['amount'] > $this->getLimitOverdraftByType() ? eur($this->getLimitOverdraftByType()) : eur(ceil($info['result']/100) * 100),
                 'taux' => $taux." %"
             ];
         } else {
@@ -387,7 +387,8 @@ class CustomerWallet extends Model
 
         return [
             'result' => $c,
-            'messages' => $r
+            'messages' => $r,
+            'amount' => $result
         ];
     }
     private function calcOverdraftPro()
@@ -427,7 +428,8 @@ class CustomerWallet extends Model
 
         return [
             'result' => $c,
-            'messages' => $r
+            'messages' => $r,
+            'amount' => $result
         ];
     }
 
