@@ -1190,7 +1190,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped border gy-5 gx-5">
+                            <table class="table table-striped border gy-5 gx-5 mb-5">
                                 <thead>
                                     <tr>
                                         <th>Libellé</th>
@@ -1229,6 +1229,14 @@
                                         <td><input type="text" class="form-control form-control-solid" name="other_charge" value="{{ $customer->business->other_charge }}"></td>
                                     </tr>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>Résultat</td>
+                                        <td>
+                                            <div class="text-right business_resultat">0,00 €</div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
