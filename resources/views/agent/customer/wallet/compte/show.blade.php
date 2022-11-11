@@ -300,7 +300,7 @@
                             </tr>
                         </thead>
                         <tbody class="fw-semibold text-gray-600">
-                            @foreach($wallet->transactions()->where('confirmed', true)->get() as $transaction)
+                            @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at', 'desc')->get() as $transaction)
                                 <tr>
                                     <td data-order="{{ $transaction->confirmed_at->format('Y-m-d') }}">{{ $transaction->confirmed_at->format("d/m/Y") }}</td>
                                     <td class="d-none" data-order="{{ $transaction->type }}"></td>
