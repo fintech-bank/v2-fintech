@@ -313,7 +313,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="text-end">
                                         @if($transaction->amount < 0)
                                             <span class="text-danger">{{ $transaction->amount_format }}</span>
                                         @else
