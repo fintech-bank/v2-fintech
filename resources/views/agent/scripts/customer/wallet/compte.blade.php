@@ -9,6 +9,7 @@
         btnOppositPayment: document.querySelectorAll('.btnOppositPayment'),
         btnRemb: document.querySelectorAll('.btnRemb'),
         transactionDate: document.querySelector('#kt_transaction_flatpickr'),
+        transactionType: document.querySelector('[data-kt-transaction-filter="types"]')
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -269,5 +270,9 @@
     document.querySelector('[data-kt-transaction-filter="search"]').addEventListener("keyup", (function (e) {
         dataTable.datatableTransaction.search(e.target.value).draw()
     }))
+    $(elements.transactionType).on('change', e => {
+        let n = e.target.value;
+        "all" === n && (n = ""), t.column(1).search(n).draw()
+    })
 
 </script>
