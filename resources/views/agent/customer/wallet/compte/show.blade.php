@@ -294,6 +294,7 @@
                         <thead>
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                 <th class="min-w-100px">Date</th>
+                                <th class="d-none"></th>
                                 <th class="min-w-175px">Libellé</th>
                                 <th class="text-end">Montant</th>
                                 <th class="text-end"></th>
