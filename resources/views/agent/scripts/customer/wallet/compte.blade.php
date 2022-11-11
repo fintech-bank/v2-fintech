@@ -87,12 +87,18 @@
                     url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+btn.dataset.transaction,
                     method: 'POST',
                     data: {"action": "accept"},
-                    success: data => {
+                    success: () => {
                         block.blockTableComing.release()
                         block.blockTableComing.destroy()
-                        console.log(data)
+                        toastr.success(`La transaction à bien été accepté`, `Transaction`)
+
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1200)
                     },
                     error: err => {
+                        block.blockTableComing.release()
+                        block.blockTableComing.destroy()
                         console.error(err)
                     }
                 })
