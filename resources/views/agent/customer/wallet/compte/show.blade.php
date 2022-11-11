@@ -294,7 +294,6 @@
                         <thead>
                             <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                 <th class="min-w-100px">Date</th>
-                                <th class="d-none"></th>
                                 <th class="min-w-175px">Libellé</th>
                                 <th class="text-end">Montant</th>
                                 <th class="text-end"></th>
@@ -304,9 +303,8 @@
                             @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at', 'desc')->get() as $transaction)
                                 <tr>
                                     <td data-order="{{ $transaction->confirmed_at->format('Y-m-d') }}">{{ $transaction->confirmed_at->format("d/m/Y") }}</td>
-                                    <td class="d-none" data-order="{{ $transaction->type }}"></td>
                                     <td>
-                                        <div class="d-flex flex-row align-items-center">
+                                        <div class="d-flex flex-row align-items-center" data-order="{{ $transaction->type }}">
                                             {!! $transaction->type_symbol !!}
                                             <div class="d-flex flex-column">
                                                 {{ $transaction->description }}
