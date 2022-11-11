@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\Customer;
 use App\Helper\CustomerTransactionHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerTransaction;
+use App\Notifications\Customer\OppositTransactionNotification;
+use App\Notifications\Customer\RejectTransactionNotification;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -36,16 +38,23 @@ class TransactionController extends Controller
                 ]);
 
                 $transaction->delete();
-                break;
+                $transaction->wallet->customer->info->notify(new RejectTransactionNotification($transaction->wallet->customer, $transaction, $request->get('raison')));
+
+                return response()->json();
 
             case 'opposit':
                 $transaction->opposit()->create([
                     'raison_opposit' => $request->get('raison'),
                     'customer_transaction_id' => $transaction->id
                 ]);
+                $transaction->wallet->update([
+                    'balance_coming' => $transaction->wallet->balance_coming - $transaction->amount
+                ]);
 
-
-
+                $transaction->wallet->customer->info->notify(new OppositTransactionNotification($transaction->wallet->customer, $transaction, $request->get('raison')));
+                return response()->json();
         }
+
+
     }
 }
