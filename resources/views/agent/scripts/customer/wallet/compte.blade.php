@@ -105,6 +105,46 @@
             })
         })
     }
+    if(elements.btnRejectTransaction) {
+        elements.btnRejectTransaction.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableComing.block()
+                Swal.fire({
+                    title: 'Donner la raison de ce rejet',
+                    input: 'text',
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Valider',
+                    showLoaderOnConfirm: true,
+                    preConfirm: (raison) => {
+                        $.ajax({
+                            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+btn.dataset.transaction,
+                            method: 'POST',
+                            data: {"action": "reject"},
+                            success: () => {
+                                block.blockTableComing.release()
+                                block.blockTableComing.destroy()
+                                toastr.success(`La transaction à bien été refusé`, `Transaction`)
+
+                                setTimeout(() => {
+                                    window.location.reload()
+                                }, 1200)
+                            },
+                            error: err => {
+                                block.blockTableComing.release()
+                                block.blockTableComing.destroy()
+                                console.error(err)
+                            }
+                        })
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                })
+            })
+        })
+    }
 
     $(forms.formUpdateStateAccount).on('submit', e => {
         e.preventDefault()
