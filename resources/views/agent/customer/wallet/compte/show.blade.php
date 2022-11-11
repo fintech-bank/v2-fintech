@@ -234,6 +234,9 @@
                                         @if($transaction->type == 'payment')
                                             <button class="btn btn-xs btn-danger btn-icon btnOppositPayment" data-transaction="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Opposition"><i class="fa-solid fa-ban"></i> </button>
                                         @endif
+                                        @if($transaction->opposit()->count() == 0)
+                                            <i class="fa-solid fa-exclamation-triangle text-warning" data-bs-toggle="tooltip" title="Opposition"></i>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
