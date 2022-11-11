@@ -196,33 +196,35 @@ class SystemAgentCommand extends Command
 
     private function executeTransactionComing()
     {
-        $transactions = CustomerTransaction::where('confirmed', true)
+        $transactions = CustomerTransaction::where('confirmed', false)
             ->where('designation', 'NOT LIKE', '%Remise%')
             ->get();
         $arr_effect = [];
         $arr_reject = [];
 
         foreach ($transactions as $transaction) {
-            if ($transaction->withdraw()->count() != 1) {
-                if ($transaction->updated_at->between(now()->startOfDay(), now()->endOfDay())) {
-                    if ($transaction->amount <= $transaction->wallet->solde_remaining) {
-                        CustomerTransactionHelper::updated($transaction);
+            if($transaction->opposit()->count() == 0) {
+                if ($transaction->withdraw()->count() != 1) {
+                    if ($transaction->updated_at->between(now()->startOfDay(), now()->endOfDay())) {
+                        if ($transaction->amount <= $transaction->wallet->solde_remaining) {
+                            CustomerTransactionHelper::updated($transaction);
 
-                        $arr_effect[] = [
-                            $transaction->wallet->customer->info->full_name,
-                            $transaction->type_text,
-                            $transaction->wallet->name_account_generic,
-                            $transaction->amount_format,
-                        ];
+                            $arr_effect[] = [
+                                $transaction->wallet->customer->info->full_name,
+                                $transaction->type_text,
+                                $transaction->wallet->name_account_generic,
+                                $transaction->amount_format,
+                            ];
 
-                    } else {
-                        $arr_reject[] = [
-                            $transaction->wallet->customer->info->full_name,
-                            $transaction->type_text,
-                            $transaction->wallet->name_account_generic,
-                            $transaction->amount_format,
-                            "Solde Insuffisant"
-                        ];
+                        } else {
+                            $arr_reject[] = [
+                                $transaction->wallet->customer->info->full_name,
+                                $transaction->type_text,
+                                $transaction->wallet->name_account_generic,
+                                $transaction->amount_format,
+                                "Solde Insuffisant"
+                            ];
+                        }
                     }
                 }
             }
