@@ -313,7 +313,13 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ $transaction->amount_format }}</td>
+                                    <td>
+                                        @if($transaction->amount < 0)
+                                            <span class="text-danger">{{ $transaction->amount_format }}</span>
+                                        @else
+                                            <div class="text-success fw-semibold">+{{ $transaction->amount_format }}</div>
+                                        @endif
+                                    </td>
                                     <td></td>
                                 </tr>
                             @endforeach
