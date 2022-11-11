@@ -80,6 +80,7 @@ class OppositTransactionNotification extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
+        $message->subject($this->title);
         $message->view("emails.customer.opposit_transaction", [
             "content" => $this->message,
             "customer" => $this->customer
