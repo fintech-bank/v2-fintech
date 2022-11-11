@@ -255,13 +255,13 @@
 									<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
 								</svg>
 							</span>
-                            <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Order" />
+                            <input type="text" data-kt-transaction-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Rechercher..." />
                         </div>
                     </div>
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                         <div class="input-group w-250px">
-                            <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick date range" id="kt_ecommerce_sales_flatpickr" />
-                            <button class="btn btn-icon btn-light" id="kt_ecommerce_sales_flatpickr_clear">
+                            <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Ranger de date" id="kt_transaction_flatpickr" />
+                            <button class="btn btn-icon btn-light" id="kt_transaction_flatpickr_clear">
                                 <span class="svg-icon svg-icon-2">
 									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor" />
@@ -272,19 +272,18 @@
                         </div>
                         <div class="w-100 mw-150px">
                             <!--begin::Select2-->
-                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status">
+                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Types" data-kt-transaction-filter="types">
                                 <option></option>
-                                <option value="all">All</option>
-                                <option value="Cancelled">Cancelled</option>
-                                <option value="Completed">Completed</option>
-                                <option value="Denied">Denied</option>
-                                <option value="Expired">Expired</option>
-                                <option value="Failed">Failed</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Processing">Processing</option>
-                                <option value="Refunded">Refunded</option>
-                                <option value="Delivered">Delivered</option>
-                                <option value="Delivering">Delivering</option>
+                                <option value="all">Tous</option>
+                                <option value="depot">Dépot</option>
+                                <option value="retrait">Retrait</option>
+                                <option value="payment">Paiement CB</option>
+                                <option value="virement">Virement bancaire</option>
+                                <option value="sepa">Prélèvement</option>
+                                <option value="frais">Frais Bancaire</option>
+                                <option value="souscription">Souscription</option>
+                                <option value="autre">Autre</option>
+                                <option value="facelia">Crédit Facelia</option>
                             </select>
                             <!--end::Select2-->
                         </div>
