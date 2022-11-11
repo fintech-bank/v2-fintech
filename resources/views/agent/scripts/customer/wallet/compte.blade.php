@@ -222,6 +222,34 @@
             })
         })
     }
+    if(elements.btnRemb) {
+        elements.btnRemb.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableTransaction.block()
+
+                $.ajax({
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+btn.dataset.transaction,
+                    method: 'POST',
+                    data: {"action": "remb"},
+                    success: () => {
+                        block.blockTableTransaction.release()
+                        block.blockTableTransaction.destroy()
+                        toastr.success(`La transaction à bien été remboursé`, `Transaction`)
+
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1200)
+                    },
+                    error: err => {
+                        block.blockTableTransaction.release()
+                        block.blockTableTransaction.destroy()
+                        console.error(err)
+                    }
+                })
+            })
+        })
+    }
 
     $(forms.formUpdateStateAccount).on('submit', e => {
         e.preventDefault()

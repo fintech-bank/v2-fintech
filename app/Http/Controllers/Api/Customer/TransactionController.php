@@ -53,6 +53,20 @@ class TransactionController extends Controller
 
                 $transaction->wallet->customer->info->notify(new OppositTransactionNotification($transaction->wallet->customer, $transaction, $request->get('raison')));
                 return response()->json();
+
+            case 'remb':
+                CustomerTransactionHelper::create(
+                    'credit',
+                    'autre',
+                    "Remboursement bancaire",
+                    + $transaction->amount,
+                    $transaction->wallet->id,
+                    true,
+                    $transaction->designation,
+                    now(),
+                );
+
+                return response()->json();
         }
 
 
