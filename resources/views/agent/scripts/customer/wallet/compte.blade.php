@@ -8,6 +8,7 @@
         btnRejectTransaction: document.querySelectorAll('.btnRejectTransaction'),
         btnOppositPayment: document.querySelectorAll('.btnOppositPayment'),
         btnRemb: document.querySelectorAll('.btnRemb'),
+        transactionDate: document.querySelector('#kt_transaction_flatpickr'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -37,6 +38,17 @@
     let block = {
         blockTableComing: messageBlock(tables.tableComing.querySelector("tbody")),
         blockTableTransaction: messageBlock(tables.tableTransaction.querySelector("tbody")),
+    }
+    let plugins = {
+        flatTransactionDate: $(elements.transactionDate).flatpickr({
+            altInput: !0,
+            altFormat: "d/m/Y",
+            dateFormat: "Y-m-d",
+            mode: "range",
+            onChange: (e, t, n) => {
+                a(e,t,n)
+            }
+        })
     }
 
     document.querySelector('.requestOverdraft').addEventListener('click', e => {
@@ -254,5 +266,8 @@
             }
         })
     })
+    document.querySelector('[data-kt-transaction-filter="search"]').addEventListener("keyup", (function (e) {
+        dataTable.datatableTransaction.search(e.target.value).draw()
+    }))
 
 </script>
