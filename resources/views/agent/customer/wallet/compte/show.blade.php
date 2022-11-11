@@ -304,13 +304,15 @@
                                 <tr>
                                     <td data-order="{{ $transaction->confirmed_at->format('Y-m-d') }}">{{ $transaction->confirmed_at->format("d/m/Y") }}</td>
                                     <td class="d-none" data-order="{{ $transaction->type }}"></td>
-                                    <div class="d-flex flex-row align-items-center">
-                                        {!! $transaction->type_symbol !!}
-                                        <div class="d-flex flex-column">
-                                            {{ $transaction->description }}
-                                            <div class="text-muted">{{ $transaction->designation }}</div>
+                                    <td>
+                                        <div class="d-flex flex-row align-items-center">
+                                            {!! $transaction->type_symbol !!}
+                                            <div class="d-flex flex-column">
+                                                {{ $transaction->description }}
+                                                <div class="text-muted">{{ $transaction->designation }}</div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </td>
                                     <td>{{ $transaction->amount_format }}</td>
                                     <td></td>
                                 </tr>
