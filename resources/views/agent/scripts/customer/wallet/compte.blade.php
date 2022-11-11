@@ -123,7 +123,7 @@
                         $.ajax({
                             url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+btn.dataset.transaction,
                             method: 'POST',
-                            data: {"action": "reject"},
+                            data: {"action": "reject", "raison": raison},
                             success: () => {
                                 block.blockTableComing.release()
                                 block.blockTableComing.destroy()
