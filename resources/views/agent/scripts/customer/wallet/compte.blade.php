@@ -25,10 +25,13 @@
             "dom": "<'table-responsive'tr>"
         }),
         datatableTransaction: $(tables.tableTransaction).DataTable({
-            "scrollY": "200px",
+            "scrollY": "350px",
             "scrollCollapse": true,
             "paging": false,
-            "dom": "<'table-responsive'tr>"
+            "dom": "<'table-responsive'tr>",
+            info: !1,
+            order: [],
+            pageLength: 10,
         }),
     }
     let block = {
