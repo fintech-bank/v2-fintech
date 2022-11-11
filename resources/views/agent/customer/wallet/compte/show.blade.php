@@ -189,7 +189,7 @@
     </div>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="transactions" role="tabpanel">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm mb-10">
                 <div class="card-header">
                     <h3 class="card-title">A venir</h3>
                     <div class="card-toolbar">
@@ -254,8 +254,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    
-                </div>   
+
+                </div>
             </div>
         </div>
     </div>
