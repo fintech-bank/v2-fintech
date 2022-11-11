@@ -1,11 +1,13 @@
 <script type="text/javascript">
     let tables = {
-        tableComing: document.querySelector("#table_coming")
+        tableComing: document.querySelector("#table_coming"),
+        tableTransaction: document.querySelector("#kt_transaction_table"),
     }
     let elements = {
         btnAcceptTransaction: document.querySelectorAll('.btnAcceptTransaction'),
         btnRejectTransaction: document.querySelectorAll('.btnRejectTransaction'),
         btnOppositPayment: document.querySelectorAll('.btnOppositPayment'),
+        btnRemb: document.querySelectorAll('.btnRemb'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -21,10 +23,17 @@
             "scrollCollapse": true,
             "paging": false,
             "dom": "<'table-responsive'tr>"
-        })
+        }),
+        datatableTransaction: $(tables.tableTransaction).DataTable({
+            "scrollY": "200px",
+            "scrollCollapse": true,
+            "paging": false,
+            "dom": "<'table-responsive'tr>"
+        }),
     }
     let block = {
-        blockTableComing: messageBlock(tables.tableComing.querySelector("tbody"))
+        blockTableComing: messageBlock(tables.tableComing.querySelector("tbody")),
+        blockTableTransaction: messageBlock(tables.tableTransaction.querySelector("tbody")),
     }
 
     document.querySelector('.requestOverdraft').addEventListener('click', e => {
