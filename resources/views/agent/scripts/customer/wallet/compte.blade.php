@@ -272,7 +272,7 @@
     }))
     $(elements.transactionType).on('change', e => {
         let n = e.target.value;
-        "all" === n && (n = ""), t.column(1).search(n).draw()
+        "all" === n && (n = ""), dataTable.datatableTransaction.column(1).search(n).draw()
     })
 
 </script>
