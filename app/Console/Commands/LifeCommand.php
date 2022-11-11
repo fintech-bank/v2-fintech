@@ -248,7 +248,7 @@ class LifeCommand extends Command
                                         rand(100, 900),
                                         $wallet->id,
                                         true,
-                                        'Dépot sur votre compte | Ref: ' . Str::upper(Str::random(8)),
+                                        'Dépot sur votre compte | Ref: ' . Str::upper(Str::random(8)).' | '.now()->format('H:i'),
                                         now());
                                     break;
 
@@ -260,7 +260,7 @@ class LifeCommand extends Command
                                         rand(100, 900),
                                         $wallet->id,
                                         true,
-                                        'Retrait sur votre compte | Ref: ' . Str::upper(Str::random(8)),
+                                        'Retrait sur votre compte | Ref: ' . Str::upper(Str::random(8)).' | '.now()->format('H:i'),
                                         now());
                                     break;
 
@@ -275,7 +275,7 @@ class LifeCommand extends Command
                                                 rand(100, 900),
                                                 $wallet->id,
                                                 $confirmed == 1 ? true : false,
-                                                'Paiement par Carte Bancaire | Ref: ' . Str::upper(Str::random(8)),
+                                                'Paiement par Carte Bancaire | Ref: ' . Str::upper(Str::random(8)).' | '.now()->format('H:i'),
                                                 $confirmed == 1 ? now() : null,
                                                 $confirmed == 0 ? now()->addDays(rand(1, 5)) : now(), $wallet->cards()->first()->id,
                                                 $differed == 1 ? true : false);
@@ -287,7 +287,7 @@ class LifeCommand extends Command
                                                 rand(100, 900),
                                                 $wallet->id,
                                                 $confirmed == 1 ? true : false,
-                                                'Paiement par Carte Bancaire | Ref: ' . Str::upper(Str::random(8)),
+                                                'Paiement par Carte Bancaire | Ref: ' . Str::upper(Str::random(8)).' | '.now()->format('H:i'),
                                                 $confirmed == 1 ? now() : null,
                                                 $confirmed == 0 ? now()->addDays(rand(1, 5)) : now(), $wallet->cards()->first()->id);
                                         }
