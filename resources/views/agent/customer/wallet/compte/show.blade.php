@@ -320,7 +320,11 @@
                                             <div class="text-success fw-semibold">+{{ $transaction->amount_format }}</div>
                                         @endif
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        @if($transaction->type == 'frais')
+                                            <button class="btn btn-xs btn-danger btn-icon btnRemb" data-transation="{{ $transaction->id }}" data-bs-toggle="tooltip" title="Rembourser"><i class="fa-solid fa-ban"></i> </button>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
