@@ -41,6 +41,7 @@
         blockTableTransaction: messageBlock(tables.tableTransaction.querySelector("tbody")),
     }
     let plugins = {
+
         flatTransactionDate: $(elements.transactionDate).flatpickr({
             altInput: !0,
             altFormat: "d/m/Y",
@@ -49,7 +50,18 @@
             onChange: (e, t, n) => {
                 a(e,t,n)
             }
-        })
+        }),
+
+    }
+
+    let e, t, n, r, o, a = (e, n, a) => {
+        r = e[0] ? new Date(e[0]) : null, o = e[1] ? new Date(e[1]) : null, $.fn.dataTable.ext.search.push((function (e, t, n) {
+            let a = r,
+                c = o,
+                l = new Date(moment($(t[5]).text(), "DD/MM/YYYY")),
+                u = new Date(moment($(t[6]).text(), "DD/MM/YYYY"));
+            return null === a && null === c || null === a && c >= u || a <= l && null === c || a <= l && c >= u
+        })), dataTable.datatableTransaction.draw()
     }
 
     document.querySelector('.requestOverdraft').addEventListener('click', e => {
