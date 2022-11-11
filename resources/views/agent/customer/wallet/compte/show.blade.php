@@ -270,6 +270,24 @@
 								</span>
                             </button>
                         </div>
+                        <div class="w-100 mw-150px">
+                            <!--begin::Select2-->
+                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status">
+                                <option></option>
+                                <option value="all">All</option>
+                                <option value="Cancelled">Cancelled</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Denied">Denied</option>
+                                <option value="Expired">Expired</option>
+                                <option value="Failed">Failed</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Refunded">Refunded</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Delivering">Delivering</option>
+                            </select>
+                            <!--end::Select2-->
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
