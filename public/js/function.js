@@ -229,3 +229,9 @@ const showPdf = (urlFile, divContentId) => {
 }
 
 getHeaderBadger()
+
+if(document.querySelectorAll('.datepick')) {
+    document.querySelectorAll('.datepick').forEach(element => {
+        $(element).flatpickr()
+    })
+}
