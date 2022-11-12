@@ -200,6 +200,18 @@
             }
         })
     }
+    let selectedTypeVirement = (type) => {
+        if(type.value == 'differed') {
+            document.querySelector('#differed').classList.remove('d-none')
+            document.querySelector('#permanent').classList.add('d-none')
+        } else if(type.value == 'permanent') {
+            document.querySelector('#differed').classList.add('d-none')
+            document.querySelector('#permanent').classList.remove('d-none')
+        } else {
+            document.querySelector('#differed').classList.remove('d-none')
+            document.querySelector('#permanent').classList.remove('d-none')
+        }
+    }
 
     let e, t, n, r, o, a = (e, n, a) => {
         r = e[0] ? new Date(e[0]) : null, o = e[1] ? new Date(e[1]) : null, $.fn.dataTable.ext.search.push((function (e, t, n) {
