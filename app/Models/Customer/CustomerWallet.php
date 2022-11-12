@@ -110,7 +110,8 @@ class CustomerWallet extends Model
         'solde_remaining',
         'balance_actual_format',
         'alert_status_text',
-        'alert_status_comment'
+        'alert_status_comment',
+        'iban_format'
     ];
 
     public static function getState()
@@ -346,6 +347,11 @@ class CustomerWallet extends Model
                 'errors' => $info['messages']
             ];
         }
+    }
+
+    public function getIbanFormatAttribute()
+    {
+        return \Str::replace("\r\n", " ", chunk_split($this->iban, 4));
     }
 
     private function calcOverdraftPart()

@@ -38,7 +38,7 @@ class TransferController extends Controller
 
     public function info($customer_id, $wallet_number, $transfer_uuid)
     {
-        $transfer = CustomerTransfer::with('beneficiaire')->where('uuid', $transfer_uuid)->first();
+        $transfer = CustomerTransfer::with('beneficiaire', 'wallet')->where('uuid', $transfer_uuid)->first();
 
         return response()->json($transfer);
     }
