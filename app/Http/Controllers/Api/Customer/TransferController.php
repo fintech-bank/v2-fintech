@@ -43,6 +43,14 @@ class TransferController extends Controller
         return response()->json($transfer);
     }
 
+    public function update($customer_id, $wallet_number, $transfer_uuid, Request $request)
+    {
+        return match ($request->get('status')) {
+            "accept" => $this->acceptTransfer($transfer_uuid),
+            "decline" => $this->declineTransfer($transfer_uuid)
+        };
+    }
+
     private function immediatTransfer(CustomerWallet $wallet,CustomerBeneficiaire $beneficiaire, Request $request)
     {
         if($wallet->solde_remaining <= 0) {
@@ -176,6 +184,28 @@ class TransferController extends Controller
             'status' => 'pending',
             'customer_wallet_id' => $wallet->id,
             'customer_beneficiaire_id' => $beneficiaire->id
+        ]);
+
+        return response()->json();
+    }
+
+    private function acceptTransfer($transfer_uuid)
+    {
+        $transfer = CustomerTransfer::where('uuid', $transfer_uuid)->first();
+
+        $transfer->update([
+            'status' => 'in_transit'
+        ]);
+
+        return response()->json();
+    }
+
+    private function declineTransfer($transfer_uuid)
+    {
+        $transfer = CustomerTransfer::where('uuid', $transfer_uuid)->first();
+
+        $transfer->update([
+            'status' => 'failed'
         ]);
 
         return response()->json();

@@ -12,6 +12,8 @@
         btnOppositPayment: document.querySelectorAll('.btnOppositPayment'),
         btnRemb: document.querySelectorAll('.btnRemb'),
         btnShowTransfer: document.querySelectorAll('.btnShowTransfer'),
+        btnAcceptTransfer: document.querySelectorAll('.btnAcceptTransfer'),
+        btnDeclineTransfer: document.querySelectorAll('.btnDeclineTransfer'),
         transactionDate: document.querySelector('#kt_transaction_flatpickr'),
         transactionType: document.querySelector('[data-kt-transaction-filter="types"]'),
         chartSummary: document.querySelector('#chart_summary'),
@@ -444,6 +446,56 @@
                             elements.showTransfer.querySelector('.btnAcceptTransfer').classList.add('d-none')
                             elements.showTransfer.querySelector('.btnDeclineTransfer').classList.add('d-none')
                         }
+                    },
+                    error: err => {
+                        block.blockTableTransfer.release()
+                        block.blockTableTransfer.destroy()
+                        console.error(err)
+                    }
+                })
+            })
+        })
+    }
+    if(elements.btnAcceptTransfer) {
+        elements.btnAcceptTransfer.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableTransfer.block()
+
+                $.ajax({
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transfers/'+btn.dataset.transfer,
+                    method: 'PUT',
+                    data: {"status": "accept"},
+                    success: () => {
+                        block.blockTableTransfer.release()
+                        block.blockTableTransfer.destroy()
+
+                        toastr.success(`Le virement à bien été accepté`, `Virement Bancaire`)
+                    },
+                    error: err => {
+                        block.blockTableTransfer.release()
+                        block.blockTableTransfer.destroy()
+                        console.error(err)
+                    }
+                })
+            })
+        })
+    }
+    if(elements.btnDeclineTransfer) {
+        elements.btnDeclineTransfer.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableTransfer.block()
+
+                $.ajax({
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transfers/'+btn.dataset.transfer,
+                    method: 'PUT',
+                    data: {"status": "decline"},
+                    success: () => {
+                        block.blockTableTransfer.release()
+                        block.blockTableTransfer.destroy()
+
+                        toastr.success(`Le virement à bien été refusé`, `Virement Bancaire`)
                     },
                     error: err => {
                         block.blockTableTransfer.release()
