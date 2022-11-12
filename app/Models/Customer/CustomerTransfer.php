@@ -72,5 +72,31 @@ class CustomerTransfer extends Model
         return eur($this->amount);
     }
 
-
+    public function getStatus($format = 'text')
+    {
+        if($format == 'text') {
+            return match($this->status) {
+                "paid" => "Exécuter",
+                "pending" => "En attente",
+                "in_transit" => "Requete envoyé à la banque distante",
+                "canceled" => "Annuler",
+                default => "Rejeter"
+            };
+        } elseif ($format == 'icon') {
+            return match($this->status) {
+                "paid" => "check-circle",
+                "pending" => "spinner",
+                "in_transit" => "money-bill-transfer",
+                "canceled" => "xmark-circle",
+                default => "ban"
+            };
+        } else {
+            return match($this->status) {
+                "paid" => "success",
+                "pending" => "info",
+                "in_transit" => "warning",
+                default => "danger"
+            };
+        }
+    }
 }
