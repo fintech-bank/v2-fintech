@@ -961,7 +961,7 @@
                 <div class="d-flex flex-column bg-gray-600 rounded-2">
                     <div class="d-flex flex-row bg-white rounded-2 border">
                         <div class="bg-primary w-5px">&nbsp;</div>
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column p-5">
                             <div class="fw-bolder">Compte</div>
                             <div class="">FR76 3000 3017 4200 0501 7057 192</div>
                         </div>
