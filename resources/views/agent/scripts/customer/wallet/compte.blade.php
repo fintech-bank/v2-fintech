@@ -53,6 +53,8 @@
     let block = {
         blockTableComing: messageBlock(tables.tableComing.querySelector("tbody")),
         blockTableTransaction: messageBlock(tables.tableTransaction.querySelector("tbody")),
+        blockTableTransfer: messageBlock(tables.tableTransfer.querySelector("tbody")),
+        blockTableBeneficiaire: messageBlock(tables.tableBeneficiaire.querySelector("tbody")),
     }
     let plugins = {
 
@@ -451,6 +453,12 @@
     })
     document.querySelector('[data-kt-transaction-filter="search"]').addEventListener("keyup", (function (e) {
         dataTable.datatableTransaction.search(e.target.value).draw()
+    }))
+    document.querySelector('[data-kt-transfers-filter="search"]').addEventListener("keyup", (function (e) {
+        dataTable.datatableTransfer.search(e.target.value).draw()
+    }))
+    document.querySelector('[data-kt-beneficiaire-filter="search"]').addEventListener("keyup", (function (e) {
+        dataTable.datatableBeneficiaire.search(e.target.value).draw()
     }))
     $(elements.transactionType).on('change', e => {
         let n = e.target.value;
