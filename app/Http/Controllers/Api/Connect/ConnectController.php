@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Connect;
 
 use App\Http\Controllers\Controller;
+use App\Models\Core\Bank;
 use App\Services\BankFintech;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,10 @@ class ConnectController extends Controller
         return response()->json($result);
     }
 
-    public function infoBank(Request $request)
+    public function infoBank($bank_id)
     {
-        dd($request->all());
+        $bank = Bank::query()->find($bank_id);
+
+        return response()->json($bank);
     }
 }
