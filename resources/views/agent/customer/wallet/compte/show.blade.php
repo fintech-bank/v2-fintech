@@ -358,8 +358,8 @@
                                 <div class="d-flex flex-column flex-center">
                                     <i class="fa-solid fa-money-check-dollar fa-3x"></i>
                                     <span class="fw-bolder fs-3">Chèques</span>
-                                    <span class="fw-bolder fs-2">0</span>
-                                    <span class="fs-6">0,00 €</span>
+                                    <span class="fw-bolder fs-2">{{ $wallet->transactions()->where('designation', 'LIKE', '%Chèque%')->count() }}</span>
+                                    <span class="fs-6">{{ eur($wallet->transactions()->where('designation', 'LIKE', '%Chèque%')->sum('amount')) }}</span>
                                     <div class="text-muted">en moyenne</div>
                                 </div>
                                 <div class="d-flex flex-column flex-center">
