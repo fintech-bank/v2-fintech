@@ -929,7 +929,7 @@
                 <div class="card-title">
                     <!--begin::User-->
                     <div class="d-flex justify-content-center flex-column me-3">
-                        <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 lh-1">Ordre de Virement N°48856965</a>
+                        <a href="#" class="fs-4 fw-bold text-white text-hover-primary me-1 lh-1">Ordre de Virement N°48856965</a>
                     </div>
                     <!--end::User-->
                 </div>
@@ -955,7 +955,7 @@
             <!--begin::Card body-->
             <div class="card-body hover-scroll-overlay-y">
                 <div class="d-flex flex-center">
-                    <span class="bullet bullet-dot bg-success me-3"></span> Votre ordre de virement à été traité
+                    <i class="fa-solid fa-circle-dot text-success me-3"></i> Votre ordre de virement à été traité
                 </div>
             </div>
             <!--end::Card body-->
