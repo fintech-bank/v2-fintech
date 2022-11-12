@@ -539,9 +539,11 @@
                                             {!! $transfer->status_label !!}
                                         </td>
                                         <td class="text-end">
-                                            <button class="btn btn-sm btn-bank btn-circle btn-icon me-5 btnShowTransfer" data-bs-toggle="tooltip" title="Voir le virement" data-transfer="{{ $transfer->uuid }}"><i class="fa-solid fa-eye text-white"></i> </button>
+
                                             @if($transfer->status == 'pending')
+
                                                 <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <button class="btn btn-xs btn-bank btn-icon btnShowTransfer" data-bs-toggle="tooltip" title="Voir le virement" data-transfer="{{ $transfer->uuid }}"><i class="fa-solid fa-eye text-white"></i> </button>
                                                     <x-base.button
                                                         class="btn-xs btn-success btn-icon btnAccept"
                                                         :datas="[['name' => 'transfer', 'value' => $transfer->uuid]]"
@@ -554,6 +556,8 @@
                                                         text='<i class="fa-solid fa-times"></i>'
                                                         tooltip="Refuser le virement" />
                                                 </div>
+                                            @else
+                                                <button class="btn btn-xs btn-bank btn-icon btnShowTransfer" data-bs-toggle="tooltip" title="Voir le virement" data-transfer="{{ $transfer->uuid }}"><i class="fa-solid fa-eye text-white"></i> </button>
                                             @endif
                                         </td>
                                     </tr>
