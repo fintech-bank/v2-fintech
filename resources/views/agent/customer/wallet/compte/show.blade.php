@@ -536,7 +536,7 @@
                                             {{ \App\Helper\CustomerTransferHelper::getTypeTransfer($transfer->type) }}
                                         </td>
                                         <td class="text-center" data-order="{{ $transfer->status }}">
-                                            {!! \App\Helper\CustomerTransferHelper::getStatusTransfer($transfer->status, true) !!}
+                                            {!! $transfer->status_label !!}
                                         </td>
                                         <td>
                                             <button class="btn btn-sm btn-bank btn-circle btn-icon me-5 btnShowTransfer" data-bs-toggle="tooltip" title="Voir le virement" data-transfer="{{ $transfer->id }}"><i class="fa-solid fa-eye"></i> </button>

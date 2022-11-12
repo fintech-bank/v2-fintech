@@ -45,6 +45,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $amount_format
  * @property string $access
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerTransfer whereAccess($value)
+ * @property-read mixed $status_label
  */
 class CustomerTransfer extends Model
 {
@@ -55,7 +56,7 @@ class CustomerTransfer extends Model
     public $timestamps = false;
 
     protected $dates = ['transfer_date', 'recurring_start', 'recurring_end'];
-    protected $appends = ['amount_format'];
+    protected $appends = ['amount_format', 'status_label'];
 
     public function wallet()
     {
@@ -72,7 +73,7 @@ class CustomerTransfer extends Model
         return eur($this->amount);
     }
 
-    public function getStatus($format = 'text')
+    public function getStatus($format = 'color')
     {
         if($format == 'text') {
             return match($this->status) {
@@ -98,5 +99,10 @@ class CustomerTransfer extends Model
                 default => "danger"
             };
         }
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return "<span class='badge badge-".$this->getStatus()." badge-sm'><i class='fa-solid fa-".$this->getStatus('icon')." me-2 text-wite'></i> ".$this->getStatus('text')."</span>";
     }
 }
