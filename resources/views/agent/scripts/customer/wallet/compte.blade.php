@@ -221,6 +221,24 @@
             document.querySelector('#permanent').classList.add('d-none')
         }
     }
+    let selectTypeBeneficiaire = () => {
+        document.querySelector('#add_beneficiaire').querySelectorAll('[name="type"]').forEach(input => {
+            elements.corporateField.classList.add('d-none')
+            elements.retailField.classList.add('d-none')
+            input.addEventListener('click', e => {
+                console.log(e.target.value)
+
+                if(e.target.value == 'retail') {
+                    elements.corporateField.classList.add('d-none')
+                    elements.retailField.classList.remove('d-none')
+                } else {
+                    elements.corporateField.classList.remove('d-none')
+                    elements.retailField.classList.add('d-none')
+                }
+            })
+        })
+    }
+    selectTypeBeneficiaire()
 
     let e, t, n, r, o, a = (e, n, a) => {
         r = e[0] ? new Date(e[0]) : null, o = e[1] ? new Date(e[1]) : null, $.fn.dataTable.ext.search.push((function (e, t, n) {
