@@ -34,6 +34,7 @@
         formUpdateStateAccount: document.querySelector("#formUpdateStateAccount"),
         formRequestOverdraft: document.querySelector("#formSubscribeOverdraft"),
         formAddVirement: document.querySelector("#formAddVirement"),
+        formAddBeneficiaire: document.querySelector('#formAddBeneficiaire'),
     }
     let dataTable = {
         datatableComing: $(tables.tableComing).DataTable({
@@ -645,6 +646,34 @@
                 btn.removeAttr('data-kt-indicator')
 
                 toastr.success(`Le virement à bien été enregistré`, `Virement Bancaire`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
+        })
+    })
+    $(forms.formAddBeneficiaire).on('submit', e => {
+        e.preventDefault()
+        let block = new KTBlockUI(modals.modalAddVirement.querySelector(".modal-body"))
+        let form = $(forms.formAddBeneficiaire)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+        block.block()
+
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: data,
+            success: () => {
+                block.release()
+                block.destroy()
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.success(`Le bénéficiaire à bien été enregistré`, `Virement Bancaire`)
 
                 setTimeout(() => {
                     window.location.reload()

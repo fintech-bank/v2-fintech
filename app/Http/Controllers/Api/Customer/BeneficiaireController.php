@@ -9,6 +9,6 @@ class BeneficiaireController extends Controller
 {
     public function store($customer_id, Request $request)
     {
-
+        dd($request->all());
     }
 }
