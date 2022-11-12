@@ -265,7 +265,7 @@
                         </div>
                         <div class="d-flex flex-column">
                             <div class="fw-bolder">{{ $customer->info->full_name }}</div>
-                            {!! $customer->info->type_label !!}
+                            <div class="w-auto">{!! $customer->info->type_label !!}</div>
                         </div>
                     </div>
                 </div>
