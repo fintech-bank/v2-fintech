@@ -50,17 +50,42 @@ class TransferController extends Controller
                 'customer_beneficiaire_id' => $beneficiaire->id
             ]);
         } else {
-            $transfer = $wallet->transfers()->create([
-                'uuid' => \Str::uuid(),
-                'amount' => $request->get('amount'),
-                'reference' => $request->get('reference') != null ? $request->get('reference') : generateReference(),
-                'reason' => $request->get('reason') != null ? $request->get('reason') : "Virement vers le compte ".CustomerTransferHelper::getNameBeneficiaire($beneficiaire),
-                'type' => 'immediat',
-                'transfer_date' => now(),
-                'status' => 'in_transit',
-                'customer_wallet_id' => $wallet->id,
-                'customer_beneficiaire_id' => $beneficiaire->id
-            ]);
+            if($request->get('access') == 'classic') {
+                $transfer = $wallet->transfers()->create([
+                    'uuid' => \Str::uuid(),
+                    'amount' => $request->get('amount'),
+                    'reference' => $request->get('reference') != null ? $request->get('reference') : generateReference(),
+                    'reason' => $request->get('reason') != null ? $request->get('reason') : "Virement vers le compte ".CustomerTransferHelper::getNameBeneficiaire($beneficiaire),
+                    'type' => 'immediat',
+                    'transfer_date' => now(),
+                    'status' => 'in_transit',
+                    'customer_wallet_id' => $wallet->id,
+                    'customer_beneficiaire_id' => $beneficiaire->id
+                ]);
+            } else {
+                $transfer = $wallet->transfers()->create([
+                    'uuid' => \Str::uuid(),
+                    'amount' => $request->get('amount'),
+                    'reference' => $request->get('reference') != null ? $request->get('reference') : generateReference(),
+                    'reason' => $request->get('reason') != null ? $request->get('reason') : "Virement vers le compte ".CustomerTransferHelper::getNameBeneficiaire($beneficiaire),
+                    'type' => 'immediat',
+                    'transfer_date' => now(),
+                    'status' => 'paid',
+                    'customer_wallet_id' => $wallet->id,
+                    'customer_beneficiaire_id' => $beneficiaire->id
+                ]);
+
+                CustomerTransactionHelper::create(
+                    'debit',
+                    'frais',
+                    'Frais virement instantané',
+                    0.80,
+                    $wallet->id,
+                    true,
+                    $transfer->reason,
+                    now()
+                );
+            }
         }
 
         $transaction = CustomerTransactionHelper::create(
