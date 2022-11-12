@@ -800,6 +800,80 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="add_virement">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Nouveau virement depuis ce compte</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="svg-icon svg-icon-2x"></span>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formAddVirement" action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transfer" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="customer_beneficiaire_id" class="form-label">Bénéficiaire</label>
+                            <select class="form-select form-select-solid" id="customer_beneficiaire_id" name="customer_beneficiaire_id" data-control="select2" data-dropdown-parent="#add_virement" data-placeholder="Bénéficiaire" data-allow-clear="true">
+                                <option></option>
+                                @foreach($wallet->customer->beneficiaires as $beneficiaire)
+                                    <option value="{{ $beneficiaire->id }}">{{ \App\Helper\CustomerTransferHelper::getNameBeneficiaire($beneficiaire) }} @if($beneficiaire->titulaire == true) (Compte Personnel) @endif </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <x-form.input
+                            name="amount"
+                            type="text"
+                            label="Montant à envoyer"
+                            required="true"
+                            text="Montant du compte: {{ eur($wallet->balance_actual) }}" />
+
+                        <x-form.input
+                            name="reference"
+                            type="text"
+                            label="Référence" />
+
+                        <x-form.input
+                            name="reason"
+                            type="text"
+                            label="Description" />
+
+                        <div class="mb-10">
+                            <label for="type" class="form-label">Type de Virement</label>
+                            <select class="form-select form-select-solid" id="type" name="type" data-control="select2" data-dropdown-parent="#add_virement" data-placeholder="Type de Virement" data-allow-clear="true" onchange="selectedTypeVirement(this)">
+                                <option></option>
+                                <option value="immediat" selected>Immédiat</option>
+                                <option value="differed">Différé</option>
+                                <option value="permanent">Permanent</option>
+                            </select>
+                        </div>
+
+                        <div id="differed" class="d-none">
+                            <x-form.input-date
+                                name="transfer_date"
+                                type="text"
+                                label="Date du virement" />
+                        </div>
+                        <div id="permanent" class="d-none">
+                            <x-form.input-date
+                                name="permanent_date"
+                                type="text"
+                                label="Date du virement permanent" />
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")

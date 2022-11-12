@@ -149,6 +149,10 @@ Route::prefix('customer')->group(function () {
         Route::prefix('{number_account}/transaction')->group(function () {
             Route::post('{transaction_uuid}', [\App\Http\Controllers\Api\Customer\TransactionController::class, 'update']);
         });
+
+        Route::prefix('{number_account}/transfers')->group(function () {
+            Route::post('/', [\App\Http\Controllers\Api\Customer\TransferController::class, 'store']);
+        });
     });
 
     Route::prefix('{customer_id}/subscribe')->group(function () {
