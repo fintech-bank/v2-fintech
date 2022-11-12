@@ -10,6 +10,7 @@
         btnRejectTransaction: document.querySelectorAll('.btnRejectTransaction'),
         btnOppositPayment: document.querySelectorAll('.btnOppositPayment'),
         btnRemb: document.querySelectorAll('.btnRemb'),
+        btnShowTransfer: document.querySelectorAll('.btnShowTransfer'),
         transactionDate: document.querySelector('#kt_transaction_flatpickr'),
         transactionType: document.querySelector('[data-kt-transaction-filter="types"]'),
         chartSummary: document.querySelector('#chart_summary'),
@@ -404,6 +405,28 @@
                         setTimeout(() => {
                             window.location.reload()
                         }, 1200)
+                    },
+                    error: err => {
+                        block.blockTableTransaction.release()
+                        block.blockTableTransaction.destroy()
+                        console.error(err)
+                    }
+                })
+            })
+        })
+    }
+    if(elements.btnShowTransfer) {
+        elements.btnShowTransfer.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableTransfer.block()
+
+                $.ajax({
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transfers/'+btn.dataset.transfer,
+                    success: () => {
+                        block.blockTableTransfer.release()
+                        block.blockTableTransfer.destroy()
+
                     },
                     error: err => {
                         block.blockTableTransaction.release()

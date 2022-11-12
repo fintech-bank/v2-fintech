@@ -912,6 +912,50 @@
             </div>
         </div>
     </div>
+    <div id="kt_drawer_example_advanced" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true" data-kt-drawer-toggle="#kt_drawer_example_advanced_button" data-kt-drawer-close="#kt_drawer_example_advanced_close" data-kt-drawer-name="docs" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="start" style="width: 500px !important;">
+        <!--begin::Card-->
+        <div class="card rounded-0 w-100">
+            <!--begin::Card header-->
+            <div class="card-header pe-5">
+                <!--begin::Title-->
+                <div class="card-title">
+                    <!--begin::User-->
+                    <div class="d-flex justify-content-center flex-column me-3">
+                        <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 lh-1">Example Advanced</a>
+                    </div>
+                    <!--end::User-->
+                </div>
+                <!--end::Title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_example_advanced_close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-2">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+																<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+															</svg>
+														</span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body hover-scroll-overlay-y">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo vel fringilla est ullamcorper eget nulla. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam eget. Sed faucibus turpis in eu mi. Velit egestas dui id ornare arcu odio. Arcu non odio euismod lacinia at quis risus sed vulputate. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Vehicula ipsum a arcu cursus. Gravida neque convallis a cras semper. Amet massa vitae tortor condimentum. Lectus mauris ultrices eros in cursus turpis massa. Orci sagittis eu volutpat odio facilisis mauris sit amet. Hac habitasse platea dictumst quisque sagittis purus sit amet volutpat. Erat pellentesque adipiscing commodo elit at imperdiet dui. Vestibulum morbi blandit cursus risus at ultrices.</p>
+                <p>Quis ipsum suspendisse ultrices gravida dictum. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Vitae proin sagittis nisl rhoncus mattis rhoncus urna. Eget arcu dictum varius duis at consectetur lorem donec massa. Morbi tincidunt ornare massa eget. Ornare arcu dui vivamus arcu felis. Egestas purus viverra accumsan in nisl nisi scelerisque eu. Aliquet nec ullamcorper sit amet. Dignissim enim sit amet venenatis urna cursus eget. Accumsan sit amet nulla facilisi morbi tempus iaculis urna. Non consectetur a erat nam at. Ut morbi tincidunt augue interdum velit. Ridiculus mus mauris vitae ultricies leo integer malesuada.</p>
+                <p>Ipsum dolor sit amet consectetur adipiscing. Blandit cursus risus at ultrices mi tempus imperdiet. Risus nullam eget felis eget. A lacus vestibulum sed arcu non. Tristique magna sit amet purus gravida quis blandit turpis cursus. Imperdiet nulla malesuada pellentesque elit. Nec dui nunc mattis enim ut tellus elementum sagittis. Ac placerat vestibulum lectus mauris. Facilisi etiam dignissim diam quis enim. Suspendisse faucibus interdum posuere lorem ipsum dolor. Mattis rhoncus urna neque viverra justo nec ultrices. Luctus accumsan tortor posuere ac ut consequat semper viverra nam. At varius vel pharetra vel turpis nunc eget. Accumsan sit amet nulla facilisi morbi tempus iaculis urna. Ut morbi tincidunt augue interdum velit euismod in.</p>
+                <p>Etiam tempor orci eu lobortis elementum nibh. Libero volutpat sed cras ornare arcu. Risus sed vulputate odio ut enim. Iaculis nunc sed augue lacus viverra vitae. Enim neque volutpat ac tincidunt vitae. Iaculis at erat pellentesque adipiscing commodo elit at imperdiet dui. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Ullamcorper a lacus vestibulum sed arcu. In dictum non consectetur a erat. Varius quam quisque id diam vel quam elementum. Cursus eget nunc scelerisque viverra mauris in aliquam sem fringilla. Sed viverra tellus in hac habitasse platea dictumst. Amet cursus sit amet dictum sit amet. Elit duis tristique sollicitudin nibh sit amet commodo nulla facilisi. Non tellus orci ac auctor augue mauris.</p>
+                <p>Ut lectus arcu bibendum at varius vel. Arcu felis bibendum ut tristique et egestas quis. Sit amet commodo nulla facilisi nullam vehicula ipsum. Tellus cras adipiscing enim eu turpis egestas pretium. Imperdiet massa tincidunt nunc pulvinar sapien et. Integer eget aliquet nibh praesent tristique magna sit. Lacinia at quis risus sed vulputate odio ut. Amet mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. Aenean pharetra magna ac placerat vestibulum. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae. Viverra nam libero justo laoreet sit amet cursus sit amet. Diam vel quam elementum pulvinar. Massa vitae tortor condimentum lacinia quis vel eros donec ac.</p>
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>
 @endsection
 
 @section("script")
