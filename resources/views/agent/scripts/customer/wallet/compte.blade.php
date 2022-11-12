@@ -268,6 +268,7 @@
     }
     selectTypeBeneficiaire()
 
+
     let e, t, n, r, o, a = (e, n, a) => {
         r = e[0] ? new Date(e[0]) : null, o = e[1] ? new Date(e[1]) : null, $.fn.dataTable.ext.search.push((function (e, t, n) {
             let a = r,
