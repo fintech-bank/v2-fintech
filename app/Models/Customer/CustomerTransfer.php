@@ -57,7 +57,7 @@ class CustomerTransfer extends Model
     public $timestamps = false;
 
     protected $dates = ['transfer_date', 'recurring_start', 'recurring_end'];
-    protected $appends = ['amount_format', 'status_label', 'status_bullet'];
+    protected $appends = ['amount_format', 'status_label', 'status_bullet', 'type_text'];
 
     public function wallet()
     {
@@ -72,6 +72,15 @@ class CustomerTransfer extends Model
     public function getAmountFormatAttribute()
     {
         return eur($this->amount);
+    }
+
+    public function getTypeTextAttribute()
+    {
+        return match ($this->type) {
+            "immediat" => "Virement Ponctuel",
+            "differed" => "Virement Différé",
+            "permanent" => "Virement Permanent"
+        };
     }
 
     public function getStatus($format = 'color')
