@@ -55,7 +55,6 @@ class TransactionController extends Controller
                 return response()->json();
 
             case 'remb':
-                dd($transaction);
                 CustomerTransactionHelper::create(
                     'credit',
                     'autre',
