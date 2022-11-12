@@ -336,7 +336,7 @@
         <div class="tab-pane fade" id="infos" role="tabpanel">
             <div class="row">
                 <div class="col-md-8 col-sm-12 mb-5">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm mb-10">
                         <div class="card-header">
                             <h3 class="card-title">Information sur le compte {{ $wallet->number_account }}</h3>
                             <div class="card-toolbar">
