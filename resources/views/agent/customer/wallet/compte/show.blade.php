@@ -863,7 +863,7 @@
                                             Le virement classique SEPA est exécuté <strong>dans un délai d’un jour ouvré</strong>.
                                         </span>
                                     </span>
-                                    <span class="text-end">
+                                    <span class="text-end text-success">
                                         Gratuit
                                     </span>
                                 </label>
@@ -878,7 +878,7 @@
                                             Le virement instantané est exécuté <strong>dans un délai maximum de 20 secondes</strong>.
                                         </span>
                                     </span>
-                                    <span class="text-end">
+                                    <span class="text-end text-danger">
                                         0,80 €
                                     </span>
                                 </label>
