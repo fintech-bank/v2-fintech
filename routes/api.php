@@ -157,6 +157,10 @@ Route::prefix('customer')->group(function () {
         });
     });
 
+    Route::prefix('{customer_id}/beneficiaire')->group(function () {
+        Route::post('/', [\App\Http\Controllers\Api\Customer\BeneficiaireController::class, 'store']);
+    });
+
     Route::prefix('{customer_id}/subscribe')->group(function () {
         Route::post('overdraft', [\App\Http\Controllers\Api\Customer\SubscribeController::class, 'overdraft']);
     });

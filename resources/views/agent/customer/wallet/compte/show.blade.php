@@ -925,7 +925,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formAddBeneficiaire" action="{{ route('agent.customer.wallet.beneficiaire.store', [$wallet->customer_id, $wallet->id]) }}">
+                <form id="formAddBeneficiaire" action="/api/customer/{{ $wallet->customer->id }}/beneficiaire" method="POST">
                     <div class="modal-body">
                         <div class="mb-10">
                             <h3 class="mb-3">Type de bénéficiaire</h3>
