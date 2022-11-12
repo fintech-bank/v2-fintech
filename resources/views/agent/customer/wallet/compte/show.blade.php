@@ -227,8 +227,8 @@
                                     <td class="text-end">
                                         @if($transaction->type == 'virement' || $transaction->type == 'sepa')
                                             <div class="btn-group" role="group">
-                                                <button class="btn btn-xs btn-success btn-icon btnAcceptTransaction" data-transaction="{{ $transaction->id }}" data-bs-toggle="tooltip" title="Accepter"><i class="fa-solid fa-check"></i> </button>
-                                                <button class="btn btn-xs btn-danger btn-icon btnRejectTransaction" data-transaction="{{ $transaction->id }}" data-bs-toggle="tooltip" title="Refuser"><i class="fa-solid fa-xmark"></i> </button>
+                                                <button class="btn btn-xs btn-success btn-icon btnAcceptTransaction" data-transaction="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Accepter"><i class="fa-solid fa-check"></i> </button>
+                                                <button class="btn btn-xs btn-danger btn-icon btnRejectTransaction" data-transaction="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Refuser"><i class="fa-solid fa-xmark"></i> </button>
                                             </div>
                                         @endif
                                         @if($transaction->type == 'payment')
