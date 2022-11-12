@@ -203,8 +203,8 @@
         })
     }
     let selectedTypeVirement = (type) => {
-        if(type.value === 'differed')
-            document.querySelector('#immediat').classList.add('d-none'){
+        if(type.value === 'differed') {
+            document.querySelector('#immediat').classList.add('d-none')
             document.querySelector('#differed').classList.remove('d-none')
             document.querySelector('#permanent').classList.add('d-none')
         } else if(type.value === 'permanent') {
