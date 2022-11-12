@@ -260,7 +260,12 @@
             <div class="card shadow-sm mb-10">
                 <div class="card-body">
                     <div class="d-flex flex-row align-items-center">
-
+                        <div class="symbol symbol-50px symbol-circle">
+                            {!! $customer->user->avatar_symbol !!}
+                        </div>
+                        <div class="d-flex flex-column">
+                            <div class="fw-bolder">{{ $customer->info->full_name }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
