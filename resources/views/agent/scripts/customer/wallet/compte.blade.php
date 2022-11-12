@@ -2,6 +2,7 @@
     let tables = {
         tableComing: document.querySelector("#table_coming"),
         tableTransaction: document.querySelector("#kt_transaction_table"),
+        tableTransfer: document.querySelector("#liste_transfers")
     }
     let elements = {
         btnAcceptTransaction: document.querySelectorAll('.btnAcceptTransaction'),
@@ -29,6 +30,15 @@
             "dom": "<'table-responsive'tr>"
         }),
         datatableTransaction: $(tables.tableTransaction).DataTable({
+            "scrollY": "350px",
+            "scrollCollapse": true,
+            "paging": false,
+            "dom": "<'table-responsive'tr>",
+            info: !1,
+            order: [],
+            pageLength: 10,
+        }),
+        datatableTransfer: $(tables.tableTransfer).DataTable({
             "scrollY": "350px",
             "scrollCollapse": true,
             "paging": false,
