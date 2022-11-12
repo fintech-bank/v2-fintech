@@ -958,7 +958,7 @@
                     <i class="fa-solid fa-circle-dot fs-1 text-success me-3"></i> Votre ordre de virement à été traité
                 </div>
 
-                <div class="d-flex flex-column bg-gray-600 rounded-2">
+                <div class="d-flex flex-column bg-gray-300 rounded-2">
                     <div class="d-flex flex-row bg-white rounded-2 border">
                         <div class="bg-primary w-5px">&nbsp;</div>
                         <div class="d-flex flex-column p-5">
