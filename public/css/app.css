@@ -253,15 +253,15 @@
 .boxAmount:after {
     bottom: 102px;
     border-color: transparent transparent #f7f7f7 #f7f7f7;
-    box-shadow: -1px 1px 0px 0px rgb(0 0 0 / 10%);
-    z-index: 1;
+    box-shadow: -1px 3px 3px 0 rgb(0 0 0 / 15%);
+    z-index: 0;
     content: "";
     display: block;
     position: absolute;
     width: 0;
     height: 0;
     left: calc(50% - 1.0625rem);
-    border: 0.75rem solid #333;
+    border: 0.75rem solid #e4e6ef;
     transform-origin: 0 0;
     transform: rotate(-45deg);
 }
