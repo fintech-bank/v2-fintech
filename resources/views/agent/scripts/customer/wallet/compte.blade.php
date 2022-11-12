@@ -416,7 +416,6 @@
     }
     let inputAmount = modals.modalAddVirement.querySelector('[name="amount"]');
     inputAmount.addEventListener('blur', e => {
-        console.log(e.target)
         if(inputAmount.value >= 1000) {
             document.querySelector('#immediat').querySelector('[value="express"]').setAttribute('disabled', '')
         } else {
