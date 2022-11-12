@@ -334,17 +334,93 @@
             </div>
         </div>
         <div class="tab-pane fade" id="infos" role="tabpanel">
-            <div class="card shadow-sm">
-                <div class="card-header">
-                    <h3 class="card-title">Information sur le compte {{ $wallet->number_account }}</h3>
-                    <div class="card-toolbar">
-                        <!--<button type="button" class="btn btn-sm btn-light">
-                            Action
-                        </button>-->
+            <div class="row">
+                <div class="col-md-8 col-sm-12 mb-5">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Information sur le compte {{ $wallet->number_account }}</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart_summary" class="mb-10 h-350px"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div id="chart_summary" class="mb-10 h-350px"></div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="row">
+                        <div class="col-5">
+                            <h3 class="fw-bolder text-center mb-3">Paiements</h3>
+                            <div class="d-flex flex-row justify-content-between bg-gray-200 p-5 rounded">
+                                <div class="d-flex flex-column flex-center">
+                                    <i class="fa-solid fa-money-check-dollar fa-3x"></i>
+                                    <span class="fw-bolder fs-3">Chèques</span>
+                                    <span class="fw-bolder fs-2">0</span>
+                                    <span class="fs-6">0,00 €</span>
+                                    <div class="text-muted">en moyenne</div>
+                                </div>
+                                <div class="d-flex flex-column flex-center">
+                                    <i class="fa-solid fa-credit-card fa-3x"></i>
+                                    <span class="fw-bolder fs-3">Achat CB</span>
+                                    <span class="fw-bolder fs-2">{{ \App\Models\Customer\CustomerTransaction::where('customer_wallet_id', $wallet->id)->where('type', 'payment')->get()->count() }}</span>
+                                    <span class="fs-6">{{ eur(\App\Models\Customer\CustomerTransaction::where('customer_wallet_id', $wallet->id)->where('type', 'payment')->avg('amount')) }}</span>
+                                    <div class="text-muted">en moyenne</div>
+                                </div>
+                                <div class="d-flex flex-column flex-center">
+                                    <i class="fa-solid fa-money-bill-transfer fa-3x"></i>
+                                    <span class="fw-bolder fs-3">Prélèvements</span>
+                                    <span class="fw-bolder fs-2">{{ \App\Models\Customer\CustomerTransaction::where('customer_wallet_id', $wallet->id)->where('type', 'sepa')->get()->count() }}</span>
+                                    <span class="fs-6">{{ eur(\App\Models\Customer\CustomerTransaction::where('customer_wallet_id', $wallet->id)->where('type', 'sepa')->avg('amount')) }}</span>
+                                    <div class="text-muted">en moyenne</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <h3 class="fw-bolder text-center mb-3">Retraits</h3>
+                            <div class="d-flex flex-row justify-content-between bg-gray-200 p-5 rounded">
+                                <div class="d-flex flex-column flex-center">
+                                    <i class="fa-solid fa-building fa-3x"></i>
+                                    <span class="fw-bolder fs-3">Guichet</span>
+                                    <span class="fw-bolder fs-2">0</span>
+                                    <span class="fs-6">0,00 €</span>
+                                    <div class="text-muted">en moyenne</div>
+                                </div>
+                                <div class="d-flex flex-column flex-center">
+                                    <i class="fa-solid fa-money-bill fa-3x"></i>
+                                    <span class="fw-bolder fs-3">Retrait DAB</span>
+                                    <span class="fw-bolder fs-2">0</span>
+                                    <span class="fs-6">0,00 €</span>
+                                    <div class="text-muted">en moyenne</div>
+                                </div>
+                                <div class="d-flex flex-column flex-center">
+                                    <i class="fa-solid fa-money-bill fa-3x"></i>
+                                    <span class="fw-bolder fs-3">Retrait DABV</span>
+                                    <span class="fw-bolder fs-2">0</span>
+                                    <span class="fs-6">0,00 €</span>
+                                    <div class="text-muted">en moyenne</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex flex-column flex-center bg-light-success p-5 rounded text-center mb-3">
+                                    <span class="fw-bolder fs-2">0,00 €</span>
+                                    <div class="fs-6">Recette Moyenne</div>
+                                </div>
+                                <div class="d-flex flex-column flex-center bg-light-danger p-5 rounded text-center mb-3">
+                                    <span class="fw-bolder fs-2">0,00 €</span>
+                                    <div class="fs-6">Débit Moyen</div>
+                                </div>
+                                <div class="d-flex flex-column flex-center bg-light-info p-5 rounded text-center mb-3">
+                                    <span class="fw-bolder fs-2">{{ eur($wallet->balance_decouvert) }}</span>
+                                    <div class="fs-6">Découvert Autorisé</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
