@@ -707,7 +707,7 @@
                             <div class="d-flex flex-stack">
                                 <div class="w-100 mw-150px me-3">
                                     <!--begin::Select2-->
-                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Type de virement" data-kt-transfer-filter="type">
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Créancier" data-kt-sepa-filter="type">
                                         <option></option>
                                         <option value="all">Tous</option>
                                         <option value="immediat">Immédiat</option>
@@ -729,9 +729,6 @@
                                     </select>
                                     <!--end::Select2-->
                                 </div>
-                                <!--begin::Add product-->
-                                <a href="#add_virement" class="btn btn-primary" data-bs-toggle="modal">Nouveau virement</a>
-                                <!--end::Add product-->
                             </div>
                         </div>
                         <!--end::Toolbar-->
