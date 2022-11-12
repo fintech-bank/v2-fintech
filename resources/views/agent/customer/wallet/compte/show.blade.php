@@ -960,7 +960,7 @@
 
                 <div class="d-flex flex-column bg-gray-300 rounded-2 mb-5">
                     <div class="d-flex flex-row bg-white rounded-2 border">
-                        <div class="bg-primary w-5px">&nbsp;</div>
+                        <div class="bg-gradient-success w-5px">&nbsp;</div>
                         <div class="d-flex flex-column p-5">
                             <div class="fw-bolder">Compte</div>
                             <div class="">FR76 3000 3017 4200 0501 7057 192</div>
@@ -970,7 +970,7 @@
                         <div class="fw-bolder fs-2">900,00 €</div>
                     </div>
                     <div class="d-flex flex-row bg-white rounded-2 border">
-                        <div class="bg-primary w-5px">&nbsp;</div>
+                        <div class="bg-gradient-primary w-5px">&nbsp;</div>
                         <div class="d-flex flex-column p-5">
                             <div class="fw-bolder">Beneficiaire</div>
                             <div class="">FR76 3000 3017 4200 0501 7057 192</div>
