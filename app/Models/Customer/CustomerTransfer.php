@@ -91,6 +91,14 @@ class CustomerTransfer extends Model
                 "canceled" => "xmark-circle",
                 default => "ban"
             };
+        } elseif ($format == 'comment') {
+            return match($this->status) {
+                "paid" => "Votre ordre de virement à été traité",
+                "pending" => "Votre ordre de virement est en cours de validation",
+                "in_transit" => "Votre ordre de virement est cours d'exécution",
+                "canceled" => "Votre ordre de virement à été annulé",
+                default => "Votre ordre de virement à été refusé par notre service financier"
+            };
         } else {
             return match($this->status) {
                 "paid" => "success",
@@ -104,5 +112,10 @@ class CustomerTransfer extends Model
     public function getStatusLabelAttribute()
     {
         return "<span class='badge badge-".$this->getStatus()." badge-sm'><i class='fa-solid fa-".$this->getStatus('icon')." me-2 text-white'></i> ".$this->getStatus('text')."</span>";
+    }
+
+    public function getStatusBulletAttribute()
+    {
+        return "<span class='bullet bullet-dot bg-".$this->getStatus()." me-3'></span> ".$this->getStatus('comment');
     }
 }
