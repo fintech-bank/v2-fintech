@@ -436,12 +436,8 @@
                         elements.showTransfer.querySelector('[data-content="transfer_date"]').innerHTML = data.date_format
                         elements.showTransfer.querySelector('[data-content="transfer_reference"]').innerHTML = data.reference
                         elements.showTransfer.querySelector('.btnRenewTransfer').setAttribute('data-transfer', data.uuid)
-                        elements.showTransfer.querySelectorAll('.btnAcceptTransfer').forEach(btn => {
-                            btn.setAttribute('data-transfer', data.uuid)
-                        })
-                        elements.showTransfer.querySelectorAll('.btnDeclineTransfer').forEach(btn => {
-                            btn.setAttribute('data-transfer', data.uuid)
-                        })
+                        elements.showTransfer.querySelector('.btnAcceptTransfer').setAttribute('data-transfer', data.uuid)
+                        elements.showTransfer.querySelector('.btnDeclineTransfer').setAttribute('data-transfer', data.uuid)
                     },
                     error: err => {
                         block.blockTableTransfer.release()
