@@ -103,6 +103,6 @@ class CustomerTransfer extends Model
 
     public function getStatusLabelAttribute()
     {
-        return "<span class='badge badge-".$this->getStatus()." badge-sm'><i class='fa-solid fa-".$this->getStatus('icon')." me-2 text-wite'></i> ".$this->getStatus('text')."</span>";
+        return "<span class='badge badge-".$this->getStatus()." badge-sm'><i class='fa-solid fa-".$this->getStatus('icon')." me-2 text-white'></i> ".$this->getStatus('text')."</span>";
     }
 }
