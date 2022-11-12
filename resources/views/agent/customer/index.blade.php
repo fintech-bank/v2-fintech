@@ -259,14 +259,17 @@
         @foreach($customers as $customer)
             <a href="{{ route('agent.customer.show', $customer->id) }}" class="card shadow-sm mb-10 text-black">
                 <div class="card-body">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="symbol symbol-50px symbol-circle me-5">
-                            {!! $customer->user->avatar_symbol !!}
+                    <div class="d-flex flex-row justify-content-between align-items-center">
+                        <div class="d-flex flex-row">
+                            <div class="symbol symbol-50px symbol-circle me-5">
+                                {!! $customer->user->avatar_symbol !!}
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="fw-bolder">{{ $customer->info->full_name }}</div>
+                                <div class="w-auto">{!! $customer->info->type_label !!}</div>
+                            </div>
                         </div>
-                        <div class="d-flex flex-column">
-                            <div class="fw-bolder">{{ $customer->info->full_name }}</div>
-                            <div class="w-auto">{!! $customer->info->type_label !!}</div>
-                        </div>
+                        {!! $customer->status_label !!}
                     </div>
                 </div>
             </a>
