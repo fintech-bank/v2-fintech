@@ -994,6 +994,10 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="d-flex flex-center">
+                    <button class="btn btn-circle btn-lg btn-bank btnRenewTransfer">Renouveler</button>
+                </div>
             </div>
             <!--end::Card body-->
         </div>
