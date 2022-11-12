@@ -1,4 +1,5 @@
 <script type="text/javascript">
+    KTDrawer.createInstances()
     let tables = {
         tableComing: document.querySelector("#table_coming"),
         tableTransaction: document.querySelector("#kt_transaction_table"),
