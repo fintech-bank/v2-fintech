@@ -18,6 +18,7 @@
         transferType: document.querySelector('[data-kt-transfer-filter="type"]'),
         transferStatus: document.querySelector('[data-kt-transfer-filter="status"]'),
         beneficiaireType: document.querySelector('[data-kt-beneficiaire-filter="type"]'),
+        showTransfer: document.querySelector('#show_transfer')
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -63,7 +64,6 @@
         blockTableBeneficiaire: messageBlock(tables.tableBeneficiaire.querySelector("tbody")),
     }
     let plugins = {
-
         flatTransactionDate: $(elements.transactionDate).flatpickr({
             altInput: !0,
             altFormat: "d/m/Y",
@@ -73,7 +73,7 @@
                 a(e,t,n)
             }
         }),
-
+        drawerShowTransfer: KTDrawer.getInstance(elements.showTransfer)
     }
 
     let initChartSummary = () => {
@@ -426,11 +426,11 @@
                     success: () => {
                         block.blockTableTransfer.release()
                         block.blockTableTransfer.destroy()
-
+                        plugins.drawerShowTransfer.show()
                     },
                     error: err => {
-                        block.blockTableTransaction.release()
-                        block.blockTableTransaction.destroy()
+                        block.blockTableTransfer.release()
+                        block.blockTableTransfer.destroy()
                         console.error(err)
                     }
                 })
@@ -565,4 +565,6 @@
             initChartSummary()
         })
     }
+
+    KTDrawer.createInstances()
 </script>
