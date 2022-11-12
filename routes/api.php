@@ -152,6 +152,7 @@ Route::prefix('customer')->group(function () {
 
         Route::prefix('{number_account}/transfers')->group(function () {
             Route::post('/', [\App\Http\Controllers\Api\Customer\TransferController::class, 'store']);
+            Route::get('{transfer_uuid}', [\App\Http\Controllers\Api\Customer\TransferController::class, 'info']);
         });
     });
 

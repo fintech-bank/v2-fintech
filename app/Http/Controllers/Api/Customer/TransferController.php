@@ -6,6 +6,7 @@ use App\Helper\CustomerTransactionHelper;
 use App\Helper\CustomerTransferHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerBeneficiaire;
+use App\Models\Customer\CustomerTransfer;
 use App\Models\Customer\CustomerWallet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,6 +34,13 @@ class TransferController extends Controller
                 "permanent" => $this->permanentTransfer($wallet, $beneficiaire, $request, $date_perm),
             };
         }
+    }
+
+    public function info($customer_id, $wallet_number, $transfer_uuid)
+    {
+        $transfer = CustomerTransfer::where('uuid', $transfer_uuid)->first();
+
+        return response()->json($transfer);
     }
 
     private function immediatTransfer(CustomerWallet $wallet,CustomerBeneficiaire $beneficiaire, Request $request)
