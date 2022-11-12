@@ -424,7 +424,7 @@
 
                 $.ajax({
                     url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transfers/'+btn.dataset.transfer,
-                    success: () => {
+                    success: data => {
                         block.blockTableTransfer.release()
                         block.blockTableTransfer.destroy()
                         plugins.drawerShowTransfer.show()
