@@ -72,7 +72,8 @@ class TransferController extends Controller
                     'transfer_date' => now(),
                     'status' => 'paid',
                     'customer_wallet_id' => $wallet->id,
-                    'customer_beneficiaire_id' => $beneficiaire->id
+                    'customer_beneficiaire_id' => $beneficiaire->id,
+                    'access' => 'express'
                 ]);
 
                 CustomerTransactionHelper::create(

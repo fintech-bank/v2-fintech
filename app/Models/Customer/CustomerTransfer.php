@@ -43,6 +43,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerTransfer
  * @property-read mixed $amount_format
+ * @property string $access
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerTransfer whereAccess($value)
  */
 class CustomerTransfer extends Model
 {
