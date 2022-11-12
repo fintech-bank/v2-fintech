@@ -529,8 +529,7 @@
                                 @foreach($wallet->transfers()->orderBy('transfer_date', 'desc')->get() as $transfer)
                                     <tr>
                                         <td>
-                                            {{ $transfer->reason }}<br>
-                                            <i>{{ \App\Helper\CustomerTransferHelper::getNameBeneficiaire($transfer->beneficiaire) }}</i>
+                                            {{ \App\Helper\CustomerTransferHelper::getNameBeneficiaire($transfer->beneficiaire) }}
                                         </td>
                                         <td class="text-end">{{ eur($transfer->amount) }}</td>
                                         <td class="text-center" data-order="{{ $transfer->type }}">
@@ -853,6 +852,32 @@
                             </select>
                         </div>
 
+                        <div id="immediat">
+                            <div class="mb-5">
+                                <input type="radio" class="btn-check" name="access" value="classic" checked="checked"  id="kt_radio_buttons_2_option_1"/>
+                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_1">
+                                    <i class="fa-solid fa-arrows-left-right-to-line fs-1 me-4"></i>
+                                    <span class="d-block fw-semibold text-start">
+                                        <span class="text-dark fw-bold d-block fs-3">Virement Classique</span>
+                                        <span class="text-muted fw-semibold fs-6">
+                                            Le virement classique SEPA est exécuté <strong>dans un délai d’un jour ouvré</strong>.
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="mb-5">
+                                <input type="radio" class="btn-check" name="access" value="express" checked="checked"  id="kt_radio_buttons_2_option_1"/>
+                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_1">
+                                    <i class="fa-solid fa-bolt-lightning fs-1 me-4"></i>
+                                    <span class="d-block fw-semibold text-start">
+                                        <span class="text-dark fw-bold d-block fs-3">Virement Instantané</span>
+                                        <span class="text-muted fw-semibold fs-6">
+                                            Le virement instantané est exécuté <strong>dans un délai maximum de 20 secondes</strong>.
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
                         <div id="differed" class="d-none">
                             <x-form.input-date
                                 name="transfer_date"

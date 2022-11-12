@@ -69,4 +69,6 @@ class CustomerTransfer extends Model
     {
         return eur($this->amount);
     }
+
+
 }
