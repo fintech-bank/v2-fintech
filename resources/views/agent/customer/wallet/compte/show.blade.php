@@ -538,7 +538,7 @@
                                         <td class="text-center" data-order="{{ $transfer->status }}">
                                             {!! $transfer->status_label !!}
                                         </td>
-                                        <td>
+                                        <td class="text-end">
                                             <button class="btn btn-sm btn-bank btn-circle btn-icon me-5 btnShowTransfer" data-bs-toggle="tooltip" title="Voir le virement" data-transfer="{{ $transfer->uuid }}"><i class="fa-solid fa-eye text-white"></i> </button>
                                             @if($transfer->status == 'pending')
                                                 <x-base.button
