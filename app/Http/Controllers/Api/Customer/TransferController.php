@@ -95,10 +95,10 @@ class TransferController extends Controller
             $transfer->reason,
             $transfer->amount,
             $wallet->id,
-            false,
+            !($transfer->access == 'classic'),
             'Virement emis pour: '.CustomerTransferHelper::getNameBeneficiaire($beneficiaire)." chez: ".$transfer->beneficiaire->bic,
-            null,
-            now()
+            $transfer->access == 'express' ? now() : null,
+            $transfer->access == 'express' ? null : now()
         );
 
         $transfer->update([
