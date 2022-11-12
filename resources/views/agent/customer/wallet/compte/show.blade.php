@@ -966,7 +966,7 @@
                             <div class="">FR76 3000 3017 4200 0501 7057 192</div>
                         </div>
                     </div>
-                    <div class="d-flex flex-center p-10">
+                    <div class="d-flex flex-center p-10 boxAmount">
                         <div class="fw-bolder fs-2">900,00 €</div>
                     </div>
                     <div class="d-flex flex-row bg-white rounded-2 border">
