@@ -430,6 +430,7 @@
                         plugins.drawerShowTransfer.show()
 
                         elements.showTransfer.querySelector('[data-content="transfer_status"]').innerHTML = data.status_bullet
+                        elements.showTransfer.querySelector('[data-content="emet_transfer"]').innerHTML = data.status_bullet
                     },
                     error: err => {
                         block.blockTableTransfer.release()
