@@ -228,7 +228,7 @@
             input.addEventListener('click', e => {
                 console.log(e.target.value)
 
-                if(e.target.value == 'retail') {
+                if(e.target.value === 'retail') {
                     elements.corporateField.classList.add('d-none')
                     elements.retailField.classList.remove('d-none')
                 } else {
