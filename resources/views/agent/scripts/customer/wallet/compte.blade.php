@@ -11,6 +11,7 @@
         transactionDate: document.querySelector('#kt_transaction_flatpickr'),
         transactionType: document.querySelector('[data-kt-transaction-filter="types"]'),
         chartSummary: document.querySelector('#chart_summary'),
+        tabInfo: document.querySelector('[href="#infos"]'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -445,5 +446,9 @@
         "all" === n && (n = ""), dataTable.datatableTransaction.column(1).search(n).draw()
     })
 
-    initChartSummary()
+    if(elements.tabInfo) {
+        elements.tabInfo.addEventListener('shown.bs.tab', e => {
+            initChartSummary()
+        })
+    }
 </script>
