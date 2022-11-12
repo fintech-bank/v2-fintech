@@ -14,6 +14,8 @@
         transactionType: document.querySelector('[data-kt-transaction-filter="types"]'),
         chartSummary: document.querySelector('#chart_summary'),
         tabInfo: document.querySelector('[href="#infos"]'),
+        transferType: document.querySelector('[data-kt-transfer-filter="type"]'),
+        transferStatus: document.querySelector('[data-kt-transfer-filter="status"]'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -464,6 +466,16 @@
         let n = e.target.value;
         console.log(n)
         "all" === n && (n = ""), dataTable.datatableTransaction.column(1).search(n).draw()
+    })
+    $(elements.transferType).on('change', e => {
+        let n = e.target.value;
+        console.log(n)
+        "all" === n && (n = ""), dataTable.datatableTransfer.column(2).search(n).draw()
+    })
+    $(elements.transferStatus).on('change', e => {
+        let n = e.target.value;
+        console.log(n)
+        "all" === n && (n = ""), dataTable.datatableTransfer.column(3).search(n).draw()
     })
 
     if(elements.tabInfo) {
