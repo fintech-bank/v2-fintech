@@ -704,97 +704,35 @@
                         </div>
                         <!--begin::Toolbar-->
                         <div class="d-flex justify-content-end" data-kt-sepas-table-toolbar="base">
-                            <!--begin::Filter-->
-                            <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
-                                <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black" />
-                                                </svg>
-                                            </span>
-                                Filtrer
-                            </button>
-                            <!--begin::Menu 1-->
-                            <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true" id="kt-toolbar-filter">
-                                <!--begin::Header-->
-                                <div class="px-7 py-5">
-                                    <div class="fs-4 text-dark fw-bolder">Options de filtre</div>
+                            <div class="d-flex flex-stack">
+                                <div class="w-100 mw-150px me-3">
+                                    <!--begin::Select2-->
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Type de virement" data-kt-transfer-filter="type">
+                                        <option></option>
+                                        <option value="all">Tous</option>
+                                        <option value="immediat">Immédiat</option>
+                                        <option value="differed">Différé</option>
+                                        <option value="permanant">Permanent</option>
+                                    </select>
+                                    <!--end::Select2-->
                                 </div>
-                                <!--end::Header-->
-                                <!--begin::Separator-->
-                                <div class="separator border-gray-200"></div>
-                                <!--end::Separator-->
-                                <!--begin::Content-->
-                                <div class="px-7 py-5">
-                                    <!--begin::Input group-->
-                                    <div class="mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label fs-5 fw-bold mb-3">Créancier:</label>
-                                        <!--end::Label-->
-                                        <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Créancier" data-kt-sepas-filter="creditor">
-                                            <option></option>
-                                            <option value="all">Tous</option>
-                                            @foreach($wallet->creditors as $creditor)
-                                                <option value="{{ $creditor->name }}">{{ $creditor->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label fs-5 fw-bold mb-3">Status:</label>
-                                        <!--end::Label-->
-                                        <!--begin::Options-->
-                                        <div class="d-flex flex-column flex-wrap fw-bold" data-kt-sepas-table-filter="status">
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="status" value="all" checked="checked" />
-                                                <span class="form-check-label text-gray-600">Tous</span>
-                                            </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="status" value="waiting" />
-                                                <span class="form-check-label text-gray-600">En Attente</span>
-                                            </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" name="status" value="processed" />
-                                                <span class="form-check-label text-gray-600">Traité</span>
-                                            </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" name="status" value="rejected" />
-                                                <span class="form-check-label text-gray-600">Rejeté</span>
-                                            </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" name="status" value="return" />
-                                                <span class="form-check-label text-gray-600">Retourné</span>
-                                            </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" name="status" value="refunded" />
-                                                <span class="form-check-label text-gray-600">Remboursé</span>
-                                            </label>
-                                            <!--end::Option-->
-                                        </div>
-                                        <!--end::Options-->
-                                    </div>
-                                    <!--begin::Actions-->
-                                    <div class="d-flex justify-content-end">
-                                        <button type="reset" class="btn btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true" data-kt-customer-table-filter="reset">Réinitialiser</button>
-                                        <button type="submit" class="btn btn-primary" data-kt-menu-dismiss="true" data-kt-sepas-table-filter="filter">Appliquer</button>
-                                    </div>
-                                    <!--end::Actions-->
+                                <div class="w-100 mw-150px me-3">
+                                    <!--begin::Select2-->
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status du virement" data-kt-transfer-filter="status">
+                                        <option></option>
+                                        <option value="all">Tous</option>
+                                        <option value="paid">Payer</option>
+                                        <option value="pending">En attente</option>
+                                        <option value="in_transit">En cours d'execution</option>
+                                        <option value="canceled">Annulé</option>
+                                        <option value="failed">Rejeté</option>
+                                    </select>
+                                    <!--end::Select2-->
                                 </div>
-                                <!--end::Content-->
+                                <!--begin::Add product-->
+                                <a href="#add_virement" class="btn btn-primary" data-bs-toggle="modal">Nouveau virement</a>
+                                <!--end::Add product-->
                             </div>
-                            <!--end::Menu 1-->
-                            <!--end::Filter-->
                         </div>
                         <!--end::Toolbar-->
                     </div>
