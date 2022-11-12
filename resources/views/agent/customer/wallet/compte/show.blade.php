@@ -411,11 +411,11 @@
                         <div class="card-body">
                             <div class="d-flex flex-column">
                                 <div class="d-flex flex-column flex-center bg-light-success p-5 rounded text-center mb-3">
-                                    <span class="fw-bolder fs-2">0,00 €</span>
+                                    <span class="fw-bolder fs-2">{{ eur($wallet->transactions()->where('amount', '>=', 0)->where('confirmed', true)->sum('amount')) }}</span>
                                     <div class="fs-6">Recette Moyenne</div>
                                 </div>
                                 <div class="d-flex flex-column flex-center bg-light-danger p-5 rounded text-center mb-3">
-                                    <span class="fw-bolder fs-2">0,00 €</span>
+                                    <span class="fw-bolder fs-2">{{ eur($wallet->transactions()->where('amount', '<=', 0)->where('confirmed', true)->sum('amount')) }}</span>
                                     <div class="fs-6">Débit Moyen</div>
                                 </div>
                                 <div class="d-flex flex-column flex-center bg-light-info p-5 rounded text-center mb-3">
