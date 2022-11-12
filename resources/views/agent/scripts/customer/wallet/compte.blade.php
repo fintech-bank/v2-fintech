@@ -204,6 +204,12 @@
     }
     let selectedTypeVirement = (type) => {
         if(type.value === 'differed') {
+            let inputAmount = modals.modalAddVirement.querySelector('[name="amount"]');
+            if(inputAmount.value >= 1000) {
+                document.querySelector('#immediat').querySelector('[value="express"]').setAttribute('disabled', '')
+            } else {
+                document.querySelector('#immediat').querySelector('[value="express"]').removeAttribute('disabled')
+            }
             document.querySelector('#immediat').classList.add('d-none')
             document.querySelector('#differed').classList.remove('d-none')
             document.querySelector('#permanent').classList.add('d-none')
