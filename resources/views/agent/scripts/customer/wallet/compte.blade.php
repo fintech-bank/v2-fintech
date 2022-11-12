@@ -436,8 +436,15 @@
                         elements.showTransfer.querySelector('[data-content="transfer_date"]').innerHTML = data.date_format
                         elements.showTransfer.querySelector('[data-content="transfer_reference"]').innerHTML = data.reference
                         elements.showTransfer.querySelector('.btnRenewTransfer').setAttribute('data-transfer', data.uuid)
-                        elements.showTransfer.querySelector('.btnAcceptTransfer').setAttribute('data-transfer', data.uuid)
-                        elements.showTransfer.querySelector('.btnDeclineTransfer').setAttribute('data-transfer', data.uuid)
+                        if(data.status === 'pending') {
+                            elements.showTransfer.querySelector('.btnAcceptTransfer').setAttribute('data-transfer', data.uuid)
+                            elements.showTransfer.querySelector('.btnDeclineTransfer').setAttribute('data-transfer', data.uuid)
+                            elements.showTransfer.querySelector('.btnAcceptTransfer').classList.remove('d-none')
+                            elements.showTransfer.querySelector('.btnDeclineTransfer').classList.remove('d-none')
+                        } else {
+                            elements.showTransfer.querySelector('.btnAcceptTransfer').classList.add('d-none')
+                            elements.showTransfer.querySelector('.btnDeclineTransfer').classList.add('d-none')
+                        }
                     },
                     error: err => {
                         block.blockTableTransfer.release()
