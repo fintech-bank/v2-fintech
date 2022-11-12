@@ -7,6 +7,7 @@ use App\Helper\CustomerTransferHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerBeneficiaire;
 use App\Models\Customer\CustomerWallet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TransferController extends Controller
@@ -90,7 +91,7 @@ class TransferController extends Controller
                 'reference' => $request->get('reference') != null ? $request->get('reference') : generateReference(),
                 'reason' => $request->get('reason') != null ? $request->get('reason') : "Virement vers le compte ".CustomerTransferHelper::getNameBeneficiaire($beneficiaire),
                 'type' => 'differed',
-                'transfer_date' => $request->get('transfer_date'),
+                'transfer_date' => Carbon::parse($request->get('transfer_date')),
                 'status' => 'pending',
                 'customer_wallet_id' => $wallet->id,
                 'customer_beneficiaire_id' => $beneficiaire->id
@@ -102,7 +103,7 @@ class TransferController extends Controller
                 'reference' => $request->get('reference') != null ? $request->get('reference') : generateReference(),
                 'reason' => $request->get('reason') != null ? $request->get('reason') : "Virement vers le compte ".CustomerTransferHelper::getNameBeneficiaire($beneficiaire),
                 'type' => 'differed',
-                'transfer_date' => $request->get('transfer_date'),
+                'transfer_date' => Carbon::parse($request->get('transfer_date')),
                 'status' => 'in_transit',
                 'customer_wallet_id' => $wallet->id,
                 'customer_beneficiaire_id' => $beneficiaire->id
@@ -136,8 +137,8 @@ class TransferController extends Controller
             'reference' => $request->get('reference') != null ? $request->get('reference') : generateReference(),
             'reason' => $request->get('reason') != null ? $request->get('reason') : "Virement vers le compte ".CustomerTransferHelper::getNameBeneficiaire($beneficiaire),
             'type' => 'permanent',
-            'recurring_start' => $date[0],
-            'recurring_end' => $date[1],
+            'recurring_start' => Carbon::parse($date[0]),
+            'recurring_end' => Carbon::parse($date[1]),
             'status' => 'pending',
             'customer_wallet_id' => $wallet->id,
             'customer_beneficiaire_id' => $beneficiaire->id
