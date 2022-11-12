@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Helper\CustomerHelper;
 use App\Helper\UserHelper;
 use App\Models\Core\DocumentCategory;
+use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCreditCard;
 use App\Models\Customer\CustomerInfo;
@@ -54,6 +55,12 @@ class UserSeeder extends Seeder
             'agent' => false,
             'customer' => true,
             'identifiant' => UserHelper::generateID(),
+        ]);
+
+        $user->subscriptions()->create([
+            'subscribe_type' => Package::class,
+            'subscribe_id' => 3,
+            'user_id' => $user->id
         ]);
 
         $customer = Customer::factory()->create([
