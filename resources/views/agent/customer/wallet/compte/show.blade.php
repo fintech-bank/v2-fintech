@@ -351,7 +351,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm mb-10">
                         <div class="card-body">
                             <h3 class="fw-bolder text-center mb-3">Paiements</h3>
                             <div class="d-flex flex-row justify-content-between bg-gray-200 p-5 rounded">
@@ -379,7 +379,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm mb-10">
                         <div class="card-body">
                             <h3 class="fw-bolder text-center mb-3">Retraits</h3>
                             <div class="d-flex flex-row justify-content-between bg-gray-200 p-5 rounded">
