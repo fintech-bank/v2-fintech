@@ -445,4 +445,5 @@
         "all" === n && (n = ""), dataTable.datatableTransaction.column(1).search(n).draw()
     })
 
+    initChartSummary()
 </script>
