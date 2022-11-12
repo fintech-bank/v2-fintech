@@ -256,7 +256,15 @@
             <!--end::Card body-->
         </div>
     @else
+        @foreach($customers as $customer)
+            <div class="card shadow-sm mb-10">
+                <div class="card-body">
+                    <div class="d-flex flex-row align-items-center">
 
+                    </div>
+                </div>
+            </div>
+        @endforeach
     @endif
 @endsection
 
