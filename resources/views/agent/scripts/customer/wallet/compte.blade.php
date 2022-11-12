@@ -258,7 +258,7 @@
     }
     let checkBankInfo = (item) => {
         $.ajax({
-            url: '/api/bank/'+item.value,
+            url: '/api/connect/bank/'+item.value,
             success: data => {
                 document.querySelector('[name="bic"]').value = data.bic
                 document.querySelector('[name="bankname"]').value = data.name

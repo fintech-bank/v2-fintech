@@ -15,4 +15,9 @@ class ConnectController extends Controller
 
         return response()->json($result);
     }
+
+    public function infoBank(Request $request)
+    {
+        dd($request->all());
+    }
 }
