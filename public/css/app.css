@@ -251,7 +251,7 @@
 }
 
 .boxAmount:after {
-    bottom: 102px;
+    top: 122px;
     border-color: transparent transparent #f7f7f7 #f7f7f7;
     box-shadow: -1px 3px 3px 0 rgb(0 0 0 / 15%);
     z-index: 0;
