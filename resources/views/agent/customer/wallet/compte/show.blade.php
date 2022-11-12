@@ -351,8 +351,8 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <div class="row">
-                        <div class="col-5">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
                             <h3 class="fw-bolder text-center mb-3">Paiements</h3>
                             <div class="d-flex flex-row justify-content-between bg-gray-200 p-5 rounded">
                                 <div class="d-flex flex-column flex-center">
@@ -378,7 +378,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-5">
+                    </div>
+                    <div class="card shadow-sm">
+                        <div class="card-body">
                             <h3 class="fw-bolder text-center mb-3">Retraits</h3>
                             <div class="d-flex flex-row justify-content-between bg-gray-200 p-5 rounded">
                                 <div class="d-flex flex-column flex-center">
@@ -404,7 +406,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2">
+                    </div>
+                    <div class="card shadow-sm">
+                        <div class="card-body">
                             <div class="d-flex flex-column">
                                 <div class="d-flex flex-column flex-center bg-light-success p-5 rounded text-center mb-3">
                                     <span class="fw-bolder fs-2">0,00 €</span>
