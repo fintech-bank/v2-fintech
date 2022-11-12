@@ -545,13 +545,13 @@
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <button class="btn btn-xs btn-bank btn-icon btnShowTransfer" data-bs-toggle="tooltip" title="Voir le virement" data-transfer="{{ $transfer->uuid }}"><i class="fa-solid fa-eye text-white"></i> </button>
                                                     <x-base.button
-                                                        class="btn-xs btn-success btn-icon btnAccept"
+                                                        class="btn-xs btn-success btn-icon btnAcceptTransfer"
                                                         :datas="[['name' => 'transfer', 'value' => $transfer->uuid]]"
                                                         text='<i class="fa-solid fa-check"></i>'
                                                         tooltip="Accepter le virement" />
 
                                                     <x-base.button
-                                                        class="btn-xs btn-danger btn-icon btnReject"
+                                                        class="btn-xs btn-danger btn-icon btnDeclineTransfer"
                                                         :datas="[['name' => 'transfer', 'value' => $transfer->uuid]]"
                                                         text='<i class="fa-solid fa-times"></i>'
                                                         tooltip="Refuser le virement" />
@@ -996,7 +996,8 @@
                 </table>
 
                 <div class="d-flex flex-center">
-
+                    <button class="btn btn-circle btn-lg btn-success btnAcceptTransfer" data-transfer="">Accepter le virement</button>
+                    <button class="btn btn-circle btn-lg btn-danger btnDeclineTransfer" data-transfer="">Refuser le virement</button>
                 </div>
             </div>
             <!--end::Card body-->
