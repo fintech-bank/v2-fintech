@@ -978,7 +978,7 @@
                     </div>
                 </div>
 
-                <table class="table gy-5">
+                <table class="table table-row-bordered table-row-gray-600 gy-5">
                     <tbody>
                         <tr>
                             <td class="fw-bolder">Type de virement</td>
