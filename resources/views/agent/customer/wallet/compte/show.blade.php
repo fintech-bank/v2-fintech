@@ -912,6 +912,119 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="add_beneficiaire">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Nouveau bénéficiaire</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formAddBeneficiaire" action="{{ route('agent.customer.wallet.beneficiaire.store', [$wallet->customer_id, $wallet->id]) }}">
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <h3 class="mb-3">Type de bénéficiaire</h3>
+                            <div class="d-flex flex-row">
+                                <x-form.radio
+                                    name="type"
+                                    value="retail"
+                                    for="type"
+                                    label="Particulier" />
+
+                                <x-form.radio
+                                    name="type"
+                                    value="corporate"
+                                    for="type"
+                                    label="Entreprise" />
+                            </div>
+                        </div>
+                        <div id="corporateField">
+                            <x-form.input
+                                name="company"
+                                type="text"
+                                label="Entreprise" />
+                        </div>
+                        <div id="retailField">
+                            <div class="mb-10">
+                                <h3 class="mb-3">Civilité</h3>
+                                <div class="d-flex flex-row">
+                                    <x-form.radio
+                                        name="civility"
+                                        value="M"
+                                        for="type"
+                                        label="Monsieur"
+                                        checked="false" />
+
+                                    <x-form.radio
+                                        name="civility"
+                                        value="MME"
+                                        for="type"
+                                        label="Madame"
+                                        checked="false" />
+
+                                    <x-form.radio
+                                        name="civility"
+                                        value="MME"
+                                        for="type"
+                                        label="Mademoiselle"
+                                        checked="false" />
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row">
+                                <x-form.input
+                                    name="firstname"
+                                    type="text"
+                                    label="Nom"
+                                    class="me-3" />
+
+                                <x-form.input
+                                    name="lastname"
+                                    type="text"
+                                    label="Prénom" />
+                            </div>
+                        </div>
+                        <div class="separator my-10"></div>
+                        <h3 class="fw-bolder text-bank">Information bancaire</h3>
+                        <div class="mb-10">
+                            <label for="bank_id" class="form-label">Banque</label>
+                            <select name="bank_id" class="form-select form-select-solid" data-dropdown-parent="#add_beneficiaire" data-placeholder="Selectionner une banque" id="bank_id" onchange="checkBankInfo(this)">
+                                <option value=""></option>
+                                @foreach(\App\Models\Core\Bank::all() as $bank)
+                                    <option value="{{ $bank->id }}" data-bank-logo="{{ $bank->logo }}">{{ $bank->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <input type="hidden" name="bankname">
+                        <x-form.input
+                            name="bic"
+                            type="text"
+                            label="BIC/SWIFT" />
+
+                        <x-form.input
+                            name="iban"
+                            type="text"
+                            label="IBAN" />
+
+                        <x-form.checkbox
+                            name="titulaire"
+                            label="Ce compte appartient au client"
+                            value="true" />
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div id="show_transfer" class="bg-white"
          data-kt-drawer="true"
          data-kt-drawer-activate="true"
