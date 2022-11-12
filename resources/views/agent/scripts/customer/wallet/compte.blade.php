@@ -201,15 +201,15 @@
         })
     }
     let selectedTypeVirement = (type) => {
-        if(type.value == 'differed') {
+        if(type.value === 'differed') {
             document.querySelector('#differed').classList.remove('d-none')
             document.querySelector('#permanent').classList.add('d-none')
-        } else if(type.value == 'permanent') {
+        } else if(type.value === 'permanent') {
             document.querySelector('#differed').classList.add('d-none')
             document.querySelector('#permanent').classList.remove('d-none')
         } else {
-            document.querySelector('#differed').classList.remove('d-none')
-            document.querySelector('#permanent').classList.remove('d-none')
+            document.querySelector('#differed').classList.add('d-none')
+            document.querySelector('#permanent').classList.add('d-none')
         }
     }
 
