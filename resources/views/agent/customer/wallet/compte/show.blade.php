@@ -657,7 +657,7 @@
 
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('agent.customer.wallet.beneficiaire.delete', [$wallet->customer_id, $wallet->id, $beneficiaire->id]) }}" class="menu-link px-3 btnDeleteBeneficiaire" data-beneficiaire="{{ $beneficiaire->id }}">
+                                                    <a href="" class="menu-link px-3 btnDeleteBeneficiaire" data-beneficiaire="{{ $beneficiaire->id }}">
                                                         Supprimer le bénéficiaire
                                                     </a>
                                                 </div>
