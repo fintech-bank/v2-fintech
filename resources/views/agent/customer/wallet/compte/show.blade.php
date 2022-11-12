@@ -817,7 +817,7 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-10">
-                            <label for="customer_beneficiaire_id" class="form-label">Bénéficiaire</label>
+                            <label for="customer_beneficiaire_id" class="form-label required">Bénéficiaire</label>
                             <select class="form-select form-select-solid" id="customer_beneficiaire_id" name="customer_beneficiaire_id" data-control="select2" data-dropdown-parent="#add_virement" data-placeholder="Bénéficiaire" data-allow-clear="true">
                                 <option></option>
                                 @foreach($wallet->customer->beneficiaires as $beneficiaire)
