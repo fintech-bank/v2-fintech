@@ -57,7 +57,7 @@ class CustomerTransfer extends Model
     public $timestamps = false;
 
     protected $dates = ['transfer_date', 'recurring_start', 'recurring_end'];
-    protected $appends = ['amount_format', 'status_label', 'status_bullet', 'type_text'];
+    protected $appends = ['amount_format', 'status_label', 'status_bullet', 'type_text', 'date_format'];
 
     public function wallet()
     {
@@ -127,5 +127,13 @@ class CustomerTransfer extends Model
     public function getStatusBulletAttribute()
     {
         return '<i class="fa-solid fa-circle-dot fs-1 text-'.$this->getStatus().' me-3"></i> '.$this->getStatus('comment');
+    }
+
+    public function getDateFormatAttribute()
+    {
+        return match ($this->type) {
+            "immediat", "differed" => $this->transfer_date->format("d/m/Y"),
+            "permanent" => $this->recurring_start->format('d/m/Y')
+        };
     }
 }

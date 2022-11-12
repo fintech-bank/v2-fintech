@@ -433,6 +433,8 @@
                         elements.showTransfer.querySelector('[data-content="emet_transfer"]').innerHTML = data.wallet.iban_format
                         elements.showTransfer.querySelector('[data-content="receip_transfer"]').innerHTML = data.beneficiaire.iban_format
                         elements.showTransfer.querySelector('[data-content="transfer_type"]').innerHTML = data.type_text
+                        elements.showTransfer.querySelector('[data-content="transfer_date"]').innerHTML = data.date_format
+                        elements.showTransfer.querySelector('[data-content="transfer_reference"]').innerHTML = data.reference
                     },
                     error: err => {
                         block.blockTableTransfer.release()
