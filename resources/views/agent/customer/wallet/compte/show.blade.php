@@ -333,6 +333,21 @@
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="infos" role="tabpanel">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">Information sur le compte {{ $wallet->number_account }}</h3>
+                    <div class="card-toolbar">
+                        <!--<button type="button" class="btn btn-sm btn-light">
+                            Action
+                        </button>-->
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="chart_summary" class="mb-10 h-350px"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal fade" tabindex="-1" id="showRib">
         <div class="modal-dialog ">

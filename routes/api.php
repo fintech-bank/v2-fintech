@@ -141,6 +141,7 @@ Route::prefix('customer')->group(function () {
 
     Route::prefix('{customer_id}/wallet')->group(function () {
         Route::get('{number_account}', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'info']);
+        Route::get('{number_account}/chartSummary', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'chartSummary']);
         Route::post('{number_account}/request/overdraft', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'requestOverdraft']);
         Route::put('{number_account}', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'update']);
         Route::post('/', [\App\Http\Controllers\Agent\Customer\CustomerWalletController::class, 'store']);
