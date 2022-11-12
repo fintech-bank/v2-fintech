@@ -205,7 +205,7 @@
     let selectedTypeVirement = (type) => {
         if(type.value === 'differed') {
             let inputAmount = modals.modalAddVirement.querySelector('[name="amount"]');
-            inputAmount.addEventListener('keyup', e => {
+            inputAmount.addEventListener('blur', e => {
                 if(inputAmount.value >= 1000) {
                     document.querySelector('#immediat').querySelector('[value="express"]').setAttribute('disabled', '')
                 } else {
