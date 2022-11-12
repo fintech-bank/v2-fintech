@@ -813,7 +813,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formAddVirement" action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transfer" method="post">
+                <form id="formAddVirement" action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transfers" method="post">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-10">
