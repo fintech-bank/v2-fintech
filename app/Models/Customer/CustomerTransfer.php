@@ -46,6 +46,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $access
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerTransfer whereAccess($value)
  * @property-read mixed $status_label
+ * @property-read mixed $status_bullet
  */
 class CustomerTransfer extends Model
 {
