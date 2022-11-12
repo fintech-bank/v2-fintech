@@ -56,7 +56,7 @@ class CustomerTransfer extends Model
     public $timestamps = false;
 
     protected $dates = ['transfer_date', 'recurring_start', 'recurring_end'];
-    protected $appends = ['amount_format', 'status_label'];
+    protected $appends = ['amount_format', 'status_label', 'status_bullet'];
 
     public function wallet()
     {
@@ -116,6 +116,6 @@ class CustomerTransfer extends Model
 
     public function getStatusBulletAttribute()
     {
-        return "<span class='bullet bullet-dot bg-".$this->getStatus()." me-3'></span> ".$this->getStatus('comment');
+        return '<i class="fa-solid fa-circle-dot fs-1 text-'.$this->getStatus().' me-3"></i> '.$this->getStatus('comment');
     }
 }

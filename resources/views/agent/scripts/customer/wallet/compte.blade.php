@@ -428,6 +428,8 @@
                         block.blockTableTransfer.release()
                         block.blockTableTransfer.destroy()
                         plugins.drawerShowTransfer.show()
+
+                        elements.showTransfer.querySelector('[data-content="transfer_status"]').innerHTML = data.status_bullet
                     },
                     error: err => {
                         block.blockTableTransfer.release()

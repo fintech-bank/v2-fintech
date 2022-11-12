@@ -954,7 +954,7 @@
             <!--end::Card header-->
             <!--begin::Card body-->
             <div class="card-body hover-scroll-overlay-y">
-                <div class="d-flex flex-center fs-2 mb-5">
+                <div class="d-flex flex-center fs-2 mb-5" data-content="transfer_status">
                     <i class="fa-solid fa-circle-dot fs-1 text-success me-3"></i> Votre ordre de virement à été traité
                 </div>
 
@@ -963,17 +963,17 @@
                         <div class="bg-success w-5px">&nbsp;</div>
                         <div class="d-flex flex-column p-5">
                             <div class="fw-bolder">Compte</div>
-                            <div class="">FR76 3000 3017 4200 0501 7057 192</div>
+                            <div class="" data-content="emet_transfer">FR76 3000 3017 4200 0501 7057 192</div>
                         </div>
                     </div>
                     <div class="d-flex flex-center p-10 boxAmount">
-                        <div class="fw-bolder fs-2">900,00 €</div>
+                        <div class="fw-bolder fs-2" data-content="amount">900,00 €</div>
                     </div>
                     <div class="d-flex flex-row bg-white rounded-2 border">
                         <div class="bg-primary w-5px">&nbsp;</div>
                         <div class="d-flex flex-column p-5">
                             <div class="fw-bolder">Beneficiaire</div>
-                            <div class="">FR76 3000 3017 4200 0501 7057 192</div>
+                            <div class="" data-content="receip_transfer">FR76 3000 3017 4200 0501 7057 192</div>
                         </div>
                     </div>
                 </div>
@@ -982,15 +982,15 @@
                     <tbody>
                         <tr>
                             <td class="fw-bolder">Type de virement</td>
-                            <td class="text-end">Virement Immédiat</td>
+                            <td class="text-end" data-content="transfer_type">Virement Immédiat</td>
                         </tr>
                         <tr>
                             <td class="fw-bolder">Date de débit</td>
-                            <td class="text-end">12/11/2022</td>
+                            <td class="text-end" data-content="transfer_date">12/11/2022</td>
                         </tr>
                         <tr>
                             <td class="fw-bolder">Référence du virement</td>
-                            <td class="text-end">FRT58965211FRG</td>
+                            <td class="text-end" data-content="transfer_reference">FRT58965211FRG</td>
                         </tr>
                     </tbody>
                 </table>
