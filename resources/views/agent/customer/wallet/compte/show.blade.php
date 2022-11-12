@@ -977,6 +977,23 @@
                         </div>
                     </div>
                 </div>
+
+                <table class="table gy-5">
+                    <tbody>
+                        <tr>
+                            <td class="fw-bolder">Type de virement</td>
+                            <td class="text-end">Virement Immédiat</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bolder">Date de débit</td>
+                            <td class="text-end">12/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bolder">Référence du virement</td>
+                            <td class="text-end">FRT58965211FRG</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <!--end::Card body-->
         </div>
