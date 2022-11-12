@@ -863,7 +863,9 @@
                                             Le virement classique SEPA est exécuté <strong>dans un délai d’un jour ouvré</strong>.
                                         </span>
                                     </span>
-                                    0,80 €
+                                    <span class="d-block text-end">
+                                        0,80 €
+                                    </span>
                                 </label>
                             </div>
                             <div class="mb-5">
