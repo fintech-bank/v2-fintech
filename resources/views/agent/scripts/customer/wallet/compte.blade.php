@@ -471,6 +471,10 @@
                         block.blockTableTransfer.destroy()
 
                         toastr.success(`Le virement à bien été accepté`, `Virement Bancaire`)
+
+                        setTimeout(() => {
+                            window.location.reload()
+                        })
                     },
                     error: err => {
                         block.blockTableTransfer.release()
@@ -496,6 +500,10 @@
                         block.blockTableTransfer.destroy()
 
                         toastr.success(`Le virement à bien été refusé`, `Virement Bancaire`)
+
+                        setTimeout(() => {
+                            window.location.reload()
+                        })
                     },
                     error: err => {
                         block.blockTableTransfer.release()
