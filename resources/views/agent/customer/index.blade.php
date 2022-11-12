@@ -257,10 +257,10 @@
         </div>
     @else
         @foreach($customers as $customer)
-            <div class="card shadow-sm mb-10">
+            <a href="{{ route('agent.customer.show', $customer->id) }}" class="card shadow-sm mb-10">
                 <div class="card-body">
                     <div class="d-flex flex-row align-items-center">
-                        <div class="symbol symbol-50px symbol-circle">
+                        <div class="symbol symbol-50px symbol-circle me-5">
                             {!! $customer->user->avatar_symbol !!}
                         </div>
                         <div class="d-flex flex-column">
@@ -268,7 +268,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         @endforeach
     @endif
 @endsection
