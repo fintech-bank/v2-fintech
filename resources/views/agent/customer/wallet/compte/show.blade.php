@@ -869,8 +869,8 @@
                                 </label>
                             </div>
                             <div class="mb-5">
-                                <input type="radio" class="btn-check" name="access" value="express" checked="checked"  id="kt_radio_buttons_2_option_1"/>
-                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_1">
+                                <input type="radio" class="btn-check" name="access" value="express" id="kt_radio_buttons_2_option_2"/>
+                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_2">
                                     <i class="fa-solid fa-bolt-lightning fs-1 me-4"></i>
                                     <span class="d-block fw-semibold text-start">
                                         <span class="text-dark fw-bold d-block fs-3">Virement Instantané</span>
