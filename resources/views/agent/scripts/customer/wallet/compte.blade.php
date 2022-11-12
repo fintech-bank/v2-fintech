@@ -240,6 +240,31 @@
             })
         })
     }
+    let optionFormatBank = (item) => {
+        if ( !item.id ) {
+            return item.text;
+        }
+
+        var span = document.createElement('span');
+        var imgUrl = item.element.getAttribute('data-bank-logo');
+        var template = '';
+
+        template += '<img src="' + imgUrl + '" class="rounded-circle h-20px me-2" alt="image"/>';
+        template += item.text;
+
+        span.innerHTML = template;
+
+        return $(span);
+    }
+    let checkBankInfo = (item) => {
+        $.ajax({
+            url: '/api/bank/'+item.value,
+            success: data => {
+                document.querySelector('[name="bic"]').value = data.bic
+                document.querySelector('[name="bankname"]').value = data.name
+            }
+        })
+    }
     selectTypeBeneficiaire()
 
     let e, t, n, r, o, a = (e, n, a) => {
@@ -655,6 +680,10 @@
         let n = e.target.value;
         console.log(n)
         "all" === n && (n = ""), dataTable.datatableBeneficiaire.column(0).search(n).draw()
+    })
+    $("#bank_id").select2({
+        templateSelection: optionFormatBank,
+        templateResult: optionFormatBank
     })
 
     if(elements.tabInfo) {
