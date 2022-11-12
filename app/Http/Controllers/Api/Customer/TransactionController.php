@@ -59,7 +59,7 @@ class TransactionController extends Controller
                     'credit',
                     'autre',
                     "Remboursement bancaire",
-                    + $transaction->amount,
+                    \Str::replace('-', '', $transaction->amount),
                     $transaction->wallet->id,
                     true,
                     $transaction->designation,
