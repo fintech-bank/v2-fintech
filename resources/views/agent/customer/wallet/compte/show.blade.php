@@ -869,8 +869,8 @@
                                 </label>
                             </div>
                             <div class="mb-5">
-                                <input type="radio" class="btn-check" name="access" value="express" id="kt_radio_buttons_2_option_1"/>
-                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex flex-row justify-content-between align-items-center mb-5" for="kt_radio_buttons_2_option_1">
+                                <input type="radio" class="btn-check" name="access" value="express" id="kt_radio_buttons_2_option_2"/>
+                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex flex-row justify-content-between align-items-center mb-5" for="kt_radio_buttons_2_option_2">
                                     <i class="fa-solid fa-arrows-left-right-to-line fs-1 me-4"></i>
                                     <span class="d-flex flex-column fw-semibold text-start">
                                         <span class="text-dark fw-bold d-block fs-3">Virement Instantané</span>
@@ -883,18 +883,7 @@
                                     </span>
                                 </label>
                             </div>
-                            <div class="mb-5">
-                                <input type="radio" class="btn-check" name="access" value="express" id="kt_radio_buttons_2_option_2"/>
-                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_2">
-                                    <i class="fa-solid fa-bolt-lightning fs-1 me-4"></i>
-                                    <span class="d-block fw-semibold text-start">
-                                        <span class="text-dark fw-bold d-block fs-3">Virement Instantané</span>
-                                        <span class="text-muted fw-semibold fs-6">
-                                            Le virement instantané est exécuté <strong>dans un délai maximum de 20 secondes</strong>.
-                                        </span>
-                                    </span>
-                                </label>
-                            </div>
+
                         </div>
                         <div id="differed" class="d-none">
                             <x-form.input-date
