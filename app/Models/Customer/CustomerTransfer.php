@@ -86,7 +86,7 @@ class CustomerTransfer extends Model
         } elseif ($format == 'icon') {
             return match($this->status) {
                 "paid" => "check-circle",
-                "pending" => "spinner fa-spin",
+                "pending" => "spinner fa-spin-pulse",
                 "in_transit" => "money-bill-transfer",
                 "canceled" => "xmark-circle",
                 default => "ban"
