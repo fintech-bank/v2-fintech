@@ -954,8 +954,18 @@
             <!--end::Card header-->
             <!--begin::Card body-->
             <div class="card-body hover-scroll-overlay-y">
-                <div class="d-flex flex-center fs-2">
+                <div class="d-flex flex-center fs-2 mb-5">
                     <i class="fa-solid fa-circle-dot fs-1 text-success me-3"></i> Votre ordre de virement à été traité
+                </div>
+
+                <div class="d-flex flex-column bg-gray-600 rounded-2">
+                    <div class="d-flex flex-row bg-white rounded-2 border">
+                        <div class="bg-primary w-5px">&nbsp;</div>
+                        <div class="d-flex flex-column">
+                            <div class="fw-bolder">Compte</div>
+                            <div class="">FR76 3000 3017 4200 0501 7057 192</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!--end::Card body-->
