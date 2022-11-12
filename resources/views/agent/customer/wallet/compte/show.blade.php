@@ -855,7 +855,7 @@
                         <div id="immediat">
                             <div class="mb-5">
                                 <input type="radio" class="btn-check" name="access" value="classic" checked="checked"  id="kt_radio_buttons_2_option_1"/>
-                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex flex-row align-items-center mb-5" for="kt_radio_buttons_2_option_1">
+                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex flex-row justify-content-between align-items-center mb-5" for="kt_radio_buttons_2_option_1">
                                     <i class="fa-solid fa-arrows-left-right-to-line fs-1 me-4"></i>
                                     <span class="d-flex flex-column fw-semibold text-start">
                                         <span class="text-dark fw-bold d-block fs-3">Virement Classique</span>
