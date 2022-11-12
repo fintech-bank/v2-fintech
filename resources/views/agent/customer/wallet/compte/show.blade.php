@@ -800,7 +800,7 @@
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="add_virement">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-bank">
                     <h5 class="modal-title text-white">Nouveau virement depuis ce compte</h5>
@@ -863,6 +863,7 @@
                                             Le virement classique SEPA est exécuté <strong>dans un délai d’un jour ouvré</strong>.
                                         </span>
                                     </span>
+                                    0,80 €
                                 </label>
                             </div>
                             <div class="mb-5">
