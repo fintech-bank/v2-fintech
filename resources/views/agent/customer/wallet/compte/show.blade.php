@@ -541,17 +541,19 @@
                                         <td class="text-end">
                                             <button class="btn btn-sm btn-bank btn-circle btn-icon me-5 btnShowTransfer" data-bs-toggle="tooltip" title="Voir le virement" data-transfer="{{ $transfer->uuid }}"><i class="fa-solid fa-eye text-white"></i> </button>
                                             @if($transfer->status == 'pending')
-                                                <x-base.button
-                                                    class="btn-sm btn-success btn-circle btn-icon btnAccept"
-                                                    :datas="[['name' => 'transfer', 'value' => $transfer->id]]"
-                                                    text='<i class="fa-solid fa-check"></i>'
-                                                    tooltip="Accepter le virement" />
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <x-base.button
+                                                        class="btn-xs btn-success btn-icon btnAccept"
+                                                        :datas="[['name' => 'transfer', 'value' => $transfer->uuid]]"
+                                                        text='<i class="fa-solid fa-check"></i>'
+                                                        tooltip="Accepter le virement" />
 
-                                                <x-base.button
-                                                    class="btn-sm btn-danger btn-circle btn-icon btnReject"
-                                                    :datas="[['name' => 'transfer', 'value' => $transfer->id]]"
-                                                    text='<i class="fa-solid fa-times"></i>'
-                                                    tooltip="Refuser le virement" />
+                                                    <x-base.button
+                                                        class="btn-xs btn-danger btn-icon btnReject"
+                                                        :datas="[['name' => 'transfer', 'value' => $transfer->uuid]]"
+                                                        text='<i class="fa-solid fa-times"></i>'
+                                                        tooltip="Refuser le virement" />
+                                                </div>
                                             @endif
                                         </td>
                                     </tr>
