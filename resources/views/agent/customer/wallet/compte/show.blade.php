@@ -954,7 +954,7 @@
             <!--end::Card header-->
             <!--begin::Card body-->
             <div class="card-body hover-scroll-overlay-y">
-                <div class="d-flex flex-center">
+                <div class="d-flex flex-center fs-2">
                     <i class="fa-solid fa-circle-dot text-success me-3"></i> Votre ordre de virement à été traité
                 </div>
             </div>
