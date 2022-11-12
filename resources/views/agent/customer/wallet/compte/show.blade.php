@@ -322,7 +322,7 @@
                                         @endif
                                     </td>
                                     <td class="text-end">
-                                        @if($transaction->type == 'frais')
+                                        @if($transaction->type == 'frais' || $transaction->type == 'souscription')
                                             <button class="btn btn-xs btn-danger btn-icon btnRemb" data-transation="{{ $transaction->id }}" data-bs-toggle="tooltip" title="Rembourser"><i class="fa-solid fa-ban"></i> </button>
                                         @endif
                                     </td>
