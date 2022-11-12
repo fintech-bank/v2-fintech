@@ -21,7 +21,9 @@
         transferType: document.querySelector('[data-kt-transfer-filter="type"]'),
         transferStatus: document.querySelector('[data-kt-transfer-filter="status"]'),
         beneficiaireType: document.querySelector('[data-kt-beneficiaire-filter="type"]'),
-        showTransfer: document.querySelector('#show_transfer')
+        showTransfer: document.querySelector('#show_transfer'),
+        retailField: document.querySelector("#add_beneficiaire").querySelector('#retailField'),
+        corporateField: document.querySelector("#add_beneficiaire").querySelector('#corporateField'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
