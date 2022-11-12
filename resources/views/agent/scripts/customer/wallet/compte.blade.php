@@ -16,6 +16,7 @@
         tabInfo: document.querySelector('[href="#infos"]'),
         transferType: document.querySelector('[data-kt-transfer-filter="type"]'),
         transferStatus: document.querySelector('[data-kt-transfer-filter="status"]'),
+        beneficiaireType: document.querySelector('[data-kt-beneficiaire-filter="type"]'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -476,6 +477,11 @@
         let n = e.target.value;
         console.log(n)
         "all" === n && (n = ""), dataTable.datatableTransfer.column(3).search(n).draw()
+    })
+    $(elements.beneficiaireType).on('change', e => {
+        let n = e.target.value;
+        console.log(n)
+        "all" === n && (n = ""), dataTable.datatableBeneficiaire.column(0).search(n).draw()
     })
 
     if(elements.tabInfo) {
