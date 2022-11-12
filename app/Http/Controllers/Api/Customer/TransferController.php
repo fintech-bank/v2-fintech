@@ -119,7 +119,7 @@ class TransferController extends Controller
             false,
             'Virement emis pour: '.CustomerTransferHelper::getNameBeneficiaire($beneficiaire)." chez: ".$transfer->beneficiaire->bic,
             null,
-            now()
+            $transfer->transfer_date
         );
 
         $transfer->update([
