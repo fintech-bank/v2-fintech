@@ -435,7 +435,6 @@
                         elements.showTransfer.querySelector('[data-content="transfer_type"]').innerHTML = data.type_text
                         elements.showTransfer.querySelector('[data-content="transfer_date"]').innerHTML = data.date_format
                         elements.showTransfer.querySelector('[data-content="transfer_reference"]').innerHTML = data.reference
-                        elements.showTransfer.querySelector('.btnRenewTransfer').setAttribute('data-transfer', data.uuid)
                         if(data.status === 'pending') {
                             elements.showTransfer.querySelector('.btnAcceptTransfer').setAttribute('data-transfer', data.uuid)
                             elements.showTransfer.querySelector('.btnDeclineTransfer').setAttribute('data-transfer', data.uuid)
