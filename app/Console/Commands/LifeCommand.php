@@ -329,9 +329,10 @@ class LifeCommand extends Command
         foreach ($customers as $customer) {
             foreach ($customer->wallets()->where('status', 'active')->where('type', 'compte')->get() as $wallet) {
                 if (rand(0, 1) == 1) {
+                    $sepas = [];
                     for ($i = 0; $i <= rand(1,5); $i++) {
                         $faker = Factory::create('fr_FR');
-                        $sepas = CustomerSepa::create([
+                        $sepas[] = CustomerSepa::create([
                             'uuid' => Str::uuid(),
                             'creditor' => $faker->company,
                             'number_mandate' => generateReference(rand(8,15)),
