@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -43,5 +44,14 @@ class CustomerCreditor extends Model
     public function sepa()
     {
         return $this->belongsTo(CustomerSepa::class, 'customer_sepa_id');
+    }
+
+    protected function identifiant(): Attribute
+    {
+        return Attribute::make(
+            set: function () {
+                "FR".rand(10,99).random_string_alpha_upper(3).random_numeric(6);
+            }
+        );
     }
 }

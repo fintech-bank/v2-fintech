@@ -1281,7 +1281,7 @@
                     <i class="fa-solid fa-circle-dot fs-1 text-warning me-3"></i> Le prélèvement va se présenter prochainement
                 </div>
 
-                <table class="table border table-row-bordered gx-5 gy-5">
+                <table class="table border table-row-bordered gx-5 gy-5 mb-10">
                     <thead>
                         <tr class="bg-gray-300">
                             <th class="fw-bolder" colspan="2">Compte</th>
@@ -1308,6 +1308,24 @@
                             <td data-content="code_banque">BIC</td>
                             <td>SOGEFRPPXXX</td>
                         </tr>
+                    </tbody>
+                </table>
+                <table class="table border table-row-bordered gx-5 gy-5 mb-10">
+                    <thead>
+                        <tr class="bg-gray-300">
+                            <th class="fw-bolder" colspan="2">Créancier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-content="creditor_name">Nom</td>
+                            <td>SOGECAP</td>
+                        </tr>
+                        <tr>
+                            <td data-content="creditor_id">Identifiant</td>
+                            <td>FR04ZZZ110906</td>
+                        </tr>
+
                     </tbody>
                 </table>
 

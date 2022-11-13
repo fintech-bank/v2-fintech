@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('customer_creditors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('identifiant');
             $table->boolean('opposit')->default(false);
 
             $table->foreignId('customer_wallet_id')
