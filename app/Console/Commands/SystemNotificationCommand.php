@@ -13,7 +13,7 @@ class SystemNotificationCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'system:notification {dossier} {notification} {--no-sms}';
+    protected $signature = 'system:notification {dossier} {notification} {--no-sms} {--sms}';
 
     /**
      * The console command description.
@@ -51,6 +51,8 @@ class SystemNotificationCommand extends Command
     {
         if ($this->option('no-sms')) {
             return __DIR__ . '/../../../Stubs/notification_no_sms.stub';
+        } elseif($this->option('sms')) {
+            return __DIR__ . '/../../../Stubs/notification_sms.stub';
         } else {
             return __DIR__ . '/../../../Stubs/notification.stub';
         }

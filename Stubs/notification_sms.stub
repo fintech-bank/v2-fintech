@@ -1,41 +1,30 @@
 <?php
-namespace App\Notifications\Customer;
+namespace $NAMESPACE$;
 
 use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
 use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
 use App\Models\Customer\Customer;
-use App\Models\Customer\CustomerCreditCard;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
 
-class SendCreditCardCodeNotification extends Notification
+class $CLASS_NAME$ extends Notification
 {
 
     public string $message;
     public Customer $customer;
-    public int $card_code;
-    public CustomerCreditCard $card;
 
-    /**
-     * @param Customer $customer
-     * @param int $card_code
-     * @param CustomerCreditCard $card
-     */
-    public function __construct(Customer $customer, int $card_code, CustomerCreditCard $card)
+    public function __construct(Customer $customer)
     {
         $this->customer = $customer;
-        $this->card_code = $card_code;
-        $this->card = $card;
         $this->message = $this->getMessage();
-
     }
 
     private function getMessage()
     {
-        $message = "Le code de votre carte bancaire ".$this->card->number_card_oscure." est le {$this->card_code}";
+        $message = "";
         return $message;
     }
 

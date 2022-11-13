@@ -27,7 +27,7 @@
                 Ce service est accessible par l'intermédiaire de votre espace client <strong>Rubrique "Mon Profil > Transbank"</strong>.</p>
             <p>
                 <strong>Une fois votre inscription au service effectuer, on vous demandera de signer un mandat de mobilité. Et on s'occupe de tout</strong> pour que vos prélèvements,
-                et virement récurrents qui était sur votre ancien compte arrivent sur votre compte {{ config('app.name') }}.
+                et virement récurrent qui était sur votre ancien compte arrivent sur votre compte {{ config('app.name') }}.
             </p>
             <p><strong>De plus</strong>, vous trouverez en pièces jointes des documents à conserver:</p>
             <ul>

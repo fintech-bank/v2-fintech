@@ -1,77 +1,73 @@
 <?php
-
 namespace App\Notifications\Customer;
 
 use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
 use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
 use App\Models\Customer\Customer;
-use App\Services\FreeSmsChannel;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Pushbullet\PushbulletChannel;
-use NotificationChannels\Pushbullet\PushbulletMessage;
-use NotificationChannels\Pushover\PushoverChannel;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
 
 class SendPasswordNotification extends Notification
 {
-    use Queueable;
+
+    public string $message;
+    public string $password;
+    public Customer $customer;
+    public string $identifiant;
 
     /**
-     * @var Customer
-     */
-    public $customer;
-    /**
-     * @var string|string
-     */
-    public $password;
-
-    /**
-     * Create a new notification instance.
-     *
      * @param Customer $customer
      * @param string $password
+     * @param string $identifiant
      */
-    public function __construct(Customer $customer, string $password)
+    public function __construct(Customer $customer, string $password, string $identifiant)
     {
-        //
         $this->customer = $customer;
         $this->password = $password;
+        $this->identifiant = $identifiant;
+        $this->message = $this->getMessage();
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param mixed $notifiable
-     * @return array
-     */
+    private function getMessage()
+    {
+        $message = config('app.name');
+        $message .= "Afin de vous connecter à votre espace, voici vos identifiants:<br>";
+        $message .= "Identifiant: ".$this->identifiant;
+        $message .= "Mot de passe: ".$this->password;
+        $message .= "Veillez à changer votre mot de passe dès la première connexion.";
+        return $message;
+    }
+
+    private function choiceChannel()
+    {
+        if (config("app.env") == "local") {
+            return [FreeMobileChannel::class];
+        } else {
+            return [TwilioChannel::class];
+        }
+    }
+
     public function via($notifiable)
     {
         return $this->choiceChannel();
     }
 
-
     public function toFreeMobile($notifiable)
     {
-        return (new FreeMobileMessage("Votre mot de passe provisoire est :" . $this->password));
+        $message = (new FreeMobileMessage());
+        $message->message(strip_tags($this->message));
+
+        return $message;
     }
 
     public function toTwilio($notifiable)
     {
-        return (new TwilioSmsMessage())
-            ->content("Votre mot de passe provisoire: " . $this->password);
-    }
+        $message = (new TwilioSmsMessage());
+        $message->content(strip_tags($this->message));
 
-    private function choiceChannel()
-    {
-        if (config('app.env') == 'local') {
-            return [FreeMobileChannel::class];
-        } else {
-            return [TwilioChannel::class];
-        }
+        return $message;
     }
 }

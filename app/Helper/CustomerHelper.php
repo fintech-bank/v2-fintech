@@ -359,15 +359,7 @@ class CustomerHelper
         $card = $this->createCreditCard($wallet, $session);
 
         // Envoie du mot de passe provisoire par SMS avec identifiant
-        try {
-            config('app.env') != 'local' ?
-                $user->notify(new SendPasswordNotification($customer, $password)) :
-                $user->notify(new \App\Notifications\Customer\Customer\Testing\Customer\SendPasswordNotification($customer, $password));
-
-            config('app.env') == 'local' ? Whatsapp::sendNotification($customer->info->mobile, "Votre mot de passe provisoire est: $password") : null;
-        } catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception->getMessage(), $exception);
-        }
+        $user->customers->info->notify(new \App\Notifications\Customer\SendPasswordNotification($customer, $password, $user->identifiant));
 
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents');
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
@@ -470,7 +462,7 @@ class CustomerHelper
             ];
         }
 
-        $user->notify(new WelcomeNotification($customer, $documents));
+        $user->notify(new \App\Notifications\Customer\WelcomeNotification($customer, $documents));
 
         $this->setOptions($session, $customer, $wallet, $card, $setting);
 
@@ -522,11 +514,7 @@ class CustomerHelper
             'customer_wallet_id' => $wallet->id,
         ]);
 
-        config('app.env') != 'local' ?
-            $wallet->customer->user->notify(new \App\Notifications\Customer\Customer\Customer\SendCreditCardCodeNotification($card_code, $card)) :
-            $wallet->customer->user->notify(new SendCreditCardCodeNotification($card_code, $card));
-
-        config('app.env') == 'local' ? Whatsapp::sendNotification($card->wallet->customer->info->mobile, "Le code de votre carte bleu N°$card->number est le $card_code") : null;
+        $wallet->customer->user->notify(new \App\Notifications\Customer\SendCreditCardCodeNotification($wallet->customer, $card_code, $card));
 
         return $card;
     }
