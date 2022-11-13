@@ -163,9 +163,8 @@ class CustomerInfo extends Model
 
     public function getPhoneVerifiedAttribute()
     {
-        dd($this);
         if($this->phone != null) {
-            if($this->phoneVerified) {
+            if($this->phoneVerified == 1) {
                 return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
             } else {
                 return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';
@@ -176,7 +175,7 @@ class CustomerInfo extends Model
     public function getMobileVerifiedAttribute()
     {
         if($this->mobile != null) {
-            if($this->mobileVerified) {
+            if($this->mobileVerified == 1) {
                 return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
             } else {
                 return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';
