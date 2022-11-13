@@ -88,6 +88,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $alert_status_text
  * @property-read mixed $status_color
  * @property-read mixed $status_text
+ * @property-read mixed $iban_format
  */
 class CustomerWallet extends Model
 {

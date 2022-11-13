@@ -1,22 +1,14 @@
-@extends("emails.layouts.app")
+@extends("emails.layouts.template")
 
 @section("content")
     <div class="d-flex flex-column bg-gray-400 p-5 ms-20 me-20 mt-20 mb-5 w-600px rounded">
         <!--begin::Alert-->
-        <div class="alert bg-bank d-flex flex-column flex-sm-row p-5 mb-10 mt-10 rounded">
-            <!--begin::Wrapper-->
-            <div class="d-flex flex-column text-light pe-0 pe-sm-10">
-                <!--begin::Content-->
-                <span class="fs-2tx fw-bolder text-start">Mon contrat d'assurance</span>
-                <!--end::Content-->
-            </div>
-            <!--end::Wrapper-->
-        </div>
-        <!--end::Alert-->
-        <div class="ms-10 me-10 mb-5">
-            <span class="fw-bolder fs-3 mb-5">Bonjour {{ \App\Helper\CustomerHelper::getFirstname($customer) }}</span>
-        </div>
-        @include("emails.layouts.salutation")
+        <tr>
+            <td align="left" style="padding:0;Margin:0">
+                <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;margin-bottom:11px;color:#333333;font-size:14px">
+                    {!! $content !!}
+                </p>
+            </td>
+        </tr>
     </div>
 @endsection
-

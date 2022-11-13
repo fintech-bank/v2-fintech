@@ -46,13 +46,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $status_color
  * @property-read mixed $status_label
  * @property-read mixed $status_text
+ * @property-read mixed $mensuality_format
+ * @property-read mixed $type_prlv_text
  */
 class CustomerInsurance extends Model
 {
     use HasFactory;
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at', 'date_member', 'effect_date', 'end_date'];
-    protected $appends = ['status_label'];
+    protected $appends = ['status_label', 'mensuality_format', 'type_prlv_text'];
 
     public function customer()
     {
@@ -94,5 +96,20 @@ class CustomerInsurance extends Model
     public function getStatusLabelAttribute()
     {
         return '<span class="badge badge-'.$this->getStatusColorAttribute().'">'.$this->getStatusTextAttribute().'</span>';
+    }
+
+    public function getMensualityFormatAttribute()
+    {
+        return eur($this->mensuality);
+    }
+
+    public function getTypePrlvTextAttribute()
+    {
+        return match ($this->type_prlv) {
+            "mensuel" => "Mensuel",
+            "trim" => "Trimestriel",
+            "annuel" => "Annuel",
+            default => "Ponctuel",
+        };
     }
 }

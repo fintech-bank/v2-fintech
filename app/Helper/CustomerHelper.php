@@ -21,6 +21,7 @@ use App\Notifications\Customer\Customer\Customer\NewContractInsurance;
 use App\Notifications\Customer\Customer\Customer\SendPasswordNotification;
 use App\Notifications\Customer\Customer\Customer\WelcomeNotification;
 use App\Notifications\Customer\Customer\Testing\Customer\SendCreditCardCodeNotification;
+use App\Notifications\Customer\NewContractInsuranceNotification;
 use App\Services\BankFintech;
 use App\Services\PushbulletApi;
 use App\Services\Twilio\Messaging\Whatsapp;
@@ -671,7 +672,7 @@ class CustomerHelper
 
         DocumentFile::createDoc($customer,
             'condition operation bancaire',
-            "Conditions appliquees au operation bancaire",
+            "Conditions appliques au operation bancaire",
             1,
             $contract->reference,
             false,
@@ -689,7 +690,7 @@ class CustomerHelper
             ];
         }
 
-        $customer->user->notify(new NewContractInsurance($customer, $contract, $documents));
+        $customer->user->notify(new NewContractInsuranceNotification($customer, $contract, $documents));
         dispatch(new PaymentFirstInsuranceJob($customer, $contract, $customer->wallets()->where('type', 'compte')->first()))->delay(now()->addDay());
 
         return $contract;
