@@ -580,6 +580,7 @@
                 $.ajax({
                     url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/sepa/'+btn.dataset.sepa,
                     success: data => {
+                        console.log(data.wallet.customer)
                         block.blockTableSepa.release()
                         block.blockTableSepa.destroy()
                         plugins.drawerShowSepa.show()
