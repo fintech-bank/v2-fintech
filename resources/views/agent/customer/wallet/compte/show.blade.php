@@ -1242,7 +1242,7 @@
          data-kt-drawer-close="#kt_drawer_example_advanced_close"
          data-kt-drawer-name="docs"
          data-kt-drawer-overlay="true"
-         data-kt-drawer-width="{default:'300px', 'md': '500px'}"
+         data-kt-drawer-width="{default:'300px', 'md': '800px'}"
          data-kt-drawer-direction="end">
         <!--begin::Card-->
         <div class="card rounded-0 w-100">
