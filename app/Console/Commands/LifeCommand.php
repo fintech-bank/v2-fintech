@@ -337,7 +337,8 @@ class LifeCommand extends Command
                             'number_mandate' => generateReference(rand(8,15)),
                             'amount' => -rand(5,3500),
                             'status' => 'waiting',
-                            'customer_wallet_id' => $wallet->id
+                            'customer_wallet_id' => $wallet->id,
+                            'processed_time' => now()->addDays(rand(1,5))
                         ]);
                     }
 

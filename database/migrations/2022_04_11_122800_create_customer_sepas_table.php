@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('number_mandate');
             $table->float('amount', 50);
             $table->enum('status', ['waiting', 'processed', 'rejected', 'return', 'refunded']);
+            $table->timestamp('processed_time');
             $table->timestamps();
             $table->integer('transaction_id')->nullable();
 
