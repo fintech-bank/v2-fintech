@@ -1362,9 +1362,8 @@
                     </tbody>
                 </table>
 
-                <div class="d-flex flex-center">
-                    <button class="btn btn-circle btn-lg btn-success btnAcceptTransfer" data-transfer="">Accepter le virement</button>
-                    <button class="btn btn-circle btn-lg btn-danger btnDeclineTransfer" data-transfer="">Refuser le virement</button>
+                <div class="d-flex flex-center" data-content="btnAction">
+                    <button class="btn btn-circle btn-lg btn-success btnAcceptTransfer" data-sepa="">Accepter le prélèvement</button>
                 </div>
             </div>
             <!--end::Card body-->
