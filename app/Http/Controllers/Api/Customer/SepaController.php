@@ -29,7 +29,7 @@ class SepaController extends Controller
     {
         $sepa = CustomerSepa::where('uuid', $sepa_uuid)->first();
         return match ($request->get('action')) {
-            "accept" => "",
+            "accept" => $this->acceptSepa($sepa),
             "reject" => "",
             "refunded" => "",
         };
