@@ -616,7 +616,7 @@ class CustomerHelper
         ]);
 
         DocumentFile::createDoc($customer,
-            'insurance.condition_general_' . $contract->package->name,
+            'insurance.condition_general_' . \Str::snake($contract->package->name),
             'Condition Général ' . $contract->package->name,
             1,
             $contract->reference,
@@ -627,7 +627,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'insurance.ddac_' . $contract->package->name,
+            'insurance.ddac_' . \Str::snake($contract->package->name),
             'DDAC ' . $contract->package->name,
             1,
             $contract->reference,
@@ -638,7 +638,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            "insurance.document_information_produit_assurance_" . $contract->package->name,
+            "insurance.document_information_produit_assurance_" . \Str::snake($contract->package->name),
             "Document d'information sur le produit d'assurance " . $contract->package->name,
             1,
             $contract->reference,
@@ -650,7 +650,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'insurance.synthese_echange_' . $contract->package->name,
+            'insurance.synthese_echange_' . \Str::snake($contract->package->name),
             "Synthèse des echanges " . $contract->package->name,
             1,
             $contract->reference,
@@ -662,7 +662,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'insurance.condition_particuliere_' . $contract->package->name,
+            'insurance.condition_particuliere_' . \Str::snake($contract->package->name),
             "Condition Particuliere " . $contract->package->name,
             1,
             $contract->reference,
