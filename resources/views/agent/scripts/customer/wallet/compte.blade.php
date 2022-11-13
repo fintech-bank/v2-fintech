@@ -580,12 +580,15 @@
                 $.ajax({
                     url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/sepa/'+btn.dataset.sepa,
                     success: data => {
-                        console.log(data.wallet.customer.agency)
                         block.blockTableSepa.release()
                         block.blockTableSepa.destroy()
                         plugins.drawerShowSepa.show()
 
-                        elements.showSepa.querySelector('[data-content="code_banque"]').innerHTML = data.wallet.customer.agency.code_banque
+                        elements.showSepa.querySelector('[data-content="code_banque"]').innerHTML = data.agency.code_banque
+                        elements.showSepa.querySelector('[data-content="code_guichet"]').innerHTML = data.agency.code_agence
+                        elements.showSepa.querySelector('[data-content="number_account"]').innerHTML = data.sepa.wallet.number_account
+                        elements.showSepa.querySelector('[data-content="iban"]').innerHTML = data.sepa.wallet.iban
+                        elements.showSepa.querySelector('[data-content="bic"]').innerHTML = data.agency.bic
                     },
                     error: err => {
                         block.blockTableTransfer.release()
