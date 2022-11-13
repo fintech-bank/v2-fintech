@@ -90,7 +90,7 @@ class CustomerInfo extends Model
     public $timestamps = false;
 
     protected $dates = ['datebirth'];
-    protected $appends = ['type_label', 'phone_verified', 'mobile_verified', 'account_verified', 'full_name'];
+    protected $appends = ['type_label', 'phone_verify', 'mobile_verify', 'account_verified', 'full_name'];
 
     public function routeNotificationForTwilio()
     {
@@ -165,7 +165,7 @@ class CustomerInfo extends Model
         }
     }
 
-    public function getPhoneVerifiedAttribute()
+    public function getPhoneVerifyAttribute()
     {
         if($this->phone != null) {
             if($this->phoneVerified == 1) {
@@ -176,7 +176,7 @@ class CustomerInfo extends Model
         }
     }
 
-    public function getMobileVerifiedAttribute()
+    public function getMobileVerifyAttribute()
     {
         if($this->mobile != null) {
             if($this->mobileVerified == 1) {
