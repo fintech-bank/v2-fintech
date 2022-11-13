@@ -69,7 +69,7 @@ class UserSeeder extends Seeder
             'user_id' => $user->id
         ]);
 
-        CustomerInfo::factory()->create([
+        $info = CustomerInfo::factory()->create([
             'type' => 'part',
             'civility' => 'M',
             'firstname' => 'User',
@@ -78,6 +78,9 @@ class UserSeeder extends Seeder
             'customer_id' => $customer->id,
             'email' => $user->email
         ]);
+
+        $info->setPhoneVerified($info->phone, 'phone');
+        $info->setPhoneVerified($info->mobile, 'mobile');
 
         CustomerSetting::factory()->create([
             'notif_sms' => false,

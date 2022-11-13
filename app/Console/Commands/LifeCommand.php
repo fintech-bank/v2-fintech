@@ -106,6 +106,9 @@ class LifeCommand extends Command
                 'email' => $user->email
             ]);
 
+            $info->setPhoneVerified($info->phone, 'phone');
+            $info->setPhoneVerified($info->mobile, 'mobile');
+
             $user->update([
                 'name' => $info->type != 'part' ? $info->company : $info->firstname." ".$info->lastname
             ]);
