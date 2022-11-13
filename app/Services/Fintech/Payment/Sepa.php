@@ -6,6 +6,6 @@ class Sepa
 {
     public function acceptSepa()
     {
-        return \Http::get('https://payment.fintech.ovh/sepa/accept')->status();
+        return \Http::get('https://payment.fintech.ovh/sepa/accept')->object();
     }
 }
