@@ -598,6 +598,7 @@
 
                         elements.showSepa.querySelector('[data-content="mandat_amount"]').innerHTML = data.sepa.amount_format
                         elements.showSepa.querySelector('[data-content="status"]').innerHTML = `${data.sepa.status_text} le ${data.sepa.updated_at_format}`
+                        elements.showSepa.querySelector('[data-content="mandat_motif"]').innerHTML = `${data.sepa.creditor.identifiant}/${data.sepa.wallet.number_account}/${data.sepa.number_mandate}`
 
 
                     },
