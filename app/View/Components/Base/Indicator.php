@@ -6,11 +6,11 @@ use Illuminate\View\Component;
 
 class Indicator extends Component
 {
-    private bool $textOnly;
+    public bool $textOnly;
     /**
      * @var null
      */
-    private $text;
+    public $text;
 
     /**
      * Create a new component instance.
