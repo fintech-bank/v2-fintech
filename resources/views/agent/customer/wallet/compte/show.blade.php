@@ -1325,7 +1325,40 @@
                             <td data-content="creditor_id">Identifiant</td>
                             <td>FR04ZZZ110906</td>
                         </tr>
-
+                    </tbody>
+                </table>
+                <table class="table border table-row-bordered gx-5 gy-5 mb-10">
+                    <thead>
+                        <tr class="bg-gray-300">
+                            <th class="fw-bolder" colspan="2">Mandat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-content="creditor_name">Référence</td>
+                            <td>000000/01406/7711250-220</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table border table-row-bordered gx-5 gy-5 mb-10">
+                    <thead>
+                        <tr class="bg-gray-300">
+                            <th class="fw-bolder" colspan="2">Opération</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-content="creditor_name">Montant</td>
+                            <td>- 35,00 €</td>
+                        </tr>
+                        <tr>
+                            <td data-content="creditor_name">Status</td>
+                            <td>En attente le 11/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td data-content="creditor_name">Motif de l'opération</td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
 
