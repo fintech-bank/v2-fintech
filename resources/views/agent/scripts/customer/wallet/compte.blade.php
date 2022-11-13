@@ -584,7 +584,7 @@
                         block.blockTableSepa.destroy()
                         plugins.drawerShowSepa.show()
 
-                        //elements.showSepa.querySelector('[data-content="code_banque"]').innerHTML = data
+                        elements.showSepa.querySelector('[data-content="code_banque"]').innerHTML = data.wallet.customer.agency.code_banque
                     },
                     error: err => {
                         block.blockTableTransfer.release()
