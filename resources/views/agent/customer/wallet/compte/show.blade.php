@@ -775,9 +775,18 @@
                                 <td>
                                     @if($transaction->status == 'waiting')
                                         <div class="btn-group">
-                                            <button class="btn btn-xs btn-bank btn-icon" data-bs-toggle="tooltip" title="Voir le prélèvement"><i class="fa-solid fa-eye"></i> </button>
-                                            <button class="btn btn-xs btn-success btn-icon" data-bs-toggle="tooltip" title="Passer le prélèvement"><i class="fa-solid fa-check"></i> </button>
-                                            <button class="btn btn-xs btn-danger btn-icon" data-bs-toggle="tooltip" title="Rejeter le prélèvement"><i class="fa-solid fa-ban"></i> </button>
+                                            <button class="btn btn-xs btn-bank btn-icon btnViewSepa" data-sepa="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Voir le prélèvement"><i class="fa-solid fa-eye"></i> </button>
+                                            <button class="btn btn-xs btn-success btn-icon btnAcceptSepa" data-sepa="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Passer le prélèvement"><i class="fa-solid fa-check"></i> </button>
+                                            <button class="btn btn-xs btn-danger btn-icon btnRejectSepa" data-sepa="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Rejeter le prélèvement"><i class="fa-solid fa-ban"></i> </button>
+                                        </div>
+                                    @elseif($transaction->status == 'processed')
+                                        <div class="btn-group">
+                                            <button class="btn btn-xs btn-bank btn-icon btnViewSepa" data-sepa="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Voir le prélèvement"><i class="fa-solid fa-eye"></i> </button>
+                                            <button class="btn btn-xs btn-info btn-icon btnRembSepa" data-sepa="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Demander le remboursement du prélèvement"><i class="fa-solid fa-rotate-left"></i> </button>
+                                        </div>
+                                    @else
+                                        <div class="btn-group">
+                                            <button class="btn btn-xs btn-bank btn-icon btnViewSepa" data-sepa="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Voir le prélèvement"><i class="fa-solid fa-eye"></i> </button>
                                         </div>
                                     @endif
                                 </td>
