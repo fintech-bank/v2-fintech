@@ -35,6 +35,8 @@ return new class extends Migration
             $table->string('country_code')->nullable();
             $table->string('email');
             $table->boolean('isVerified')->default(false);
+            $table->boolean('phoneVerified')->default(false);
+            $table->boolean('mobileVerified')->default(false);
             $table->boolean('addressVerified')->default(false);
 
             $table->foreignId('customer_id')

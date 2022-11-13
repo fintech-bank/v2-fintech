@@ -145,11 +145,26 @@ class CustomerInfo extends Model
         return '<span class="badge badge-sm badge-'.$this->getTypeColorAttribute().'">'.$this->getTypeTextAttribute().'</span>';
     }
 
+    public function setPhoneVerified($phone, $type)
+    {
+        if(isset($phone)) {
+            $lookup = new Lookup();
+            if($lookup->verify($phone)) {
+                $this->update([
+                    $type."Verified" => true
+                ]);
+            } else {
+                $this->update([
+                    $type."Verified" => false
+                ]);
+            }
+        }
+    }
+
     public function getPhoneVerifiedAttribute()
     {
         if($this->phone != null) {
-            $lookup = new Lookup();
-            if($lookup->verify($this->phone)) {
+            if($this->phoneVerified) {
                 return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
             } else {
                 return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';
@@ -160,8 +175,7 @@ class CustomerInfo extends Model
     public function getMobileVerifiedAttribute()
     {
         if($this->mobile != null) {
-            $lookup = new Lookup();
-            if($lookup->verify($this->mobile)) {
+            if($this->mobileVerified) {
                 return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
             } else {
                 return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';

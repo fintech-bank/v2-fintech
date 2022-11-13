@@ -326,6 +326,9 @@ class CustomerHelper
             ]);
         }
 
+        $info->setPhoneVerified($session->perso['phone'], 'phone');
+        $info->setPhoneVerified($session->perso['mobile'], 'mobile');
+
         $setting = CustomerSetting::create([
             'customer_id' => $customer->id,
         ]);
