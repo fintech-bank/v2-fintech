@@ -373,7 +373,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Convention Preuve',
+            'general.convention_preuve',
             'Convention de Preuve - CUS' . $customer->user->identifiant,
             3,
             null,
@@ -385,7 +385,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Certification Fiscal',
+            'customer.certification_fiscal',
             'Formulaire d\'auto-certification de résidence fiscale - CUS' . $customer->user->identifiant,
             3,
             null,
@@ -397,7 +397,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Synthese Echange',
+            'customer.synthese_echange',
             'Synthese Echange - CUS' . $customer->user->identifiant,
             3,
             null,
@@ -409,7 +409,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Contrat Banque Distance',
+            'customer.contrat_banque_distance',
             'Contrat Banque à distance - CUS' . $customer->user->identifiant,
             3,
             null,
@@ -421,7 +421,7 @@ class CustomerHelper
 
         $document = DocumentFile::createDoc(
             $customer,
-            'Contrat Banque Souscription',
+            'customer.contrat_banque_souscription',
             'Convention de compte - CUS' . $customer->user->identifiant,
             3,
             'CNT' . \Str::upper(\Str::random(6)),
@@ -433,7 +433,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Info Tarif',
+            'general.condition_operation_bancaire',
             'Information Tarifaire',
             5,
             null,
@@ -445,7 +445,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Rib',
+            'wallet.rib',
             'Relevé Identité Bancaire',
             5,
             null,
@@ -616,7 +616,7 @@ class CustomerHelper
         ]);
 
         DocumentFile::createDoc($customer,
-            'condition general ' . $contract->package->name,
+            'insurance.condition_general_' . $contract->package->name,
             'Condition Général ' . $contract->package->name,
             1,
             $contract->reference,
@@ -627,7 +627,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'ddac ' . $contract->package->name,
+            'insurance.ddac_' . $contract->package->name,
             'DDAC ' . $contract->package->name,
             1,
             $contract->reference,
@@ -638,7 +638,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            "Document information produit assurance " . $contract->package->name,
+            "insurance.document_information_produit_assurance_" . $contract->package->name,
             "Document d'information sur le produit d'assurance " . $contract->package->name,
             1,
             $contract->reference,
@@ -650,7 +650,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'synthese echange ' . $contract->package->name,
+            'insurance.synthese_echange_' . $contract->package->name,
             "Synthèse des echanges " . $contract->package->name,
             1,
             $contract->reference,
@@ -662,7 +662,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'condition particuliere ' . $contract->package->name,
+            'insurance.condition_particuliere_' . $contract->package->name,
             "Condition Particuliere " . $contract->package->name,
             1,
             $contract->reference,
@@ -674,7 +674,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'condition operation bancaire',
+            'general.condition_operation_bancaire',
             "Conditions appliques au operation bancaire",
             1,
             $contract->reference,
