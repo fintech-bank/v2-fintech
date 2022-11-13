@@ -157,6 +157,10 @@ Route::prefix('customer')->group(function () {
             Route::get('{transfer_uuid}', [\App\Http\Controllers\Api\Customer\TransferController::class, 'info']);
             Route::put('{transfer_uuid}', [\App\Http\Controllers\Api\Customer\TransferController::class, 'update']);
         });
+
+        Route::prefix('{number_account}/sepa')->group(function () {
+            Route::get('{sepa_uuid}', [\App\Http\Controllers\Api\Customer\SepaController::class, 'info']);
+        });
     });
 
     Route::prefix('{customer_id}/beneficiaire')->group(function () {

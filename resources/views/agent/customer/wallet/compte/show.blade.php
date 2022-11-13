@@ -1235,6 +1235,91 @@
         </div>
         <!--end::Card-->
     </div>
+    <div id="show_sepa" class="bg-white"
+         data-kt-drawer="true"
+         data-kt-drawer-activate="true"
+         data-kt-drawer-toggle="#kt_drawer_example_advanced_button"
+         data-kt-drawer-close="#kt_drawer_example_advanced_close"
+         data-kt-drawer-name="docs"
+         data-kt-drawer-overlay="true"
+         data-kt-drawer-width="{default:'300px', 'md': '500px'}"
+         data-kt-drawer-direction="end">
+        <!--begin::Card-->
+        <div class="card rounded-0 w-100">
+            <!--begin::Card header-->
+            <div class="card-header bg-bank pe-5">
+                <!--begin::Title-->
+                <div class="card-title">
+                    <!--begin::User-->
+                    <div class="d-flex justify-content-center flex-column me-3">
+                        <a href="#" class="fs-4 fw-bold text-white text-hover-primary me-1 lh-1">Prélèvement SEPA</a>
+                    </div>
+                    <!--end::User-->
+                </div>
+                <!--end::Title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_example_advanced_close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-2">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+								<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+							</svg>
+						</span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body hover-scroll-overlay-y">
+                <div class="d-flex flex-center fs-2 mb-5" data-content="transfer_status">
+                    <i class="fa-solid fa-circle-dot fs-1 text-warning me-3"></i> Le prélèvement va se présenter prochainement
+                </div>
+
+                <table class="table table-row-bordered gx-5 gy-5">
+                    <thead>
+                        <tr class="bg-gray-300">
+                            <th class="fw-bolder">Compte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-content="code_banque">Code Banque</td>
+                            <td>36001</td>
+                        </tr>
+                        <tr>
+                            <td data-content="code_banque">Code Guichet</td>
+                            <td>01726</td>
+                        </tr>
+                        <tr>
+                            <td data-content="code_banque">N° de compte</td>
+                            <td>00050170571</td>
+                        </tr>
+                        <tr>
+                            <td data-content="code_banque">IBAN</td>
+                            <td>FR76 3000 3017 4200 0501 7057 192</td>
+                        </tr>
+                        <tr>
+                            <td data-content="code_banque">BIC</td>
+                            <td>SOGEFRPPXXX</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex flex-center">
+                    <button class="btn btn-circle btn-lg btn-success btnAcceptTransfer" data-transfer="">Accepter le virement</button>
+                    <button class="btn btn-circle btn-lg btn-danger btnDeclineTransfer" data-transfer="">Refuser le virement</button>
+                </div>
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>
 @endsection
 
 @section("script")

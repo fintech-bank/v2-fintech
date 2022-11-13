@@ -15,6 +15,7 @@
         btnShowTransfer: document.querySelectorAll('.btnShowTransfer'),
         btnAcceptTransfer: document.querySelectorAll('.btnAcceptTransfer'),
         btnDeclineTransfer: document.querySelectorAll('.btnDeclineTransfer'),
+        btnShowSepa: document.querySelectorAll('.btnViewSepa'),
         transactionDate: document.querySelector('#kt_transaction_flatpickr'),
         transactionType: document.querySelector('[data-kt-transaction-filter="types"]'),
         chartSummary: document.querySelector('#chart_summary'),
@@ -23,6 +24,7 @@
         transferStatus: document.querySelector('[data-kt-transfer-filter="status"]'),
         beneficiaireType: document.querySelector('[data-kt-beneficiaire-filter="type"]'),
         showTransfer: document.querySelector('#show_transfer'),
+        showSepa: document.querySelector('#show_sepa'),
         retailField: document.querySelector("#add_beneficiaire").querySelector('#retailField'),
         corporateField: document.querySelector("#add_beneficiaire").querySelector('#corporateField'),
     }
@@ -74,6 +76,7 @@
         blockTableTransaction: messageBlock(tables.tableTransaction.querySelector("tbody")),
         blockTableTransfer: messageBlock(tables.tableTransfer.querySelector("tbody")),
         blockTableBeneficiaire: messageBlock(tables.tableBeneficiaire.querySelector("tbody")),
+        blockTableSepa: messageBlock(tables.tableSepa.querySelector("tbody")),
     }
     let plugins = {
         flatTransactionDate: $(elements.transactionDate).flatpickr({
@@ -85,7 +88,8 @@
                 a(e,t,n)
             }
         }),
-        drawerShowTransfer: KTDrawer.getInstance(elements.showTransfer)
+        drawerShowTransfer: KTDrawer.getInstance(elements.showTransfer),
+        drawerShowSepa: KTDrawer.getInstance(elements.showSepa),
     }
 
     let initChartSummary = () => {
@@ -557,6 +561,28 @@
                         setTimeout(() => {
                             window.location.reload()
                         })
+                    },
+                    error: err => {
+                        block.blockTableTransfer.release()
+                        block.blockTableTransfer.destroy()
+                        console.error(err)
+                    }
+                })
+            })
+        })
+    }
+    if(elements.btnShowSepa) {
+        elements.btnShowSepa.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableSepa.block()
+
+                $.ajax({
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/sepa/'+btn.dataset.sepa,
+                    success: data => {
+                        block.blockTableSepa.release()
+                        block.blockTableSepa.destroy()
+                        plugins.drawerShowSepa.show()
                     },
                     error: err => {
                         block.blockTableTransfer.release()

@@ -44,7 +44,7 @@ class CustomerSepa extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['amount_format', 'status_label'];
+    protected $appends = ['amount_format', 'status_label', 'status_comment'];
 
     public function wallet()
     {
@@ -78,6 +78,14 @@ class CustomerSepa extends Model
                 "rejected", "return" => "danger",
                 default => "info"
             };
+        } elseif($type == 'comment') {
+            return match ($this->status) {
+                "waiting" => "Le prélèvement va se présenter prochainement",
+                "processed" => "Le Prélèvement à été traité",
+                "rejected" => "Le prélèvement à été rejeté par notre service financier",
+                "return" => "Le prélèvement à été retourné à votre créancier",
+                default => "Le prélèvement à été remboursé"
+            };
         } else {
             return match ($this->status) {
                 "waiting" => "spinner fa-spin-pulse",
@@ -92,6 +100,11 @@ class CustomerSepa extends Model
     public function getStatusLabelAttribute()
     {
         return "<span class='badge badge-".$this->getStatus('color')."'><i class='fa-solid fa-".$this->getStatus()." text-white me-2'></i> ".$this->getStatus('text')."</span>";
+    }
+
+    public function getStatusCommentAttribute()
+    {
+        return '<i class="fa-solid fa-circle-dot fs-1 text-'.$this->getStatus('color').' me-3"></i> '.$this->getStatus('comment');
     }
 
     public function getReasonFromRejected($reason)
