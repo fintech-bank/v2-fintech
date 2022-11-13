@@ -773,7 +773,13 @@
                                 </td>
                                 <td class="text-center" data-filter="{{ $transaction->status }}">{!! $transaction->status_label !!}</td>
                                 <td>
-
+                                    @if($transaction->status == 'waiting')
+                                        <div class="btn-group">
+                                            <button class="btn btn-xs btn-bank btn-icon" data-toggle="tooltip" title="Voir le prélèvement"><i class="fa-solid fa-eye"></i> </button>
+                                            <button class="btn btn-xs btn-success btn-icon" data-toggle="tooltip" title="Passer le prélèvement"><i class="fa-solid fa-check"></i> </button>
+                                            <button class="btn btn-xs btn-danger btn-icon" data-toggle="tooltip" title="Rejeter le prélèvement"><i class="fa-solid fa-ban"></i> </button>
+                                        </div>
+                                    @endif
                                 </td>
                             </tr>
                             <!--end::Table row-->
