@@ -597,7 +597,7 @@
                         elements.showSepa.querySelector('[data-content="mandate_reference"]').innerHTML = data.sepa.number_mandate
 
                         elements.showSepa.querySelector('[data-content="mandat_amount"]').innerHTML = data.sepa.amount_format
-                        elements.showSepa.querySelector('[data-content="status"]').innerHTML = ``
+                        elements.showSepa.querySelector('[data-content="status"]').innerHTML = `${data.sepa.status_text} le ${data.sepa.updated_at_format}`
 
 
                     },
