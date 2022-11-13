@@ -37,13 +37,14 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerSepa
  * @property-read mixed $amount_format
+ * @property-read mixed $status_label
  */
 class CustomerSepa extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['amount_format'];
+    protected $appends = ['amount_format', 'status_label'];
 
     public function wallet()
     {
@@ -58,6 +59,39 @@ class CustomerSepa extends Model
     public function getAmountFormatAttribute()
     {
         return eur($this->amount);
+    }
+
+    public function getStatus($type = 'icon')
+    {
+        if($type == 'text') {
+            return match ($this->status) {
+                "waiting" => "En attente",
+                "processed" => "Traité",
+                "rejected" => "Rejeté",
+                "return" => "Retourné",
+                default => "Remboursé"
+            };
+        } elseif ($type == 'color') {
+            return match ($this->status) {
+                "waiting" => "warning",
+                "processed" => "success",
+                "rejected", "return" => "danger",
+                default => "info"
+            };
+        } else {
+            return match ($this->status) {
+                "waiting" => "spinner fa-spin-pulse",
+                "processed" => "check-circle",
+                "rejected" => "ban",
+                "return" => "rotate-left",
+                default => "euro-sign"
+            };
+        }
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return "<span class='badge badge-".$this->getStatus('color')."'><i class='fa-solid fa-".$this->getStatus()." me-2'></i> ".$this->getStatus('text')."</span>";
     }
 
     public function getReasonFromRejected($reason)

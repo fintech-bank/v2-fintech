@@ -771,7 +771,7 @@
                                         <span class="text-success">{{ eur($transaction->amount) }}</span>
                                     @endif
                                 </td>
-                                <td class="text-center" data-filter="{{ $transaction->status }}">{!! \App\Helper\CustomerSepaHelper::getStatus($transaction->status) !!}</td>
+                                <td class="text-center" data-filter="{{ $transaction->status }}">{!! $transaction->status_label !!}</td>
                                 <td>
 
                                 </td>

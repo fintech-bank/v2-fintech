@@ -80,6 +80,8 @@ use Illuminate\Notifications\Notifiable;
  * @property int $mobileVerified
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo whereMobileVerified($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo wherePhoneVerified($value)
+ * @property-read mixed $mobile_verify
+ * @property-read mixed $phone_verify
  */
 class CustomerInfo extends Model
 {
