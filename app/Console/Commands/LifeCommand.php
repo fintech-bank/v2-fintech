@@ -341,10 +341,12 @@ class LifeCommand extends Command
                         try {
                             $creditor = CustomerCreditor::where('name', 'LIKE', '%' . $sepa->creditor . '%')->count();
                             if ($creditor == 0) {
+                                $country = ["FR","US","BL","LU","JP","CH"];
                                 CustomerCreditor::create([
                                     'name' => $sepa->creditor,
                                     'customer_wallet_id' => $wallet->id,
                                     'customer_sepa_id' => $sepa->id,
+                                    'identifiant' => $country[rand(0,5)].rand(10,99).random_string_alpha_upper(3).random_numeric(6)
                                 ]);
                             }
                         } catch (Exception $exception) {

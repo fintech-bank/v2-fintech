@@ -48,10 +48,6 @@ class CustomerCreditor extends Model
 
     protected function identifiant(): Attribute
     {
-        return Attribute::make(
-            set: function () {
-                "FR".rand(10,99).random_string_alpha_upper(3).random_numeric(6);
-            }
-        );
+
     }
 }
