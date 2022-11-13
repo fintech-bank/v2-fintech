@@ -100,6 +100,7 @@
 <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
 <script src="https://cdn.withpersona.com/dist/persona-v4.2.0.js"></script>
 <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.0.279/pdf.min.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/function.js"></script>
 @auth

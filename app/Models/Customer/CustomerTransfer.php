@@ -42,6 +42,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerTransfer whereUuid($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerTransfer
+ * @property-read mixed $amount_format
+ * @property string $access
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerTransfer whereAccess($value)
+ * @property-read mixed $status_label
+ * @property-read mixed $status_bullet
+ * @property-read mixed $date_format
+ * @property-read mixed $type_text
  */
 class CustomerTransfer extends Model
 {
@@ -52,6 +59,7 @@ class CustomerTransfer extends Model
     public $timestamps = false;
 
     protected $dates = ['transfer_date', 'recurring_start', 'recurring_end'];
+    protected $appends = ['amount_format', 'status_label', 'status_bullet', 'type_text', 'date_format'];
 
     public function wallet()
     {
@@ -61,5 +69,73 @@ class CustomerTransfer extends Model
     public function beneficiaire()
     {
         return $this->belongsTo(CustomerBeneficiaire::class, 'customer_beneficiaire_id');
+    }
+
+    public function getAmountFormatAttribute()
+    {
+        return eur($this->amount);
+    }
+
+    public function getTypeTextAttribute()
+    {
+        return match ($this->type) {
+            "immediat" => "Virement Ponctuel",
+            "differed" => "Virement Différé",
+            "permanent" => "Virement Permanent"
+        };
+    }
+
+    public function getStatus($format = 'color')
+    {
+        if($format == 'text') {
+            return match($this->status) {
+                "paid" => "Exécuter",
+                "pending" => "En attente",
+                "in_transit" => "Requete envoyé à la banque distante",
+                "canceled" => "Annuler",
+                default => "Rejeter"
+            };
+        } elseif ($format == 'icon') {
+            return match($this->status) {
+                "paid" => "check-circle",
+                "pending" => "spinner fa-spin-pulse",
+                "in_transit" => "money-bill-transfer",
+                "canceled" => "xmark-circle",
+                default => "ban"
+            };
+        } elseif ($format == 'comment') {
+            return match($this->status) {
+                "paid" => "Votre ordre de virement à été traité",
+                "pending" => "Votre ordre de virement est en cours de validation",
+                "in_transit" => "Votre ordre de virement est cours d'exécution",
+                "canceled" => "Votre ordre de virement à été annulé",
+                default => "Votre ordre de virement à été refusé par notre service financier"
+            };
+        } else {
+            return match($this->status) {
+                "paid" => "success",
+                "pending" => "info",
+                "in_transit" => "warning",
+                default => "danger"
+            };
+        }
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return "<span class='badge badge-".$this->getStatus()." badge-sm'><i class='fa-solid fa-".$this->getStatus('icon')." me-2 text-white'></i> ".$this->getStatus('text')."</span>";
+    }
+
+    public function getStatusBulletAttribute()
+    {
+        return '<i class="fa-solid fa-circle-dot fs-1 text-'.$this->getStatus().' me-3"></i> '.$this->getStatus('comment');
+    }
+
+    public function getDateFormatAttribute()
+    {
+        return match ($this->type) {
+            "immediat", "differed" => $this->transfer_date->format("d/m/Y"),
+            "permanent" => $this->recurring_start->format('d/m/Y')
+        };
     }
 }

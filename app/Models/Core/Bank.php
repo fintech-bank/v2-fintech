@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin IdeHelperBank
  * @property-read \Illuminate\Database\Eloquent\Collection|CustomerMobility[] $mobility
  * @property-read int|null $mobility_count
+ * @property-read mixed $bank_symbol
  */
 class Bank extends Model
 {
@@ -44,6 +45,8 @@ class Bank extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    protected $appends = ['bank_symbol'];
 
     public function beneficiaires()
     {
@@ -63,5 +66,22 @@ class Bank extends Model
     public function setCountryAttribute($value)
     {
         $this->attributes['country'] = \Str::upper(\Str::limit($value, 2, ''));
+    }
+
+    public function getBankSymbolAttribute()
+    {
+        ob_start();
+        ?>
+        <div class="d-flex flex-row align-items-center">
+            <div class="symbol symbol-50px me-3">
+                <div class="symbol-label" style="background-image:url('<?= $this->logo ?>')"></div>
+            </div>
+            <div class="d-flex flex-column">
+                <strong><?= $this->name ?></strong>
+                <div class="text-muted">BIC: <?= $this->bic ?></div>
+            </div>
+        </div>
+        <?php
+        return ob_get_clean();
     }
 }

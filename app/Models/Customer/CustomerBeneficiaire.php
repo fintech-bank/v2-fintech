@@ -4,6 +4,7 @@ namespace App\Models\Customer;
 
 use App\Helper\CustomerTransferHelper;
 use App\Models\Core\Bank;
+use IbanGenerator\Generator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -49,13 +50,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerBeneficiaire whereUuid($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerBeneficiaire
+ * @property-read mixed $iban_format
  */
 class CustomerBeneficiaire extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-
+    protected $appends = ['iban_format', 'full_name'];
     public $timestamps = false;
 
     public function getFullNameAttribute()
@@ -76,5 +78,10 @@ class CustomerBeneficiaire extends Model
     public function transfers()
     {
         return $this->hasMany(CustomerTransfer::class);
+    }
+
+    public function getIbanFormatAttribute()
+    {
+        return \Str::replace("\r\n", " ", chunk_split($this->iban, 4));
     }
 }

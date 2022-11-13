@@ -7,8 +7,8 @@ use App\Models\Core\Agency;
 use App\Models\Core\Invoice;
 use App\Models\Core\LogBanque;
 use App\Models\Reseller\Reseller;
-use App\Notifications\Reseller\NewInvoiceNotification;
-use App\Notifications\Reseller\NewInvoicePaymentNotification;
+use App\Notifications\Customer\Customer\Reseller\NewInvoiceNotification;
+use App\Notifications\Customer\Customer\Reseller\NewInvoicePaymentNotification;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Console\Command;
 

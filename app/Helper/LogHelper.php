@@ -75,7 +75,13 @@ class LogHelper
         \Log::error($exception, $t);
     }
 
-    public static function insertLogSystem($type, $message,User $user = null)
+    /**
+     * @param $type || error, warning, success, info
+     * @param $message
+     * @param User|null $user
+     * @return void
+     */
+    public static function insertLogSystem($type, $message, User $user = null)
     {
         LogBanque::create(['type' => $type, 'message' => $message, 'user_id' => isset($user) ? $user->id : null]);
     }

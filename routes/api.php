@@ -78,10 +78,16 @@ Route::prefix('core')->group(function () {
         return response()->json($bank->status());
     });
 
+    Route::prefix('state')->group(function () {
+        Route::get('wallet', [\App\Http\Controllers\Api\Core\StateController::class, 'wallet']);
+    });
+
+
 });
 
 Route::prefix('connect')->group(function () {
     Route::get('/customer_verify', [\App\Http\Controllers\Api\Connect\ConnectController::class, 'verifyCustomer']);
+    Route::get('/bank/{bank_id}', [\App\Http\Controllers\Api\Connect\ConnectController::class, 'infoBank']);
 });
 
 Route::prefix('user')->group(function () {
@@ -103,6 +109,7 @@ Route::prefix('manager')->group(function () {
 
     Route::prefix('files')->group(function () {
         Route::get("/", [\App\Http\Controllers\Api\Manager\FilesController::class, 'lists']);
+        Route::get("{reference_id}", [\App\Http\Controllers\Api\Manager\FilesController::class, 'getFile']);
         Route::post("/", [\App\Http\Controllers\Api\Manager\FilesController::class, 'store']);
         Route::delete("/{file}", [\App\Http\Controllers\Api\Manager\FilesController::class, 'delete'])->where(['file' => '.*']);
     });
@@ -124,5 +131,43 @@ Route::prefix('webhook')->group(function () {
 });
 
 Route::prefix('customer')->group(function () {
+    Route::get('/search', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'search']);
     Route::post('verifSecure/{code}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifSecure']);
+    Route::get('{customer_id}/verifAllSolde', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifAllSolde']);
+    Route::post('{customer_id}/write-sms', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'writeSms']);
+    Route::post('{customer_id}/write-mail', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'writeMail']);
+    Route::put('{customer_id}/reinitPass', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitPass']);
+    Route::put('{customer_id}/reinitCode', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitCode']);
+    Route::put('{customer_id}/reinitAuth', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitAuth']);
+    Route::put('{customer_id}/business', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'updateBusiness']);
+
+    Route::prefix('{customer_id}/wallet')->group(function () {
+        Route::get('{number_account}', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'info']);
+        Route::get('{number_account}/chartSummary', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'chartSummary']);
+        Route::post('{number_account}/request/overdraft', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'requestOverdraft']);
+        Route::put('{number_account}', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'update']);
+        Route::post('/', [\App\Http\Controllers\Agent\Customer\CustomerWalletController::class, 'store']);
+
+        Route::prefix('{number_account}/transaction')->group(function () {
+            Route::post('{transaction_uuid}', [\App\Http\Controllers\Api\Customer\TransactionController::class, 'update']);
+        });
+
+        Route::prefix('{number_account}/transfers')->group(function () {
+            Route::post('/', [\App\Http\Controllers\Api\Customer\TransferController::class, 'store']);
+            Route::get('{transfer_uuid}', [\App\Http\Controllers\Api\Customer\TransferController::class, 'info']);
+            Route::put('{transfer_uuid}', [\App\Http\Controllers\Api\Customer\TransferController::class, 'update']);
+        });
+
+        Route::prefix('{number_account}/sepa')->group(function () {
+            Route::get('{sepa_uuid}', [\App\Http\Controllers\Api\Customer\SepaController::class, 'info']);
+        });
+    });
+
+    Route::prefix('{customer_id}/beneficiaire')->group(function () {
+        Route::post('/', [\App\Http\Controllers\Api\Customer\BeneficiaireController::class, 'store']);
+    });
+
+    Route::prefix('{customer_id}/subscribe')->group(function () {
+        Route::post('overdraft', [\App\Http\Controllers\Api\Customer\SubscribeController::class, 'overdraft']);
+    });
 });

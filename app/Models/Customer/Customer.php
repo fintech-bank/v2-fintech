@@ -2,11 +2,13 @@
 
 namespace App\Models\Customer;
 
+use App\Models\Business\BusinessParam;
 use App\Models\Core\Agency;
 use App\Models\Core\Invoice;
 use App\Models\Core\Package;
 use App\Models\Document\DocumentTransmiss;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -74,6 +76,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $insurances_count
  * @property string|null $persona_reference_id
  * @method static \Illuminate\Database\Eloquent\Builder|Customer wherePersonaReferenceId($value)
+ * @property-read mixed $next_debit_package
+ * @property-read BusinessParam|null $business
  */
 class Customer extends Model
 {
@@ -82,7 +86,7 @@ class Customer extends Model
     protected $guarded = [];
 
     public $timestamps = false;
-    protected $appends = ['status_label', 'sum_account', 'sum_epargne'];
+    protected $appends = ['status_label', 'sum_account', 'sum_epargne', 'next_debit_package'];
 
     public function user()
     {
@@ -179,6 +183,11 @@ class Customer extends Model
         return $this->hasMany(CustomerInsurance::class);
     }
 
+    public function business()
+    {
+        return $this->hasOne(BusinessParam::class);
+    }
+
     public function getStatusTextAttribute()
     {
         $t = null;
@@ -198,13 +207,13 @@ class Customer extends Model
     public function getStatusColorAttribute()
     {
         $t = null;
-        switch ($this->status_open_account) {
-            case 'open': $t = 'primary'; break;
-            case 'completed' || 'suspended': $t = 'warning'; break;
-            case 'accepted': $t = 'success'; break;
-            case 'declined' || 'closed': $t = 'danger'; break;
-            default: return 'secondary'; break;
-        }
+        match ($this->status_open_account) {
+            'open' => $t = 'primary',
+            'completed', 'suspended' => $t = 'warning',
+            'accepted' => $t = 'success',
+            'declined', 'closed' => $t = 'danger',
+            default => $t = 'secondary',
+        };
 
         return $t;
     }
@@ -222,6 +231,16 @@ class Customer extends Model
     public function getSumEpargneAttribute()
     {
         return $this->wallets()->where('type', 'epargne')->where('status', 'active')->sum('balance_actual');
+    }
+
+    public function getNextDebitPackageAttribute()
+    {
+        return match ($this->package->type_prlv) {
+            "mensual" => Carbon::createFromDate(now()->year, now()->addMonth()->month, $this->user->created_at->day),
+            "trim" => Carbon::createFromDate(now()->year, now()->addMonths(3)->month, $this->user->created_at->day),
+            "sem" => Carbon::createFromDate(now()->year, now()->addMonths(6)->month, $this->user->created_at->day),
+            "annual" => Carbon::createFromDate(now()->addYear()->year, $this->user->created_at->month, $this->user->created_at->day),
+        };
     }
 
 }

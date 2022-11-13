@@ -92,5 +92,8 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
 
             Route::get('finish', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'finish'])->name('agent.customer.create.finish');
         });
+        Route::prefix('wallet')->group(function () {
+            Route::get('{number_account}', [\App\Http\Controllers\Agent\Customer\CustomerWalletController::class, 'show'])->name('agent.customer.wallet.show');
+        });
     });
 });

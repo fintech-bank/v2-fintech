@@ -2,35 +2,38 @@
 
 namespace App\Notifications\Customer;
 
-use App\Helper\CustomerHelper;
+use App\Models\Core\Package;
 use App\Models\Customer\Customer;
-use App\Models\Customer\CustomerInsurance;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\WebPush\WebPushChannel;
+use NotificationChannels\WebPush\WebPushMessage;
 
-class NewContractInsurance extends Notification
+class UpdateTypeAccountNotification extends Notification
 {
     use Queueable;
 
-    public $customer;
-    public $contract;
-    public $documents;
+    public Customer $customer;
+
+    public Package $type;
+
+    public string $title = "Votre compte en ligne";
+    public string $pathDocument;
 
     /**
      * Create a new notification instance.
      *
      * @param Customer $customer
-     * @param CustomerInsurance $contract
-     * @param $documents
+     * @param Package $type
+     * @param string $pathDocument
      */
-    public function __construct(Customer $customer, CustomerInsurance $contract, $documents)
+    public function __construct(Customer $customer, Package $type, string $pathDocument)
     {
         //
         $this->customer = $customer;
-        $this->contract = $contract;
-        $this->documents = $documents;
+        $this->type = $type;
+        $this->pathDocument = $pathDocument;
     }
 
     /**
@@ -52,17 +55,19 @@ class NewContractInsurance extends Notification
      */
     public function toMail($notifiable)
     {
-        $message = (new MailMessage())->view('emails.customer.new_contract_insurance', [
+        $message = (new MailMessage())->view('emails.customer.update_type_account', [
             'customer' => $this->customer,
-            'contract' => $this->contract
+            'type' => $this->type,
         ]);
 
-        foreach ($this->documents as $document) {
-            $message->attach(public_path('/storage/'.$document['url']));
-        }
-        $message->subject("Votre Contrat d'assurance: ".$this->contract->package->name);
+        $message->attach(public_path($this->pathDocument));
+        $message->subject = $this->title;
+        $message->introLines = [
+            "Informations sur la gestion de votre compte"
+        ];
 
         return $message;
+
     }
 
     /**
@@ -74,10 +79,10 @@ class NewContractInsurance extends Notification
     public function toArray($notifiable)
     {
         return [
-            'icon' => 'fa-'.$this->contract->package->type->icon,
+            'icon' => 'fa-box',
             'color' => 'primary',
-            'title' => "Votre contrat d'assurance ".$this->contract->package->type->name,
-            'text' => "Vous venez de souscrire à une assurance de type: <strong>".$this->contract->package->type->name."</strong>",
+            'title' => $this->title,
+            'text' => "Votre compte est passée à l'offre ".$this->type->name.' à '.eur($this->type->price),
             'time' => now()->shortAbsoluteDiffForHumans(),
         ];
     }

@@ -191,51 +191,6 @@
             </ul>
         </li>
     </ul>
-    <div class="page-break"></div>
-    <div class="text-center fs-3 fs-underline">SOUSCRIPTION DE PRODUITS ET SERVICES: Carte de Paiement</div>
-    <div class="text-center fs-3">CONDITIONS PARTICULIERES</div>
-    <div class="mt-10 mb-10 text-center" style="border: solid 2px #000000; background-color: #a4a4a4">Carte de Paiement</div>
-    <div class="mb-10">
-        <div class="fs-2 fs-underline">NOM DE LA CARTE CHOISIE</div>
-        <p>Carte {{ $data->card->support->name }} à débit {{ \App\Helper\CustomerCreditCard::getDebit($data->card->debit) }} de {{ \App\Helper\CustomerHelper::getName($customer) }}</p>
-    </div>
-    <div class="mb-10">
-        <div class="fs-2 fs-underline">TITULAIRE DE LA CARTE</div>
-        {{ \App\Helper\CustomerInfoHelper::getCivility($customer->info->civility) }} {{ $customer->info->lastname }}
-    </div>
-    <div class="mb-10">
-        <div class="fs-2 fs-underline">Carte {{ Str::ucfirst($data->card->support->name) }}</div>
-        <p>Carte de débit à autorisation systématique - CB VISA de {{ Str::upper(\App\Helper\CustomerHelper::getName($customer)) }}</p>
-        <table class="table table-bordered table-sm gs-5 gy-5">
-            <tbody>
-                <tr>
-                    <td>Type de débit:</td>
-                    <td>{{ \App\Helper\CustomerCreditCard::getDebit($data->card->debit) }}</td>
-                </tr>
-                <tr>
-                    <td>Capacité de paiement:</td>
-                    <td>{{ eur($data->card->limit_payment) }} / mois</td>
-                </tr>
-                <tr>
-                    <td> Capacité de retrait global France et étranger:</td>
-                    <td>{{ eur($data->card->limit_retrait) }} / 7 jours</td>
-                </tr>
-                <tr>
-                    <td> Adresse envoi correspondance :</td>
-                    <td>{!! \App\Helper\CustomerInfoHelper::getAddress($customer->info) !!}</td>
-                </tr>
-                <tr>
-                    <td> Compte Débité:</td>
-                    <td>{{ \App\Helper\CustomerWalletHelper::getNameAccount($data->wallet) }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            J'autorise {{ config('app.name') }} à débiter du compte visé ci-dessus le montant de la cotisation annuelle ainsi que les
-            sommes correspondant aux utilisations de la carte conformément aux dispositions des Conditions Générales de
-            fonctionnement des cartes.
-        </p>
-    </div>
     <div class="m-5 p-5" style="border: solid 1px #000000">
         <table style="width: 100%;">
             <tbody>

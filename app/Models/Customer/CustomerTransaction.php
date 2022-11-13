@@ -55,13 +55,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $type_symbol
  * @property-read mixed $type_text
  * @property-read mixed $amount_format
+ * @property-read \App\Models\Customer\CustomerPaymentOpposit|null $opposit
+ * @property-read mixed $is_opposit
  */
 class CustomerTransaction extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['type_text', 'type_symbol', 'amount_format'];
+    protected $appends = ['type_text', 'type_symbol', 'amount_format', 'is_opposit'];
 
     protected $dates = ['created_at', 'updated_at', 'confirmed_at', 'differed_at'];
 
@@ -95,6 +97,11 @@ class CustomerTransaction extends Model
         return $this->hasOne(InvoicePayment::class);
     }
 
+    public function opposit()
+    {
+        return $this->hasOne(CustomerPaymentOpposit::class);
+    }
+
     public function getTypeTextAttribute()
     {
         return \Str::ucfirst($this->type);
@@ -125,5 +132,14 @@ class CustomerTransaction extends Model
     public function getAmountFormatAttribute()
     {
         return eur($this->amount);
+    }
+
+    public function getIsOppositAttribute()
+    {
+        if($this->opposit()->count() == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -112,6 +112,20 @@
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('agent.dashboard') }}">
+						<span class="menu-icon">
+							<!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                            <i class="fa-solid fa-ban fa-2x"></i>
+                            <!--end::Svg Icon-->
+						</span>
+                        <span class="menu-title">Oppositions</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
             </div>
             <!--end::Menu-->
         </div>

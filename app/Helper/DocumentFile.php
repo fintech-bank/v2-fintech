@@ -48,7 +48,7 @@ class DocumentFile
                     [],
                     false,
                     true,
-                    public_path('/storage/gdd/'.$customer->id.'/documents/'.\Str::slug($category->name)),
+                    public_path('/storage/gdd/'.$customer->user->id.'/documents/'.\Str::slug($category->name)),
                     false);
             }
 
@@ -153,16 +153,16 @@ class DocumentFile
         ]);
 
         if ($pdf == true) {
-            $pdf = Pdf::loadView('pdf.agence.'.\Str::slug($name, '_'), [
+            $pdf = Pdf::loadView('pdf.'.$name, [
                 'customer' => $customer,
                 'data' => (object)$pdfData,
-                'agence' => $customer->user->agency,
-                'title' => $name,
+                'agence' => $customer->agency,
+                'title' => $nameless,
                 'header_type' => 'address',
                 'document' => $document,
             ]);
 
-            $pdf->save(public_path('/storage/gdd/'.$customer->user->id.'/documents/'.$categorie->name.'/'.$nameless.'.pdf'));
+            $pdf->save(public_path('/storage/gdd/'.$customer->user->id.'/documents/'.$categorie->slug.'/'.$nameless.'.pdf'));
         }
 
         return $document;

@@ -6,22 +6,23 @@ use Illuminate\View\Component;
 
 class Indicator extends Component
 {
-    public $text;
+    public bool $textOnly;
     /**
-     * @var bool
+     * @var null
      */
-    public $textOnly;
+    public $text;
 
     /**
      * Create a new component instance.
-     * @param string $text
+     *
      * @param bool $textOnly
+     * @param null $text
      */
-    public function __construct($text = 'Veuillez patienter...', $textOnly = false)
+    public function __construct($textOnly = true, $text = null)
     {
         //
-        $this->text = $text;
         $this->textOnly = $textOnly;
+        $this->text = $text;
     }
 
     /**

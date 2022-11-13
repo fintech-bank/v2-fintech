@@ -19,10 +19,10 @@ use App\Models\Customer\CustomerSituation;
 use App\Models\Customer\CustomerSituationCharge;
 use App\Models\Customer\CustomerSituationIncome;
 use App\Models\Customer\CustomerWallet;
-use App\Notifications\Customer\SendPasswordNotification;
-use App\Notifications\Customer\UpdateStatusAccountNotification;
-use App\Notifications\Customer\WelcomeNotification;
-use App\Notifications\Testing\Customer\SendCreditCardCodeNotification;
+use App\Notifications\Customer\Customer\Customer\SendPasswordNotification;
+use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
+use App\Notifications\Customer\Customer\Customer\WelcomeNotification;
+use App\Notifications\Customer\Customer\Testing\Customer\SendCreditCardCodeNotification;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Services\BankFintech;
@@ -373,6 +373,7 @@ class RegisterController extends Controller
             'mobile' => $personal->mobile,
             'country_code' => '+33',
             'customer_id' => $customer->id,
+            'email' => $user->email
         ]);
 
 
@@ -444,7 +445,7 @@ class RegisterController extends Controller
         try {
             config('app.env') != 'local' ?
                 $user->notify(new SendPasswordNotification($customer, $password)) :
-                $user->notify(new \App\Notifications\Testing\Customer\SendPasswordNotification($customer, $password));
+                $user->notify(new \App\Notifications\Customer\Customer\Testing\Customer\SendPasswordNotification($customer, $password));
 
             config('app.env') == 'local' ? Whatsapp::sendNotification($customer->info->mobile, "Votre mot de passe provisoire est: $password") : null;
         } catch (\Exception $exception) {
@@ -608,7 +609,7 @@ class RegisterController extends Controller
 
         // Envoie du code de la carte bleu par sms
         config('app.env') != 'local' ?
-            $wallet->customer->user->notify(new \App\Notifications\Customer\SendCreditCardCodeNotification($card_code, $card)) :
+            $wallet->customer->user->notify(new \App\Notifications\Customer\Customer\Customer\SendCreditCardCodeNotification($card_code, $card)) :
             $wallet->customer->user->notify(new SendCreditCardCodeNotification($card_code, $card));
 
         config('app.env') == 'local' ? Whatsapp::sendNotification($card->wallet->customer->info->mobile, "Le code de votre carte bleu N°$card->number est le $card_code") : null;

@@ -84,7 +84,7 @@ class CustomerTransactionHelper
                 'confirmed' => $confirm,
                 'confirmed_at' => $confirmed_at,
                 'customer_wallet_id' => $wallet,
-                'updated_at' => $updated_at,
+                'updated_at' => $updated_at ?? now(),
                 'customer_credit_card_id' => $card_id != null ? $card_id : null,
                 'differed' => $differed ? 1 : 0,
                 'differed_at' => $differed ? now()->endOfMonth() : null,
@@ -109,7 +109,7 @@ class CustomerTransactionHelper
                 'confirmed' => $confirm,
                 'confirmed_at' => $confirmed_at,
                 'customer_wallet_id' => $wallet,
-                'updated_at' => $updated_at,
+                'updated_at' => $updated_at ?? now(),
             ]);
             $transaction = CustomerTransaction::with('wallet')->latest()->first();
 
@@ -136,6 +136,7 @@ class CustomerTransactionHelper
         $transaction->update([
             'confirmed' => true,
             'confirmed_at' => now(),
+            'updated_at' => now()
         ]);
     }
 

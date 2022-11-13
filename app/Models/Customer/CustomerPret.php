@@ -108,13 +108,13 @@ class CustomerPret extends Model
     public function getStatusLabelAttribute()
     {
         switch($this->status) {
-            case 'open': return '<div class="badge badge-lg badge-secondary"><i class="fa-solid fa-pen me-2"></i> Dossier Ouvert</div>'; break;
-            case 'study': return '<div class="badge badge-lg badge-warning"><i class="fa-solid fa-spinner me-2"></i> Dossier en étude</div>'; break;
-            case 'accepted': return '<div class="badge badge-lg badge-success"><i class="fa-solid fa-check-circle me-2"></i> Dossier accepter</div>'; break;
-            case 'refused': return '<div class="badge badge-lg badge-danger"><i class="fa-solid fa-xmark-circle me-2"></i> Dossier refuser</div>'; break;
-            case 'progress': return '<div class="badge badge-lg badge-success"><i class="fa-solid fa-spinner me-2"></i> Pret en cours...</div>'; break;
-            case 'terminated': return '<div class="badge badge-lg badge-success"><i class="fa-solid fa-check-circle me-2"></i> Pret remboursé</div>'; break;
-            case 'error': return '<div class="badge badge-lg badge-danger"><i class="fa-solid fa-circle-exclamation me-2"></i> Erreur sur le pret</div>'; break;
+            case 'open': return '<div class="badge badge-lg badge-secondary"><i class="fa-solid fa-pen text-white me-2"></i> Dossier Ouvert</div>'; break;
+            case 'study': return '<div class="badge badge-lg badge-warning"><i class="fa-solid fa-spinner text-white me-2"></i> Dossier en étude</div>'; break;
+            case 'accepted': return '<div class="badge badge-lg badge-success"><i class="fa-solid fa-check-circle text-white me-2"></i> Dossier accepter</div>'; break;
+            case 'refused': return '<div class="badge badge-lg badge-danger"><i class="fa-solid fa-xmark-circle text-white me-2"></i> Dossier refuser</div>'; break;
+            case 'progress': return '<div class="badge badge-lg badge-success"><i class="fa-solid fa-spinner text-white me-2"></i> Pret en cours...</div>'; break;
+            case 'terminated': return '<div class="badge badge-lg badge-success"><i class="fa-solid fa-check-circle text-white me-2"></i> Pret remboursé</div>'; break;
+            case 'error': return '<div class="badge badge-lg badge-danger"><i class="fa-solid fa-circle-exclamation text-white me-2"></i> Erreur sur le pret</div>'; break;
         }
     }
 

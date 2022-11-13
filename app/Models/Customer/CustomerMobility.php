@@ -58,6 +58,10 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereStatus($value)
  * @property Carbon $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereUpdatedAt($value)
+ * @property-read mixed $comment_text
+ * @property-read mixed $status_color
+ * @property-read mixed $status_label
+ * @property-read mixed $status_text
  */
 class CustomerMobility extends Model
 {
@@ -66,6 +70,7 @@ class CustomerMobility extends Model
     public $timestamps = false;
 
     protected $dates = ['start', 'end_prov', 'end_real', 'end_prlv', 'updated_at'];
+    protected $appends = ['status_text', 'status_label', 'comment_text'];
 
     public function customer()
     {
@@ -108,5 +113,40 @@ class CustomerMobility extends Model
         return Attribute::make(
             get: fn($value) => $value == 0 ? 'Non' : 'Oui',
         );
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return match ($this->status) {
+            "bank_start" => "Dossier Transmis (Banque)",
+            "bank_return" => "Dossier reçu (Banque)",
+            "creditor_start" => "Dossier transmis (Créancier)",
+            "creditor_end" => "Dossier reçu (Créancier)",
+            "terminate" => "Dossier Terminer",
+        };
+    }
+
+    public function getStatusColorAttribute()
+    {
+        return match ($this->status) {
+            "bank_start", "creditor_start" => "danger",
+            "bank_return", "terminate", "creditor_end" => "success",
+        };
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return '<span class="badge badge-'.$this->getStatusColorAttribute().' badge-sm">'.$this->getStatusTextAttribute().'</span>';
+    }
+
+    public function getCommentTextAttribute()
+    {
+        return match($this->status) {
+            "bank_start" => "Votre dossier à été transmis à la banque de départ",
+            "bank_return" => "Votre dossier à été traité par la banque de départ et les informations sont dans notre banque",
+            "creditor_start" => "Votre dossier à été transmis aux créancier",
+            "creditor_end" => "Votre dossier à été traité par vos créancier et les informations sont dans notre banque",
+            "terminate" => "Votre dossier est à présent clôturer",
+        };
     }
 }

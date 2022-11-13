@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerCreditor whereOpposit($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerCreditor
+ * @property string $identifiant
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerCreditor whereIdentifiant($value)
  */
 class CustomerCreditor extends Model
 {

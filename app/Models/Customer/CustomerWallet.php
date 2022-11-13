@@ -76,6 +76,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $moneys_count
  * @property float $taux_decouvert
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereTauxDecouvert($value)
+ * @property int $nb_alert
+ * @property-read mixed $name_account
+ * @property-read mixed $name_account_generic
+ * @property-read mixed $status_label
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereNbAlert($value)
+ * @property-read mixed $solde_remaining
+ * @property-read mixed $sum_month_operation
+ * @property-read mixed $balance_actual_format
+ * @property-read mixed $alert_status_comment
+ * @property-read mixed $alert_status_text
+ * @property-read mixed $status_color
+ * @property-read mixed $status_text
+ * @property-read mixed $iban_format
  */
 class CustomerWallet extends Model
 {
@@ -87,7 +100,44 @@ class CustomerWallet extends Model
 
     protected $dates = ['alert_date'];
 
-    protected $appends = ['type_text'];
+    protected $appends = [
+        'type_text',
+        'status_label',
+        'status_color',
+        'status_text',
+        'name_account',
+        'name_account_generic',
+        'sum_month_operation',
+        'solde_remaining',
+        'balance_actual_format',
+        'alert_status_text',
+        'alert_status_comment',
+        'iban_format'
+    ];
+
+    public static function getState()
+    {
+        $arr = [
+            [
+                'name' => 'En attente',
+                'slug' => 'pending'
+            ],
+            [
+                'name' => 'Actif',
+                'slug' => 'active'
+            ],
+            [
+                'name' => 'Suspendu',
+                'slug' => 'suspended'
+            ],
+            [
+                'name' => 'Clôturer',
+                'slug' => 'closed'
+            ]
+        ];
+
+        return collect($arr);
+    }
 
     public function customer()
     {
@@ -174,12 +224,239 @@ class CustomerWallet extends Model
      */
     public function getTypeTextAttribute(): ?string
     {
-        switch ($this->type) {
-            case 'compte': return 'Compte Courant';
-            case 'pret': return 'Pret Bancaire';
-            case 'epargne': return 'Compte Epargne';
-            default: return null;
+        return match ($this->type) {
+            'compte' => 'Compte Courant',
+            'pret' => 'Pret Bancaire',
+            'epargne' => 'Compte Epargne',
+            default => null,
+        };
+    }
+
+    public function getStatus($status, $type = null)
+    {
+        if ($type == 'text') {
+            return match ($status) {
+                'pending' => 'En attente',
+                'active' => 'Actif',
+                'suspended' => 'Suspendue',
+                default => 'Clôturer'
+            };
+        } elseif ($type == 'color') {
+            return match ($status) {
+                'pending' => 'info',
+                'active' => 'success',
+                'suspended' => 'warning',
+                default => 'danger'
+            };
+        } else {
+            return match ($status) {
+                'pending' => 'spinner-third',
+                'active' => 'check-circle',
+                'suspended' => 'triangle-exclamation',
+                default => 'xmark-cirlce'
+            };
         }
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return '<span class="badge badge-' . $this->getStatus($this->status, 'color') . '"><i class="fa-solid fa-'.$this->getStatus($this->status).' text-white me-2"></i> ' . $this->getStatus($this->status, 'text') . '</span>';
+    }
+
+    public function getStatusColorAttribute()
+    {
+        return $this->getStatus($this->status, 'color');
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return $this->getStatus($this->status, 'text');
+    }
+
+    public function getNameAccountAttribute()
+    {
+        return $this->customer->info->full_name.' - '.$this->type_text.' N°'.$this->number_account;
+    }
+
+    public function getNameAccountGenericAttribute()
+    {
+        return $this->type_text.' N°'.$this->number_account;
+    }
+
+    public function getSoldeRemainingAttribute()
+    {
+        return $this->balance_actual + $this->balance_decouvert;
+    }
+
+    public function getSumMonthOperationAttribute()
+    {
+        return $this->transactions()->whereBetween('updated_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->where('confirmed', false)
+            ->orderBy('updated_at', 'desc')
+            ->sum('amount');
+    }
+
+    public function getBalanceActualFormatAttribute()
+    {
+        if($this->balance_actual < 0) {
+            return eur($this->balance_actual);
+        } else {
+            return "+ ".eur($this->balance_actual);
+        }
+    }
+
+    public function getAlertStatusTextAttribute()
+    {
+        if($this->nb_alert == 1) {
+            return 'Compte Problématique';
+        } elseif ($this->nb_alert > 1 && $this->nb_alert <= 3) {
+            return 'Compte en danger';
+        } else {
+            return "Compte dangereux";
+        }
+    }
+
+    public function getAlertStatusCommentAttribute()
+    {
+        if($this->nb_alert == 1) {
+            return 'Ce compte présente une alerte de débit de niveau 1.<br> Une alerte a été envoyer au client.';
+        } elseif ($this->nb_alert > 1 && $this->nb_alert <= 3) {
+            return 'Ce compte présente une alerte de débit de niveau 2 ou 3.<br>Veuillez prendre contact avec le client.';
+        } else {
+            return 'Ce compte présente une alerte de débit de niveau 4.<br>Veuillez prendre contact avec le client afin de lui proposer un compte plus en adéquation.';
+        }
+    }
+
+    public function requestOverdraft()
+    {
+        $taux = $this->getTauxOverdraftByType();
+
+        $info = match ($this->customer->info->type) {
+            'part' => $this->calcOverdraftPart(),
+            'pro', 'orga', 'assoc' => $this->calcOverdraftPro(),
+        };
+
+        if($info['result'] == 4) {
+            return [
+                'access' => true,
+                'value' => $info['amount'] > $this->getLimitOverdraftByType() ? eur($this->getLimitOverdraftByType()) : eur(ceil($info['amount']/100) * 100),
+                'taux' => $taux." %"
+            ];
+        } else {
+            return [
+                'access' => false,
+                'errors' => $info['messages']
+            ];
+        }
+    }
+
+    public function getIbanFormatAttribute()
+    {
+        return \Str::replace("\r\n", " ", chunk_split($this->iban, 4));
+    }
+
+    private function calcOverdraftPart()
+    {
+        $c = 0;
+        $r = collect();
+        $incoming = $this->customer->income->pro_incoming;
+
+        $result = $incoming / 3;
+
+        if($result <= 300) {
+            $c--;
+            $r->push(["Votre revenue es inférieur à ".eur(1000)]);
+        } else {
+            $c++;
+        }
+
+        if($this->customer->situation->pro_category !== 'Sans Emploie') {
+            $c++;
+        } else {
+            $c--;
+            $r->push(["Votre situation professionnel ne permet pas un découvert bancaire"]);
+        }
+
+        if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_actual') >= 0) {
+            $c++;
+        } else {
+            $c--;
+            $r->push(["La somme de vos comptes bancaires est débiteur."]);
+        }
+
+        if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_decouvert') > 0) {
+            $c--;
+            $r->push(["Vous avez déjà un découvert"]);
+        } else {
+            $c++;
+        }
+
+        return [
+            'result' => $c,
+            'messages' => $r,
+            'amount' => $result
+        ];
+    }
+    private function calcOverdraftPro()
+    {
+        $c = 0;
+        $r = collect();
+
+        $ca = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual') + $this->customer->business->ca;
+        $result = $this->customer->wallets()->where('type', 'compte')->sum('balance_actual') + $this->customer->business->result;
+
+        if($ca <= 3000) {
+            $c--;
+            $r->push(["Votre Chiffre d'affaire est inférieur à ".eur(3000)]);
+        } else {
+            $c++;
+        }
+
+        if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_actual') >= 0) {
+            $c++;
+        } else {
+            $c--;
+            $r->push(["La somme de vos comptes bancaires est débiteur."]);
+        }
+
+        if($this->customer->business->indicator) {
+            $c++;
+        } else {
+            $c--;
+            $r->push(["L'indicateur prévisionnel indique un avis défavorable"]);
+        }
+
+        if($this->customer->wallets()->where('type', 'compte')->get()->sum('balance_decouvert') > 0) {
+            $c--;
+            $r->push(["Vous avez déjà un découvert"]);
+        } else {
+            $c++;
+        }
+
+        return [
+            'result' => $c,
+            'messages' => $r,
+            'amount' => $result
+        ];
+    }
+
+    private function getTauxOverdraftByType()
+    {
+        return match ($this->customer->info->type) {
+            'part' => 9.98,
+            'pro' => 8.39,
+            'orga' => 3.38,
+            'assoc' => 2.00
+        };
+    }
+
+    private function getLimitOverdraftByType()
+    {
+        return match ($this->customer->info->type) {
+            'part' => 1000,
+            'pro', 'orga' => 5000,
+            'assoc' => 2000
+        };
     }
 
 }

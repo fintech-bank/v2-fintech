@@ -32,12 +32,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|InsurancePackageForm wherePercent($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|CustomerInsurance[] $insurances
  * @property-read int|null $insurances_count
+ * @property-read mixed $typed_price_format
  */
 class InsurancePackageForm extends Model
 {
     use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
+    protected $appends = ['typed_price_format'];
 
     public function package()
     {
@@ -52,5 +54,10 @@ class InsurancePackageForm extends Model
     public function insurances()
     {
         return $this->hasMany(CustomerInsurance::class);
+    }
+
+    public function getTypedPriceFormatAttribute()
+    {
+        return eur($this->typed_price);
     }
 }

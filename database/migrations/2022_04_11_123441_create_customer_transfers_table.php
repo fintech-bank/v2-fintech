@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('reference');
             $table->string('reason');
             $table->enum('type', ['immediat', 'differed', 'permanent']);
+            $table->enum('access', ['classic', 'express'])->default('classic');
             $table->timestamp('transfer_date')->nullable();
             $table->timestamp('recurring_start')->nullable();
             $table->timestamp('recurring_end')->nullable();

@@ -29,6 +29,7 @@ return new class extends Migration
             $table->boolean('alert_debit')->default(false);
             $table->boolean('alert_fee')->default(false);
             $table->timestamp('alert_date')->nullable();
+            $table->integer('nb_alert')->default(0);
 
             $table->foreignId('customer_id')
                             ->constrained()

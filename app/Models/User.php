@@ -15,6 +15,8 @@ use App\Models\Reseller\Reseller;
 use App\Models\User\UserFile;
 use App\Models\User\UserFolder;
 use App\Models\User\UserNotificationSetting;
+use App\Models\User\UserSubscription;
+use Carbon\Carbon;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -119,6 +121,9 @@ use RTippin\Messenger\Traits\Messageable;
  * @method static Builder|User whereAuthyId($value)
  * @method static Builder|User whereAuthyOneTouchUuid($value)
  * @method static Builder|User whereAuthyStatus($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|UserSubscription[] $subscriptions
+ * @property-read int|null $subscriptions_count
+ * @property-read mixed $next_debit_package
  */
 class User extends Authenticatable
 {
@@ -155,6 +160,17 @@ class User extends Authenticatable
     public function routeNotificationForPushbullet()
     {
         return new \NotificationChannels\Pushbullet\Targets\Device($this->pushbullet_device_id);
+    }
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForSlack($notification)
+    {
+        return 'https://hooks.slack.com/services/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';
     }
 
     public function customers()
@@ -210,6 +226,11 @@ class User extends Authenticatable
     public function settingnotification()
     {
         return $this->hasOne(UserNotificationSetting::class);
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(UserSubscription::class);
     }
 
     public static function boot()

@@ -2,21 +2,26 @@
 
 namespace App\Helper;
 
+use App\Jobs\Core\PaymentFirstInsuranceJob;
+use App\Jobs\Core\PaymentSubscriptionJob;
 use App\Models\Core\CreditCardSupport;
 use App\Models\Core\DocumentCategory;
+use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCreditCard;
 use App\Models\Customer\CustomerInfo;
+use App\Models\Customer\CustomerInsurance;
 use App\Models\Customer\CustomerSetting;
 use App\Models\Customer\CustomerSituation;
 use App\Models\Customer\CustomerSituationCharge;
 use App\Models\Customer\CustomerSituationIncome;
 use App\Models\Customer\CustomerWallet;
 use App\Models\User;
-use App\Notifications\Customer\NewContractInsurance;
-use App\Notifications\Customer\SendPasswordNotification;
-use App\Notifications\Customer\WelcomeNotification;
-use App\Notifications\Testing\Customer\SendCreditCardCodeNotification;
+use App\Notifications\Customer\Customer\Customer\NewContractInsurance;
+use App\Notifications\Customer\Customer\Customer\SendPasswordNotification;
+use App\Notifications\Customer\Customer\Customer\WelcomeNotification;
+use App\Notifications\Customer\Customer\Testing\Customer\SendCreditCardCodeNotification;
+use App\Notifications\Customer\NewContractInsuranceNotification;
 use App\Services\BankFintech;
 use App\Services\PushbulletApi;
 use App\Services\Twilio\Messaging\Whatsapp;
@@ -271,7 +276,7 @@ class CustomerHelper
         return $user;
     }
 
-    private function createsCustomer($session, $user, $password)
+    private function createsCustomer($session, User $user, $password)
     {
         $code_auth = rand(1000, 9999);
         $bank = new BankFintech();
@@ -287,6 +292,11 @@ class CustomerHelper
             'fcc' => $ficp->fcc ? 1 : 0,
         ]);
         $customer->update(['persona_reference_id' => 'customer_'.now()->format('dmYhi')."_".$customer->id]);
+
+        $user->subscriptions()->create([
+            'subscribe_type' => Package::class,
+            'subscribe_id' => $customer->package_id
+        ]);
 
         $info = CustomerInfo::create([
             'type' => 'part',
@@ -306,7 +316,18 @@ class CustomerHelper
             'mobile' => $session->perso['mobile'],
             'country_code' => '+33',
             'customer_id' => $customer->id,
+            'email' => $user->email
         ]);
+
+        if($info->type != 'part') {
+            $customer->business()->create([
+                'name' => $info->full_name,
+                'customer_id' => $customer->id
+            ]);
+        }
+
+        $info->setPhoneVerified($session->perso['phone'], 'phone');
+        $info->setPhoneVerified($session->perso['mobile'], 'mobile');
 
         $setting = CustomerSetting::create([
             'customer_id' => $customer->id,
@@ -342,15 +363,7 @@ class CustomerHelper
         $card = $this->createCreditCard($wallet, $session);
 
         // Envoie du mot de passe provisoire par SMS avec identifiant
-        try {
-            config('app.env') != 'local' ?
-                $user->notify(new SendPasswordNotification($customer, $password)) :
-                $user->notify(new \App\Notifications\Testing\Customer\SendPasswordNotification($customer, $password));
-
-            config('app.env') == 'local' ? Whatsapp::sendNotification($customer->info->mobile, "Votre mot de passe provisoire est: $password") : null;
-        } catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception->getMessage(), $exception);
-        }
+        $user->customers->info->notify(new \App\Notifications\Customer\SendPasswordNotification($customer, $password, $user->identifiant));
 
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents');
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
@@ -360,7 +373,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Convention Preuve',
+            'general.convention_preuve',
             'Convention de Preuve - CUS' . $customer->user->identifiant,
             3,
             null,
@@ -372,7 +385,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Certification Fiscal',
+            'customer.certification_fiscal',
             'Formulaire d\'auto-certification de résidence fiscale - CUS' . $customer->user->identifiant,
             3,
             null,
@@ -384,7 +397,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Synthese Echange',
+            'customer.synthese_echange',
             'Synthese Echange - CUS' . $customer->user->identifiant,
             3,
             null,
@@ -396,7 +409,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Contrat Banque Distance',
+            'customer.contrat_banque_distance',
             'Contrat Banque à distance - CUS' . $customer->user->identifiant,
             3,
             null,
@@ -408,7 +421,7 @@ class CustomerHelper
 
         $document = DocumentFile::createDoc(
             $customer,
-            'Contrat Banque Souscription',
+            'customer.contrat_banque_souscription',
             'Convention de compte - CUS' . $customer->user->identifiant,
             3,
             'CNT' . \Str::upper(\Str::random(6)),
@@ -420,7 +433,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Info Tarif',
+            'general.condition_operation_bancaire',
             'Information Tarifaire',
             5,
             null,
@@ -432,7 +445,7 @@ class CustomerHelper
 
         DocumentFile::createDoc(
             $customer,
-            'Rib',
+            'wallet.rib',
             'Relevé Identité Bancaire',
             5,
             null,
@@ -442,18 +455,18 @@ class CustomerHelper
             false,
             ["wallet" => $wallet]);
 
-        \Storage::disk('public')->copy('gdd/shared/info_tarif.pdf', 'gdd/' . $user->id . '/documents/Courriers/info_tarif.pdf');
+        \Storage::disk('public')->copy('gdd/shared/info_tarif.pdf', 'gdd/' . $user->id . '/documents/courriers/info_tarif.pdf');
 
         $documents = [];
 
         $docs = $customer->documents()->where('document_category_id', 3)->get();
         foreach ($docs as $document) {
             $documents[] = [
-                'url' => 'gdd/' . $user->id . '/documents/Contrats/' . $document->name . '.pdf'
+                'url' => 'gdd/' . $user->id . '/documents/contrats/' . $document->name . '.pdf'
             ];
         }
 
-        $user->notify(new WelcomeNotification($customer, $documents));
+        $user->notify(new \App\Notifications\Customer\WelcomeNotification($customer, $documents));
 
         $this->setOptions($session, $customer, $wallet, $card, $setting);
 
@@ -505,11 +518,7 @@ class CustomerHelper
             'customer_wallet_id' => $wallet->id,
         ]);
 
-        config('app.env') != 'local' ?
-            $wallet->customer->user->notify(new \App\Notifications\Customer\SendCreditCardCodeNotification($card_code, $card)) :
-            $wallet->customer->user->notify(new SendCreditCardCodeNotification($card_code, $card));
-
-        config('app.env') == 'local' ? Whatsapp::sendNotification($card->wallet->customer->info->mobile, "Le code de votre carte bleu N°$card->number est le $card_code") : null;
+        $wallet->customer->user->notify(new \App\Notifications\Customer\SendCreditCardCodeNotification($wallet->customer, $card_code, $card));
 
         return $card;
     }
@@ -547,9 +556,16 @@ class CustomerHelper
                     ]);
                 }
         }
+
+        dispatch(new PaymentSubscriptionJob($customer, $wallet))->delay(now()->addHour());
+
         if (isset($session->subscribe['alerta'])) {
             $setting->update([
                 'alerta' => 1
+            ]);
+            $customer->user->subscriptions()->create([
+                'subscribe_type' => CustomerSetting::class,
+                'subscribe_id' => $setting->id
             ]);
         }
 
@@ -594,8 +610,13 @@ class CustomerHelper
             'mensuality' => $contract->form->typed_price
         ]);
 
+        $customer->user->subscriptions()->create([
+            'subscribe_type' => CustomerInsurance::class,
+            'subscribe_id' => $contract->id
+        ]);
+
         DocumentFile::createDoc($customer,
-            'condition general ' . $contract->package->name,
+            'insurance.condition_general_' . \Str::snake($contract->package->name),
             'Condition Général ' . $contract->package->name,
             1,
             $contract->reference,
@@ -606,7 +627,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'ddac ' . $contract->package->name,
+            'insurance.ddac_' . \Str::snake($contract->package->name),
             'DDAC ' . $contract->package->name,
             1,
             $contract->reference,
@@ -617,7 +638,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            "Document information produit assurance " . $contract->package->name,
+            "insurance.document_information_produit_assurance_" . \Str::snake($contract->package->name),
             "Document d'information sur le produit d'assurance " . $contract->package->name,
             1,
             $contract->reference,
@@ -629,7 +650,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'synthese echange ' . $contract->package->name,
+            'insurance.synthese_echange_' . \Str::snake($contract->package->name),
             "Synthèse des echanges " . $contract->package->name,
             1,
             $contract->reference,
@@ -641,7 +662,7 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'condition particuliere ' . $contract->package->name,
+            'insurance.condition_particuliere_' . \Str::snake($contract->package->name),
             "Condition Particuliere " . $contract->package->name,
             1,
             $contract->reference,
@@ -653,8 +674,8 @@ class CustomerHelper
         );
 
         DocumentFile::createDoc($customer,
-            'condition operation bancaire',
-            "Conditions appliquees au operation bancaire",
+            'general.condition_operation_bancaire',
+            "Conditions appliques au operation bancaire",
             1,
             $contract->reference,
             false,
@@ -668,11 +689,12 @@ class CustomerHelper
         $docs = $customer->documents()->where('document_category_id', 1)->get();
         foreach ($docs as $document) {
             $documents[] = [
-                'url' => 'gdd/' . $customer->user->id . '/documents/Assurance/' . $document->name . '.pdf'
+                'url' => 'gdd/' . $customer->user->id . '/documents/assurance/' . $document->name . '.pdf'
             ];
         }
 
-        $customer->user->notify(new NewContractInsurance($customer, $contract, $documents));
+        $customer->user->notify(new NewContractInsuranceNotification($customer, $contract, $documents));
+        dispatch(new PaymentFirstInsuranceJob($customer, $contract, $customer->wallets()->where('type', 'compte')->first()))->delay(now()->addDay());
 
         return $contract;
     }

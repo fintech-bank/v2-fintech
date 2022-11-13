@@ -42,6 +42,9 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin IdeHelperCustomerDocument
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerDocument signedByClient()
  * @property-read mixed $signed_by_client_label
+ * @property-read mixed $url_folder
+ * @property-read mixed $url_bread
+ * @property-read mixed $size_file
  */
 class CustomerDocument extends Model
 {
@@ -50,7 +53,7 @@ class CustomerDocument extends Model
     protected $guarded = [];
 
     protected $dates = ['created_at', 'updated_at', 'signed_at'];
-    protected $append = ['signed_by_client_label'];
+    protected array $append = ['signed_by_client_label', 'url_folder', 'url_bread', 'size_file'];
 
     public function customer()
     {
@@ -76,5 +79,22 @@ class CustomerDocument extends Model
         } else {
             return "<div class='badge badge-success'>Signé</div>";
         }
+    }
+
+    public function getUrlFolderAttribute()
+    {
+        return '/storage/gdd/'.$this->customer->user->id.'/documents/'.$this->category->slug.'/'.$this->name.'.pdf';
+    }
+
+    public function getUrlBreadAttribute()
+    {
+        $url = $this->getUrlFolderAttribute();
+        $d = explode('/', $url, 4);
+        return $d;
+    }
+
+    public function getSizeFileAttribute()
+    {
+        return sizeFormat(filesize($this->url_folder));
     }
 }

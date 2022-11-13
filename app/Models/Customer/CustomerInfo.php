@@ -74,6 +74,14 @@ use Illuminate\Notifications\Notifiable;
  * @property-read string|null $full_name
  * @property int $addressVerified
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo whereAddressVerified($value)
+ * @property string $email
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo whereEmail($value)
+ * @property int $phoneVerified
+ * @property int $mobileVerified
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo whereMobileVerified($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo wherePhoneVerified($value)
+ * @property-read mixed $mobile_verify
+ * @property-read mixed $phone_verify
  */
 class CustomerInfo extends Model
 {
@@ -84,7 +92,7 @@ class CustomerInfo extends Model
     public $timestamps = false;
 
     protected $dates = ['datebirth'];
-    protected $appends = ['type_label', 'phone_verified', 'mobile_verified', 'account_label', 'full_name'];
+    protected $appends = ['type_label', 'phone_verify', 'mobile_verify', 'account_verified', 'full_name'];
 
     public function routeNotificationForTwilio()
     {
@@ -143,11 +151,26 @@ class CustomerInfo extends Model
         return '<span class="badge badge-sm badge-'.$this->getTypeColorAttribute().'">'.$this->getTypeTextAttribute().'</span>';
     }
 
-    public function getPhoneVerifiedAttribute()
+    public function setPhoneVerified($phone, $type)
+    {
+        if(isset($phone)) {
+            $lookup = new Lookup();
+            if($lookup->verify($phone)) {
+                $this->update([
+                    $type."Verified" => true
+                ]);
+            } else {
+                $this->update([
+                    $type."Verified" => false
+                ]);
+            }
+        }
+    }
+
+    public function getPhoneVerifyAttribute()
     {
         if($this->phone != null) {
-            $lookup = new Lookup();
-            if($lookup->verify($this->phone)) {
+            if($this->phoneVerified == 1) {
                 return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
             } else {
                 return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';
@@ -155,11 +178,10 @@ class CustomerInfo extends Model
         }
     }
 
-    public function getMobileVerifiedAttribute()
+    public function getMobileVerifyAttribute()
     {
         if($this->mobile != null) {
-            $lookup = new Lookup();
-            if($lookup->verify($this->mobile)) {
+            if($this->mobileVerified == 1) {
                 return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
             } else {
                 return '<i class="fa-solid fa-xmark-circle text-danger" data-bs-toggle="tooltip" title="Numéro invalide"></i>';

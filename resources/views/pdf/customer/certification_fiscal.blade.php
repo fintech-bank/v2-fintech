@@ -191,7 +191,7 @@
                 <tbody>
                     <tr>
                         <td style="width: 60%;">
-                            Nom et Prénom du signataire: {{ \App\Helper\CustomerHelper::getName($customer) }}<br>
+                            Nom et Prénom du signataire: {{ $customer->info->full_name }}<br>
                             Fait à: {{ $customer->agency->city }}<br>
                             Le: {{ now()->format('d/m/Y') }}
                         </td>

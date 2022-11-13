@@ -36,12 +36,29 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSepa whereUuid($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerSepa
+ * @property-read mixed $amount_format
+ * @property-read mixed $status_label
+ * @property string $processed_time
+ * @property-read mixed $status_comment
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSepa whereProcessedTime($value)
+ * @property-read mixed $processed_time_format
+ * @property-read mixed $status_text
+ * @property-read mixed $updated_at_format
  */
 class CustomerSepa extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+    protected $appends = [
+        'amount_format',
+        'status_label',
+        'status_comment',
+        'status_text',
+        'processed_time_format',
+        'updated_at_format'
+    ];
+    protected $dates = ["created_at", "updated_at", "processed_time"];
 
     public function wallet()
     {
@@ -50,6 +67,88 @@ class CustomerSepa extends Model
 
     public function creditor()
     {
-        return $this->hasMany(CustomerCreditor::class);
+        return $this->hasOne(CustomerCreditor::class);
+    }
+
+    public function getAmountFormatAttribute()
+    {
+        return eur($this->amount);
+    }
+
+    public function getStatus($type = 'icon')
+    {
+        if($type == 'text') {
+            return match ($this->status) {
+                "waiting" => "En attente",
+                "processed" => "Traité",
+                "rejected" => "Rejeté",
+                "return" => "Retourné",
+                default => "Remboursé"
+            };
+        } elseif ($type == 'color') {
+            return match ($this->status) {
+                "waiting" => "warning",
+                "processed" => "success",
+                "rejected", "return" => "danger",
+                default => "info"
+            };
+        } elseif($type == 'comment') {
+            return match ($this->status) {
+                "waiting" => "Le prélèvement va se présenter prochainement",
+                "processed" => "Le Prélèvement à été traité",
+                "rejected" => "Le prélèvement à été rejeté par notre service financier",
+                "return" => "Le prélèvement à été retourné à votre créancier",
+                default => "Le prélèvement à été remboursé"
+            };
+        } else {
+            return match ($this->status) {
+                "waiting" => "spinner fa-spin-pulse",
+                "processed" => "check-circle",
+                "rejected" => "ban",
+                "return" => "rotate-left",
+                default => "euro-sign"
+            };
+        }
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return "<span class='badge badge-".$this->getStatus('color')."'><i class='fa-solid fa-".$this->getStatus()." text-white me-2'></i> ".$this->getStatus('text')."</span>";
+    }
+
+    public function getStatusCommentAttribute()
+    {
+        return '<i class="fa-solid fa-circle-dot fs-1 text-'.$this->getStatus('color').' me-3"></i> '.$this->getStatus('comment');
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return $this->getStatus('text');
+    }
+
+    public function getProcessedTimeFormatAttribute()
+    {
+        return $this->processed_time->format("d/m/Y");
+    }
+
+    public function getUpdatedAtFormatAttribute()
+    {
+        return $this->updated_at->format("d/m/Y");
+    }
+
+    public function getReasonFromRejected($reason)
+    {
+        $arr = [
+            'reject.debit' => "Solde insuffisant",
+        ];
+
+        $collect = collect([
+            [
+                'key' => 'reject.debit',
+                'reason' => "Solde Insuffisant"
+            ]
+        ]);
+        $search = $collect->where('key', $reason)->first();
+        return $search['reason'];
     }
 }

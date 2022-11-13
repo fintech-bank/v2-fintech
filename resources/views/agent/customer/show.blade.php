@@ -1,7 +1,7 @@
 @extends("agent.layouts.app")
 
 @section("css")
-
+    <link href="/assets/plugins/custom/jstree/jstree.bundle.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('toolbar')
@@ -96,15 +96,15 @@
                                     <!--end::Heading-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">Changer l'état du compte client</a>
+                                        <a href="#updateStatus" class="menu-link px-3" data-bs-toggle="modal">Changer l'état du compte client</a>
                                     </div>
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">Changer le type de compte</a>
+                                        <a href="#updateAccount" data-bs-toggle="modal" class="menu-link px-3">Changer le type de compte</a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
-                                        <a href="#" class="menu-link px-3">
+                                        <a href="" class="menu-link px-3">
                                             <span class="menu-title">Nouveau compte</span>
                                             <span class="menu-arrow"></span>
                                         </a>
@@ -112,17 +112,17 @@
                                         <div class="menu-sub menu-sub-dropdown w-175px py-4">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Compte Bancaire</a>
+                                                <a href="#createWallet" data-bs-toggle="modal" class="menu-link px-3">Compte Bancaire</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Compte Epargne</a>
+                                                <a href="#createEpargne" data-bs-toggle="modal" class="menu-link px-3">Compte Epargne</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Pret Bancaire</a>
+                                                <a href="#createPret" data-bs-toggle="modal" class="menu-link px-3">Pret Bancaire</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu separator-->
@@ -213,7 +213,7 @@
                         <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
                             <div class="d-flex justify-content-between w-100 mt-auto mb-2">
                                 <span class="fw-semibold fs-6 text-gray-400">Cotation du client</span>
-                                <span class="fw-bold fs-6">{{ $customer->cotation * 10 }}%</span>
+                                <span class="fw-bold fs-6">{{ $customer->cotation }}</span>
                             </div>
                             <div class="h-5px mx-3 w-100 bg-light mb-3">
                                 @if($customer->cotation < 4)
@@ -255,6 +255,15 @@
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#files">Fichiers</a>
                 </li>
                 <!--end::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#subscriptions">Souscriptions</a>
+                </li>
+
+                @if($customer->info->type != 'part')
+                    <li class="nav-item mt-2">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#business_plan">Calcul Prévisionnel</a>
+                    </li>
+                @endif
             </ul>
             <!--begin::Navs-->
         </div>
@@ -457,12 +466,12 @@
                         </thead>
                         <tbody>
                         @foreach($customer->wallets()->where('type', '!=', 'pret')->get() as $wallet)
-                            @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at')->limit(5)->get() as $transaction)
+                            @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at', 'desc')->limit(5)->get() as $transaction)
                                 <tr>
                                     <td>
                                         <div class="d-flex flex-row align-items-center">
                                             {!! $transaction->getTypeSymbolAttribute('20px') !!}
-                                            <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->description }}">{{ $transaction->designation }}</span>
+                                            <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->designation }}">{{ $transaction->description }}</span>
                                         </div>
                                     </td>
                                     <td>{{ $transaction->confirmed_at->format("d/m/Y") }}</td>
@@ -485,9 +494,6 @@
                                 </tr>
                             @endforeach
                         @endforeach
-                        <tr>
-                            <td></td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -619,6 +625,7 @@
                                         <x-form.select
                                             name="family_situation"
                                             :datas="\App\Helper\CustomerSituationHelper::dataFamilySituation()"
+                                            :value="['key' => $customer->situation->family_situation, 'value' => $customer->situation->family_situation]"
                                             label="Situation Familiale" required="false"/>
                                     </div>
                                 </div>
@@ -627,6 +634,7 @@
                                         <x-form.select
                                             name="logement"
                                             :datas="\App\Helper\CustomerSituationHelper::dataLogement()"
+                                            :value="['key' => $customer->situation->logement, 'value' => $customer->situation->logement]"
                                             label="Dans votre logement, vous êtes" required="false"/>
                                     </div>
                                     <div class="col-6">
@@ -661,6 +669,7 @@
                                 <x-form.select
                                     name="pro_category"
                                     :datas="\App\Helper\CustomerSituationHelper::dataProCategories()"
+                                    :value="['key' => $customer->situation->pro_category, 'value' => $customer->situation->pro_category]"
                                     label="Catégorie sociaux Professionnel" />
 
                                 <x-form.input
@@ -745,20 +754,26 @@
                                 @csrf
                                 @method("put")
                                 <input type="hidden" name="control" value="communication">
+
                                 <x-form.checkbox
                                     name="notif_sms"
                                     label="Notification commercial SMS"
-                                    value="{{ $customer->setting->notif_sms }}" />
+                                    value="{{ $customer->setting->notif_sms }}"
+                                    checked="{{ $customer->setting->notif_sms ?? false }}" />
 
                                 <x-form.checkbox
                                     name="notif_app"
                                     label="Notification commercial Application"
-                                    value="{{ $customer->setting->notif_app }}" />
+                                    value="{{ $customer->setting->notif_app }}"
+                                    checked="{{ $customer->setting->notif_app ?? false }}"
+                                />
 
                                 <x-form.checkbox
                                     name="notif_mail"
                                     label="Notification commercial EMAIL"
-                                    value="{{ $customer->setting->notif_mail }}" />
+                                    value="{{ $customer->setting->notif_mail }}"
+                                    checked="{{ $customer->setting->notif_mail ?? false }}"
+                                />
 
                                 <div class="d-flex justify-content-end">
                                     <x-form.button />
@@ -801,9 +816,869 @@
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="wallets" role="tabpanel">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">Liste des comptes bancaires</h3>
+                    <div class="card-toolbar">
+                        <div class="d-flex align-items-center position-relative my-1 me-3">
+                            <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <input type="text" data-kt-wallet-table-filter="search" class="form-control form-control-solid w-350px ps-15" placeholder="Rechercher..." />
+                        </div>
+                        <!--begin::Toolbar-->
+                        <div class="d-flex justify-content-end" data-kt-wallet-table-toolbar="base">
+                            <!--begin::Filter-->
+                            <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="currentColor" />
+                                    </svg>
+                                </span>
+                                Filtrer
+                            </button>
+                            <!--begin::Menu 1-->
+                            <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true" id="kt-toolbar-filter">
+                                <!--begin::Header-->
+                                <div class="px-7 py-5">
+                                    <div class="fs-4 text-dark fw-bold">Option de filtre</div>
+                                </div>
+                                <!--end::Header-->
+                                <!--begin::Separator-->
+                                <div class="separator border-gray-200"></div>
+                                <!--end::Separator-->
+                                <!--begin::Content-->
+                                <div class="px-7 py-5">
+                                    <!--begin::Input group-->
+                                    <div class="mb-10">
+                                        <!--begin::Label-->
+                                        <label class="form-label fs-5 fw-semibold mb-3">Type de compte:</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-wallet-table-filter="type" data-dropdown-parent="#kt-toolbar-filter">
+                                            <option></option>
+                                            <option value="compte">Compte Bancaire</option>
+                                            <option value="epargne">Livret d'épargne</option>
+                                            <option value="pret">Crédit</option>
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                    <div class="mb-10">
+                                        <!--begin::Label-->
+                                        <label class="form-label fs-5 fw-semibold mb-3">Status:</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-wallet-table-filter="status" data-dropdown-parent="#kt-toolbar-filter">
+                                            <option></option>
+                                            <option value="pending">En attente</option>
+                                            <option value="active">Actif</option>
+                                            <option value="suspended">Suspendue</option>
+                                            <option value="closed">Clôturer</option>
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--begin::Actions-->
+                                    <div class="d-flex justify-content-end">
+                                        <button type="reset" class="btn btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true" data-kt-wallet-table-filter="reset">Effacer</button>
+                                        <button type="submit" class="btn btn-primary" data-kt-menu-dismiss="true" data-kt-wallet-table-filter="filter">Appliquer</button>
+                                    </div>
+                                    <!--end::Actions-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Menu 1-->
+                            <!--end::Filter-->
+                        </div>
+                        <!--end::Toolbar-->
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_wallet_table">
+                        <thead>
+                            <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                <th class="min-w-125px">Compte</th>
+                                <th class="min-w-125px">Type de compte</th>
+                                <th class="min-w-125px">Etat du compte</th>
+                                <th class="min-w-125px">Balance</th>
+                                <th class="text-end min-w-70px">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fw-bold text-gray-600">
+                        @foreach($customer->wallets as $wallet)
+                            <tr>
+                                <!--begin::Name=-->
+                                <td>
+                                    {{ $wallet->number_account }}
+                                </td>
+                                <!--end::Name=-->
+                                <!--begin::Email=-->
+                                <td data-filter="{{ $wallet->type }}">
+                                    {!! $wallet->type_text !!}
+                                </td>
+
+                                <td data-filter="{{ $wallet->status }}">
+                                    {!! $wallet->status_label !!}
+                                </td>
+
+                                <td>
+                                    <strong>Balance Actuel:</strong> {{ eur($wallet->balance_actual) }}<br>
+                                    @if($wallet->balance_coming != 0)
+                                        <strong class="text-muted">A venir:</strong> {{ eur($wallet->balance_coming) }}<br>
+                                    @endif
+                                </td>
+                                <!--end::Email=-->
+                                <!--begin::Action=-->
+                                <td class="text-end">
+                                    <a href="{{ route('agent.customer.wallet.show', $wallet->number_account) }}" class="btn btn-sm btn-circle btn-icon btn-bank" data-bs-toggle="tooltip" data-bs-placement="left" title="Détail"><i class="fa fa-desktop text-white"></i> </a>
+                                </td>
+                                <!--end::Action=-->
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="files" role="tabpanel">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 mb-10">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex flex-column">
+                                @foreach(\App\Models\Core\DocumentCategory::all() as $category)
+                                    <a href="" class="d-flex flex-row align-items-center p-5 fs-2 showFiles" data-folder="{{ $category->id }}">
+                                        <i class="fa-solid fa-folder me-2 text-primary fs-2"></i>
+                                        <span class="fw-bold">{{ $category->name }} ({{ $customer->documents()->where('document_category_id', $category->id)->count() }})</span>
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-12 mb-10">
+                    <div class="card shadow-sm" id="showFiles">
+                        <div class="card-header">
+                            <h3 class="card-title"></h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-stack folderPath"></div>
+                            <table id="kt_file_manager_list" data-kt-filemanager-table="files" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                <!--begin::Table head-->
+                                <thead>
+                                <!--begin::Table row-->
+                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                    <th class="min-w-250px sorting_disabled" rowspan="1" colspan="1" style="width: 520.141px;">Name</th>
+                                    <th class="min-w-10px sorting_disabled" rowspan="1" colspan="1" style="width: 117.594px;">Signature</th>
+                                    <th class="w-125px sorting_disabled" rowspan="1" colspan="1" style="width: 125px;"></th>
+                                </tr>
+                                <!--end::Table row-->
+                                </thead>
+                                <!--end::Table head-->
+                                <!--begin::Table body-->
+                                <tbody class="fw-semibold text-gray-600" id="table_files_content">
+
+                                </tbody>
+                                <!--end::Table body-->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="subscriptions" role="tabpanel">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 mb-5">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Offre</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped gy-5 gx-5">
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bolder">Offre</td>
+                                        <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->first()->getSubAttribute()->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Montant</td>
+                                        <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->first()->getSubAttribute()->price_format }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Modalité de souscription</td>
+                                        <td>{{ $customer->user->subscriptions()->where('subscribe_type', \App\Models\Core\Package::class)->first()->getSubAttribute()->type_prlv_text }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Prochain Prélèvement</td>
+                                        <td>{{ $customer->next_debit_package->format('d/m/Y') }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 mb-5">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Assurance</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            @if($customer->insurances()->count() == 0)
+                                <div class="d-flex flex-row justify-content-center align-items-center p-5 bg-gray-200 rounded-2">
+                                    <i class="fa-solid fa-exclamation-triangle fs-1 text-warning me-2"></i>
+                                    <span>Aucune assurance souscrite</span>
+                                </div>
+                            @else
+                                <table class="table table-striped border">
+                                    <thead>
+                                    <tr>
+                                        <th>Référence</th>
+                                        <th>Désignation</th>
+                                        <th>Etat</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($customer->insurances()->orderBy('updated_at', 'desc')->limit(5)->get() as $insurance)
+                                        <tr>
+                                            <td>{{ $insurance->reference }}</td>
+                                            <td>
+                                                <div class="d-flex flex-column">
+                                                    <div class="fw-bolder">{{ $insurance->package->name }}</div>
+                                                    <div class="text-muted">Offre: {{ $insurance->form->name }} ({{ $insurance->form->typed_price_format }})</div>
+                                                </div>
+                                            </td>
+                                            <td>{!! $insurance->status_label !!}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 mb-5">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Mobilité Bancaire</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            @if($customer->mobilities()->count() == 0)
+                                <div class="d-flex flex-row justify-content-center align-items-center p-5 bg-gray-200 rounded-2">
+                                    <i class="fa-solid fa-exclamation-triangle fs-1 text-warning me-2"></i>
+                                    <span>Aucun dossier de mobilité bancaire ouvert</span>
+                                </div>
+                            @else
+                                <table class="table table-striped border gy-5 gx-5">
+                                    <thead>
+                                    <tr>
+                                        <th>Mandat</th>
+                                        <th>Banque</th>
+                                        <th>Etat</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($customer->mobilities()->orderBy('updated_at', 'desc')->limit(5)->get() as $mobility)
+                                        <tr>
+                                            <td>{{ $mobility->mandate }}</td>
+                                            <td>{!! $mobility->bank->bank_symbol !!}</td>
+                                            <td>{{ $mobility->status_text }}</td>
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 mb-5">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Pret bancaire</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped border gy-5 gx-5">
+                                <thead>
+                                <tr>
+                                    <th>Référence</th>
+                                    <th>Type de pret</th>
+                                    <th>Montant accordée</th>
+                                    <th>Etat</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($customer->prets()->orderBy('updated_at', 'desc')->limit(5)->get() as $pret)
+                                    <tr>
+                                        <td>{{ $pret->reference }}</td>
+                                        <td>{{ $pret->plan->name }}</td>
+                                        <td>{{ eur($pret->amount_loan) }}</td>
+                                        <td>{!! $pret->status_label  !!}</td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if($customer->info->type != 'part')
+        <div class="tab-pane fade" id="business_plan" role="tabpanel">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 mb-10">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Information structurel</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bolder">Société</td>
+                                        <td>{{ $customer->business->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Forme juridique</td>
+                                        <td>{{ $customer->business->forme }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder">Possible demande de financement</td>
+                                        <td>{{ $customer->business->financement }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Information Prévisionnel</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped border gy-5 gx-5 mb-5">
+                                <thead>
+                                    <tr>
+                                        <th>Libellé</th>
+                                        <th>Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Chiffre d'affaire</td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-solid" name="ca" value="{{ $customer->business->ca }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Achat</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="achat" value="{{ $customer->business->achat }}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Frais Généraux</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="frais" value="{{ $customer->business->frais }}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salaires & Charges Sociales</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="salaire" value="{{ $customer->business->salaire }}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Impôt</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="impot" value="{{ $customer->business->impot }}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Autre Produit</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="other_product" value="{{ $customer->business->other_product }}"></td>
+                                    </tr>
+                                    <tr class="border-bottom-3">
+                                        <td>Autre Charge</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="other_charge" value="{{ $customer->business->other_charge }}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apport Personnel (Capital, etc...)</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="apport_personnel" value="{{ $customer->business->apport_personnel }}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Financement existant</td>
+                                        <td><input type="text" class="form-control form-control-solid" name="finance" value="{{ $customer->business->finance }}"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="fw-bolder text-end">Résultat</td>
+                                        <td>
+                                            <div class="text-end fs-3 business_resultat">{{ $customer->business->result_format }}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder text-end">Financement</td>
+                                        <td>
+                                            <div class="text-end fs-3 business_finance">{{ $customer->business->result_finance_format }}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bolder text-end">Indicateur</td>
+                                        <td>
+                                            <div class="text-end fs-3 business_indicator">{!! $customer->business->indicator_format !!}</div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+    </div>
+    <div class="modal fade" tabindex="-1" id="updateStatus">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Mise à jour du status du compte client</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formUpdateStatus" action="{{ route('agent.customer.update', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    @method("put")
+                    <input type="hidden" name="control" value="status">
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="status_open_account" class="form-label">Etat du compte</label>
+                            <select id="status_open_account" name="status_open_account" class="form-control"
+                                    data-control="select2">
+                                <option value="open" @if($customer->status_open_account == 'open') selected @endif>
+                                    Ouverture en cours
+                                </option>
+                                <option value="completed"
+                                        @if($customer->status_open_account == 'completed') selected @endif>Dossier
+                                    Complet
+                                </option>
+                                <option value="accepted"
+                                        @if($customer->status_open_account == 'accepted') selected @endif>Dossier
+                                    Accepter
+                                </option>
+                                <option value="declined"
+                                        @if($customer->status_open_account == 'declined') selected @endif>Dossier
+                                    Refuser
+                                </option>
+                                <option value="terminated"
+                                        @if($customer->status_open_account == 'terminated') selected @endif>Compte actif
+                                </option>
+                                <option value="suspended"
+                                        @if($customer->status_open_account == 'suspended') selected @endif>Compte
+                                    suspendue
+                                </option>
+                                <option value="closed" @if($customer->status_open_account == 'closed') selected @endif>
+                                    Compte clotûrer
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="updateAccount">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Changement de type de compte</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formUpdateAccount" action="{{ route('agent.customer.update', $customer->id) }}"
+                      method="post">
+                    @csrf
+                    @method("put")
+                    <input type="hidden" name="control" value="type">
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="package_id" class="form-label">Type de compte</label>
+                            <select id="package_id" name="package_id" class="form-control" data-control="select2">
+                                @foreach(\App\Models\Core\Package::where('type_cpt', $customer->info->type)->get() as $package)
+                                    <option value="{{ $package->id }}"
+                                            @if($customer->package_id == $package->id) selected @endif>{{ $package->name }}
+                                        ({{ eur($package->price) }} / par mois)
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="write-sms">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Ecrire un sms</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formWriteSms" action="/api/customer/{{ $customer->id }}/write-sms"
+                      method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <x-form.textarea name="message" label="Message" required="true" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="write-mail">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Ecrire un Email</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formWriteMail" action="/api/customer/{{ $customer->id }}/write-mail"
+                      method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <x-form.textarea name="message" label="Message" required="true" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="createWallet">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Nouveau compte bancaire</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formCreateWallet" action="/api/customer/{{ $customer->id }}/wallet"
+                      method="post">
+                    @csrf
+                    <input type="hidden" name="action" value="compte">
+                    <div class="modal-body">
+                        <div class="d-flex flex-column justify-content-center text-center">
+                            <i class="fa-solid fa-info-circle fs-2tx text-primary"></i>
+                            <div class="fs-2">Vous allez créer un nouveau compte bancaire pour le client: {{ $customer->info->full_name }}</div>
+                            <div class="fs-2">Etes-vous sur ?</div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="createEpargne">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Nouveau compte épargne</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formCreateEpargne" action="/api/customer/{{ $customer->id }}/wallet"
+                      method="post">
+                    @csrf
+                    <input type="hidden" name="action" value="epargne">
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="epargne_plan_id" class="form-label">Plan du compte</label>
+                            <select class="form-select form-select-solid" id="epargne_plan_id" name="epargne_plan_id" data-dropdown-parent="#createEpargne" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un plan d'épargne" onchange="getInfoEpargnePlan(this)">
+                                <option value=""></option>
+                                @foreach(\App\Models\Core\EpargnePlan::all() as $epargne)
+                                    <option value="{{ $epargne->id }}">{{ $epargne->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div id="epargne_plan_info" class="bg-gray-300">
+                            <table class="table gy-5 gs-5">
+                                <tbody>
+                                <tr>
+                                    <td class="fw-bolder">Profit par mois %</td>
+                                    <td class="profit_percent text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Durée de blocage des fond</td>
+                                    <td class="lock_days text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Conditionnement</td>
+                                    <td class="profit_days text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Montant initial obligatoire</td>
+                                    <td class="init text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Limite du compte</td>
+                                    <td class="limit text-right"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-10">
+                            <label for="wallet_payment_id" class="form-label">Compte de retrait</label>
+                            <select class="form-select form-select-solid" id="wallet_payment_id" name="wallet_payment_id" data-dropdown-parent="#createEpargne" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un compte à débiter">
+                                <option value=""></option>
+                                @foreach(\App\Models\Customer\CustomerWallet::where('customer_id', $customer->id)->where('type', 'compte')->where('status', 'active')->get() as $wallet)
+                                    <option value="{{ $wallet->id }}">{{ $wallet->name_account }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <x-form.input
+                            name="initial_payment"
+                            type="text"
+                            label="Montant Initial"
+                            placeholder="Montant initial à déposer sur le compte épargne"
+                            required="true" />
+
+                        <x-form.input
+                            name="monthly_payment"
+                            type="text"
+                            label="Montant par mois"
+                            placeholder="Montant à déposer sur le compte épargne tous les mois"
+                            required="true" />
+
+                        <x-form.input
+                            name="monthly_days"
+                            type="text"
+                            label="Jour de prélèvement" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="createPret">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h5 class="modal-title text-white">Nouveau pret bancaire</h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                         aria-label="Close">
+                        <i class="fas fa-times fa-2x text-white"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formCreatePret" action="/api/customer/{{ $customer->id }}/wallet"
+                      method="post">
+                    @csrf
+                    <input type="hidden" name="action" value="pret">
+                    <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="loan_plan_id" class="form-label">Type de Pret</label>
+                            <select class="form-select form-select-solid" id="loan_plan_id" name="loan_plan_id" data-dropdown-parent="#createPret" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un type de pret" onchange="getInfoPretPlan(this)">
+                                <option value=""></option>
+                                @foreach(\App\Models\Core\LoanPlan::all() as $loan)
+                                    <option value="{{ $loan->id }}">{{ $loan->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div id="pret_plan_info" class="bg-gray-300">
+                            <table class="table gy-5 gs-5">
+                                <tbody>
+                                <tr>
+                                    <td class="fw-bolder">Montant Minimum</td>
+                                    <td class="min text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Montant Maximum</td>
+                                    <td class="max text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Durée Maximal de remboursement</td>
+                                    <td class="duration text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Interet débiteur</td>
+                                    <td class="interest text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bolder">Information supplémentaire</td>
+                                    <td class="instruction text-right"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-10">
+                            <label for="wallet_payment_id" class="form-label">Compte de payment</label>
+                            <select class="form-select form-select-solid" id="wallet_payment_id" name="wallet_payment_id" data-dropdown-parent="#createPret" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un compte à débiter">
+                                <option value=""></option>
+                                @foreach(\App\Models\Customer\CustomerWallet::where('customer_id', $customer->id)->where('type', 'compte')->where('status', 'active')->get() as $wallet)
+                                    <option value="{{ $wallet->id }}">{{ $wallet->name_account }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <x-form.input
+                            name="amount_loan"
+                            type="text"
+                            label="Montant du pret"
+                            required="true" />
+
+                        <x-form.input
+                            name="duration"
+                            type="text"
+                            label="Durée du pret (Années)"
+                            required="true" />
+
+                        <x-form.input
+                            name="prlv_day"
+                            type="text"
+                            label="Jour de prélèvement" />
+
+                        <div class="mb-10">
+                            <label for="assurance_type" class="form-label">Type d'assurance</label>
+                            <select class="form-select form-select-solid" id="assurance_type" name="assurance_type" data-dropdown-parent="#createPret" data-control="select2" data-allow-clear="true" data-placeholder="Selectionner un type d'assurance">
+                                <option value=""></option>
+                                <option value="D">Décès</option>
+                                <option value="DIM">Décès, Invalidité, Maladie</option>
+                                <option value="DIMC">Décès, Invalidité, Maladie, Travail</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="content_file">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white"></h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form action="" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="">
+                                <button class="btn btn-sm btn-circle btn-icon btn-secondary" id="previous"><i class="fa-solid fa-arrow-left me-2"></i> </button>
+                                <button class="btn btn-sm btn-circle btn-icon btn-secondary" id="next"><i class="fa-solid fa-arrow-right"></i> </button>
+                            </div>
+                            <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+                        </div>
+                        <div class="d-flex flex-center scroll h-650px">
+                            <canvas id="contentPdf"></canvas>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnSignate" class="btn btn-circle btn-bank"><i class="fa-solid fa-signature me-2"></i> Signer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
 @section("script")
+    <script src="/assets/plugins/custom/jstree/jstree.bundle.js"></script>
     @include("agent.scripts.customer.show")
 @endsection

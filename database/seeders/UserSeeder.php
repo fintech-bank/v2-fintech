@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Helper\CustomerHelper;
 use App\Helper\UserHelper;
+use App\Models\Core\DocumentCategory;
+use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCreditCard;
 use App\Models\Customer\CustomerInfo;
@@ -55,20 +57,30 @@ class UserSeeder extends Seeder
             'identifiant' => UserHelper::generateID(),
         ]);
 
+        $user->subscriptions()->create([
+            'subscribe_type' => Package::class,
+            'subscribe_id' => 3,
+            'user_id' => $user->id
+        ]);
+
         $customer = Customer::factory()->create([
             'status_open_account' => 'terminated',
             'package_id' => 3,
             'user_id' => $user->id
         ]);
 
-        CustomerInfo::factory()->create([
+        $info = CustomerInfo::factory()->create([
             'type' => 'part',
             'civility' => 'M',
             'firstname' => 'User',
             'lastname' => 'Demo',
             'isVerified' => true,
-            'customer_id' => $customer->id
+            'customer_id' => $customer->id,
+            'email' => $user->email
         ]);
+
+        $info->setPhoneVerified($info->phone, 'phone');
+        $info->setPhoneVerified($info->mobile, 'mobile');
 
         CustomerSetting::factory()->create([
             'notif_sms' => false,
@@ -101,11 +113,16 @@ class UserSeeder extends Seeder
         CustomerCreditCard::factory()->create([
             'customer_wallet_id' => $wallet->id,
             'status' => 'active',
-            'support' => 'infinite',
             'debit' => 'differed',
             'facelia' => false,
             'credit_card_support_id' => 1
         ]);
+
+        \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents');
+        \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
+        foreach (DocumentCategory::all() as $doc) {
+            \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents/' . $doc->name);
+        }
 
 
     }

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('number');
             $table->enum('status', ['active', 'inactive', 'canceled'])->default('inactive');
             $table->enum('type', ['physique', 'virtuel'])->default('physique');
-            $table->enum('support', ['classic', 'premium', 'infinite', 'business', 'business_gold', 'affaire', 'affaire_gold', 'corporate'])->default('classic');
             $table->enum('debit', ['immediate', 'differed'])->default('immediate');
             $table->string('cvc', 4);
             $table->boolean('payment_internet')->default(true);
@@ -32,8 +31,7 @@ return new class extends Migration
             $table->float('limit_payment', 50);
             $table->float('differed_limit', 50)->default(0);
             $table->boolean('facelia')->default(false);
-            $table->boolean('visa_spec')->default(false);
-            $table->boolean('warranty')->default(false);
+            $table->enum('facelia_vitesse', ['low', 'middle', 'fast'])->default('low');
 
             $table->foreignId('customer_wallet_id')
                             ->constrained()

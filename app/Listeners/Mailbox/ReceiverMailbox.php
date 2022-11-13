@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Mailbox;
 
-use App\Notifications\Mailbox\NewMailNotification;
+use App\Notifications\Customer\Customer\Mailbox\NewMailNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 

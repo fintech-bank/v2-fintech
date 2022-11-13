@@ -1,0 +1,60 @@
+<?php
+namespace $NAMESPACE$;
+
+use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
+use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
+use App\Models\Customer\Customer;
+use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+use NotificationChannels\Twilio\TwilioChannel;
+use NotificationChannels\Twilio\TwilioSmsMessage;
+
+class $CLASS_NAME$ extends Notification
+{
+
+    public string $message;
+    public Customer $customer;
+
+    public function __construct(Customer $customer)
+    {
+        $this->customer = $customer;
+        $this->message = $this->getMessage();
+    }
+
+    private function getMessage()
+    {
+        $message = "";
+        return $message;
+    }
+
+    private function choiceChannel()
+    {
+        if (config("app.env") == "local") {
+            return [FreeMobileChannel::class];
+        } else {
+            return [TwilioChannel::class];
+        }
+    }
+
+    public function via($notifiable)
+    {
+        return $this->choiceChannel();
+    }
+
+    public function toFreeMobile($notifiable)
+    {
+        $message = (new FreeMobileMessage());
+        $message->message(strip_tags($this->message));
+
+        return $message;
+    }
+
+    public function toTwilio($notifiable)
+    {
+        $message = (new TwilioSmsMessage());
+        $message->content(strip_tags($this->message));
+
+        return $message;
+    }
+}

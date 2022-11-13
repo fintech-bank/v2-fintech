@@ -38,7 +38,6 @@
             zoomin: document.querySelector('.zoomin'),
             zoomout: document.querySelector('.zoomout'),
         }
-        let pdfContent = document.querySelector('.pdfcontent')
         let btnSignate = document.querySelector("#signateDocument")
         let url = `/storage/gdd/{{ $document->customer->user->id }}/documents/Contrats/{{ $document->name }}.pdf`
         let pdfjsLib = window['pdfjs-dist/build/pdf'];
