@@ -163,6 +163,7 @@ class CustomerInfo extends Model
 
     public function getPhoneVerifiedAttribute()
     {
+        dd($this);
         if($this->phone != null) {
             if($this->phoneVerified) {
                 return '<i class="fa-solid fa-check-circle text-success" data-bs-toggle="tooltip" title="Vérifié"></i>';
