@@ -754,7 +754,7 @@
                         <!--begin::Table body-->
                         <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach($wallet->sepas()->orderBy('created_at', 'desc')->get() as $transaction)
+                        @foreach($wallet->sepas()->orderBy('processed_time', 'desc')->get() as $transaction)
                             <tr>
                                 <td>
                                     @if($transaction->type == 'rejected')
