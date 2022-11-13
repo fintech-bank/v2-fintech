@@ -91,7 +91,7 @@ class CustomerSepa extends Model
 
     public function getStatusLabelAttribute()
     {
-        return "<span class='badge badge-".$this->getStatus('color')."'><i class='fa-solid fa-".$this->getStatus()." me-2'></i> ".$this->getStatus('text')."</span>";
+        return "<span class='badge badge-".$this->getStatus('color')."'><i class='fa-solid fa-".$this->getStatus()." text-white me-2'></i> ".$this->getStatus('text')."</span>";
     }
 
     public function getReasonFromRejected($reason)
