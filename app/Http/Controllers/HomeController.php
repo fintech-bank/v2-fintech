@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\User\UserFolder;
 use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
 use App\Services\CotationClient;
+use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
@@ -91,6 +92,8 @@ class HomeController extends Controller
 
     public function test()
     {
+        $s = new Sepa();
 
+        dd($s->acceptSepa());
     }
 }

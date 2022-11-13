@@ -16,6 +16,9 @@
         btnAcceptTransfer: document.querySelectorAll('.btnAcceptTransfer'),
         btnDeclineTransfer: document.querySelectorAll('.btnDeclineTransfer'),
         btnShowSepa: document.querySelectorAll('.btnViewSepa'),
+        btnAcceptSepa: document.querySelectorAll('.btnAcceptSepa'),
+        btnRejectSepa: document.querySelectorAll('.btnRejectSepa'),
+        btnRembSepa: document.querySelectorAll('.btnRembSepa'),
         transactionDate: document.querySelector('#kt_transaction_flatpickr'),
         transactionType: document.querySelector('[data-kt-transaction-filter="types"]'),
         chartSummary: document.querySelector('#chart_summary'),
@@ -619,6 +622,114 @@
                         block.blockTableTransfer.release()
                         block.blockTableTransfer.destroy()
                         console.error(err)
+                    }
+                })
+            })
+        })
+    }
+    if(elements.btnAcceptSepa) {
+        elements.btnAcceptSepa.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableSepa.block()
+
+                Swal.fire({
+                    title: "Voulez-vous accepter ce prélèvement ?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#004486',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Oui',
+                    cancelButtonText: 'Non'
+                }).then(result => {
+                    if(result.isConfirmed) {
+                        $.ajax({
+                            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/sepa/'+btn.dataset.sepa,
+                            method: 'PUT',
+                            data: {"action": "accept"},
+                            success: () => {
+                                block.blockTableSepa.release()
+                                block.blockTableSepa.destroy()
+
+                                toastr.success(`Le prélèvement à été accepté, il va bientôt interrogé le serveur de passage`, `Prélèvement Bancaire`)
+
+                                setTimeout(() => {
+                                    window.location.reload()
+                                }, 1200)
+                            }
+                        })
+                    }
+                })
+            })
+        })
+    }
+    if(elements.btnRejectSepa) {
+        elements.btnRejectSepa.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableSepa.block()
+
+                Swal.fire({
+                    title: "Voulez-vous rejeté ce prélèvement ?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#004486',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Oui',
+                    cancelButtonText: 'Non'
+                }).then(result => {
+                    if(result.isConfirmed) {
+                        $.ajax({
+                            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/sepa/'+btn.dataset.sepa,
+                            method: 'PUT',
+                            data: {"action": "reject"},
+                            success: () => {
+                                block.blockTableSepa.release()
+                                block.blockTableSepa.destroy()
+
+                                toastr.success(`Le prélèvement à été rejeté`, `Prélèvement Bancaire`)
+
+                                setTimeout(() => {
+                                    window.location.reload()
+                                }, 1200)
+                            }
+                        })
+                    }
+                })
+            })
+        })
+    }
+    if(elements.btnRembSepa) {
+        elements.btnRembSepa.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableSepa.block()
+
+                Swal.fire({
+                    title: "Voulez-vous demander le remboursement de ce prélèvement ?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#004486',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Oui',
+                    cancelButtonText: 'Non'
+                }).then(result => {
+                    if(result.isConfirmed) {
+                        $.ajax({
+                            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/sepa/'+btn.dataset.sepa,
+                            method: 'PUT',
+                            data: {"action": "refunded"},
+                            success: () => {
+                                block.blockTableSepa.release()
+                                block.blockTableSepa.destroy()
+
+                                toastr.success(`La demande de remboursement à bien été soumis à l'établissement distant.`, `Prélèvement Bancaire`)
+
+                                setTimeout(() => {
+                                    window.location.reload()
+                                }, 1200)
+                            }
+                        })
                     }
                 })
             })

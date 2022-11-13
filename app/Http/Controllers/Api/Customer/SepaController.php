@@ -16,4 +16,19 @@ class SepaController extends Controller
 
         return response()->json(['sepa' => $sepa, "agency" => $agency]);
     }
+
+    public function update($customer_id, $number_account, $sepa_uuid, Request $request)
+    {
+        $sepa = CustomerSepa::where('uuid', $sepa_uuid)->first();
+        return match ($request->get('action')) {
+            "accept" => "",
+            "reject" => "",
+            "refunded" => "",
+        };
+    }
+
+    private function acceptSepa(CustomerSepa $sepa)
+    {
+
+    }
 }
