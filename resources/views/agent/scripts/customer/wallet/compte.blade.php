@@ -5,6 +5,7 @@
         tableTransaction: document.querySelector("#kt_transaction_table"),
         tableTransfer: document.querySelector("#liste_transfers"),
         tableBeneficiaire: document.querySelector("#liste_beneficiaires"),
+        tableSepa: document.querySelector("#liste_sepas"),
     }
     let elements = {
         btnAcceptTransaction: document.querySelectorAll('.btnAcceptTransaction'),
@@ -58,6 +59,11 @@
             pageLength: 10,
         }),
         datatableBeneficiaire: $(tables.tableBeneficiaire).DataTable({
+            info: !1,
+            order: [],
+            pageLength: 10,
+        }),
+        datatableSepa: $(tables.tableSepa).DataTable({
             info: !1,
             order: [],
             pageLength: 10,
