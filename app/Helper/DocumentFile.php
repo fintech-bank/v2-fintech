@@ -48,7 +48,7 @@ class DocumentFile
                     [],
                     false,
                     true,
-                    public_path('/storage/gdd/'.$customer->id.'/documents/'.\Str::slug($category->name)),
+                    public_path('/storage/gdd/'.$customer->user->id.'/documents/'.\Str::slug($category->name)),
                     false);
             }
 
