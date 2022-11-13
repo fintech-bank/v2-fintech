@@ -38,6 +38,9 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin IdeHelperCustomerSepa
  * @property-read mixed $amount_format
  * @property-read mixed $status_label
+ * @property string $processed_time
+ * @property-read mixed $status_comment
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSepa whereProcessedTime($value)
  */
 class CustomerSepa extends Model
 {
@@ -45,6 +48,7 @@ class CustomerSepa extends Model
 
     protected $guarded = [];
     protected $appends = ['amount_format', 'status_label', 'status_comment'];
+    protected $dates = ["created_at", "updated_at", "processed_time"];
 
     public function wallet()
     {
