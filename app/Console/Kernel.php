@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
         // Administration
         $schedule->command('system:admin deleteLog')
             ->twiceMonthly(1, 16, '00:00')
-            ->description("Suppression des logs bancaire")
+            ->description("Suppression des logs bancaires")
             ->emailOutputTo(config('mail.from.address'));
 
         $schedule->command('system:admin shipTpe')
