@@ -773,56 +773,7 @@
                                 </td>
                                 <td class="text-center" data-filter="{{ $transaction->status }}">{!! \App\Helper\CustomerSepaHelper::getStatus($transaction->status) !!}</td>
                                 <td>
-                                    <button class="btn btn-circle btn-outline btn-outline-bank" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" data-kt-menu-offset="30px, 30px"><i class="fa-solid fa-pencil me-3"></i> Actions</button>
-                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px" data-kt-menu="true">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content fs-6 text-dark fw-bolder px-3 py-4">Actions</div>
-                                        </div>
-                                        <!--end::Menu item-->
 
-                                        <!--begin::Menu separator-->
-                                        <div class="separator mb-3 opacity-75"></div>
-                                        <!--end::Menu separator-->
-
-                                        @if($transaction->status == 'waiting')
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="{{ route('agent.customer.wallet.sepas.accept', [$wallet->customer_id, $wallet->id, $transaction->id]) }}" class="menu-link px-3 btnAcceptSepa" data-sepas="{{ $transaction->id }}" data-wallet="{{ $wallet->id }}">
-                                                    Accepter le prélèvement
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="{{ route('agent.customer.wallet.sepas.reject', [$wallet->customer_id, $wallet->id, $transaction->id]) }}" class="menu-link px-3 btnRejectSepa" data-sepas="{{ $transaction->id }}" data-wallet="{{ $wallet->id }}">
-                                                    Rejeter le prélèvement
-                                                </a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="{{ route('agent.customer.wallet.sepas.opposit', [$wallet->customer_id, $wallet->id, $transaction->id]) }}" class="menu-link px-3 btnOppositSepa" data-sepas="{{ $transaction->id }}" data-wallet="{{ $wallet->id }}">
-                                                    Créer une opposition
-                                                </a>
-                                            </div>
-                                        @endif
-
-                                        @if($transaction->status == 'processed')
-                                            <div class="menu-item px-3 mb-3">
-                                                <a href="{{ route('agent.customer.wallet.sepas.show', [$wallet->customer_id, $wallet->id, $transaction->id]) }}" class="menu-link px-3 btnRefundSepa" data-sepas="{{ $transaction->id }}" data-wallet="{{ $wallet->id }}">
-                                                    Demander le remboursement du prélèvement
-                                                </a>
-                                            </div>
-                                        @endif
-
-                                        <div class="menu-item px-3 mb-3">
-                                            <a href="#" class="menu-link px-3 btnViewSepa" data-sepas="{{ $transaction->id }}" data-wallet="{{ $wallet->id }}">
-                                                Information
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                    <!--end::Menu-->
                                 </td>
                             </tr>
                             <!--end::Table row-->
