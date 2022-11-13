@@ -1,4 +1,5 @@
 <div class="mb-10">
+
     <label for="{{ $name }}" class="{{ $required == true ? 'required' : '' }} form-label">
         {{ $label }}
     </label>

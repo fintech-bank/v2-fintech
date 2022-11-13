@@ -21,6 +21,7 @@ class Select extends Component
      * @var bool
      */
     public $required;
+    public ?array $value;
 
     /**
      * Create a new component instance.
@@ -31,7 +32,7 @@ class Select extends Component
      * @param  null  $placeholder
      * @param  bool  $required
      */
-    public function __construct($name, $datas, $label, $placeholder = null, $required = true)
+    public function __construct($name, $datas, $label, $placeholder = null, $required = true, array $value = null)
     {
         //
         $this->name = $name;
@@ -39,6 +40,7 @@ class Select extends Component
         $this->label = $label;
         $this->placeholder = $placeholder;
         $this->required = $required;
+        $this->value = $value;
     }
 
     /**
