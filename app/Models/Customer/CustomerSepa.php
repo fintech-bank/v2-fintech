@@ -41,13 +41,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $processed_time
  * @property-read mixed $status_comment
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSepa whereProcessedTime($value)
+ * @property-read mixed $processed_time_format
+ * @property-read mixed $status_text
  */
 class CustomerSepa extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['amount_format', 'status_label', 'status_comment', 'status_text'];
+    protected $appends = ['amount_format', 'status_label', 'status_comment', 'status_text', 'processed_time_format'];
     protected $dates = ["created_at", "updated_at", "processed_time"];
 
     public function wallet()
@@ -116,7 +118,7 @@ class CustomerSepa extends Model
         return $this->getStatus('text');
     }
 
-    public function getProcessedTimeAttribute()
+    public function getProcessedTimeFormatAttribute()
     {
         return $this->processed_time->format("d/m/Y");
     }
