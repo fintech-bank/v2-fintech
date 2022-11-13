@@ -583,6 +583,8 @@
                         block.blockTableSepa.release()
                         block.blockTableSepa.destroy()
                         plugins.drawerShowSepa.show()
+
+                        //elements.showSepa.querySelector('[data-content="code_banque"]').innerHTML = data
                     },
                     error: err => {
                         block.blockTableTransfer.release()

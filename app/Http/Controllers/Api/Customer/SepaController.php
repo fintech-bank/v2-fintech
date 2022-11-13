@@ -10,7 +10,7 @@ class SepaController extends Controller
 {
     public function info($customer_id, $number_account, $sepa_uuid)
     {
-        $sepa = CustomerSepa::with('creditor')->where('uuid', $sepa_uuid)->first();
+        $sepa = CustomerSepa::with('creditor', 'wallet')->where('uuid', $sepa_uuid)->first();
 
         return response()->json($sepa);
     }

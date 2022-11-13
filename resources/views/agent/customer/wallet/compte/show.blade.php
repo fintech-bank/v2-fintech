@@ -1289,24 +1289,24 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-content="code_banque">Code Banque</td>
-                            <td>36001</td>
+                            <td>Code Banque</td>
+                            <td data-content="code_banque">36001</td>
                         </tr>
                         <tr>
-                            <td data-content="code_banque">Code Guichet</td>
-                            <td>01726</td>
+                            <td>Code Guichet</td>
+                            <td data-content="code_guichet">01726</td>
                         </tr>
                         <tr>
-                            <td data-content="code_banque">N° de compte</td>
-                            <td>00050170571</td>
+                            <td>N° de compte</td>
+                            <td data-content="number_account">00050170571</td>
                         </tr>
                         <tr>
-                            <td data-content="code_banque">IBAN</td>
-                            <td>FR76 3000 3017 4200 0501 7057 192</td>
+                            <td>IBAN</td>
+                            <td data-content="iban">FR76 3000 3017 4200 0501 7057 192</td>
                         </tr>
                         <tr>
-                            <td data-content="code_banque">BIC</td>
-                            <td>SOGEFRPPXXX</td>
+                            <td>BIC</td>
+                            <td data-content="bic">SOGEFRPPXXX</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1318,12 +1318,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-content="creditor_name">Nom</td>
-                            <td>SOGECAP</td>
+                            <td>Nom</td>
+                            <td data-content="creditor_name">SOGECAP</td>
                         </tr>
                         <tr>
-                            <td data-content="creditor_id">Identifiant</td>
-                            <td>FR04ZZZ110906</td>
+                            <td>Identifiant</td>
+                            <td data-content="creditor_id">FR04ZZZ110906</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1335,8 +1335,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-content="creditor_name">Référence</td>
-                            <td>000000/01406/7711250-220</td>
+                            <td>Référence</td>
+                            <td data-content="mandate_reference">000000/01406/7711250-220</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1348,16 +1348,16 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-content="creditor_name">Montant</td>
-                            <td>- 35,00 €</td>
+                            <td>Montant</td>
+                            <td data-content="mandat_amount">- 35,00 €</td>
                         </tr>
                         <tr>
-                            <td data-content="creditor_name">Status</td>
-                            <td>En attente le 11/11/2022</td>
+                            <td>Status</td>
+                            <td data-content="status">En attente le 11/11/2022</td>
                         </tr>
                         <tr>
-                            <td data-content="creditor_name">Motif de l'opération</td>
-                            <td></td>
+                            <td>Motif de l'opération</td>
+                            <td data-content="mandat_motif"></td>
                         </tr>
                     </tbody>
                 </table>
