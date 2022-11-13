@@ -761,7 +761,7 @@
                                         <i class="fa-solid fa-flag text-warning" data-bs-toggle="tooltip" title="Opposition en cours"></i>
                                     @endif
                                 </td>
-                                <td>{{ $transaction->updated_at->format("d/m/Y") }}</td>
+                                <td>{{ $transaction->processed_time->format("d/m/Y") }}</td>
                                 <td data-filter="{{ $transaction->creditor }}">{{ $transaction->creditor }}</td>
                                 <td>{{ $transaction->number_mandate }}</td>
                                 <td class="text-end">
