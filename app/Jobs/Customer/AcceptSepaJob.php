@@ -2,7 +2,9 @@
 
 namespace App\Jobs\Customer;
 
+use App\Helper\CustomerTransactionHelper;
 use App\Models\Customer\CustomerSepa;
+use App\Notifications\Customer\NewPrlvPresented;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -34,6 +36,21 @@ class AcceptSepaJob implements ShouldQueue
      */
     public function handle()
     {
+        $transaction = CustomerTransactionHelper::create(
+            'debit',
+            'sepa',
+            "Prélèvement SEPA ACC {$this->sepa->wallet->number_account} DE: {$this->sepa->creditor->name}",
+            $this->sepa->amount,
+            $this->sepa->wallet->id,
+            true,
+            "Prélèvement SEPA ACC {$this->sepa->wallet->number_account} DE: {$this->sepa->creditor->name} ID: {$this->sepa->creditor->identifiant} REF: {$this->sepa->uuid} MANDAT {$this->sepa->number_mandate}",
+            now()
+        );
+        $this->sepa->update([
+            'status' => 'processed',
+            'transaction_id' => $transaction->id
+        ]);
 
+        $this->sepa->wallet->customer->info->notify(new NewPrlvPresented($this->sepa));
     }
 }

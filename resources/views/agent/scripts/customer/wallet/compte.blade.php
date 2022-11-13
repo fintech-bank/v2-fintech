@@ -647,15 +647,24 @@
                             url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/sepa/'+btn.dataset.sepa,
                             method: 'PUT',
                             data: {"action": "accept"},
-                            success: () => {
+                            statusCode: {
+                                200: () => {
+                                    toastr.success(`Le prélèvement à été accepté, il va bientôt interrogé le serveur de passage`, `Prélèvement Bancaire`)
+
+                                    setTimeout(() => {
+                                        window.location.reload()
+                                    }, 1200)
+                                },
+                                522: () => {
+                                    toastr.warning(`L'établissement distant à refuser le passage en force du prélèvement.`, `Prélèvement bancaire`)
+                                },
+                                500: () => {
+                                    toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+                                }
+                            },
+                            always: () => {
                                 block.blockTableSepa.release()
                                 block.blockTableSepa.destroy()
-
-                                toastr.success(`Le prélèvement à été accepté, il va bientôt interrogé le serveur de passage`, `Prélèvement Bancaire`)
-
-                                setTimeout(() => {
-                                    window.location.reload()
-                                }, 1200)
                             }
                         })
                     }

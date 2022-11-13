@@ -3,12 +3,20 @@
 namespace App\Http\Controllers\Api\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Customer\AcceptSepaJob;
 use App\Models\Core\Agency;
 use App\Models\Customer\CustomerSepa;
+use App\Services\Fintech\Payment\Sepa;
 use Illuminate\Http\Request;
 
 class SepaController extends Controller
 {
+    private $sepa;
+    public function __construct()
+    {
+        $this->sepa = new Sepa();
+    }
+
     public function info($customer_id, $number_account, $sepa_uuid)
     {
         $sepa = CustomerSepa::with('creditor', 'wallet')->where('uuid', $sepa_uuid)->first();
@@ -29,6 +37,13 @@ class SepaController extends Controller
 
     private function acceptSepa(CustomerSepa $sepa)
     {
+        $call = $this->sepa->acceptSepa();
 
+        if($call == 1) {
+            dispatch(new AcceptSepaJob($sepa))->delay(now()->addMinutes(rand(2,5)));
+            return response()->json();
+        } else {
+            return response()->json(null, 522);
+        }
     }
 }
