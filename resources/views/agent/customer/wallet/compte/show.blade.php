@@ -1281,10 +1281,10 @@
                     <i class="fa-solid fa-circle-dot fs-1 text-warning me-3"></i> Le prélèvement va se présenter prochainement
                 </div>
 
-                <table class="table table-row-bordered gx-5 gy-5">
+                <table class="table border table-row-bordered gx-5 gy-5">
                     <thead>
                         <tr class="bg-gray-300">
-                            <th class="fw-bolder">Compte</th>
+                            <th class="fw-bolder" colspan="2">Compte</th>
                         </tr>
                     </thead>
                     <tbody>
