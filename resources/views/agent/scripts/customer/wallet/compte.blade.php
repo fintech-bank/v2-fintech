@@ -584,6 +584,7 @@
                         block.blockTableSepa.destroy()
                         plugins.drawerShowSepa.show()
 
+                        elements.showSepa.querySelector('[data-content="transfer_status"]').innerHTML = data.sepa.status_comment
                         elements.showSepa.querySelector('[data-content="code_banque"]').innerHTML = data.agency.code_banque
                         elements.showSepa.querySelector('[data-content="code_guichet"]').innerHTML = data.agency.code_agence
                         elements.showSepa.querySelector('[data-content="number_account"]').innerHTML = data.sepa.wallet.number_account
