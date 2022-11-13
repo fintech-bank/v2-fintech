@@ -338,7 +338,7 @@ class LifeCommand extends Command
                             'amount' => -rand(5,3500),
                             'status' => 'waiting',
                             'customer_wallet_id' => $wallet->id,
-                            'processed_time' => now()->addDays(rand(1,5))
+                            'processed_time' => now()->addDays(rand(1,5))->startOfDay()
                         ]);
                     }
 
