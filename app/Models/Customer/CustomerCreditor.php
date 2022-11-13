@@ -45,9 +45,4 @@ class CustomerCreditor extends Model
     {
         return $this->belongsTo(CustomerSepa::class, 'customer_sepa_id');
     }
-
-    protected function identifiant(): Attribute
-    {
-
-    }
 }
