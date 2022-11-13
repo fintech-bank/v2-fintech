@@ -33,6 +33,7 @@ use App\Notifications\Customer\SendAlertaInfoNotification;
 use App\Services\Twilio\Verify;
 use Carbon\Carbon;
 use Exception;
+use Faker\Factory;
 use IbanGenerator\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -329,11 +330,14 @@ class LifeCommand extends Command
             foreach ($customer->wallets()->where('status', 'active')->where('type', 'compte')->get() as $wallet) {
                 if (rand(0, 1) == 1) {
                     for ($i = 0; $i <= rand(1,5); $i++) {
+                        $faker = Factory::create('fr_FR');
                         $sepas = CustomerSepa::create([
+                            'uuid' => Str::uuid(),
+                            'creditor' => $faker->company,
+                            'number_mandate' => generateReference(rand(8,15)),
                             'amount' => -rand(5,3500),
-                            'customer_wallet_id' => $wallet->id,
-                            'updated_at' => now()->addDays(rand(1,5)),
                             'status' => 'waiting',
+                            'customer_wallet_id' => $wallet->id
                         ]);
                     }
 
