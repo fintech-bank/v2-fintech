@@ -47,7 +47,7 @@ class CustomerSepa extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['amount_format', 'status_label', 'status_comment'];
+    protected $appends = ['amount_format', 'status_label', 'status_comment', 'status_text'];
     protected $dates = ["created_at", "updated_at", "processed_time"];
 
     public function wallet()
@@ -57,7 +57,7 @@ class CustomerSepa extends Model
 
     public function creditor()
     {
-        return $this->hasMany(CustomerCreditor::class);
+        return $this->hasOne(CustomerCreditor::class);
     }
 
     public function getAmountFormatAttribute()
@@ -109,6 +109,16 @@ class CustomerSepa extends Model
     public function getStatusCommentAttribute()
     {
         return '<i class="fa-solid fa-circle-dot fs-1 text-'.$this->getStatus('color').' me-3"></i> '.$this->getStatus('comment');
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return $this->getStatus('text');
+    }
+
+    public function getProcessedTimeAttribute()
+    {
+        return $this->processed_time->format("d/m/Y");
     }
 
     public function getReasonFromRejected($reason)

@@ -590,6 +590,16 @@
                         elements.showSepa.querySelector('[data-content="number_account"]').innerHTML = data.sepa.wallet.number_account
                         elements.showSepa.querySelector('[data-content="iban"]').innerHTML = data.sepa.wallet.iban
                         elements.showSepa.querySelector('[data-content="bic"]').innerHTML = data.agency.bic
+
+                        elements.showSepa.querySelector('[data-content="creditor_name"]').innerHTML = data.sepa.creditor.name
+                        elements.showSepa.querySelector('[data-content="creditor_id"]').innerHTML = data.sepa.creditor.identifiant
+
+                        elements.showSepa.querySelector('[data-content="mandate_reference"]').innerHTML = data.sepa.number_mandate
+
+                        elements.showSepa.querySelector('[data-content="mandat_amount"]').innerHTML = data.sepa.amount_format
+                        elements.showSepa.querySelector('[data-content="status"]').innerHTML = ``
+
+
                     },
                     error: err => {
                         block.blockTableTransfer.release()
