@@ -82,41 +82,34 @@ class Kernel extends ConsoleKernel
         $schedule->command("life generateCustomers")
             ->everyFourHours()
             ->between('08:00','20:00')
-            ->description("Nouveau client")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Nouveau client");
 
         $schedule->command("life generateSalary")
             ->monthlyOn(1)->at('08:00')
-            ->description("Virement des Salaires")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Virement des Salaires");
 
         $schedule->command("life generateDebit")
             ->hourly()
             ->between('08:00','23:59')
-            ->description("Génération des débits bancaires")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Génération des débits bancaires");
 
         $schedule->command("life generatePrlvSepa")
             ->everySixHours()
             ->between('08:00','17:00')
-            ->description("Nouveau prélèvement SEPA")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Nouveau prélèvement SEPA");
 
         $schedule->command("life generateMensualReleve")
             ->monthlyOn(30)->at('08:00')
-            ->description("Génération des relevés bancaires")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Génération des relevés bancaires");
 
         $schedule->command("life limitWithdraw")
             ->dailyAt('08:00')
-            ->description("Suppression des retraits bancaire non effectuer/valider")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Suppression des retraits bancaire non effectuer/valider");
 
         $schedule->command("life alerta")
             ->weeklyOn(7)
             ->between('08:00', '17:00')
-            ->description("Envoie d'un relevé flash")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Envoie d'un relevé flash");
     }
 
     /**
