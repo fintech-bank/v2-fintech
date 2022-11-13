@@ -455,14 +455,14 @@ class CustomerHelper
             false,
             ["wallet" => $wallet]);
 
-        \Storage::disk('public')->copy('gdd/shared/info_tarif.pdf', 'gdd/' . $user->id . '/documents/Courriers/info_tarif.pdf');
+        \Storage::disk('public')->copy('gdd/shared/info_tarif.pdf', 'gdd/' . $user->id . '/documents/courriers/info_tarif.pdf');
 
         $documents = [];
 
         $docs = $customer->documents()->where('document_category_id', 3)->get();
         foreach ($docs as $document) {
             $documents[] = [
-                'url' => 'gdd/' . $user->id . '/documents/Contrats/' . $document->name . '.pdf'
+                'url' => 'gdd/' . $user->id . '/documents/contrats/' . $document->name . '.pdf'
             ];
         }
 

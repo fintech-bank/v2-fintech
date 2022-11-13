@@ -83,7 +83,7 @@ class CustomerDocument extends Model
 
     public function getUrlFolderAttribute()
     {
-        return '/storage/gdd/'.$this->customer->user->id.'/documents/'.$this->category->name.'/'.$this->name.'.pdf';
+        return '/storage/gdd/'.$this->customer->user->id.'/documents/'.$this->category->slug.'/'.$this->name.'.pdf';
     }
 
     public function getUrlBreadAttribute()
