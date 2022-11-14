@@ -324,7 +324,7 @@ class User extends Authenticatable
         if($this->created_at->startOfDay() == $this->updated_at->startOfDay()) {
             ob_start();
             ?>
-            <div class="d-flex flex-row align-items-center rounded bg-gradient-primary rounded-2">
+            <div class="d-flex flex-row align-items-center rounded bg-gradient-primary rounded-2 p-5 mb-10">
                 <i class="fa-solid fa-info-circle fs-2tx text-white me-5"></i>
                 <div class="d-flex flex-column">
                     <div class="fs-1 text-white fw-bolder">Information sur le mot de passe</div>
