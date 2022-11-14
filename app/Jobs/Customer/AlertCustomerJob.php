@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Customer;
 
+
 use App\Models\Customer\Customer;
 use App\Notifications\Customer\Alert\SameDefaultPasswordNotification;
 use Illuminate\Bus\Queueable;
@@ -25,6 +26,7 @@ class AlertCustomerJob implements ShouldQueue
 
     public function handle()
     {
+        dd($this->customer);
         match ($this->alert) {
             "password" => $this->customer->info->notify(new SameDefaultPasswordNotification($this->customer))
         };
