@@ -54,7 +54,7 @@
                                         <span class="nav-text text-gray-800 fw-bold fs-6 lh-1">{{ $item['name'] }}</span>
                                         <!--end::Title-->
                                         <!--begin::Bullet-->
-                                        <span class="bullet-custom position-absolute bottom-0 w-100 h-4px level-{{ $levelKey }}"></span>
+                                        <span class="bullet-custom position-absolute bottom-0 w-100 h-4px"></span>
                                         <!--end::Bullet-->
                                     </a>
                                     <!--end::Link-->
