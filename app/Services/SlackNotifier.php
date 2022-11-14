@@ -55,7 +55,7 @@ class SlackNotifier
                 'type' => "header",
                 'text' => [
                     'type' => 'plain_text',
-                    'text' => "Bienvenue"
+                    'text' => $text
                 ]
             ],
             [
