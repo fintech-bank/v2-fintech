@@ -57,6 +57,17 @@ class SepaController extends Controller
             'status' => 'rejected'
         ]);
 
+        CustomerTransactionHelper::create(
+            'debit',
+            'frais',
+            "Frais rejet Prélèvement - {$sepa->number_mandate}",
+            2.5,
+            $sepa->wallet->id,
+            true,
+            'Frais Bancaire',
+            now()
+        );
+
         $sepa->wallet->customer->info->notify(new RejectSepaNotification($sepa->wallet->customer, $sepa));
 
         return response()->json();
