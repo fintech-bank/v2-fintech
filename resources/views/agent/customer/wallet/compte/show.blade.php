@@ -912,7 +912,7 @@
                                     {{ \App\Helper\CustomerCreditCard::getType($card->type) }}
                                 </td>
                                 <td class="text-end">
-                                    <a href="{{ route('agent.customer.card.show', [$customer->id, $card->id]) }}" class="btn btn-sm btn-circle btn-icon btn-bank" data-bs-toggle="tooltip" data-bs-placement="left" title="Détail"><i class="fa fa-desktop"></i> </a>
+                                    <a href="" class="btn btn-sm btn-circle btn-icon btn-bank" data-bs-toggle="tooltip" data-bs-placement="left" title="Détail"><i class="fa fa-desktop"></i> </a>
                                 </td>
                             </tr>
                         @endforeach
