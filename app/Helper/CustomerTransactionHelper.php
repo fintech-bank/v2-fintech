@@ -72,7 +72,7 @@ class CustomerTransactionHelper
         }
     }
 
-    public static function create($type, $type_transaction, $description, $amount, $wallet, $confirm = true, $designation = null, $confirmed_at = null, $updated_at = null, $card_id = null, $differed = false)
+    public static function create($type, $type_transaction, $description, $amount, $wallet_id, $confirm = true, $designation = null, $confirmed_at = null, $updated_at = null, $card_id = null, $differed = false)
     {
         if ($type == 'debit') {
             CustomerTransaction::create([
@@ -83,7 +83,7 @@ class CustomerTransactionHelper
                 'amount' => 0.00 - (float) $amount,
                 'confirmed' => $confirm,
                 'confirmed_at' => $confirmed_at,
-                'customer_wallet_id' => $wallet,
+                'customer_wallet_id' => $wallet_id,
                 'updated_at' => $updated_at ?? now(),
                 'customer_credit_card_id' => $card_id != null ? $card_id : null,
                 'differed' => $differed ? 1 : 0,
@@ -91,7 +91,7 @@ class CustomerTransactionHelper
             ]);
             $transaction = CustomerTransaction::with('wallet')->latest()->first();
 
-            $wallet = CustomerWallet::find($wallet);
+            $wallet = CustomerWallet::find($wallet_id);
             if ($confirm == true) {
                 $wallet->balance_actual += $transaction->amount;
                 $wallet->save();
@@ -108,12 +108,12 @@ class CustomerTransactionHelper
                 'amount' => $amount,
                 'confirmed' => $confirm,
                 'confirmed_at' => $confirmed_at,
-                'customer_wallet_id' => $wallet,
+                'customer_wallet_id' => $wallet_id,
                 'updated_at' => $updated_at ?? now(),
             ]);
             $transaction = CustomerTransaction::with('wallet')->latest()->first();
 
-            $wallet = CustomerWallet::find($wallet);
+            $wallet = CustomerWallet::find($wallet_id);
             if ($confirm == true) {
                 $wallet->balance_actual += $transaction->amount;
                 $wallet->save();
