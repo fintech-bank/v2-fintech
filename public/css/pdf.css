@@ -2081,6 +2081,12 @@ label {
 .separator {
   display: block;
   height: 0;
+  border-bottom: 1px solid var(--kt-border-color);
+}
+
+.separator {
+  display: block;
+  height: 0;
   border-bottom: 1px solid #EFF2F5;
 }
 .separator .separator-dotted {

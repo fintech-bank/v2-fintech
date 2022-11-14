@@ -315,6 +315,11 @@ label {
         width: 10%*$i;
     }
 }
+.separator {
+    display: block;
+    height: 0;
+    border-bottom: 1px solid var(--kt-border-color);
+}
 
 @import "base/separator";
 @import "base/border";
