@@ -33,7 +33,7 @@
 
 @section("content")
     <div class="row">
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-3 col-sm-12">
             <div class="card shadow-sm">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa-solid fa-flag me-3"></i> @lang('Levels')</h3>
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-9 col-sm-12">
             <div class="card shadow-sm">
                 <div class="card-header">
                     <h3 class="card-title">@lang('Log info') :</h3>
