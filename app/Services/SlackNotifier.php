@@ -3,6 +3,7 @@
 namespace App\Services;
 
 
+use App\Helper\LogHelper;
 use Http;
 
 class SlackNotifier
@@ -30,7 +31,11 @@ class SlackNotifier
         $channel = $this->getChannel($channel);
         $payload = $this->preparePayload($text, $attachments, $channel);
 
-        Http::post($hook, $payload);
+        try {
+            Http::post($hook, $payload);
+        }catch (\Exception $exception) {
+            LogHelper::notify('critical', $exception->getMessage());
+        }
     }
 
     private function getHook(mixed $hook)
