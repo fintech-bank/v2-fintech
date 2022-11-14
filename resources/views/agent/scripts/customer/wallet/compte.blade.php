@@ -608,7 +608,7 @@
                             <button class="btn btn-success btnAcceptSepa me-3" data-sepa="${data.sepa.uuid}"><i class="fa-solid fa-check me-2"></i> Accepter le prélèvement</button>
                             <button class="btn btn-danger btnRejectSepa" data-sepa="${data.sepa.uuid}"><i class="fa-solid fa-xmark me-2"></i> Rejeter le prélèvement</button>
                             `
-                        } else if(data.sepa.status !== 'processed') {
+                        } else if(data.sepa.status === 'processed') {
                             elements.showSepa.querySelector('[data-content="btnAction"]').innerHTML = `
                             <button class="btn btn-info btnRembSepa" data-sepa="${data.sepa.uuid}"><i class="fa-solid fa-rotate-left me-2"></i> Demander le remboursement</button>
                             `
