@@ -49,7 +49,7 @@
             <td>
                 <strong>Paiements et transfert de fonds ::</strong>
                 <ul class="list-unstyled">
-                    <li>{{ eur($data->card->limit_paiement) }} / 30 jour(s) glissant(s) en france.</li>
+                    <li>{{ eur($data->card->limit_payment) }} / 30 jour(s) glissant(s) en france.</li>
                 </ul>
             </td>
         </tbody>
