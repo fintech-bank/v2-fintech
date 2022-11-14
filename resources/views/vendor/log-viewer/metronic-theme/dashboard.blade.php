@@ -37,6 +37,7 @@
         <div class="col-md-8 col-sm-12">
             <div class="row">
                 @foreach($percents as $level => $item)
+                    @dd($item)
                     <div class="col-md-3 col-sm-12">
                         <div class="d-flex flex-row align-items-center rounded rounded-2 level-{{ $level }}">
                             <div class="symbol symbol-50px me-4">
@@ -45,6 +46,9 @@
                             <div class="d-flex flex-column p-5">
                                 <div class="fw-bolder">{{ $item['name'] }}</div>
                                 <div class="text-muted">{{ $item['count'] }} @lang('entries') - {!! $item['percent'] !!} %</div>
+                                <div class="progress" style="height: 3px;">
+                                    <div class="progress-bar" style="width: {{ $item['percent'] }}%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
