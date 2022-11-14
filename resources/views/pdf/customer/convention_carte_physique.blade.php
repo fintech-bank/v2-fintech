@@ -10,4 +10,16 @@
     @endif
     <div class="">Adresse : {{ $customer->info->line_address }}</div>
     <div class="separator separator-4 border-2 my-3"></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="2" class="text-center fw-bolder">CONDITIONS PARTICULIERES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Référence du contrat : {{ $document->reference }}</td>
+            </tr>
+        </tbody>
+    </table>
 @endsection
