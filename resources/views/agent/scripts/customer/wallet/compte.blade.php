@@ -6,6 +6,7 @@
         tableTransfer: document.querySelector("#liste_transfers"),
         tableBeneficiaire: document.querySelector("#liste_beneficiaires"),
         tableSepa: document.querySelector("#liste_sepas"),
+        tableCard: document.querySelector("#liste_card"),
     }
     let elements = {
         btnAcceptTransaction: document.querySelectorAll('.btnAcceptTransaction'),
@@ -32,6 +33,8 @@
         showSepa: document.querySelector('#show_sepa'),
         retailField: document.querySelector("#add_beneficiaire").querySelector('#retailField'),
         corporateField: document.querySelector("#add_beneficiaire").querySelector('#corporateField'),
+        cardStatus: document.querySelector('[data-kt-card-filter="status"]'),
+        cardType: document.querySelector('[data-kt-card-filter="type"]'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -71,6 +74,11 @@
             pageLength: 10,
         }),
         datatableSepa: $(tables.tableSepa).DataTable({
+            info: !1,
+            order: [],
+            pageLength: 10,
+        }),
+        datatableCard: $(tables.tableCard).DataTable({
             info: !1,
             order: [],
             pageLength: 10,
@@ -892,6 +900,9 @@
     document.querySelector('[data-kt-sepa-filter="search"]').addEventListener("keyup", (function (e) {
         dataTable.datatableSepa.search(e.target.value).draw()
     }))
+    document.querySelector('[data-kt-card-filter="search"]').addEventListener("keyup", (function (e) {
+        dataTable.datatableCard.search(e.target.value).draw()
+    }))
     $(elements.transactionType).on('change', e => {
         let n = e.target.value;
         console.log(n)
@@ -921,6 +932,16 @@
         let n = e.target.value;
         console.log(n)
         "all" === n && (n = ""), dataTable.datatableSepa.column(5).search(n).draw()
+    })
+    $(elements.cardStatus).on('change', e => {
+        let n = e.target.value;
+        console.log(n)
+        "all" === n && (n = ""), dataTable.datatableCard.column(4).search(n).draw()
+    })
+    $(elements.cardType).on('change', e => {
+        let n = e.target.value;
+        console.log(n)
+        "all" === n && (n = ""), dataTable.datatableCard.column(5).search(n).draw()
     })
     $("#bank_id").select2({
         templateSelection: optionFormatBank,
