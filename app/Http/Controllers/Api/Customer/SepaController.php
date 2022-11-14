@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Customer;
 use App\Helper\CustomerTransactionHelper;
 use App\Http\Controllers\Controller;
 use App\Jobs\Customer\AcceptSepaJob;
+use App\Jobs\Customer\RefundSepaJob;
 use App\Models\Core\Agency;
 use App\Models\Customer\CustomerSepa;
 use App\Notifications\Customer\RejectSepaNotification;
@@ -34,7 +35,7 @@ class SepaController extends Controller
         return match ($request->get('action')) {
             "accept" => $this->acceptSepa($sepa),
             "reject" => $this->rejectSepa($sepa),
-            "refunded" => "",
+            "refunded" => $this->rembSepa($sepa),
         };
     }
 
@@ -65,21 +66,10 @@ class SepaController extends Controller
     {
         $call = $this->sepa->rembSepaRequest($sepa);
         if($call) {
-            $sepa->update([
-                'status' => 'refunded'
-            ]);
-
-            CustomerTransactionHelper::create(
-                'credit',
-                'sepa',
-                "Remboursement PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor}",
-                Str::replace('-', '', $sepa->amount),
-                $sepa->wallet->id,
-                true,
-                "Remboursement PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor}",
-                now()
-            );
-
+            dispatch(new RefundSepaJob($sepa))->delay(now()->addMinutes(rand(2,5)));
+            return response()->json();
+        } else {
+            return response()->json(null, 522);
         }
     }
 }
