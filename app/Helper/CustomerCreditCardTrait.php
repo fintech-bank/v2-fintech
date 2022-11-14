@@ -4,11 +4,6 @@ namespace App\Helper;
 
 trait CustomerCreditCardTrait
 {
-    private $model;
-    public function __construct()
-    {
-        $this->model = new \App\Models\Customer\CustomerCreditCard();
-    }
 
     /**
      * @return bool
