@@ -107,14 +107,16 @@
         <div class="col-md-8 col-sm-12">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    @lang('Log info') :
-                    <div class="group-btns pull-right">
-                        <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-sm btn-success">
-                            <i class="fa-solid fa-download"></i> @lang('Download')
-                        </a>
-                        <a href="#delete-log-modal" class="btn btn-sm btn-danger" data-toggle="modal">
-                            <i class="fa-solid fa-trash-o"></i> @lang('Delete')
-                        </a>
+                    <h3 class="card-title">@lang('Log info') :</h3>
+                    <div class="card-toolbar">
+                        <div class="btn-group">
+                            <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-sm btn-success">
+                                <i class="fa fa-download"></i> @lang('Download')
+                            </a>
+                            <a href="#delete-log-modal" class="btn btn-sm btn-danger" data-toggle="modal">
+                                <i class="fa fa-trash-o"></i> @lang('Delete')
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
