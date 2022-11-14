@@ -33,5 +33,22 @@
         Le titulaire autorise la {{ config('app.name') }} à prélever automatiquement le montant de la cotisation annuelle
         relative au Service e-Carte Bleue, selon les conditions tarifaires en vigueur, sur le compte désigné ci-dessus.
     </p>
-    <div class="m-5
+    <div class="m-5 p-5" style="border: solid 1px #000000">
+        <table style="width: 100%;">
+            <tbody>
+            <tr>
+                <td style="width: 60%;">
+                    Nom et Prénom du signataire: {{ \App\Helper\CustomerHelper::getName($customer) }}<br>
+                    Fait à: {{ $customer->agency->city }}<br>
+                    Le: {{ now()->format('d/m/Y') }}
+                </td>
+                <td style="width: 20%; text-align: center">
+                    @if(isset($document) && $document->signed_by_client == true)
+                        Signé éléctroniquement le {{ now()->format('d/m/Y') }}.<br>@if($customer->info->type == 'part') {{ $customer->info->civility.'. '. $customer->info->lastname.' '.$customer->info->firstname }} @else {{ $customer->info->company }} @endif
+                    @endif
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 @endsection
