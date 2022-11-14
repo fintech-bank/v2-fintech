@@ -2,15 +2,11 @@
 
 namespace App\Console;
 
-use App\Helper\LogHelper;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Stringable;
-use macropage\LaravelSchedulerWatcher\LaravelSchedulerWatcher;
 
 class Kernel extends ConsoleKernel
 {
-    use LaravelSchedulerWatcher;
     /**
      * Define the application's command schedule.
      *
@@ -107,8 +103,6 @@ class Kernel extends ConsoleKernel
             ->weeklyOn(7)
             ->between('08:00', '17:00')
             ->description("Envoie d'un relevé flash [log]");
-
-        $this->monitor($schedule);
     }
 
     /**
