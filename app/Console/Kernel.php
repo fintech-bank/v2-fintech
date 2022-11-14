@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', 'Suppression des logs bancaire', $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', 'Suppression des logs bancaire', $output);
+                LogHelper::notify('alert', 'Suppression des logs bancaire', $output);
             });
 
         $schedule->command('system:admin shipTpe')
@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Mise à jours des trackers d'envoie", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Mise à jours des trackers d'envoie", $output);
+                LogHelper::notify('alert', "Mise à jours des trackers d'envoie", $output);
             });
 
         $schedule->command('system:admin generateInvoiceReseller')
@@ -48,7 +48,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Génération des factures des distributeur", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Génération des factures des distributeur", $output);
+                LogHelper::notify('alert', "Génération des factures des distributeur", $output);
             });
 
         $schedule->command('system:admin notifyResellerInvoicePayment')
@@ -58,7 +58,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Paiement des factures de distributeur", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Paiement des factures de distributeur", $output);
+                LogHelper::notify('alert', "Paiement des factures de distributeur", $output);
             });
 
 
@@ -70,7 +70,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Alerte d'évènement", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Alerte d'évènement", $output);
+                LogHelper::notify('alert', "Alerte d'évènement", $output);
             });
 
         $schedule->command('system:agent updateCotation')
@@ -80,7 +80,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Mise à jours des cotations clients", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Mise à jours des cotations clients", $output);
+                LogHelper::notify('alert', "Mise à jours des cotations clients", $output);
             });
 
         $schedule->command('system:agent verifRequestLoanOpen')
@@ -90,7 +90,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Vérification des pret ouvert et les mets en étude", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Vérification des pret ouvert et les mets en étude", $output);
+                LogHelper::notify('alert', "Vérification des pret ouvert et les mets en étude", $output);
             });
 
         $schedule->command('system:agent chargeLoanAccepted')
@@ -100,7 +100,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Libération du montant du pret bancaire", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Libération du montant du pret bancaire", $output);
+                LogHelper::notify('alert', "Libération du montant du pret bancaire", $output);
             });
 
         $schedule->command('system:agent executeSepaOrders')
@@ -110,7 +110,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Execution des prélèvements bancaires", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Execution des prélèvements bancaires", $output);
+                LogHelper::notify('alert', "Execution des prélèvements bancaires", $output);
             });
 
         $schedule->command('system:agent executeTransactionComing')
@@ -120,7 +120,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Transactions Entrentes", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Transactions Entrentes", $output);
+                LogHelper::notify('alert', "Transactions Entrentes", $output);
             });
 
         $schedule->command('system:agent executeActiveAccount')
@@ -130,7 +130,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Passage des comptes accepté vers terminer", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Passage des comptes accepté vers terminer", $output);
+                LogHelper::notify('alert', "Passage des comptes accepté vers terminer", $output);
             });
 
         $schedule->command('system:agent executeVirement')
@@ -140,7 +140,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Exécution des virements bancaires", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Exécution des virements bancaires", $output);
+                LogHelper::notify('alert', "Exécution des virements bancaires", $output);
             });
 
         // Life
@@ -152,7 +152,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Nouveau client", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Nouveau client", $output);
+                LogHelper::notify('alert', "Nouveau client", $output);
             });
 
         $schedule->command("life generateSalary")
@@ -162,7 +162,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Virement des Salaires", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Virement des Salaires", $output);
+                LogHelper::notify('alert', "Virement des Salaires", $output);
             });
 
         $schedule->command("life generateDebit")
@@ -173,7 +173,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Génération des débits bancaires", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Génération des débits bancaires", $output);
+                LogHelper::notify('alert', "Génération des débits bancaires", $output);
             });
 
         $schedule->command("life generatePrlvSepa")
@@ -184,7 +184,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Nouveau prélèvement SEPA", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Nouveau prélèvement SEPA", $output);
+                LogHelper::notify('alert', "Nouveau prélèvement SEPA", $output);
             });
 
         $schedule->command("life generateMensualReleve")
@@ -194,7 +194,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Génération des relevés bancaires", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Génération des relevés bancaires", $output);
+                LogHelper::notify('alert', "Génération des relevés bancaires", $output);
             });
 
         $schedule->command("life limitWithdraw")
@@ -204,7 +204,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Suppression des retraits bancaire non effectuer/valider", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Suppression des retraits bancaire non effectuer/valider", $output);
+                LogHelper::notify('alert', "Suppression des retraits bancaire non effectuer/valider", $output);
             });
 
         $schedule->command("life alerta")
@@ -215,7 +215,7 @@ class Kernel extends ConsoleKernel
                 LogHelper::notify('notice', "Envoie du relevé flash", $output);
             })
             ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alerte', "Envoie du relevé flash", $output);
+                LogHelper::notify('alert', "Envoie du relevé flash", $output);
             });
 
         $this->monitor($schedule);
