@@ -1243,7 +1243,8 @@
                 <form id="formAddCreditCard" action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/card" method="POST">
                     @csrf
                     <div class="modal-body">
-                            {!! $wallet->alert('exceeded') !!}
+                            {!! $wallet->alert('physical_exceeded') !!}
+                            {!! $wallet->alert('virtual_exceeded') !!}
                             <div class="mb-10">
                                 <label for="type" class="form-label required">Type de carte bancaire</label>
                                 <select class="form-select" id="type" name="type" data-parent="#add_credit_card" data-control="select2" data-placeholder="Selectionner un type de carte" required onchange="getPhysicalInfo(this)">
