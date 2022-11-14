@@ -163,12 +163,19 @@
                                             (@lang(':count results', ['count' => $entries->count()])) <i class="fa-solid fa-xmark"></i>
                                         </a>
                                     @endunless
-                                    <button id="search-btn" class="btn btn-secondary">
+                                    <button id="search-btn" class="btn btn-light">
                                         <span class="fa-solid fa-search"></span>
                                     </button>
                                 </div>
                             </div>
                         </form>
+                    </div>
+                    <div class="card-toolbar">
+                        @if ($entries->hasPages())
+                            <span class="badge badge-info float-right">
+                                {{ __('Page :current of :last', ['current' => $entries->currentPage(), 'last' => $entries->lastPage()]) }}
+                            </span>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
