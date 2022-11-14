@@ -95,22 +95,7 @@ class HomeController extends Controller
     public function test()
     {
         $slack = new SlackNotifier("#fintech-site");
-        $blocks = [
-            [
-                'type' => "header",
-                'text' => [
-                    'type' => 'plain_text',
-                    'text' => "Bienvenue"
-                ]
-            ],
-            [
-                'type' => 'section',
-                'text' => [
-                    'type' => 'plain_text',
-                    'text' => "Lorem"
-                ]
-            ]
-        ];
+
 
         $slack->send("Binevnue", json_encode($blocks));
     }
