@@ -71,13 +71,20 @@
     <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <script type="text/javascript">
-        am5.ready(() => {
-            let root = am5.Root.new("stats-doughnut-chart")
-            root.setTheme([
-                am5themes_Animated.new(root)
-            ])
+        am5.ready(function () {
+            // Create root element
+            // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+            var root = am5.Root.new("stats-doughnut-chart");
 
-            let chart = root.container.children.push(am5radar.RadarChart.new(root, {
+            // Set themes
+            // https://www.amcharts.com/docs/v5/concepts/themes/
+            root.setThemes([
+                am5themes_Animated.new(root)
+            ]);
+
+            // Create chart
+            // https://www.amcharts.com/docs/v5/charts/radar-chart/
+            var chart = root.container.children.push(am5radar.RadarChart.new(root, {
                 panX: false,
                 panY: false,
                 wheelX: "panX",
@@ -85,36 +92,63 @@
                 innerRadius: am5.percent(20),
                 startAngle: -90,
                 endAngle: 180
-            }))
+            }));
 
-            let data = [{
-                category: "Urgence",
+            // Data
+            var data = [{
+                category: "Research",
                 value: 80,
                 full: 100,
                 columnSettings: {
                     fill: chart.get("colors").getIndex(0)
                 }
+            }, {
+                category: "Marketing",
+                value: 35,
+                full: 100,
+                columnSettings: {
+                    fill: chart.get("colors").getIndex(1)
+                }
+            }, {
+                category: "Distribution",
+                value: 92,
+                full: 100,
+                columnSettings: {
+                    fill: chart.get("colors").getIndex(2)
+                }
+            }, {
+                category: "Human Resources",
+                value: 68,
+                full: 100,
+                columnSettings: {
+                    fill: chart.get("colors").getIndex(3)
+                }
             }];
 
-            let cursor = chart.set("cursor", am5radar.RadarCursor.new(root, {
+            // Add cursor
+            // https://www.amcharts.com/docs/v5/charts/radar-chart/#Cursor
+            var cursor = chart.set("cursor", am5radar.RadarCursor.new(root, {
                 behavior: "zoomX"
             }));
 
             cursor.lineY.set("visible", false);
 
-            let xRenderer = am5radar.AxisRendererCircular.new(root, {
+            // Create axes and their renderers
+            // https://www.amcharts.com/docs/v5/charts/radar-chart/#Adding_axes
+            var xRenderer = am5radar.AxisRendererCircular.new(root, {
                 //minGridDistance: 50
             });
 
             xRenderer.labels.template.setAll({
-                radius: 10
+                radius: 10,
+                fill: bodyColor
             });
 
             xRenderer.grid.template.setAll({
                 forceHidden: true
             });
 
-            let xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+            var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
                 renderer: xRenderer,
                 min: 0,
                 max: 100,
@@ -123,7 +157,7 @@
                 tooltip: am5.Tooltip.new(root, {})
             }));
 
-            let yRenderer = am5radar.AxisRendererRadial.new(root, {
+            var yRenderer = am5radar.AxisRendererRadial.new(root, {
                 minGridDistance: 20
             });
 
@@ -138,13 +172,15 @@
                 forceHidden: true
             });
 
-            let yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
+            var yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
                 categoryField: "category",
                 renderer: yRenderer
             }));
 
             yAxis.data.setAll(data);
 
+            // Create series
+            // https://www.amcharts.com/docs/v5/charts/radar-chart/#Adding_series
             var series1 = chart.series.push(am5radar.RadarColumnSeries.new(root, {
                 xAxis: xAxis,
                 yAxis: yAxis,
@@ -163,8 +199,29 @@
 
             series1.data.setAll(data);
 
+            var series2 = chart.series.push(am5radar.RadarColumnSeries.new(root, {
+                xAxis: xAxis,
+                yAxis: yAxis,
+                clustered: false,
+                valueXField: "value",
+                categoryYField: "category"
+            }));
+
+            series2.columns.template.setAll({
+                width: am5.p100,
+                strokeOpacity: 0,
+                tooltipText: "{category}: {valueX}%",
+                cornerRadius: 20,
+                templateField: "columnSettings"
+            });
+
+            series2.data.setAll(data);
+
+            // Animate chart and series in
+            // https://www.amcharts.com/docs/v5/concepts/animations/#Initial_animation
             series1.appear(1000);
+            series2.appear(1000);
             chart.appear(1000, 100);
-        })
+        }); // end am5.ready()
     </script>
 @endsection
