@@ -130,15 +130,15 @@
                     </div>
                     <div class="d-flex flex-row border border-bottom-3 pb-5 mb-5">
                         <div class="fw-bolder">@lang('Size') :</div>
-                        <span class="badge badge-primary">{{ $entries->size() }}</span>
+                        <span class="badge badge-primary">{{ $log->size() }}</span>
                     </div>
                     <div class="d-flex flex-row border border-bottom-3 pb-5 mb-5">
                         <div class="fw-bolder">@lang('Created at') :</div>
-                        <span class="badge badge-primary">{{ $entries->createdAt() }}</span>
+                        <span class="badge badge-primary">{{ $log->createdAt() }}</span>
                     </div>
                     <div class="d-flex flex-row border border-bottom-3 pb-5 mb-5">
                         <div class="fw-bolder">@lang('Updated at') :</div>
-                        <span class="badge badge-primary">{{ $entries->updatedAt() }}</span>
+                        <span class="badge badge-primary">{{ $log->updatedAt() }}</span>
                     </div>
                 </div>
             </div>
