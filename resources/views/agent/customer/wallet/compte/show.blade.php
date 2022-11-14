@@ -862,7 +862,7 @@
                             <tr>
                                 <td>
                                     <div class="symbol symbol-50px symbol-2by3" data-bs-toggle="tooltip" title="{{ Str::ucfirst($card->support) }}">
-                                        <img src="/storage/card/{{ $card->support }}.png" alt=""/>
+                                        <img src="/storage/card/{{ $card->support->name }}.png" alt=""/>
                                     </div>
                                 </td>
                                 <td>{{ \App\Helper\CustomerCreditCard::getCreditCard($card->number) }}</td>
