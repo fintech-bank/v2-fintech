@@ -739,7 +739,7 @@
                                     }, 1200)
                                 },
                                 522: () => {
-                                    toastr.success(`La demande de remboursement à été refusé par l'établissement distant`, `Prélèvement Bancaire`)
+                                    toastr.warning(`La demande de remboursement à été refusé par l'établissement distant`, `Prélèvement Bancaire`)
                                 },
                                 500: () => {
                                     toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
