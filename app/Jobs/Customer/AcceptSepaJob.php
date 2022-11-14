@@ -46,7 +46,7 @@ class AcceptSepaJob implements ShouldQueue
             'debit',
             'sepa',
             "Prélèvement SEPA ACC {$this->sepa->wallet->number_account} DE: {$this->sepa->creditors()->first()->name}",
-            $this->sepa->amount,
+            \Str::replace('-', '', $this->sepa->amount),
             $this->sepa->wallet->id,
             true,
             "Prélèvement SEPA ACC {$this->sepa->wallet->number_account} DE: {$this->sepa->creditors()->first()->name} ID: {$this->sepa->creditors()->first()->identifiant} REF: {$this->sepa->uuid} MANDAT {$this->sepa->number_mandate}",
