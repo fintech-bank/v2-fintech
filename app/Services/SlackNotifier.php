@@ -50,16 +50,6 @@ class SlackNotifier
 
     private function preparePayload($text, mixed $attachments, mixed $channel): array
     {
-        $blocks = [];
-        foreach ($attachments as $attachment) {
-            $blocks[] = [
-                'type' => 'section',
-                'text' => [
-                    'type' => 'plain_text',
-                    'text' => $attachment
-                ]
-            ];
-        }
-        return ['text' => $text, 'blocks' => $blocks, 'channel' => $channel];
+        return ['text' => $text, 'blocks' => $attachments, 'channel' => $channel];
     }
 }
