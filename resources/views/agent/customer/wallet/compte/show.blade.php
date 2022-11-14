@@ -1248,9 +1248,37 @@
                                 color="danger"
                                 icon="xmark-circle"
                                 title="Nombre de carte bancaire dépassé"
-                                content="Le nombre de carte bancaire pour le client <strong>{{ $wallet->customer->info->full_name }}</strong> est dépassé, des frais supplémentaires vons s'appliquer."
+                                content="Le nombre de carte bancaire pour le client <strong>{{ $wallet->customer->info->full_name }}</strong> est dépassé, des frais supplémentaires vont s'appliquer."
                                 />
                         @endif
+                            <div class="mb-10">
+                                <label for="type" class="form-label required">Type de carte bancaire</label>
+                                <select class="form-select" id="type" name="type" data-parent="#add_credit_card" data-control="select2" data-placeholder="Selectionner un type de carte" required onchange="getPhysicalInfo(this)">
+                                    <option value=""></option>
+                                    <option value="physique">Carte Physique</option>
+                                    <option value="virtuel">Carte Virtuel</option>
+                                </select>
+                            </div>
+                            <div id="physical_card" class="d-none">
+                                <div class="mb-10">
+                                    <label for="support" class="form-label required">Catégorie de la carte bancaire</label>
+                                    <select class="form-select" id="support" name="support" data-parent="#add_credit_card" data-placeholder="Selectionner un type de carte">
+                                        <option value=""></option>
+                                        <option value="classic" data-card-img="/storage/card/classic.png">Carte Visa Classic</option>
+                                        <option value="premium" data-card-img="/storage/card/premium.png">Carte Visa Premium</option>
+                                        <option value="infinite" data-card-img="/storage/card/infinite.png">Carte Visa Infinite</option>
+                                    </select>
+                                </div>
+                                <div class="mb-10">
+                                    <label for="debit" class="form-label required">Type de débit de la carte bancaire</label>
+                                    <select class="form-select" id="debit" name="debit" data-parent="#add_credit_card" data-control="select2" data-placeholder="Selectionner un type de débit">
+                                        <option value=""></option>
+                                        <option value="immediate">Débit Immédiat</option>
+                                        <option value="differed">Débit différé</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="virtual_card"></div>
                     </div>
                     <div class="modal-footer">
                         <x-form.button />
