@@ -58,4 +58,59 @@
     <div class="border p-2">
         {{ $data->card->wallet->name_account }}
     </div>
+    <p>Pour votre sécurité, votre nouvelle carte est fabriquée et transportée inactive. Pour l'activer, vous devez effectuer un retrait sur
+        un distributeur automatique de billets ou un paiement chez un commerçant, validé par votre code confidentiel*.</p>
+
+    <p class="fs-underline">En signant les présentes Conditions Particulières,</p>
+    <ul>
+        <li>
+            Je déclare avoir pris connaissance des Conditions Générales de fonctionnement de la banque à distance - Conditions
+            appliquées aux opérations bancaires des particuliers (1) qui m’ont été adressées en complément de ces Conditions
+            Particulières, et en accepte tous les termes sans réserve ;
+        </li>
+        <li>
+            Je déclare être majeur capable et m'engager en nom propre (à l'exception d'une représentation légale d'un majeur protégé)
+        </li>
+        <li>
+            Je demande la souscription de la banque à distance telle qu’exposée ci-dessus en ayant connaissance du fait que cette
+            souscription est soumise à l’agrément de {{ config('app.name') }} ;
+        </li>
+        <li>
+            Je suis informé(e):
+            <ul>
+                <li>
+                    que la signature de la convention de compte doit être réalisée dans les 60 jours suivant la validation du
+                    formulaire d’ouverture de compte en ligne, avec l’ensemble des pièces justificatives, au plus tard 60 jours
+                    calendaires suivant la validation de mon formulaire de demande d’ouverture de compte en ligne. Au-delà, ma
+                    demande ne pourra plus être prise en compte et je devrais faire une nouvelle demande
+                </li>
+                <li>
+                    qu’en cas d’agrément par {{ config('app.name') }}, celui-ci me sera notifié par courrier (« Lettre d’agrément »). Je
+                    disposerai de 14 jours calendaires (si ce délai expire un samedi, un dimanche ou un jour férié ou chômé, il sera
+                    prorogé jusqu’au premier jour ouvrable suivant) à compter de l’agrément de la banque (cachet de la Poste
+                    faisant foi) pour me rétracter au moyen du formulaire de rétractation envoyé par lettre recommandée avec
+                    accusé de réception. Passé ce délai de rétractation, la Convention pourra être résiliée dans les conditions
+                    prévues aux conditions générales de la convention de compte.
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="m-5 p-5" style="border: solid 1px #000000">
+        <table style="width: 100%;">
+            <tbody>
+            <tr>
+                <td style="width: 60%;">
+                    Nom et Prénom du signataire: {{ \App\Helper\CustomerHelper::getName($customer) }}<br>
+                    Fait à: {{ $customer->agency->city }}<br>
+                    Le: {{ now()->format('d/m/Y') }}
+                </td>
+                <td style="width: 20%; text-align: center">
+                    @if(isset($document) && $document->signed_by_client == true)
+                        Signé éléctroniquement le {{ now()->format('d/m/Y') }}.<br>@if($customer->info->type == 'part') {{ $customer->info->civility.'. '. $customer->info->lastname.' '.$customer->info->firstname }} @else {{ $customer->info->company }} @endif
+                    @endif
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 @endsection
