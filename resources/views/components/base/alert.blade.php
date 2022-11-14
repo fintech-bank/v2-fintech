@@ -11,7 +11,7 @@
             <h4 class="mb-1 text-{{ $color }}">{{ $title }}</h4>
             <!--end::Title-->
             <!--begin::Content-->
-            <span>{{ $content }}</span>
+            <span>{!! $content !!}</span>
             <!--end::Content-->
         </div>
         <!--end::Wrapper-->

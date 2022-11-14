@@ -1227,6 +1227,38 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="add_credit_card">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Nouvelle carte bancaire</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-regular fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formAddCreditCard" action="" method="POST">
+                    <div class="modal-body">
+                        @if($wallet->cards()->count() >= $wallet->customer->package->nb_carte_physique)
+                            <x-base.alert
+                                type="basic"
+                                color="danger"
+                                icon="xmark-circle"
+                                title="Nombre de carte bancaire dépassé"
+                                content="Le nombre de carte bancaire pour le client <strong>{{ $wallet->customer->info->full_name }}</strong> est dépassé, des frais supplémentaires vons s'appliquer."
+                                />
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div id="show_transfer" class="bg-white"
          data-kt-drawer="true"
          data-kt-drawer-activate="true"
