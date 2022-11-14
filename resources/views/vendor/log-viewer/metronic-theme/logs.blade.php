@@ -45,9 +45,7 @@
                                 @if ($key == 'date')
                                     <span class="badge badge-info">{{ $header }}</span>
                                 @else
-                                    <span class="badge badge-level-{{ $key }}">
-                                        {{ log_styler()->icon($key) }} {{ $header }}
-                                    </span>
+                                    {{ log_styler()->icon($key) }} {{ $header }}
                                 @endif
                             </th>
                         @endforeach
