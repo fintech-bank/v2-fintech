@@ -26,6 +26,8 @@
         transferType: document.querySelector('[data-kt-transfer-filter="type"]'),
         transferStatus: document.querySelector('[data-kt-transfer-filter="status"]'),
         beneficiaireType: document.querySelector('[data-kt-beneficiaire-filter="type"]'),
+        creditorField: document.querySelector('[data-kt-sepa-filter="creditor"]'),
+        sepaStatus: document.querySelector('[data-kt-sepa-filter="status"]'),
         showTransfer: document.querySelector('#show_transfer'),
         showSepa: document.querySelector('#show_sepa'),
         retailField: document.querySelector("#add_beneficiaire").querySelector('#retailField'),
@@ -883,6 +885,9 @@
     document.querySelector('[data-kt-beneficiaire-filter="search"]').addEventListener("keyup", (function (e) {
         dataTable.datatableBeneficiaire.search(e.target.value).draw()
     }))
+    document.querySelector('[data-kt-sepa-filter="search"]').addEventListener("keyup", (function (e) {
+        dataTable.datatableSepa.search(e.target.value).draw()
+    }))
     $(elements.transactionType).on('change', e => {
         let n = e.target.value;
         console.log(n)
@@ -902,6 +907,16 @@
         let n = e.target.value;
         console.log(n)
         "all" === n && (n = ""), dataTable.datatableBeneficiaire.column(0).search(n).draw()
+    })
+    $(elements.creditorField).on('change', e => {
+        let n = e.target.value;
+        console.log(n)
+        "all" === n && (n = ""), dataTable.datatableSepa.column(2).search(n).draw()
+    })
+    $(elements.sepaStatus).on('change', e => {
+        let n = e.target.value;
+        console.log(n)
+        "all" === n && (n = ""), dataTable.datatableSepa.column(5).search(n).draw()
     })
     $("#bank_id").select2({
         templateSelection: optionFormatBank,
