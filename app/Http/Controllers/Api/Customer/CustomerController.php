@@ -205,10 +205,8 @@ class CustomerController extends Controller
 
     public function alert($customer_id, Request $request)
     {
-        $customer = Customer::find($customer_id);
-
         match ($request->get('action')) {
-            $request->get('action') => dispatch(new AlertCustomerJob($customer, $request->get('action'), now()->addMinute()))
+            $request->get('action') => dispatch(new AlertCustomerJob($customer_id, $request->get('action'), now()->addMinute()))
         };
 
         return response()->json();
