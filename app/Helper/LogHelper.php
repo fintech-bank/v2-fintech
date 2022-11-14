@@ -19,7 +19,7 @@ class LogHelper
         $users = User::where('admin', 1)->orWhere('agent', 1)->get();
 
         foreach ($users as $user) {
-            \Log::$type($message, $content);
+            \Log::$type($message, [$content]);
             $user->notify(new LogNotification($type, $message, $content));
         }
     }
