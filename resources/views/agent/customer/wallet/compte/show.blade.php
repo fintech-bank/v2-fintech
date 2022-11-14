@@ -700,7 +700,7 @@
                                         </svg>
                                     </span>
                             <!--end::Svg Icon-->
-                            <input type="text" data-kt-sepas-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Rechercher un prélèvement" />
+                            <input type="text" data-kt-sepa-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Rechercher un prélèvement" />
                         </div>
                         <!--begin::Toolbar-->
                         <div class="d-flex justify-content-end" data-kt-sepas-table-toolbar="base">
