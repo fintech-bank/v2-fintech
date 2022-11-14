@@ -11,6 +11,7 @@ class Sepa
 
     public function rembSepaRequest(\App\Models\Customer\CustomerSepa $sepa)
     {
+        dd($sepa->creditors()->first()->identifiant);
         return \Http::post('https://payment.fintech.ovh/sepa/remb', ["ics" => $sepa->creditors()->first()->identifiant])->object();
     }
 }
