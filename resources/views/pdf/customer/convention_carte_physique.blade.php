@@ -36,7 +36,7 @@
     </table>
     <p>Le titulaire de la carte et/ou du compte doit déclarer par téléphone dans les meilleurs délais, la perte, le vol de la carte ou
         l’utilisation frauduleuse des données de la carte au centre d'opposition de la Banque : 01.77.86.24.24 (prix d'un appel local)</p>
-    <div class="fw-bolder fs-2">MODALITES D'UTILISATION</div>
+    <div class="fw-bolder fs-3 text-center">MODALITES D'UTILISATION</div>
     <p>Les plafonds d'autorisation de votre carte sont :</p>
     <table class="table table-bordered table-sm">
         <tbody>
