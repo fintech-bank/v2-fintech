@@ -1,4 +1,9 @@
-
+.border-2 {
+    --bs-border-width: 2px;
+}
+.border-3 {
+    --bs-border-width: 3px;
+}
 
 .border-primary {border-color: var(--primary);}
 .border-secondary {border-color: var(--secondary);}

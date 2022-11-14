@@ -1813,6 +1813,7 @@ header .letter-code {
   --success-light: #6bc743;
   --info-light: #8252b6;
   --bank-light: #294985;
+  --bs-border-width:1px;
 }
 
 .text-primary {
@@ -2097,6 +2098,14 @@ label {
 }
 .separator .separator-double {
   border-bottom-style: double;
+}
+
+.border-2 {
+  --bs-border-width: 2px;
+}
+
+.border-3 {
+  --bs-border-width: 3px;
 }
 
 .border-primary {
