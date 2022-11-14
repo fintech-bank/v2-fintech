@@ -121,24 +121,24 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-row border-bottom-3 p-5">
-                        <div class="fw-bolder">@lang('File path') :</div>
+                        <div class="fw-bolder me-5">@lang('File path') :</div>
                         <span class="me-5">{{ $log->getPath() }}</span>
                     </div>
                     <div class="d-flex flex-row border-bottom-3 p-5">
-                        <div class="fw-bolder">@lang('Log entries') :</div>
-                        <span class="badge badge-primary me-5">{{ $entries->total() }}</span>
+                        <div class="fw-bolder me-5">@lang('Log entries') :</div>
+                        <span class="badge badge-primary">{{ $entries->total() }}</span>
                     </div>
                     <div class="d-flex flex-row border-bottom-3 p-5">
-                        <div class="fw-bolder">@lang('Size') :</div>
-                        <span class="badge badge-primary me-5">{{ $log->size() }}</span>
+                        <div class="fw-bolder me-5">@lang('Size') :</div>
+                        <span class="badge badge-primary">{{ $log->size() }}</span>
                     </div>
                     <div class="d-flex flex-row border-bottom-3 p-5">
-                        <div class="fw-bolder">@lang('Created at') :</div>
-                        <span class="badge badge-primary me-5">{{ $log->createdAt() }}</span>
+                        <div class="fw-bolder me-5">@lang('Created at') :</div>
+                        <span class="badge badge-primary">{{ $log->createdAt() }}</span>
                     </div>
                     <div class="d-flex flex-row border-bottom-3 p-5">
-                        <div class="fw-bolder">@lang('Updated at') :</div>
-                        <span class="badge badge-primary me-5">{{ $log->updatedAt() }}</span>
+                        <div class="fw-bolder me-5">@lang('Updated at') :</div>
+                        <span class="badge badge-primary">{{ $log->updatedAt() }}</span>
                     </div>
                 </div>
             </div>
