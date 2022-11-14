@@ -44,7 +44,7 @@
                             @if($item['count'] == 0)
                                 <li class="nav-item mb-3 me-3 me-lg-6" role="presentation">
                                     <!--begin::Link-->
-                                    <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-row justify-content-start align-items-center overflow-hidden w-100 h-85px pt-5 pb-2 active" id="kt_stats_widget_16_tab_link_1" data-bs-toggle="pill" href="#kt_stats_widget_16_tab_1" aria-selected="true" role="tab">
+                                    <a class="nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-row justify-content-start align-items-center overflow-hidden w-100 h-85px pt-5 pb-2 active" disabled id="kt_stats_widget_16_tab_link_1" data-bs-toggle="pill" href="{{ $item['url'] }}" aria-selected="true" role="tab">
                                         <!--begin::Icon-->
                                         <div class="nav-icon mb-3 me-3">
                                             {!! $item['icon'] !!}
