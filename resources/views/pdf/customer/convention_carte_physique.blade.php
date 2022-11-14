@@ -38,7 +38,7 @@
         l’utilisation frauduleuse des données de la carte au centre d'opposition de la Banque : 01.77.86.24.24 (prix d'un appel local)</p>
     <div class="fw-bolder fs-3 text-center">MODALITES D'UTILISATION</div>
     <p>Les plafonds d'autorisation de votre carte sont :</p>
-    <table class="table table-bordered table-sm">
+    <table class="table table-bordered table-sm mb-5">
         <tbody>
             <td>
                 <strong>RETRAITS:</strong>
@@ -54,4 +54,8 @@
             </td>
         </tbody>
     </table>
+    <p>Les comptes accessibles aux GAB sont, à la date de signature :</p>
+    <div class="border p-2">
+        {{ $data->card->wallet->name_account }}
+    </div>
 @endsection
