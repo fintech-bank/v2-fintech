@@ -463,7 +463,8 @@ class CustomerWallet extends Model
     public function alert($alert)
     {
         return match ($alert) {
-            'exceeded' => $this->numberBankCardExceeded()
+            'physical_exceeded' => $this->numberPhysicalBankCardExceeded(),
+            'virtual_exceeded' => $this->numberVirtualBankCardExceeded(),
         };
     }
 
