@@ -31,6 +31,7 @@ use App\Notifications\Customer\MensualReleverNotification;
 use App\Notifications\Customer\NewPrlvPresented;
 use App\Notifications\Customer\SendAlertaInfoNotification;
 use App\Services\Fintech\Payment\Sepa;
+use App\Services\SlackNotifier;
 use App\Services\Twilio\Verify;
 use Carbon\Carbon;
 use Exception;
@@ -57,10 +58,13 @@ class LifeCommand extends Command
      */
     protected $description = '';
 
+    private $slack;
+
     public function __construct()
     {
         $this->setSignature('life {action}');
         parent::__construct();
+        $this->slack = new SlackNotifier('https://hooks.slack.com/services/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', '#fintech-site');
     }
 
     /**
@@ -208,6 +212,7 @@ class LifeCommand extends Command
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->line('Nombre de nouveau client: ' . $r);
         $this->output->table(['client', 'Etat du compte'], $arr);
+        $this->slack->send("Nouveau client", [$this->getOutput()]);
     }
 
     /**
