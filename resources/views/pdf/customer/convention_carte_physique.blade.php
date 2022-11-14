@@ -19,7 +19,11 @@
         <tbody>
             <tr>
                 <td>Référence du contrat : {{ $document ? $document->reference : generateReference() }}</td>
-                <td>N°de compte support de la carte : : {{ $data->card->wallet->number_account }}</td>
+                <td>N°de compte support de la carte : {{ $data->card->wallet->number_account }}</td>
+            </tr>
+            <tr>
+                <td>Type de carte : {{ $customer->info->type_text }}</td>
+                <td>Type de débit : {{ $data->card->type_format }}</td>
             </tr>
         </tbody>
     </table>
