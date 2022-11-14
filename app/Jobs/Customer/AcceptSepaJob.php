@@ -44,11 +44,11 @@ class AcceptSepaJob implements ShouldQueue
         $transaction = CustomerTransactionHelper::create(
             'debit',
             'sepa',
-            "Prélèvement SEPA ACC {$this->sepa->wallet->number_account} DE: {$this->sepa->creditor->name}",
+            "Prélèvement SEPA ACC {$this->sepa->wallet->number_account} DE: {$this->sepa->creditors()->first()->name}",
             $this->sepa->amount,
             $this->sepa->wallet->id,
             true,
-            "Prélèvement SEPA ACC {$this->sepa->wallet->number_account} DE: {$this->sepa->creditor->name} ID: {$this->sepa->creditor->identifiant} REF: {$this->sepa->uuid} MANDAT {$this->sepa->number_mandate}",
+            "Prélèvement SEPA ACC {$this->sepa->wallet->number_account} DE: {$this->sepa->creditors()->first()->name} ID: {$this->sepa->creditors()->first()->identifiant} REF: {$this->sepa->uuid} MANDAT {$this->sepa->number_mandate}",
             now()
         );
         $this->sepa->update([
