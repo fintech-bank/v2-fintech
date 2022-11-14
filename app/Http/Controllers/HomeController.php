@@ -101,7 +101,7 @@ class HomeController extends Controller
         $card = CustomerCreditCard::find(1);
 
         return $document->generatePDF(
-            'customer.convention_carte_physique',
+            'customer.convention_carte_virtuel',
             $customer,
             null,
             ["card" => $card],
