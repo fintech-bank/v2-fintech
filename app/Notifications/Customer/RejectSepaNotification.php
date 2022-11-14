@@ -35,7 +35,7 @@ class RejectSepaNotification extends Notification
 
     private function getMessage()
     {
-        $message = "Le prélèvement bancaire <strong>{$this->sepa->number_mandate}</strong> d'un montant de <strong>{$this->sepa->amount_format}</strong> de <strong>{$this->sepa->creditor->name}</strong> à été rejeté par notre equipe financiere.";
+        $message = "Le prélèvement bancaire <strong>{$this->sepa->number_mandate}</strong> d'un montant de <strong>{$this->sepa->amount_format}</strong> de <strong>{$this->sepa->creditors()->first()->name}</strong> à été rejeté par notre equipe financiere.";
         return $message;
     }
 
