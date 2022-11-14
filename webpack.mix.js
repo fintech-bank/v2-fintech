@@ -4,6 +4,7 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .js('resources/js/enable-push.js', 'public/js/enable-push.js');
 
 mix.sass('resources/scss/pdf.scss', 'public/css/pdf.css')
+    .sass('resources/scss/app.scss', 'public/css/app.css');
 
 mix.disableNotifications()
 mix.browserSync({
