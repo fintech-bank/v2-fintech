@@ -121,7 +121,7 @@ class UserSeeder extends Seeder
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents');
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
         foreach (DocumentCategory::all() as $doc) {
-            \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents/' . $doc->name);
+            \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents/' . $doc->slug);
         }
 
 
