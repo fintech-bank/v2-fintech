@@ -64,7 +64,7 @@ class LifeCommand extends Command
     {
         $this->setSignature('life {action}');
         parent::__construct();
-        $this->slack = new SlackNotifier('https://hooks.slack.com/services/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', '#fintech-site');
+        $this->slack = new SlackNotifier('https://hooks.slack.com/services/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', '#fintech-site');
     }
 
     /**
