@@ -60,11 +60,11 @@ class SepaController extends Controller
         CustomerTransactionHelper::create(
             'debit',
             'frais',
-            "Frais rejet Prélèvement - {$sepa->number_mandate}",
+            "Frais Bancaire",
             2.5,
             $sepa->wallet->id,
             true,
-            'Frais Bancaire',
+            "Frais rejet prélèvement - {$sepa->number_mandate}",
             now()
         );
 
