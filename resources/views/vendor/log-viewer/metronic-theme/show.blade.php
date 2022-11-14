@@ -189,6 +189,66 @@
                                 <th class="text-end">@lang('Actions')</th>
                             </tr>
                         </thead>
+                        <tbody>
+                        @forelse($entries as $key => $entry)
+                            <tr>
+                                <td>
+                                    <span class="badge badge-env">{{ $entry->env }}</span>
+                                </td>
+                                <td>
+                                        <span class="badge badge-level-{{ $entry->level }}">
+                                            {!! $entry->level() !!}
+                                        </span>
+                                </td>
+                                <td>
+                                        <span class="badge badge-secondary">
+                                            {{ $entry->datetime->format('H:i:s') }}
+                                        </span>
+                                </td>
+                                <td>
+                                    {{ $entry->header }}
+                                </td>
+                                <td class="text-right">
+                                    @if ($entry->hasStack())
+                                        <a class="btn btn-sm btn-light" role="button" data-toggle="collapse"
+                                           href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
+                                            <i class="fa fa-toggle-on"></i> @lang('Stack')
+                                        </a>
+                                    @endif
+
+                                    @if ($entry->hasContext())
+                                        <a class="btn btn-sm btn-light" role="button" data-toggle="collapse"
+                                           href="#log-context-{{ $key }}" aria-expanded="false" aria-controls="log-context-{{ $key }}">
+                                            <i class="fa fa-toggle-on"></i> @lang('Context')
+                                        </a>
+                                    @endif
+                                </td>
+                            </tr>
+                            @if ($entry->hasStack() || $entry->hasContext())
+                                <tr>
+                                    <td colspan="5" class="stack py-0">
+                                        @if ($entry->hasStack())
+                                            <div class="stack-content collapse" id="log-stack-{{ $key }}">
+                                                {!! $entry->stack() !!}
+                                            </div>
+                                        @endif
+
+                                        @if ($entry->hasContext())
+                                            <div class="stack-content collapse" id="log-context-{{ $key }}">
+                                                <pre>{{ $entry->context() }}</pre>
+                                            </div>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endif
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <span class="badge badge-secondary">@lang('The list of logs is empty!')</span>
+                                </td>
+                            </tr>
+                        @endforelse
+                        </tbody>
                     </table>
                 </div>
             </div>
