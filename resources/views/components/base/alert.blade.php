@@ -20,9 +20,9 @@
 @elseif($type == 'solid')
 
     <!--begin::Alert-->
-    <div id="{{ isset($id) ? $id : '' }}" class="alert alert-dismissible bg-{{ $color }} d-flex flex-column flex-sm-row p-5 mb-10 {{ isset($class) ? $class : '' }}">
+    <div id="{{ isset($id) ? $id : '' }}" class="alert alert-dismissible bg-{{ $color }} d-flex flex-column align-items-center flex-sm-row p-5 mb-10 {{ isset($class) ? $class : '' }}">
         <!--begin::Icon-->
-        <i class="fa-solid fa-{{ $icon }} fa-2x text-light-{{ $color }} me-3"></i>
+        <i class="fa-solid fa-{{ $icon }} fs-1 text-light-{{ $color }} me-3"></i>
         <!--end::Icon-->
 
         <!--begin::Wrapper-->
