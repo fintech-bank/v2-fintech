@@ -10,6 +10,7 @@ use App\Models\Core\Event;
 use App\Models\Core\LoanPlan;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerTransfer;
 use App\Models\Reseller\Reseller;
 use App\Models\User;
@@ -93,7 +94,8 @@ class HomeController extends Controller
     public function test()
     {
         $s = new Sepa();
+        $sepa = CustomerSepa::find(1);
 
-        dd($s->acceptSepa());
+        dd($s->rembSepaRequest($sepa));
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\Customer\AcceptSepaJob;
 use App\Models\Core\Agency;
 use App\Models\Customer\CustomerSepa;
+use App\Notifications\Customer\RejectSepaNotification;
 use App\Services\Fintech\Payment\Sepa;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class SepaController extends Controller
         $sepa = CustomerSepa::where('uuid', $sepa_uuid)->first();
         return match ($request->get('action')) {
             "accept" => $this->acceptSepa($sepa),
-            "reject" => "",
+            "reject" => $this->rejectSepa($sepa),
             "refunded" => "",
         };
     }
@@ -45,5 +46,21 @@ class SepaController extends Controller
         } else {
             return response()->json(null, 522);
         }
+    }
+
+    private function rejectSepa(CustomerSepa $sepa)
+    {
+        $sepa->update([
+            'status' => 'rejected'
+        ]);
+
+        $sepa->wallet->customer->info->notify(new RejectSepaNotification($sepa->wallet->customer, $sepa));
+
+        return response()->json();
+    }
+
+    private function rembSepa(CustomerSepa $sepa)
+    {
+        $call = $this->sepa->rembSepaRequest($sepa);
     }
 }
