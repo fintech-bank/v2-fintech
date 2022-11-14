@@ -913,6 +913,34 @@
             }
         })
     })
+    $(forms.formAddCreditCard).on('submit', e => {
+        e.preventDefault()
+        let block = new KTBlockUI(modals.modalCreateCard.querySelector(".modal-body"))
+        let form = $(forms.formAddCreditCard)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+        block.block()
+
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: data,
+            success: () => {
+                block.release()
+                block.destroy()
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.success(`La demande de nouvelle carte bancaire à été enregistré`, `Carte bancaire`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
+        })
+    })
     document.querySelector('[data-kt-transaction-filter="search"]').addEventListener("keyup", (function (e) {
         dataTable.datatableTransaction.search(e.target.value).draw()
     }))

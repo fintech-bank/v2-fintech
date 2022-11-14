@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use App\Helper\CustomerWalletTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -92,7 +93,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CustomerWallet extends Model
 {
-    use HasFactory;
+    use HasFactory, CustomerWalletTrait;
 
     protected $guarded = [];
 
@@ -456,6 +457,13 @@ class CustomerWallet extends Model
             'part' => 1000,
             'pro', 'orga' => 5000,
             'assoc' => 2000
+        };
+    }
+
+    public function alert($alert)
+    {
+        return match ($alert) {
+            'exceeded' => $this->numberBankCardExceeded()
         };
     }
 

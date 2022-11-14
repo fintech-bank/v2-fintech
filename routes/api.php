@@ -163,6 +163,10 @@ Route::prefix('customer')->group(function () {
             Route::get('{sepa_uuid}', [\App\Http\Controllers\Api\Customer\SepaController::class, 'info']);
             Route::put('{sepa_uuid}', [\App\Http\Controllers\Api\Customer\SepaController::class, 'update']);
         });
+
+        Route::prefix('{number_account}/card')->group(function () {
+            Route::post('/', [\App\Http\Controllers\Api\Customer\CreditCardController::class, 'store']);
+        });
     });
 
     Route::prefix('{customer_id}/beneficiaire')->group(function () {

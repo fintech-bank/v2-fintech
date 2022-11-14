@@ -1240,17 +1240,10 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formAddCreditCard" action="" method="POST">
+                <form id="formAddCreditCard" action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/card" method="POST">
+                    @csrf
                     <div class="modal-body">
-                        @if($wallet->cards()->count() >= $wallet->customer->package->nb_carte_physique)
-                            <x-base.alert
-                                type="solid"
-                                color="danger"
-                                icon="xmark-circle"
-                                title="Nombre de carte bancaire dépassé"
-                                content="Le nombre de carte bancaire pour le client <strong>{{ $wallet->customer->info->full_name }}</strong> est dépassé, des frais supplémentaires vont s'appliquer."
-                                />
-                        @endif
+                            {!! $wallet->alert('exceeded') !!}
                             <div class="mb-10">
                                 <label for="type" class="form-label required">Type de carte bancaire</label>
                                 <select class="form-select" id="type" name="type" data-parent="#add_credit_card" data-control="select2" data-placeholder="Selectionner un type de carte" required onchange="getPhysicalInfo(this)">

@@ -99,4 +99,6 @@ trait CustomerCreditCardTrait
             return $tran * 100 / $this->limit_retrait;
         }
     }
+
+
 }

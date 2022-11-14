@@ -177,7 +177,9 @@ class CustomerCreditCard extends Model
 
     public function alert($alert)
     {
-
+        return match ($alert) {
+            'exceeded' => $this->numberBankCardExceeded()
+        };
     }
 
 }
