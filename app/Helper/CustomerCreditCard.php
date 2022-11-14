@@ -63,7 +63,7 @@ class CustomerCreditCard
                 'exp_month' => now()->month,
                 'number' => $card_generator->single('41', 16),
                 'type' => $type,
-                'support' => $support,
+                'credit_card_support_id' => $support,
                 'debit' => $debit,
                 'cvc' => rand(100, 999),
                 'code' => base64_encode(rand(1000, 9999)),
