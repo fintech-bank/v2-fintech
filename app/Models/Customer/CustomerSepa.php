@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use App\Helper\CustomerTransactionHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -65,7 +66,7 @@ class CustomerSepa extends Model
         return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
     }
 
-    public function creditor()
+    public function creditors()
     {
         return $this->hasOne(CustomerCreditor::class);
     }
@@ -150,5 +151,28 @@ class CustomerSepa extends Model
         ]);
         $search = $collect->where('key', $reason)->first();
         return $search['reason'];
+    }
+
+    public static function rejected($callback)
+    {
+        static::registerModelEvent('rejected', $callback);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::rejected(function ($sepa) {
+            CustomerTransactionHelper::create(
+                'debit',
+                'frais',
+                "Frais rejet Prélèvement - {$sepa->number_mandate}",
+                2.5,
+                $sepa->wallet->id,
+                true,
+                'Frais Bancaire',
+                now()
+            );
+        });
     }
 }

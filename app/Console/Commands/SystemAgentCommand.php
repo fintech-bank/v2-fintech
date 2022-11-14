@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Helper\CustomerTransactionHelper;
+use App\Jobs\Customer\AcceptSepaJob;
 use App\Models\Core\Event;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerPret;
@@ -15,6 +16,7 @@ use App\Notifications\Customer\RejectedTransferNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\CotationClient;
+use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use Illuminate\Console\Command;
 
@@ -135,33 +137,17 @@ class SystemAgentCommand extends Command
 
     private function executeSepaOrders()
     {
+        $s = new Sepa();
         $sepas = CustomerSepa::where('status', 'waiting')->get();
-        $arr_accepted = [];
-        $arr_rejected = [];
 
         foreach ($sepas as $sepa) {
             if ($sepa->amount >= $sepa->wallet->solde_remaining) {
                 if ($sepa->updated_at->startOfDay() == now()->startOfDay()) {
-                    CustomerTransactionHelper::create(
-                        'debit',
-                        'sepa',
-                        'Prélèvement SEPA ' . $sepa->number_mandate . " DE: " . $sepa->creditor,
-                        $sepa->amount,
-                        $sepa->wallet->id,
-                        true,
-                        'PRLV EUROPEEN SEPA DE: ' . $sepa->creditor . ' ID: ' . $sepa->uuid . ' MANDAT ' . $sepa->number_mandate,
-                        now(),
-                    );
+                    $call = $s->acceptSepa();
 
-                    $sepa->update([
-                        'status' => 'processed'
-                    ]);
-
-                    $arr_accepted[] = [
-                        $sepa->wallet->customer->info->full_name,
-                        $sepa->number_mandate,
-                        $sepa->amount
-                    ];
+                    if($call == 1) {
+                        dispatch(new AcceptSepaJob($sepa));
+                    }
                 }
             } else {
                 $sepa->update([
@@ -171,27 +157,15 @@ class SystemAgentCommand extends Command
                 CustomerTransactionHelper::create(
                     'debit',
                     'frais',
-                    "Commission d'intervention",
+                    "Frais Bancaire",
                     2.5,
                     $sepa->wallet->id,
                     true,
-                    "Rejet de prélèvement - " . $sepa->number_mandate . " | Créancier: " . $sepa->creditor,
+                    "Frais rejet prélèvement - {$sepa->number_mandate}",
                     now()
                 );
-
-                $arr_rejected[] = [
-                    $sepa->wallet->customer->info->full_name,
-                    $sepa->number_mandate,
-                    $sepa->amount,
-                    $sepa->getReasonFromRejected('reject.debit')
-                ];
             }
-
-
         }
-
-        $this->output->table(['Client', 'Mandat', 'Montant'], $arr_accepted);
-        $this->output->table(['Client', 'Mandat', 'Montant', 'Raison du rejet'], $arr_rejected);
     }
 
     private function executeTransactionComing()

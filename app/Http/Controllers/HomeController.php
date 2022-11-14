@@ -10,12 +10,14 @@ use App\Models\Core\Event;
 use App\Models\Core\LoanPlan;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerTransfer;
 use App\Models\Reseller\Reseller;
 use App\Models\User;
 use App\Models\User\UserFolder;
 use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
 use App\Services\CotationClient;
+use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
@@ -91,6 +93,7 @@ class HomeController extends Controller
 
     public function test()
     {
-
+        $s = new Sepa();
+        dd($s->generateICS());
     }
 }

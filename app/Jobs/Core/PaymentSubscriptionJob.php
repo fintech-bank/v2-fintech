@@ -32,6 +32,11 @@ class PaymentSubscriptionJob implements ShouldQueue
         $this->wallet = $wallet;
     }
 
+    public function tags()
+    {
+        return ['core', 'wallet_subscription:'.$this->wallet->id];
+    }
+
     /**
      * Execute the job.
      *

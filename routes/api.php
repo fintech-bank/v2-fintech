@@ -160,6 +160,7 @@ Route::prefix('customer')->group(function () {
 
         Route::prefix('{number_account}/sepa')->group(function () {
             Route::get('{sepa_uuid}', [\App\Http\Controllers\Api\Customer\SepaController::class, 'info']);
+            Route::put('{sepa_uuid}', [\App\Http\Controllers\Api\Customer\SepaController::class, 'update']);
         });
     });
 
