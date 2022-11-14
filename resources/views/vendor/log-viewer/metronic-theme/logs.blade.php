@@ -45,7 +45,9 @@
                                 @if ($key == 'date')
                                     <span class="badge badge-info">{{ $header }}</span>
                                 @else
-                                    {{ log_styler()->icon($key) }} {{ $header }}
+                                    <div class="d-flex flex-row align-items-center">
+                                        {{ log_styler()->icon($key) }} {{ $header }}
+                                    </div>
                                 @endif
                             </th>
                         @endforeach
