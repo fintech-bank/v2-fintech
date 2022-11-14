@@ -191,10 +191,16 @@
                         </thead>
                         <tbody>
                         @forelse($entries as $key => $entry)
-                            @dd($entry)
+
                             <tr>
                                 <td>
-                                    <span class="badge badge-env">{{ $entry->env }}</span>
+                                    @if($entry->env == 'local')
+                                        <span class="badge badge-secondary">{{ $entry->env }}</span>
+                                    @elseif($entry->env == 'testing')
+                                        <span class="badge badge-warning">{{ $entry->env }}</span>
+                                    @else
+                                        <span class="badge badge-success">{{ $entry->env }}</span>
+                                    @endif
                                 </td>
                                 <td>
                                         <span class="badge badge-level-{{ $entry->level }}">
