@@ -36,6 +36,7 @@ class PaymentFirstInsuranceJob implements ShouldQueue
         $this->customer = $customer;
         $this->insurance = $insurance;
         $this->wallet = $wallet;
+        $this->onQueue('core');
     }
 
     public function tags()

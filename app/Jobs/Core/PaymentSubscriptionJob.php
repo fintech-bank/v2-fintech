@@ -30,6 +30,7 @@ class PaymentSubscriptionJob implements ShouldQueue
         //
         $this->customer = $customer;
         $this->wallet = $wallet;
+        $this->onQueue('core');
     }
 
     public function tags()
