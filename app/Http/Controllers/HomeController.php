@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Core\PersonnaWebbhookEvent;
+use App\Helper\DocumentFile;
 use App\Helper\LogHelper;
 use App\Helper\UserHelper;
 use App\Models\Core\Agency;
@@ -10,6 +11,7 @@ use App\Models\Core\Event;
 use App\Models\Core\LoanPlan;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerCreditCard;
 use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerTransfer;
 use App\Models\Reseller\Reseller;
@@ -94,9 +96,20 @@ class HomeController extends Controller
 
     public function test()
     {
-        $slack = new SlackNotifier("#fintech-site");
+        $document = new DocumentFile();
+        $customer = Customer::find(1);
+        $card = CustomerCreditCard::find(1);
 
-
-        $slack->send("Binevnue", json_encode($blocks));
+        return $document->generatePDF(
+            'customer.convention_carte_physique',
+            $customer,
+            null,
+            ["card" => $card],
+            false,
+            false,
+            null,
+            true,
+            'simple'
+        );
     }
 }

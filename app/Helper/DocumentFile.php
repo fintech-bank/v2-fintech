@@ -9,6 +9,7 @@ use App\Services\Yousign\Document;
 use App\Services\Yousign\Signature;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 
 class DocumentFile
@@ -17,13 +18,13 @@ class DocumentFile
      * @param $name
      * @param $customer
      * @param $category_id
-     * @param  null  $reference
-     * @param  bool  $signable
-     * @param  bool  $signed_by_client
-     * @param  bool  $signed_by_bank
-     * @param  null  $signed_at
-     * @param  bool  $pdf
-     * @param  null  $viewPdf
+     * @param null $reference
+     * @param bool $signable
+     * @param bool $signed_by_client
+     * @param bool $signed_by_bank
+     * @param null $signed_at
+     * @param bool $pdf
+     * @param null $viewPdf
      * @return \Exception
      */
     public function createDocument($name, $customer, $category_id, $reference = null, $signable = false, $signed_by_client = false, $signed_by_bank = false, $signed_at = null, $pdf = true, $viewPdf = null)
@@ -48,7 +49,7 @@ class DocumentFile
                     [],
                     false,
                     true,
-                    public_path('/storage/gdd/'.$customer->user->id.'/documents/'.\Str::slug($category->name)),
+                    public_path('/storage/gdd/' . $customer->user->id . '/documents/' . \Str::slug($category->name)),
                     false);
             }
 
@@ -63,13 +64,13 @@ class DocumentFile
     /**
      * @param $view
      * @param $customer
-     * @param  null  $document_id
-     * @param  array  $data
-     * @param  bool  $download
-     * @param  bool  $save
-     * @param  null  $savePath
-     * @param  bool  $stream
-     * @param  string  $header_type
+     * @param null $document_id
+     * @param array $data
+     * @param bool $download
+     * @param bool $save
+     * @param null $savePath
+     * @param bool $stream
+     * @param string $header_type
      * @return \Illuminate\Http\Response|null
      *
      * @throws \Exception
@@ -80,7 +81,7 @@ class DocumentFile
         $document = $document_id != null ? CustomerDocument::find($document_id) : null;
         $document_name = $document != null ? $document->name : 'Document';
 
-        $pdf = PDF::loadView('pdf.'.$view, [
+        $pdf = PDF::loadView('pdf.' . $view, [
             'data' => (object)$data,
             'agence' => $agence,
             'document' => $document,
@@ -100,19 +101,19 @@ class DocumentFile
         ]);
 
         if ($download == true) {
-            $pdf->download($document_name.' - CUS'.$customer->user->identifiant.'.pdf');
+            $pdf->download($document_name . ' - CUS' . $customer->user->identifiant . '.pdf');
         } else {
-            return $pdf->stream($document_name.' - CUS'.$customer->user->identifiant.'.pdf');
+            return $pdf->stream($document_name . ' - CUS' . $customer->user->identifiant . '.pdf');
         }
 
         if ($save == true) {
-            $pdf->save($savePath.'/'.$document_name.' - CUS'.$customer->user->identifiant.'.pdf');
+            $pdf->save($savePath . '/' . $document_name . ' - CUS' . $customer->user->identifiant . '.pdf');
         } else {
-            return $pdf->stream($document_name.' - CUS'.$customer->user->identifiant.'.pdf');
+            return $pdf->stream($document_name . ' - CUS' . $customer->user->identifiant . '.pdf');
         }
 
         if ($stream == true) {
-            return $pdf->stream($document_name.' - CUS'.$customer->user->identifiant.'.pdf');
+            return $pdf->stream($document_name . ' - CUS' . $customer->user->identifiant . '.pdf');
         } else {
             return $pdf->render();
         }
@@ -138,7 +139,33 @@ class DocumentFile
         return $activate;
     }
 
-    public static function createDoc(Customer $customer, $name, $nameless = null, $category = 3, $reference = null, $signable = false, $signed_bank = false, $signed_client = false, $pdf = false, $pdfData = [])
+    /**
+     * @param Customer $customer // Information Client
+     * @param string $name // Nom format snake du document
+     * @param string|null $nameless // Nom réel du document
+     * @param int $category // Catégorie de document
+     * @param string|null $reference // Référence du document
+     * @param bool $signable
+     * @param bool $signed_bank
+     * @param bool $signed_client
+     * @param bool $pdf
+     * @param array $pdfData
+     * @param string $headerType // simple / address
+     * @return CustomerDocument|Model
+     */
+    public static function createDoc(
+        Customer $customer,
+        string $name,
+        string $nameless = null,
+        int $category = 3,
+        string $reference = null,
+        bool $signable = false,
+        bool $signed_bank = false,
+        bool $signed_client = false,
+        bool $pdf = false,
+        array $pdfData = [],
+        string $headerType = 'address'
+    )
     {
         $categorie = DocumentCategory::find($category);
         $document = CustomerDocument::create([
@@ -153,16 +180,16 @@ class DocumentFile
         ]);
 
         if ($pdf == true) {
-            $pdf = Pdf::loadView('pdf.'.$name, [
+            $pdf = Pdf::loadView('pdf.' . $name, [
                 'customer' => $customer,
                 'data' => (object)$pdfData,
                 'agence' => $customer->agency,
                 'title' => $nameless,
-                'header_type' => 'address',
+                'header_type' => $headerType,
                 'document' => $document,
             ]);
 
-            $pdf->save(public_path('/storage/gdd/'.$customer->user->id.'/documents/'.$categorie->slug.'/'.$nameless.'.pdf'));
+            $pdf->save(public_path('/storage/gdd/' . $customer->user->id . '/documents/' . $categorie->slug . '/' . $nameless . '.pdf'));
         }
 
         return $document;
@@ -177,7 +204,7 @@ class DocumentFile
             $arr[] = $file;
         }
 
-        return (object) $arr;
+        return (object)$arr;
     }
 
     public static function getExtensionFileIcon($file)
@@ -186,9 +213,12 @@ class DocumentFile
         $s = $str[1];
 
         switch ($s) {
-            case 'jpg' || 'png' || 'jpeg': return '<i class="fa-solid fa-file-image"></i>';
-            case 'pdf': return '<i class="fa-solid fa-file-pdf"></i>';
-            default: return '<i class="fa-solid fa-file"></i>';
+            case 'jpg' || 'png' || 'jpeg':
+                return '<i class="fa-solid fa-file-image"></i>';
+            case 'pdf':
+                return '<i class="fa-solid fa-file-pdf"></i>';
+            default:
+                return '<i class="fa-solid fa-file"></i>';
         }
     }
 }

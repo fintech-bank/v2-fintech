@@ -42,16 +42,17 @@ class CustomerCreditCard
             // Génération des contrats
             DocumentFile::createDoc(
                 $customer,
-                'Convention CB Physique',
-                null,
+                'customer.convention_carte_physique',
+                "Convention Carte Bancaire Physique",
                 3,
-                null,
+                generateReference(),
                 true,
                 true,
                 false,
                 true,
-                ['card' => $card]
+                ['card' => $card],
             );
+
 
             // Notification Code Carte Bleu
             $customer->info->notify(new SendCreditCardCodeNotification($customer, base64_decode($card->code), $card));
@@ -70,6 +71,21 @@ class CustomerCreditCard
                 'limit_payment' => $limit_payment,
                 'customer_wallet_id' => $wallet->id,
             ]);
+
+            DocumentFile::createDoc(
+                $customer,
+                'customer.convention_carte_virtuel',
+                "Convention Carte Bancaire Virtuel",
+                3,
+                generateReference(),
+                true,
+                true,
+                false,
+                true,
+                ['card' => $card],
+            );
+
+            $customer->info->notify(new NewCreditCardNotificationNotification($customer, $card));
         }
 
         return $card;
