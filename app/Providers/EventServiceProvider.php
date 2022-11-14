@@ -25,7 +25,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         \App\Events\Mailbox\ReceiverMailbox::class => [ReceiverMailbox::class],
         PersonnaWebbhookEvent::class => [PersonnaWebhookListener::class],
-        ScheduledTaskFinished::class => [LogScheduledTaskFinished::class]
     ];
 
     /**
