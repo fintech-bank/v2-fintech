@@ -264,3 +264,34 @@
   background: var(--kt-success);
   background: linear-gradient(0deg, var(--kt-success) 0%, var(--kt-success-light) 100%);
 }
+.level-notice {
+  background-color: #66bb6a;
+}
+
+.level-emergency {
+  background-color: #B71C1C;
+}
+
+.level-alert {
+  background-color: #E53935;
+}
+
+.level-critical {
+  background-color: #EF5350;
+}
+
+.level-error {
+  background-color: #E91E63;
+}
+
+.level-warning {
+  background-color: #EF6C00;
+}
+
+.level-info {
+  background-color: #5C6BC0;
+}
+
+.level-debug {
+  background-color: #BDBDBD;
+}
