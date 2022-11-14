@@ -46,7 +46,7 @@
                                     <span class="badge badge-info">{{ $header }}</span>
                                 @else
                                     <div class="d-flex flex-row align-items-center">
-                                        {{ log_styler()->icon($key) }} {{ $header }}
+                                        {{ log_styler()->icon($key) }} <span class="ms-2">{{ $header }}</span>
                                     </div>
                                 @endif
                             </th>
