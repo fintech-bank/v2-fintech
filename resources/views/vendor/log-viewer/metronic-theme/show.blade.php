@@ -191,6 +191,7 @@
                         </thead>
                         <tbody>
                         @forelse($entries as $key => $entry)
+                            @dd($entry)
                             <tr>
                                 <td>
                                     <span class="badge badge-env">{{ $entry->env }}</span>
