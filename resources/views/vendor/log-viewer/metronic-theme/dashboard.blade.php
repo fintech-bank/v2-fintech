@@ -72,7 +72,7 @@
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <script type="text/javascript">
         am5.ready(() => {
-            let root = am5.Root.new('#stats-doughnut-chart')
+            let root = am5.Root.new('stats-doughnut-chart')
             root.setTheme([
                 am5themes_Animated.new(root)
             ])
