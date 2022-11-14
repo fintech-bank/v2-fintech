@@ -34,4 +34,24 @@
             </tr>
         </tbody>
     </table>
+    <p>Le titulaire de la carte et/ou du compte doit déclarer par téléphone dans les meilleurs délais, la perte, le vol de la carte ou
+        l’utilisation frauduleuse des données de la carte au centre d'opposition de la Banque : 01.77.86.24.24 (prix d'un appel local)</p>
+    <div class="fw-bolder fs-2">MODALITES D'UTILISATION</div>
+    <p>Les plafonds d'autorisation de votre carte sont :</p>
+    <table class="table table-bordered table-sm">
+        <tbody>
+            <td>
+                <strong>RETRAITS:</strong>
+                <ul class="list-unstyled">
+                    <li>{{ eur($data->card->limit_retrait) }} / 7 jour(s) glissant(s) dans les GAB en France et dépositaire.</li>
+                </ul>
+            </td>
+            <td>
+                <strong>Paiements et transfert de fonds ::</strong>
+                <ul class="list-unstyled">
+                    <li>{{ eur($data->card->limit_paiement) }} / 30 jour(s) glissant(s) en france.</li>
+                </ul>
+            </td>
+        </tbody>
+    </table>
 @endsection
