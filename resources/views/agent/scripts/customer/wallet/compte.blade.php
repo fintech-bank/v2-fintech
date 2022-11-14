@@ -291,7 +291,7 @@
         })
     }
     let getPhysicalInfo = (item) => {
-        if (item.value == 'physique') {
+        if (item.value === 'physique') {
             modals.modalCreateCard.querySelector('#physical_card').classList.remove('d-none')
         } else {
             modals.modalCreateCard.querySelector('#physical_card').classList.add('d-none')
