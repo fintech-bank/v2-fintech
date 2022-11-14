@@ -63,7 +63,7 @@ class Kernel extends ConsoleKernel
 
 
         // Agent
-        $schedule->command('system:agent calendarAlert')
+        /*$schedule->command('system:agent calendarAlert')
             ->everyFiveMinutes()
             ->description("Alert Evenement [log]")
             ->onSuccess(function (Stringable $output) {
@@ -71,7 +71,7 @@ class Kernel extends ConsoleKernel
             })
             ->onFailure(function(Stringable $output) {
                 LogHelper::notify('alert', "Alerte d'évènement", $output);
-            });
+            });*/
 
         $schedule->command('system:agent updateCotation')
             ->daily()
