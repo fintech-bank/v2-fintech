@@ -51,8 +51,45 @@
                                 @endif
                             </th>
                         @endforeach
+                            <th scope="col" class="text-right">@lang('Actions')</th>
                     </tr>
                 </thead>
+                <tbody>
+                @forelse($rows as $date => $row)
+                    <tr>
+                        @foreach($row as $key => $value)
+                            <td class="{{ $key == 'date' ? 'text-left' : 'text-center' }}">
+                                @if ($key == 'date')
+                                    <span class="badge badge-primary">{{ $value }}</span>
+                                @elseif ($value == 0)
+                                    <span class="badge empty">{{ $value }}</span>
+                                @else
+                                    <a href="{{ route('log-viewer::logs.filter', [$date, $key]) }}">
+                                        <span class="badge badge-level-{{ $key }}">{{ $value }}</span>
+                                    </a>
+                                @endif
+                            </td>
+                        @endforeach
+                        <td class="text-right">
+                            <a href="{{ route('log-viewer::logs.show', [$date]) }}" class="btn btn-sm btn-info">
+                                <i class="fa fa-search"></i>
+                            </a>
+                            <a href="{{ route('log-viewer::logs.download', [$date]) }}" class="btn btn-sm btn-success">
+                                <i class="fa fa-download"></i>
+                            </a>
+                            <a href="#delete-log-modal" class="btn btn-sm btn-danger" data-log-date="{{ $date }}">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="11" class="text-center">
+                            <span class="badge badge-secondary">@lang('The list of logs is empty!')</span>
+                        </td>
+                    </tr>
+                @endforelse
+                </tbody>
             </table>
         </div>
     </div>
