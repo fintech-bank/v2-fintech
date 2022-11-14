@@ -935,12 +935,10 @@
     })
     $(elements.cardStatus).on('change', e => {
         let n = e.target.value;
-        console.log(n)
         "all" === n && (n = ""), dataTable.datatableCard.column(4).search(n).draw()
     })
     $(elements.cardType).on('change', e => {
         let n = e.target.value;
-        console.log(n)
         "all" === n && (n = ""), dataTable.datatableCard.column(5).search(n).draw()
     })
     $("#bank_id").select2({
