@@ -28,7 +28,6 @@ class MobilityCommand extends Command
 
     public function __construct()
     {
-        $this->setSignature('mobility {action}');
         parent::__construct();
         $this->slack = new SlackNotifier('#fintech-site');
     }
