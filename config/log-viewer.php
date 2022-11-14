@@ -97,15 +97,15 @@ return [
          * Font awesome >= 4.3
          * http://fontawesome.io/icons/
          */
-        'all'       => 'fa fa-fw fa-list',                 // http://fontawesome.io/icon/list/
-        'emergency' => 'fa fa-fw fa-bug',                  // http://fontawesome.io/icon/bug/
-        'alert'     => 'fa fa-fw fa-bullhorn',             // http://fontawesome.io/icon/bullhorn/
-        'critical'  => 'fa fa-fw fa-heartbeat',            // http://fontawesome.io/icon/heartbeat/
-        'error'     => 'fa fa-fw fa-times-circle',         // http://fontawesome.io/icon/times-circle/
-        'warning'   => 'fa fa-fw fa-exclamation-triangle', // http://fontawesome.io/icon/exclamation-triangle/
-        'notice'    => 'fa fa-fw fa-exclamation-circle',   // http://fontawesome.io/icon/exclamation-circle/
-        'info'      => 'fa fa-fw fa-info-circle',          // http://fontawesome.io/icon/info-circle/
-        'debug'     => 'fa fa-fw fa-life-ring',            // http://fontawesome.io/icon/life-ring/
+        'all'       => 'fa-solid fa-list fs-2',                 // http://fontawesome.io/icon/list/
+        'emergency' => 'fa-solid fa-bug fs-2',                  // http://fontawesome.io/icon/bug/
+        'alert'     => 'fa-solid fa-bullhorn fs-2',             // http://fontawesome.io/icon/bullhorn/
+        'critical'  => 'fa-solid fa-heartbeat fs-2',            // http://fontawesome.io/icon/heartbeat/
+        'error'     => 'fa-solid fa-xmark-circle fs-2',         // http://fontawesome.io/icon/times-circle/
+        'warning'   => 'fa-solid fa-exclamation-triangle fs-2', // http://fontawesome.io/icon/exclamation-triangle/
+        'notice'    => 'fa-solid fa-exclamation-circle fs-2',   // http://fontawesome.io/icon/exclamation-circle/
+        'info'      => 'fa-solid fa-info-circle fs-2',          // http://fontawesome.io/icon/info-circle/
+        'debug'     => 'fa-solid fa-code fs-2',            // http://fontawesome.io/icon/life-ring/
     ],
 
     /* -----------------------------------------------------------------
