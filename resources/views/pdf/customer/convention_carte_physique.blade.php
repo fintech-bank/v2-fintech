@@ -30,7 +30,7 @@
             </tr>
             <tr>
                 <td>Catégorie de carte selon le règlement (UE) 2015/751 du 29/04/2015 : Débit</td>
-                <td>Carte dotée de la fonctionnalité sans contact : {{ $data->card->isDebit() ? 'OUI' : 'NON' }}</td>
+                <td>Carte dotée de la fonctionnalité sans contact : {{ $data->card->isContact() ? 'OUI' : 'NON' }}</td>
             </tr>
         </tbody>
     </table>
