@@ -19,9 +19,11 @@ use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use Illuminate\Console\Command;
+use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 
 class SystemAgentCommand extends Command
 {
+    use LaravelSchedulerCustomMutex;
     /**
      * The name and signature of the console command.
      *
@@ -36,6 +38,12 @@ class SystemAgentCommand extends Command
      */
     protected $description = 'Command description';
 
+    public function __construct()
+    {
+        $this->setSignature('system:agent {action}');
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      *
@@ -43,6 +51,9 @@ class SystemAgentCommand extends Command
      */
     public function handle()
     {
+        if ($this->checkCustomMutex()) {
+            return 0;
+        }
         match ($this->argument('action')) {
             "calendarAlert" => $this->calendarAlert(),
             "updateCotation" => $this->updateCotation(),

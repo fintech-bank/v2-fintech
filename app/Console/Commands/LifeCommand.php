@@ -38,15 +38,17 @@ use Faker\Factory;
 use IbanGenerator\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 
 class LifeCommand extends Command
 {
+    use LaravelSchedulerCustomMutex;
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'life {action}';
+    protected $signature = '';
 
     /**
      * The console command description.
@@ -55,6 +57,12 @@ class LifeCommand extends Command
      */
     protected $description = '';
 
+    public function __construct()
+    {
+        $this->setSignature('life {action}');
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      *
@@ -62,6 +70,9 @@ class LifeCommand extends Command
      */
     public function handle()
     {
+        if ($this->checkCustomMutex()) {
+            return 0;
+        }
         match ($this->argument('action')) {
             'generateCustomers' => $this->generateCustomers(),
             'generateSalary' => $this->generateSalary(),

@@ -7,15 +7,17 @@ use App\Models\Customer\CustomerMobility;
 use App\Services\BankFintech;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 
 class MobilityCommand extends Command
 {
+    use LaravelSchedulerCustomMutex;
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'mobility {action}';
+    protected $signature = '';
 
     /**
      * The console command description.
@@ -24,6 +26,12 @@ class MobilityCommand extends Command
      */
     protected $description = 'Gestion de la vie des mobilités bancaires';
 
+    public function __construct()
+    {
+        $this->setSignature('mobility {action}');
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      *
@@ -31,6 +39,9 @@ class MobilityCommand extends Command
      */
     public function handle()
     {
+        if ($this->checkCustomMutex()) {
+            return 0;
+        }
         match ($this->argument('action')) {
             "bank_end" => $this->bankEnd()
         };

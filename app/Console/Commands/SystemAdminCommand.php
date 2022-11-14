@@ -11,15 +11,17 @@ use App\Notifications\Customer\Customer\Reseller\NewInvoiceNotification;
 use App\Notifications\Customer\Customer\Reseller\NewInvoicePaymentNotification;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Console\Command;
+use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 
 class SystemAdminCommand extends Command
 {
+    use LaravelSchedulerCustomMutex;
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'system:admin {action}';
+    protected $signature = '';
 
     /**
      * The console command description.
@@ -28,6 +30,12 @@ class SystemAdminCommand extends Command
      */
     protected $description = 'Commande Administrateur';
 
+    public function __construct()
+    {
+        $this->setSignature('system:admin {action}');
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      *
@@ -35,6 +43,9 @@ class SystemAdminCommand extends Command
      */
     public function handle()
     {
+        if ($this->checkCustomMutex()) {
+            return 0;
+        }
         switch ($this->argument('action')) {
             case 'deleteLog':
                 $this->DeleteLogBank();
