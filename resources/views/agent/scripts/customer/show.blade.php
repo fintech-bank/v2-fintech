@@ -573,7 +573,14 @@
     }
     if(elements.btnNotifyPassword) {
         elements.btnNotifyPassword.addEventListener('click', e => {
-
+            $.ajax({
+                url: '/api/customer/{{ $customer->id }}/alert',
+                method: 'POST',
+                data: {"action": "password"},
+                success: () => {
+                    toastr.success(`Une notification va être envoyer au client`, ``)
+                }
+            })
         })
     }
     document.querySelectorAll('.callCategory').forEach(call => {

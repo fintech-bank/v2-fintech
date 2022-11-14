@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Customer;
 
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
+use App\Jobs\Customer\AlertCustomerJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
@@ -200,6 +201,17 @@ class CustomerController extends Controller
         }
 
         return response()->json($customer);
+    }
+
+    public function alert($customer_id, Request $request)
+    {
+        $customer = Customer::find($customer_id);
+
+        match ($request->get('action')) {
+            $request->get('action') => dispatch(new AlertCustomerJob($customer, $request->get('action'), now()->addMinute()))
+        };
+
+        return response()->json();
     }
 
     private function subscribeAlerta()

@@ -140,6 +140,7 @@ Route::prefix('customer')->group(function () {
     Route::put('{customer_id}/reinitCode', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitCode']);
     Route::put('{customer_id}/reinitAuth', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitAuth']);
     Route::put('{customer_id}/business', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'updateBusiness']);
+    Route::post('{customer_id}/alert', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'alert']);
 
     Route::prefix('{customer_id}/wallet')->group(function () {
         Route::get('{number_account}', [\App\Http\Controllers\Api\Customer\CustomerWalletController::class, 'info']);

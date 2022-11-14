@@ -42,6 +42,49 @@ Route::prefix('customer')->middleware(['auth', 'customer'])->group(function () {
 
         Route::prefix('profil')->group(function () {
             Route::get("/", [\App\Http\Controllers\Agent\Account\ProfilController::class, 'index'])->name('customer.account.profil.index');
+
+            Route::prefix('security')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\Security\SecurityController::class)->name('customer.profil.security');
+                Route::prefix('phone')->group(function () {
+                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\PhoneController::class)->name('customer.profil.security.phone');
+                });
+                Route::prefix('authy')->group(function () {
+                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\AuthyController::class)->name('customer.profil.security.authy');
+                });
+                Route::prefix('password')->group(function () {
+                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\PasswordController::class)->name('customer.profil.security.password');
+                });
+            });
+
+            Route::prefix('identity')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\Identity\IdentityController::class)->name('customer.profil.identity');
+            });
+
+            Route::prefix('contact')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\Contact\ContactController::class)->name('customer.profil.contact');
+            });
+
+            Route::prefix('cashback')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\CashbackController::class)->name('customer.profil.cashback');
+            });
+
+            Route::prefix('sponsorship')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\SponsorshipController::class)->name('customer.profil.sponsorship');
+            });
+
+            Route::prefix('mobility')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Customer\Profil\MobilityController::class, 'index'])->name('customer.profil.mobility');
+            });
+
+            Route::prefix('paystar')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\PaystarController::class)->name('customer.profil.paystar');
+            });
         });
     });
+
+    Route::prefix('compte')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'index'])->name('customer.compte');
+    });
+
+
 });
