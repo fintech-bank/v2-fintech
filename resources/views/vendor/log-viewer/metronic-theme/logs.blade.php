@@ -62,7 +62,7 @@
                                 @if ($key == 'date')
                                     <span class="badge badge-primary">{{ $value }}</span>
                                 @elseif ($value == 0)
-                                    <span class="badge empty">{{ $value }}</span>
+                                    <span class="badge level-{{ $key }}">{{ $value }}</span>
                                 @else
                                     <a href="{{ route('log-viewer::logs.filter', [$date, $key]) }}">
                                         <span class="badge level-{{ $key }}">{{ $value }}</span>
