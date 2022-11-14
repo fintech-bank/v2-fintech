@@ -281,6 +281,22 @@
 
         return $(span);
     }
+    let cardsOptions = (item) => {
+        if (!item.id) {
+            return item.text;
+        }
+
+        let span = document.createElement('span');
+        let imgUrl = item.element.getAttribute('data-card-img');
+        let template = '';
+
+        template += '<img src="' + imgUrl + '" class="rounded w-auto h-50px me-2" alt="image" />';
+        template += item.text;
+
+        span.innerHTML = template;
+
+        return $(span);
+    }
     let checkBankInfo = (item) => {
         $.ajax({
             url: '/api/connect/bank/'+item.value,
@@ -952,6 +968,14 @@
     $("#bank_id").select2({
         templateSelection: optionFormatBank,
         templateResult: optionFormatBank
+    })
+    $("#card_support").select2({
+        templateSelection: cardsOptions,
+        templateResult: cardsOptions
+    })
+    $("#formCreateCard").find('#support').select2({
+        templateSelection: cardsOptions,
+        templateResult: cardsOptions
     })
 
     if(elements.tabInfo) {
