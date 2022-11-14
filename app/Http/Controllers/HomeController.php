@@ -97,10 +97,17 @@ class HomeController extends Controller
         $slack = new SlackNotifier("#fintech-site");
         $blocks = [
             [
-                'type' => "section",
+                'type' => "header",
                 'text' => [
                     'type' => 'plain_text',
-                    'text' => "Lorem Ispum"
+                    'text' => "Bienvenue"
+                ]
+            ],
+            [
+                'type' => 'section',
+                'text' => [
+                    'type' => 'plain_text',
+                    'text' => "Lorem"
                 ]
             ]
         ];
