@@ -213,7 +213,7 @@ class LifeCommand extends Command
         $this->line('Nombre de nouveau client: ' . $r);
         $this->output->table(['client', 'Etat du compte'], $arr);
 
-        $this->slack->send("Nouveau client", json_encode($this->getOutput()));
+        $this->slack->send("Nouveau client", json_encode($this->output->table(['client', 'Etat du compte'], $arr)));
     }
 
     /**
