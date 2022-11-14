@@ -32,7 +32,7 @@
             <!--end::Title-->
 
             <!--begin::Content-->
-            <span>{{ $content }}</span>
+            <span>{!! $content !!}</span>
             <!--end::Content-->
         </div>
         <!--end::Wrapper-->
