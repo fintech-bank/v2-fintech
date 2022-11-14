@@ -1264,9 +1264,9 @@
                                     <label for="support" class="form-label required">Catégorie de la carte bancaire</label>
                                     <select class="form-select" id="support" name="support" data-parent="#add_credit_card" data-placeholder="Selectionner un type de carte">
                                         <option value=""></option>
-                                        <option value="classic" data-card-img="/storage/card/classic.png">Carte Visa Classic</option>
-                                        <option value="premium" data-card-img="/storage/card/premium.png">Carte Visa Premium</option>
-                                        <option value="infinite" data-card-img="/storage/card/infinite.png">Carte Visa Infinite</option>
+                                        @foreach(\App\Models\Core\CreditCardSupport::where('type_customer', $wallet->customer->info->type)->get() as $card)
+                                            <option value="{{ $card->id }}" data-card-img="/storage/card/{{ $card->slug }}.png">Carte {{ $card->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="mb-10">
