@@ -330,7 +330,7 @@ class User extends Authenticatable
                     <div class="fs-1 text-white fw-bolder">Information sur le mot de passe</div>
                     <div class="fs-3 text-white">Le mot de passe par default est toujours actif pour ce client.</div>
                 </div>
-                <button class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto">Notifier le client</button>
+                <button class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-outline btn-outline-light ms-sm-auto">Notifier le client</button>
             </div>
             <?php
         }
