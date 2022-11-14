@@ -32,6 +32,11 @@
 
 @section("content")
     {!! $customer->user->alert_same_default_password !!}
+    <x-base.button
+        class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-sm btn-outline btn-outline-light ms-sm-auto btnNotifyPassword"
+        text="Notifier le client"
+        data="{{ [["name" => 'customer', "value" => $customer->id]] }}"
+    />
     <div class="card mb-5 mb-xl-10">
         <div class="card-body pt-9 pb-0">
             <!--begin::Details-->

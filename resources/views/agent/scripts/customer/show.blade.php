@@ -19,6 +19,7 @@
         businessResultat: document.querySelector('.business_resultat'),
         businessFinance: document.querySelector('.business_finance'),
         businessIndicator: document.querySelector('.business_indicator'),
+        btnNotifyPassword: document.querySelector('.btnNotifyPassword')
     }
     let modals = {
         modalUpdateStatusAccount: document.querySelector('#updateStatus'),
@@ -568,6 +569,11 @@
                     }
                 })
             })
+        })
+    }
+    if(elements.btnNotifyPassword) {
+        elements.btnNotifyPassword.addEventListener('click', e => {
+
         })
     }
     document.querySelectorAll('.callCategory').forEach(call => {
