@@ -26,7 +26,7 @@
                 <td>Type de débit : {{ $data->card->debit_format }}</td>
             </tr>
             <tr>
-                <td rowspan="2">Service VISU souscrit : NON</td>
+                <td>Service VISU souscrit : NON</td>
             </tr>
             <tr>
                 <td>Catégorie de carte selon le règlement (UE) 2015/751 du 29/04/2015 : Débit</td>
