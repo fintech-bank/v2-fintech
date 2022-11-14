@@ -15,18 +15,27 @@ class AlertCustomerJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public int $customer_id;
+    public string $alert;
+    public $delayed;
+
     /**
-     * @param Customer $customer
+     * @param $customer_id
      * @param string $alert
+     * @param $delayed
      */
-    public function __construct(public Customer $customer, public string $alert, public $delayed)
+    public function __construct($customer_id, string $alert, $delayed)
     {
+        $this->customer_id = $customer_id;
+        $this->alert = $alert;
+        $this->delayed = $delayed;
         $this->delay($this->delayed);
     }
 
     public function handle()
     {
-        dd($this->customer);
+        $customer = Customer::find($this->customer_id);
+        dd($customer);
         match ($this->alert) {
             "password" => $this->customer->info->notify(new SameDefaultPasswordNotification($this->customer))
         };
