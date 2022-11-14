@@ -32,20 +32,11 @@
 @endsection
 
 @section("content")
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-        </li>
-    </ul>
+    <div class="d-flex flex-center justify-content-around align-items-center mb-10">
+        <a href="{{ route('log-viewer::dashboard') }}" class="btn btn-link {{ Route::is('log-viewer::dashboard') ? 'btn-color-primary' : 'btn-color-muted' }} btn-active-color-primary me-5 mb-2"><i class="fa-solid fa-desktop me-2"></i> @lang('Dashboard')</a>
+        <a href="{{ route('log-viewer::logs.list') }}" class="btn btn-link {{ Route::is('log-viewer::logs.list') ? 'btn-color-primary' : 'btn-color-muted' }} btn-active-color-primary me-5 mb-2"><i class="fa-solid fa-archive me-2"></i> @lang('Logs')</a>
+    </div>
+
     <div class="row">
         <div class="col-md-4 col-sm-12"></div>
         <div class="col-md-8 col-sm-12">
