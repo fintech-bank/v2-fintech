@@ -15,12 +15,11 @@ class SlackNotifier
     private Http $client;
 
     /**
-     * @param $hook
-     * @param $channel
+     * @param null $channel
      */
-    public function __construct($hook, $channel = null)
+    public function __construct($channel = null)
     {
-        $this->hook = $hook;
+        $this->hook = config('services.slack.hook');
         $this->channel = $channel;
         $this->client = new Http();
     }

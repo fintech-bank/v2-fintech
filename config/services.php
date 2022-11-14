@@ -55,4 +55,8 @@ return [
         'twilio_whatsapp_from' => env('TWILIO_WHATSAPP_FROM')
     ],
 
+    'slack' => [
+        'hook' => env('SLACK_HOOK')
+    ]
+
 ];
