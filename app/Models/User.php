@@ -340,6 +340,7 @@ class User extends Authenticatable
                 </button>
             </div>
             <?php
+            return ob_get_clean();
         }
     }
 
