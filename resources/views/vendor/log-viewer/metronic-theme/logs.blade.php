@@ -102,8 +102,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">@lang('Delete log file')</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
                     <div class="modal-body">
