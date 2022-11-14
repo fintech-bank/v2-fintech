@@ -13,4 +13,9 @@ class Sepa
     {
         return \Http::post('https://payment.fintech.ovh/api/sepa/remb', ["ics" => $sepa->creditors()->first()->identifiant])->object();
     }
+
+    public function generateICS()
+    {
+        return \Http::get('https://payment.fintech.ovh/api/sepa/new_ics')->object();
+    }
 }

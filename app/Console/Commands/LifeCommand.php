@@ -30,6 +30,7 @@ use App\Models\User;
 use App\Notifications\Customer\MensualReleverNotification;
 use App\Notifications\Customer\NewPrlvPresented;
 use App\Notifications\Customer\SendAlertaInfoNotification;
+use App\Services\Fintech\Payment\Sepa;
 use App\Services\Twilio\Verify;
 use Carbon\Carbon;
 use Exception;
@@ -347,12 +348,12 @@ class LifeCommand extends Command
                         try {
                             $creditor = CustomerCreditor::where('name', 'LIKE', '%' . $sepa->creditor . '%')->count();
                             if ($creditor == 0) {
-                                $country = ["FR","US","BL","LU","JP","CH"];
+                                $s = new Sepa();
                                 CustomerCreditor::create([
                                     'name' => $sepa->creditor,
                                     'customer_wallet_id' => $wallet->id,
                                     'customer_sepa_id' => $sepa->id,
-                                    'identifiant' => $country[rand(0,5)].rand(10,99).random_string_alpha_upper(3).random_numeric(6)
+                                    'identifiant' => $s->generateICS()
                                 ]);
                             }
                         } catch (Exception $exception) {
