@@ -72,7 +72,7 @@
                                         <span class="nav-text text-gray-800 fw-bold fs-6 lh-1">{{ $item['name'] }}</span>
 
                                         <span class="d-flex flex-end justify-content-end">
-                                            <span class="badge badge-"></span>
+                                            <span class="badge badge-{{ $levelkey }}"></span>
                                         </span>
                                         <!--end::Title-->
                                         <!--begin::Bullet-->
