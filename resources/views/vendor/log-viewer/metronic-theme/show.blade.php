@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table gy-5 gx-5" id="entries">
+                    <table class="table border gy-5 gx-5" id="entries">
                         <thead>
                             <tr>
                                 <th>@lang('ENV')</th>
