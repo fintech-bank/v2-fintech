@@ -18,6 +18,7 @@ use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
+use App\Services\SlackNotifier;
 use Illuminate\Console\Command;
 use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 
@@ -42,6 +43,7 @@ class SystemAgentCommand extends Command
     {
         $this->setSignature('system:agent {action}');
         parent::__construct();
+        $this->slack = new SlackNotifier('#fintech-site');
     }
 
     /**
@@ -98,6 +100,7 @@ class SystemAgentCommand extends Command
         }
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(["client", "cotation"], $arr);
+        $this->slack->send("Cotation client", json_encode($arr));
     }
 
     private function verifRequestLoanOpen()
@@ -122,6 +125,7 @@ class SystemAgentCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', "Type de Pret", 'Référence', 'Montant', 'Etat'], $arr);
+        $this->slack->send("Passage des demandes de pret bancaire", json_encode($arr));
     }
 
     private function chargeLoanAccepted()
@@ -149,6 +153,7 @@ class SystemAgentCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', "Type de Pret", 'Référence', 'Montant', 'Etat'], $arr);
+        $this->slack->send("Libération du montant des pret bancaire", json_encode($arr));
     }
 
     private function executeSepaOrders()
@@ -184,6 +189,7 @@ class SystemAgentCommand extends Command
         }
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
+        $this->slack->send("Exécution des prélèvement SEPA");
     }
 
     private function executeTransactionComing()
@@ -225,9 +231,11 @@ class SystemAgentCommand extends Command
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Liste des transactions entrante mise à jours");
         $this->output->table(['Client', 'Type', 'Compte', 'Montant'], $arr_effect);
+        $this->slack->send("Liste des transactions entrante mise à jours", json_encode($arr_effect));
 
         $this->error("Liste des transactions entrante rejeté");
         $this->output->table(['Client', 'Type', 'Compte', 'Montant', "Raison"], $arr_reject);
+        $this->slack->send("Liste des transactions entrante rejeté", json_encode($arr_reject));
     }
 
     private function executeActiveAccount()
@@ -250,6 +258,7 @@ class SystemAgentCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', "Etat"], $arr);
+        $this->slack->send("Comptes Effectifs", json_encode($arr));
     }
 
     private function executeVirement()
@@ -310,15 +319,19 @@ class SystemAgentCommand extends Command
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Passage des virements bancaire");
         $this->output->table(['Client', 'Reference', 'Montant'], $arr_transit_paid);
+        $this->slack->send("Passage des virements bancaire", json_encode($arr_transit_paid));
 
         $this->info("Passage des virements bancaire en erreur");
         $this->output->table(['Client', 'Reference', 'Montant', "Raison"], $arr_transit_failed);
+        $this->slack->send("Passage des virements bancaire en erreur", json_encode($arr_transit_failed));
 
         $this->info("Préparation des virements bancaire");
         $this->output->table(['Client', 'Reference', 'Montant'], $arr_transit_paid);
+        $this->slack->send("Préparation des virements bancaire", json_encode($arr_transit_paid));
 
         $this->info("Préparation des virements bancaire en erreur");
         $this->output->table(['Client', 'Reference', 'Montant', "Raison"], $arr_transit_failed);
+        $this->slack->send("Préparation des virements bancaire en erreur", json_encode($arr_transit_failed));
     }
 
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)

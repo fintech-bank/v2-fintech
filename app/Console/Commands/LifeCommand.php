@@ -49,7 +49,7 @@ class LifeCommand extends Command
      *
      * @var string
      */
-    protected $signature = '';
+    protected $signature = 'life {action}';
 
     /**
      * The console command description.
@@ -242,6 +242,7 @@ class LifeCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->line('Check des virements des salaires terminer');
+        $this->slack->send("Check des virements des salaires terminer");
     }
 
     /**
@@ -337,6 +338,7 @@ class LifeCommand extends Command
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->line('Génération des Transactions: ' . $nb);
         $this->output->table(['Client', 'Mouvement', 'Montant'], $arr);
+        $this->slack->send("Check des virements des salaires terminer", json_encode($arr));
     }
 
     /**
@@ -399,6 +401,7 @@ class LifeCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', 'Mandataire', 'Montant', 'Date de Prélèvement'], $arr);
+        $this->slack->send("Génération des prélèvement bancaire", json_encode($arr));
     }
 
     /**
@@ -432,6 +435,7 @@ class LifeCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info('Nombre de relevé généré: ' . $i);
+        $this->slack->send("Génération des relevé mensuel", json_encode(["Nombre de relevé: ".$i]));
     }
 
     /**
@@ -458,6 +462,7 @@ class LifeCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->table(['Reference', 'Montant', 'Client'], $arr);
+        $this->slack->send("Check des virements des salaires terminer");
         return 0;
     }
 

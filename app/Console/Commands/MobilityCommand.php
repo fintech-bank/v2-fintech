@@ -5,19 +5,19 @@ namespace App\Console\Commands;
 use App\Helper\CustomerMobilityHelper;
 use App\Models\Customer\CustomerMobility;
 use App\Services\BankFintech;
+use App\Services\SlackNotifier;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 
 class MobilityCommand extends Command
 {
-    use LaravelSchedulerCustomMutex;
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = '';
+    protected $signature = 'mobility {action}';
 
     /**
      * The console command description.
@@ -30,6 +30,7 @@ class MobilityCommand extends Command
     {
         $this->setSignature('mobility {action}');
         parent::__construct();
+        $this->slack = new SlackNotifier('#fintech-site');
     }
 
     /**
@@ -39,9 +40,6 @@ class MobilityCommand extends Command
      */
     public function handle()
     {
-        if ($this->checkCustomMutex()) {
-            return 0;
-        }
         match ($this->argument('action')) {
             "bank_end" => $this->bankEnd()
         };
@@ -113,5 +111,6 @@ class MobilityCommand extends Command
         }
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
+        $this->slack->send("Evoie des information de mobilié bancaire au banque");
     }
 }

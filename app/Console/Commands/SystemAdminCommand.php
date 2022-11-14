@@ -9,6 +9,7 @@ use App\Models\Core\LogBanque;
 use App\Models\Reseller\Reseller;
 use App\Notifications\Customer\Customer\Reseller\NewInvoiceNotification;
 use App\Notifications\Customer\Customer\Reseller\NewInvoicePaymentNotification;
+use App\Services\SlackNotifier;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Console\Command;
 use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
@@ -21,7 +22,7 @@ class SystemAdminCommand extends Command
      *
      * @var string
      */
-    protected $signature = '';
+    protected $signature = 'system:admin {action}';
 
     /**
      * The console command description.
@@ -34,6 +35,7 @@ class SystemAdminCommand extends Command
     {
         $this->setSignature('system:admin {action}');
         parent::__construct();
+        $this->slack = new SlackNotifier('#fintech-site');
     }
 
     /**
@@ -77,6 +79,7 @@ class SystemAdminCommand extends Command
         $bar->finish();
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Suppression des logs bancaires: ".count($logs));
+        $this->slack->send("Suppression des logs bancaires: ".count($logs));
     }
 
     private function ShipTpe()
@@ -116,6 +119,7 @@ class SystemAdminCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Nombre de tracker mis à jours: $i");
+        $this->slack->send("Nombre de tracker mis à jours: $i");
     }
 
     private function GenerateInvoiceReseller()
@@ -186,6 +190,7 @@ class SystemAdminCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Nombre de facture de distributeur générer: ".$i);
+        $this->slack->send("Nombre de facture de distributeur générer: ".$i);
     }
 
     private function NotifyResellerInvoicePayment()
