@@ -651,6 +651,8 @@
                             data: {"action": "accept"},
                             statusCode: {
                                 200: () => {
+                                    block.blockTableSepa.release()
+                                    block.blockTableSepa.destroy()
                                     toastr.success(`Le prélèvement à été accepté, il va bientôt interrogé le serveur de passage`, `Prélèvement Bancaire`)
 
                                     setTimeout(() => {
@@ -658,15 +660,15 @@
                                     }, 1200)
                                 },
                                 522: () => {
+                                    block.blockTableSepa.release()
+                                    block.blockTableSepa.destroy()
                                     toastr.warning(`L'établissement distant à refuser le passage en force du prélèvement.`, `Prélèvement bancaire`)
                                 },
                                 500: () => {
+                                    block.blockTableSepa.release()
+                                    block.blockTableSepa.destroy()
                                     toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                                 }
-                            },
-                            always: () => {
-                                block.blockTableSepa.release()
-                                block.blockTableSepa.destroy()
                             }
                         })
                     }
@@ -732,6 +734,8 @@
                             data: {"action": "refunded"},
                             statusCode: {
                                 200: () => {
+                                    block.blockTableSepa.release()
+                                    block.blockTableSepa.destroy()
                                     toastr.success(`La demande de remboursement à bien été soumis à l'établissement distant.`, `Prélèvement Bancaire`)
 
                                     setTimeout(() => {
@@ -739,15 +743,15 @@
                                     }, 1200)
                                 },
                                 522: () => {
+                                    block.blockTableSepa.release()
+                                    block.blockTableSepa.destroy()
                                     toastr.warning(`La demande de remboursement à été refusé par l'établissement distant`, `Prélèvement Bancaire`)
                                 },
                                 500: () => {
+                                    block.blockTableSepa.release()
+                                    block.blockTableSepa.destroy()
                                     toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                                 }
-                            },
-                            always: () => {
-                                block.blockTableSepa.release()
-                                block.blockTableSepa.destroy()
                             }
                         })
                     }
