@@ -105,7 +105,7 @@
             </div>
         </div>
         <div class="col-md-9 col-sm-12">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm mb-10">
                 <div class="card-header">
                     <h3 class="card-title">@lang('Log info') :</h3>
                     <div class="card-toolbar">
@@ -147,6 +147,33 @@
                         </div>
                     </div>
 
+
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="card-title">
+                        <form action="{{ route('log-viewer::logs.search', [$log->date, $level]) }}" method="GET">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="query" name="query" class="form-control" value="{{ $query }}" placeholder="@lang('Type here to search')">
+                                    <div class="input-group-append">
+                                        @unless (is_null($query))
+                                            <a href="{{ route('log-viewer::logs.show', [$log->date]) }}" class="btn btn-secondary">
+                                                (@lang(':count results', ['count' => $entries->count()])) <i class="fa fa-fw fa-times"></i>
+                                            </a>
+                                        @endunless
+                                        <button id="search-btn" class="btn btn-primary">
+                                            <span class="fa fa-fw fa-search"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
 
                 </div>
             </div>
