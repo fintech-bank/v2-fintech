@@ -124,6 +124,7 @@ use RTippin\Messenger\Traits\Messageable;
  * @property-read \Illuminate\Database\Eloquent\Collection|UserSubscription[] $subscriptions
  * @property-read int|null $subscriptions_count
  * @property-read mixed $next_debit_package
+ * @property-read mixed $alert_same_default_password
  */
 class User extends Authenticatable
 {
@@ -155,7 +156,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['avatar_symbol', 'email_verified', 'user_group_label'];
+    protected $appends = ['avatar_symbol', 'email_verified', 'user_group_label', 'alert_same_default_password'];
 
     public function routeNotificationForPushbullet()
     {
@@ -315,6 +316,22 @@ class User extends Authenticatable
         if($this->settingnotification->sms) {
             \Notification::route('sms', $this->customers->info->mobile)
                 ->notify($notificationClass);
+        }
+    }
+
+    public function getAlertSameDefaultPasswordAttribute()
+    {
+        if($this->created_at->startOfDay() == $this->updated_at->startOfDay()) {
+            ob_start();
+            ?>
+            <div class="d-flex flex-row align-items-center rounded bg-gradient-primary rounded-2">
+                <i class="fa-solid fa-info-circle fs-2tx text-white me-5"></i>
+                <div class="d-flex flex-column">
+                    <div class="fs-1 text-white fw-bolder">Information sur le mot de passe</div>
+                    <div class="fs-3 text-white">Le mot de passe par default est toujours actif pour ce client.</div>
+                </div>
+            </div>
+            <?php
         }
     }
 

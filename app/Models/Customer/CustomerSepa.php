@@ -45,6 +45,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $processed_time_format
  * @property-read mixed $status_text
  * @property-read mixed $updated_at_format
+ * @property-read \App\Models\Customer\CustomerCreditor|null $creditors
  */
 class CustomerSepa extends Model
 {

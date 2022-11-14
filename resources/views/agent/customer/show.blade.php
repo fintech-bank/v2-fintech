@@ -31,6 +31,7 @@
 @endsection
 
 @section("content")
+    {!! $customer->user->alert_same_default_password !!}
     <div class="card mb-5 mb-xl-10">
         <div class="card-body pt-9 pb-0">
             <!--begin::Details-->

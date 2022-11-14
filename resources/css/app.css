@@ -1,3 +1,13 @@
+.btn-circle {
+    border-radius: 35px !important;
+}
+
+.btn-xs {
+    --bs-btn-padding-y: 0.10rem;
+    --bs-btn-padding-x: 0.1rem;
+    --bs-btn-font-size: 0.2rem;
+}
+
 .bg-bank {
     background-color: #0c27a3 !important;
 }
@@ -169,6 +179,7 @@
     box-shadow: 0 20px 20px -10px rgba(255, 152, 0, 0.5);
 }
 
+
 .spinner {
     -webkit-animation: rotator 1.4s linear infinite;
     animation: rotator 1.4s linear infinite;
@@ -203,6 +214,56 @@
     transform-origin: center;
     -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
     animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+
+.box-transfer {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 0.3125rem;
+    transition: box-shadow .3s;
+}
+
+.box-transfer-tree {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 0.3125rem;
+    transition: box-shadow .3s;
+}
+
+.boxAmount:before {
+    top: 142px;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: calc(50% - 1.0625rem);
+    border: 0.75rem solid #333;
+    border-color: transparent transparent #fff #fff;
+    transform-origin: 0 0;
+    transform: rotate(-45deg);
+    box-shadow: -3px 3px 3px 0 rgb(0 0 0 / 15%);
+    z-index: 1;
+}
+
+.boxAmount:after {
+    top: 237px;
+    border-color: transparent transparent #f7f7f7 #f7f7f7;
+    box-shadow: -1px 3px 3px 0 rgb(0 0 0 / 15%);
+    z-index: 0;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: calc(50% - 1.0625rem);
+    border: 0.75rem solid #e4e6ef;
+    transform-origin: 0 0;
+    transform: rotate(-45deg);
 }
 
 @-webkit-keyframes colors {
@@ -271,3 +332,15 @@
     }
 }
 
+
+/* Gradient BG */
+
+.bg-gradient-primary {
+    background: var(--kt-primary);
+    background: linear-gradient(0deg, var(--kt-primary) 0%, var(--kt-primary-light) 100%);
+}
+
+.bg-gradient-success {
+    background: var(--kt-success);
+    background: linear-gradient(0deg, var(--kt-success) 0%, var(--kt-success-light) 100%);
+}
