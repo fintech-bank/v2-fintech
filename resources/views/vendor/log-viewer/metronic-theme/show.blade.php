@@ -191,7 +191,6 @@
                         </thead>
                         <tbody>
                         @forelse($entries as $key => $entry)
-                            @dd($entry)
                             <tr>
                                 <td>
                                     @if($entry->env == 'local')
