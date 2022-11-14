@@ -19,86 +19,86 @@ class Kernel extends ConsoleKernel
         // Administration
         $schedule->command('system:admin deleteLog')
             ->twiceMonthly(1, 16, '00:00')
-            ->description("Suppression des logs bancaires");
+            ->description("Suppression des logs bancaires [log]");
 
         $schedule->command('system:admin shipTpe')
             ->dailyAt('08:00')
-            ->description("Mise à jour des trackers d'envoie");
+            ->description("Mise à jour des trackers d'envoie [log]");
 
         $schedule->command('system:admin generateInvoiceReseller')
             ->lastDayOfMonth()
-            ->description("Génération des factures des distributeurs");
+            ->description("Génération des factures des distributeurs [log]");
 
         $schedule->command('system:admin notifyResellerInvoicePayment')
             ->daily()
-            ->description("Paiement des factures de distributeur");
+            ->description("Paiement des factures de distributeur [log]");
 
 
         // Agent
         $schedule->command('system:agent calendarAlert')
             ->everyFiveMinutes()
-            ->description("Alert Evenement");
+            ->description("Alert Evenement [log]");
 
         $schedule->command('system:agent updateCotation')
             ->daily()
-            ->description("Mise à jour des cotation client");
+            ->description("Mise à jour des cotation client [log]");
 
         $schedule->command('system:agent verifRequestLoanOpen')
             ->everySixHours()
-            ->description("Vérification des pret ouvert et les met en étude");
+            ->description("Vérification des pret ouvert et les met en étude [log]");
 
         $schedule->command('system:agent chargeLoanAccepted')
             ->dailyAt('08:00:00')
-            ->description("Libération du montant du pret bancaire");
+            ->description("Libération du montant du pret bancaire [log]");
 
         $schedule->command('system:agent executeSepaOrders')
             ->everySixHours()
-            ->description("Execution des prélèvements bancaires");
+            ->description("Execution des prélèvements bancaires [log]");
 
         $schedule->command('system:agent executeTransactionComing')
             ->everySixHours()
-            ->description("Execution des transactions entrente");
+            ->description("Execution des transactions entrente [log]");
 
         $schedule->command('system:agent executeActiveAccount')
             ->everySixHours()
-            ->description("Passage des compte accepté à terminer'");
+            ->description("Passage des compte accepté à terminer [log]'");
 
         $schedule->command('system:agent executeVirement')
             ->everySixHours()
-            ->description("Exécution des virements bancaires");
+            ->description("Exécution des virements bancaires [log]");
 
         // Life
         $schedule->command("life generateCustomers")
             ->everyFourHours()
             ->between('08:00','20:00')
-            ->description("Nouveau client");
+            ->description("Nouveau client [log]");
 
         $schedule->command("life generateSalary")
             ->monthlyOn(1)->at('08:00')
-            ->description("Virement des Salaires");
+            ->description("Virement des Salaires [log]");
 
         $schedule->command("life generateDebit")
             ->hourly()
             ->between('08:00','23:59')
-            ->description("Génération des débits bancaires");
+            ->description("Génération des débits bancaires [log]");
 
         $schedule->command("life generatePrlvSepa")
             ->everySixHours()
             ->between('08:00','17:00')
-            ->description("Nouveau prélèvement SEPA");
+            ->description("Nouveau prélèvement SEPA [log]");
 
         $schedule->command("life generateMensualReleve")
             ->monthlyOn(30)->at('08:00')
-            ->description("Génération des relevés bancaires");
+            ->description("Génération des relevés bancaires [log]");
 
         $schedule->command("life limitWithdraw")
             ->dailyAt('08:00')
-            ->description("Suppression des retraits bancaire non effectuer/valider");
+            ->description("Suppression des retraits bancaire non effectuer/valider [log]");
 
         $schedule->command("life alerta")
             ->weeklyOn(7)
             ->between('08:00', '17:00')
-            ->description("Envoie d'un relevé flash");
+            ->description("Envoie d'un relevé flash [log]");
     }
 
     /**
