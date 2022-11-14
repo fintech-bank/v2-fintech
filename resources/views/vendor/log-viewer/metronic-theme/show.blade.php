@@ -181,7 +181,7 @@
                 <div class="card-body">
                     <table class="table border gy-5 gx-5" id="entries">
                         <thead>
-                            <tr>
+                            <tr class="fw-bolder fs-6 text-gray-800">
                                 <th>@lang('ENV')</th>
                                 <th style="width: 120px;">@lang('Level')</th>
                                 <th style="width: 65px;">@lang('Time')</th>
