@@ -1244,7 +1244,7 @@
                     <div class="modal-body">
                         @if($wallet->cards()->count() >= $wallet->customer->package->nb_carte_physique)
                             <x-base.alert
-                                type="basic"
+                                type="solid"
                                 color="danger"
                                 icon="xmark-circle"
                                 title="Nombre de carte bancaire dépassé"
