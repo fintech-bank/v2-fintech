@@ -96,6 +96,6 @@ class HomeController extends Controller
         $s = new Sepa();
         $sepa = CustomerSepa::find(1);
 
-        dd($s->rembSepaRequest($sepa));
+        dd($s->acceptSepa());
     }
 }
