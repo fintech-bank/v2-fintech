@@ -28,7 +28,6 @@ class RefundSepaJob implements ShouldQueue
     {
         //
         $this->sepa = $sepa;
-        $this->onQueue('sepa');
     }
 
     public function tags()
