@@ -321,6 +321,14 @@ label {
     display: block;
     height: 0;
     border-bottom: 1px solid var(--kt-border-color);
+
+    .separator-2 {
+        border-bottom: 2px solid var(--kt-border-color);
+    }
+
+    .separator-4 {
+        border-bottom: 4px solid var(--kt-border-color);
+    }
 }
 
 @import "base/separator";

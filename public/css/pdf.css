@@ -2084,6 +2084,12 @@ label {
   height: 0;
   border-bottom: 1px solid var(--kt-border-color);
 }
+.separator .separator-2 {
+  border-bottom: 2px solid var(--kt-border-color);
+}
+.separator .separator-4 {
+  border-bottom: 4px solid var(--kt-border-color);
+}
 
 .separator {
   display: block;
