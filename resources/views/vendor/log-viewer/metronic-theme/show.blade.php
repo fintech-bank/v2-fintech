@@ -6,7 +6,7 @@
 
 @section('toolbar')
     <div class="page-title d-flex justify-content-center flex-column me-5">
-        <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">@lang('Dashboard')</h1>
+        <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">@lang('Log') [{{ $log->date }}]</h1>
         <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 pt-1">
             <li class="breadcrumb-item text-muted">
                 <a href="{{ route('admin.dashboard') }}"
@@ -22,7 +22,7 @@
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-200 w-5px h-2px"></span>
             </li>
-            <li class="breadcrumb-item text-dark">@lang('Dashboard')</li>
+            <li class="breadcrumb-item text-dark">@lang('Log') [{{ $log->date }}]</li>
         </ul>
     </div>
     <!--<div class="d-flex align-items-center gap-2 gap-lg-3">
