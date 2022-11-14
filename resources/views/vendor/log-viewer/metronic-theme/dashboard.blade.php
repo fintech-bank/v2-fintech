@@ -41,7 +41,7 @@
         <div class="col-md-4 col-sm-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <div id="stats-doughnut-chart" style="height: 500px;" class="mb-3"></div>
+                    <canvas id="stats-doughnut-chart" height="300" class="mb-3"></canvas>
                 </div>
             </div>
         </div>
