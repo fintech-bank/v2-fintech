@@ -19,23 +19,19 @@ class Kernel extends ConsoleKernel
         // Administration
         $schedule->command('system:admin deleteLog')
             ->twiceMonthly(1, 16, '00:00')
-            ->description("Suppression des logs bancaires")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Suppression des logs bancaires");
 
         $schedule->command('system:admin shipTpe')
             ->dailyAt('08:00')
-            ->description("Mise à jour des trackers d'envoie")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Mise à jour des trackers d'envoie");
 
         $schedule->command('system:admin generateInvoiceReseller')
             ->lastDayOfMonth()
-            ->description("Génération des factures des distributeurs")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Génération des factures des distributeurs");
 
         $schedule->command('system:admin notifyResellerInvoicePayment')
             ->daily()
-            ->description("Paiement des factures de distributeur")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Paiement des factures de distributeur");
 
 
         // Agent
@@ -45,38 +41,31 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('system:agent updateCotation')
             ->daily()
-            ->description("Mise à jour des cotation client")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Mise à jour des cotation client");
 
         $schedule->command('system:agent verifRequestLoanOpen')
             ->everySixHours()
-            ->description("Vérification des pret ouvert et les met en étude")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Vérification des pret ouvert et les met en étude");
 
         $schedule->command('system:agent chargeLoanAccepted')
             ->dailyAt('08:00:00')
-            ->description("Libération du montant du pret bancaire")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Libération du montant du pret bancaire");
 
         $schedule->command('system:agent executeSepaOrders')
             ->everySixHours()
-            ->description("Execution des prélèvements bancaires")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Execution des prélèvements bancaires");
 
         $schedule->command('system:agent executeTransactionComing')
             ->everySixHours()
-            ->description("Execution des transactions entrente")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Execution des transactions entrente");
 
         $schedule->command('system:agent executeActiveAccount')
             ->everySixHours()
-            ->description("Passage des compte accepté à terminer'")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Passage des compte accepté à terminer'");
 
         $schedule->command('system:agent executeVirement')
             ->everySixHours()
-            ->description("Exécution des virements bancaires")
-            ->emailOutputTo(config('mail.from.address'));
+            ->description("Exécution des virements bancaires");
 
         // Life
         $schedule->command("life generateCustomers")
