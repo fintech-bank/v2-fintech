@@ -45,7 +45,7 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="d-flex flex-row align-items-center rounded rounded-2 p-5 mb-5 level-{{ $level }}">
                             <div class="symbol symbol-50px p-0 me-4">
-                                <div class="symbol-label fs-2 fw-semibold level-{{ $level }}-light">{!! log_styler()->icon($level) !!}</div>
+                                <div class="symbol-label fs-2tx fw-semibold level-{{ $level }}-light">{!! log_styler()->icon($level) !!}</div>
                             </div>
                             <div class="d-flex flex-column p-5">
                                 <div class="fw-bolder">{{ $item['name'] }}</div>
