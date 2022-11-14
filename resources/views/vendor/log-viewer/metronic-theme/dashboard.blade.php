@@ -39,7 +39,7 @@
 
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            <div id="stats-doughnut-chart" height="300" class="mb-3"></div>
+            <div id="stats-doughnut-chart" style="height: 500px;" class="mb-3"></div>
         </div>
         <div class="col-md-8 col-sm-12">
             <div class="row">
