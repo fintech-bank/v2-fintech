@@ -75,6 +75,7 @@ class SystemAdminCommand extends Command
             $bar->advance();
         }
         $bar->finish();
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Suppression des logs bancaires: ".count($logs));
     }
 
@@ -113,6 +114,7 @@ class SystemAdminCommand extends Command
             }
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Nombre de tracker mis à jours: $i");
     }
 
@@ -182,6 +184,7 @@ class SystemAdminCommand extends Command
             $i++;
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Nombre de facture de distributeur générer: ".$i);
     }
 

@@ -111,5 +111,7 @@ class MobilityCommand extends Command
                 ]);
             }
         }
+
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
     }
 }

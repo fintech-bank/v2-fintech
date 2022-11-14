@@ -204,6 +204,7 @@ class LifeCommand extends Command
             ];
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->line('Nombre de nouveau client: ' . $r);
         $this->output->table(['client', 'Etat du compte'], $arr);
     }
@@ -232,6 +233,7 @@ class LifeCommand extends Command
             );
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->line('Check des virements des salaires terminer');
     }
 
@@ -325,6 +327,7 @@ class LifeCommand extends Command
                 }
             }
         }
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->line('Génération des Transactions: ' . $nb);
         $this->output->table(['Client', 'Mouvement', 'Montant'], $arr);
     }
@@ -387,6 +390,7 @@ class LifeCommand extends Command
             }
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', 'Mandataire', 'Montant', 'Date de Prélèvement'], $arr);
     }
 
@@ -419,6 +423,7 @@ class LifeCommand extends Command
             $i++;
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info('Nombre de relevé généré: ' . $i);
     }
 
@@ -444,6 +449,7 @@ class LifeCommand extends Command
             }
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->table(['Reference', 'Montant', 'Client'], $arr);
         return 0;
     }
@@ -472,6 +478,8 @@ class LifeCommand extends Command
                 $customer->info->notify(new SendAlertaInfoNotification($wallet, $waiting, $mouvement));
             }
         }
+
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
     }
 
     private function createFacelia(Customer $customer, CustomerCreditCard $card)

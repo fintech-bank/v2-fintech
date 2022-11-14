@@ -80,6 +80,8 @@ class SystemAgentCommand extends Command
                 }
             }
         }
+
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
     }
 
     private function updateCotation()
@@ -94,6 +96,7 @@ class SystemAgentCommand extends Command
                 "cotation" => $customer->cotation
             ];
         }
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(["client", "cotation"], $arr);
     }
 
@@ -117,6 +120,7 @@ class SystemAgentCommand extends Command
             ];
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', "Type de Pret", 'Référence', 'Montant', 'Etat'], $arr);
     }
 
@@ -143,6 +147,7 @@ class SystemAgentCommand extends Command
             }
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', "Type de Pret", 'Référence', 'Montant', 'Etat'], $arr);
     }
 
@@ -177,6 +182,8 @@ class SystemAgentCommand extends Command
                 );
             }
         }
+
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
     }
 
     private function executeTransactionComing()
@@ -215,6 +222,7 @@ class SystemAgentCommand extends Command
             }
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Liste des transactions entrante mise à jours");
         $this->output->table(['Client', 'Type', 'Compte', 'Montant'], $arr_effect);
 
@@ -240,6 +248,7 @@ class SystemAgentCommand extends Command
             ];
         }
 
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', "Etat"], $arr);
     }
 
@@ -298,6 +307,7 @@ class SystemAgentCommand extends Command
                 ];
             }
         }
+        $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->info("Passage des virements bancaire");
         $this->output->table(['Client', 'Reference', 'Montant'], $arr_transit_paid);
 
