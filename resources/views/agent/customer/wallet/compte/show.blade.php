@@ -820,25 +820,22 @@
                             <div class="d-flex flex-stack">
                                 <div class="w-100 mw-150px me-3">
                                     <!--begin::Select2-->
-                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Créancier" data-kt-sepa-filter="creditor">
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status de la carte" data-kt-card-filter="status">
                                         <option></option>
                                         <option value="all">Tous</option>
-                                        @foreach($wallet->creditors as $creditor)
-                                            <option value="{{ $creditor->name }}">{{ $creditor->name }}</option>
-                                        @endforeach
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                        <option value="canceled">Annuler</option>
                                     </select>
                                     <!--end::Select2-->
                                 </div>
                                 <div class="w-100 mw-150px me-3">
                                     <!--begin::Select2-->
-                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status du prélèvement" data-kt-sepa-filter="status">
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Type de carte" data-kt-card-filter="type">
                                         <option></option>
                                         <option value="all">Tous</option>
-                                        <option value="waiting">En attente</option>
-                                        <option value="processed">Traité</option>
-                                        <option value="rejected">Rejeté</option>
-                                        <option value="return">Retourné</option>
-                                        <option value="refunded">Remboursé</option>
+                                        <option value="physique">Carte Physique</option>
+                                        <option value="virtuel">Carte Virtuel</option>
                                     </select>
                                     <!--end::Select2-->
                                 </div>
