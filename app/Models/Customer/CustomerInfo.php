@@ -92,7 +92,7 @@ class CustomerInfo extends Model
     public $timestamps = false;
 
     protected $dates = ['datebirth'];
-    protected $appends = ['type_label', 'phone_verify', 'mobile_verify', 'account_verified', 'full_name'];
+    protected $appends = ['type_label', 'phone_verify', 'mobile_verify', 'account_verified', 'full_name', 'line_address'];
 
     public function routeNotificationForTwilio()
     {
@@ -196,5 +196,10 @@ class CustomerInfo extends Model
         } else {
             return '<i class="fa-solid fa-xmark-circle text-danger fa-2x" data-bs-toggle="tooltip" title="Compte non vérifié" style="font-size: 20px;"></i>';
         }
+    }
+
+    public function getLineAddressAttribute()
+    {
+        return $this->address.', '.$this->postal.' '.$this->city;
     }
 }
