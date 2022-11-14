@@ -179,7 +179,17 @@
                     </div>
                 </div>
                 <div class="card-body">
-
+                    <table class="table gy-5 gx-5" id="entries">
+                        <thead>
+                            <tr>
+                                <th>@lang('ENV')</th>
+                                <th style="width: 120px;">@lang('Level')</th>
+                                <th style="width: 65px;">@lang('Time')</th>
+                                <th>@lang('Header')</th>
+                                <th class="text-right">@lang('Actions')</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
