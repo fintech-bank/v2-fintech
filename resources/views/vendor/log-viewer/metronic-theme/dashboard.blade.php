@@ -32,7 +32,7 @@
 @endsection
 
 @section("content")
-    <div class="d-flex flex-center justify-content-around align-items-center w-300px border border-2 border-gray-800  p-5 mb-10">
+    <div class="d-flex flex-center justify-content-around align-items-center w-300px border border-2 rounded-2 border-gray-800  p-5 mb-10">
         <a href="{{ route('log-viewer::dashboard') }}" class="btn btn-link {{ Route::is('log-viewer::dashboard') ? 'btn-color-primary' : 'btn-color-muted' }} btn-active-color-primary me-5 mb-2"><i class="fa-solid fa-desktop me-2"></i> @lang('Dashboard')</a>
         <a href="{{ route('log-viewer::logs.list') }}" class="btn btn-link {{ Route::is('log-viewer::logs.list') ? 'btn-color-primary' : 'btn-color-muted' }} btn-active-color-primary me-5 mb-2"><i class="fa-solid fa-archive me-2"></i> @lang('Logs')</a>
     </div>
