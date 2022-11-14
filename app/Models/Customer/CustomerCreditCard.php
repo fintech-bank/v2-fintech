@@ -2,8 +2,10 @@
 
 namespace App\Models\Customer;
 
+use App\Helper\CustomerCreditCardTrait;
 use App\Helper\CustomerWalletHelper;
 use App\Models\Core\CreditCardSupport;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -79,12 +81,21 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CustomerCreditCard extends Model
 {
-    use HasFactory;
+    use HasFactory, CustomerCreditCardTrait;
 
     protected $guarded = [];
 
     public $timestamps = false;
-    protected $appends = ['limit_withdraw', 'access_withdraw', 'actual_limit_withdraw', 'number_card_oscure', 'number_format', 'expiration', 'debit_format'];
+    protected $appends = [
+        'limit_withdraw',
+        'access_withdraw',
+        'actual_limit_withdraw',
+        'number_card_oscure',
+        'number_format',
+        'expiration',
+        'debit_format',
+        'status_label'
+    ];
 
     public function wallet()
     {
@@ -111,14 +122,19 @@ class CustomerCreditCard extends Model
         return $this->belongsTo(CreditCardSupport::class, 'credit_card_support_id');
     }
 
+    //-------------- Scope -------------------------//
+
+
+    //-------------- Append -------------------------//
+
     public function getLimitWithdrawAttribute()
     {
-        return \App\Helper\CustomerCreditCard::getTransactionsMonthWithdraw($this);
+        return $this->getTransactionsMonthWithdraw();
     }
 
     public function getAccessWithdrawAttribute(): bool
     {
-        if($this->wallet->status == 'active' && CustomerWalletHelper::getSoldeRemaining($this->wallet) < $this->limit_retrait && \App\Helper\CustomerCreditCard::getTransactionsMonthWithdraw($this) < $this->limit_retrait && $this->status == 'active') {
+        if($this->wallet->status == 'active' && CustomerWalletHelper::getSoldeRemaining($this->wallet) < $this->limit_retrait && $this->getTransactionsMonthWithdraw() < $this->limit_retrait && $this->status == 'active') {
             return true;
         } else {
             return false;
@@ -127,7 +143,7 @@ class CustomerCreditCard extends Model
 
     public function getActualLimitWithdrawAttribute()
     {
-        return \App\Helper\CustomerCreditCard::getTransactionsMonthWithdraw($this) - (-$this->limit_retrait);
+        return $this->getTransactionsMonthWithdraw() - (-$this->limit_retrait);
     }
 
     public function getNumberCardOscureAttribute()
@@ -152,6 +168,16 @@ class CustomerCreditCard extends Model
         } else {
             return "Débit Différé";
         }
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid fa-{$this->getStatus()} me-2 text-white'></i> {$this->getStatus('text')}</span>";
+    }
+
+    public function alert($alert)
+    {
+
     }
 
 }

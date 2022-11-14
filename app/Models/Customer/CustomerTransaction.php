@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Models\Core\InvoicePayment;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -100,6 +101,11 @@ class CustomerTransaction extends Model
     public function opposit()
     {
         return $this->hasOne(CustomerPaymentOpposit::class);
+    }
+
+    public function scopeIsDiffered(Builder $query)
+    {
+        return $query->where('differed', 1);
     }
 
     public function getTypeTextAttribute()

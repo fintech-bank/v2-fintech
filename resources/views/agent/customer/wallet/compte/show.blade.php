@@ -865,15 +865,15 @@
                                         <img src="/storage/card/{{ $card->support->slug }}.png" alt=""/>
                                     </div>
                                 </td>
-                                <td>{{ \App\Helper\CustomerCreditCard::getCreditCard($card->number) }}</td>
+                                <td>{{ $card->number_card_oscure }}</td>
                                 <td>{{ $card->wallet->number_account }}</td>
                                 <td>{{ $card->exp_month }}/{{ $card->exp_year }}</td>
                                 <td data-filter="{{ $card->status }}">
-                                    {!! \App\Helper\CustomerCreditCard::getStatus($card->status) !!}
+                                    {!! $card->status_label !!}
                                 </td>
 
                                 <td data-filter="{{ $card->type }}">
-                                    {{ \App\Helper\CustomerCreditCard::getType($card->type) }}
+                                    {{ $card->getType() }}
                                 </td>
                                 <td class="text-end">
                                     <a href="" class="btn btn-sm btn-circle btn-icon btn-bank" data-bs-toggle="tooltip" data-bs-placement="left" title="Détail"><i class="fa fa-desktop"></i> </a>
@@ -1235,7 +1235,7 @@
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-regular fa-xmark fs-1"></i>
+                        <i class="fa-solid fa-xmark fs-1"></i>
                     </div>
                     <!--end::Close-->
                 </div>
