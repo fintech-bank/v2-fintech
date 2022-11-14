@@ -43,7 +43,7 @@
             <div class="row">
                 @foreach($percents as $level => $item)
                     <div class="col-md-3 col-sm-12">
-                        <div class="d-flex flex-row align-items-center rounded rounded-2 p-5 mb-5 level-{{ $level }}">
+                        <div class="d-flex flex-row align-items-center rounded rounded-2 p-5 mb-5 level-{{ $level }} text-white">
                             <div class="symbol symbol-50px p-0 me-4">
                                 <div class="symbol-label fw-semibold level-{{ $level }}-light">{!! log_styler()->icon($level) !!}</div>
                             </div>
