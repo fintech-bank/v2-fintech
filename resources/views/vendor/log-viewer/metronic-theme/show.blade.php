@@ -41,7 +41,6 @@
                 <div class="card-body">
                     <ul class="nav nav-pills nav-pills-custom flex-row flex-md-column" role="tablist">
                         @foreach($log->menu() as $levelkey => $item)
-                            @dd($levelkey)
                             @if($item['count'] == 0)
                                 <li class="nav-item mb-3 me-3 me-lg-6" role="presentation">
                                     <!--begin::Link-->
