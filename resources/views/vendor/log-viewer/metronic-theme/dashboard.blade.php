@@ -49,9 +49,9 @@
                             </div>
                             <div class="d-flex flex-column p-5">
                                 <div class="fw-bolder">{{ $item['name'] }}</div>
-                                <div class="fs-6">{{ $item['count'] }} @lang('entries') - {!! $item['percent'] !!} %</div>
-                                <div class="progress" style="height: 3px;">
-                                    <div class="progress-bar" style="width: {{ $item['percent'] }}%"></div>
+                                <div class="fs-8">{{ $item['count'] }} @lang('entries') - {!! $item['percent'] !!} %</div>
+                                <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
+                                    <div class="bg-white rounded h-8px" role="progressbar" style="width: {{ $item['percent'] }}%;" aria-valuenow="{{ $item['percent'] }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
