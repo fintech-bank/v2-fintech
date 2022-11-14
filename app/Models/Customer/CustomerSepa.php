@@ -65,7 +65,7 @@ class CustomerSepa extends Model
         return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
     }
 
-    public function creditor()
+    public function creditors()
     {
         return $this->hasOne(CustomerCreditor::class);
     }
