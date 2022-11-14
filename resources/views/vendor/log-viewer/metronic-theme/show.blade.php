@@ -163,7 +163,7 @@
                                             (@lang(':count results', ['count' => $entries->count()])) <i class="fa-solid fa-xmark"></i>
                                         </a>
                                     @endunless
-                                    <button id="search-btn" class="btn btn-sm btn-primary">
+                                    <button id="search-btn" class="btn btn-secondary">
                                         <span class="fa-solid fa-search"></span>
                                     </button>
                                 </div>
