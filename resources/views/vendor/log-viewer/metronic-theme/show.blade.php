@@ -152,7 +152,7 @@
             </div>
 
             <div class="card shadow-sm">
-                <div class="card-header">
+                <div class="card-header align-items-center">
                     <div class="card-title">
                         <form action="{{ route('log-viewer::logs.search', [$log->date, $level]) }}" method="GET">
                             <div class="input-group mb-5">
