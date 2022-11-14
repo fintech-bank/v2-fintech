@@ -29,6 +29,11 @@ class AcceptSepaJob implements ShouldQueue
         $this->sepa = $sepa;
     }
 
+    public function tags()
+    {
+        return ['customer', 'sepa:'.$this->sepa->id];
+    }
+
     /**
      * Execute the job.
      *
