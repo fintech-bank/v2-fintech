@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb2ff4dfd2488b777aba78961e1c0812",
+    "content-hash": "b2d7c66100a6be1a80fa3b003c30868d",
     "packages": [
         {
             "name": "1pilotapp/laravel-client",
@@ -915,6 +915,54 @@
                 }
             ],
             "time": "2022-08-10T22:54:19+00:00"
+        },
+        {
+            "name": "codedungeon/php-cli-colors",
+            "version": "1.12.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mikeerickson/php-cli-colors.git",
+                "reference": "e346156f75717140a3dd622124d2ec686aa7ff8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mikeerickson/php-cli-colors/zipball/e346156f75717140a3dd622124d2ec686aa7ff8e",
+                "reference": "e346156f75717140a3dd622124d2ec686aa7ff8e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Codedungeon\\PHPCliColors\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Erickson",
+                    "email": "codedungeon@gmail.com"
+                }
+            ],
+            "description": "Liven up you PHP Console Apps with standard colors",
+            "homepage": "https://github.com/mikeerickson/php-cli-colors",
+            "keywords": [
+                "color",
+                "colors",
+                "composer",
+                "package",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/mikeerickson/php-cli-colors/issues",
+                "source": "https://github.com/mikeerickson/php-cli-colors/tree/1.12.2"
+            },
+            "time": "2021-01-05T04:48:27+00:00"
         },
         {
             "name": "composer/pcre",
@@ -5434,6 +5482,171 @@
             "time": "2022-08-08T13:52:53+00:00"
         },
         {
+            "name": "macropage/ansi-to-html",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michabbb/ansi-to-html.git",
+                "reference": "8143b05505bdcd546da853b25acd50563716a983"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michabbb/ansi-to-html/zipball/8143b05505bdcd546da853b25acd50563716a983",
+                "reference": "8143b05505bdcd546da853b25acd50563716a983",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5 || ^8.0 || ^8.1"
+            },
+            "conflict": {
+                "twig/twig": "< 2.4.0"
+            },
+            "require-dev": {
+                "twig/twig": "^2.4 || ^3.0"
+            },
+            "suggest": {
+                "twig/twig": "Provides nice templating features"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SensioLabs\\AnsiConverter\\": "SensioLabs/AnsiConverter"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "A library to convert a text with ANSI codes to HTML",
+            "support": {
+                "source": "https://github.com/michabbb/ansi-to-html/tree/master"
+            },
+            "time": "2021-07-25T13:23:49+00:00"
+        },
+        {
+            "name": "macropage/laravel-scheduler-watcher",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michabbb/laravel-scheduler-watcher.git",
+                "reference": "6bf759c6fb1cb1c75a8ec7e86629e916f01207c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michabbb/laravel-scheduler-watcher/zipball/6bf759c6fb1cb1c75a8ec7e86629e916f01207c5",
+                "reference": "6bf759c6fb1cb1c75a8ec7e86629e916f01207c5",
+                "shasum": ""
+            },
+            "require": {
+                "codedungeon/php-cli-colors": "^1.0",
+                "macropage/ansi-to-html": "dev-master",
+                "macropage/php-to-ascii-table": "dev-master",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "macropage\\LaravelSchedulerWatcher\\LaravelSchedulerWatcherServiceProvider"
+                    ],
+                    "aliases": {
+                        "SchedulerWatcher": "macropage\\LaravelSchedulerWatcher\\LaravelSchedulerWatcherFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "macropage\\LaravelSchedulerWatcher\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Bladowski",
+                    "email": "mbladowski@macropage.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "logs artisan commands run via scheduler to mysql with plenty of infos, prevent running command again in case of error, allows full monitoing of artisan commands",
+            "homepage": "https://github.com/macropage/laravel-scheduler-watcher",
+            "keywords": [
+                "laravel-scheduler-watcher",
+                "macropage"
+            ],
+            "support": {
+                "issues": "https://github.com/michabbb/laravel-scheduler-watcher/issues",
+                "source": "https://github.com/michabbb/laravel-scheduler-watcher/tree/v1.1"
+            },
+            "time": "2022-04-19T23:56:19+00:00"
+        },
+        {
+            "name": "macropage/php-to-ascii-table",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michabbb/php-to-ascii-table.git",
+                "reference": "b6f8ddd8f1e69d3b97e3b2567de3c8787ce5e771"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michabbb/php-to-ascii-table/zipball/b6f8ddd8f1e69d3b97e3b2567de3c8787ce5e771",
+                "reference": "b6f8ddd8f1e69d3b97e3b2567de3c8787ce5e771",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^8.0 || ^8.1",
+                "php-ds/php-ds": "^1.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "@stable",
+                "vimeo/psalm": "@stable"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AsciiTable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mehmed Aliosman",
+                    "email": "dev.mehmed.aliosman@gmail.com"
+                }
+            ],
+            "description": "A PHP library to generate plain text tables.",
+            "keywords": [
+                "ascii",
+                "php",
+                "plain text table",
+                "table"
+            ],
+            "support": {
+                "source": "https://github.com/michabbb/php-to-ascii-table/tree/master"
+            },
+            "time": "2021-07-25T13:45:38+00:00"
+        },
+        {
             "name": "mad-web/laravel-initializer",
             "version": "3.4.0",
             "source": {
@@ -6980,6 +7193,61 @@
                 "source": "https://github.com/dompdf/php-svg-lib/tree/0.5.0"
             },
             "time": "2022-09-06T12:16:56+00:00"
+        },
+        {
+            "name": "php-ds/php-ds",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-ds/polyfill.git",
+                "reference": "43d2df301a9e2017f67b8c11d94a5222f9c00fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-ds/polyfill/zipball/43d2df301a9e2017f67b8c11d94a5222f9c00fd1",
+                "reference": "43d2df301a9e2017f67b8c11d94a5222f9c00fd1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.0"
+            },
+            "provide": {
+                "ext-ds": "1.3.0"
+            },
+            "require-dev": {
+                "php-ds/tests": "^1.3"
+            },
+            "suggest": {
+                "ext-ds": "to improve performance and reduce memory usage"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ds\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rudi Theunissen",
+                    "email": "rudolf.theunissen@gmail.com"
+                }
+            ],
+            "keywords": [
+                "data structures",
+                "ds",
+                "php",
+                "polyfill"
+            ],
+            "support": {
+                "issues": "https://github.com/php-ds/polyfill/issues",
+                "source": "https://github.com/php-ds/polyfill/tree/v1.4.1"
+            },
+            "time": "2022-03-09T20:39:30+00:00"
         },
         {
             "name": "php-http/discovery",
