@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <td>Type de carte : {{ $customer->info->type_text }}</td>
-                <td>Type de débit : {{ $data->card->type_format }}</td>
+                <td>Type de débit : {{ $data->card->debit_format }}</td>
             </tr>
         </tbody>
     </table>
