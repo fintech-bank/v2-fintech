@@ -71,6 +71,7 @@
     <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <script type="text/javascript">
+        const bodyColor = getComputedStyle(document.documentElement).getPropertyValue('--kt-body-color');
         am5.ready(function () {
             // Create root element
             // https://www.amcharts.com/docs/v5/getting-started/#Root_element
