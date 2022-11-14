@@ -40,6 +40,7 @@
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
         modalRequestOverdraft: document.querySelector("#requestOverdraft"),
         modalAddVirement: document.querySelector("#add_virement"),
+        modalCreateCard: document.querySelector("#add_credit_card"),
     }
     let forms = {
         formUpdateStateAccount: document.querySelector("#formUpdateStateAccount"),
@@ -288,6 +289,13 @@
                 document.querySelector('[name="bankname"]').value = data.name
             }
         })
+    }
+    let getPhysicalInfo = (item) => {
+        if (item.value == 'physique') {
+            modals.modalCreateCard.querySelector('#physical_card').classList.remove('d-none')
+        } else {
+            modals.modalCreateCard.querySelector('#physical_card').classList.add('d-none')
+        }
     }
     selectTypeBeneficiaire()
 
