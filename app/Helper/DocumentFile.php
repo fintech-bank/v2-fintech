@@ -77,7 +77,7 @@ class DocumentFile
      */
     public function generatePDF($view, $customer, $document_id = null, $data = [], $download = false, $save = false, $savePath = null, $stream = true, $header_type = 'simple')
     {
-        $agence = $customer->user->agency;
+        $agence = $customer->agency;
         $document = $document_id != null ? CustomerDocument::find($document_id) : null;
         $document_name = $document != null ? $document->name : 'Document';
 
