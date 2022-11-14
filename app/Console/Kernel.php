@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Helper\LogHelper;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Stringable;
 use macropage\LaravelSchedulerWatcher\LaravelSchedulerWatcher;
 
 class Kernel extends ConsoleKernel
@@ -21,7 +23,10 @@ class Kernel extends ConsoleKernel
         // Administration
         $schedule->command('system:admin deleteLog')
             ->twiceMonthly(1, 16, '00:00')
-            ->description("Suppression des logs bancaires [log]");
+            ->description("Suppression des logs bancaires [log]")
+            ->onSuccess(function (Stringable $output) {
+                dd($output);
+            });
 
         $schedule->command('system:admin shipTpe')
             ->dailyAt('08:00')

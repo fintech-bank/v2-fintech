@@ -83,6 +83,7 @@ class LifeCommand extends Command
             'alerta' => $this->sendAlertaInfo()
         };
         return Command::SUCCESS;
+
     }
 
     /**
