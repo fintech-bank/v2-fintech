@@ -65,7 +65,7 @@
                                     <span class="badge level-{{ $key }} {{ $key == 'all' ? 'badge-secondary' : '' }}">{{ $value }}</span>
                                 @else
                                     <a href="{{ route('log-viewer::logs.filter', [$date, $key]) }}">
-                                        <span class="badge level-{{ $key }}">{{ $value }}</span>
+                                        <span class="badge level-{{ $key }} {{ $key == 'all' ? 'badge-secondary' : '' }}">{{ $value }}</span>
                                     </a>
                                 @endif
                             </td>
