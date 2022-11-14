@@ -858,28 +858,7 @@
                         </tr>
                         </thead>
                         <tbody class="fw-bold text-gray-600">
-                        @foreach($wallet->cards as $card)
-                            <tr>
-                                <td>
-                                    <div class="symbol symbol-50px symbol-2by3" data-bs-toggle="tooltip" title="{{ Str::ucfirst($card->support->name) }}">
-                                        <img src="/storage/card/{{ $card->support->slug }}.png" alt=""/>
-                                    </div>
-                                </td>
-                                <td>{{ $card->number_card_oscure }}</td>
-                                <td>{{ $card->wallet->number_account }}</td>
-                                <td>{{ $card->exp_month }}/{{ $card->exp_year }}</td>
-                                <td data-filter="{{ $card->status }}">
-                                    {!! $card->status_label !!}
-                                </td>
 
-                                <td data-filter="{{ $card->type }}">
-                                    {{ $card->getType() }}
-                                </td>
-                                <td class="text-end">
-                                    <a href="" class="btn btn-sm btn-circle btn-icon btn-bank" data-bs-toggle="tooltip" data-bs-placement="left" title="Détail"><i class="fa fa-desktop"></i> </a>
-                                </td>
-                            </tr>
-                        @endforeach
                         </tbody>
                     </table>
                 </div>
