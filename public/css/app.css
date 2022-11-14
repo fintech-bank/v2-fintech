@@ -264,6 +264,10 @@
   background: var(--kt-success);
   background: linear-gradient(0deg, var(--kt-success) 0%, var(--kt-success-light) 100%);
 }
+.level-all {
+  background-color: #ffffff;
+}
+
 .level-notice {
   background-color: #66bb6a;
 }
@@ -294,6 +298,10 @@
 
 .level-debug {
   background-color: #BDBDBD;
+}
+
+.level-all-light {
+  background-color: rgba(236, 236, 236, 0.5);
 }
 
 .level-notice-light {
