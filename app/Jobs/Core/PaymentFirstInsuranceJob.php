@@ -38,6 +38,11 @@ class PaymentFirstInsuranceJob implements ShouldQueue
         $this->wallet = $wallet;
     }
 
+    public function tags()
+    {
+        return ['core', 'insurance:'.$this->insurance->id];
+    }
+
     /**
      * Execute the job.
      *
