@@ -47,6 +47,7 @@
         formRequestOverdraft: document.querySelector("#formSubscribeOverdraft"),
         formAddVirement: document.querySelector("#formAddVirement"),
         formAddBeneficiaire: document.querySelector('#formAddBeneficiaire'),
+        formAddCreditCard: document.querySelector('#formAddCreditCard'),
     }
     let dataTable = {
         datatableComing: $(tables.tableComing).DataTable({
@@ -973,7 +974,7 @@
         templateSelection: cardsOptions,
         templateResult: cardsOptions
     })
-    $("#formCreateCard").find('#support').select2({
+    $(forms.formAddCreditCard).find('#support').select2({
         templateSelection: cardsOptions,
         templateResult: cardsOptions
     })
