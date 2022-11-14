@@ -1,7 +1,5 @@
 @extends('pdf.layouts.app')
 
 @section("content")
-    <div class="d-flex flex-column justify-content-center">
-        <div class="fw-bolder fs-4">CONTRAT CARTE BANCAIRE {{ Str::upper($data->card->support->name) }} À AUTORISATION QUASI-SYSTÉMATIQUE</div>
-    </div>
+    <div class="text-center fs-4 fs-underline">CONTRAT CARTE BANCAIRE VISA CLASSIC À AUTORISATION QUASISYSTÉMATIQUE</div>
 @endsection
