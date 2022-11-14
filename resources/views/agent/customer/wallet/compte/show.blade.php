@@ -861,7 +861,7 @@
                         @foreach($wallet->cards as $card)
                             <tr>
                                 <td>
-                                    <div class="symbol symbol-50px symbol-2by3" data-bs-toggle="tooltip" title="{{ Str::ucfirst($card->support) }}">
+                                    <div class="symbol symbol-50px symbol-2by3" data-bs-toggle="tooltip" title="{{ Str::ucfirst($card->support->name) }}">
                                         <img src="/storage/card/{{ $card->support->slug }}.png" alt=""/>
                                     </div>
                                 </td>
