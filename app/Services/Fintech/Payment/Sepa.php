@@ -16,6 +16,6 @@ class Sepa
 
     public function generateICS()
     {
-        return \Http::get('https://payment.fintech.ovh/api/sepa/new_ics')->object();
+        return \Http::get('https://payment.fintech.ovh/api/sepa/new_ics')->body();
     }
 }
