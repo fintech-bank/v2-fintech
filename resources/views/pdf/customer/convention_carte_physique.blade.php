@@ -27,9 +27,9 @@
             </tr>
             <tr>
                 <td>Service VISU souscrit : NON</td>
+                <td>Catégorie de carte selon le règlement (UE) 2015/751 du 29/04/2015 : Débit</td>
             </tr>
             <tr>
-                <td>Catégorie de carte selon le règlement (UE) 2015/751 du 29/04/2015 : Débit</td>
                 <td>Carte dotée de la fonctionnalité sans contact : {{ $data->card->isContact() ? 'OUI' : 'NON' }}</td>
             </tr>
         </tbody>
