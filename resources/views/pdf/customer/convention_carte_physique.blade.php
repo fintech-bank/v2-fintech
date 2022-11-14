@@ -9,5 +9,5 @@
     <div class="">Date de naissance : {{ $customer->info->datebirth->format('d/m/Y') }}</div>
     @endif
     <div class="">Adresse : {{ $customer->info->line_address }}</div>
-    <div class="separator my-3"></div>
+    <div class="separator border-2 my-3"></div>
 @endsection
