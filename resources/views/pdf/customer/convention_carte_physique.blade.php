@@ -25,6 +25,13 @@
                 <td>Type de carte : {{ $customer->info->type_text }}</td>
                 <td>Type de débit : {{ $data->card->debit_format }}</td>
             </tr>
+            <tr>
+                <td rowspan="2">Service VISU souscrit : NON</td>
+            </tr>
+            <tr>
+                <td>Catégorie de carte selon le règlement (UE) 2015/751 du 29/04/2015 : Débit</td>
+                <td>Carte dotée de la fonctionnalité sans contact : {{ $data->card->isDebit() ? 'OUI' : 'NON' }}</td>
+            </tr>
         </tbody>
     </table>
 @endsection
