@@ -211,9 +211,8 @@ class LifeCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->line('Nombre de nouveau client: ' . $r);
-        $this->output->table(['client', 'Etat du compte'], $arr);
-        dd($this->getOutput());
-        $this->slack->send("Nouveau client", [$this->getOutput()]);
+
+        $this->slack->send("Nouveau client", [$this->output->table(['client', 'Etat du compte'], $arr)]);
     }
 
     /**
