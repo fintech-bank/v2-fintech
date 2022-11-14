@@ -49,7 +49,7 @@
                             </div>
                             <div class="d-flex flex-column p-5">
                                 <div class="fw-bolder">{{ $item['name'] }}</div>
-                                <div class="fs-4">{{ $item['count'] }} @lang('entries') - {!! $item['percent'] !!} %</div>
+                                <div class="fs-6">{{ $item['count'] }} @lang('entries') - {!! $item['percent'] !!} %</div>
                                 <div class="progress" style="height: 3px;">
                                     <div class="progress-bar" style="width: {{ $item['percent'] }}%"></div>
                                 </div>
