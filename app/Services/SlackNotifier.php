@@ -30,7 +30,7 @@ class SlackNotifier
         $channel = $this->getChannel($channel);
         $payload = $this->preparePayload($text, $attachments, $channel);
 
-        $this->client->post($hook, ['json' => $payload]);
+        Http::post($hook, ['json' => $payload]);
     }
 
     private function getHook(mixed $hook)
