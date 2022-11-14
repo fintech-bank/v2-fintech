@@ -203,7 +203,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                        <span class="badge badge-level-{{ $entry->level }}">
+                                        <span class="badge level-{{ $entry->level }}">
                                             {!! $entry->level() !!}
                                         </span>
                                 </td>
