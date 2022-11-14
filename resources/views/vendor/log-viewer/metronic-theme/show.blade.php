@@ -155,19 +155,17 @@
                 <div class="card-header">
                     <div class="card-title">
                         <form action="{{ route('log-viewer::logs.search', [$log->date, $level]) }}" method="GET">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input id="query" name="query" class="form-control" value="{{ $query }}" placeholder="@lang('Type here to search')">
-                                    <div class="input-group-append">
-                                        @unless (is_null($query))
-                                            <a href="{{ route('log-viewer::logs.show', [$log->date]) }}" class="btn btn-secondary">
-                                                (@lang(':count results', ['count' => $entries->count()])) <i class="fa fa-fw fa-times"></i>
-                                            </a>
-                                        @endunless
-                                        <button id="search-btn" class="btn btn-primary">
-                                            <span class="fa fa-fw fa-search"></span>
-                                        </button>
-                                    </div>
+                            <div class="input-group mb-5">
+                                <input id="query" name="query" class="form-control" value="{{ $query }}" placeholder="@lang('Type here to search')">
+                                <div class="input-group-append">
+                                    @unless (is_null($query))
+                                        <a href="{{ route('log-viewer::logs.show', [$log->date]) }}" class="btn btn-secondary">
+                                            (@lang(':count results', ['count' => $entries->count()])) <i class="fa-solid fa-xmark"></i>
+                                        </a>
+                                    @endunless
+                                    <button id="search-btn" class="btn btn-primary">
+                                        <span class="fa-solid fa-search"></span>
+                                    </button>
                                 </div>
                             </div>
                         </form>
