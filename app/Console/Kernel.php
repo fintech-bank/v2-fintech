@@ -23,43 +23,17 @@ class Kernel extends ConsoleKernel
         // Administration
         $schedule->command('system:admin deleteLog')
             ->twiceMonthly(1, 16, '00:00')
-            ->description("Suppression des logs bancaires [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', 'Suppression des logs bancaire', $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', 'Suppression des logs bancaire', $output);
-            });
+            ->description("Suppression des logs bancaires [log]");
 
         $schedule->command('system:admin shipTpe')
             ->dailyAt('08:00')
-            ->description("Mise à jour des trackers d'envoie [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Mise à jours des trackers d'envoie", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Mise à jours des trackers d'envoie", $output);
-            });
+            ->description("Mise à jour des trackers d'envoie [log]");
 
         $schedule->command('system:admin generateInvoiceReseller')
             ->lastDayOfMonth()
-            ->description("Génération des factures des distributeurs [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Génération des factures des distributeur", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Génération des factures des distributeur", $output);
-            });
+            ->description("Génération des factures des distributeurs [log]");
 
-        $schedule->command('system:admin notifyResellerInvoicePayment')
-            ->daily()
-            ->description("Paiement des factures de distributeur [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Paiement des factures de distributeur", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Paiement des factures de distributeur", $output);
-            });
+        $schedule->command('system:admin notifyResellerInvoicePayment');
 
 
         // Agent
@@ -75,148 +49,64 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('system:agent updateCotation')
             ->daily()
-            ->description("Mise à jour des cotation client [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Mise à jours des cotations clients", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Mise à jours des cotations clients", $output);
-            });
+            ->description("Mise à jour des cotation client [log]");
 
         $schedule->command('system:agent verifRequestLoanOpen')
             ->everySixHours()
-            ->description("Vérification des pret ouvert et les met en étude [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Vérification des pret ouvert et les mets en étude", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Vérification des pret ouvert et les mets en étude", $output);
-            });
+            ->description("Vérification des pret ouvert et les met en étude [log]");
 
         $schedule->command('system:agent chargeLoanAccepted')
             ->dailyAt('08:00:00')
-            ->description("Libération du montant du pret bancaire [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Libération du montant du pret bancaire", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Libération du montant du pret bancaire", $output);
-            });
+            ->description("Libération du montant du pret bancaire [log]");
 
         $schedule->command('system:agent executeSepaOrders')
             ->everySixHours()
-            ->description("Execution des prélèvements bancaires [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Execution des prélèvements bancaires", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Execution des prélèvements bancaires", $output);
-            });
+            ->description("Execution des prélèvements bancaires [log]");
 
         $schedule->command('system:agent executeTransactionComing')
             ->everySixHours()
-            ->description("Execution des transactions entrente [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Transactions Entrentes", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Transactions Entrentes", $output);
-            });
+            ->description("Execution des transactions entrente [log]");
 
         $schedule->command('system:agent executeActiveAccount')
             ->everySixHours()
-            ->description("Passage des compte accepté à terminer [log]'")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Passage des comptes accepté vers terminer", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Passage des comptes accepté vers terminer", $output);
-            });
+            ->description("Passage des compte accepté à terminer [log]'");
 
         $schedule->command('system:agent executeVirement')
             ->everySixHours()
-            ->description("Exécution des virements bancaires [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Exécution des virements bancaires", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Exécution des virements bancaires", $output);
-            });
+            ->description("Exécution des virements bancaires [log]");
 
         // Life
         $schedule->command("life generateCustomers")
             ->everyFourHours()
             ->between('08:00','20:00')
-            ->description("Nouveau client [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Nouveau client", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Nouveau client", $output);
-            });
+            ->description("Nouveau client [log]");
 
         $schedule->command("life generateSalary")
             ->monthlyOn(1)->at('08:00')
-            ->description("Virement des Salaires [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Virement des Salaires", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Virement des Salaires", $output);
-            });
+            ->description("Virement des Salaires [log]");
 
         $schedule->command("life generateDebit")
             ->hourly()
             ->between('08:00','23:59')
-            ->description("Génération des débits bancaires [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Génération des débits bancaires", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Génération des débits bancaires", $output);
-            });
+            ->description("Génération des débits bancaires [log]");
 
         $schedule->command("life generatePrlvSepa")
             ->everySixHours()
             ->between('08:00','17:00')
-            ->description("Nouveau prélèvement SEPA [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Nouveau prélèvement SEPA", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Nouveau prélèvement SEPA", $output);
-            });
+            ->description("Nouveau prélèvement SEPA [log]");
 
         $schedule->command("life generateMensualReleve")
             ->monthlyOn(30)->at('08:00')
-            ->description("Génération des relevés bancaires [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Génération des relevés bancaires", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Génération des relevés bancaires", $output);
-            });
+            ->description("Génération des relevés bancaires [log]");
 
         $schedule->command("life limitWithdraw")
             ->dailyAt('08:00')
-            ->description("Suppression des retraits bancaire non effectuer/valider [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Suppression des retraits bancaire non effectuer/valider", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Suppression des retraits bancaire non effectuer/valider", $output);
-            });
+            ->description("Suppression des retraits bancaire non effectuer/valider [log]");
 
         $schedule->command("life alerta")
             ->weeklyOn(7)
             ->between('08:00', '17:00')
-            ->description("Envoie d'un relevé flash [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Envoie du relevé flash", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Envoie du relevé flash", $output);
-            });
+            ->description("Envoie d'un relevé flash [log]");
 
         $this->monitor($schedule);
     }
