@@ -65,7 +65,7 @@
                                     <span class="badge empty">{{ $value }}</span>
                                 @else
                                     <a href="{{ route('log-viewer::logs.filter', [$date, $key]) }}">
-                                        <span class="badge badge-level-{{ $key }}">{{ $value }}</span>
+                                        <span class="badge level-{{ $key }}">{{ $value }}</span>
                                     </a>
                                 @endif
                             </td>
