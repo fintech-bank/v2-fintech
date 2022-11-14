@@ -60,7 +60,7 @@
     </div>
     <p>Pour votre sécurité, votre nouvelle carte est fabriquée et transportée inactive. Pour l'activer, vous devez effectuer un retrait sur
         un distributeur automatique de billets ou un paiement chez un commerçant, validé par votre code confidentiel*.</p>
-
+    <div class="page-break"></div>
     <p class="fs-underline">En signant les présentes Conditions Particulières,</p>
     <ul>
         <li>
