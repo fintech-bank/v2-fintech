@@ -19,6 +19,7 @@
         <tbody>
             <tr>
                 <td>Référence du contrat : {{ $document->reference }}</td>
+                <td>N°de compte support de la carte : : {{ $data->card->wallet->number_account }}</td>
             </tr>
         </tbody>
     </table>
