@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Customer;
 
+use App\Helper\CustomerTransactionHelper;
 use App\Http\Controllers\Controller;
 use App\Jobs\Customer\AcceptSepaJob;
 use App\Models\Core\Agency;
@@ -9,6 +10,7 @@ use App\Models\Customer\CustomerSepa;
 use App\Notifications\Customer\RejectSepaNotification;
 use App\Services\Fintech\Payment\Sepa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SepaController extends Controller
 {
@@ -62,5 +64,22 @@ class SepaController extends Controller
     private function rembSepa(CustomerSepa $sepa)
     {
         $call = $this->sepa->rembSepaRequest($sepa);
+        if($call) {
+            $sepa->update([
+                'status' => 'refunded'
+            ]);
+
+            CustomerTransactionHelper::create(
+                'credit',
+                'sepa',
+                "Remboursement PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor}",
+                Str::replace('-', '', $sepa->amount),
+                $sepa->wallet->id,
+                true,
+                "Remboursement PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor}",
+                now()
+            );
+
+        }
     }
 }

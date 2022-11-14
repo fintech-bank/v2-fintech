@@ -93,9 +93,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        $s = new Sepa();
-        $sepa = CustomerSepa::find(1);
 
-        dd($s->rembSepaRequest($sepa));
     }
 }
