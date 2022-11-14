@@ -594,14 +594,14 @@
                         elements.showSepa.querySelector('[data-content="iban"]').innerHTML = data.sepa.wallet.iban
                         elements.showSepa.querySelector('[data-content="bic"]').innerHTML = data.agency.bic
 
-                        elements.showSepa.querySelector('[data-content="creditor_name"]').innerHTML = data.sepa.creditor.name
-                        elements.showSepa.querySelector('[data-content="creditor_id"]').innerHTML = data.sepa.creditor.identifiant
+                        elements.showSepa.querySelector('[data-content="creditor_name"]').innerHTML = data.sepa.creditors.name
+                        elements.showSepa.querySelector('[data-content="creditor_id"]').innerHTML = data.sepa.creditors.identifiant
 
                         elements.showSepa.querySelector('[data-content="mandate_reference"]').innerHTML = data.sepa.number_mandate
 
                         elements.showSepa.querySelector('[data-content="mandat_amount"]').innerHTML = data.sepa.amount_format
                         elements.showSepa.querySelector('[data-content="status"]').innerHTML = `${data.sepa.status_text} le ${data.sepa.updated_at_format}`
-                        elements.showSepa.querySelector('[data-content="mandat_motif"]').innerHTML = `${data.sepa.creditor.identifiant}/${data.sepa.wallet.number_account}/${data.sepa.number_mandate}`
+                        elements.showSepa.querySelector('[data-content="mandat_motif"]').innerHTML = `${data.sepa.creditors.identifiant}/${data.sepa.wallet.number_account}/${data.sepa.number_mandate}`
 
                         if(data.sepa.status === 'waiting') {
                             elements.showSepa.querySelector('[data-content="btnAction"]').innerHTML = `
