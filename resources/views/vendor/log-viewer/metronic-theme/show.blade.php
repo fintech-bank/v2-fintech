@@ -258,10 +258,87 @@
                     </table>
                 </div>
             </div>
+
+            {!! $entries->appends(compact('query'))->render() !!}
+        </div>
+    </div>
+    <div id="delete-log-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <form id="delete-log-form" action="{{ route('log-viewer::logs.delete') }}" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="date" value="{{ $log->date }}">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">@lang('Delete log file')</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>@lang('Are you sure you want to delete this log file: :date ?', ['date' => $log->date])</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary mr-auto" data-dismiss="modal">@lang('Cancel')</button>
+                        <button type="submit" class="btn btn-sm btn-danger" data-loading-text="@lang('Loading')&hellip;">@lang('Delete')</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
 
 @section("script")
+    <script>
+        $(function () {
+            var deleteLogModal = $('div#delete-log-modal'),
+                deleteLogForm  = $('form#delete-log-form'),
+                submitBtn      = deleteLogForm.find('button[type=submit]');
 
+            deleteLogForm.on('submit', function(event) {
+                event.preventDefault();
+                submitBtn.button('loading');
+
+                $.ajax({
+                    url:      $(this).attr('action'),
+                    type:     $(this).attr('method'),
+                    dataType: 'json',
+                    data:     $(this).serialize(),
+                    success: function(data) {
+                        submitBtn.button('reset');
+                        if (data.result === 'success') {
+                            deleteLogModal.modal('hide');
+                            location.replace("{{ route('log-viewer::logs.list') }}");
+                        }
+                        else {
+                            alert('OOPS ! This is a lack of coffee exception !')
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        alert('AJAX ERROR ! Check the console !');
+                        console.error(errorThrown);
+                        submitBtn.button('reset');
+                    }
+                });
+
+                return false;
+            });
+
+            @unless (empty(log_styler()->toHighlight()))
+            @php
+                $htmlHighlight = version_compare(PHP_VERSION, '7.4.0') >= 0
+                    ? join('|', log_styler()->toHighlight())
+                    : join(log_styler()->toHighlight(), '|');
+            @endphp
+
+            $('.stack-content').each(function() {
+                var $this = $(this);
+                var html = $this.html().trim()
+                    .replace(/({!! $htmlHighlight !!})/gm, '<strong>$1</strong>');
+
+                $this.html(html);
+            });
+            @endunless
+        });
+    </script>
 @endsection
