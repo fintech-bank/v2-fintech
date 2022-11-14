@@ -21,6 +21,7 @@ use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\GeoPortailLook;
 use App\Services\PushbulletApi;
+use App\Services\SlackNotifier;
 use App\Services\Twilio\Lookup;
 use App\Services\Twilio\Messaging\Whatsapp;
 use App\Services\YousignApi;
@@ -93,7 +94,17 @@ class HomeController extends Controller
 
     public function test()
     {
-        $s = new Sepa();
-        dd($s->generateICS());
+        $slack = new SlackNotifier("#fintech-site");
+        $blocks = [
+            [
+                'type' => "section",
+                'text' => [
+                    'type' => 'plain_text',
+                    'text' => "Lorem Ispum"
+                ]
+            ]
+        ];
+
+        $slack->send("Binevnue", json_encode($blocks));
     }
 }
