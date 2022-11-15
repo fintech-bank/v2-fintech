@@ -89,11 +89,11 @@
                     <div class="d-flex flex-row w-400px justify-content-between align-items-center mb-5">
                         <div class="d-flex flex-column fs-2">
                             <div class="fw-bolder">Crédit Renouvelable</div>
-                            <div class="fs-3">N° {{ $card->facelias->reference }}</div>
+                            <div class="fs-3">N° {{ $facelia->card->facelias->reference }}</div>
                         </div>
-                        @if($card->pret->alert == 1)
+                        @if($facelia->card->pret->alert == 1)
                             <div class="symbol symbol-50px symbol-circle" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="tooltip-dark"
-                                 title="{{ "Votre dossier présente un retard de paiement de ".eur($card->facelias->amount_du).".Pour éviter une procédure de recouvrement, il est important de régulariser votre situation." }}">
+                                 title="{{ "Votre dossier présente un retard de paiement de ".eur($facelia->card->facelias->amount_du).".Pour éviter une procédure de recouvrement, il est important de régulariser votre situation." }}">
                                 <div class="symbol-label">
                                     <i class="fa-solid fa-exclamation-triangle fa-2x text-warning"></i>
                                 </div>
@@ -104,31 +104,31 @@
                     <div class="d-flex flex-column w-400px">
                         <div class="d-flex flex-row justify-content-between p-3 pb-5 fs-3 border-bottom">
                             <div class="fw-bolder">Prochain Prélèvement</div>
-                            <div class="fs-4 text-primary fw-bold">{{ eur($card->facelias->amount_du) }}</div>
+                            <div class="fs-4 text-primary fw-bold">{{ eur($facelia->card->facelias->amount_du) }}</div>
                         </div>
                         <div class="d-flex flex-row justify-content-between align-items-center p-3 fs-4 border-bottom">
                             <div class="fw-bold w-50">
                                 Vos opérations au comptant
-                                @if(\App\Helper\CustomerFaceliaHelper::calcComptantMensuality($card->wallet) > 0)
-                                    <span class="fs-8">Prélevé le {{ $card->facelias->next_expiration->format('d/m/Y') }}</span>
+                                @if(\App\Helper\CustomerFaceliaHelper::calcComptantMensuality($facelia->card->wallet) > 0)
+                                    <span class="fs-8">Prélevé le {{ $facelia->card->facelias->next_expiration->format('d/m/Y') }}</span>
                                 @endif
                             </div>
-                            <div class="fs-5 text-primary fw-bold text-right">{{ eur(\App\Helper\CustomerFaceliaHelper::calcComptantMensuality($card->wallet)) }}</div>
+                            <div class="fs-5 text-primary fw-bold text-right">{{ eur(\App\Helper\CustomerFaceliaHelper::calcComptantMensuality($facelia->card->wallet)) }}</div>
                         </div>
                         <div class="d-flex flex-row justify-content-between align-items-center p-3 fs-4 border-bottom border-bottom-4 border-gray-600">
                             <div class="fw-bold w-50">
                                 Vos opérations selon votre mensualité choisie
-                                @if(\App\Helper\CustomerFaceliaHelper::calcOpsSepaMensuality($card->pret->wallet) > 0)
-                                    <span class="fs-8">Prélevé le {{ $card->facelias->next_expiration->format('d/m/Y') }}</span>
+                                @if(\App\Helper\CustomerFaceliaHelper::calcOpsSepaMensuality($facelia->card->pret->wallet) > 0)
+                                    <span class="fs-8">Prélevé le {{ $facelia->card->facelias->next_expiration->format('d/m/Y') }}</span>
                                 @endif
                             </div>
-                            <div class="fs-5 text-primary fw-bold text-right">{{ eur(\App\Helper\CustomerFaceliaHelper::calcOpsSepaMensuality($card->pret->wallet)) }}</div>
+                            <div class="fs-5 text-primary fw-bold text-right">{{ eur(\App\Helper\CustomerFaceliaHelper::calcOpsSepaMensuality($facelia->card->pret->wallet)) }}</div>
                         </div>
                         <div class="d-flex flex-row justify-content-between align-items-center p-3 fs-3 border-bottom">
                             <div class="fw-bolder w-50">
                                 Montant Disponible
                             </div>
-                            <div class="fs-4 text-success fw-bold text-right">{{ eur($card->facelias->amount_available) }}</div>
+                            <div class="fs-4 text-success fw-bold text-right">{{ eur($facelia->card->facelias->amount_available) }}</div>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                         <tbody>
                         <tr>
                             <td class="fw-bolder">Plafond du crédit renouvelable</td>
-                            <td>{{ eur($card->facelias->pret->amount_loan) }}</td>
+                            <td>{{ eur($facelia->card->facelias->pret->amount_loan) }}</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -145,17 +145,17 @@
                                 Montant disponible*<br>
                                 <span class="fs-6 fw-normal">*sous réserve des opérations en cours</span>
                             </td>
-                            <td>{{ eur($card->facelias->amount_available) }}</td>
+                            <td>{{ eur($facelia->card->facelias->amount_available) }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td class="fw-bolder">Montant utilisé</td>
-                            <td>{{ eur($card->facelias->amount_du - $card->facelias->amount_available) }}</td>
+                            <td>{{ eur($facelia->card->facelias->amount_du - $facelia->card->facelias->amount_available) }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td class="fw-bolder">Montant restant du</td>
-                            <td>{{ eur($card->facelias->amount_du) }}</td>
+                            <td>{{ eur($facelia->card->facelias->amount_du) }}</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -163,19 +163,19 @@
                                 Montant de vos opérations au comptant*<br>
                                 <span class="fs-6 fw-normal">(achats différés du mois)</span>
                             </td>
-                            <td>{{ eur(\App\Helper\CustomerFaceliaHelper::calcComptantMensuality($card->facelias->wallet)) }}</td>
+                            <td>{{ eur(\App\Helper\CustomerFaceliaHelper::calcComptantMensuality($facelia->card->facelias->wallet)) }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td class="fw-bolder">Mensualité actuel</td>
-                            <td>{{ eur($card->facelias->mensuality) }}</td>
+                            <td>{{ eur($facelia->card->facelias->mensuality) }}</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td class="fw-bolder">Date de prélèvement</td>
                             <td>
-                                @if($card->facelias->mensuality != 0)
-                                    {{ $card->facelias->nex_expiration->format('d/m/Y') }}
+                                @if($facelia->card->facelias->mensuality != 0)
+                                    {{ $facelia->card->facelias->nex_expiration->format('d/m/Y') }}
                                 @else
                                     Aucune Echéance à devoir
                                 @endif
