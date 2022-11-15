@@ -78,6 +78,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Customer wherePersonaReferenceId($value)
  * @property-read mixed $next_debit_package
  * @property-read BusinessParam|null $business
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerRequest[] $requests
+ * @property-read int|null $requests_count
  */
 class Customer extends Model
 {

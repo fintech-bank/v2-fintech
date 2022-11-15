@@ -38,6 +38,11 @@ Route::prefix('customer')->middleware(['auth', 'customer'])->group(function () {
 
         Route::prefix('documents')->group(function () {
             Route::get("/", [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'index'])->name('customer.account.documents.index');
+
+            Route::prefix('request')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'show'])->name('customer.document.request');
+                Route::get('{reference}', [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'showRequest'])->name('customer.document.request.show');
+            });
         });
 
         Route::prefix('profil')->group(function () {

@@ -138,6 +138,10 @@ class CreditCardController extends ApiController
 
     private function oppositCard(\App\Models\Customer\CustomerCreditCard $card, Request $request)
     {
+        $card->wallet->customer->requests()->create([
+            'sujet' => "Opposition sur la carte bancaire {$card->number_card_oscure}",
+        ]);
+
 
     }
 }

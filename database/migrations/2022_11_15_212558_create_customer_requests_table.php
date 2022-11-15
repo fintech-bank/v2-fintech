@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('customer_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('reference')->default(generateReference(15));
             $table->string('sujet');
             $table->enum('status', ['waiting', 'progress', 'terminated', 'expired'])->default('waiting');
             $table->timestamps();
