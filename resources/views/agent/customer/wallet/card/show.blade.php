@@ -47,7 +47,7 @@
 @section("content")
     <div class="d-flex flex-row border border-{{ $card->getStatus('color') }} justify-content-between rounded rounded-2 bg-gray-300 p-5 shadow-lg">
         <div class="d-flex flex-row">
-            <div class="symbol symbol-175px symbol-2by3 ribbon ribbon-bottom-start ribbon-clip">
+            <div class="symbol symbol-175px symbol-2by3 ribbon ribbon-start ribbon-clip">
                 <img src="{{ $card->logo_card }}" alt="">
                 <div class="ribbon-label">
                     <i class="fa-solid fa-{{ $card->getStatus('icon') }} text-white me-2"></i> {{ $card->getStatus('text') }}
