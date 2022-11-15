@@ -501,9 +501,6 @@ class LifeCommand extends Command
         $duration = ['low', 'middle', 'fast'];
         $amount_loan = $amount[rand(0, 5)];
         $vitesse = $duration[rand(0, 2)];
-        $interestTaxe = CustomerLoanHelper::calcVariableTaxeInterest($vitesse);
-        $interest = CustomerLoanHelper::getLoanInterest($amount_loan, $interestTaxe);
-        $du = $amount_loan + $interest;
 
         $number_account = random_numeric(9);
         $ibanG = new Generator($customer->user->agency->code_banque, $number_account, 'fr');
@@ -521,9 +518,9 @@ class LifeCommand extends Command
 
         $pr = CustomerPret::factory()->create([
             'amount_loan' => $amount_loan,
-            'amount_interest' => $interest,
-            'amount_du' => $du,
-            'mensuality' => $du / CustomerLoanHelper::getPeriodicMensualityFromVitess($vitesse),
+            'amount_interest' => 0,
+            'amount_du' => 0,
+            'mensuality' => 0,
             'prlv_day' => 30,
             'duration' => CustomerLoanHelper::getPeriodicMensualityFromVitess($vitesse),
             'status' => 'accepted',
@@ -532,6 +529,15 @@ class LifeCommand extends Command
             'first_payment_at' => Carbon::create(now()->year, now()->addMonth()->month, 30),
             'loan_plan_id' => 6,
             'customer_id' => $customer->id,
+        ]);
+        $interestTaxe = CustomerLoanHelper::calcLoanIntestVariableTaxe($pr);
+        $interest = CustomerLoanHelper::getLoanInterest($amount_loan, $interestTaxe);
+        $du = $amount_loan + $interest;
+
+        $pr->update([
+            'amount_du' => $du,
+            'mensuality' => $du / CustomerLoanHelper::getPeriodicMensualityFromVitess($vitesse),
+            'interest' => $interest
         ]);
 
         $card->update([

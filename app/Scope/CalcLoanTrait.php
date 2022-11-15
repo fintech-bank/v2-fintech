@@ -9,14 +9,14 @@ use App\Models\Customer\CustomerSepa;
 trait CalcLoanTrait
 {
     use CalcLoanInsuranceTrait;
-    public static function getLoanInterest($amount_loan, $interest_percent)
+    public static function getLoanInterest($amount_loan, $interest_percent): float|int
     {
         return $amount_loan * $interest_percent / 100;
     }
 
-    public static function calcRestantDu($loan, $euro = true)
+    public static function calcRestantDu($loan, $euro = true): mixed
     {
-        if ($euro == true) {
+        if ($euro) {
             $prlv_effect = CustomerSepa::query()->where('status', 'processed')->where('creditor', config('app.name'))->sum('amount');
             $calc = $loan->amount_du - $prlv_effect;
 
@@ -28,18 +28,18 @@ trait CalcLoanTrait
         }
     }
 
-    public static function calcMensuality(Customer $customer, CustomerPret $pret, $assurance = 'D')
+    public static function calcMensuality(Customer $customer, CustomerPret $pret, $assurance = 'D'): float|int
     {
         $ass = self::calcul($customer, $pret, $assurance);
 
         $subtotal = $pret->amount_loan + $ass['total'];
         $subInterest = self::getLoanInterest($pret->amount_loan, $pret->plan->tarif->type_taux == 'fixe' ? $pret->plan->tarif->interest : self::calcLoanIntestVariableTaxe($pret));
-        $int_mensuality = $subInterest / $duration;
+        $int_mensuality = $subInterest / $pret->duration;
 
-        return ($subtotal / $duration) + $int_mensuality;
+        return ($subtotal / $pret->duration) + $int_mensuality;
     }
 
-    public static function calcLoanIntestVariableTaxe(CustomerPret $pret)
+    public static function calcLoanIntestVariableTaxe(CustomerPret $pret): float
     {
         $min = $pret->plan->tarif->min_interest;
         $max = $pret->plan->tarif->max_interest;
@@ -55,5 +55,14 @@ trait CalcLoanTrait
         } else {
             return $max;
         }
+    }
+
+    public static function getPeriodicMensualityFromVitess($vitesse = 'low'): int
+    {
+        return match ($vitesse) {
+            'low' => 36,
+            'middle' => 24,
+            default => 12,
+        };
     }
 }
