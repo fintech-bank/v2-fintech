@@ -45,7 +45,7 @@
 @endsection
 
 @section("content")
-    <div class="d-flex flex-row border border-{{ $card->getStatus('color') }} justify-content-between rounded rounded-2 bg-gray-300 p-5 shadow-lg">
+    <div class="d-flex flex-row border border-{{ $card->getStatus('color') }} justify-content-between rounded rounded-2 bg-gray-300 p-5 mb-10 shadow-lg">
         <div class="d-flex flex-row">
             <div class="symbol symbol-175px symbol-2by3 ribbon ribbon-start ribbon-clip">
                 <img src="{{ $card->logo_card }}" alt="">
@@ -173,6 +173,21 @@
             </div>
         </div>
     </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h3 class="card-title">Carte bancaire {{ $card->number_format }}</h3>
+            <div class="card-toolbar">
+                <!--<button type="button" class="btn btn-sm btn-light">
+                    Action
+                </button>-->
+            </div>
+        </div>
+        <div class="card-body">
+            
+        </div>   
+    </div>
+
 @endsection
 
 @section("script")
