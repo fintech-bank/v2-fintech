@@ -11,6 +11,6 @@ class CreditCardController extends Controller
     {
         $card = CustomerCreditCard::find($card_id);
 
-        dd($card);
+        return view('agent.customer.wallet.card.show', compact('card'));
     }
 }
