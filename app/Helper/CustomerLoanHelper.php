@@ -58,7 +58,7 @@ class CustomerLoanHelper
                 'mensuality' => 0,
                 'wallet_payment_id' => $wallet->id,
                 'customer_pret_id' => $loan->id,
-                'customer_credit_card_id' => $card,
+                'customer_credit_card_id' => $card->id,
                 'customer_wallet_id' => $loan->wallet->id,
             ]);
 
