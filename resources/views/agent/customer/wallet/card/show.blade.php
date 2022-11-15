@@ -246,6 +246,7 @@
                             @endif
                         </div>
                     </div>
+                    <x-form.button />
                 </form>
             </div>
             <div id="divSendCodeCard">
@@ -291,7 +292,20 @@
                     </div>
                 </form>
             </div>
-            <div id="divFaceliaCard"></div>
+            <div id="divFaceliaCard">
+                <form id="formFaceliaCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="action" value="facelia">
+
+                    <div class="mb-10">
+                        <label for="debit" class="form-label">Type de débit</label>
+                        <select name="debit" id="debit" class="form-control form-control-solid" data-control="select2">
+                            <option value="immediat" {{ $card->debit == 'immediate' ? 'selected' : '' }}>Débit Immédiat</option>
+                            <option value="differed" {{ $card->debit == 'differed' ? 'selected' : '' }}>Débit Différé</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
             <div id="divCancelCard"></div>
             <div id="divOppositCard"></div>
         </div>
