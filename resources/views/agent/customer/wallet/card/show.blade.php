@@ -174,7 +174,7 @@
         </div>
     </div>
 
-    <div class="card shadow-sm">
+    <div class="card shadow-sm {{ $card->opposit() }}">
         <div class="card-header">
             <h3 class="card-title">Carte bancaire {{ $card->number_format }}</h3>
             <div class="card-toolbar">
