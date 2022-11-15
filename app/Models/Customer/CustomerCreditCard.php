@@ -166,7 +166,7 @@ class CustomerCreditCard extends Model
 
     public function getDebitFormatAttribute()
     {
-        if($this->debit == 'immediat') {
+        if($this->debit == 'immediate') {
             return "Débit Immédiat";
         } else {
             return "Débit Différé";
