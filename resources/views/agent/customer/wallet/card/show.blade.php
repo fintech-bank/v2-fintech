@@ -248,7 +248,7 @@
                     </div>
                 </form>
             </div>
-            <div id="divSendCodeCard" class="d-none">
+            <div id="divSendCodeCard">
                 <form id="formSendCodeCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST">
                     @csrf
                     <input type="hidden" name="action" value="send_code">
@@ -291,9 +291,9 @@
                     </div>
                 </form>
             </div>
-            <div id="divFaceliaCard" class="d-none"></div>
-            <div id="divCancelCard" class="d-none"></div>
-            <div id="divOppositCard" class="d-none"></div>
+            <div id="divFaceliaCard"></div>
+            <div id="divCancelCard"></div>
+            <div id="divOppositCard"></div>
         </div>
     </div>
 
