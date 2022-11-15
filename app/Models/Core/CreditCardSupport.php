@@ -37,11 +37,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CreditCardSupport whereTypeCustomer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CreditCardSupport whereVisaSpec($value)
  * @mixin \Eloquent
+ * @property-read mixed $choice_code_text
+ * @property-read mixed $payment_abroad_text
+ * @property-read mixed $payment_contact_text
+ * @property-read mixed $payment_internet_text
+ * @property-read mixed $visa_spec_text
  */
 class CreditCardSupport extends Model
 {
     protected $guarded = [];
     public $timestamps = false;
+    protected $appends = ['payment_internet_text', 'payment_abroad_text', 'payment_contact_text', 'visa_spec_text', 'choice_code_text'];
 
     public function creditcards()
     {
@@ -51,5 +57,30 @@ class CreditCardSupport extends Model
     public function insurance()
     {
         return $this->hasOne(CreditCardInsurance::class);
+    }
+
+    public function getPaymentInternetTextAttribute()
+    {
+        return "Paiement sur Internet";
+    }
+
+    public function getPaymentAbroadTextAttribute()
+    {
+        return "Paiement/Retrait à l'étranger";
+    }
+
+    public function getPaymentContactTextAttribute()
+    {
+        return "Paiement sans contact";
+    }
+
+    public function getVisaSpecTextAttribute()
+    {
+        return "Garantie Visa";
+    }
+
+    public function getChoiceCodeTextAttribute()
+    {
+        return "Possibilité de changer de code secret";
     }
 }

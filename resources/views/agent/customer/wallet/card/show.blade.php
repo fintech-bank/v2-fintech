@@ -60,8 +60,13 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex rounded bg-light p-5 shadow-lg">
-            dsdsq
+        <div class="d-flex flex-row justify-content-between rounded bg-light p-5 shadow-lg">
+            <div class="d-flex flex-row">
+                <i class="fa-solid fa-check text-success fs-2 me-3"></i>
+                <div class="d-flex flex-column">
+
+                </div>
+            </div>
         </div>
     </div>
 @endsection
