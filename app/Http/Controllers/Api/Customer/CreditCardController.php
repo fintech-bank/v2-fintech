@@ -6,12 +6,12 @@ use App\Helper\CustomerCreditCard;
 use App\Helper\CustomerFaceliaHelper;
 use App\Helper\CustomerTransactionHelper;
 use App\Helper\LogHelper;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiController;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\SendCreditCardCodeNotification;
 use Illuminate\Http\Request;
 
-class CreditCardController extends Controller
+class CreditCardController extends ApiController
 {
     public function store($customer_id, $number_account, Request $request)
     {
@@ -99,18 +99,21 @@ class CreditCardController extends Controller
 
     private function facelia(\App\Models\Customer\CustomerCreditCard $card, Request $request)
     {
-        try {
-            CustomerFaceliaHelper::create(
-                $card->wallet,
-                $card->wallet->customer,
-                $request->get('amount_available'),
-                $card
-            );
-        }catch (\Exception $exception) {
-            LogHelper::notify('critical', $exception->getMessage(), $exception);
-            return response()->json(null, 500);
+        if (CustomerFaceliaHelper::verify($card->wallet->customer, true, $card)) {
+            try {
+                CustomerFaceliaHelper::create(
+                    $card->wallet,
+                    $card->wallet->customer,
+                    $request->get('amount_available'),
+                    $card
+                );
+            }catch (\Exception $exception) {
+                return $this->sendError($exception->getMessage(), $exception);
+            }
+        } else {
+            return $this->sendWarning();
         }
 
-        return response()->json();
+        return $this->sendSuccess();
     }
 }

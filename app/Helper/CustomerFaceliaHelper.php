@@ -2,52 +2,24 @@
 
 namespace App\Helper;
 
+use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerFacelia;
+use App\Models\Customer\CustomerWallet;
+use App\Scope\VerifCompatibilityBeforeLoanTrait;
 
 class CustomerFaceliaHelper
 {
-    public static function calcComptantMensuality($wallet)
+    use VerifCompatibilityBeforeLoanTrait;
+    public static function calcComptantMensuality(CustomerWallet $wallet)
     {
         return $wallet->transactions()->where('type', 'facelia')->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->sum('amount');
     }
 
-    public static function calcOpsSepaMensuality($wallet)
+    public static function calcOpsSepaMensuality(CustomerWallet $wallet)
     {
         return $wallet->transactions()->where('type', 'sepa')->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->sum('amount');
     }
 
-    public static function calcMensuality($comptant, $sepa)
-    {
-        return $comptant + $sepa;
-    }
-
-    public static function verifCompatibility($customer, $card)
-    {
-        $score = 0;
-
-        // Verif Coefficient
-        $coef = $customer->cotation;
-        if ($coef <= 6) {
-            $score--;
-        } else {
-            $score++;
-        }
-
-        // Verifie si FICP
-        if ($customer->ficp == 1) {
-            $score--;
-        } else {
-            $score++;
-        }
-
-        if ($card->support == 'premium' || $card->support == 'infinite') {
-            $score++;
-        } else {
-            $score--;
-        }
-
-        return $score;
-    }
 
     public static function create($wallet, $customer, $amount, $card)
     {
