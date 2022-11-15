@@ -53,8 +53,10 @@
             <div class="fw-bolder fs-2">CB {{ $card->support->name }}</div>
             <span class="mb-3">{{ $card->debit_format }}</span>
             <a href="">{{ $card->wallet->name_account_generic }}</a>
-            <button class="btn btn-lg btn-circle btn-outline btn-outline-danger">Vérouiller la carte</button>
-            <button class="btn btn-lg btn-circle btn-danger">Opposition</button>
+            <div class="d-flex flex-row">
+                <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3">Vérouiller la carte</button>
+                <button class="btn btn-lg btn-circle btn-danger">Opposition</button>
+            </div>
         </div>
     </div>
 @endsection
