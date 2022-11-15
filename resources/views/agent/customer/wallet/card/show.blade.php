@@ -180,7 +180,7 @@
             <div class="card-toolbar">
                 <button class="btn btn-sm btn-circle btn-outline btn-outline-primary me-2 btnEditCard" {{ $card->opposit() }} data-card="{{ $card->number }}">Editer la carte</button>
                 <button class="btn btn-sm btn-circle btn-outline btn-outline-primary me-2 btnSendCodeCard" {{ $card->opposit() }} data-card="{{ $card->number }}">Renvoyer le code secret</button>
-                @if($card->facelia)
+                @if(!$card->facelia)
                     <button class="btn btn-sm btn-circle btn-outline btn-outline-primary me-2 btnFaceliaCard" {{ $card->opposit() }} data-card="{{ $card->number }}">Liaison Facelia</button>
                 @endif
                 <button class="btn btn-sm btn-circle btn-outline btn-outline-danger me-2 btnCancelCard" {{ $card->opposit() }} data-card="{{ $card->number }}">Annuler la carte bancaire</button>
