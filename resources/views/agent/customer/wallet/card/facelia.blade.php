@@ -54,7 +54,7 @@
                 <div class="card-body">
                     <div class="d-flex flex-column">
                         <div class="fw-bolder fs-2">Type de pret</div>
-                        <div class="">{{ $facelia->pret->plan->name }}</div>
+                        <div class="ps-5">{{ $facelia->pret->plan->name }}</div>
                     </div>
                 </div>
             </div>
