@@ -23,20 +23,20 @@
                 <span class="bullet bg-gray-200 w-5px h-2px"></span>
             </li>
             <li class="breadcrumb-item text-muted">
-                <a href="{{ route('agent.customer.show', $card->wallet->customer->id) }}"
-                   class="text-muted text-hover-primary">{{ $card->wallet->customer->user->identifiant }} - {{ $card->wallet->customer->info->full_name }}</a>
+                <a href="{{ route('agent.customer.show', $facelia->card->wallet->customer->id) }}"
+                   class="text-muted text-hover-primary">{{ $facelia->card->wallet->customer->user->identifiant }} - {{ $facelia->card->wallet->customer->info->full_name }}</a>
             </li>
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-200 w-5px h-2px"></span>
             </li>
             <li class="breadcrumb-item text-muted">
-                <a href="{{ route('agent.customer.wallet.show', $card->wallet->number_account) }}"
-                   class="text-muted text-hover-primary">{{ $card->wallet->type_text }} - N°{{ $card->wallet->number_account }}</a>
+                <a href="{{ route('agent.customer.wallet.show', $facelia->card->wallet->number_account) }}"
+                   class="text-muted text-hover-primary">{{ $facelia->card->wallet->type_text }} - N°{{ $facelia->card->wallet->number_account }}</a>
             </li>
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-200 w-5px h-2px"></span>
             </li>
-            <li class="breadcrumb-item text-dark">Carte Bancaire {{ $card->support->name }} - {{ $card->number_format }} / FACELIA</li>
+            <li class="breadcrumb-item text-dark">Carte Bancaire {{ $facelia->card->support->name }} - {{ $facelia->card->number_format }} / FACELIA</li>
         </ul>
     </div>
     <div class="d-flex align-items-center gap-2 gap-lg-3">
