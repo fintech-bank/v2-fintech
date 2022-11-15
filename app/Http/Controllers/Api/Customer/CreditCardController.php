@@ -7,6 +7,7 @@ use App\Helper\CustomerTransactionHelper;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerWallet;
+use App\Notifications\Customer\SendCreditCardCodeNotification;
 use Illuminate\Http\Request;
 
 class CreditCardController extends Controller
@@ -57,7 +58,8 @@ class CreditCardController extends Controller
         $card = \App\Models\Customer\CustomerCreditCard::find($card_id);
 
         match ($request->get('action')) {
-            "edit" => $this->editCreditCard($card, $request)
+            "edit" => $this->editCreditCard($card, $request),
+            "send_code" => $this->sendCode($card)
         };
     }
 
@@ -65,10 +67,30 @@ class CreditCardController extends Controller
     {
         try {
             $card->update($request->except('_token', 'action'));
-        }catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             LogHelper::notify('critical', $exception->getMessage(), $exception);
             return response()->json(null, 500);
         }
+
+        return response()->json();
+    }
+
+    private function sendCode(\App\Models\Customer\CustomerCreditCard $card)
+    {
+        if ($card->wallet->customer->package->name != 'Platine' || $card->wallet->customer->package->name != 'Pro Gold') {
+            CustomerTransactionHelper::create(
+                'debit',
+                'frais',
+                'Frais Bancaire',
+                0.15,
+                $card->wallet->id,
+                true,
+                'Renvoie du code carte bancaire '.$card->number_card_oscure,
+                now()
+            );
+        }
+
+        $card->wallet->customer->info->notify(new SendCreditCardCodeNotification($card->wallet->customer, base64_decode($card->code), $card));
 
         return response()->json();
     }
