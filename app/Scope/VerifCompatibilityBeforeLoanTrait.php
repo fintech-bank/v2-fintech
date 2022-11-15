@@ -27,7 +27,7 @@ trait VerifCompatibilityBeforeLoanTrait
             $calc = $score * 8 / 100;
         }
 
-        LogHelper::insertLogSystem('info', "Demande de crédit Facelia: Client: {$customer->info->full_name} | Score: {$score} % | Resultat: }".$score <= 25 ? 'Echec' : 'Reussi');
+        LogHelper::insertLogSystem('info', "Demande de crédit Facelia: Client: {$customer->info->full_name} | Score: {$score} % | Resultat: ".$score <= 25 ? 'Echec' : 'Reussi');
 
         return $calc >= 25;
     }
