@@ -94,6 +94,10 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
         });
         Route::prefix('wallet')->group(function () {
             Route::get('{number_account}', [\App\Http\Controllers\Agent\Customer\CustomerWalletController::class, 'show'])->name('agent.customer.wallet.show');
+
+            Route::prefix('{number_account}/card')->group(function () {
+
+            });
         });
     });
 });
