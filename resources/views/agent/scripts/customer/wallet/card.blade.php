@@ -18,5 +18,6 @@
     let block = {}
 
     $(elements.divEditCard).hide();
+    $(elements.divSendCodeCard).hide();
 
 </script>
