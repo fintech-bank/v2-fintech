@@ -77,7 +77,19 @@
                 <div class="d-flex flex-row mb-3">
                     <i class="fa-solid fa-{{ $card->support->payment_contact ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->payment_contact ? 'success' : 'danger' }} fs-2 me-3"></i>
                     <div class="d-flex flex-column">
-                        {{ $card->support->ayment_contact_text }}
+                        {{ $card->support->payment_contact_text }}
+                    </div>
+                </div>
+                <div class="d-flex flex-row mb-3">
+                    <i class="fa-solid fa-{{ $card->support->visa_spec ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->visa_spec ? 'success' : 'danger' }} fs-2 me-3"></i>
+                    <div class="d-flex flex-column">
+                        {{ $card->support->visa_spec_text }}
+                    </div>
+                </div>
+                <div class="d-flex flex-row mb-3">
+                    <i class="fa-solid fa-{{ $card->support->choice_code ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->choice_code ? 'success' : 'danger' }} fs-2 me-3"></i>
+                    <div class="d-flex flex-column">
+                        {{ $card->support->choice_code_text }}
                     </div>
                 </div>
             </div>
