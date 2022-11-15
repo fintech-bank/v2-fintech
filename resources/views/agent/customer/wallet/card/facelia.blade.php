@@ -49,7 +49,7 @@
         <div class="col-md-3 col-sm-12 mb-10">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h3 class="card-title">Information sur le prêt affilié</h3>
+                    <h3 class="card-title"><i class="fa-solid fa-hand me-2"></i> Information sur le prêt affilié</h3>
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-column">
