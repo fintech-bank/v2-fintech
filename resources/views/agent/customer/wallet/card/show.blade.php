@@ -62,9 +62,9 @@
         </div>
         <div class="d-flex flex-row justify-content-between rounded bg-light p-5 shadow-lg">
             <div class="d-flex flex-row">
-                <i class="fa-solid fa-check text-success fs-2 me-3"></i>
+                <i class="fa-solid fa-{{ $card->support->payment_internet ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->payment_internet ? 'success' : 'danger' }} fs-2 me-3"></i>
                 <div class="d-flex flex-column">
-
+                    {{ $card->support->payment_internet_text }}
                 </div>
             </div>
         </div>
