@@ -86,5 +86,17 @@ Route::prefix('customer')->middleware(['auth', 'customer'])->group(function () {
         Route::get('/', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'index'])->name('customer.compte');
     });
 
+    Route::prefix('pret')->group(function () {
+        Route::get('/', \App\Http\Controllers\Customer\Pret\PretController::class)->name('customer.pret');
+
+        Route::prefix('perso')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Pret\PretPersoController::class, 'index'])->name('customer.pret.perso');
+        });
+
+        Route::prefix('immo')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Pret\PretImmoController::class, 'index'])->name('customer.pret.immo');
+        });
+    });
+
 
 });

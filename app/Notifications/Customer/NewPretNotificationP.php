@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewPretNotification extends Notification
+class NewPretNotificationP extends Notification
 {
     use Queueable;
 
@@ -51,9 +51,10 @@ class NewPretNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $message = (new MailMessage())->view('emails.customer.new_epargne', [
+        $message = (new MailMessage())->view('emails.customer.new_pret', [
             'customer' => $this->customer,
-            'pret' => $this->pret
+            'pret' => $this->pret,
+            'content' => $this->mes
         ]);
 
         foreach ($this->documents as $document) {

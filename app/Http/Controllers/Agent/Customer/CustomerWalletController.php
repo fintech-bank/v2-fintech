@@ -13,6 +13,7 @@ use App\Models\Customer\CustomerEpargne;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\NewEpargneNotification;
 use App\Notifications\Customer\NewPretNotification;
+use App\Notifications\Customer\NewPretNotificationP;
 use App\Notifications\Customer\NewWalletNotification;
 use App\Notifications\Customer\SendLinkForContractNotification;
 use Illuminate\Http\Request;

@@ -8,6 +8,7 @@ use App\Models\Customer\CustomerFacelia;
 use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\NewPretNotification;
+use App\Notifications\Customer\NewPretNotificationP;
 use App\Scope\CalcLoanTrait;
 use Carbon\Carbon;
 

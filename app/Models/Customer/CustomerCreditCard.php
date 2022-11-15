@@ -81,6 +81,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $expiration
  * @property-read mixed $logo_card
  * @property-read mixed $status_label
+ * @property-read bool $is_differed
+ * @property-read CreditCardOpposit|null $opposition
  */
 class CustomerCreditCard extends Model
 {

@@ -65,6 +65,11 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin IdeHelperCustomerPret
  * @property-read mixed $status_explanation
  * @property-read mixed $status_label
+ * @property-read string $amount_du_format
+ * @property-read string $amount_interest_format
+ * @property-read string $amount_loan_format
+ * @property-read string $assurance_type_format
+ * @property-read string $mensuality_format
  */
 class CustomerPret extends Model
 {
@@ -73,7 +78,15 @@ class CustomerPret extends Model
     protected $guarded = [];
 
     protected $dates = ['created_at', 'updated_at', 'first_payment_at'];
-    protected $append = ['status_label', 'status_explanation'];
+    protected $append = [
+        'status_label',
+        'status_explanation',
+        'amount_loan_format',
+        'amount_interest_format',
+        'amount_du_format',
+        'mensuality_format',
+        'assurance_type_format'
+    ];
 
     public function plan()
     {
@@ -105,6 +118,10 @@ class CustomerPret extends Model
         return $this->hasOne(CustomerFacelia::class);
     }
 
+    //---------- Scope ------------------//
+
+    //---------- Attribute -------------//
+
     public function getStatusLabelAttribute()
     {
         switch($this->status) {
@@ -129,5 +146,34 @@ class CustomerPret extends Model
             case 'terminated': return 'Vous avez remboursé votre prêt bancaire'; break;
             case 'error': return 'Une erreur est détécté sur votre dossier.<br>Pour en savoir plus, veuillez contacter un conseiller.'; break;
         }
+    }
+
+    public function getAmountLoanFormatAttribute(): string
+    {
+        return eur($this->amount_loan);
+    }
+
+    public function getAmountInterestFormatAttribute(): string
+    {
+        return eur($this->amount_interest);
+    }
+
+    public function getAmountDuFormatAttribute(): string
+    {
+        return eur($this->amount_du);
+    }
+
+    public function getMensualityFormatAttribute(): string
+    {
+        return eur($this->mensuality);
+    }
+
+    public function getAssuranceTypeFormatAttribute(): string
+    {
+        return match ($this->assurance_type) {
+            "D" => "Décès",
+            "DIM" => "Décès, Invalidité",
+            default => "Décès, Invalidité, Incapacité de travail ou Perte d'emploi",
+        };
     }
 }
