@@ -57,7 +57,7 @@
             <div class="d-flex flex-column">
                 <div class="fw-bolder fs-2">CB {{ $card->support->name }}</div>
                 <span class="mb-3">{{ $card->debit_format }}</span>
-                <a href="">{{ $card->wallet->name_account_generic }}</a>
+                <a href="{{ route('agent.customer.wallet.show', $card->wallet->number_account) }}">{{ $card->wallet->name_account_generic }}</a>
                 <div class="d-flex flex-row mt-5">
                     @if($card->status == 'active')
                         <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3 btnDesactiveCard">Désactiver la carte</button>
