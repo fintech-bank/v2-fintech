@@ -142,6 +142,7 @@ class CreditCardController extends ApiController
     {
         $opposit = $card->setOpposit($request->get('raison_select'), $request->get('description'));
         $requete = $card->wallet->customer->requests()->create([
+            "reference" => generateReference(14),
             "sujet" => "Opposition sur la carte bancaire",
             "commentaire" => "Veuillez nous transmettre les documents relatives à la requete d'opposition.",
             "link_model" => CreditCardOpposit::class,
