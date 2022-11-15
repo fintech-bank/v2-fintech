@@ -312,7 +312,79 @@
                     <x-form.button />
                 </form>
             </div>
-            <div id="divCancelCard"></div>
+            <div id="divCancelCard">
+                <form id="formCancelCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="action" value="cancel_card">
+                    <div class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
+                        <!--begin::Close-->
+                        <button type="button" class="position-absolute top-0 end-0 m-2 btn btn-icon btn-icon-danger" data-bs-dismiss="alert">
+                            <i class="fa-solid fa-xmark fs-1"></i>
+                        </button>
+                        <!--end::Close-->
+
+                        <!--begin::Icon-->
+                        <i class="fa-solid fa-hand fs-5tx text-danger mb-5"></i>
+                        <!--end::Icon-->
+
+                        <!--begin::Wrapper-->
+                        <div class="text-center">
+                            <!--begin::Title-->
+                            <h1 class="fw-bold mb-5">Vous allez mettre une demande d'opposition sur la carte bancaire {{ $card->number_format }}</h1>
+                            <!--end::Title-->
+
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
+                            <!--end::Separator-->
+
+                            <!--begin::Content-->
+                            <div class="mb-9 text-dark">
+                                Une fois le dossier transmis aucune opération sur la carte {{ $card->number_format }} ne sera possible, si vous êtes sur, veuillez saisir les informations ci-dessous.
+                            </div>
+                            <div class="mb-10">
+                                <label for="raison_select" class="form-label">Montant du crédit renouvelable</label>
+                                <select name="raison_select" id="raison_select" class="form-control form-control-solid" data-control="select2" required data-placeholder="Selectionner une raison principal">
+                                    <option value=""></option>
+                                    <option value="vol">Vol</option>
+                                    <option value="perte">Perte</option>
+                                    <option value="fraude">Opération frauduleuse sur le compte</option>
+                                </select>
+                            </div>
+                            <div id="oppositVol">
+                                <x-form.input-file
+                                    name="document"
+                                    label="Déclaration de vol"
+                                    required="true" />
+                            </div>
+                            <div id="oppositPerte">
+                                <x-form.input-file
+                                    name="document"
+                                    label="Déclaration de Perte"
+                                    required="true" />
+                            </div>
+                            <div id="oppositFraude">
+                                <x-form.textarea
+                                    name="description_fraude"
+                                    label="Description de la fraude"
+                                    required="true" />
+                                <x-form.switches
+                                    name="check_fraude"
+                                    label="Vérification préliminaire de la fraude" />
+                            </div>
+
+                            <!--end::Content-->
+
+                            <!--begin::Buttons-->
+                            <div class="d-flex flex-center flex-wrap">
+                                <button type="button" class="btn btn-outline btn-outline-secondary btn-active-secondary m-2">Annuler</button>
+                                <button type="submit" class="btn btn-outline btn-outline-info btn-active-info m-2">Renvoyer le code secret</button>
+                            </div>
+                            <!--end::Buttons-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                </form>
+            </div>
             <div id="divOppositCard"></div>
         </div>
     </div>
