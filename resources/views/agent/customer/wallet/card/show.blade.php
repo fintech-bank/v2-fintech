@@ -24,7 +24,7 @@
             </li>
             <li class="breadcrumb-item text-muted">
                 <a href="{{ route('agent.customer.show', $card->wallet->customer->id) }}"
-                   class="text-muted text-hover-primary">{{ $wallet->customer->user->identifiant }} - {{ $wallet->customer->info->full_name }}</a>
+                   class="text-muted text-hover-primary">{{ $card->wallet->customer->user->identifiant }} - {{ $card->wallet->customer->info->full_name }}</a>
             </li>
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-200 w-5px h-2px"></span>
