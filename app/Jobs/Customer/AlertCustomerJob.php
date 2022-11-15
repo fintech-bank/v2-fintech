@@ -30,6 +30,7 @@ class AlertCustomerJob implements ShouldQueue
         $this->alert = $alert;
         $this->delayed = $delayed;
         $this->delay($this->delayed);
+        $this->onQueue('alert');
     }
 
     public function handle()
