@@ -182,7 +182,7 @@ class CustomerLoanHelper
 
         foreach ($documents as $document) {
             $docs[] = [
-                'url' => $document->url_folder
+                'url' => public_path($document->url_folder)
             ];
         }
 
