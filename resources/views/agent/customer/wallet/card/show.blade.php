@@ -66,7 +66,7 @@
                         <button class="btn btn-lg btn-circle btn-outline btn-outline-success me-3 btnActiveCard" {{ $card->opposit() }}>Activer la carte</button>
                         <button class="btn btn-lg btn-circle btn-danger btnOppositCard" {{ $card->opposit() }}>Opposition</button>
                     @endif
-                    @if($card->facelias)
+                    @if($card->facelia)
                        <a href="" class="btn btn-lg btn-circle btn-outline btn-outline-bank ms-3 me-3" {{ $card->opposit() }}>Crédit Facelia</a>
                     @endif
                 </div>

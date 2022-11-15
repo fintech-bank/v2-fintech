@@ -97,6 +97,7 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
 
             Route::prefix('{number_account}/card')->group(function () {
                 Route::get('/{card_id}', [\App\Http\Controllers\Agent\Customer\CreditCardController::class, 'index'])->name('agent.customer.wallet.card');
+                Route::get('/{card_id}/facelia', [\App\Http\Controllers\Agent\Customer\CreditCardController::class, 'facelia'])->name('agent.customer.wallet.card.facelia');
             });
         });
     });

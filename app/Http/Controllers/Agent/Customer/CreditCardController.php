@@ -13,4 +13,12 @@ class CreditCardController extends Controller
 
         return view('agent.customer.wallet.card.show', compact('card'));
     }
+
+    public function facelia($number_account, $card_id)
+    {
+        $card = CustomerCreditCard::find($card_id);
+        return view('agent.customer.wallet.card.facelia', [
+            'facelia' => $card->facelias
+        ]);
+    }
 }
