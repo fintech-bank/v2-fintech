@@ -1,10 +1,12 @@
 <?php
+
 namespace App\Notifications\Customer;
 
 use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
 use Akibatech\FreeMobileSms\Notifications\FreeMobileMessage;
 use App\Models\Customer\Customer;
-use App\Models\Customer\CustomerCreditCard;use Illuminate\Bus\Queueable;
+use App\Models\Customer\CustomerCreditCard;
+use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Twilio\TwilioChannel;
@@ -12,24 +14,24 @@ use NotificationChannels\Twilio\TwilioSmsMessage;
 
 class NewCreditCardNotificationNotification extends Notification
 {
-
+    public Customer $customer;
+    public CustomerCreditCard $card;
     public string $title;
     public string $link;
     public string $message;
-    public Customer $customer;
-    public  CustomerCreditCard $card;
 
     /**
-* @param Customer $customer
-* @param CustomerCreditCard $card
-*/
+     * @param Customer $customer
+     * @param CustomerCreditCard $card
+     */
     public function __construct(Customer $customer, CustomerCreditCard $card)
     {
+        $this->customer = $customer;
+        $this->card = $card;
         $this->title = "Nouvelle Carte Bancaire disponible en agence";
         $this->message = $this->getMessage();
         $this->link = "";
-        $this->customer = $customer;
-    $this->card = $card;}
+    }
 
     private function getMessage()
     {
@@ -38,13 +40,19 @@ class NewCreditCardNotificationNotification extends Notification
         ?>
         <div class="border border-2 border-primary rounded-2 p-5">
             <ul class="list-unstyled">
-                <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Produit:</strong>Carte Bancaire <?= $this->card->support->name; ?></li>
-                <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Numéro de la carte:</strong> <?= $this->card->number_format; ?></li>
-                <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Type de carte:</strong> <?= \Str::ucfirst($this->card->type); ?></li>
-                <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Expiration:</strong> <?= $this->card->expiration; ?></li>
-                <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Type de débit:</strong> <?= $this->card->debit_format; ?></li>
-                <?php if($this->card->debit == 'differed'): ?>
-                    <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Montant Différé:</strong> <?= eur($this->card->differed_limit); ?></li>
+                <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Produit:</strong>Carte
+                    Bancaire <?= $this->card->support->name; ?></li>
+                <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Numéro de la
+                        carte:</strong> <?= $this->card->number_format; ?></li>
+                <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Type de
+                        carte:</strong> <?= \Str::ucfirst($this->card->type); ?></li>
+                <li><span class="bullet bullet-dot bg-info me-5"></span>
+                    <strong>Expiration:</strong> <?= $this->card->expiration; ?></li>
+                <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Type de
+                        débit:</strong> <?= $this->card->debit_format; ?></li>
+                <?php if ($this->card->debit == 'differed'): ?>
+                    <li><span class="bullet bullet-dot bg-info me-5"></span> <strong>Montant
+                            Différé:</strong> <?= eur($this->card->differed_limit); ?></li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -56,13 +64,13 @@ class NewCreditCardNotificationNotification extends Notification
     private function choiceChannel()
     {
         if (config("app.env") == "local") {
-            if($this->customer->setting->notif_mail) {
+            if ($this->customer->setting->notif_mail) {
                 return "mail";
             }
 
             return "database";
         } else {
-            if($this->customer->setting->notif_mail) {
+            if ($this->customer->setting->notif_mail) {
                 return "mail";
             }
 
