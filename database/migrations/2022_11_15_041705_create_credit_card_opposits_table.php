@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->text('description');
             $table->boolean('verif_fraude')->default(0);
             $table->enum('status', ['submit', 'progress', 'terminate'])->default('submit');
+            $table->string('link_opposit')->nullable();
             $table->timestamps();
 
             $table->foreignId('customer_credit_card_id')
