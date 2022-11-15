@@ -187,7 +187,11 @@
             </div>
         </div>
         <div class="card-body">
-
+            <div id="divEditCard"></div>
+            <div id="divSendCodeCard"></div>
+            <div id="divFaceliaCard"></div>
+            <div id="divCancelCard"></div>
+            <div id="divOppositCard"></div>
         </div>
     </div>
 
