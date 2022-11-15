@@ -104,7 +104,7 @@ trait CustomerCreditCardTrait
 
     public function opposit()
     {
-        return $this->status == 'opposit' ? 'disabled overlay overlay-block' : '';
+        return $this->status == 'opposit' ? 'disabled overlay overlay-block overlay-layer bg-dark bg-opacity-25' : '';
     }
 
 
