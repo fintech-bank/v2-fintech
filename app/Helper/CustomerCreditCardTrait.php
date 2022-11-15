@@ -8,7 +8,7 @@ trait CustomerCreditCardTrait
     /**
      * @return bool
      */
-    public function isDiffered(): bool
+    public function getIsDifferedAttribute(): bool
     {
         return $this->debit == 'differed' ? true : false;
     }

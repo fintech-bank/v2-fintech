@@ -98,7 +98,8 @@ class CustomerCreditCard extends Model
         'expiration',
         'debit_format',
         'status_label',
-        'logo_card'
+        'logo_card',
+        'is_differed'
     ];
 
     public function wallet()
