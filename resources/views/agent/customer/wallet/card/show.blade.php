@@ -187,11 +187,21 @@
             </div>
         </div>
         <div class="card-body">
-            <div id="divEditCard"></div>
-            <div id="divSendCodeCard"></div>
-            <div id="divFaceliaCard"></div>
-            <div id="divCancelCard"></div>
-            <div id="divOppositCard"></div>
+            <div id="divEditCard" class="">
+                <form id="formEditCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST">
+                    <div class="mb-10">
+                        <label for="debit" class="form-label">Type de débit</label>
+                        <select name="debit" id="debit" class="form-control form-control-solid" data-control="select2">
+                            <option value="immediat" {{ $card->debit == 'immediat' ? 'selected' : '' }}>Débit Immédiat</option>
+                            <option value="differed" {{ $card->debit == 'differed' ? 'selected' : '' }}>Débit Différé</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div id="divSendCodeCard" class="d-none"></div>
+            <div id="divFaceliaCard" class="d-none"></div>
+            <div id="divCancelCard" class="d-none"></div>
+            <div id="divOppositCard" class="d-none"></div>
         </div>
     </div>
 
