@@ -19,5 +19,8 @@
 
     $(elements.divEditCard).hide();
     $(elements.divSendCodeCard).hide();
+    $(elements.divFaceliaCard).hide();
+    $(elements.divCancelCard).hide();
+    $(elements.divOppositCard).hide();
 
 </script>
