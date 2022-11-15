@@ -99,19 +99,23 @@ class CreditCardController extends ApiController
 
     private function facelia(\App\Models\Customer\CustomerCreditCard $card, Request $request)
     {
-        if (CustomerFaceliaHelper::verify($card->wallet->customer, true, $card)) {
-            try {
-                CustomerFaceliaHelper::create(
-                    $card->wallet,
-                    $card->wallet->customer,
-                    $request->get('amount_available'),
-                    $card
-                );
-            }catch (\Exception $exception) {
-                return $this->sendError($exception);
+        if($card->facelias()->count() == 0) {
+            if (CustomerFaceliaHelper::verify($card->wallet->customer, true, $card)) {
+                try {
+                    CustomerFaceliaHelper::create(
+                        $card->wallet,
+                        $card->wallet->customer,
+                        $request->get('amount_available'),
+                        $card
+                    );
+                }catch (\Exception $exception) {
+                    return $this->sendError($exception);
+                }
+            } else {
+                return $this->sendWarning("Ce compte ne présente pas tous les prérequis pour souscrire au crédit FACELIA");
             }
         } else {
-            return $this->sendWarning("Ce compte ne présente pas tous les prérequis pour souscrire au crédit FACELIA");
+            return $this->sendWarning("Cette carte bancaire est déjà affilier à un crédit FACELIA");
         }
 
         return $this->sendSuccess();
