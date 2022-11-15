@@ -131,13 +131,19 @@
             method: 'PUT',
             data: data,
             success: data => {
-                btn.removeAttr('data-kt-indicator')
+                if(data.state === 'success') {
+                    btn.removeAttr('data-kt-indicator')
 
-                toastr.success(`La souscription au crédit renouvelable FACELIA à été pris en compte`, `Carte Bancaire`)
+                    toastr.success(`La souscription au crédit renouvelable FACELIA à été pris en compte`, `Carte Bancaire`)
 
-                setTimeout(() => {
-                    window.location.reload()
-                }, 1200)
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                } else {
+                    btn.removeAttr('data-kt-indicator')
+
+                    toastr.warning(`${data.message}`, `Carte Bancaire`)
+                }
             }
         })
     })
