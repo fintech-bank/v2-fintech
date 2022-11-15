@@ -17,6 +17,7 @@ include('auth.php');
 include('front.php');
 include('admin.php');
 include('agent.php');
+include('customer.php');
 
 Route::prefix('signate')->group(function () {
     Route::get('{token}', [\App\Http\Controllers\Signate\SignateController::class, 'show'])->name('signate.show');
