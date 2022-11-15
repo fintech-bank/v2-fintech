@@ -39,13 +39,15 @@
         $(elements.divOppositCard).fadeOut();
     })
 
-    elements.btnFaceliaCard.addEventListener('click', () => {
-        $(elements.divEditCard).fadeOut();
-        $(elements.divSendCodeCard).fadeOut();
-        $(elements.divFaceliaCard).fadeIn();
-        $(elements.divCancelCard).fadeOut();
-        $(elements.divOppositCard).fadeOut();
-    })
+    if(elements.btnFaceliaCard) {
+        elements.btnFaceliaCard.addEventListener('click', () => {
+            $(elements.divEditCard).fadeOut();
+            $(elements.divSendCodeCard).fadeOut();
+            $(elements.divFaceliaCard).fadeIn();
+            $(elements.divCancelCard).fadeOut();
+            $(elements.divOppositCard).fadeOut();
+        })
+    }
 
     elements.btnCancelCard.addEventListener('click', () => {
         $(elements.divEditCard).fadeOut();
