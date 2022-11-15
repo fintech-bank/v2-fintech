@@ -313,9 +313,51 @@
                 </form>
             </div>
             <div id="divCancelCard">
-                <form id="formCancelCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST" enctype="multipart/form-data">
+                <form id="formCancelCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST">
                     @csrf
-                    <input type="hidden" name="action" value="cancel_card">
+                    <input type="hidden" name="action" value="cancel_code">
+                    <div class="alert alert-dismissible bg-light-info d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
+                        <!--begin::Close-->
+                        <button type="button" class="position-absolute top-0 end-0 m-2 btn btn-icon btn-icon-info" data-bs-dismiss="alert">
+                            <i class="fa-solid fa-xmark fs-1"></i>
+                        </button>
+                        <!--end::Close-->
+
+                        <!--begin::Icon-->
+                        <i class="fa-solid fa-question-circle fs-5tx text-info mb-5"></i>
+                        <!--end::Icon-->
+
+                        <!--begin::Wrapper-->
+                        <div class="text-center">
+                            <!--begin::Title-->
+                            <h1 class="fw-bold mb-5">Voulez-vous annuler la carte bancaire {{ $card->number }} ?</h1>
+                            <!--end::Title-->
+
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
+                            <!--end::Separator-->
+
+                            <!--begin::Content-->
+                            <div class="mb-9 text-dark">
+                                L'annulation de la carte bancaire d'un client nécessite d'avertir au préalable le client et de convenir d'un rendez-vous afin qu'il vous remette la carte bancaire en question.
+                            </div>
+                            <!--end::Content-->
+
+                            <!--begin::Buttons-->
+                            <div class="d-flex flex-center flex-wrap">
+                                <button type="button" class="btn btn-outline btn-outline-secondary btn-active-secondary m-2">Annuler</button>
+                                <button type="submit" class="btn btn-outline btn-outline-danger btn-active-danger m-2">Annuler la carte bancaire</button>
+                            </div>
+                            <!--end::Buttons-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                </form>
+            </div>
+            <div id="divOppositCard">
+                <form id="formOppositCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="action" value="opposit_card">
                     <div class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
                         <!--begin::Close-->
                         <button type="button" class="position-absolute top-0 end-0 m-2 btn btn-icon btn-icon-danger" data-bs-dismiss="alert">
@@ -386,7 +428,6 @@
                     </div>
                 </form>
             </div>
-            <div id="divOppositCard"></div>
         </div>
     </div>
 
