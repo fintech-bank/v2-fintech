@@ -876,7 +876,7 @@
                                     {{ $card->getType() }}
                                 </td>
                                 <td class="text-end">
-                                    <a href="{{ route('agent.customer.wallet.card', [$card->wallet->customer->id, $card->wallet->number_account, $card->id]) }}" class="btn btn-sm btn-circle btn-icon btn-bank" data-bs-toggle="tooltip" data-bs-placement="left" title="Détail"><i class="fa fa-desktop"></i> </a>
+                                    <a href="{{ route('agent.customer.wallet.card', [$card->wallet->number_account, $card->id]) }}" class="btn btn-sm btn-circle btn-icon btn-bank" data-bs-toggle="tooltip" data-bs-placement="left" title="Détail"><i class="fa fa-desktop"></i> </a>
                                 </td>
                             </tr>
                         @endforeach
