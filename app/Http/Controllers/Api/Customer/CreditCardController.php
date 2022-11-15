@@ -63,7 +63,8 @@ class CreditCardController extends ApiController
             "edit" => $this->editCreditCard($card, $request),
             "send_code" => $this->sendCode($card),
             "facelia" => $this->facelia($card, $request),
-            "cancel_card" => ""
+            "cancel_card" => $this->cancelCard($card),
+            "opposit_card" => ""
         };
     }
 
@@ -123,7 +124,7 @@ class CreditCardController extends ApiController
         return $this->sendSuccess();
     }
 
-    private function cancelCard(\App\Models\Customer\CustomerCreditCard $card, Request $request)
+    private function cancelCard(\App\Models\Customer\CustomerCreditCard $card)
     {
         $card->update([
             'status' => 'canceled'
@@ -132,6 +133,11 @@ class CreditCardController extends ApiController
         $card->wallet->customer->info->notify(new CancelCreditCardNotification($card->wallet->customer, $card));
 
         return $this->sendSuccess();
+
+    }
+
+    private function oppositCard(\App\Models\Customer\CustomerCreditCard $card, Request $request)
+    {
 
     }
 }

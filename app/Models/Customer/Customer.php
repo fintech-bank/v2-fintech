@@ -188,6 +188,11 @@ class Customer extends Model
         return $this->hasOne(BusinessParam::class);
     }
 
+    public function requests()
+    {
+        return $this->hasMany(CustomerRequest::class);
+    }
+
     public function getStatusTextAttribute()
     {
         $t = null;
