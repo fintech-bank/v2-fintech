@@ -23,4 +23,8 @@
     $(elements.divCancelCard).hide();
     $(elements.divOppositCard).hide();
 
+    elements.btnEditCard.addEventListener('click', () => {
+        $(elements.divEditCard).fadeIn()
+    })
+
 </script>
