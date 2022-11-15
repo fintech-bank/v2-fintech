@@ -49,17 +49,17 @@
         <div class="col-md-3 col-sm-12 mb-10">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h3 class="card-title">Information sur le pret affilié</h3>
+                    <h3 class="card-title">Information sur le prêt affilié</h3>
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-column">
-                        <div class="fw-bolder fs-2">Type de pret</div>
+                        <div class="fw-bolder fs-2">Type de prêt</div>
                         <div class="ps-5">{{ $facelia->pret->plan->name }}</div>
                     </div>
                     <div class="separator separator-dashed border-black border-3 my-3"></div>
                     <div class="d-flex flex-column">
                         <div class="fw-bolder fs-2">Référence</div>
-                        <div class="ps-5">{{ $facelia->pret->reference }}</div>
+                        <div class="ps-5"><a href="{{ route('agent.customer.wallet.show', $facelia->card->wallet->number_account) }}">{{ $facelia->pret->reference }}</a></div>
                     </div>
                     <div class="separator separator-dashed border-black border-3 my-3"></div>
                     <div class="d-flex flex-column">
@@ -70,7 +70,7 @@
                     <div class="separator separator-dashed border-black border-3 my-3"></div>
                     <div class="d-flex flex-column">
                         <div class="fw-bolder fs-2">Compte affilié</div>
-                        <div class="ps-5">{{ $facelia->pret->wallet->name_account }}</div>
+                        <div class="ps-5">{{ $facelia->card->wallet->name_account }}</div>
                     </div>
                     <div class="separator separator-dashed border-black border-3 my-3"></div>
                     <div class="d-flex flex-column">
