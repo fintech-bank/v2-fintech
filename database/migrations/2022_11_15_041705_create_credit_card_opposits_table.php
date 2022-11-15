@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('credit_card_opposits', function (Blueprint $table) {
             $table->id();
+            $table->string('reference');
             $table->enum('type', ['vol', 'perte', 'fraude']);
             $table->text('description');
             $table->boolean('verif_fraude')->default(0);

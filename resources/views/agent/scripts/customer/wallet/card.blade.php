@@ -13,7 +13,13 @@
         btnOppositCard: document.querySelectorAll(".btnOppositCard"),
     }
     let modals = {}
-    let forms = {}
+    let forms = {
+        formEditCard: document.querySelector("#formEditCard"),
+        formSendCodeCard: document.querySelector("#formSendCodeCard"),
+        formFaceliaCard: document.querySelector("#formFaceliaCard"),
+        formCancelCard: document.querySelector("#formCancelCard"),
+        formOppositCard: document.querySelector("#formOppositCard"),
+    }
     let dataTable = {}
     let block = {}
 
@@ -30,7 +36,6 @@
         $(elements.divCancelCard).fadeOut();
         $(elements.divOppositCard).fadeOut();
     })
-
     elements.btnSendCodeCard.addEventListener('click', () => {
         $(elements.divEditCard).fadeOut();
         $(elements.divSendCodeCard).fadeIn();
@@ -38,7 +43,6 @@
         $(elements.divCancelCard).fadeOut();
         $(elements.divOppositCard).fadeOut();
     })
-
     if(elements.btnFaceliaCard) {
         elements.btnFaceliaCard.addEventListener('click', () => {
             $(elements.divEditCard).fadeOut();
@@ -48,7 +52,6 @@
             $(elements.divOppositCard).fadeOut();
         })
     }
-
     elements.btnCancelCard.addEventListener('click', () => {
         $(elements.divEditCard).fadeOut();
         $(elements.divSendCodeCard).fadeOut();
@@ -56,7 +59,6 @@
         $(elements.divCancelCard).fadeIn();
         $(elements.divOppositCard).fadeOut();
     })
-
     elements.btnOppositCard.forEach(btn => {
         btn.addEventListener('click', () => {
             $(elements.divEditCard).fadeOut();
@@ -64,6 +66,55 @@
             $(elements.divFaceliaCard).fadeOut();
             $(elements.divCancelCard).fadeOut();
             $(elements.divOppositCard).fadeIn();
+        })
+    })
+
+    $(forms.formEditCard).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formEditCard)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.success(`Les informations de la carte bancaire {{ $card->number }} on été mise à jour`, `Carte Bancaire`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
+        })
+    })
+    $(forms.formSendCodeCard).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formSendCodeCard)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.success(`Le code de la carte bancaire {{ $card->number }} à été renvoyé au client`, `Carte Bancaire`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
         })
     })
 
