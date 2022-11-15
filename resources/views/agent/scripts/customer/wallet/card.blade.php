@@ -130,8 +130,8 @@
             url: url,
             method: 'PUT',
             data: data,
-            success: data => {
-                console.log(data)
+            success: (jqhxr) => {
+                console.log(jqhxr)
                 if(data.state === 'success') {
                     btn.removeAttr('data-kt-indicator')
 
