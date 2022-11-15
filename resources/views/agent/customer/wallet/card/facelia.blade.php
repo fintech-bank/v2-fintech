@@ -52,9 +52,13 @@
                     <h3 class="card-title">Information sur le pret affilié</h3>
                 </div>
                 <div class="card-body">
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column border-bottom-3 mb-5">
                         <div class="fw-bolder fs-2">Type de pret</div>
                         <div class="ps-5">{{ $facelia->pret->plan->name }}</div>
+                    </div>
+                    <div class="d-flex flex-column border-bottom-3 mb-5">
+                        <div class="fw-bolder fs-2">Référence</div>
+                        <div class="ps-5">{{ $facelia->pret->reference }}</div>
                     </div>
                 </div>
             </div>
