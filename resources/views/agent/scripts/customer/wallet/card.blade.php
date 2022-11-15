@@ -25,18 +25,18 @@
 
     elements.btnEditCard.addEventListener('click', () => {
         $(elements.divEditCard).show();
-        $(elements.divSendCodeCard).hide();
-        $(elements.divFaceliaCard).hide();
-        $(elements.divCancelCard).hide();
-        $(elements.divOppositCard).hide();
+        $(elements.divSendCodeCard).fadeOut();
+        $(elements.divFaceliaCard).fadeOut();
+        $(elements.divCancelCard).fadeOut();
+        $(elements.divOppositCard).fadeOut();
     })
 
     elements.btnSendCodeCard.addEventListener('click', () => {
-        $(elements.divEditCard).hide();
-        $(elements.divSendCodeCard).show();
-        $(elements.divFaceliaCard).hide();
-        $(elements.divCancelCard).hide();
-        $(elements.divOppositCard).hide();
+        $(elements.divEditCard).fadeOut();
+        $(elements.divSendCodeCard).fadeIn();
+        $(elements.divFaceliaCard).fadeOut();
+        $(elements.divCancelCard).fadeOut();
+        $(elements.divOppositCard).fadeOut();
     })
 
 </script>
