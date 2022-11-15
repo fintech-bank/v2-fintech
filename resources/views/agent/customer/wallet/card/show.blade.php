@@ -47,8 +47,12 @@
 @section("content")
     <div class="d-flex flex-row border border-{{ $card->getStatus('color') }} justify-content-between rounded rounded-2 bg-gray-300 p-5 shadow-lg">
         <div class="d-flex flex-row">
-            <div class="symbol symbol-175px symbol-2by3">
+            <div class="symbol symbol-175px symbol-2by3 ribbon ribbon-bottom-end ribbon-clip">
                 <img src="{{ $card->logo_card }}" alt="">
+                <div class="ribbon-label">
+                    {{ $card->getStatus('text') }}
+                    <span class="ribbon-inner bg-{{ $card->getStatus('color') }}"></span>
+                </div>
             </div>
             <div class="d-flex flex-column">
                 <div class="fw-bolder fs-2">CB {{ $card->support->name }}</div>
