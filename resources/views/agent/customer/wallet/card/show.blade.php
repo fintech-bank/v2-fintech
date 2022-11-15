@@ -233,6 +233,16 @@
                                     label="Limite différé"
                                     value="{{ $card->differed_limit }}" />
                             @endif
+                            @if($card->facelia)
+                                <div class="mb-10">
+                                    <label for="facelia_vitesse" class="form-label">Type de débit</label>
+                                    <select name="facelia_vitesse" id="facelia_vitesse" class="form-control form-control-solid" data-control="select2">
+                                        <option value="low" {{ $card->facelia_vitesse == 'low' ? 'selected' : '' }}>Bas</option>
+                                        <option value="middle" {{ $card->facelia_vitesse == 'middle' ? 'selected' : '' }}>Moyenne</option>
+                                        <option value="fast" {{ $card->facelia_vitesse == 'fast' ? 'selected' : '' }}>Haute</option>
+                                    </select>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </form>
