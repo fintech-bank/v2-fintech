@@ -58,7 +58,7 @@ class CreditCardController extends ApiController
     {
         $card = \App\Models\Customer\CustomerCreditCard::find($card_id);
 
-        match ($request->get('action')) {
+        return match ($request->get('action')) {
             "edit" => $this->editCreditCard($card, $request),
             "send_code" => $this->sendCode($card),
             "facelia" => $this->facelia($card, $request)
