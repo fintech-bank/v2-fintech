@@ -62,19 +62,19 @@
         </div>
         <div class="d-flex flex-row justify-content-between rounded bg-light p-5 shadow-lg">
             <div class="d-flex flex-column">
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row mb-3">
                     <i class="fa-solid fa-{{ $card->support->payment_internet ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->payment_internet ? 'success' : 'danger' }} fs-2 me-3"></i>
                     <div class="d-flex flex-column">
                         {{ $card->support->payment_internet_text }}
                     </div>
                 </div>
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row mb-3">
                     <i class="fa-solid fa-{{ $card->support->payment_abroad ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->payment_abroad ? 'success' : 'danger' }} fs-2 me-3"></i>
                     <div class="d-flex flex-column">
                         {{ $card->support->payment_abroad_text }}
                     </div>
                 </div>
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row mb-3">
                     <i class="fa-solid fa-{{ $card->support->payment_contact ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->payment_contact ? 'success' : 'danger' }} fs-2 me-3"></i>
                     <div class="d-flex flex-column">
                         {{ $card->support->ayment_contact_text }}
