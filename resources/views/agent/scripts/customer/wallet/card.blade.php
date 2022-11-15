@@ -193,7 +193,7 @@
             success: () => {
                 btn.removeAttr('data-kt-indicator')
 
-                toastr.success(`La requête d'opposition pour la carte {{ $card->number_format }} à bien été enregistré`, `Carte Bancaire`)
+                toastr.success(`La requête d'opposition pour la carte {{ $card->number_format }} à bien été enregistrée`, `Carte Bancaire`)
 
                 setTimeout(() => {
                     window.location.reload()
