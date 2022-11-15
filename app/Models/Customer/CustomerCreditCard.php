@@ -144,7 +144,7 @@ class CustomerCreditCard extends Model
 
     public function getAccessWithdrawAttribute(): bool
     {
-        if($this->wallet->status == 'active' && CustomerWalletHelper::getSoldeRemaining($this->wallet) < $this->limit_retrait && $this->getTransactionsMonthWithdraw() < $this->limit_retrait && $this->status == 'active') {
+        if($this->wallet->status == 'active' && $this->wallet->solde_remaining < $this->limit_retrait && $this->getTransactionsMonthWithdraw() < $this->limit_retrait && $this->status == 'active') {
             return true;
         } else {
             return false;
