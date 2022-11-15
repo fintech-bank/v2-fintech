@@ -147,7 +147,9 @@
                 }
             },
             error: data => {
-                console.log(data)
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.error(`${data.message}`, `Carte Bancaire`)
             }
         })
     })
