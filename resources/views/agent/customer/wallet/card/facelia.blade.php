@@ -84,7 +84,7 @@
             <div class="bg-gray-600 text-white p-5 fs-1 rounded-3 mb-5">
                 <strong>Situation</strong> aux {{ now()->format('d/m/Y') }}
             </div>
-            <div class="d-flex flex-row w-100">
+            <div class="d-flex flex-row w-100 p-5 bg-white rounded-3">
                 <div class="flex-column">
                     <div class="d-flex flex-row w-400px justify-content-between align-items-center mb-5">
                         <div class="d-flex flex-column fs-2">
