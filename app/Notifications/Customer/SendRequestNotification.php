@@ -80,6 +80,9 @@ class SendRequestNotification extends Notification
             "customer" => $this->customer
         ]);
 
+        $message->actionText = "Accéder à la requête";
+        $message->actionUrl = $this->link;
+
         return $message;
     }
 
