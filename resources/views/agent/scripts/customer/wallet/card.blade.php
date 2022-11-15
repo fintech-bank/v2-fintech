@@ -17,6 +17,6 @@
     let dataTable = {}
     let block = {}
 
-    elements.divEditCard.hide();
+    $(elements.divEditCard).hide();
 
 </script>
