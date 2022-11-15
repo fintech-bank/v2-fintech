@@ -58,6 +58,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $amount_format
  * @property-read \App\Models\Customer\CustomerPaymentOpposit|null $opposit
  * @property-read mixed $is_opposit
+ * @method static Builder|CustomerTransaction isDiffered()
  */
 class CustomerTransaction extends Model
 {

@@ -78,6 +78,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $number_format
  * @property-read mixed $debit_format
  * @property-read mixed $expiration
+ * @property-read mixed $logo_card
+ * @property-read mixed $status_label
  */
 class CustomerCreditCard extends Model
 {
@@ -178,7 +180,7 @@ class CustomerCreditCard extends Model
 
     public function getLogoCardAttribute()
     {
-        return public_path('/storage/card/'.$this->support->slug.'.png');
+        return '/storage/card/'.$this->support->slug.'.png';
     }
 
     public function alert($alert)
