@@ -147,6 +147,20 @@
                         {{ $card->support->insurance->guarantee_purchase_text }}
                     </div>
                 </div>
+                <div class="d-flex flex-row align-items-center mb-3">
+                    <i class="fa-solid fa-{{ $card->support->insurance->advantage ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->advantage ? 'success' : 'danger' }} fs-2 me-3"></i>
+                    <div class="d-flex flex-column">
+                        {{ $card->support->insurance->advantage_text }}
+                    </div>
+                </div>
+                @if($card->wallet->customer->info->type != 'part')
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <i class="fa-solid fa-{{ $card->support->insurance->business_travel ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->business_travel ? 'success' : 'danger' }} fs-2 me-3"></i>
+                        <div class="d-flex flex-column">
+                            {{ $card->support->insurance->business_travel_text }}
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
