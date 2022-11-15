@@ -401,28 +401,10 @@
                                     <option value="fraude">Opération frauduleuse sur le compte</option>
                                 </select>
                             </div>
-                            <div id="oppositVol">
-                                <x-form.input-file
-                                    name="document"
-                                    label="Déclaration de vol"
-                                    required="true" />
-                            </div>
-                            <div id="oppositPerte">
-                                <x-form.input-file
-                                    name="document"
-                                    label="Déclaration de Perte"
-                                    required="true" />
-                            </div>
-                            <div id="oppositFraude">
-                                <x-form.textarea
-                                    name="description_fraude"
-                                    label="Description de la fraude"
-                                    required="true" />
-                                <x-form.switches
-                                    name="check_fraude"
-                                    value="1"
-                                    label="Vérification préliminaire de la fraude" />
-                            </div>
+                            <x-form.textarea
+                                name="description"
+                                label="Raison de l'opposition"
+                                required="true" />
 
                             <!--end::Content-->
 

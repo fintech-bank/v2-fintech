@@ -26,6 +26,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerRequest whereSujet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerRequest whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $reference
+ * @property string|null $commentaire
+ * @property string|null $link_model
+ * @property int|null $link_id
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerRequest whereCommentaire($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerRequest whereLinkId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerRequest whereLinkModel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerRequest whereReference($value)
  */
 class CustomerRequest extends Model
 {

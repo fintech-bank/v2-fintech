@@ -7,9 +7,11 @@ use App\Helper\CustomerFaceliaHelper;
 use App\Helper\CustomerTransactionHelper;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Api\ApiController;
+use App\Models\Core\CreditCardOpposit;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\CancelCreditCardNotification;
 use App\Notifications\Customer\SendCreditCardCodeNotification;
+use App\Notifications\Customer\SendRequestNotification;
 use Illuminate\Http\Request;
 
 class CreditCardController extends ApiController
@@ -64,7 +66,7 @@ class CreditCardController extends ApiController
             "send_code" => $this->sendCode($card),
             "facelia" => $this->facelia($card, $request),
             "cancel_card" => $this->cancelCard($card),
-            "opposit_card" => ""
+            "opposit_card" => $this->oppositCard($card, $request)
         };
     }
 
@@ -90,7 +92,7 @@ class CreditCardController extends ApiController
                 0.15,
                 $card->wallet->id,
                 true,
-                'Renvoie du code carte bancaire '.$card->number_card_oscure,
+                'Renvoie du code carte bancaire ' . $card->number_card_oscure,
                 now()
             );
         }
@@ -102,7 +104,7 @@ class CreditCardController extends ApiController
 
     private function facelia(\App\Models\Customer\CustomerCreditCard $card, Request $request)
     {
-        if($card->facelias()->count() == 0) {
+        if ($card->facelias()->count() == 0) {
             if (CustomerFaceliaHelper::verify($card->wallet->customer, true, $card)) {
                 try {
                     CustomerFaceliaHelper::create(
@@ -111,7 +113,7 @@ class CreditCardController extends ApiController
                         $request->get('amount_available'),
                         $card
                     );
-                }catch (\Exception $exception) {
+                } catch (\Exception $exception) {
                     return $this->sendError($exception);
                 }
             } else {
@@ -138,10 +140,17 @@ class CreditCardController extends ApiController
 
     private function oppositCard(\App\Models\Customer\CustomerCreditCard $card, Request $request)
     {
-        $card->wallet->customer->requests()->create([
-            'sujet' => "Opposition sur la carte bancaire {$card->number_card_oscure}",
+        $opposit = $card->setOpposit($request->get('raison_select'), $request->get('description'));
+        $requete = $card->wallet->customer->requests()->create([
+            "sujet" => "Opposition sur la carte bancaire",
+            "commentaire" => "Veuillez nous transmettre les documents relatives à la requete d'opposition.",
+            "link_model" => CreditCardOpposit::class,
+            "link_id" => $opposit->id,
+            "customer_id" => $card->wallet->customer->id,
         ]);
 
+        $card->wallet->customer->info->notify(new SendRequestNotification($card->wallet->customer, $requete));
 
+        return response()->json();
     }
 }

@@ -11,7 +11,10 @@ return new class extends Migration {
             $table->id();
             $table->string('reference')->default(generateReference(15));
             $table->string('sujet');
+            $table->text('commentaire')->nullable();
             $table->enum('status', ['waiting', 'progress', 'terminated', 'expired'])->default('waiting');
+            $table->string('link_model')->nullable();
+            $table->integer('link_id')->nullable();
             $table->timestamps();
 
             $table->foreignId('customer_id')

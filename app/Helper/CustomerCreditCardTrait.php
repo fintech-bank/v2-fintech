@@ -25,7 +25,7 @@ trait CustomerCreditCardTrait
 
     public function getStatus($format = '')
     {
-        if($format == 'color') {
+        if ($format == 'color') {
             return match ($this->status) {
                 "active" => "success",
                 "inactive" => "secondary",
@@ -68,10 +68,10 @@ trait CustomerCreditCardTrait
             ->whereBetween('differed_at', [now()->startOfMonth(), now()->endOfMonth()])
             ->sum('amount');
 
-        if(!$percent) {
+        if (!$percent) {
             return $calc;
         } else {
-            if($calc != 0) {
+            if ($calc != 0) {
                 return $this->restantDiffered() * 100 / $this->differed_limit;
             } else {
                 return 0;
@@ -79,10 +79,10 @@ trait CustomerCreditCardTrait
         }
     }
 
-    public  function getTransactionsMonthWithdraw($percent = false)
+    public function getTransactionsMonthWithdraw($percent = false)
     {
         if ($percent == false) {
-            return - $this->transactions()
+            return -$this->transactions()
                 ->where('type', 'retrait')
                 ->where('confirmed', true)
                 ->where('customer_credit_card_id', $this->id)
@@ -90,7 +90,7 @@ trait CustomerCreditCardTrait
                 ->get()
                 ->sum('amount');
         } else {
-            $tran = - $this->transactions()
+            $tran = -$this->transactions()
                 ->where('type', 'retrait')
                 ->where('confirmed', true)
                 ->where('customer_credit_card_id', $this->id)
@@ -105,6 +105,16 @@ trait CustomerCreditCardTrait
     public function opposit()
     {
         return $this->status == 'opposit' ? 'disabled overlay overlay-block overlay-layer bg-gray-600 bg-opacity-25' : '';
+    }
+
+    public function setOpposit($type, $description)
+    {
+        return $this->opposition()->create([
+            "reference" => generateReference(),
+            "type" => $type,
+            "description" => $description,
+            "customer_credit_card_id" => $this->id
+        ]);
     }
 
 

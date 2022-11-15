@@ -177,5 +177,29 @@
             }
         })
     })
+    $(forms.formOppositCard).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formOppositCard)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data,
+            success: () => {
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.success(`La requête d'opposition pour la carte {{ $card->number_format }} à bien été enregistré`, `Carte Bancaire`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
+        })
+    })
 
 </script>
