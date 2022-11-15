@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('exp_month', 2);
             $table->string('exp_year', 4)->default(now()->addYears(4)->year);
             $table->string('number');
-            $table->enum('status', ['active', 'inactive', 'canceled'])->default('inactive');
+            $table->enum('status', ['active', 'inactive', 'canceled', 'opposit'])->default('inactive');
             $table->enum('type', ['physique', 'virtuel'])->default('physique');
             $table->enum('debit', ['immediate', 'differed'])->default('immediate');
             $table->string('cvc', 4);
