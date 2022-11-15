@@ -94,7 +94,8 @@ class CustomerCreditCard extends Model
         'number_format',
         'expiration',
         'debit_format',
-        'status_label'
+        'status_label',
+        'logo_card'
     ];
 
     public function wallet()
@@ -173,6 +174,11 @@ class CustomerCreditCard extends Model
     public function getStatusLabelAttribute()
     {
         return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid fa-{$this->getStatus()} me-2 text-white'></i> {$this->getStatus('text')}</span>";
+    }
+
+    public function getLogoCardAttribute()
+    {
+        return public_path('/storage/card/'.$this->support->slug.'.png');
     }
 
     public function alert($alert)
