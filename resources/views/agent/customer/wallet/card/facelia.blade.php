@@ -59,7 +59,7 @@
                     <div class="separator separator-dashed border-black border-3 my-3"></div>
                     <div class="d-flex flex-column">
                         <div class="fw-bolder fs-2">Référence</div>
-                        <div class="ps-5"><a href="{{ route('agent.customer.wallet.show', $facelia->card->wallet->number_account) }}">{{ $facelia->pret->reference }}</a></div>
+                        <div class="ps-5"><a href="{{ route('agent.customer.wallet.show', $facelia->pret->wallet->number_account) }}">{{ $facelia->pret->reference }}</a></div>
                     </div>
                     <div class="separator separator-dashed border-black border-3 my-3"></div>
                     <div class="d-flex flex-column">
