@@ -45,7 +45,22 @@
 @endsection
 
 @section("content")
-
+    <div class="row">
+        <div class="col-md-4 col-sm-12 mb-10">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">Information sur le pret affilié</h3>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <div class="fw-bolder fs-2">Type de pret</div>
+                        <div class="">{{ $facelia->pret->plan->name }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-12"></div>
+    </div>
 @endsection
 
 @section("script")
