@@ -12,24 +12,99 @@ trait VerifCompatibilityBeforeLoanTrait
     {
         $score = 0; // En pourcentage
 
-        self::verifDebitAllWalletAccount($customer) < self::verifCreditAllWalletAccount($customer) ? $score += 100 : $score -= 100;
-        self::verifFICP($customer) ? $score += 100 : $score -= 100;
-        self::verifCotation($customer) ? $score += 100 : $score -= 100;
-        self::verifAllSoldeWalletAccount($customer) ? $score += 100 : $score -= 100;
-        self::verifAllSoldeEpargneAccount($customer) ? $score += 100 : $score -= 100;
-        self::verifNbAlertOfAllWalletAccount($customer) ? $score += 100 : $score -= 100;
-        self::verifNbLoan($customer) ? $score += 100 : $score -= 100;
+        $acc = self::verifDebitAllWalletAccount($customer) < self::verifCreditAllWalletAccount($customer) ? $score += 100 : $score -= 100;
+        $ficp = self::verifFICP($customer) ? $score += 100 : $score -= 100;
+        $cotation = self::verifCotation($customer) ? $score += 100 : $score -= 100;
+        $solde_account = self::verifAllSoldeWalletAccount($customer) ? $score += 100 : $score -= 100;
+        $solde_epargne = self::verifAllSoldeEpargneAccount($customer) ? $score += 100 : $score -= 100;
+        $alert = self::verifNbAlertOfAllWalletAccount($customer) ? $score += 100 : $score -= 100;
+        $loan = self::verifNbLoan($customer) ? $score += 100 : $score -= 100;
 
         $calc = $score * 7 / 100;
-
-        if($isRevolving) {
-            self::creditCardIsNotClassicCard($card) ? $score += 100 : $score -= 100;
-            $calc = $score * 8 / 100;
-        }
-
         $serv = $calc >= 25 ? 'Reussi' : 'Echec';
         $color = $calc >= 25 ? 'success' : 'danger';
-        LogHelper::insertLogSystem('info', "Demande de crédit Facelia: Client: {$customer->info->full_name} | Score: {$calc} % | Resultat: <span class='text-{$color}'>{$serv}</span>");
+
+        if($isRevolving) {
+            $cards = self::creditCardIsNotClassicCard($card) ? $score += 100 : $score -= 100;
+            $calc = $score * 8 / 100;
+            $result = "
+            Demande de crédit Facelia: Client: {$customer->info->full_name} | Score: {$calc} % | Resultat: <span class='text-{$color}'>{$serv}</span><br>
+            <table class='table table-sm'>
+                <tbody>
+                    <tr>
+                        <td>Resultat des débits et crédits bancaire:</td>
+                        <td>{$acc}</td>
+                    </tr>
+                    <tr>
+                        <td>Client FICP:</td>
+                        <td>{$ficp}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat de la cotation:</td>
+                        <td>{$cotation}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat des soldes des comptes courants:</td>
+                        <td>{$solde_account}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat des soldes des comptes épargnes:</td>
+                        <td>{$solde_epargne}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat du nombre d'alerte sur les comptes:</td>
+                        <td>{$alert}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat du nombre de pret contracté:</td>
+                        <td>{$loan}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat du type de carte contracté:</td>
+                        <td>{$cards}</td>
+                    </tr>
+                </tbody>
+            </table>
+            ";
+        }
+
+        $result = "
+            Demande de crédit Facelia: Client: {$customer->info->full_name} | Score: {$calc} % | Resultat: <span class='text-{$color}'>{$serv}</span><br>
+            <table class='table table-sm'>
+                <tbody>
+                    <tr>
+                        <td>Resultat des débits et crédits bancaire:</td>
+                        <td>{$acc}</td>
+                    </tr>
+                    <tr>
+                        <td>Client FICP:</td>
+                        <td>{$ficp}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat de la cotation:</td>
+                        <td>{$cotation}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat des soldes des comptes courants:</td>
+                        <td>{$solde_account}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat des soldes des comptes épargnes:</td>
+                        <td>{$solde_epargne}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat du nombre d'alerte sur les comptes:</td>
+                        <td>{$alert}</td>
+                    </tr>
+                    <tr>
+                        <td>Resultat du nombre de pret contracté:</td>
+                        <td>{$loan}</td>
+                    </tr>
+                </tbody>
+            </table>
+            ";
+
+        LogHelper::insertLogSystem('info', $result);
 
         return $calc >= 25;
     }
