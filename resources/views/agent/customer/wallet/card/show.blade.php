@@ -252,15 +252,15 @@
                 <form id="formSendCodeCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST">
                     @csrf
                     <input type="hidden" name="action" value="send_code">
-                    <div class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
+                    <div class="alert alert-dismissible bg-light-info d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
                         <!--begin::Close-->
                         <button type="button" class="position-absolute top-0 end-0 m-2 btn btn-icon btn-icon-danger" data-bs-dismiss="alert">
-                            <span class="svg-icon svg-icon-1">...</span>
+                            <i class="fa-solid fa-xmarl fs-1"></i>
                         </button>
                         <!--end::Close-->
 
                         <!--begin::Icon-->
-                        <span class="svg-icon svg-icon-5tx svg-icon-danger mb-5">...</span>
+                        <i class="fa-solid fa-question-circle fs-5tx text-danger mb-5"></i>
                         <!--end::Icon-->
 
                         <!--begin::Wrapper-->
