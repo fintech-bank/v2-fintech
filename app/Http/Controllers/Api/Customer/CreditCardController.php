@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Customer;
 
 use App\Helper\CustomerCreditCard;
+use App\Helper\CustomerFaceliaHelper;
 use App\Helper\CustomerTransactionHelper;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
@@ -98,6 +99,18 @@ class CreditCardController extends Controller
 
     private function facelia(\App\Models\Customer\CustomerCreditCard $card, Request $request)
     {
+        try {
+            CustomerFaceliaHelper::create(
+                $card->wallet,
+                $card->wallet->customer,
+                $request->get('amount_available'),
+                $card
+            );
+        }catch (\Exception $exception) {
+            LogHelper::notify('critical', $exception->getMessage(), $exception);
+            return response()->json(null, 500);
+        }
 
+        return response()->json();
     }
 }
