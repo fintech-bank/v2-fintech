@@ -178,12 +178,12 @@
         <div class="card-header">
             <h3 class="card-title">Carte bancaire {{ $card->number_format }}</h3>
             <div class="card-toolbar">
-                <button class="btn btn-sm btn-circle btn-outline btn-outline-primary me-2">Editer la carte</button>
-                <button class="btn btn-sm btn-circle btn-outline btn-outline-primary me-2">Renvoyer le code secret</button>
+                <button class="btn btn-sm btn-circle btn-outline btn-outline-primary me-2 btnEditCard" data-card="{{ $card->number }}">Editer la carte</button>
+                <button class="btn btn-sm btn-circle btn-outline btn-outline-primary me-2 btnSendCodeCard" data-card="{{ $card->number }}">Renvoyer le code secret</button>
                 @if($card->facelia)
-                    <button class="btn btn-sm btn-circle btn-outline btn-outline-primary me-2">Liaison Facelia</button>
+                    <button class="btn btn-sm btn-circle btn-outline btn-outline-primary me-2 btnFaceliaCard" data-card="{{ $card->number }}">Liaison Facelia</button>
                 @endif
-                <button class="btn btn-sm btn-circle btn-outline btn-outline-danger me-2">Annuler la carte bancaire</button>
+                <button class="btn btn-sm btn-circle btn-outline btn-outline-danger me-2 btnCancelCard" data-card="{{ $card->number }}">Annuler la carte bancaire</button>
             </div>
         </div>
         <div class="card-body">

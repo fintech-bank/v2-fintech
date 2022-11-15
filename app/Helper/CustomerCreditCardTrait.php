@@ -29,19 +29,21 @@ trait CustomerCreditCardTrait
             return match ($this->status) {
                 "active" => "success",
                 "inactive" => "secondary",
-                "canceled" => "danger",
+                "canceled", "opposit" => "danger"
             };
         } elseif ($format == 'text') {
             return match ($this->status) {
                 "active" => "Carte Active",
                 "inactive" => "Carte Inactive",
                 "canceled" => "Carte Annulé",
+                "opposit" => "Opposition sur la carte",
             };
         } else {
             return match ($this->status) {
                 "active" => "check",
                 "inactive" => "ban",
                 "canceled" => "xmark-circle",
+                "opposit" => "hand",
             };
         }
     }
