@@ -151,7 +151,7 @@ class CustomerWalletController extends Controller
 
     private function createPret(Customer $customer, CustomerWallet $wallet, Request $request)
     {
-        $pret = CustomerLoanHelper::createLoan(
+        $pret = CustomerLoanHelper::create(
             $wallet,
             $customer,
             $request->get('amount_load'),

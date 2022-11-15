@@ -30,7 +30,7 @@ class CustomerFaceliaHelper
 
     private static function createFaceliaPret($wallet, $customer, $amount, $card)
     {
-        return CustomerLoanHelper::createLoan(
+        return CustomerLoanHelper::create(
             $wallet,
             $customer,
             $amount,

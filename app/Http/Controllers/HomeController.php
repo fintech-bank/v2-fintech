@@ -12,6 +12,7 @@ use App\Models\Core\LoanPlan;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCreditCard;
+use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerTransfer;
 use App\Models\Reseller\Reseller;
@@ -96,20 +97,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $document = new DocumentFile();
-        $customer = Customer::find(1);
-        $card = CustomerCreditCard::find(1);
+        $pret = CustomerPret::find(1);
 
-        return $document->generatePDF(
-            'customer.convention_carte_virtuel',
-            $customer,
-            null,
-            ["card" => $card],
-            false,
-            false,
-            null,
-            true,
-            'simple'
-        );
+        dd($pret);
     }
 }
