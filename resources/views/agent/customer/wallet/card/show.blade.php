@@ -45,18 +45,23 @@
 @endsection
 
 @section("content")
-    <div class="d-flex flex-row border border-{{ $card->getStatus('color') }} rounded rounded-2 bg-gray-300 p-5 shadow-lg">
-        <div class="symbol symbol-175px symbol-2by3">
-            <img src="{{ $card->logo_card }}" alt="">
-        </div>
-        <div class="d-flex flex-column">
-            <div class="fw-bolder fs-2">CB {{ $card->support->name }}</div>
-            <span class="mb-3">{{ $card->debit_format }}</span>
-            <a href="">{{ $card->wallet->name_account_generic }}</a>
-            <div class="d-flex flex-row mt-5">
-                <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3">Vérouiller la carte</button>
-                <button class="btn btn-lg btn-circle btn-danger">Opposition</button>
+    <div class="d-flex flex-row border border-{{ $card->getStatus('color') }} justify-content-between rounded rounded-2 bg-gray-300 p-5 shadow-lg">
+        <div class="">
+            <div class="symbol symbol-175px symbol-2by3">
+                <img src="{{ $card->logo_card }}" alt="">
             </div>
+            <div class="d-flex flex-column">
+                <div class="fw-bolder fs-2">CB {{ $card->support->name }}</div>
+                <span class="mb-3">{{ $card->debit_format }}</span>
+                <a href="">{{ $card->wallet->name_account_generic }}</a>
+                <div class="d-flex flex-row mt-5">
+                    <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3">Vérouiller la carte</button>
+                    <button class="btn btn-lg btn-circle btn-danger">Opposition</button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex rounded bg-light">
+            dsdsq
         </div>
     </div>
 @endsection
