@@ -82,6 +82,14 @@ class NewPretNotification extends Notification
                 <?php endif; ?>
             </tbody>
         </table>
+        <?php if($this->pret->customer->documents()->where('reference', $this->pret->reference)->where('signable', true)->where('signed_by_client', false)->count() > 0): ?>
+        <p>
+            Notre système nous indique également que certains documents ne sont pas encore signée.<br>
+            Veuillez cliquer sur le bouton ci-dessous pour acceder à votre offre de pret et signer tous les documents.<br>
+            Sans votre signature dans un délai résonnable, votre offre de pret ne sera pas traité dans les bonnes conditions.
+        </p>
+        <?php endif; ?>
+        <p>Toute l'équipe de <?= config('app.name') ?> vous remercie de votre confiance.</p>
         <?php
         return ob_get_clean();
     }
