@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-between align-items-center rounded bg-light p-5 shadow-lg me-3">
+        <div class="d-flex flex-row justify-content-between align-items-center rounded bg-light p-5 shadow-lg me-3 {{ $card->opposit() }}">
             <div class="d-flex flex-column">
                 <div class="d-flex flex-row mb-3">
                     <i class="fa-solid fa-{{ $card->support->payment_internet ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->payment_internet ? 'success' : 'danger' }} fs-2 me-3"></i>
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-between rounded bg-light p-5 w-500px shadow-lg">
+        <div class="d-flex flex-row justify-content-between rounded bg-light p-5 w-500px shadow-lg {{ $card->opposit() }} ">
             <div class="d-flex flex-column w-250px me-3 ms-auto">
                 <div class="d-flex flex-row align-items-center mb-3">
                     <i class="fa-solid fa-{{ $card->support->insurance->insurance_sante ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->insurance_sante ? 'success' : 'danger' }} fs-2 me-3"></i>
