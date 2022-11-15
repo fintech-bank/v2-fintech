@@ -216,7 +216,25 @@
                                 value="1"
                                 check="{{ $card->payment_contact ? 'checked' : '' }}" />
                         </div>
-                        <div class="col-6"></div>
+                        <div class="col-6">
+                            <x-form.input
+                                name="limit_payment"
+                                label="Limite de Paiement"
+                                value="{{ $card->limit_payment }}"
+                                required="true" />
+                            <x-form.input
+                                name="limit_retrait"
+                                label="Limite de Retrait"
+                                value="{{ $card->limit_retrait }}"
+                                required="true" />
+                            @if($card->debit == 'differed')
+                                <x-form.input
+                                    name="differed_limit"
+                                    label="Limite différé"
+                                    value="{{ $card->differed_limit }}"
+                                    required="true" />
+                            @endif
+                        </div>
                     </div>
                 </form>
             </div>
