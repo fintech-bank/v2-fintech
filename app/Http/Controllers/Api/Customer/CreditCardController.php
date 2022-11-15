@@ -50,4 +50,14 @@ class CreditCardController extends Controller
 
         return response()->json();
     }
+
+    public function update($customer_id, $number_account, $card_id, Request $request)
+    {
+        $card = \App\Models\Customer\CustomerCreditCard::find($card_id);
+
+        switch ($request->get('action')) {
+            case 'edit':
+
+        }
+    }
 }

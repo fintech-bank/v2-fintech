@@ -36,9 +36,8 @@ class AlertCustomerJob implements ShouldQueue
     public function handle()
     {
         $customer = Customer::find($this->customer_id);
-        dd($customer);
         match ($this->alert) {
-            "password" => $this->customer->info->notify(new SameDefaultPasswordNotification($this->customer))
+            "password" => $customer->info->notify(new SameDefaultPasswordNotification($this->customer))
         };
     }
 }

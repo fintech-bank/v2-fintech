@@ -166,6 +166,7 @@ Route::prefix('customer')->group(function () {
 
         Route::prefix('{number_account}/card')->group(function () {
             Route::post('/', [\App\Http\Controllers\Api\Customer\CreditCardController::class, 'store']);
+            Route::put('{card_id}', [\App\Http\Controllers\Api\Customer\CreditCardController::class, 'update']);
         });
     });
 
