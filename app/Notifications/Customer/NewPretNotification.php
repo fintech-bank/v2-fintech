@@ -42,8 +42,8 @@ class NewPretNotification extends Notification
         ?>
         <p>Vous venez de souscrire au <strong><?= $this->pret->plan->name ?></strong> en date du <strong><?= $this->pret->created_at->format('d/m/Y') ?></strong> et nous en remercions.</p>
         <?php if($this->pret->plan->tarif->type_taux == 'variable'): ?>
-        <p>Sachez que ce type de crédit est dit à taux variable c'est à dire que le taux en vigeurs est variable en fonction de la somme utilisé et non emprunter.<br>Par Example:</p>
-        <i>Un pret d'un montant de 3000 € accordée et de 300 € utilisé, le taux pris en compte est basée sur les 300 € utilisé et non les 3000 €</i>
+        <p>Sachez que ce type de crédit est dit à taux variable, c'est-à-dire que le taux en vigueurs est variable en fonction de la somme utilisé et non emprunter.<br>Par Example:</p>
+        <i>Un prêt d'un montant de 3000 € accordée et de 300 € utilisé, le taux pris en compte est basée sur les 300 € utilisé et non les 3000 €</i>
         <p>Le taux pour ce crédit varie entre <strong><?= $this->pret->plan->tarif->max_interest ?></strong> et <strong><?= $this->pret->plan->tarif->max_interest ?></strong></p>
         <?php endif; ?>
         <p>Voici un récapitulatif de votre crédit:</p>
@@ -58,7 +58,7 @@ class NewPretNotification extends Notification
                     <td><?= $this->pret->amount_loan_format ?></td>
                 </tr>
                 <tr>
-                    <td class="fw-bold">Durée du pret:</td>
+                    <td class="fw-bold">Durée du prêt:</td>
                     <td><?= $this->pret->duration ?> Mois</td>
                 </tr>
                 <tr>
@@ -84,9 +84,9 @@ class NewPretNotification extends Notification
         </table>
         <?php if($this->pret->customer->documents()->where('reference', $this->pret->reference)->where('signable', true)->where('signed_by_client', false)->count() > 0): ?>
         <p>
-            Notre système nous indique également que certains documents ne sont pas encore signée.<br>
-            Veuillez cliquer sur le bouton ci-dessous pour acceder à votre offre de pret et signer tous les documents.<br>
-            Sans votre signature dans un délai résonnable, votre offre de pret ne sera pas traité dans les bonnes conditions.
+            Notre système nous indique également que certains documents ne sont pas encore signés.<br>
+            Veuillez cliquer sur le bouton ci-dessous pour accéder à votre offre de prêt et signer tous les documents.<br>
+            Sans votre signature dans un délai résonnable, votre offre de prêt ne sera pas traité dans les bonnes conditions.
         </p>
         <?php endif; ?>
         <p>Toute l'équipe de <?= config('app.name') ?> vous remercie de votre confiance.</p>
