@@ -28,8 +28,8 @@ class CustomerWalletHelper
         $wallet = CustomerWallet::query()->create([
             'uuid' => \Str::uuid(),
             'number_account' => $number_account,
-            'iban' => $ibanG->generate($customer->user->agency->code_banque, $number_account, 'FR'),
-            'rib_key' => $ibanG->getBban($customer->user->agency->code_banque, $number_account),
+            'iban' => $ibanG->generate($customer->agency->code_banque, $number_account, 'FR'),
+            'rib_key' => $ibanG->getBban($customer->agency->code_banque, $number_account),
             'type' => $type,
             'status' => $status,
             'balance_actual' => $balance_actual,
