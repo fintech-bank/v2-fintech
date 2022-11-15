@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Models\Core\LoanPlan;
+use App\Scope\CalcLoanTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -70,10 +71,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read string $amount_loan_format
  * @property-read string $assurance_type_format
  * @property-read string $mensuality_format
+ * @property-read mixed $taux_variable
  */
 class CustomerPret extends Model
 {
-    use HasFactory;
+    use HasFactory, CalcLoanTrait;
 
     protected $guarded = [];
 
@@ -85,7 +87,8 @@ class CustomerPret extends Model
         'amount_interest_format',
         'amount_du_format',
         'mensuality_format',
-        'assurance_type_format'
+        'assurance_type_format',
+        'taux_variable'
     ];
 
     public function plan()
@@ -168,12 +171,17 @@ class CustomerPret extends Model
         return eur($this->mensuality);
     }
 
+    public function getTauxVariableAttribute()
+    {
+        return self::calcLoanIntestVariableTaxe($this);
+    }
+
     public function getAssuranceTypeFormatAttribute(): string
     {
         return match ($this->assurance_type) {
             "D" => "Décès",
-            "DIM" => "Décès, Invalidité",
-            default => "Décès, Invalidité, Incapacité de travail ou Perte d'emploi",
+            "DIM" => "Décès, Invalidité, Maladie",
+            default => "Décès, Invalidité, Maladie, Chomage",
         };
     }
 }
