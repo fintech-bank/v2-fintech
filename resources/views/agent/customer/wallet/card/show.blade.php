@@ -59,8 +59,13 @@
                 <span class="mb-3">{{ $card->debit_format }}</span>
                 <a href="">{{ $card->wallet->name_account_generic }}</a>
                 <div class="d-flex flex-row mt-5">
-                    <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3">Vérouiller la carte</button>
-                    <button class="btn btn-lg btn-circle btn-danger">Opposition</button>
+                    @if($card->status == 'active')
+                        <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3">Désactiver la carte</button>
+                        <button class="btn btn-lg btn-circle btn-danger">Opposition</button>
+                    @else
+                        <button class="btn btn-lg btn-circle btn-outline btn-outline-success me-3">Activer la carte</button>
+                        <button class="btn btn-lg btn-circle btn-danger">Opposition</button>
+                    @endif
                 </div>
             </div>
         </div>
