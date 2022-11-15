@@ -31,7 +31,7 @@
             </li>
             <li class="breadcrumb-item text-muted">
                 <a href="{{ route('agent.customer.wallet.show', $card->wallet->number_account) }}"
-                   class="text-muted text-hover-primary">{{ $wallet->type_text }} - N°{{ $wallet->number_account }}</a>
+                   class="text-muted text-hover-primary">{{ $card->wallet->type_text }} - N°{{ $card->wallet->number_account }}</a>
             </li>
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-200 w-5px h-2px"></span>
