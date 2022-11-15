@@ -101,53 +101,16 @@ class CustomerWalletController extends Controller
 
     private function createEpargne(Customer $customer, CustomerWallet $wallet, Request $request)
     {
-        $epargne = CustomerEpargne::create([
-            'uuid' => \Str::uuid(),
-            'reference' => generateReference(),
-            'initial_payment' => $request->get('initial_payment'),
-            'monthly_payment' => $request->get('monthly_payment'),
-            'monthly_days' => $request->get('monthly_days'),
-            'wallet_id' => $wallet->id,
-            'wallet_payment_id' => $request->get('wallet_payment_id'),
-            'epargne_plan_id' => $request->get('epargne_plan_id'),
-        ]);
-
-        $doc_epargne = DocumentFile::createDoc(
+        CustomerEpargneHelper::create(
             $customer,
-            'wallet.contrat_epargne',
-            "Contrat d'épargne",
-            3,
-            generateReference(),
-            true,
-            true,
-            false,
-            true,
-            ['wallet' => $wallet, "epargne" => $epargne]
+            $request->get('initial_payment'),
+            $request->get('monthly_payment'),
+            $request->get('monthly_days'),
+            $request->get('wallet_payment_id'),
+            $request->get('epargne_plan_id')
         );
 
-        $wallet_retrait = CustomerWallet::find($epargne->wallet_payment_id);
-        CustomerTransactionHelper::create(
-            'debit',
-            'sepa',
-            'Prélèvement Contrat Epargne ' . $wallet->number_account,
-            $request->get('initial_payment'),
-            $wallet_retrait->id,
-            true,
-            "REFERENCE " . generateReference() . " | Livret " . $wallet->epargne->plan->name . " ~ " . $wallet->number_account,
-            now()
-        );
-        CustomerTransactionHelper::create(
-            'credit',
-            'sepa',
-            'Prélèvement Contrat Epargne ' . $wallet->number_account,
-            $request->get('initial_payment'),
-            $wallet->id,
-            true,
-            "REFERENCE " . generateReference() . " | Livret " . $wallet->epargne->plan->name . " ~ " . $wallet->number_account,
-            now()
-        );
-
-        $customer->user->notify(new NewEpargneNotification($customer, $wallet, ['url' => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc_epargne->category->name}/$doc_epargne->name.pdf")]));
+        return response()->json();
     }
 
     private function createPret(Customer $customer, CustomerWallet $wallet, Request $request)

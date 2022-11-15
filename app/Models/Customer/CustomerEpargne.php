@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Models\Core\EpargnePlan;
+use App\Scope\CustomerEpargneTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -39,7 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CustomerEpargne extends Model
 {
-    use HasFactory;
+    use HasFactory, CustomerEpargneTrait;
 
     protected $guarded = [];
 
