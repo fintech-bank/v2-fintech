@@ -189,6 +189,7 @@
         <div class="card-body">
             <div id="divEditCard">
                 <form id="formEditCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST">
+                    <input type="hidden" name="action" value="edit">
                     <div class="mb-10">
                         <label for="debit" class="form-label">Type de débit</label>
                         <select name="debit" id="debit" class="form-control form-control-solid" data-control="select2">
@@ -247,7 +248,49 @@
                     </div>
                 </form>
             </div>
-            <div id="divSendCodeCard" class="d-none"></div>
+            <div id="divSendCodeCard" class="d-none">
+                <form id="formSendCodeCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="action" value="send_code">
+                    <div class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
+                        <!--begin::Close-->
+                        <button type="button" class="position-absolute top-0 end-0 m-2 btn btn-icon btn-icon-danger" data-bs-dismiss="alert">
+                            <span class="svg-icon svg-icon-1">...</span>
+                        </button>
+                        <!--end::Close-->
+
+                        <!--begin::Icon-->
+                        <span class="svg-icon svg-icon-5tx svg-icon-danger mb-5">...</span>
+                        <!--end::Icon-->
+
+                        <!--begin::Wrapper-->
+                        <div class="text-center">
+                            <!--begin::Title-->
+                            <h1 class="fw-bold mb-5">This is an alert</h1>
+                            <!--end::Title-->
+
+                            <!--begin::Separator-->
+                            <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
+                            <!--end::Separator-->
+
+                            <!--begin::Content-->
+                            <div class="mb-9 text-dark">
+                                The alert component can be used to highlight certain parts of your page for <strong>higher content visibility</strong>.<br/>
+                                Please read our <a href="#" class="fw-bold me-1">Terms and Conditions</a> for more info.
+                            </div>
+                            <!--end::Content-->
+
+                            <!--begin::Buttons-->
+                            <div class="d-flex flex-center flex-wrap">
+                                <a href="#" class="btn btn-outline btn-outline-danger btn-active-danger m-2">Cancel</a>
+                                <a href="#" class="btn btn-danger m-2">Ok, I got it</a>
+                            </div>
+                            <!--end::Buttons-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                </form>
+            </div>
             <div id="divFaceliaCard" class="d-none"></div>
             <div id="divCancelCard" class="d-none"></div>
             <div id="divOppositCard" class="d-none"></div>
