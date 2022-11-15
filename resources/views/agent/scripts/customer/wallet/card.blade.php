@@ -24,11 +24,19 @@
     $(elements.divOppositCard).hide();
 
     elements.btnEditCard.addEventListener('click', () => {
-        $(elements.divEditCard).fadeIn()
+        $(elements.divEditCard).show();
+        $(elements.divSendCodeCard).hide();
+        $(elements.divFaceliaCard).hide();
+        $(elements.divCancelCard).hide();
+        $(elements.divOppositCard).hide();
     })
 
     elements.btnSendCodeCard.addEventListener('click', () => {
-        $(elements.divSendCodeCard).fadeIn()
+        $(elements.divEditCard).hide();
+        $(elements.divSendCodeCard).show();
+        $(elements.divFaceliaCard).hide();
+        $(elements.divCancelCard).hide();
+        $(elements.divOppositCard).hide();
     })
 
 </script>
