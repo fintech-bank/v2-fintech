@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-between rounded bg-light p-5 shadow-lg">
+        <div class="d-flex flex-row justify-content-between rounded bg-light p-5 shadow-lg me-3">
             <div class="d-flex flex-column">
                 <div class="d-flex flex-row mb-3">
                     <i class="fa-solid fa-{{ $card->support->payment_internet ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->payment_internet ? 'success' : 'danger' }} fs-2 me-3"></i>
@@ -90,6 +90,16 @@
                     <i class="fa-solid fa-{{ $card->support->choice_code ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->choice_code ? 'success' : 'danger' }} fs-2 me-3"></i>
                     <div class="d-flex flex-column">
                         {{ $card->support->choice_code_text }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row justify-content-between rounded bg-light p-5 shadow-lg">
+            <div class="d-flex flex-column">
+                <div class="d-flex flex-row mb-3">
+                    <i class="fa-solid fa-{{ $card->support->insurance->insurance_sante ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->insurance_sante ? 'success' : 'danger' }} fs-2 me-3"></i>
+                    <div class="d-flex flex-column">
+                        {{ $card->support->insurance->insurance_sante_text }}
                     </div>
                 </div>
             </div>
