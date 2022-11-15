@@ -27,4 +27,8 @@
         $(elements.divEditCard).fadeIn()
     })
 
+    elements.btnSendCodeCard.addEventListener('click', () => {
+        $(elements.divSendCodeCard).fadeIn()
+    })
+
 </script>
