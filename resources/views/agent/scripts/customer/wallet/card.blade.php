@@ -6,6 +6,11 @@
         divFaceliaCard: document.querySelector("#divFaceliaCard"),
         divCancelCard: document.querySelector("#divCancelCard"),
         divOppositCard: document.querySelector("#divOppositCard"),
+        btnEditCard: document.querySelector(".btnEditCard"),
+        btnSendCodeCard: document.querySelector(".btnSendCodeCard"),
+        btnFaceliaCard: document.querySelector(".btnFaceliaCard"),
+        btnCancelCard: document.querySelector(".btnCancelCard"),
+        btnOppositCard: document.querySelector(".btnOppositCard"),
     }
     let modals = {}
     let forms = {}
