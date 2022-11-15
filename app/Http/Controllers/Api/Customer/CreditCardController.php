@@ -22,7 +22,7 @@ class CreditCardController extends Controller
             $request->get('debit'),
         );
 
-        if($wallet->Numberofphysicalbankcardsexceeded()) {
+        if ($wallet->Numberofphysicalbankcardsexceeded()) {
             CustomerTransactionHelper::create(
                 'debit',
                 'frais',
@@ -30,12 +30,12 @@ class CreditCardController extends Controller
                 25,
                 $wallet->id,
                 true,
-                'Carte Bancaire Supplémentaire N°'.$card->number_card_oscure,
+                'Carte Bancaire Supplémentaire N°' . $card->number_card_oscure,
                 now(),
             );
         }
 
-        if($wallet->Numberofvirtualbankcardsexceeded()) {
+        if ($wallet->Numberofvirtualbankcardsexceeded()) {
             CustomerTransactionHelper::create(
                 'debit',
                 'frais',
@@ -43,7 +43,7 @@ class CreditCardController extends Controller
                 10,
                 $wallet->id,
                 true,
-                'Carte Bancaire virtuel Supplémentaire N°'.$card->number_card_oscure,
+                'Carte Bancaire virtuel Supplémentaire N°' . $card->number_card_oscure,
                 now(),
             );
         }
@@ -55,9 +55,13 @@ class CreditCardController extends Controller
     {
         $card = \App\Models\Customer\CustomerCreditCard::find($card_id);
 
-        switch ($request->get('action')) {
-            case 'edit':
+        match ($request->get('action')) {
+            "edit" => $this->editCreditCard($card, $request)
+        };
+    }
 
-        }
+    private function editCreditCard(\App\Models\Customer\CustomerCreditCard $card, Request $request)
+    {
+        dd($request->all());
     }
 }
