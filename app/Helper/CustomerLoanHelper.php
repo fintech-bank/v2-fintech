@@ -39,7 +39,7 @@ class CustomerLoanHelper
             'loan_plan_id' => $loan_plan,
             'customer_id' => $customer->id,
         ]);
-        $amount_interest =  self::getLoanInterest($amount, $plan->tarif->type_taux == 'fixe' ? $plan->tarif->interest : self::calcLoanIntestVariableTaxe());
+        $amount_interest =  self::getLoanInterest($amount, $plan->tarif->type_taux == 'fixe' ? $plan->tarif->interest : self::calcLoanIntestVariableTaxe($loan));
         $amount_du = $amount + $amount_interest;
         $mensuality = $amount_du / $duration;
 
