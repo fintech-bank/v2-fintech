@@ -29,3 +29,8 @@ update:
 	php artisan system:clear
 	php artisan migrate
 	php artisan up
+
+seed:
+	php artisan system:seed --base
+	php artisan system:clear -y
+	chmod -R 777 storage/ bootstrap/
