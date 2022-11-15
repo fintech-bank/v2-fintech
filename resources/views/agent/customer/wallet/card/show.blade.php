@@ -196,6 +196,28 @@
                             <option value="differed" {{ $card->debit == 'differed' ? 'selected' : '' }}>Débit Différé</option>
                         </select>
                     </div>
+                    <div class="row">
+                        <div class="col-6 rounded bg-secondary p-5">
+                            <x-form.switches
+                                name="payment_internet"
+                                label="Paiement par internet"
+                                value="1"
+                                check="{{ $card->payment_internet ? 'checked' : '' }}" />
+
+                            <x-form.switches
+                                name="payment_abroad"
+                                label="Paiement / retrait à l'étranger"
+                                value="1"
+                                check="{{ $card->payment_abroad ? 'checked' : '' }}" />
+
+                            <x-form.switches
+                                name="payment_contact"
+                                label="Paiement sans contact"
+                                value="1"
+                                check="{{ $card->payment_contact ? 'checked' : '' }}" />
+                        </div>
+                        <div class="col-6"></div>
+                    </div>
                 </form>
             </div>
             <div id="divSendCodeCard" class="d-none"></div>
