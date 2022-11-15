@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex rounded bg-light p-5 shadow-lg h-75">
+        <div class="d-flex rounded bg-light p-5 shadow-lg">
             dsdsq
         </div>
     </div>
