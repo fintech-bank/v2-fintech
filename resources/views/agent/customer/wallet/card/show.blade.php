@@ -121,6 +121,7 @@
                     </div>
                 </div>
             </div>
+            <div class="vr"></div>
             <div class="d-flex flex-column w-250px">
                 <div class="d-flex flex-row align-items-center mb-3">
                     <i class="fa-solid fa-{{ $card->support->insurance->insurance_sante ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->insurance_sante ? 'success' : 'danger' }} fs-2 me-3"></i>
