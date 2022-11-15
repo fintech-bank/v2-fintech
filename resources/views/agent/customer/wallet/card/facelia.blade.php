@@ -61,6 +61,12 @@
                         <div class="fw-bolder fs-2">Référence</div>
                         <div class="ps-5">{{ $facelia->pret->reference }}</div>
                     </div>
+                    <div class="separator separator-dashed border-black border-3 my-3"></div>
+                    <div class="d-flex flex-column">
+                        <div class="fw-bolder fs-2">Etat</div>
+                        <div class="ps-5">{{ $facelia->pret->status_label }}</div>
+                        <div class="fs-6"><i>{{ $facelia->pret->status_explanation }}</i></div>
+                    </div>
                 </div>
             </div>
         </div>
