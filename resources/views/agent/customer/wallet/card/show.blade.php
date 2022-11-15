@@ -231,8 +231,7 @@
                                 <x-form.input
                                     name="differed_limit"
                                     label="Limite différé"
-                                    value="{{ $card->differed_limit }}"
-                                    required="true" />
+                                    value="{{ $card->differed_limit }}" />
                             @endif
                         </div>
                     </div>
