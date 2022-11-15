@@ -254,7 +254,7 @@
                     <input type="hidden" name="action" value="send_code">
                     <div class="alert alert-dismissible bg-light-info d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
                         <!--begin::Close-->
-                        <button type="button" class="position-absolute top-0 end-0 m-2 btn btn-icon btn-icon-danger" data-bs-dismiss="alert">
+                        <button type="button" class="position-absolute top-0 end-0 m-2 btn btn-icon btn-icon-info" data-bs-dismiss="alert">
                             <i class="fa-solid fa-xmarl fs-1"></i>
                         </button>
                         <!--end::Close-->
