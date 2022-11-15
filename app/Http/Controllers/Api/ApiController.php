@@ -25,11 +25,11 @@ class ApiController extends Controller
         ], $status);
     }
 
-    public function sendError(string $message = null, array|\Exception $data = null, $status = 500)
+    public function sendError(array|\Exception $data = null, $status = 500)
     {
-        LogHelper::notify('critical', $message, $data);
+        LogHelper::notify('critical', "Erreur lors de l'execution de l'appel: ".$data->getFile(), $data);
         return response()->json([
-            "message" => $message,
+            "message" => "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur",
             "data" => $data,
             "state" => "error"
         ], $status);

@@ -144,6 +144,9 @@
 
                     toastr.warning(`${data.message}`, `Carte Bancaire`)
                 }
+            },
+            error: data => {
+                console.log(data)
             }
         })
     })

@@ -108,7 +108,7 @@ class CreditCardController extends ApiController
                     $card
                 );
             }catch (\Exception $exception) {
-                return $this->sendError($exception->getMessage(), $exception);
+                return $this->sendError($exception);
             }
         } else {
             return $this->sendWarning("Ce compte ne présente pas tous les prérequis pour souscrire au crédit FACELIA");
