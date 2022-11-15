@@ -16,4 +16,7 @@
     let forms = {}
     let dataTable = {}
     let block = {}
+
+    elements.divEditCard.hide();
+
 </script>

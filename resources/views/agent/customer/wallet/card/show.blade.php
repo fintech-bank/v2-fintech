@@ -187,7 +187,7 @@
             </div>
         </div>
         <div class="card-body">
-            <div id="divEditCard" class="">
+            <div id="divEditCard">
                 <form id="formEditCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST">
                     <div class="mb-10">
                         <label for="debit" class="form-label">Type de débit</label>
