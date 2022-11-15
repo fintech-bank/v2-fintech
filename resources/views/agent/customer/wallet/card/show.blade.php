@@ -45,7 +45,7 @@
 @endsection
 
 @section("content")
-    <div class="d-flex flex-row border rounded rounded-2 bg-gray-300">
+    <div class="d-flex flex-row border rounded rounded-2 bg-gray-300 p-5">
         a
     </div>
 @endsection
