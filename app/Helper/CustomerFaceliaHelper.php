@@ -25,7 +25,11 @@ class CustomerFaceliaHelper
     {
         $pret = self::createFaceliaPret($wallet, $customer, $amount, $card);
 
-        return self::createFacelia($pret->wallet, $pret, $card, $wallet);
+        $facelia = self::createFacelia($pret->wallet, $pret, $card, $wallet);
+
+        $card->update(['facelia' => 1]);
+
+        return $facelia;
     }
 
     private static function createFaceliaPret($wallet, $customer, $amount, $card): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerPret_QB|\App\Models\Customer\CustomerPret
