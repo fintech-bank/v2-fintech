@@ -150,7 +150,7 @@
                         </tr>
                         <tr>
                             <td class="fw-bolder">Montant utilisé</td>
-                            <td>{{ $facelia->amount_du == 1 ? 0 : eur($facelia->amount_du - $facelia->amount_available) }}</td>
+                            <td>{{ $facelia->amount_du == 0 ? 0 : eur($facelia->amount_du - $facelia->amount_available) }}</td>
                             <td></td>
                         </tr>
                         <tr>
