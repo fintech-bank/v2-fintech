@@ -25,9 +25,9 @@ class CustomerLoanHelper
             'uuid' => \Str::uuid(),
             'reference' => generateReference(),
             'amount_loan' => $amount,
-            'amount_interest' => self::getLoanInterest($amount, $plan->interests[0]->interest),
-            'amount_du' => $amount + self::getLoanInterest($amount, $plan->interests[0]->interest),
-            'mensuality' => ($amount + self::getLoanInterest($amount, $plan->interests[0]->interest)) / $duration,
+            'amount_interest' => 0,
+            'amount_du' => 0,
+            'mensuality' => 0,
             'prlv_day' => $prlv_day,
             'duration' => $duration,
             'status' => $status,
@@ -38,6 +38,15 @@ class CustomerLoanHelper
             'first_payment_at' => Carbon::create(now()->year, now()->addMonth()->month, $prlv_day),
             'loan_plan_id' => $loan_plan,
             'customer_id' => $customer->id,
+        ]);
+        $amount_interest =  self::getLoanInterest($amount, $plan->tarif->type_taux == 'fixe' ? $plan->tarif->interest : self::calcLoanIntestVariableTaxe());
+        $amount_du = $amount + $amount_interest;
+        $mensuality = $amount_du / $duration;
+
+        $loan->update([
+            'amount_interest' => $amount_interest,
+            'amount_du' => $amount_du,
+            'mensuality' => $mensuality
         ]);
 
         if ($plan->id == 6) {
