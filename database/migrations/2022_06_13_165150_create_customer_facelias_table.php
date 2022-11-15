@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('amount_available', 50);
             $table->float('amount_interest', 50)->default(0);
             $table->float('amount_du', 50)->default(0);
-            $table->float('mensuality', 50);
+            $table->float('mensuality', 50)->default(0);
             $table->timestamp('next_expiration')->nullable();
             $table->bigInteger('wallet_payment_id')->unsigned();
 
