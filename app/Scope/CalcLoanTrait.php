@@ -44,19 +44,16 @@ trait CalcLoanTrait
         $min = $pret->plan->tarif->min_interest;
         $max = $pret->plan->tarif->max_interest;
 
-        for ($i = $min; $i <= $max; $i++) {
-            if($pret->amount_loan <= 100) {
-                return $i;
-            } elseif($pret->amount_loan > 100 && $pret->amount_loan <= 500) {
-                return $i*1.3;
-            } elseif($pret->amount_loan > 500 && $pret->amount_loan <= 3000) {
-                return $i*2.6;
-            } elseif($pret->amount_loan > 3001 && $pret->amount_loan <= 5000) {
-                return $i*3.1;
-            } else {
-                return $i*3.3;
-            }
+        if($pret->amount_loan <= 100) {
+            return $min;
+        } elseif($pret->amount_loan > 100 && $pret->amount_loan <= 500) {
+            return min($min * 1.3, $max);
+        } elseif($pret->amount_loan > 500 && $pret->amount_loan <= 3000) {
+            return min($min * 2.6, $max);
+        } elseif($pret->amount_loan > 3001 && $pret->amount_loan <= 5000) {
+            return min($min * 3.1, $max);
+        } else {
+            return min($min * 3.3, $max);
         }
-        return $i;
     }
 }
