@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 class ApiController extends Controller
 {
-    public function sendSuccess(string $message = null, array $data = null, $status = 200)
+    public function sendSuccess(string $message = null, array $data = null,int $status = 200)
     {
         return response()->json([
             "message" => $message,
@@ -16,7 +16,7 @@ class ApiController extends Controller
         ], $status);
     }
 
-    public function sendWarning(string $message = null, array $data = null, $status = 200)
+    public function sendWarning(string $message = null, array $data = null,int $status = 200)
     {
         return response()->json([
             "message" => $message,
@@ -25,7 +25,7 @@ class ApiController extends Controller
         ], $status);
     }
 
-    public function sendError(array|\Exception $data = null, $status = 500)
+    public function sendError(array|\Exception $data = null,int $status = 500)
     {
         LogHelper::notify('critical', "Erreur lors de l'execution de l'appel: ".$data->getFile(), $data);
         return response()->json([
