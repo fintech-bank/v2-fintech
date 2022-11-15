@@ -67,7 +67,7 @@
                         <button class="btn btn-lg btn-circle btn-danger btnOppositCard" {{ $card->opposit() }}>Opposition</button>
                     @endif
                     @if($card->facelia)
-                       <a href="" class="btn btn-lg btn-circle btn-outline btn-outline-bank ms-3 me-3" {{ $card->opposit() }}>Crédit Facelia</a>
+                       <a href="{{ route('agent.customer.wallet.card.facelia', [$card->wallet->number_account, $card->id]) }}" class="btn btn-lg btn-circle btn-outline btn-outline-bank ms-3 me-3" {{ $card->opposit() }}>Crédit Facelia</a>
                     @endif
                 </div>
                 @if($card->opposition()->count() == 1)
