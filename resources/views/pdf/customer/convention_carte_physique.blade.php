@@ -50,6 +50,9 @@
                 <strong>Paiements et transfert de fonds ::</strong>
                 <ul class="list-unstyled">
                     <li>{{ eur($data->card->limit_payment) }} / 30 jour(s) glissant(s) en france.</li>
+                    @if($data->card->isDiffered)
+                        <li>{{ eur($data->card->differed_limit) }} / de débit différé sur 30 jours calendaire</li>
+                    @endif
                 </ul>
             </td>
         </tbody>
