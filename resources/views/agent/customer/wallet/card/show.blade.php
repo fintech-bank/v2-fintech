@@ -60,11 +60,11 @@
                 <a href="{{ route('agent.customer.wallet.show', $card->wallet->number_account) }}">{{ $card->wallet->name_account_generic }}</a>
                 <div class="d-flex flex-row mt-5">
                     @if($card->status == 'active')
-                        <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3 btnDesactiveCard">Désactiver la carte</button>
-                        <button class="btn btn-lg btn-circle btn-danger btnOppositCard">Opposition</button>
+                        <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3 btnDesactiveCard" {{ $card->opposit() }}>Désactiver la carte</button>
+                        <button class="btn btn-lg btn-circle btn-danger btnOppositCard" {{ $card->opposit() }}>Opposition</button>
                     @else
-                        <button class="btn btn-lg btn-circle btn-outline btn-outline-success me-3 btnActiveCard">Activer la carte</button>
-                        <button class="btn btn-lg btn-circle btn-danger btnOppositCard">Opposition</button>
+                        <button class="btn btn-lg btn-circle btn-outline btn-outline-success me-3 btnActiveCard" {{ $card->opposit() }}>Activer la carte</button>
+                        <button class="btn btn-lg btn-circle btn-danger btnOppositCard" {{ $card->opposit() }}>Opposition</button>
                     @endif
                 </div>
             </div>

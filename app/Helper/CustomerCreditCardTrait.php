@@ -102,5 +102,10 @@ trait CustomerCreditCardTrait
         }
     }
 
+    public function opposit()
+    {
+        return $this->status == 'opposit' ? 'disabled' : '';
+    }
+
 
 }
