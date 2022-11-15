@@ -160,7 +160,7 @@ trait VerifCompatibilityBeforeLoanTrait
 
     private static function verifFICP(Customer $customer)
     {
-        return $customer->ficp == 1;
+        return $customer->ficp == 0;
     }
 
     private static function verifCotation(Customer $customer)
