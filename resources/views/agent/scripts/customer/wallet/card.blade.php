@@ -117,5 +117,53 @@
             }
         })
     })
+    $(forms.formFaceliaCard).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formFaceliaCard)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.success(`La souscription au crédit renouvelable FACELIA à été pris en compte`, `Carte Bancaire`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
+        })
+    })
+    $(forms.formCancelCard).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formCancelCard)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.success(`La carte bancaire {{ $card->number }} à bien été annulé`, `Carte Bancaire`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
+        })
+    })
 
 </script>
