@@ -4,6 +4,7 @@ namespace App\Models\Customer;
 
 use App\Helper\CustomerCreditCardTrait;
 use App\Helper\CustomerWalletHelper;
+use App\Models\Core\CreditCardOpposit;
 use App\Models\Core\CreditCardSupport;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -123,6 +124,11 @@ class CustomerCreditCard extends Model
     public function support()
     {
         return $this->belongsTo(CreditCardSupport::class, 'credit_card_support_id');
+    }
+
+    public function opposition()
+    {
+        return $this->hasOne(CreditCardOpposit::class);
     }
 
     //-------------- Scope -------------------------//
