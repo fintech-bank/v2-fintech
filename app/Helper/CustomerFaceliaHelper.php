@@ -6,11 +6,6 @@ use App\Models\Customer\CustomerFacelia;
 
 class CustomerFaceliaHelper
 {
-    public static function generateReference()
-    {
-        return rand(1000, 9999).' '.rand(100, 999).' '.rand(1000, 9999);
-    }
-
     public static function calcComptantMensuality($wallet)
     {
         return $wallet->transactions()->where('type', 'facelia')->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->sum('amount');
@@ -67,7 +62,7 @@ class CustomerFaceliaHelper
             $wallet,
             $customer,
             $amount,
-            8,
+            6,
             36,
             20,
             'accepted',
@@ -78,7 +73,7 @@ class CustomerFaceliaHelper
     private static function createFacelia($wallet, $pret, $card, $payment)
     {
         return CustomerFacelia::create([
-            'reference' => self::generateReference(),
+            'reference' => generateReference(),
             'amount_available' => $pret->amount_loan,
             'wallet_payment_id' => $payment->id,
             'customer_pret_id' => $pret->id,

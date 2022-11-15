@@ -70,4 +70,6 @@ class CustomerFacelia extends Model
     {
         return $this->belongsTo(CustomerWallet::class, 'wallet_payment_id');
     }
+
+
 }

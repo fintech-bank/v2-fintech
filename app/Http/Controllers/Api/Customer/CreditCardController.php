@@ -59,7 +59,8 @@ class CreditCardController extends Controller
 
         match ($request->get('action')) {
             "edit" => $this->editCreditCard($card, $request),
-            "send_code" => $this->sendCode($card)
+            "send_code" => $this->sendCode($card),
+            "facelia" => $this->facelia($card, $request)
         };
     }
 
@@ -93,5 +94,10 @@ class CreditCardController extends Controller
         $card->wallet->customer->info->notify(new SendCreditCardCodeNotification($card->wallet->customer, base64_decode($card->code), $card));
 
         return response()->json();
+    }
+
+    private function facelia(\App\Models\Customer\CustomerCreditCard $card, Request $request)
+    {
+
     }
 }
