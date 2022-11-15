@@ -124,27 +124,27 @@
             <div class="vr"></div>
             <div class="d-flex flex-column w-250px ms-1">
                 <div class="d-flex flex-row align-items-center mb-3">
-                    <i class="fa-solid fa-{{ $card->support->insurance->insurance_sante ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->insurance_sante ? 'success' : 'danger' }} fs-2 me-3"></i>
+                    <i class="fa-solid fa-{{ $card->support->insurance->cash_breakdown_abroad ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->cash_breakdown_abroad ? 'success' : 'danger' }} fs-2 me-3"></i>
                     <div class="d-flex flex-column">
-                        {{ $card->support->insurance->insurance_sante_text }}
+                        {{ $card->support->insurance->cash_breakdown_abroad_text }}
                     </div>
                 </div>
                 <div class="d-flex flex-row align-items-center mb-3">
-                    <i class="fa-solid fa-{{ $card->support->insurance->insurance_accident_travel ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->insurance_accident_travel ? 'success' : 'danger' }} fs-2 me-3"></i>
+                    <i class="fa-solid fa-{{ $card->support->insurance->guarantee_snow ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->guarantee_snow ? 'success' : 'danger' }} fs-2 me-3"></i>
                     <div class="d-flex flex-column">
-                        {{ $card->support->insurance->insurance_accident_travel_text }}
+                        {{ $card->support->insurance->guarantee_snow_text }}
                     </div>
                 </div>
                 <div class="d-flex flex-row align-items-center mb-3">
-                    <i class="fa-solid fa-{{ $card->support->insurance->trip_cancellation ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->trip_cancellation ? 'success' : 'danger' }} fs-2 me-3"></i>
+                    <i class="fa-solid fa-{{ $card->support->insurance->guarantee_loan ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->guarantee_loan ? 'success' : 'danger' }} fs-2 me-3"></i>
                     <div class="d-flex flex-column">
-                        {{ $card->support->insurance->trip_cancellation_text }}
+                        {{ $card->support->insurance->guarantee_loan_text }}
                     </div>
                 </div>
                 <div class="d-flex flex-row align-items-center mb-3">
-                    <i class="fa-solid fa-{{ $card->support->insurance->civil_liability_abroad ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->civil_liability_abroad ? 'success' : 'danger' }} fs-2 me-3"></i>
+                    <i class="fa-solid fa-{{ $card->support->insurance->guarantee_purchase ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->insurance->guarantee_purchase ? 'success' : 'danger' }} fs-2 me-3"></i>
                     <div class="d-flex flex-column">
-                        {{ $card->support->insurance->civil_liability_abroad_text }}
+                        {{ $card->support->insurance->guarantee_purchase_text }}
                     </div>
                 </div>
             </div>
