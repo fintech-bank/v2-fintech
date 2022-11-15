@@ -30,7 +30,7 @@ class SendRequestNotification extends Notification
         $this->request = $request;
         $this->title = "Nouvelle requête ouverte dans votre espace";
         $this->message = $this->getMessage();
-        $this->link = route('customer.document.request.show', $request->id);
+        $this->link = route('customer.document.request.show', $request->reference);
     }
 
     private function getMessage()
