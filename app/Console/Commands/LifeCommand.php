@@ -154,18 +154,19 @@ class LifeCommand extends Command
                 'customer_id' => $customer->id,
             ]);
 
+            $account = CustomerWallet::factory()->create([
+                'type' => 'compte',
+                'customer_id' => $customer->id,
+            ]);
+
+            $card = CustomerCreditCard::factory()->create([
+                'customer_wallet_id' => $account->id,
+            ]);
+
             if ($customer->status_open_account == 'terminated') {
-                $account = CustomerWallet::factory()->create([
-                    'type' => 'compte',
-                    'customer_id' => $customer->id,
-                ]);
 
                 CustomerBeneficiaire::factory(rand(1, 10))->create([
                     'customer_id' => $customer->id,
-                ]);
-
-                $card = CustomerCreditCard::factory()->create([
-                    'customer_wallet_id' => $account->id,
                 ]);
 
                 if ($card->facelia == 1) {
