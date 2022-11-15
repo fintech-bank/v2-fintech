@@ -2,6 +2,7 @@
 
 namespace App\Scope;
 
+use App\Helper\LogHelper;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCreditCard;
 
@@ -25,6 +26,12 @@ trait VerifCompatibilityBeforeLoanTrait
             self::creditCardIsNotClassicCard($card) ? $score += 100 : $score -= 100;
             $calc = $score * 8 / 100;
         }
+
+        LogHelper::notify('notice', 'Demande de crédit Facelia', [
+            "customer" => $customer,
+            "score" => $calc." %",
+            "date" => now()->format('d-m-Y')
+        ]);
 
         return $calc >= 25;
     }
