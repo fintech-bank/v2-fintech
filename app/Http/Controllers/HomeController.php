@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Core\PersonnaWebbhookEvent;
+use App\Helper\CustomerLoanHelper;
 use App\Helper\DocumentFile;
 use App\Helper\LogHelper;
 use App\Helper\UserHelper;
@@ -99,6 +100,6 @@ class HomeController extends Controller
     {
         $pret = CustomerPret::find(1);
 
-        dd($pret);
+        dd(CustomerLoanHelper::calcLoanIntestVariableTaxe($pret));
     }
 }
