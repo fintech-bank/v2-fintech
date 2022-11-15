@@ -4,34 +4,52 @@ namespace App\Http\Controllers\Api;
 
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
 {
-    public function sendSuccess(string $message = null, array $data = null, $status = 200)
+    /**
+     * success response method.
+     *
+     * @param array|string|null $result
+     * @param string|null $message
+     * @param string $type
+     * @return JsonResponse
+     */
+    public function sendResponse(array|string|null $result, string|null $message,string $type = 'success')
     {
-        return response()->json([
-            "message" => $message,
-            "data" => $data,
-            "state" => "success"
-        ], $status);
+        $response = [
+            'success' => $type,
+            'data'    => $result,
+            'message' => $message,
+        ];
+
+
+        return response()->json($response, 200);
     }
 
-    public function sendWarning(string $message = null, array $data = null, $status = 200)
-    {
-        return response()->json([
-            "message" => $message,
-            "data" => $data,
-            "state" => "warning"
-        ], $status);
-    }
 
-    public function sendError(array|\Exception $data = null, $status = 500)
+    /**
+     * return error response.
+     *
+     * @param string $error
+     * @param array|string $errorMessages
+     * @param int $code
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sendError(string $error, array|string $errorMessages = [], int $code = 500)
     {
-        LogHelper::notify('critical', "Erreur lors de l'execution de l'appel: ".$data->getFile(), $data);
-        return response()->json([
-            "message" => "Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur",
-            "data" => $data,
-            "state" => "error"
-        ], $status);
+        $response = [
+            'success' => false,
+            'message' => $error,
+        ];
+
+
+        if (!empty($errorMessages)) {
+            $response['data'] = $errorMessages;
+        }
+
+
+        return response()->json($response, $code);
     }
 }
