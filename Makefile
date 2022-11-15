@@ -32,5 +32,5 @@ update:
 
 seed:
 	php artisan system:seed --base
-	php artisan system:clear -y
+	php artisan system:clear
 	chmod -R 777 storage/ bootstrap/
