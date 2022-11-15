@@ -298,12 +298,18 @@
                     <input type="hidden" name="action" value="facelia">
 
                     <div class="mb-10">
-                        <label for="debit" class="form-label">Type de débit</label>
-                        <select name="debit" id="debit" class="form-control form-control-solid" data-control="select2">
-                            <option value="immediat" {{ $card->debit == 'immediate' ? 'selected' : '' }}>Débit Immédiat</option>
-                            <option value="differed" {{ $card->debit == 'differed' ? 'selected' : '' }}>Débit Différé</option>
+                        <label for="amount_available" class="form-label">Montant du crédit renouvelable</label>
+                        <select name="amount_available" id="amount_available" class="form-control form-control-solid" data-control="select2" required data-placeholder="Selectionner un montant">
+                            <option value=""></option>
+                            <option value="500">500,00 €</option>
+                            <option value="1000">1 000,00 €</option>
+                            <option value="1500">1 500,00 €</option>
+                            <option value="2000">2 000,00 €</option>
+                            <option value="2500">2 500,00 €</option>
+                            <option value="3000">3 000,00 €</option>
                         </select>
                     </div>
+                    <x-form.button />
                 </form>
             </div>
             <div id="divCancelCard"></div>
