@@ -73,6 +73,12 @@
                     {{ $card->support->payment_abroad_text }}
                 </div>
             </div>
+            <div class="d-flex flex-row">
+                <i class="fa-solid fa-{{ $card->support->payment_contact ? 'check-circle' : 'xmark-circle' }} text-{{ $card->support->payment_contact ? 'success' : 'danger' }} fs-2 me-3"></i>
+                <div class="d-flex flex-column">
+                    {{ $card->support->ayment_contact_text }}
+                </div>
+            </div>
         </div>
     </div>
 @endsection
