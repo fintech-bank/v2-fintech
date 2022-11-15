@@ -58,7 +58,7 @@
                 <div class="fw-bolder fs-2">CB {{ $card->support->name }}</div>
                 <span class="mb-3">{{ $card->debit_format }}</span>
                 <a href="{{ route('agent.customer.wallet.show', $card->wallet->number_account) }}">{{ $card->wallet->name_account_generic }}</a>
-                <div class="d-flex flex-row mt-5">
+                <div class="d-flex flex-row mt-5 mb-5">
                     @if($card->status == 'active')
                         <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3 btnDesactiveCard" {{ $card->opposit() }}>Désactiver la carte</button>
                         <button class="btn btn-lg btn-circle btn-danger btnOppositCard" {{ $card->opposit() }}>Opposition</button>
@@ -67,6 +67,12 @@
                         <button class="btn btn-lg btn-circle btn-danger btnOppositCard" {{ $card->opposit() }}>Opposition</button>
                     @endif
                 </div>
+                @if($card->opposition()->count() == 1)
+                    <div class="d-flex flex-column">
+                        <strong>Carte en opposition</strong>
+                        <a href="" class="">Dossier N° {{ $card->opposition->reference }}</a>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="d-flex flex-row justify-content-between align-items-center rounded bg-light p-5 shadow-lg me-3 {{ $card->opposit() }}">
