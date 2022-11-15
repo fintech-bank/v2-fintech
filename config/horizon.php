@@ -167,7 +167,7 @@ return [
     'defaults' => [
         'supervisor-1' => [
             'connection' => 'redis',
-            'queue' => ['default'],
+            'queue' => ['default', 'sepa', 'alert'],
             'balance' => 'auto',
             'maxProcesses' => 1,
             'maxTime' => 0,
