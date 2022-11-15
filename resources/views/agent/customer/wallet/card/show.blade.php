@@ -260,13 +260,13 @@
                         <!--end::Close-->
 
                         <!--begin::Icon-->
-                        <i class="fa-solid fa-question-circle fs-5tx text-danger mb-5"></i>
+                        <i class="fa-solid fa-question-circle fs-5tx text-info mb-5"></i>
                         <!--end::Icon-->
 
                         <!--begin::Wrapper-->
                         <div class="text-center">
                             <!--begin::Title-->
-                            <h1 class="fw-bold mb-5">This is an alert</h1>
+                            <h1 class="fw-bold mb-5">Voulez-vous renvoyer le code secret au client ?</h1>
                             <!--end::Title-->
 
                             <!--begin::Separator-->
@@ -275,15 +275,15 @@
 
                             <!--begin::Content-->
                             <div class="mb-9 text-dark">
-                                The alert component can be used to highlight certain parts of your page for <strong>higher content visibility</strong>.<br/>
-                                Please read our <a href="#" class="fw-bold me-1">Terms and Conditions</a> for more info.
+                                Suivant les conditions du compte du client, des frais supplémentaire peuvent s'appliquer.<br>
+                                Veillez à bien avoir l'autorisation du client avant d'effectuer cette action.
                             </div>
                             <!--end::Content-->
 
                             <!--begin::Buttons-->
                             <div class="d-flex flex-center flex-wrap">
-                                <a href="#" class="btn btn-outline btn-outline-danger btn-active-danger m-2">Cancel</a>
-                                <a href="#" class="btn btn-danger m-2">Ok, I got it</a>
+                                <button type="button" class="btn btn-outline btn-outline-secondary btn-active-secondary m-2">Annuler</button>
+                                <button type="submit" class="btn btn-outline btn-outline-info btn-active-info m-2">Renvoyer le code secret</button>
                             </div>
                             <!--end::Buttons-->
                         </div>
