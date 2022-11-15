@@ -80,7 +80,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9 col-sm-12"></div>
+        <div class="col-md-9 col-sm-12">
+            <div class="bg-gray-600 text-white p-5 fs-1 rounded-3 mb-5">
+                <strong>Situation</strong> aux {{ now()->format('d/m/Y') }}
+            </div>
+        </div>
     </div>
 @endsection
 
