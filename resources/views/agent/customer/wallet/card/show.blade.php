@@ -192,7 +192,7 @@
                     <div class="mb-10">
                         <label for="debit" class="form-label">Type de débit</label>
                         <select name="debit" id="debit" class="form-control form-control-solid">
-                            <option value="immediat" {{ $card->debit == 'immediat' ? 'selected' : '' }}>Débit Immédiat</option>
+                            <option value="immediat" {{ $card->debit == 'immediate' ? 'selected' : '' }}>Débit Immédiat</option>
                             <option value="differed" {{ $card->debit == 'differed' ? 'selected' : '' }}>Débit Différé</option>
                         </select>
                     </div>
