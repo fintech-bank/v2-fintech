@@ -47,7 +47,9 @@
 @section("content")
     <div class="d-flex flex-row border border-{{ $card->getStatus('color') }} rounded rounded-2 bg-gray-300 p-5">
         <div class="symbol symbol-175px symbol-2by3">
-            <div class="symbol-label" style="background-image:url('{{ $card->logo_card }}')"></div>
+            <div class="symbol-label">
+                <img src="{{ $card->logo_card }}" alt="">
+            </div>
         </div>
     </div>
 @endsection
