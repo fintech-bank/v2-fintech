@@ -51,7 +51,8 @@
         </div>
         <div class="d-flex flex-column">
             <div class="fw-bolder fs-2">CB {{ $card->support->name }}</div>
-            <span>{{ $card->debit_format }}</span>
+            <span class="mb-3">{{ $card->debit_format }}</span>
+            <a href="">{{ $card->wallet->name_account_generic }}</a>
         </div>
     </div>
 @endsection
