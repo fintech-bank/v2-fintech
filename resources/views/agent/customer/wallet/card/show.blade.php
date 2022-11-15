@@ -50,7 +50,7 @@
             <div class="symbol symbol-175px symbol-2by3 ribbon ribbon-bottom-end ribbon-clip">
                 <img src="{{ $card->logo_card }}" alt="">
                 <div class="ribbon-label">
-                    {{ $card->getStatus('text') }}
+                    <i class="fa-solid fa-{{ $card->getStatus('icon') }} text-white me-2"></i> {{ $card->getStatus('text') }}
                     <span class="ribbon-inner bg-{{ $card->getStatus('color') }}"></span>
                 </div>
             </div>
