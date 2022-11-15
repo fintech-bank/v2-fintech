@@ -51,7 +51,7 @@ trait CalcLoanTrait
         } elseif($pret->amount_loan > 501 && $pret->amount_loan <= 3000) {
             return $min/2.6;
         } elseif($pret->amount_loan > 3001 && $pret->amount_loan <= 5000) {
-            return $min/3.1;
+            return ceil($min/3.1);
         } else {
             return $max;
         }
