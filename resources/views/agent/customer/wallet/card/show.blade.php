@@ -378,7 +378,7 @@
                             <!--begin::Buttons-->
                             <div class="d-flex flex-center flex-wrap">
                                 <button type="button" class="btn btn-outline btn-outline-secondary btn-active-secondary m-2">Annuler</button>
-                                <button type="submit" class="btn btn-outline btn-outline-info btn-active-info m-2">Renvoyer le code secret</button>
+                                <button type="submit" class="btn btn-outline btn-outline-danger btn-active-danger m-2">Valider</button>
                             </div>
                             <!--end::Buttons-->
                         </div>
