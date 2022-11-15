@@ -3,6 +3,9 @@
 namespace App\Helper;
 
 use App\Models\Customer\CustomerWallet;
+use App\Notifications\Customer\NewWalletNotification;
+use App\Notifications\Customer\SendLinkForContractNotification;
+use App\Notifications\Customer\SendRequestNotification;
 use IbanGenerator\Generator;
 use Illuminate\Support\Str;
 
@@ -38,6 +41,48 @@ class CustomerWalletHelper
             'balance_decouvert' => $bal_decouvert,
             'customer_id' => $customer->id,
         ]);
+
+        if ($customer->info->type != 'part') {
+            $doc_compte = DocumentFile::createDoc(
+                $customer,
+                'customer.convention_compte_pro',
+                'Convention de compte bancaire Professionnel',
+                3,
+                generateReference(),
+                true,
+                true,
+                false,
+                true,
+                ['wallet' => $wallet]
+            );
+        } else {
+            $doc_compte = DocumentFile::createDoc(
+                $customer,
+                'customer.convention_compte',
+                'Convention de compte bancaire',
+                3,
+                generateReference(),
+                true,
+                true,
+                false,
+                true,
+                ['wallet' => $wallet]
+            );
+        }
+
+        $docs = ["url" => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc_compte->category->name}/{$doc_compte->name}.pdf")];
+
+        $request = $customer->requests()->create([
+            "reference" => generateReference(),
+            "sujet" => "Signature d'un document",
+            "commentaire" => "<p>Veuillez effectuer la signature du document suivant : ".$doc_compte->name."</p><br><a href='".route('signate.show', base64_encode($doc_compte->id))."' class='btn btn-circle btn-primary'>Signer le document</a>",
+            "link_model" => CustomerWallet::class,
+            "link_id" => $wallet->id,
+            "customer_id" => $customer->id
+        ]);
+        //Notification de création de compte
+        $customer->info->notify(new NewWalletNotification($customer, $wallet));
+        $customer->info->notify(new SendRequestNotification($customer, $request));
 
         return $wallet;
     }

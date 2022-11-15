@@ -25,14 +25,9 @@ class CustomerWalletController extends Controller
     {
         $customer = Customer::find($customer_id);
 
-        $wallet = CustomerWalletHelper::createWallet(
-            $customer,
-            $request->get('action'),
-        );
-
         match ($request->get('action')) {
-            'compte' => $this->createCompte($customer, $wallet),
-            'epargne' => $this->createEpargne($customer, $wallet, $request),
+            'compte' => $this->createCompte($customer),
+            'epargne' => $this->createEpargne($customer, $request),
             'pret' => $this->createPret($customer, $wallet, $request)
         };
 
@@ -62,44 +57,22 @@ class CustomerWalletController extends Controller
         }
     }
 
-    private function createCompte(Customer $customer, CustomerWallet $wallet)
+    private function createCompte(Customer $customer)
     {
-        if ($customer->info->type != 'part') {
-            $doc_compte = DocumentFile::createDoc(
-                $customer,
-                'customer.convention_compte_pro',
-                'Convention de compte bancaire Professionnel',
-                3,
-                generateReference(),
-                true,
-                true,
-                false,
-                true,
-                ['wallet' => $wallet]
-            );
-        } else {
-            $doc_compte = DocumentFile::createDoc(
-                $customer,
-                'customer.convention_compte',
-                'Convention de compte bancaire',
-                3,
-                generateReference(),
-                true,
-                true,
-                false,
-                true,
-                ['wallet' => $wallet]
-            );
-        }
+        CustomerWalletHelper::createWallet(
+            $customer,
+            'compte',
+            0,
+            0,
+            0,
+            0,
+            'active'
+        );
 
-        $docs = ["url" => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc_compte->category->name}/{$doc_compte->name}.pdf")];
-
-        //Notification de création de compte
-        $customer->user->notify(new NewWalletNotification($customer, $wallet));
-        $customer->user->notify(new SendLinkForContractNotification($customer, base64_encode(\Str::random()), $doc_compte));
+        return response()->json();
     }
 
-    private function createEpargne(Customer $customer, CustomerWallet $wallet, Request $request)
+    private function createEpargne(Customer $customer, Request $request)
     {
         CustomerEpargneHelper::create(
             $customer,
@@ -113,10 +86,10 @@ class CustomerWalletController extends Controller
         return response()->json();
     }
 
-    private function createPret(Customer $customer, CustomerWallet $wallet, Request $request)
+    private function createPret(Customer $customer, Request $request)
     {
         $pret = CustomerLoanHelper::create(
-            $wallet,
+            $request->get('wallet_payment_id'),
             $customer,
             $request->get('amount_load'),
             $request->get('loan_plan_id'),

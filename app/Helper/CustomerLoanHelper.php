@@ -16,7 +16,7 @@ class CustomerLoanHelper
 {
     use CalcLoanTrait;
 
-    public static function create(CustomerWallet $wallet, Customer $customer, float $amount, int $loan_plan, int $duration, int $prlv_day = 20, string $status = 'open',\App\Models\Customer\CustomerCreditCard $card = null): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerPret_QB|CustomerPret
+    public static function create(int $wallet_payment_id, Customer $customer, float $amount, int $loan_plan, int $duration, int $prlv_day = 20, string $status = 'open',\App\Models\Customer\CustomerCreditCard $card = null): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerPret_QB|CustomerPret
     {
         $plan = LoanPlan::find($loan_plan);
 
@@ -35,7 +35,7 @@ class CustomerLoanHelper
             'signed_customer' => 1,
             'signed_bank' => 1,
             'customer_wallet_id' => $wallet_pret->id,
-            'wallet_payment_id' => $wallet->id,
+            'wallet_payment_id' => $wallet_payment_id,
             'first_payment_at' => Carbon::create(now()->year, now()->addMonth()->month, $prlv_day),
             'loan_plan_id' => $loan_plan,
             'customer_id' => $customer->id,
@@ -57,7 +57,7 @@ class CustomerLoanHelper
                 'amount_interest' => 0,
                 'amount_du' => 0,
                 'mensuality' => 0,
-                'wallet_payment_id' => $wallet->id,
+                'wallet_payment_id' => $wallet_payment_id,
                 'customer_pret_id' => $loan->id,
                 'customer_credit_card_id' => $card->id,
                 'customer_wallet_id' => $loan->wallet->id,

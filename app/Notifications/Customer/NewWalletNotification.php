@@ -65,6 +65,7 @@ class NewWalletNotification extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
+        $message->subject($this->title);
         $message->view("emails.customer.new_wallet", [
             "content" => $this->message,
             "customer" => $this->customer
