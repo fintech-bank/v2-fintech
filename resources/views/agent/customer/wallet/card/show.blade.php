@@ -369,6 +369,7 @@
                                     required="true" />
                                 <x-form.switches
                                     name="check_fraude"
+                                    value="1"
                                     label="Vérification préliminaire de la fraude" />
                             </div>
 
