@@ -16,20 +16,34 @@ class $CLASS_NAME$ extends Notification
     public string $title;
     public string $link;
     public string $message;
+    public string $messagePhone;
     public Customer $customer;
 
     public function __construct(Customer $customer)
     {
+        $this->customer = $customer;
         $this->title = "";
         $this->message = $this->getMessage();
+        $this->messagePhone = $this->getMessagePhone();
         $this->link = "";
-        $this->customer = $customer;
     }
 
     private function getMessage()
     {
-        $message = "";
-        return $message;
+        ob_start();
+        ?>
+
+        <?php
+        return ob_get_clean();
+    }
+
+    private function getMessagePhone()
+    {
+        ob_start();
+        ?>
+
+        <?php
+        return ob_get_clean();
     }
 
     private function choiceChannel()
@@ -66,6 +80,7 @@ class $CLASS_NAME$ extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
+        $message->subject($this->title);
         $message->view("emails.customer.$VIEW_FILE_NAME$", [
             "content" => $this->message,
             "customer" => $this->customer
@@ -89,7 +104,7 @@ class $CLASS_NAME$ extends Notification
     public function toFreeMobile($notifiable)
     {
         $message = (new FreeMobileMessage());
-        $message->message(strip_tags($this->message));
+        $message->message(strip_tags($this->messagePhone));
 
         return $message;
     }
@@ -97,7 +112,7 @@ class $CLASS_NAME$ extends Notification
     public function toTwilio($notifiable)
     {
         $message = (new TwilioSmsMessage());
-        $message->content(strip_tags($this->message));
+        $message->content(strip_tags($this->messagePhone));
 
         return $message;
     }

@@ -8,6 +8,7 @@ use App\Helper\CustomerTransactionHelper;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Models\Customer\CustomerWallet;
+use App\Notifications\Customer\CancelCreditCardNotification;
 use App\Notifications\Customer\SendCreditCardCodeNotification;
 use Illuminate\Http\Request;
 
@@ -61,7 +62,8 @@ class CreditCardController extends ApiController
         return match ($request->get('action')) {
             "edit" => $this->editCreditCard($card, $request),
             "send_code" => $this->sendCode($card),
-            "facelia" => $this->facelia($card, $request)
+            "facelia" => $this->facelia($card, $request),
+            "cancel_card" => ""
         };
     }
 
@@ -119,5 +121,17 @@ class CreditCardController extends ApiController
         }
 
         return $this->sendSuccess();
+    }
+
+    private function cancelCard(\App\Models\Customer\CustomerCreditCard $card, Request $request)
+    {
+        $card->update([
+            'status' => 'canceled'
+        ]);
+
+        $card->wallet->customer->info->notify(new CancelCreditCardNotification($card->wallet->customer, $card));
+
+        return $this->sendSuccess();
+
     }
 }

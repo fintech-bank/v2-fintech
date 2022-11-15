@@ -166,7 +166,7 @@
             url: url,
             method: 'PUT',
             data: data,
-            success: data => {
+            success: () => {
                 btn.removeAttr('data-kt-indicator')
 
                 toastr.success(`La carte bancaire {{ $card->number }} à bien été annulé`, `Carte Bancaire`)

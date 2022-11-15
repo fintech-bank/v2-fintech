@@ -324,7 +324,7 @@
             <div id="divCancelCard">
                 <form id="formCancelCard" action="/api/customer/{{ $card->wallet->customer->id }}/wallet/{{ $card->wallet->number_account }}/card/{{ $card->id }}" method="POST">
                     @csrf
-                    <input type="hidden" name="action" value="cancel_code">
+                    <input type="hidden" name="action" value="cancel_card">
                     <div class="alert alert-dismissible bg-light-info d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
                         <!--begin::Close-->
                         <button type="button" class="position-absolute top-0 end-0 m-2 btn btn-icon btn-icon-info" data-bs-dismiss="alert">
