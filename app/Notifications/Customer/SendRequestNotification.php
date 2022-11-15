@@ -74,6 +74,7 @@ class SendRequestNotification extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
+        $message->subject($this->title);
         $message->view("emails.customer.send_request", [
             "content" => $this->message,
             "customer" => $this->customer
