@@ -131,6 +131,7 @@
             method: 'PUT',
             data: data,
             success: data => {
+                console.log(data)
                 if(data.state === 'success') {
                     btn.removeAttr('data-kt-indicator')
 
