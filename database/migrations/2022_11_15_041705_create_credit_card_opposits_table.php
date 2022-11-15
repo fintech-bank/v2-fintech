@@ -14,6 +14,11 @@ return new class extends Migration {
             $table->boolean('verif_fraude')->default(0);
             $table->enum('status', ['submit', 'progress', 'terminate'])->default('submit');
             $table->timestamps();
+
+            $table->foreignId('customer_credit_card_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 
