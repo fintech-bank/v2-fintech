@@ -60,11 +60,11 @@
                 <a href="">{{ $card->wallet->name_account_generic }}</a>
                 <div class="d-flex flex-row mt-5">
                     @if($card->status == 'active')
-                        <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3">Désactiver la carte</button>
-                        <button class="btn btn-lg btn-circle btn-danger">Opposition</button>
+                        <button class="btn btn-lg btn-circle btn-outline btn-outline-danger me-3 btnDesactiveCard">Désactiver la carte</button>
+                        <button class="btn btn-lg btn-circle btn-danger btnOppositCard">Opposition</button>
                     @else
-                        <button class="btn btn-lg btn-circle btn-outline btn-outline-success me-3">Activer la carte</button>
-                        <button class="btn btn-lg btn-circle btn-danger">Opposition</button>
+                        <button class="btn btn-lg btn-circle btn-outline btn-outline-success me-3 btnActiveCard">Activer la carte</button>
+                        <button class="btn btn-lg btn-circle btn-danger btnOppositCard">Opposition</button>
                     @endif
                 </div>
             </div>
