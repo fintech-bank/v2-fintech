@@ -10,7 +10,7 @@
         btnSendCodeCard: document.querySelector(".btnSendCodeCard"),
         btnFaceliaCard: document.querySelector(".btnFaceliaCard"),
         btnCancelCard: document.querySelector(".btnCancelCard"),
-        btnOppositCard: document.querySelector(".btnOppositCard"),
+        btnOppositCard: document.querySelectorAll(".btnOppositCard"),
     }
     let modals = {}
     let forms = {}
@@ -24,7 +24,7 @@
     $(elements.divOppositCard).hide();
 
     elements.btnEditCard.addEventListener('click', () => {
-        $(elements.divEditCard).show();
+        $(elements.divEditCard).fadeIn();
         $(elements.divSendCodeCard).fadeOut();
         $(elements.divFaceliaCard).fadeOut();
         $(elements.divCancelCard).fadeOut();
@@ -37,6 +37,32 @@
         $(elements.divFaceliaCard).fadeOut();
         $(elements.divCancelCard).fadeOut();
         $(elements.divOppositCard).fadeOut();
+    })
+
+    elements.btnFaceliaCard.addEventListener('click', () => {
+        $(elements.divEditCard).fadeOut();
+        $(elements.divSendCodeCard).fadeOut();
+        $(elements.divFaceliaCard).fadeIn();
+        $(elements.divCancelCard).fadeOut();
+        $(elements.divOppositCard).fadeOut();
+    })
+
+    elements.btnCancelCard.addEventListener('click', () => {
+        $(elements.divEditCard).fadeOut();
+        $(elements.divSendCodeCard).fadeOut();
+        $(elements.divFaceliaCard).fadeOut();
+        $(elements.divCancelCard).fadeIn();
+        $(elements.divOppositCard).fadeOut();
+    })
+
+    elements.btnOppositCard.forEach(btn => {
+        btn.addEventListener('click', () => {
+            $(elements.divEditCard).fadeOut();
+            $(elements.divSendCodeCard).fadeOut();
+            $(elements.divFaceliaCard).fadeOut();
+            $(elements.divCancelCard).fadeOut();
+            $(elements.divOppositCard).fadeIn();
+        })
     })
 
 </script>
