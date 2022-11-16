@@ -110,6 +110,6 @@ class MobilityCommand extends Command
         }
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
-        $this->slack->send("Evoie des information de mobilié bancaire au banque");
+        $this->slack->send("Envoie des information de mobilité bancaire au banque");
     }
 }
