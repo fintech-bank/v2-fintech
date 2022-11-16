@@ -64,7 +64,7 @@
                                     <i class="fa-solid fa-user-slash fs-3 {{ $customer->ficp ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->ficp ? "Client non FICP" : "Client FICP" }}"></i>
                                 </a>
                                 <a href="#" class="me-1">
-                                    <i class="fa-solid fa-money-check-dollarfs fs-3 {{ $customer->fcc ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->fcc ? "Client non FCC" : "Client FCC" }}"></i>
+                                    <i class="fa-solid fa-money-check-dollar fs-3 {{ $customer->fcc ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->fcc ? "Client non FCC" : "Client FCC" }}"></i>
                                 </a>
                             </div>
                             <!--end::Name-->
