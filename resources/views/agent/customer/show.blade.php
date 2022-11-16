@@ -57,11 +57,14 @@
                                 <a href="#" class="me-1">
                                     <i class="fa-solid fa-user-check fs-3 {{ $customer->info->isVerified ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->isVerified ? "Client Vérifié" : "Client non vérifier" }}"></i>
                                 </a>
-                                <a href="#">
+                                <a href="#" class="me-1">
                                     <i class="fa-solid fa-house-circle-check fs-3 {{ $customer->info->addressVerified ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->addressVerified ? "Adresse Postal Vérifié" : "Adresse Postal non vérifier" }}"></i>
                                 </a>
-                                <a href="#">
-                                    <i class="fa-solid fa-house-circle-check fs-3 {{ $customer->ficp ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->ficp ? "Client non FICP" : "Client FICP" }}"></i>
+                                <a href="#" class="me-1">
+                                    <i class="fa-solid fa-user-slash fs-3 {{ $customer->ficp ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->ficp ? "Client non FICP" : "Client FICP" }}"></i>
+                                </a>
+                                <a href="#" class="me-1">
+                                    <i class="fa-solid fa-money-check-dollarfs-3 {{ $customer->fcc ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->fcc ? "Client non FCC" : "Client FCC" }}"></i>
                                 </a>
                             </div>
                             <!--end::Name-->
