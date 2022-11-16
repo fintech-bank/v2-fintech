@@ -100,6 +100,6 @@ class HomeController extends Controller
     {
         $pret = CustomerPret::find(1);
 
-        dd(encrypt('mmockelyn@gmail.com'));
+        dd(encrypt('mmockelyn@gmail.com'), decrypt("eyJpdiI6IjIrTEpOY2JncnZOT0ZQa1VIbmpubXc9PSIsInZhbHVlIjoiaFBuN1luNFVYVTJKWUFZRTk3WGhiOXpYb2ttT3pwVm1hbzFqS1lMNkkwUT0iLCJtYWMiOiI4N2FiNzhiNTQxNGM3YjgyZmU2Y2RkMjFhYmU4MmM4OTI0MjM1ZTVjNDRmMGQ1NjZkMzU0YWRjN2Y5ZDk3NTFiIiwidGFnIjoiIn0="));
     }
 }
