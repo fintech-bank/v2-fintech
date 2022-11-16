@@ -100,6 +100,6 @@ class HomeController extends Controller
     {
         $pret = CustomerPret::find(1);
 
-        dd(CustomerLoanHelper::calcLoanIntestVariableTaxe($pret));
+        dd(-rand(0,999).".".rand(0,99));
     }
 }
