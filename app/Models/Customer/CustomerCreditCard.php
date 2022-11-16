@@ -165,7 +165,7 @@ class CustomerCreditCard extends Model
 
     public function getNumberFormatAttribute()
     {
-        return \Str::mask($this->number, 'X', 12);
+        return \Str::mask($this->number, 'X', 0, 12);
     }
 
     public function getExpirationAttribute()
