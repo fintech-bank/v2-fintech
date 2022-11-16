@@ -20,7 +20,9 @@
         businessFinance: document.querySelector('.business_finance'),
         businessIndicator: document.querySelector('.business_indicator'),
         btnNotifyPassword: document.querySelector('.btnNotifyPassword'),
-        btnVerifyIdentity:
+        btnVerifyIdentity: document.querySelector('.btnVerifyIdentity'),
+        btnVerifyAddress: document.querySelector('.btnVerifyAddress'),
+        btnVerifyIncome: document.querySelector('.btnVerifyIncome'),
     }
     let modals = {
         modalUpdateStatusAccount: document.querySelector('#updateStatus'),
@@ -580,6 +582,18 @@
                 data: {"action": "password"},
                 success: () => {
                     toastr.success(`Une notification va être envoyer au client`, ``)
+                }
+            })
+        })
+    }
+    if(elements.btnVerifyIdentity) {
+        elements.btnVerifyIdentity.addEventListener('click', e => {
+            $.ajax({
+                url: '/api/customer/{{ $customer->id }}/verify',
+                method: 'POST',
+                data: {"verify": "identity"},
+                success: () => {
+                    toastr.success(`Une notification à été envoyé au client`, ``)
                 }
             })
         })
