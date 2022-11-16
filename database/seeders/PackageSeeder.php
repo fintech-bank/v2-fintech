@@ -108,5 +108,43 @@ class PackageSeeder extends Seeder
             'nb_carte_virtuel' => 5,
             'subaccount' => 1,
         ]);
+
+        Package::query()->create([
+            'name' => 'Organisation',
+            'price' => 4.99,
+            'type_prlv' => 'mensual',
+            'type_cpt' => 'orga',
+            'visa_classic' => 1,
+            'check_deposit' => 1,
+            'payment_withdraw' => 1,
+            'overdraft' => 1,
+            'cash_deposit' => 1,
+            'withdraw_international' => 1,
+            'payment_international' => 1,
+            'payment_insurance' => 1,
+            'check' => 1,
+            'nb_carte_physique' => 999,
+            'nb_carte_virtuel' => 999,
+            'subaccount' => 999,
+        ]);
+
+        Package::query()->create([
+            'name' => 'Assoc',
+            'price' => 3.99,
+            'type_prlv' => 'mensual',
+            'type_cpt' => 'assoc',
+            'visa_classic' => 1,
+            'check_deposit' => 1,
+            'payment_withdraw' => 1,
+            'overdraft' => 1,
+            'cash_deposit' => 1,
+            'withdraw_international' => 0,
+            'payment_international' => 0,
+            'payment_insurance' => 1,
+            'check' => 1,
+            'nb_carte_physique' => 5,
+            'nb_carte_virtuel' => 10,
+            'subaccount' => 1,
+        ]);
     }
 }

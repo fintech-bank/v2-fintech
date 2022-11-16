@@ -97,7 +97,6 @@ class LifeCommand extends Command
     private function generateCustomers()
     {
         $r = rand(0, 5);
-        $twilio = new Verify();
         $arr = [];
 
         $users = User::factory($r)->create([
@@ -106,9 +105,11 @@ class LifeCommand extends Command
         ]);
 
         foreach ($users as $user) {
+            $customer_type = ['part', 'pro', 'orga', 'assoc'];
+            $customer_type_choice = $customer_type[rand(0,3)];
             $customer = Customer::factory()->create([
                 'user_id' => $user->id,
-                'package_id' => Package::all()->random()->id,
+                'package_id' => Package::where('type_cpt', $customer_type_choice)->get()->random()->id,
                 'agent_id' => User::where('agent', 1)->get()->random()->id,
             ]);
             $customer->update(['persona_reference_id' => 'customer_' . now()->format('dmYhi') . "_" . $customer->id]);
@@ -156,6 +157,8 @@ class LifeCommand extends Command
 
             $account = CustomerWallet::factory()->create([
                 'type' => 'compte',
+                'balance_actual' => 0,
+                'balance_coming' => 0,
                 'customer_id' => $customer->id,
             ]);
 
