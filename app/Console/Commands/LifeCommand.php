@@ -435,7 +435,7 @@ class LifeCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->table(['Reference', 'Montant', 'Client'], $arr);
-        $this->slack->send("Check des virements des salaires terminer");
+        $this->slack->send("Suppression des retraits non effectuer");
         return 0;
     }
 
