@@ -60,6 +60,9 @@
                                 <a href="#">
                                     <i class="fa-solid fa-house-circle-check fs-3 {{ $customer->info->addressVerified ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->addressVerified ? "Adresse Postal Vérifié" : "Adresse Postal non vérifier" }}"></i>
                                 </a>
+                                <a href="#">
+                                    <i class="fa-solid fa-house-circle-check fs-3 {{ $customer->ficp ? 'text-success' : 'text-secondary' }}" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->ficp ? "Client non FICP" : "Client FICP" }}"></i>
+                                </a>
                             </div>
                             <!--end::Name-->
                             <!--begin::Info-->
