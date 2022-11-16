@@ -100,6 +100,6 @@ class HomeController extends Controller
     {
         $pret = CustomerPret::find(1);
 
-        dd(-rand(0,999).".".rand(0,99));
+        dd(convert_uuencode('mmockelyn@gmail.com'));
     }
 }
