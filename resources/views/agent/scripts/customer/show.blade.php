@@ -19,7 +19,8 @@
         businessResultat: document.querySelector('.business_resultat'),
         businessFinance: document.querySelector('.business_finance'),
         businessIndicator: document.querySelector('.business_indicator'),
-        btnNotifyPassword: document.querySelector('.btnNotifyPassword')
+        btnNotifyPassword: document.querySelector('.btnNotifyPassword'),
+        btnVerifyIdentity:
     }
     let modals = {
         modalUpdateStatusAccount: document.querySelector('#updateStatus'),

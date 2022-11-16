@@ -38,6 +38,7 @@ return new class extends Migration
             $table->boolean('phoneVerified')->default(false);
             $table->boolean('mobileVerified')->default(false);
             $table->boolean('addressVerified')->default(false);
+            $table->boolean('incomeVerified')->default(false);
 
             $table->foreignId('customer_id')
                             ->constrained()
