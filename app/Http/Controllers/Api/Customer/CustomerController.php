@@ -8,9 +8,9 @@ use App\Jobs\Customer\AlertCustomerJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
-use App\Notifications\Customer\Customer\Customer\SendPasswordNotification;
-use App\Notifications\Customer\Customer\Customer\SendSecurePassCodeNotification;
-use App\Notifications\Customer\Customer\Customer\SendVerificationLinkNotification;
+use App\Notifications\Customer\Sending\SendVerifyAddressCustomerLinkNotification;
+use App\Notifications\Customer\Sending\SendVerifyIdentityCustomerLinkNotification;
+use App\Notifications\Customer\Sending\SendVerifyIncomeCustomerLinkNotification;
 use App\Services\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -34,32 +34,6 @@ class CustomerController extends Controller
             'offert' => $this->subscribeOffert(),
             default => null,
         };
-    }
-
-    public function verifyCustomer(Request $request, Persona $persona)
-    {
-        $customer = Customer::find($request->get('customer_id'));
-        $customer->info->update(['isVerified' => true]);
-
-        return response()->json();
-    }
-
-    public function verifyDomicile(Request $request, Persona $persona)
-    {
-        $customer = Customer::find($request->get('customer_id'));
-        $customer->info->update(['addressVerified' => true]);
-
-        return response()->json();
-    }
-
-    public function verifyRevenue(Request $request, Persona $persona)
-    {
-        $customer = Customer::find($request->get('customer_id'));
-        $link = $persona->verificationLink($customer, 'revenue');
-
-        $customer->user->notify(new SendVerificationLinkNotification($customer, $link));
-
-        return response()->json();
     }
 
     public function signateDocument(Request $request)
@@ -208,6 +182,25 @@ class CustomerController extends Controller
         match ($request->get('action')) {
             $request->get('action') => dispatch(new AlertCustomerJob($customer_id, $request->get('action'), now()->addMinute()))
         };
+
+        return response()->json();
+    }
+
+    public function verify($customer_id, Request $request)
+    {
+        $customer = Customer::find($customer_id);
+        switch ($request->get('verify')) {
+            case 'identity':
+                $customer->info->notify(new SendVerifyIdentityCustomerLinkNotification($customer));
+                break;
+
+            case 'address':
+                $customer->info->notify(new SendVerifyAddressCustomerLinkNotification($customer));
+                break;
+
+            case 'income':
+                $customer->info->notify(new SendVerifyIncomeCustomerLinkNotification($customer));
+        }
 
         return response()->json();
     }
