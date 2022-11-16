@@ -100,6 +100,6 @@ class HomeController extends Controller
     {
         $pret = CustomerPret::find(1);
 
-        dd(base64_encode('mmockelyn@gmail.com'));
+        dd(base64_encode('mmockelyn@gmail.com'), base64_encode(base64_encode('mmockelyn@gmail.com')));
     }
 }
