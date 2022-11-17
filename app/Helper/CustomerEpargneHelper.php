@@ -43,17 +43,19 @@ class CustomerEpargneHelper
 
         $wallet_payment = $customer->wallets()->find($wallet_payment_id);
 
-        $customer->beneficiaires->createBenef(
-            $customer->info->type == 'part' ? 'retail' : 'corporate',
-            $customer->agency->name,
-            $wallet_payment->iban,
-            $customer->agency->bic,
-            $customer->info->type != 'part' ? $customer->info->full_name : '',
-            $customer->info->type == 'part' ? $customer->info->civility : '',
-            $customer->info->type == 'part' ? $customer->info->firstname : '',
-            $customer->info->type == 'part' ? $customer->info->lastname : '',
-            1
-        );
+        $customer->beneficiaires()->create([
+            "type" => $customer->info->type == 'part' ? 'retail' : 'corporate',
+            "bankname" => $customer->agency->name,
+            "iban" => $wallet_payment->iban,
+            "bic" => $customer->agency->bic,
+            "company" => $customer->info->type != 'part' ? $customer->info->full_name : '',
+            "civility" => $customer->info->type == 'part' ? $customer->info->civility : '',
+            "firstname" => $customer->info->type == 'part' ? $customer->info->firstname : '',
+            "lastname" => $customer->info->type == 'part' ? $customer->info->lastname : '',
+            "titulaire" => 1,
+            "customer_id" => $customer->id,
+            "bank_id" => 176
+        ]);
 
         $doc_epargne = DocumentFile::createDoc(
             $customer,
