@@ -693,7 +693,11 @@
             data: data,
             success: data => {
                 btn.removeAttr('data-kt-indicator')
-                console.log(data)
+                toastr.success(`Le nouveau compte épargne à été créer avec succès`, `Compte épargne`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
             },
             error: err => {
                 btn.removeAttr('data-kt-indicator')
@@ -714,12 +718,12 @@
             url: url,
             method: 'POST',
             data: data,
-            success: data => {
+            success: () => {
                 btn.removeAttr('data-kt-indicator')
                 toastr.success(`Le nouveau compte épargne à été créer avec succès`, `Compte épargne`)
 
                 setTimeout(() => {
-                    window.lcoation.reload()
+                    window.location.reload()
                 }, 1200)
             },
             error: err => {
@@ -741,12 +745,12 @@
             url: url,
             method: 'POST',
             data: data,
-            success: data => {
+            success: () => {
                 btn.removeAttr('data-kt-indicator')
                 toastr.success(`Le nouveau prêt bancaire à été créer avec succès`, `Prêt bancaire`)
 
                 setTimeout(() => {
-                    window.lcoation.reload()
+                    window.location.reload()
                 }, 1200)
             },
             error: err => {
