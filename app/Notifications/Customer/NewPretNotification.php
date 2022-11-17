@@ -130,9 +130,12 @@ class NewPretNotification extends Notification
         }
 
         $message->introLines = [
-            'Un crédit vous engage et doit être remboursé',
+            'Un crédit vous engage et doit être remboursé<br>',
             'Veuillez vérifier vos capacités de remboursement avant de souscrire.'
         ];
+
+        $message->actionText = "Mon offre de prets";
+        $message->actionUrl = $this->link;
 
         return $message;
     }
