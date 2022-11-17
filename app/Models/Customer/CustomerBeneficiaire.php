@@ -4,6 +4,7 @@ namespace App\Models\Customer;
 
 use App\Helper\CustomerTransferHelper;
 use App\Models\Core\Bank;
+use App\Scope\BeneficiaireTrait;
 use IbanGenerator\Generator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -54,7 +55,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CustomerBeneficiaire extends Model
 {
-    use HasFactory;
+    use HasFactory, BeneficiaireTrait;
 
     protected $guarded = [];
     protected $appends = ['iban_format', 'full_name'];

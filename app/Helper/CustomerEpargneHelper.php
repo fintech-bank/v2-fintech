@@ -41,6 +41,20 @@ class CustomerEpargneHelper
             "epargne_plan_id" => $plan_id
         ]);
 
+        $wallet_payment = $customer->wallets()->find($wallet_payment_id);
+
+        $customer->beneficiaires()->createBenef(
+            $customer->info->type == 'part' ? 'retail' : 'corporate',
+            $customer->agency->name,
+            $wallet_payment->iban,
+            $customer->agency->bic,
+            $customer->info->type != 'part' ? $customer->info->full_name : '',
+            $customer->info->type == 'part' ? $customer->info->civility : '',
+            $customer->info->type == 'part' ? $customer->info->firstname : '',
+            $customer->info->type == 'part' ? $customer->info->lastname : '',
+            1
+        );
+
         $doc_epargne = DocumentFile::createDoc(
             $customer,
             'wallet.contrat_epargne',
