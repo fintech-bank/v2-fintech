@@ -15,6 +15,7 @@
                 console.log(inquiryId)
                 console.log(status)
                 console.log(fields)
+                window.location.href='/verify/verify-success?sector=address&customer_id={{ $customer->id }}'
             },
             onCancel: ({ inquiryId, sessionToken }) => {},
             onError: (error) => {},
