@@ -588,7 +588,7 @@
     }
     if(elements.btnVerifyIdentity) {
         elements.btnVerifyIdentity.addEventListener('click', e => {
-            if(elements.btnVerifyIdentity.classList)
+            e.preventDefault()
         })
     }
     document.querySelectorAll('.callCategory').forEach(call => {
