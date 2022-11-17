@@ -296,6 +296,34 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row p-5">
+                                        <i class="fa-solid fa-euro fs-2 me-2"></i>
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder">Capital Actuel</div>
+                                            <div class="fs-3 ps-2">{{ $wallet->balance_actual }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row p-5">
+                                        <i class="fa-solid fa-percentage fs-2 me-2"></i>
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder">Intêret cumulé</div>
+                                            <div class="fs-3 ps-2">{{ $wallet->epargne->profit }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
