@@ -231,7 +231,54 @@
         </div>
         <div class="tab-pane fade" id="infos" role="tabpanel">
             <div class="row">
-
+                <div class="col-md-8 col-sm-12 mb-5">
+                    <div class="card shadow-sm mb-10">
+                        <div class="card-header">
+                            <h3 class="card-title">Information sur le compte {{ $wallet->number_account }}</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart_summary" class="mb-10 h-350px"></div>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="row mb-5">
+                                <div class="col-4">
+                                    <div class="fw-bolder mt-5">Numéro de compte</div>
+                                    <div class="text-gray-600">{{ $wallet->number_account }}</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="fw-bolder mt-5">IBAN</div>
+                                    <div class="text-gray-600">{{ $wallet->iban }}</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="fw-bolder mt-5">Type</div>
+                                    <div class="text-gray-600">{{ Str::ucfirst($wallet->type) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Epargne N°{{ $wallet->epargne->reference }}</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            
+                        </div>   
+                    </div>
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="transfers" role="tabpanel">
