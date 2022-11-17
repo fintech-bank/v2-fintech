@@ -20,6 +20,8 @@
         beneficiaireType: document.querySelector('[data-kt-beneficiaire-filter="type"]'),
         retailField: document.querySelector("#add_beneficiaire").querySelector('#retailField'),
         corporateField: document.querySelector("#add_beneficiaire").querySelector('#corporateField'),
+        chartSummary: document.querySelector('#chart_summary'),
+        tabInfo: document.querySelector('[href="#infos"]'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -69,6 +71,133 @@
         drawerShowTransfer: KTDrawer.getInstance(elements.showTransfer),
     }
 
+    let initChartSummary = () => {
+        $.ajax({
+            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/chartSummary',
+            success: data => {
+                let chartSummary = new ApexCharts(elements.chartSummary, {
+                    series: [{
+                        name: 'Crédit',
+                        data: data.credit[0]
+                    },{
+                        name: 'Débit',
+                        data: data.debit[0]
+                    },{
+                        name: 'Découvert',
+                        data: data.decouvert[0]
+                    }],
+                    chart: {
+                        fontFamily: 'inherit',
+                        type: 'area',
+                        height: parseInt(KTUtil.css(elements.chartSummary, 'height')),
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    plotOptions: {},
+                    legend: {
+                        show: false
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    fill: {
+                        type: 'solid',
+                        opacity: 1
+                    },
+                    stroke: {
+                        curve: 'smooth'
+                    },
+                    xaxis: {
+                        categories: ['Janv', 'Fev', 'Mars', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sept', 'Oct', 'Nov', 'Dec'],
+                        axisBorder: {
+                            show: false,
+                        },
+                        axisTicks: {
+                            show: false
+                        },
+                        labels: {
+                            style: {
+                                colors: KTUtil.getCssVariableValue('--bs-gray-500'),
+                                fontSize: '12px'
+                            }
+                        },
+                        crosshairs: {
+                            position: 'front',
+                            stroke: {
+                                color: KTUtil.getCssVariableValue('--bs-gray-500'),
+                                width: 1,
+                                dashArray: 3
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            formatter: undefined,
+                            offsetY: 0,
+                            style: {
+                                fontSize: '12px'
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: KTUtil.getCssVariableValue('--bs-gray-500'),
+                                fontSize: '12px'
+                            }
+                        }
+                    },
+                    states: {
+                        normal: {
+                            filter: {
+                                type: 'none',
+                                value: 0
+                            }
+                        },
+                        hover: {
+                            filter: {
+                                type: 'none',
+                                value: 0
+                            }
+                        },
+                        active: {
+                            allowMultipleDataPointsSelection: false,
+                            filter: {
+                                type: 'none',
+                                value: 0
+                            }
+                        }
+                    },
+                    tooltip: {
+                        style: {
+                            fontSize: '12px'
+                        },
+                        y: {
+                            formatter: function (val) {
+                                return new Intl.NumberFormat('fr-Fr', {style: 'currency', currency: 'eur'}).format(val)
+                            }
+                        }
+                    },
+                    colors: [KTUtil.getCssVariableValue('--bs-success'), KTUtil.getCssVariableValue('--bs-warning'), KTUtil.getCssVariableValue('--bs-danger')],
+                    grid: {
+                        borderColor: KTUtil.getCssVariableValue('--bs-gray-200'),
+                        strokeDashArray: 4,
+                        yaxis: {
+                            lines: {
+                                show: true
+                            }
+                        }
+                    },
+                    markers: {
+                        colors: [KTUtil.getCssVariableValue('--bs-light-success'), KTUtil.getCssVariableValue('--bs-light-warning'), KTUtil.getCssVariableValue('--bs-light-danger')],
+                        strokeColor: [KTUtil.getCssVariableValue('--bs-light-success'), KTUtil.getCssVariableValue('--bs-light-warning'), KTUtil.getCssVariableValue('--bs-light-danger')],
+                        strokeWidth: 3
+                    }
+                })
+                chartSummary.render()
+            }
+        })
+    }
     let selectedTypeVirement = (type) => {
         if(type.value === 'differed') {
             document.querySelector('#immediat').classList.add('d-none')
@@ -498,6 +627,12 @@
         templateSelection: optionFormatBank,
         templateResult: optionFormatBank
     })
+
+    if(elements.tabInfo) {
+        elements.tabInfo.addEventListener('shown.bs.tab', e => {
+            initChartSummary()
+        })
+    }
 
     KTDrawer.createInstances()
 </script>
