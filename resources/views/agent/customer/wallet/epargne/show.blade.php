@@ -300,7 +300,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="card shadow-sm">
                                 <div class="card-body">
-                                    <div class="d-flex flex-row p-5">
+                                    <div class="d-flex flex-row p-5 align-items-center">
                                         <i class="fa-solid fa-euro fs-2 me-2"></i>
                                         <div class="d-flex flex-column">
                                             <div class="fw-bolder">Capital Actuel</div>
@@ -313,7 +313,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="card shadow-sm">
                                 <div class="card-body">
-                                    <div class="d-flex flex-row p-5">
+                                    <div class="d-flex flex-row p-5 align-items-center">
                                         <i class="fa-solid fa-percentage fs-2 me-2"></i>
                                         <div class="d-flex flex-column">
                                             <div class="fw-bolder">Intêret cumulé</div>
