@@ -7,6 +7,7 @@ use App\Helper\CustomerLoanHelper;
 use App\Helper\CustomerTransactionHelper;
 use App\Helper\CustomerWalletHelper;
 use App\Helper\DocumentFile;
+use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerEpargne;
@@ -25,15 +26,15 @@ class CustomerWalletController extends Controller
     {
         $customer = Customer::find($customer_id);
 
-        match ($request->get('action')) {
-            'compte' => $this->createCompte($customer),
-            'epargne' => $this->createEpargne($customer, $request),
-            'pret' => $this->createPret($customer, $request)
-        };
-
-        return response()->json([
-            'customer' => $customer
-        ]);
+        try {
+            return match ($request->get('action')) {
+                'compte' => $this->createCompte($customer),
+                'epargne' => $this->createEpargne($customer, $request),
+                'pret' => $this->createPret($customer, $request)
+            };
+        }catch (\Exception $exception) {
+            LogHelper::notify("critical", $exception->getMessage());
+        }
     }
 
     public function show($number_account)
@@ -58,7 +59,7 @@ class CustomerWalletController extends Controller
 
     private function createCompte(Customer $customer)
     {
-        CustomerWalletHelper::createWallet(
+        return CustomerWalletHelper::createWallet(
             $customer,
             'compte',
             0,
@@ -67,13 +68,11 @@ class CustomerWalletController extends Controller
             0,
             'active'
         );
-
-        return response()->json();
     }
 
     private function createEpargne(Customer $customer, Request $request)
     {
-        CustomerEpargneHelper::create(
+        return CustomerEpargneHelper::create(
             $customer,
             $request->get('initial_payment'),
             $request->get('monthly_payment'),
@@ -81,13 +80,11 @@ class CustomerWalletController extends Controller
             $request->get('wallet_payment_id'),
             $request->get('epargne_plan_id')
         );
-
-        return response()->json();
     }
 
     private function createPret(Customer $customer, Request $request)
     {
-        CustomerLoanHelper::create(
+        return CustomerLoanHelper::create(
             $request->get('wallet_payment_id'),
             $customer,
             $request->get('amount_loan'),
