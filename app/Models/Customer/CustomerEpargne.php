@@ -53,7 +53,7 @@ class CustomerEpargne extends Model
 
     public $timestamps = false;
 
-    protected $dates = ['next_prlv'];
+    protected $dates = ['next_prlv', 'start'];
 
     protected $appends = ['monthly_payment_format', 'profit_format'];
 

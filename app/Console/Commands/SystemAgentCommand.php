@@ -342,7 +342,7 @@ class SystemAgentCommand extends Command
         $i = 0;
 
         foreach ($wallets as $wallet) {
-            if($wallet->epargne->next_prlv->startOfDay() == $wallet->epargne->next_prlv->startOfDay()) {
+            if($wallet->epargne->next_prlv->startOfDay() == now()->startOfDay()) {
                 $wallet->epargne->profit = $wallet->epargne->calcProfit($wallet->epargne->profit, $wallet->balance_actual, $wallet->epargne->plan->profit_percent);
                 $wallet->epargne->save();
                 $i++;
@@ -350,6 +350,16 @@ class SystemAgentCommand extends Command
         }
 
         $this->slack->send("Calcul des profits des comptes épargnes", json_encode([strip_tags("Nombre de compte mise à jours: ").$i]));
+    }
+
+    private function virProfitEpargne()
+    {
+        $wallets = CustomerWallet::where('status', 'active')->where('type', 'epargne')->get();
+        $i = 0;
+
+        foreach ($wallets as $wallet) {
+            if($wallet->epargne->start)
+        }
     }
 
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)
