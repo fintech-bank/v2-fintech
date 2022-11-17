@@ -71,6 +71,10 @@ class Kernel extends ConsoleKernel
             ->everySixHours()
             ->description("Exécution des virements bancaires [log]");
 
+        $schedule->command('system:agent executeCalcProfitEpargne')
+            ->everySixHours()
+            ->description("Calcul des profits des comptes épargnes");
+
         // Life
         $schedule->command("life generateCustomers")
             ->hourly()
