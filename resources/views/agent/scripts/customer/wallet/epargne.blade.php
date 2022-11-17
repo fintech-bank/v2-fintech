@@ -82,9 +82,6 @@
                     },{
                         name: 'Débit',
                         data: data.debit[0]
-                    },{
-                        name: 'Découvert',
-                        data: data.decouvert[0]
                     }],
                     chart: {
                         fontFamily: 'inherit',
@@ -178,7 +175,7 @@
                             }
                         }
                     },
-                    colors: [KTUtil.getCssVariableValue('--bs-success'), KTUtil.getCssVariableValue('--bs-warning'), KTUtil.getCssVariableValue('--bs-danger')],
+                    colors: [KTUtil.getCssVariableValue('--bs-success'), KTUtil.getCssVariableValue('--bs-warning')],
                     grid: {
                         borderColor: KTUtil.getCssVariableValue('--bs-gray-200'),
                         strokeDashArray: 4,
@@ -189,8 +186,8 @@
                         }
                     },
                     markers: {
-                        colors: [KTUtil.getCssVariableValue('--bs-light-success'), KTUtil.getCssVariableValue('--bs-light-warning'), KTUtil.getCssVariableValue('--bs-light-danger')],
-                        strokeColor: [KTUtil.getCssVariableValue('--bs-light-success'), KTUtil.getCssVariableValue('--bs-light-warning'), KTUtil.getCssVariableValue('--bs-light-danger')],
+                        colors: [KTUtil.getCssVariableValue('--bs-light-success'), KTUtil.getCssVariableValue('--bs-light-warning')],
+                        strokeColor: [KTUtil.getCssVariableValue('--bs-light-success'), KTUtil.getCssVariableValue('--bs-light-warning')],
                         strokeWidth: 3
                     }
                 })
