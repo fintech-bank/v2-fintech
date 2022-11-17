@@ -265,7 +265,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm mb-5">
                         <div class="card-header">
                             <h3 class="card-title">Epargne N°{{ $wallet->epargne->reference }}</h3>
                         </div>
