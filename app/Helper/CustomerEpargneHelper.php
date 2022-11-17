@@ -43,7 +43,7 @@ class CustomerEpargneHelper
 
         $wallet_payment = $customer->wallets()->find($wallet_payment_id);
 
-        $customer->beneficiaires()->createBenef(
+        $customer->beneficiaires->createBenef(
             $customer->info->type == 'part' ? 'retail' : 'corporate',
             $customer->agency->name,
             $wallet_payment->iban,
