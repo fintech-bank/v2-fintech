@@ -141,7 +141,7 @@ class CustomerInfo extends Model
             case 'part': $t = 'primary'; break;
             case 'pro': $t = 'danger'; break;
             case 'orga': $t = 'info'; break;
-            default: $t = 'success'; break;
+            case 'assoc': $t = 'success'; break;
         }
 
         return $t;
