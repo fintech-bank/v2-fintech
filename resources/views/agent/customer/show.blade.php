@@ -55,7 +55,7 @@
                                 <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $customer->info->full_name }}</a>
 
                                 <a href="#" class="me-1">
-                                    <i class="fa-solid fa-user-check fs-3 {{ $customer->info->isVerified ? 'text-success' : 'text-secondary' }} btnVerifyIdentity" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->isVerified ? "Client Vérifié" : "Client non vérifier" }}"></i>
+                                    <i class="fa-solid fa-user-check fs-3 {{ $customer->info->isVerified ? 'text-success' : 'text-secondary' }} btnVerifyIdentity" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->isVerified ? "Client Vérifié" : "Client non vérifier" }}" {{ $customer->info->isVerified ? 'data-status="true"' : 'data-status="false"' }}></i>
                                 </a>
                                 <a href="#" class="me-1">
                                     <i class="fa-solid fa-house-circle-check fs-3 {{ $customer->info->addressVerified ? 'text-success' : 'text-secondary' }} btnVerifyAddress" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" title="{{ $customer->info->addressVerified ? "Adresse Postal Vérifié" : "Adresse Postal non vérifier" }}"></i>

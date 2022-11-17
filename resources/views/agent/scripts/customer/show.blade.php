@@ -589,6 +589,16 @@
     if(elements.btnVerifyIdentity) {
         elements.btnVerifyIdentity.addEventListener('click', e => {
             e.preventDefault()
+            if(!e.target.dataset.status) {
+                $.ajax({
+                    url: '/api/customer/{{ $customer->id }}/verify',
+                    method: 'POST',
+                    data: {"verify": "identity"},
+                    success: () => {
+                        toastr.success(`Une notification à été envoyé au client`, ``)
+                    }
+                })
+            }
         })
     }
     document.querySelectorAll('.callCategory').forEach(call => {
