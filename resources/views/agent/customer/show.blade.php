@@ -510,6 +510,20 @@
             </div>
         </div>
         <div class="tab-pane fade" id="customer" role="tabpanel">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 mb-5">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Endettement</h3>
+                            <div class="card-toolbar">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart_endettement" class="mb-10 h-350px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="accordion" id="accordion_customer">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="accordion_customer_header_1">
