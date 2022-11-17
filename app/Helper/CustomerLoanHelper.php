@@ -207,10 +207,10 @@ class CustomerLoanHelper
                     "docs" => $docs
                 ];
             } else {
-                return [];
+                return ["errors" =>["Certaine informations effective au pret font que le pret ne peut être souscrit."]];
             }
         } else {
-            return [];
+            return ["errors" => VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer)];
         }
     }
 
