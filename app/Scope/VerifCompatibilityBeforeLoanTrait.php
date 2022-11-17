@@ -111,23 +111,17 @@ trait VerifCompatibilityBeforeLoanTrait
 
     public static function prerequestLoan(Customer $customer)
     {
-        $message = [];
+        $message = collect();
         if(!$customer->info->isVerified) {
-            $message[] = [
-                'error' => "Compte non vérifié"
-            ];
+            $message->put(0, "Compte Non vérifié");
         }
 
         if(!$customer->info->addressVerified) {
-            $message[] = [
-                'error' => "Adresse postal non vérifié"
-            ];
+            $message->put(0, "Adresse postal Non vérifié");
         }
 
         if(!$customer->info->incomeVerified) {
-            $message[] = [
-                'error' => "Revenue non vérifié"
-            ];
+            $message->put(0, "Revenue non vérifié");
         }
 
         return $message;
