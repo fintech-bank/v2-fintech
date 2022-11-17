@@ -87,7 +87,7 @@ class CustomerWalletController extends Controller
 
     private function createPret(Customer $customer, Request $request)
     {
-        $pret = CustomerLoanHelper::create(
+        CustomerLoanHelper::create(
             $request->get('wallet_payment_id'),
             $customer,
             $request->get('amount_loan'),
@@ -95,12 +95,5 @@ class CustomerWalletController extends Controller
             $request->get('duration'),
             $request->get('prlv_day')
         );
-
-        $arr = [];
-        foreach ($pret['docs'] as $doc) {
-            $arr[] = ["url" => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc->category->name}/$doc->name.pdf")];
-        }
-
-        $customer->user->notify(new NewPretNotification($customer, $pret, $arr));
     }
 }
