@@ -98,11 +98,20 @@
                     <!--end::Title-->
                     <!--begin::Stats-->
                     <div class="d-flex flex-wrap flex-stack">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column flex-grow-1 pe-8">
+                            &nbsp;
+                        </div>
+                        <!--end::Wrapper-->
                         <!--begin::Progress-->
                         <div class="d-flex flex-column w-200px w-sm-450px mt-3">
                             <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border border-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} rounded-2">
                                 <div class="fw-bolder fs-2">Solde</div>
                                 <div class="text-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} fs-3">{{ $wallet->balance_actual_format }}</div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border border-gray-500 rounded-2">
+                                <div class="fw-bolder fs-2">Découvert Bancaire</div>
+                                <div class="fs-3">{{ eur($wallet->balance_decouvert) }}</div>
                             </div>
                             <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border border-gray-500 rounded-2">
                                 <div class="fw-bolder fs-2">A Venir</div>
@@ -133,6 +142,19 @@
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#transfers"><i class="fa-solid fa-exchange me-2"></i> Virements</a>
                 </li>
                 <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#sepas"><i class="fa-solid fa-bank me-2"></i> Prélèvements</a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#cards"><i class="fa-solid fa-credit-card me-2"></i> Cartes bancaires</a>
+                </li>
+                <!--end::Nav item-->
+                @if($wallet->customer->setting->check)
+                    <li class="nav-item mt-2">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#checks"><i class="fa-solid fa-money-check-dollar me-2"></i> Chèques</a>
+                    </li>
+                @endif
             </ul>
             <!--begin::Navs-->
         </div>
