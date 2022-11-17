@@ -10,6 +10,7 @@ use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerTransaction;
 use App\Models\Customer\CustomerTransfer;
+use App\Models\Customer\CustomerWallet;
 use App\Notifications\Agent\CalendarAlert;
 use App\Notifications\Customer\ChargeLoanAcceptedNotification;
 use App\Notifications\Customer\RejectedTransferNotification;
@@ -65,6 +66,7 @@ class SystemAgentCommand extends Command
             "executeTransactionComing" => $this->executeTransactionComing(),
             "executeActiveAccount" => $this->executeActiveAccount(),
             "executeVirement" => $this->executeVirement(),
+            "executeCalcProfitEpargne" => $this->executeCalcProfitEpargne()
         };
 
         return Command::SUCCESS;
@@ -332,6 +334,15 @@ class SystemAgentCommand extends Command
         $this->info("Préparation des virements bancaire en erreur");
         $this->output->table(['Client', 'Reference', 'Montant', "Raison"], $arr_transit_failed);
         $this->slack->send("Préparation des virements bancaire en erreur", json_encode($arr_transit_failed));
+    }
+
+    private function executeCalcProfitEpargne()
+    {
+        $wallets = CustomerWallet::where('status', 'active')->where('type', 'epargne')->get();
+
+        foreach ($wallets as $wallet) {
+
+        }
     }
 
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)

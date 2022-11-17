@@ -51,7 +51,9 @@ class CustomerEpargne extends Model
 
     public $timestamps = false;
 
-    protected $appends = ['monthly_payment_format', 'next_prlv', 'profit_format'];
+    protected $dates = ['next_prlv'];
+
+    protected $appends = ['monthly_payment_format', 'profit_format'];
 
     public function plan()
     {
@@ -76,10 +78,5 @@ class CustomerEpargne extends Model
     public function getProfitFormatAttribute()
     {
         return eur($this->profit);
-    }
-
-    public function getNextPrlvAttribute()
-    {
-        return Carbon::create(now()->year, now()->addMonth()->month, $this->monthly_days);
     }
 }
