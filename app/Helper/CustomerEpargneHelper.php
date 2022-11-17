@@ -54,7 +54,8 @@ class CustomerEpargneHelper
             "lastname" => $customer->info->type == 'part' ? $customer->info->lastname : '',
             "titulaire" => 1,
             "customer_id" => $customer->id,
-            "bank_id" => 176
+            "bank_id" => 176,
+            "uuid" => \Str::uuid()
         ]);
 
         $doc_epargne = DocumentFile::createDoc(
