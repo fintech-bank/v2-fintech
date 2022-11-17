@@ -72,17 +72,19 @@ class CustomerWalletHelper
 
         $docs = ["url" => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc_compte->category->name}/{$doc_compte->name}.pdf")];
 
-        $request = $customer->requests()->create([
-            "reference" => generateReference(),
-            "sujet" => "Signature d'un document",
-            "commentaire" => "<p>Veuillez effectuer la signature du document suivant : ".$doc_compte->name."</p><br><a href='".route('signate.show', base64_encode($doc_compte->id))."' class='btn btn-circle btn-primary'>Signer le document</a>",
-            "link_model" => CustomerWallet::class,
-            "link_id" => $wallet->id,
-            "customer_id" => $customer->id
-        ]);
-        //Notification de création de compte
-        $customer->info->notify(new NewWalletNotification($customer, $wallet));
-        $customer->info->notify(new SendRequestNotification($customer, $request));
+        if($wallet->type == 'compte') {
+            $request = $customer->requests()->create([
+                "reference" => generateReference(),
+                "sujet" => "Signature d'un document",
+                "commentaire" => "<p>Veuillez effectuer la signature du document suivant : ".$doc_compte->name."</p><br><a href='".route('signate.show', base64_encode($doc_compte->id))."' class='btn btn-circle btn-primary'>Signer le document</a>",
+                "link_model" => CustomerWallet::class,
+                "link_id" => $wallet->id,
+                "customer_id" => $customer->id
+            ]);
+            $customer->info->notify(new SendRequestNotification($customer, $request));
+            //Notification de création de compte
+            $customer->info->notify(new NewWalletNotification($customer, $wallet));
+        }
 
         return $wallet;
     }
