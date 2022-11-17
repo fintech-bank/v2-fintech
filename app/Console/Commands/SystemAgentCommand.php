@@ -349,7 +349,7 @@ class SystemAgentCommand extends Command
             }
         }
 
-        $this->slack->send("Calcul des profits des comptes épargnes", json_encode(["Nombre de compte mise à jours: ".$i]));
+        $this->slack->send("Calcul des profits des comptes épargnes", json_encode([strip_tags("Nombre de compte mise à jours: ").$i]));
     }
 
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)
