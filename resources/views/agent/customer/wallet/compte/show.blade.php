@@ -980,6 +980,33 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="requestOverdraft">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Demande de découvert bancaire</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formSubscribeOverdraft" action="/api/customer/{{ $wallet->customer->id }}/subscribe/overdraft" method="post">
+                    <div class="modal-body">
+                        <input type="hidden" name="wallet_id" value="{{ $wallet->id }}">
+                        <div id="overdraft"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-flex justify-content-end">
+                            <x-form.button />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" tabindex="-1" id="add_virement">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1200,6 +1227,60 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="add_credit_card">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Nouvelle carte bancaire</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formAddCreditCard" action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/card" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                            {!! $wallet->alert('physical_exceeded') !!}
+                            {!! $wallet->alert('virtual_exceeded') !!}
+                            <div class="mb-10">
+                                <label for="type" class="form-label required">Type de carte bancaire</label>
+                                <select class="form-select" id="type" name="type" data-parent="#add_credit_card" data-control="select2" data-placeholder="Selectionner un type de carte" required onchange="getPhysicalInfo(this)">
+                                    <option value=""></option>
+                                    <option value="physique">Carte Physique</option>
+                                    <option value="virtuel">Carte Virtuel</option>
+                                </select>
+                            </div>
+                            <div id="physical_card" class="d-none">
+                                <div class="mb-10">
+                                    <label for="support" class="form-label required">Catégorie de la carte bancaire</label>
+                                    <select class="form-select" id="support" name="support" data-parent="#add_credit_card" data-placeholder="Selectionner un type de carte">
+                                        <option value=""></option>
+                                        @foreach(\App\Models\Core\CreditCardSupport::where('type_customer', $wallet->customer->info->type)->get() as $card)
+                                            <option value="{{ $card->id }}" data-card-img="/storage/card/{{ $card->slug }}.png">Carte {{ $card->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-10">
+                                    <label for="debit" class="form-label required">Type de débit de la carte bancaire</label>
+                                    <select class="form-select" id="debit" name="debit" data-parent="#add_credit_card" data-control="select2" data-placeholder="Selectionner un type de débit">
+                                        <option value=""></option>
+                                        <option value="immediate">Débit Immédiat</option>
+                                        <option value="differed">Débit différé</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="virtual_card"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div id="show_transfer" class="bg-white"
          data-kt-drawer="true"
          data-kt-drawer-activate="true"
@@ -1286,6 +1367,141 @@
                 <div class="d-flex flex-center">
                     <button class="btn btn-circle btn-lg btn-success btnAcceptTransfer" data-transfer="">Accepter le virement</button>
                     <button class="btn btn-circle btn-lg btn-danger btnDeclineTransfer" data-transfer="">Refuser le virement</button>
+                </div>
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <div id="show_sepa" class="bg-white"
+         data-kt-drawer="true"
+         data-kt-drawer-activate="true"
+         data-kt-drawer-toggle="#kt_drawer_example_advanced_button"
+         data-kt-drawer-close="#kt_drawer_example_advanced_close"
+         data-kt-drawer-name="docs"
+         data-kt-drawer-overlay="true"
+         data-kt-drawer-width="{default:'300px', 'md': '800px', 'sm': '100'}"
+         data-kt-drawer-direction="end">
+        <!--begin::Card-->
+        <div class="card rounded-0 w-100">
+            <!--begin::Card header-->
+            <div class="card-header bg-bank pe-5">
+                <!--begin::Title-->
+                <div class="card-title">
+                    <!--begin::User-->
+                    <div class="d-flex justify-content-center flex-column me-3">
+                        <a href="#" class="fs-4 fw-bold text-white text-hover-primary me-1 lh-1">Prélèvement SEPA</a>
+                    </div>
+                    <!--end::User-->
+                </div>
+                <!--end::Title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_example_advanced_close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-2">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+								<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+							</svg>
+						</span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body hover-scroll-overlay-y">
+                <div class="d-flex flex-center fs-2 mb-5" data-content="transfer_status">
+                    <i class="fa-solid fa-circle-dot fs-1 text-warning me-3"></i> Le prélèvement va se présenter prochainement
+                </div>
+
+                <table class="table border table-row-bordered gx-5 gy-5 mb-10">
+                    <thead>
+                        <tr class="bg-gray-300">
+                            <th class="fw-bolder" colspan="2">Compte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Code Banque</td>
+                            <td data-content="code_banque">36001</td>
+                        </tr>
+                        <tr>
+                            <td>Code Guichet</td>
+                            <td data-content="code_guichet">01726</td>
+                        </tr>
+                        <tr>
+                            <td>N° de compte</td>
+                            <td data-content="number_account">00050170571</td>
+                        </tr>
+                        <tr>
+                            <td>IBAN</td>
+                            <td data-content="iban">FR76 3000 3017 4200 0501 7057 192</td>
+                        </tr>
+                        <tr>
+                            <td>BIC</td>
+                            <td data-content="bic">SOGEFRPPXXX</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table border table-row-bordered gx-5 gy-5 mb-10">
+                    <thead>
+                        <tr class="bg-gray-300">
+                            <th class="fw-bolder" colspan="2">Créancier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nom</td>
+                            <td data-content="creditor_name">SOGECAP</td>
+                        </tr>
+                        <tr>
+                            <td>Identifiant</td>
+                            <td data-content="creditor_id">FR04ZZZ110906</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table border table-row-bordered gx-5 gy-5 mb-10">
+                    <thead>
+                        <tr class="bg-gray-300">
+                            <th class="fw-bolder" colspan="2">Mandat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Référence</td>
+                            <td data-content="mandate_reference">000000/01406/7711250-220</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table border table-row-bordered gx-5 gy-5 mb-10">
+                    <thead>
+                        <tr class="bg-gray-300">
+                            <th class="fw-bolder" colspan="2">Opération</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Montant</td>
+                            <td data-content="mandat_amount">- 35,00 €</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td data-content="status">En attente le 11/11/2022</td>
+                        </tr>
+                        <tr>
+                            <td>Motif de l'opération</td>
+                            <td data-content="mandat_motif"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex flex-center" data-content="btnAction">
+                    <button class="btn btn-circle btn-lg btn-success btnAcceptTransfer" data-sepa="">Accepter le prélèvement</button>
                 </div>
             </div>
             <!--end::Card body-->
