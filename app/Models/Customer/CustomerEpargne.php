@@ -42,6 +42,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $monthly_payment_format
  * @property-read mixed $next_prlv
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereProfit($value)
+ * @property-read mixed $profit_format
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereNextPrlv($value)
  */
 class CustomerEpargne extends Model
 {

@@ -6,6 +6,7 @@ use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerEpargne;
 use App\Notifications\Customer\NewEpargneNotification;
 use App\Notifications\Customer\SendRequestNotification;
+use Carbon\Carbon;
 
 class CustomerEpargneHelper
 {
@@ -38,7 +39,8 @@ class CustomerEpargneHelper
             "monthly_days" => $monthly_days,
             "wallet_id" => $wallet->id,
             "wallet_payment_id" => $wallet_payment_id,
-            "epargne_plan_id" => $plan_id
+            "epargne_plan_id" => $plan_id,
+            'next_prlv' => Carbon::create(now()->year, now()->addMonth()->month, $monthly_days)
         ]);
 
         $wallet_payment = $customer->wallets()->find($wallet_payment_id);
