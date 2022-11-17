@@ -284,6 +284,11 @@
                                 <div class="fw-bolder">Montant prélevé par mois</div>
                                 <div class="fs-4 ps-3">{{ $wallet->epargne->monthly_payment_format }}</div>
                             </div>
+                            <div class="separator border-2 my-5"></div>
+                            <div class="d-flex flex-column">
+                                <div class="fw-bolder">Compte Lié</div>
+                                <div class="fs-4 ps-3">{{ $wallet->epargne->payment->number_account }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
