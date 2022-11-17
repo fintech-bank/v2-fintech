@@ -117,11 +117,11 @@ trait VerifCompatibilityBeforeLoanTrait
         }
 
         if(!$customer->info->addressVerified) {
-            $message->put(0, "Adresse postal Non vérifié");
+            $message->put(1, "Adresse postal Non vérifié");
         }
 
         if(!$customer->info->incomeVerified) {
-            $message->put(0, "Revenue non vérifié");
+            $message->put(2, "Revenue non vérifié");
         }
 
         return $message;
