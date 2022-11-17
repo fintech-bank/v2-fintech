@@ -121,35 +121,35 @@ class CustomerInfo extends Model
         }
     }
 
-    public function getTypeTextAttribute(): string
+    public function getType($format = '')
     {
-        $t = null;
-        switch ($this->type) {
-            case 'part': $t = 'Particulier'; break;
-            case 'pro': $t = 'Professionnel'; break;
-            case 'orga': $t = 'Organisation / Public'; break;
-            case 'assoc': $t = 'Association'; break;
+        if($format == 'color') {
+            return match ($this->type) {
+                "part" => "primary",
+                "pro" => "danger",
+                "orga" => "info",
+                "assoc" => "success"
+            };
+        } elseif($format == 'text') {
+            return match ($this->type) {
+                "part" => "Particulier",
+                "pro" => "Professionnel",
+                "orga" => "Organisation / Public",
+                "assoc" => "Association"
+            };
+        } else {
+            return match ($this->type) {
+                "part" => "fa-user",
+                "pro" => "fa-shop",
+                "orga" => "fa-building-columns",
+                "assoc" => "fa-handshake"
+            };
         }
-
-        return $t;
-    }
-
-    public function getTypeColorAttribute()
-    {
-        $t = null;
-        switch ($this->type) {
-            case 'part': $t = 'primary'; break;
-            case 'pro': $t = 'danger'; break;
-            case 'orga': $t = 'info'; break;
-            case 'assoc': $t = 'success'; break;
-        }
-
-        return $t;
     }
 
     public function getTypeLabelAttribute()
     {
-        return '<span class="badge badge-sm badge-'.$this->getTypeColorAttribute().'">'.$this->getTypeTextAttribute().'</span>';
+        return '<span class="badge badge-sm badge-'.$this->getType('color').'"><i class="fa-solid '.$this->getType().' text-white me-2"></i> '.$this->getType('text').'</span>';
     }
 
     public function setPhoneVerified($phone, $type)
