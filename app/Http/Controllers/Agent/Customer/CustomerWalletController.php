@@ -96,87 +96,8 @@ class CustomerWalletController extends Controller
             $request->get('prlv_day')
         );
 
-        $docs = [];
-
-        $docs[] = DocumentFile::createDoc(
-            $customer,
-            'fiche_dialogue',
-            $pret->reference . " - Fiche de dialogue",
-            3,
-            $pret->reference,
-            false,
-            false,
-            false,
-            true,
-            []
-        );
-
-        $docs[] = DocumentFile::createDoc(
-            $customer,
-            'information_precontractuel_normaliser',
-            $pret->reference . " - Information Precontractuel Normaliser",
-            3,
-            $pret->reference,
-            false,
-            false,
-            false,
-            true,
-            ['pret' => $pret]
-        );
-
-        $docs[] = DocumentFile::createDoc(
-            $customer,
-            'assurance_emprunteur',
-            $pret->reference . " - Assurance Emprunteur",
-            3,
-            $pret->reference,
-            false,
-            false,
-            false,
-            true,
-        );
-
-        $docs[] = DocumentFile::createDoc(
-            $customer,
-            'contrat_de_credit_personnel',
-            $pret->reference . " - Contrat de crédit: Pret Personnel",
-            3,
-            $pret->reference,
-            true,
-            true,
-            false,
-            true,
-            ['pret' => $pret]
-        );
-
-        $docs[] = DocumentFile::createDoc(
-            $customer,
-            'mandat_prelevement_sepa',
-            $pret->reference . " - Mandat de Prélèvement Sepa",
-            3,
-            $pret->reference,
-            true,
-            true,
-            false,
-            true,
-            ["pret" => $pret]
-        );
-
-        $docs[] = DocumentFile::createDoc(
-            $customer,
-            'plan_amortiseement',
-            $pret->reference . " - Plan d'amortissement",
-            3,
-            $pret->reference,
-            true,
-            true,
-            false,
-            true,
-            ["pret" => $pret]
-        );
-
         $arr = [];
-        foreach ($docs as $doc) {
+        foreach ($pret['docs'] as $doc) {
             $arr[] = ["url" => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc->category->name}/$doc->name.pdf")];
         }
 

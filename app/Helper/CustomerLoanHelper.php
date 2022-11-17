@@ -16,7 +16,7 @@ class CustomerLoanHelper
 {
     use CalcLoanTrait;
 
-    public static function create(int $wallet_payment_id, Customer $customer, float $amount, int $loan_plan, int $duration, int $prlv_day = 20, string $status = 'open',\App\Models\Customer\CustomerCreditCard $card = null): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerPret_QB|CustomerPret
+    public static function create(int $wallet_payment_id, Customer $customer, float $amount, int $loan_plan, int $duration, int $prlv_day = 20, string $status = 'open',\App\Models\Customer\CustomerCreditCard $card = null): array
     {
         $plan = LoanPlan::find($loan_plan);
 
@@ -188,7 +188,10 @@ class CustomerLoanHelper
 
         $customer->info->notify(new NewPretNotification($customer, $loan, $docs));
 
-        return $loan;
+        return [
+            "loan" => $loan,
+            "docs" => $docs
+        ];
     }
 
 }
