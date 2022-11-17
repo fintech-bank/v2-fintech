@@ -101,6 +101,6 @@ class HomeController extends Controller
     {
         $customer = Customer::find(1);
 
-        dd(VerifCompatibilityBeforeLoanTrait::verify($customer));
+        dd(VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer));
     }
 }
