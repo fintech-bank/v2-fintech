@@ -259,7 +259,7 @@
                     currency: 'EUR'
                 }).format(data.maximum)
                 modals.modalCreatePret.querySelector(".duration").innerHTML = data.duration + ' mois'
-                modals.modalCreatePret.querySelector(".interest").innerHTML = data.tarif[0].interest + ' %'
+                modals.modalCreatePret.querySelector(".interest").innerHTML = data.tarif.interest + ' %'
                 modals.modalCreatePret.querySelector(".instruction").innerHTML = data.instruction
             },
             error: err => {
