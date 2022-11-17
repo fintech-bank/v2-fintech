@@ -42,37 +42,38 @@ class CustomerWalletHelper
             'customer_id' => $customer->id,
         ]);
 
-        if ($customer->info->type != 'part') {
-            $doc_compte = DocumentFile::createDoc(
-                $customer,
-                'customer.convention_compte_pro',
-                'Convention de compte bancaire Professionnel',
-                3,
-                generateReference(),
-                true,
-                true,
-                false,
-                true,
-                ['wallet' => $wallet]
-            );
-        } else {
-            $doc_compte = DocumentFile::createDoc(
-                $customer,
-                'customer.convention_compte',
-                'Convention de compte bancaire',
-                3,
-                generateReference(),
-                true,
-                true,
-                false,
-                true,
-                ['wallet' => $wallet]
-            );
-        }
 
-        $docs = ["url" => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc_compte->category->name}/{$doc_compte->name}.pdf")];
 
         if($wallet->type == 'compte') {
+            if ($customer->info->type != 'part') {
+                $doc_compte = DocumentFile::createDoc(
+                    $customer,
+                    'customer.convention_compte_pro',
+                    'Convention de compte bancaire Professionnel',
+                    3,
+                    generateReference(),
+                    true,
+                    true,
+                    false,
+                    true,
+                    ['wallet' => $wallet]
+                );
+            } else {
+                $doc_compte = DocumentFile::createDoc(
+                    $customer,
+                    'customer.convention_compte',
+                    'Convention de compte bancaire',
+                    3,
+                    generateReference(),
+                    true,
+                    true,
+                    false,
+                    true,
+                    ['wallet' => $wallet]
+                );
+            }
+
+            $docs = ["url" => public_path("/storage/gdd/{$customer->user->id}/documents/{$doc_compte->category->name}/{$doc_compte->name}.pdf")];
             $request = $customer->requests()->create([
                 "reference" => generateReference(),
                 "sujet" => "Signature d'un document",
