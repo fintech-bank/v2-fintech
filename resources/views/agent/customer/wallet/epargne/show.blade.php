@@ -268,15 +268,13 @@
                     <div class="card shadow-sm">
                         <div class="card-header">
                             <h3 class="card-title">Epargne N°{{ $wallet->epargne->reference }}</h3>
-                            <div class="card-toolbar">
-                                <!--<button type="button" class="btn btn-sm btn-light">
-                                    Action
-                                </button>-->
-                            </div>
                         </div>
                         <div class="card-body">
-                            
-                        </div>   
+                            <div class="d-flex flex-column">
+                                <div class="fw-bolder">N° du contrat</div>
+                                <div class="fs-4 ps-3">{{ $wallet->epargne->reference }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
