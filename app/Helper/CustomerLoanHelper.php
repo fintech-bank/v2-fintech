@@ -9,6 +9,7 @@ use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\NewPretNotification;
 use App\Notifications\Customer\NewPretNotificationP;
+use App\Notifications\Customer\SendRequestNotification;
 use App\Scope\CalcLoanTrait;
 use Carbon\Carbon;
 
@@ -180,7 +181,7 @@ class CustomerLoanHelper
         $documents = $customer->documents()->where('reference', $loan->reference)->get();
         $docs = [];
 
-        $customer->requests()->create([
+        $request = $customer->requests()->create([
             "reference" => generateReference(),
             "sujet" => "Signature d'un document",
             "commentaire" => "<p>Veuillez effectuer la signature du document suivant : ".$loan->reference." - Offre de contrat de credit Pret Personnel</p><br><a href='".route('signate.show', base64_encode($doc_compte->id))."' class='btn btn-circle btn-primary'>Signer le document</a>",
@@ -188,6 +189,7 @@ class CustomerLoanHelper
             "link_id" => $loan->id,
             "customer_id" => $customer->id
         ]);
+        $customer->info->notify(new SendRequestNotification($customer, $request));
 
         foreach ($documents as $document) {
             $docs[] = [
