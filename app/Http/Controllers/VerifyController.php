@@ -31,6 +31,24 @@ class VerifyController extends ApiController
             return view('front.verify.identity', [
                 'customer' => $user->customers
             ]);
+        } else {
+            return redirect()->route('verify-error')
+                ->with('sector', 'identity');
+        }
+    }
+
+    public function address(Request $request)
+    {
+        $email = decrypt($request->get('token'));
+        $user = User::where('email', $email)->first();
+
+        if(isset($user)) {
+            return view('front.verify.address', [
+                'customer' => $user->customers
+            ]);
+        } else {
+            return redirect()->route('verify-error')
+                ->with('sector', 'identity');
         }
     }
 }
