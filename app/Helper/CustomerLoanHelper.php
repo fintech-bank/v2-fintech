@@ -33,7 +33,7 @@ class CustomerLoanHelper
                 'amount_du' => 0,
                 'mensuality' => 0,
                 'prlv_day' => $prlv_day,
-                'duration' => $duration,
+                'duration' => $duration * 12,
                 'status' => $status,
                 'signed_customer' => 1,
                 'signed_bank' => 1,
