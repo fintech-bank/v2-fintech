@@ -66,7 +66,8 @@ class SystemAgentCommand extends Command
             "executeTransactionComing" => $this->executeTransactionComing(),
             "executeActiveAccount" => $this->executeActiveAccount(),
             "executeVirement" => $this->executeVirement(),
-            "executeCalcProfitEpargne" => $this->executeCalcProfitEpargne()
+            "executeCalcProfitEpargne" => $this->executeCalcProfitEpargne(),
+            "virProfitEpargne" => $this->virProfitEpargne()
         };
 
         return Command::SUCCESS;
@@ -342,7 +343,7 @@ class SystemAgentCommand extends Command
         $i = 0;
 
         foreach ($wallets as $wallet) {
-            if($wallet->epargne->next_prlv->startOfDay() == now()->startOfDay()) {
+            if($wallet->epargne->next_prlv->startOfDay() == $wallet->epargne->next_prlv->startOfDay()) {
                 $wallet->epargne->profit = $wallet->epargne->calcProfit($wallet->epargne->profit, $wallet->balance_actual, $wallet->epargne->plan->profit_percent);
                 $wallet->epargne->save();
                 $i++;
@@ -358,7 +359,7 @@ class SystemAgentCommand extends Command
         $i = 0;
 
         foreach ($wallets as $wallet) {
-            if($wallet->epargne->start->startOfDay() == now()->startOfDay()) {
+            if($wallet->epargne->start->startOfDay() == $wallet->epargne->start->startOfDay()) {
                 CustomerTransactionHelper::create(
                     'credit',
                     'virement',

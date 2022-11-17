@@ -44,6 +44,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereProfit($value)
  * @property-read mixed $profit_format
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereNextPrlv($value)
+ * @property \Illuminate\Support\Carbon|null $start
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereStart($value)
  */
 class CustomerEpargne extends Model
 {
