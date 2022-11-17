@@ -128,7 +128,7 @@ class CustomerInfo extends Model
             case 'part': $t = 'Particulier'; break;
             case 'pro': $t = 'Professionnel'; break;
             case 'orga': $t = 'Organisation / Public'; break;
-            default: $t = 'Association'; break;
+            case 'assoc': $t = 'Association'; break;
         }
 
         return $t;
