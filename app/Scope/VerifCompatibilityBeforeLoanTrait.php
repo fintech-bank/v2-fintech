@@ -24,7 +24,7 @@ trait VerifCompatibilityBeforeLoanTrait
         $serv = $calc >= 25 ? 'Reussi' : 'Echec';
         $color = $calc >= 25 ? 'success' : 'danger';
 
-        if($isRevolving) {
+        if ($isRevolving) {
             $cards = self::creditCardIsNotClassicCard($card) ? $score += 100 : $score -= 100;
             $calc = $score * 8 / 100;
             $result = "
@@ -109,6 +109,30 @@ trait VerifCompatibilityBeforeLoanTrait
         return $calc >= 25;
     }
 
+    public static function prerequestLoan(Customer $customer)
+    {
+        $message = [];
+        if(!$customer->info->isVerified) {
+            $message[] = [
+                'error' => "Compte non vérifié"
+            ];
+        }
+
+        if(!$customer->info->addressVerified) {
+            $message[] = [
+                'error' => "Adresse postal non vérifié"
+            ];
+        }
+
+        if(!$customer->info->incomeVerified) {
+            $message[] = [
+                'error' => "Revenue non vérifié"
+            ];
+        }
+
+        return $message;
+    }
+
     private static function verifDebitAllWalletAccount(Customer $customer): mixed
     {
         $sum = 0;
@@ -141,10 +165,10 @@ trait VerifCompatibilityBeforeLoanTrait
     {
         $balance = $customer->wallets()->where('type', 'epargne')->where('status', 'active')->sum('balance_actual');
 
-        return $balance  >= 0;
+        return $balance >= 0;
     }
 
-    private static function verifNbAlertOfAllWalletAccount(Customer $customer):bool
+    private static function verifNbAlertOfAllWalletAccount(Customer $customer): bool
     {
         $alert = $customer->wallets()->where('type', 'compte')->where('status', 'active')->sum('nb_alert');
 
@@ -170,7 +194,7 @@ trait VerifCompatibilityBeforeLoanTrait
 
     private static function creditCardIsNotClassicCard(CustomerCreditCard $card): bool
     {
-        if($card->wallet->customer->info->type == 'part') {
+        if ($card->wallet->customer->info->type == 'part') {
             return $card->support->slug != 'visa-classic';
         } else {
             return true;

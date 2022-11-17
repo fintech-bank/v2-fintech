@@ -20,6 +20,7 @@ use App\Models\Reseller\Reseller;
 use App\Models\User;
 use App\Models\User\UserFolder;
 use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
+use App\Scope\VerifCompatibilityBeforeLoanTrait;
 use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
@@ -98,8 +99,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $pret = CustomerPret::find(1);
+        $customer = Customer::find(1);
 
-        dd(encrypt('mmockelyn@gmail.com'), decrypt("eyJpdiI6IjIrTEpOY2JncnZOT0ZQa1VIbmpubXc9PSIsInZhbHVlIjoiaFBuN1luNFVYVTJKWUFZRTk3WGhiOXpYb2ttT3pwVm1hbzFqS1lMNkkwUT0iLCJtYWMiOiI4N2FiNzhiNTQxNGM3YjgyZmU2Y2RkMjFhYmU4MmM4OTI0MjM1ZTVjNDRmMGQ1NjZkMzU0YWRjN2Y5ZDk3NTFiIiwidGFnIjoiIn0="));
+        dd(VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer));
     }
 }
