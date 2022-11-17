@@ -113,15 +113,15 @@ trait VerifCompatibilityBeforeLoanTrait
     {
         $message = collect();
         if(!$customer->info->isVerified) {
-            $message->put(0, "Compte Non vérifié");
+            $message->put(null, "Compte Non vérifié");
         }
 
         if(!$customer->info->addressVerified) {
-            $message->put(1, "Adresse postal Non vérifié");
+            $message->put(null, "Adresse postal Non vérifié");
         }
 
         if(!$customer->info->incomeVerified) {
-            $message->put(2, "Revenue non vérifié");
+            $message->put(null, "Revenue non vérifié");
         }
 
         return $message;
