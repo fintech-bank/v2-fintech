@@ -92,54 +92,17 @@
                                 <div class="menu-item px-3">
                                     <a href="#updateStateAccount" class="menu-link px-3" data-bs-toggle="modal"><span class="iconify fs-3 me-2" data-icon="fluent-mdl2:status-circle-checkmark"></span> Changer le status du compte</a>
                                 </div>
-                                <div class="menu-item px-3">
-                                    <a href="#requestOverdraft" class="menu-link px-3 requestOverdraft" data-bs-toggle="modal"><span class="iconify fs-3 me-2" data-icon="fa6-solid:money-bill-trend-up"></span> Demander un découvert bancaire</a>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <!--end::Title-->
                     <!--begin::Stats-->
                     <div class="d-flex flex-wrap flex-stack">
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-column flex-grow-1 pe-8">
-                            <!--begin::Stats-->
-                            <div class="d-flex flex-wrap">
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <!--begin::Number-->
-                                    <div class="d-flex align-items-center">
-                                        <i class="fa-solid fa-arrow-up fs-1 text-success me-2"></i>
-                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ \App\Helper\CustomerHelper::getAmountAllDeposit($wallet->customer) }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ \App\Helper\CustomerHelper::getAmountAllDeposit($wallet->customer) }}</div>
-                                    </div>
-                                    <!--end::Number-->
-                                    <!--begin::Label-->
-                                    <div class="fw-semibold fs-6 text-gray-400">Dépots</div>
-                                    <!--end::Label-->
-                                </div>
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                    <!--begin::Number-->
-                                    <div class="d-flex align-items-center">
-                                        <i class="fa-solid fa-arrow-down fs-1 text-danger me-2"></i>
-                                        <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{ \App\Helper\CustomerHelper::getAmountAllWithdraw($wallet->customer) }}" data-kt-countup-suffix="€" data-kt-initialized="1">{{ \App\Helper\CustomerHelper::getAmountAllWithdraw($wallet->customer) }}</div>
-                                    </div>
-                                    <!--end::Number-->
-                                    <!--begin::Label-->
-                                    <div class="fw-semibold fs-6 text-gray-400">Retraits</div>
-                                    <!--end::Label-->
-                                </div>
-                            </div>
-                            <!--end::Stats-->
-                        </div>
-                        <!--end::Wrapper-->
                         <!--begin::Progress-->
                         <div class="d-flex flex-column w-200px w-sm-450px mt-3">
                             <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border border-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} rounded-2">
                                 <div class="fw-bolder fs-2">Solde</div>
                                 <div class="text-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} fs-3">{{ $wallet->balance_actual_format }}</div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border border-gray-500 rounded-2">
-                                <div class="fw-bolder fs-2">Découvert Bancaire</div>
-                                <div class="fs-3">{{ eur($wallet->balance_decouvert) }}</div>
                             </div>
                             <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border border-gray-500 rounded-2">
                                 <div class="fw-bolder fs-2">A Venir</div>
