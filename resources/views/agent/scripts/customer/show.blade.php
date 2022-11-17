@@ -405,7 +405,7 @@
                     },
                     dataLabels: {
                         name: {
-                            show: false
+                            show: true
                         },
                         value: {
                             offsetY: -2,
