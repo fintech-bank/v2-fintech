@@ -18,7 +18,7 @@ class CustomerLoanHelper
 {
     use CalcLoanTrait, VerifCompatibilityBeforeLoanTrait;
 
-    public static function create(int $wallet_payment_id, Customer $customer, float $amount, int $loan_plan, int $duration, int $prlv_day = 20, string $status = 'open',\App\Models\Customer\CustomerCreditCard $card = null): \Illuminate\Http\JsonResponse
+    public static function create(int $wallet_payment_id, Customer $customer, float $amount, int $loan_plan, int $duration, int $prlv_day = 20, string $status = 'open',\App\Models\Customer\CustomerCreditCard $card = null): array
     {
         if(VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer)->count() == 0) {
             if(self::verify($customer)) {
@@ -202,12 +202,15 @@ class CustomerLoanHelper
 
                 $customer->info->notify(new NewPretNotification($customer, $loan, $docs));
 
-                return response()->json();
+                return [
+                    "loan" => $loan,
+                    "docs" => $docs
+                ];
             } else {
-                return response()->json();
+                return [];
             }
         } else {
-            return response()->json(["errors" => VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer)], 500);
+            return [];
         }
     }
 
