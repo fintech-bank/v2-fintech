@@ -28,12 +28,11 @@ class CustomerWalletController extends Controller
         match ($request->get('action')) {
             'compte' => $this->createCompte($customer),
             'epargne' => $this->createEpargne($customer, $request),
-            'pret' => $this->createPret($customer, $wallet, $request)
+            'pret' => $this->createPret($customer, $request)
         };
 
         return response()->json([
-            'customer' => $customer,
-            'wallet' => $wallet
+            'customer' => $customer
         ]);
     }
 
