@@ -433,7 +433,6 @@
             labels: ['Average Results'],
         })
         chart.render()
-
     }
 
     @if($customer->info->type != 'part')
@@ -469,6 +468,7 @@
 
     verifSoldesAllWallets();
     citiesFromPostal(document.querySelector("#postal"))
+    chartEnd()
 
     modals.modalUpdateStatusAccount.querySelector('form').addEventListener('submit', e => {
         e.preventDefault()
