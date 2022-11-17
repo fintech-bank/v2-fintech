@@ -342,7 +342,7 @@ class SystemAgentCommand extends Command
         $i = 0;
 
         foreach ($wallets as $wallet) {
-            if($wallet->epargne->next_prlv->startOfDay() == now()->startOfDay()) {
+            if($wallet->epargne->next_prlv->startOfDay() == $wallet->epargne->next_prlv->startOfDay()) {
                 $wallet->epargne->profit += $wallet->epargne->calcProfit($wallet->epargne->profit, $wallet->balance_actual, $wallet->epargne->plan->profit_percent);
                 $wallet->epargne->save();
                 $i++;
