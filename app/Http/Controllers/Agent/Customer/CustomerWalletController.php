@@ -87,13 +87,9 @@ class CustomerWalletController extends Controller
 
     private function createPret(Customer $customer, Request $request)
     {
+        dd($request->all());
         $pret = CustomerLoanHelper::create(
-            $request->get('wallet_payment_id'),
-            $customer,
-            $request->get('amount_load'),
-            $request->get('loan_plan_id'),
-            $request->get('duration'),
-            $request->get('prlv_day'),
+
         );
 
         $docs = [];
