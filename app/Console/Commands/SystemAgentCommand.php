@@ -358,8 +358,27 @@ class SystemAgentCommand extends Command
         $i = 0;
 
         foreach ($wallets as $wallet) {
-            if($wallet->epargne->start)
+            if($wallet->epargne->start->startOfDay() == now()->startOfDay()) {
+                CustomerTransactionHelper::create(
+                    'credit',
+                    'virement',
+                    'Intêret courue sur la période du '.$wallet->epargne->start->format("d/m/Y")." au ".now()->format('d/m/Y'),
+                    $wallet->epargne->profit,
+                    $wallet->id,
+                    true,
+                    'Intêret',
+                    now()
+                );
+
+                $wallet->epargne->update([
+                    'profit' => 0
+                ]);
+
+                $i++;
+            }
         }
+
+        $this->slack->send("Virement des intêret des comptes épargnes", json_encode([strip_tags("Nombre de compte mise à jours: ").$i]));
     }
 
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)
