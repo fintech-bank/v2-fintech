@@ -40,7 +40,8 @@ class CustomerEpargneHelper
             "wallet_id" => $wallet->id,
             "wallet_payment_id" => $wallet_payment_id,
             "epargne_plan_id" => $plan_id,
-            'next_prlv' => Carbon::create(now()->year, now()->addMonth()->month, $monthly_days)
+            'next_prlv' => Carbon::create(now()->year, now()->addMonth()->month, $monthly_days),
+            "start" => now()
         ]);
 
         $wallet_payment = $customer->wallets()->find($wallet_payment_id);
