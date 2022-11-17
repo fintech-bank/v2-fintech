@@ -46,6 +46,8 @@ class CustomerEpargne extends Model
 
     public $timestamps = false;
 
+    protected $appends = ['monthly_payment_format'];
+
     public function plan()
     {
         return $this->belongsTo(EpargnePlan::class, 'epargne_plan_id');
@@ -59,5 +61,10 @@ class CustomerEpargne extends Model
     public function payment()
     {
         return $this->belongsTo(CustomerWallet::class, 'wallet_payment_id');
+    }
+
+    public function getMonthlyPaymentFormatAttribute()
+    {
+        return eur($this->monthly_payment);
     }
 }
