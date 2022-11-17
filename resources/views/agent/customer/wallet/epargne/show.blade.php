@@ -287,7 +287,7 @@
                             <div class="separator border-2 my-5"></div>
                             <div class="d-flex flex-column">
                                 <div class="fw-bolder">Compte Lié</div>
-                                <div class="fs-4 ps-3">{{ $wallet->epargne->payment->number_account }}</div>
+                                <div class="fs-4 ps-3">{{ $wallet->epargne->payment->name_account_generic }}</div>
                             </div>
                         </div>
                     </div>
