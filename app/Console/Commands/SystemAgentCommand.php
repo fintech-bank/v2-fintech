@@ -378,7 +378,7 @@ class SystemAgentCommand extends Command
             }
         }
 
-        $this->slack->send("Virement des intêret des comptes épargnes", json_encode([strip_tags("Nombre de compte mise à jours: ").$i]));
+        $this->slack->send("Virement des intêret des comptes épargnes", json_encode([strip_tags("Nombre de compte mise a jours: ").$i]));
     }
 
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)
