@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('monthly_payment', 50);
             $table->integer('monthly_days')->default(15);
             $table->bigInteger('wallet_id')->unsigned();
+            $table->float('profit')->default(0);
             $table->foreign('wallet_id')->references('id')->on('customer_wallets')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
