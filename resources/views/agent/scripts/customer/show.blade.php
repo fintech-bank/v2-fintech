@@ -601,6 +601,21 @@
             }
         })
     }
+    if(elements.btnVerifyAddress) {
+        elements.btnVerifyAddress.addEventListener('click', e => {
+            e.preventDefault()
+            if(!e.target.dataset.status) {
+                $.ajax({
+                    url: '/api/customer/{{ $customer->id }}/verify',
+                    method: 'POST',
+                    data: {"verify": "address"},
+                    success: () => {
+                        toastr.success(`Une notification à été envoyé au client`, ``)
+                    }
+                })
+            }
+        })
+    }
     document.querySelectorAll('.callCategory').forEach(call => {
         call.addEventListener('click', e => {
             e.preventDefault();
