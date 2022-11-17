@@ -4,6 +4,7 @@ namespace App\Models\Customer;
 
 use App\Models\Core\EpargnePlan;
 use App\Scope\CustomerEpargneTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -46,7 +47,7 @@ class CustomerEpargne extends Model
 
     public $timestamps = false;
 
-    protected $appends = ['monthly_payment_format'];
+    protected $appends = ['monthly_payment_format', 'next_prlv'];
 
     public function plan()
     {
@@ -66,5 +67,10 @@ class CustomerEpargne extends Model
     public function getMonthlyPaymentFormatAttribute()
     {
         return eur($this->monthly_payment);
+    }
+
+    public function getNextPrlvAttribute()
+    {
+        return Carbon::create(now()->year, now()->addMonth()->month, $this->monthly_days);
     }
 }
