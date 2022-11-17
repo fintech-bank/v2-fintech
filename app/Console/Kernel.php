@@ -73,7 +73,7 @@ class Kernel extends ConsoleKernel
 
         // Life
         $schedule->command("life generateCustomers")
-            ->everyFourHours()
+            ->hourly()
             ->between('08:00','20:00')
             ->description("Nouveau client [log]");
 
