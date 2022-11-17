@@ -38,6 +38,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereWalletPaymentId($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerEpargne
+ * @property float $profit
+ * @property-read mixed $monthly_payment_format
+ * @property-read mixed $next_prlv
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereProfit($value)
  */
 class CustomerEpargne extends Model
 {

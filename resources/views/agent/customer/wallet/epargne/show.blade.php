@@ -292,7 +292,7 @@
                             <div class="separator border-2 my-5"></div>
                             <div class="d-flex flex-column">
                                 <div class="fw-bolder">Prochain Prélèvement</div>
-                                <div class="fs-4 ps-3">{{ \Carbon\Carbon::create(now()->year, now()->addMonth()->month, $wallet->epargne->monthly_days)->format('d/m/Y') }}</div>
+                                <div class="fs-4 ps-3">{{ $wallet->epargne->next_prlv->format('d/m/Y') }}</div>
                             </div>
                         </div>
                     </div>
