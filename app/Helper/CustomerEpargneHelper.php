@@ -58,6 +58,21 @@ class CustomerEpargneHelper
             "uuid" => \Str::uuid()
         ]);
 
+        $wallet_payment->customer->beneficiaires()->create([
+            "type" => $customer->info->type == 'part' ? 'retail' : 'corporate',
+            "bankname" => $customer->agency->name,
+            "iban" => $wallet->iban,
+            "bic" => $customer->agency->bic,
+            "company" => $customer->info->type != 'part' ? $customer->info->full_name : '',
+            "civility" => $customer->info->type == 'part' ? $customer->info->civility : '',
+            "firstname" => $customer->info->type == 'part' ? $customer->info->firstname : '',
+            "lastname" => $customer->info->type == 'part' ? $customer->info->lastname : '',
+            "titulaire" => 1,
+            "customer_id" => $customer->id,
+            "bank_id" => 176,
+            "uuid" => \Str::uuid()
+        ]);
+
         $doc_epargne = DocumentFile::createDoc(
             $customer,
             'wallet.contrat_epargne',
