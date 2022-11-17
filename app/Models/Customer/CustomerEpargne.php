@@ -51,7 +51,7 @@ class CustomerEpargne extends Model
 
     public $timestamps = false;
 
-    protected $appends = ['monthly_payment_format', 'next_prlv'];
+    protected $appends = ['monthly_payment_format', 'next_prlv', 'profit_format'];
 
     public function plan()
     {
@@ -71,6 +71,11 @@ class CustomerEpargne extends Model
     public function getMonthlyPaymentFormatAttribute()
     {
         return eur($this->monthly_payment);
+    }
+
+    public function getProfitFormatAttribute()
+    {
+        return eur($this->profit);
     }
 
     public function getNextPrlvAttribute()

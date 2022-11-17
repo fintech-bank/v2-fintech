@@ -301,10 +301,10 @@
                             <div class="card shadow-sm">
                                 <div class="card-body">
                                     <div class="d-flex flex-row p-5 align-items-center">
-                                        <i class="fa-solid fa-euro fs-2 me-2"></i>
+                                        <i class="fa-solid fa-euro fs-2tx me-2"></i>
                                         <div class="d-flex flex-column">
                                             <div class="fw-bolder">Capital Actuel</div>
-                                            <div class="fs-3 ps-2">{{ $wallet->balance_actual }}</div>
+                                            <div class="fs-3 ps-2">{{ $wallet->balance_actual_format }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -314,10 +314,10 @@
                             <div class="card shadow-sm">
                                 <div class="card-body">
                                     <div class="d-flex flex-row p-5 align-items-center">
-                                        <i class="fa-solid fa-percentage fs-2 me-2"></i>
+                                        <i class="fa-solid fa-percentage fs-2tx me-2"></i>
                                         <div class="d-flex flex-column">
                                             <div class="fw-bolder">Intêret cumulé</div>
-                                            <div class="fs-3 ps-2">{{ $wallet->epargne->profit }}</div>
+                                            <div class="fs-3 ps-2">{{ $wallet->epargne->profit_format }}</div>
                                         </div>
                                     </div>
                                 </div>
