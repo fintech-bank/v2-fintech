@@ -90,6 +90,9 @@ class SendVerifyIncomeCustomerLinkNotification extends Notification
             "customer" => $this->customer
         ]);
 
+        $message->actionText = "Vérifier mes revenue";
+        $message->actionUrl = $this->link;
+
         return $message;
     }
 
