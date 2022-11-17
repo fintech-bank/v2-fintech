@@ -186,7 +186,7 @@ class CustomerLoanHelper
             $request = $customer->requests()->create([
                 "reference" => generateReference(),
                 "sujet" => "Signature d'un document",
-                "commentaire" => "<p>Veuillez effectuer la signature du document suivant : ".$loan->reference." - Offre de contrat de credit Pret Personnel</p><br><a href='".route('signate.show', base64_encode($doc_compte->id))."' class='btn btn-circle btn-primary'>Signer le document</a>",
+                "commentaire" => "<p>Veuillez effectuer la signature du document suivant : ".$loan->reference." - Offre de contrat de credit Pret Personnel</p><br><a href='".route('signate.show', base64_encode($doc_pret->id))."' class='btn btn-circle btn-primary'>Signer le document</a>",
                 "link_model" => CustomerPret::class,
                 "link_id" => $loan->id,
                 "customer_id" => $customer->id
