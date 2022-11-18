@@ -15,5 +15,18 @@
     <p>Aussi, vous trouverez, ci-joint, les documents contractuels relatifs à cette demande (dénommés, ensemble, le « contrat »), c'est-à-dire :</p>
     <ul>
         <li>Condition particulière {{ $data->insurance->package->name }}</li>
+        <li>Bordereau de rétractation</li>
     </ul>
+    <p>
+        Nous vous informons que vous disposez d'un délai de 30 jours à compter de la date de conclusion de votre contrat électronique pour
+        renoncer (si ce délai expire un samedi, un dimanche ou un jour férié ou chômé, il ne sera pas prorogé). Ce droit de renonciation peut être
+        exercé par lettre recommandée avec accusé de réception à {{ config('app.name') }} - Service Relations Clients - 4 rue du Coudraix -
+        44000 Nantes Cedex 4.
+    </p>
+    <p>Pour commencer à signer électroniquement votre demande, veuillez accepter les termes de ce document de synthèse.</p>
+    <p>
+        IMPORTANT : Vous avez jusqu'au {{ $data->insurance->date_member->addMonth()->format("d/m/Y") }} pour finaliser l'acceptation de votre contrat. Pendant ce délai, vous pouvez revenir à tout
+        moment dans la rubrique « Mes demandes » de votre Espace Client ou de votre application mobile. Au-delà, votre accord ne pourra
+        plus être pris en compte et vous devrez à nouveau nous contacter pour souscrire un contrat en ligne
+    </p>
 @endsection
