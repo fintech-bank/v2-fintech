@@ -133,6 +133,9 @@
         @foreach($data->insurance->form->warranties()->where('check', 1)->get() as $warranty)
             <li>{{ $warranty->designation }}</li>
         @endforeach
-
     </ul>
+    <p>
+        Le montant de ma cotisation {{ $data->insurance->type_prlv_text }} s'élève à {{ $data->insurance->mensuality_format }}. Le compte bancaire associé à la présente Demande d'Adhésion est le :
+        IBAN : FR76 3000 3017 4200 0501 7057 192.
+    </p>
 @endsection

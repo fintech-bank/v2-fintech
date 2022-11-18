@@ -48,6 +48,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $status_text
  * @property-read mixed $mensuality_format
  * @property-read mixed $type_prlv_text
+ * @property string|null $beneficiaire
+ * @property-read \App\Models\Customer\CustomerWallet|null $payment
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsurance whereBeneficiaire($value)
  */
 class CustomerInsurance extends Model
 {
@@ -69,6 +72,11 @@ class CustomerInsurance extends Model
     public function form()
     {
         return $this->belongsTo(InsurancePackageForm::class, 'insurance_package_form_id');
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(CustomerWallet::class, 'id', 'payment_wallet_id');
     }
 
     public function getStatusTextAttribute()

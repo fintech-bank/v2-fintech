@@ -90,6 +90,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $status_color
  * @property-read mixed $status_text
  * @property-read mixed $iban_format
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerInsurance[] $insurances
+ * @property-read int|null $insurances_count
  */
 class CustomerWallet extends Model
 {
@@ -218,6 +220,11 @@ class CustomerWallet extends Model
     public function moneys()
     {
         return $this->hasMany(CustomerMoneyDeposit::class);
+    }
+
+    public function insurances()
+    {
+        return $this->hasMany(CustomerInsurance::class);
     }
 
     /**

@@ -125,6 +125,8 @@ use RTippin\Messenger\Traits\Messageable;
  * @property-read int|null $subscriptions_count
  * @property-read mixed $next_debit_package
  * @property-read mixed $alert_same_default_password
+ * @property string|null $type_customer
+ * @method static Builder|User whereTypeCustomer($value)
  */
 class User extends Authenticatable
 {
