@@ -6,7 +6,7 @@
 
     @if($customer->info->type == 'part')
     <div class="border border-2 p-5">
-        <div class="fs-5">Vos Informations personnelles</div>
+        <div class="fs-5 mb-5">Vos Informations personnelles</div>
         <ul class="list-unstyled">
             <li>
                 <strong>{{ $customer->info->full_name }}</strong> née le <strong>{{ $customer->info->datebirth->format('d/m/Y') }}</strong> à <strong>{{ $customer->info->citybirth }}</strong>,
