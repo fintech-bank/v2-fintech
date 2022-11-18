@@ -423,15 +423,7 @@
                 }
             },
             fill: {
-                type: 'gradient',
-                gradient: {
-                    shade: 'light',
-                    shadeIntensity: 0.4,
-                    inverseColors: false,
-                    opacityFrom: 1,
-                    opacityTo: 1,
-                    stops: [0, 50, 53, 91]
-                },
+                colors: [data > 0 && data <= 25 ? success : (data >= 26 && data <= 33 ? warn : danger)],
             },
             labels: ['Average Results'],
         })
