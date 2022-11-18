@@ -111,5 +111,5 @@
     <div class="mt-10 mb-10 text-center uppercase" style="border: solid 2px #000000; background-color: #a4a4a4">
         Les Assurances
     </div>
-    <div class="fs-4 mb-4">{{ $data->insurance->package->name }}</div>
+    <div class="fs-4 mb-4 fs-underline">{{ $data->insurance->package->name }}</div>
 @endsection
