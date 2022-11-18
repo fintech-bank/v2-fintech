@@ -27,14 +27,6 @@ class CustomerInfoFactory extends Factory
         //dd(Carbon::createFromTimestamp($this->faker->dateTimeBetween('1900-01-01', '2004-01-01')->getTimestamp()));
         return [
             'type' => $tps,
-            'civility' => $tps == 'part' ? $civ : null,
-            'firstname' => $tps == 'part' ? ($civ == 'M' ? $this->faker->firstName('male') : $this->faker->firstName('female')) : null,
-            'lastname' => $tps == 'part' ? $this->faker->lastName : null,
-            'datebirth' => $tps == 'part' ? Carbon::createFromTimestamp($this->faker->dateTimeBetween('1900-01-01', '2004-01-01')->getTimestamp()) : null,
-            'citybirth' => $tps == 'part' ? $this->faker->city() : null,
-            'countrybirth' => $tps == 'part' ? $this->faker->countryCode() : null,
-            'company' => $tps != 'part' ? $this->faker->company : null,
-            'siret' => $tps != 'part' ? '52180906100059' : null,
             'address' => $this->faker->streetAddress,
             'addressbis' => $this->faker->boolean == true ? $this->faker->streetAddress : null,
             'postal' => $postal,
@@ -42,7 +34,6 @@ class CustomerInfoFactory extends Factory
             'country' => 'FR',
             'phone' => $this->faker->e164PhoneNumber(),
             'mobile' => "+33".rand(6,7).rand(10000000,99999999),
-            'email' => $this->faker->email,
             'isVerified' => $this->faker->boolean,
         ];
     }
