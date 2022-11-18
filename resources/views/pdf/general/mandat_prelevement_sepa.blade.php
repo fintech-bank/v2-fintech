@@ -63,11 +63,11 @@
                             <td class="fs-2">Nom du créancier</td>
                             <td class="fs-2">{{ $customer->agency->name }}</td>
                             <td class="fs-2">Identifiant du créancier</td>
-                            <td class="fs-2">FR96ZER1259655{{ $customer->agency->address }} {{ $customer->agency->postal }} {{ $customer->agency->city }}</td>
+                            <td class="fs-2">FR96ZER1259655</td>
                         </tr>
                         <tr>
                             <td class="fs-2">Adresse</td>
-                            <td class="fs-2">{{ $customer->agency->address }} {{ $customer->agency->postal }} {{ $customer->agency->city }}</td>
+                            <td class="fs-2" colspan="2">{{ $customer->agency->address }} {{ $customer->agency->postal }} {{ $customer->agency->city }}</td>
                         </tr>
                         <tr>
                             <td class="fs-2">Pays</td>
