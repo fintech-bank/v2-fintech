@@ -820,4 +820,11 @@
             }
         })
     })
+
+    $.ajax({
+        url: '/api/customer/{{ $customer->id }}/endettement',
+        success: data => {
+            console.log(data)
+        }
+    })
 </script>

@@ -205,6 +205,23 @@ class CustomerController extends Controller
         return response()->json();
     }
 
+    public function endettement($customer_id)
+    {
+        $customer = Customer::find($customer_id);
+        $income = $customer->income;
+        $charge = $customer->charge->rent + $customer->charge->credit + $customer->charge->divers
+
+        $reste_vivre = $customer->income->pro_incoming - ($customer->charge->rent + $customer->charge->credit + $customer->charge->divers);
+        $end = $income / $charge * 100;
+
+        return response()->json([
+            'reste' => $reste_vivre,
+            'percent' => $end,
+            'income' => $income,
+            'charge' => $charge
+        ]);
+    }
+
     private function subscribeAlerta()
     {
         session()->put('subscribe.alerta', true);

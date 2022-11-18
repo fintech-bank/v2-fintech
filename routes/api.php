@@ -134,6 +134,7 @@ Route::prefix('customer')->group(function () {
     Route::get('/search', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'search']);
     Route::post('verifSecure/{code}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifSecure']);
     Route::get('{customer_id}/verifAllSolde', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifAllSolde']);
+    Route::get('{customer_id}/endettement', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'endettement']);
     Route::post('{customer_id}/write-sms', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'writeSms']);
     Route::post('{customer_id}/write-mail', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'writeMail']);
     Route::put('{customer_id}/reinitPass', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'reinitPass']);
