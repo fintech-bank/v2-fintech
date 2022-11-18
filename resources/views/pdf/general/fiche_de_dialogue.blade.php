@@ -40,4 +40,12 @@
         <p class="mb-3">Vous avez choisi l'offre : Forfait <strong>{{ $customer->package->name }}</strong></p>
         <p>Tarif: <strong>{{ $customer->package->price_format }} / par mois</strong></p>
     </div>
+
+    <p class="fs-1">
+        Signé électroniquement<br>
+        par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
+        le {{ now() }}<br>
+        CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
+        CN AC: {{ $customer->persona_reference_id }}
+    </p>
 @endsection
