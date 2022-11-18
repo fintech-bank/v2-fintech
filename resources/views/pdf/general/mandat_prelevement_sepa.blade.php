@@ -27,15 +27,15 @@
             <tr class="border-bottom border-gray-600">
                 <td class="fs-2">
                     <div class="fw-bolder mb-2">Vos Informations</div>
-                </td>
-                <table class="table">
-                    <tbody>
+                    <table class="table">
+                        <tbody>
                         <tr>
                             <td class="fs-2">Nom - Prénom</td>
                             <td class="fs-2">{{ $customer->info->firstname }} {{ $customer->info->lastname }}</td>
                         </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </td>
             </tr>
         </tbody>
     </table>
