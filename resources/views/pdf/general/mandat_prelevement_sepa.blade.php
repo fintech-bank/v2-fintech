@@ -9,12 +9,19 @@
     </div>
     <table class="table table-bordered gx-5 gy-5">
         <tbody>
-            <tr>
-                <td>
+            <tr class="border-bottom border-gray-600">
+                <td class="fs-4">
                     <p>
                         En signant ce formulaire de mandat, vous autorisez le créancier à envoyer des instructions à votre banque pour débiter votre compte, et votre banque à débiter votre compte
                         conformément aux instructions du créancier.
                     </p>
+                    <p>Le créancier vous informera de tout prélèvement au plus tard 3 jours calendaires avant sa date d'échéance et par tout moyen.</p>
+                    <p>Vous bénéficiez du droit d'être remboursé par votre banque selon les conditions décrites dans la convention que vous avez passée avec elle. Une demande de remboursement doit
+                        être présentée :</p>
+                    <ul>
+                        <li>dans les 8 semaines suivant la date de débit de votre compte pour un prélèvement autorisé,</li>
+                        <li>sans tarder et au plus tard dans les 13 mois en cas de prélèvement non autorisé.</li>
+                    </ul>
                 </td>
             </tr>
         </tbody>
