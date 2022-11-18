@@ -289,7 +289,7 @@ class CreditCardController extends ApiController
                     return $this->sendWarning("Certains pré-requis ne sont pas remplie pour acceder au crédit renouvelable FACELIA.");
                 }
             } else {
-                return $this->sendWarning("", ["errors" => VerifCompatibilityBeforeLoanTrait::prerequestLoan($card->wallet->customer)]);
+                return $this->sendWarning("Certaine information ne sont pas vérifié", ["errors" => VerifCompatibilityBeforeLoanTrait::prerequestLoan($card->wallet->customer)]);
             }
         } else {
             return $this->sendWarning("Cette carte bancaire est déjà affilier à un contrat FACELIA");
