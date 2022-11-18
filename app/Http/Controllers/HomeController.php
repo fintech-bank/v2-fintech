@@ -101,7 +101,8 @@ class HomeController extends Controller
     {
         $customer = Customer::find(1);
         $document = new DocumentFile();
+        $wallet = $customer->wallets()->first();
 
-        return $document->generatePDF('general.mandat_prelevement_sepa', $customer, null, [], false, false, null, true, 'simple');
+        return $document->generatePDF('general.mandat_prelevement_sepa', $customer, null, ["wallet" => $wallet], false, false, null, true, 'simple');
     }
 }

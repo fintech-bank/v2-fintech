@@ -45,6 +45,16 @@
                                 <td class="fs-2">Pays</td>
                                 <td class="fs-2" colspan="2">{{ \App\Helper\CountryHelper::getCountryName($customer->info->country) }}</td>
                             </tr>
+                            <tr>
+                                <td class="fs-2">IBAN</td>
+                                <td class="fs-2">{{ $data->wallet->iban }}</td>
+                                <td class="fs-2" colspan="1">N° d’identification international du compte bancaire (International Bank Account Number)</td>
+                            </tr>
+                            <tr>
+                                <td class="fs-2">BIC</td>
+                                <td class="fs-2">{{ $customer->agency->bic }}</td>
+                                <td class="fs-2" colspan="1">Code international d’identification de votre banque (Bank Identifier Code)</td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>
