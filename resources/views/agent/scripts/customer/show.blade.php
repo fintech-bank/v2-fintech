@@ -822,7 +822,7 @@
             console.log(data)
             chartEnd(data.percent)
             document.querySelector("[data-content='taux_end']").innerHTML = data.percent + ' %';
-            document.querySelector("[data-content='reste_vivre']").innerHTML = new Intl.NumberFormat('fr_FR', {style: 'currency', currency: 'eur'}).format(data.reste);
+            document.querySelector("[data-content='reste_vivre']").innerHTML = new Intl.NumberFormat('fr', {style: 'currency', currency: 'eur'}).format(data.reste);
         }
     })
 </script>
