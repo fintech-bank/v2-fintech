@@ -27,7 +27,7 @@
             <tr class="border-bottom border-gray-600">
                 <td class="fs-2">
                     <div class="fw-bolder mb-2">Vos Informations</div>
-                    <table class="table table-borderless table-sm">
+                    <table class="table table-borderless border border-bottom-2 table-sm">
                         <tbody>
                             <tr>
                                 <td class="fs-2">Nom - Prénom</td>
@@ -55,6 +55,24 @@
                                 <td class="fs-2">{{ $customer->agency->bic }}</td>
                                 <td class="fs-2" colspan="1">Code international d’identification de votre banque (Bank Identifier Code)</td>
                             </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-borderless border border-bottom-2 table-sm">
+                        <tbody>
+                        <tr>
+                            <td class="fs-2">Nom du créancier</td>
+                            <td class="fs-2">{{ $customer->agency->name }}</td>
+                            <td class="fs-2">Identifiant du créancier</td>
+                            <td class="fs-2">FR96ZER1259655{{ $customer->agency->address }} {{ $customer->agency->postal }} {{ $customer->agency->city }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fs-2">Adresse</td>
+                            <td class="fs-2">{{ $customer->agency->address }} {{ $customer->agency->postal }} {{ $customer->agency->city }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fs-2">Pays</td>
+                            <td class="fs-2" colspan="2">{{ \App\Helper\CountryHelper::getCountryName('FR') }}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </td>
