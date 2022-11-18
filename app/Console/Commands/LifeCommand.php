@@ -125,7 +125,7 @@ class LifeCommand extends Command
 
             $customer = Customer::factory()->create([
                 'user_id' => $user->id,
-                'package_id' => Package::where('type_cpt', $user->customer_type)->get()->random()->id,
+                'package_id' => Package::where('type_cpt', $user->type_customer)->get()->random()->id,
                 'agent_id' => User::where('agent', 1)->get()->random()->id,
             ]);
             $customer->update(['persona_reference_id' => 'customer_' . now()->format('dmYhi') . "_" . $customer->id]);
@@ -139,15 +139,15 @@ class LifeCommand extends Command
             $info = CustomerInfo::factory()->create([
                 'customer_id' => $customer->id,
                 'email' => $user->email,
-                'type' => $customer_type_choice,
-                'civility' => $customer_type_choice == 'part' ? $civ : '',
+                'type' => $user->type_customer,
+                'civility' => $user->type_customer == 'part' ? $civ : '',
                 'firstname' => $firstname,
                 'lastname' => $lastname,
-                'datebirth' => $customer_type_choice == 'part' ? Carbon::createFromTimestamp($faker->dateTimeBetween('1980-01-01', now()->endOfYear()->subYears(18))->getTimestamp()) : null,
-                'citybirth' => $customer_type_choice == 'part' ? $faker->city : null,
-                'countrybirth' => $customer_type_choice == 'part' ? "FR" : null,
+                'datebirth' => $user->type_customer == 'part' ? Carbon::createFromTimestamp($faker->dateTimeBetween('1980-01-01', now()->endOfYear()->subYears(18))->getTimestamp()) : null,
+                'citybirth' => $user->type_customer == 'part' ? $faker->city : null,
+                'countrybirth' => $user->type_customer == 'part' ? "FR" : null,
                 'company' => $company,
-                'siret' => $customer_type_choice != 'part' ? random_numeric(9).'000'.random_numeric(2) : null,
+                'siret' => $user->type_customer != 'part' ? random_numeric(9).'000'.random_numeric(2) : null,
             ]);
 
             $info->setPhoneVerified($info->phone, 'phone');
@@ -189,7 +189,7 @@ class LifeCommand extends Command
 
             $card = CustomerCreditCard::factory()->create([
                 'customer_wallet_id' => $account->id,
-                'credit_card_support_id' => CreditCardSupport::where('type_customer', $customer_type_choice)->get()->random()->id,
+                'credit_card_support_id' => CreditCardSupport::where('type_customer', $user->type_customer)->get()->random()->id,
             ]);
 
             if ($customer->status_open_account == 'terminated') {

@@ -55,6 +55,7 @@ class UserSeeder extends Seeder
             'agent' => false,
             'customer' => true,
             'identifiant' => UserHelper::generateID(),
+            'type_customer' => 'part'
         ]);
 
         $user->subscriptions()->create([
