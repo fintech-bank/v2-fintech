@@ -95,7 +95,7 @@ class CustomerInfo extends Model
     public $timestamps = false;
 
     protected $dates = ['datebirth'];
-    protected $appends = ['type_label', 'phone_verify', 'mobile_verify', 'account_verified', 'full_name', 'line_address'];
+    protected $appends = ['type_label', 'phone_verify', 'mobile_verify', 'account_verified', 'full_name', 'line_address', 'type_text'];
 
     public function routeNotificationForTwilio()
     {
@@ -147,6 +147,11 @@ class CustomerInfo extends Model
                 "assoc" => "fa-handshake"
             };
         }
+    }
+
+    public function getTypeTextAttribute()
+    {
+        return $this->getType('text');
     }
 
     public function getTypeLabelAttribute()
