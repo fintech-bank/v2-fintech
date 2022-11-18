@@ -10,7 +10,7 @@
     <table class="table table-bordered gx-5 gy-5">
         <tbody>
             <tr class="border-bottom border-gray-600">
-                <td class="fs-6">
+                <td class="fs-1">
                     <p>
                         En signant ce formulaire de mandat, vous autorisez le créancier à envoyer des instructions à votre banque pour débiter votre compte, et votre banque à débiter votre compte
                         conformément aux instructions du créancier.
@@ -25,7 +25,7 @@
                 </td>
             </tr>
             <tr class="border-bottom border-gray-600">
-                <td class="fs-5">
+                <td class="fs-2">
                     <div class="fw-bolder mb-2">Vos Informations</div>
 
                 </td>
