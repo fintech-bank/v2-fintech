@@ -24,6 +24,7 @@ class CustomerFaceliaHelper
     public static function create($wallet, $customer, $amount, $card)
     {
         $pret = self::createFaceliaPret($wallet, $customer, $amount, $card);
+        dd($pret);
 
         $facelia = self::createFacelia($pret->wallet, $pret, $card, $wallet);
 
