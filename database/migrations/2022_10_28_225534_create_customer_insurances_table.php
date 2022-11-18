@@ -40,7 +40,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->foreignId('payment_wallet_id')
+            $table->foreignId('customer_wallet_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();

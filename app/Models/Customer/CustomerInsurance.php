@@ -76,7 +76,7 @@ class CustomerInsurance extends Model
 
     public function payment()
     {
-        return $this->belongsTo(CustomerWallet::class, 'id', 'payment_wallet_id');
+        return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
     }
 
     public function getStatusTextAttribute()
