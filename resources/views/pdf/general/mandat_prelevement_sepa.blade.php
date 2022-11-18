@@ -42,10 +42,8 @@
                                 <td class="fs-2">{{ $customer->info->city }}</td>
                             </tr>
                             <tr>
-                                <td class="fs-2">Code postal</td>
-                                <td class="fs-2">{{ $customer->info->postal }}</td>
-                                <td class="fs-2">Ville</td>
-                                <td class="fs-2">{{ $customer->info->city }}</td>
+                                <td class="fs-2">Pays</td>
+                                <td class="fs-2" colspan="2">{{ \App\Helper\CountryHelper::getCountryName($customer->info->country) }}</td>
                             </tr>
                         </tbody>
                     </table>
