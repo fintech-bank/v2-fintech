@@ -519,7 +519,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div id="chart_endettement" class="mb-10 h-350px"></div>
+                            <div id="chart_endettement" class="mb-10 h-auto"></div>
                         </div>
                     </div>
                     <div class="card shadow-sm">
