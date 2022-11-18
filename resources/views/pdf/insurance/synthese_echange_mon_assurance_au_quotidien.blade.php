@@ -10,6 +10,6 @@
     <ul>
         <li>Offre: MON ASSURANCE AU QUOTIDIEN</li>
         <li>Assuré(e): {{ $customer->info->full_name }}</li>
-        <li>Bénéficiaire: {{ $data->insurance->beneficiaire  }}</li>
+        <li>Bénéficiaire: {{ $data->insurance->beneficiaire ?? "LUI MÊME" }}</li>
     </ul>
 @endsection
