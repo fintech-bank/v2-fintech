@@ -530,9 +530,9 @@
                                 <div class="fw-bolder">Taux d'endettement</div>
                                 <div class="" data-content="taux_end"></div>
                             </div>
-                            <div class="d-flex flex-row mb-5">
-                                <div class="fw-bolder">Reste à vivre</div>
-                                <div class="" data-content="reste_vivre"></div>
+                            <div class="d-flex flex-row justify-content-between mb-5">
+                                <div class="fw-bolder fs-1">Reste à vivre</div>
+                                <div class="fs-1" data-content="reste_vivre"></div>
                             </div>
                         </div>
                     </div>
