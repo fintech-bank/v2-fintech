@@ -12,4 +12,8 @@
         <li>Assuré(e): {{ $customer->info->full_name }}</li>
         <li>Bénéficiaire: {{ $data->insurance->beneficiaire ?? "LUI MÊME" }}</li>
     </ul>
+    <p>Aussi, vous trouverez, ci-joint, les documents contractuels relatifs à cette demande (dénommés, ensemble, le « contrat »), c'est-à-dire :</p>
+    <ul>
+        <li>Condition particulière {{ $data->insurance->package->name }}</li>
+    </ul>
 @endsection
