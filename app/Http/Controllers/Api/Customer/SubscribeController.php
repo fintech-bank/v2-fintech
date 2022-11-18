@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\SendLinkForContract;
 use App\Notifications\Customer\SendLinkForContractNotification;
+use App\Notifications\Customer\SendRequestNotification;
 use Illuminate\Http\Request;
 
 class SubscribeController extends Controller
@@ -22,7 +23,7 @@ class SubscribeController extends Controller
 
         $doc = DocumentFile::createDoc(
             $wallet->customer,
-            'autorisation_decouvert_permanent',
+            'wallet.autorisation_decouvert_permanent',
             'Autorisation Decouvert Permanente',
             3,
             generateReference(),
@@ -33,10 +34,16 @@ class SubscribeController extends Controller
             ['wallet' => $wallet]
         );
 
-        dd($doc);
+        $req = $wallet->customer->requests()->create([
+            'reference' => $doc->reference,
+            'sujet' => "Signature d'un document",
+            'commentaire' => "Veuillez signez le document suivant: {$doc->name}",
+            "link_model" => CustomerWallet::class,
+            "link_id" => $wallet->id,
+            "customer_id" => $wallet->customer->id
+        ]);
 
-        $token = base64_encode(\Str::random());
-        $wallet->customer->info->notify(new SendLinkForContractNotification($wallet->customer, $token, $doc));
+        $wallet->customer->info->notify(new SendRequestNotification($wallet->customer, $req));
 
         return response()->json();
     }
