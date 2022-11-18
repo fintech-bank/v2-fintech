@@ -125,17 +125,39 @@ class CustomerPret extends Model
 
     //---------- Attribute -------------//
 
+    public function getStatus($format = '')
+    {
+        if($format == 'text') {
+            return match ($this->status) {
+                "open" => "Dossier ouvert",
+                "study" => "Dossier en étude",
+                "accepted" => "Dossier accepter",
+                "refused" => "Dossier refuser",
+                "progress" => "Dossier en cours...",
+                "terminated" => "Pret remboursé",
+                "error" => "Erreur ou problème avec le pret",
+            };
+        } elseif ($format == 'color') {
+            return match ($this->status) {
+                "open" => "secondary",
+                "study" => "warning",
+                "accepted", "terminated", "progress" => "success",
+                "refused", "error" => "danger",
+            };
+        } else {
+            return match ($this->status) {
+                "open" => "fa-pen",
+                "study", "progress" => "fa-spinner fa-spin",
+                "accepted", "terminated" => "fa-check-circle",
+                "refused" => "fa-xmark-circle",
+                "error" => "fa-exclamation-circle",
+            };
+        }
+    }
+
     public function getStatusLabelAttribute()
     {
-        switch($this->status) {
-            case 'open': return '<div class="badge badge-lg badge-secondary"><i class="fa-solid fa-pen text-white me-2"></i> Dossier Ouvert</div>'; break;
-            case 'study': return '<div class="badge badge-lg badge-warning"><i class="fa-solid fa-spinner text-white me-2"></i> Dossier en étude</div>'; break;
-            case 'accepted': return '<div class="badge badge-lg badge-success"><i class="fa-solid fa-check-circle text-white me-2"></i> Dossier accepter</div>'; break;
-            case 'refused': return '<div class="badge badge-lg badge-danger"><i class="fa-solid fa-xmark-circle text-white me-2"></i> Dossier refuser</div>'; break;
-            case 'progress': return '<div class="badge badge-lg badge-success"><i class="fa-solid fa-spinner text-white me-2"></i> Pret en cours...</div>'; break;
-            case 'terminated': return '<div class="badge badge-lg badge-success"><i class="fa-solid fa-check-circle text-white me-2"></i> Pret remboursé</div>'; break;
-            case 'error': return '<div class="badge badge-lg badge-danger"><i class="fa-solid fa-circle-exclamation text-white me-2"></i> Erreur sur le pret</div>'; break;
-        }
+        return "<div class='badge badge-lg badge-{$this->getStatus('color')}'><i class='fa-solid {$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</div>";
     }
 
     public function getStatusExplanationAttribute()
