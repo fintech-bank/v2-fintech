@@ -41,7 +41,7 @@
         <p>Tarif: <strong>{{ $customer->package->price_format }} / par mois</strong></p>
     </div>
 
-    <p class="fs-1">
+    <p class="fs-2">
         Signé électroniquement<br>
         par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
         le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
