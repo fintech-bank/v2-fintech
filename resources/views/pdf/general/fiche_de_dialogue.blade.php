@@ -6,7 +6,7 @@
 
     @if($customer->info->type == 'part')
     <div class="border border-2 p-5">
-        <div class="fs-5 mb-5">Vos Informations personnelles</div>
+        <div class="fs-5 mb-3">Vos Informations personnelles</div>
         <ul class="list-unstyled">
             <li>
                 <strong>{{ $customer->info->full_name }}</strong> née le <strong>{{ $customer->info->datebirth->format('d/m/Y') }}</strong> à <strong>{{ $customer->info->citybirth }}</strong>,
@@ -14,7 +14,8 @@
             </li>
             <li>Adresse mail: <strong>{{ $customer->info->email }}</strong></li>
             <li>Téléphone portable: <strong>{{ $customer->info->mobile }}</strong></li>
-            <li>Domicile: <strong>{{ $customer->info->line_address }}</strong></li>
+            <li class="mb-3">Domicile: <strong>{{ $customer->info->line_address }}</strong></li>
+            <li>Pays de résidence fiscal: <strong>{{ \App\Helper\CountryHelper::getCountryName($customer->info->country) }}</strong></li>
         </ul>
     </div>
     @endif
