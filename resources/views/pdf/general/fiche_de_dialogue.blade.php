@@ -44,7 +44,7 @@
     <p class="fs-1">
         Signé électroniquement<br>
         par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
-        le {{ now() }}<br>
+        le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
         CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
         CN AC: {{ $customer->persona_reference_id }}
     </p>
