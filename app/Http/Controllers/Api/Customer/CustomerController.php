@@ -208,7 +208,7 @@ class CustomerController extends Controller
     public function endettement($customer_id)
     {
         $customer = Customer::find($customer_id);
-        $income = $customer->income;
+        $income = $customer->income->pro_incoming;
         $charge = $customer->charge->rent + $customer->charge->credit + $customer->charge->divers;
 
         $reste_vivre = $customer->income->pro_incoming - ($customer->charge->rent + $customer->charge->credit + $customer->charge->divers);
