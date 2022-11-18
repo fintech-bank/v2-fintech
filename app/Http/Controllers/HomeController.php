@@ -100,7 +100,8 @@ class HomeController extends Controller
     public function test()
     {
         $customer = Customer::find(1);
+        $document = new DocumentFile();
 
-        dd(VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer));
+        return $document->generatePDF('general.fiche_de_dialogue', $customer, null, [], false, false, null, true, 'simple');
     }
 }
