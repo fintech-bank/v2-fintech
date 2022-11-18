@@ -28,9 +28,9 @@
     <div class="border border-2 p-5 mb-10">
         <div class="fs-5 mb-3">Votre agence de référence</div>
         <p>
-            {{ $agency->name }}<br>
-            {{ $agency->address }}<br>
-            {{ $agency->postal }} {{ $agency->city }}
+            {{ $agence->name }}<br>
+            {{ $agence->address }}<br>
+            {{ $agence->postal }} {{ $agence->city }}
         </p>
     </div>
     @endif
