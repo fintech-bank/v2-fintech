@@ -67,11 +67,11 @@
                         </tr>
                         <tr>
                             <td class="fs-2">Adresse</td>
-                            <td class="fs-2" colspan="2">{{ $customer->agency->address }} {{ $customer->agency->postal }} {{ $customer->agency->city }}</td>
+                            <td class="fs-2" colspan="3">{{ $customer->agency->address }} {{ $customer->agency->postal }} {{ $customer->agency->city }}</td>
                         </tr>
                         <tr>
                             <td class="fs-2">Pays</td>
-                            <td class="fs-2" colspan="2">{{ \App\Helper\CountryHelper::getCountryName('FR') }}</td>
+                            <td class="fs-2" colspan="3">{{ \App\Helper\CountryHelper::getCountryName('FR') }}</td>
                         </tr>
                         </tbody>
                     </table>
