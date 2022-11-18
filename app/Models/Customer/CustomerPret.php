@@ -206,4 +206,6 @@ class CustomerPret extends Model
             default => "Décès, Invalidité, Maladie, Chomage",
         };
     }
+
+
 }
