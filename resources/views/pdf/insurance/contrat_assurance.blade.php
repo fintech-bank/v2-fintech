@@ -130,7 +130,7 @@
         {{ config('app.name') }} - Assurance s'engage à verser au(x) bénéficiaire(s) désigné(s) :
     </p>
     <ul>
-        @foreach($data->insurance->form->warranties as $warranty)
+        @foreach($data->insurance->form->warranties()->where('check', 1)->get() as $warranty)
             <li>{{ $warranty->designation }}</li>
         @endforeach
 
