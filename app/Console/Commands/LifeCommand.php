@@ -123,7 +123,7 @@ class LifeCommand extends Command
             ]));
         }
 
-        foreach ($users->get() as $user) {
+        foreach ($users as $user) {
 
             $customer = Customer::factory()->create([
                 'user_id' => $user->id,
