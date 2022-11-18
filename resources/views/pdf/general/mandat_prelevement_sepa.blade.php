@@ -41,6 +41,12 @@
                                 <td class="fs-2">Ville</td>
                                 <td class="fs-2">{{ $customer->info->city }}</td>
                             </tr>
+                            <tr>
+                                <td class="fs-2">Code postal</td>
+                                <td class="fs-2">{{ $customer->info->postal }}</td>
+                                <td class="fs-2">Ville</td>
+                                <td class="fs-2">{{ $customer->info->city }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>
