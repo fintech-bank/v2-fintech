@@ -121,8 +121,6 @@ class LifeCommand extends Command
             ]);
         }
 
-        dd($users);
-
         foreach ($users as $user) {
 
             $customer = Customer::factory()->create([
