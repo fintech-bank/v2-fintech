@@ -108,4 +108,8 @@
         autorité de contrôle en France en charge du respect des obligations en matière de données à caractère personnel.
     </p>
     <div class="page-break"></div>
+    <div class="mt-10 mb-10 text-center uppercase" style="border: solid 2px #000000; background-color: #a4a4a4">
+        Les Assurances
+    </div>
+    <div class="fs-4">{{ $data->insurance->package->name }}</div>
 @endsection
