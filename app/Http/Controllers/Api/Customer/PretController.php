@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Customer;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerPret;
+use App\Notifications\Customer\UpdateStatusPretNotification;
 use Illuminate\Http\Request;
 
 class PretController extends ApiController
@@ -23,6 +24,8 @@ class PretController extends ApiController
         $pret->update([
             'status' => $state
         ]);
+
+        $pret->customer->info->notify(new UpdateStatusPretNotification($pret->customer, $pret));
 
         return $this->sendSuccess();
     }
