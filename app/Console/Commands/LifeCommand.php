@@ -104,23 +104,28 @@ class LifeCommand extends Command
         $civility = ['M', 'Mme', 'Mlle'];
         $civ = $civility[rand(0, 2)];
         $customer_type = ['part', 'pro', 'orga', 'assoc'];
-        $customer_type_choice = $customer_type[rand(0,3)];
-        $firstname = $customer_type_choice == 'part' ? ($civ != 'M' ? $faker->firstNameFemale : $faker->firstNameMale) : '';
-        $lastname = $customer_type_choice == 'part' ? $faker->lastName : '';
-        $company = $customer_type_choice != 'part' ? $faker->company : null;
 
-        $users = User::factory($r)->create([
-            'identifiant' => UserHelper::generateID(),
-            'agency_id' => Agency::all()->random()->id,
-            'email' => $customer_type_choice != 'part' ? $faker->companyEmail : $faker->email,
-            'name' => $customer_type_choice == 'part' ? $lastname.' '.$firstname : $company,
-        ]);
+
+        for ($i = 0; $i <= $r; $i++) {
+            $customer_type_choice = $customer_type[rand(0,3)];
+            $firstname = $customer_type_choice == 'part' ? ($civ != 'M' ? $faker->firstNameFemale : $faker->firstNameMale) : '';
+            $lastname = $customer_type_choice == 'part' ? $faker->lastName : '';
+            $company = $customer_type_choice != 'part' ? $faker->company : null;
+
+            $users = User::factory()->create([
+                'identifiant' => UserHelper::generateID(),
+                'agency_id' => Agency::all()->random()->id,
+                'email' => $customer_type_choice != 'part' ? $faker->companyEmail : $faker->email,
+                'name' => $customer_type_choice == 'part' ? $lastname.' '.$firstname : $company,,
+                'customer_type' => $customer_type_choice
+            ]);
+        }
 
         foreach ($users as $user) {
 
             $customer = Customer::factory()->create([
                 'user_id' => $user->id,
-                'package_id' => Package::where('type_cpt', $customer_type_choice)->get()->random()->id,
+                'package_id' => Package::where('type_cpt', $user->customer_type)->get()->random()->id,
                 'agent_id' => User::where('agent', 1)->get()->random()->id,
             ]);
             $customer->update(['persona_reference_id' => 'customer_' . now()->format('dmYhi') . "_" . $customer->id]);

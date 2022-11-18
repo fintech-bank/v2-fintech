@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('authy_id')->nullable();
             $table->string('authy_status')->nullable();
             $table->uuid('authy_one_touch_uuid')->nullable();
+            $table->string('type_customer')->nullable();
         });
     }
 
