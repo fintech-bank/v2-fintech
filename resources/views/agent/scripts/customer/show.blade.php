@@ -377,6 +377,9 @@
     }
 
     let chartEnd = (data) => {
+        let success = "#00b518"
+        let warn = "#b53f00"
+        let danger = "#b50000"
         let chart = new ApexCharts(elements.chartEndet, {
             series: [data],
             chart: {
@@ -391,7 +394,7 @@
                     startAngle: -90,
                     endAngle: 90,
                     track: {
-                        background: "#e7e7e7",
+                        background: data > 0 && data <= 25 ? success : (data >= 26 && data <= 33 ? warn : danger),
                         strokeWidth: '97%',
                         margin: 5, // margin is in pixels
                         dropShadow: {
