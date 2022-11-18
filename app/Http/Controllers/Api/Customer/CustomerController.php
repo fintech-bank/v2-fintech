@@ -211,7 +211,7 @@ class CustomerController extends Controller
         $income = $customer->income->pro_incoming;
         $charge = $customer->charge->rent + $customer->charge->credit + $customer->charge->divers + $customer->prets()->where('status', 'progress')->sum('mensuality');
 
-        $reste_vivre = $customer->income->pro_incoming - ($customer->charge->rent + $customer->charge->credit + $customer->charge->divers);
+        $reste_vivre = $customer->income->pro_incoming - $charge;
         $end = $charge / $income * 100;
 
         return response()->json([
