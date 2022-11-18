@@ -37,4 +37,11 @@
     <p>Nous demeurons naturellement à votre disposition pour toute question ou demande complémentaire.</p>
     <p>Bien cordialement, </p>
     <p>{{ $customer->agent->name }}</p>
+    <p class="fs-2">
+        Signé électroniquement<br>
+        par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
+        le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
+        CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
+        CN AC: {{ $customer->persona_reference_id }}
+    </p>
 @endsection
