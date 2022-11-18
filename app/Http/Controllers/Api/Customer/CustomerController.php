@@ -209,7 +209,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($customer_id);
         $income = $customer->income->pro_incoming;
-        $charge = $customer->charge->rent + $customer->charge->credit + $customer->charge->divers;
+        $charge = $customer->charge->rent + $customer->charge->credit + $customer->charge->divers + $customer->prets()->where('status', 'progress')->sum('mensuality');
 
         $reste_vivre = $customer->income->pro_incoming - ($customer->charge->rent + $customer->charge->credit + $customer->charge->divers);
         $end = $charge / $income * 100;
