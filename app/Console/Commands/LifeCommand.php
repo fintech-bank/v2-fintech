@@ -40,6 +40,7 @@ use Exception;
 use Faker\Factory;
 use IbanGenerator\Generator;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 
@@ -112,12 +113,13 @@ class LifeCommand extends Command
             $lastname = $customer_type_choice == 'part' ? $faker->lastName : '';
             $company = $customer_type_choice != 'part' ? $faker->company : null;
 
-            $users = User::factory()->create([
-                'identifiant' => UserHelper::generateID(),
-                'agency_id' => Agency::all()->random()->id,
-                'email' => $customer_type_choice != 'part' ? $faker->companyEmail : $faker->email,
+            $users = User::create([
                 'name' => $customer_type_choice == 'part' ? $lastname.' '.$firstname : $company,
-                'type_customer' => $customer_type_choice
+                'email' => $customer_type_choice != 'part' ? $faker->companyEmail : $faker->email,
+                'password' => Hash::make('password'),
+                'identifiant' => UserHelper::generateID(),
+                'type_customer' => $customer_type_choice,
+                'agency_id' => Agency::all()->random()->id,
             ]);
         }
 
