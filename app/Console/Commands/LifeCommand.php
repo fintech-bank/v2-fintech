@@ -124,7 +124,8 @@ class LifeCommand extends Command
         }
 
         foreach ($users as $user) {
-
+            $firstname = Str::replaceFirst(' ', '', $user->name);
+            $lastname = Str::replaceLast(' ', '', $user->name);
             $customer = Customer::factory()->create([
                 'user_id' => $user->id,
                 'package_id' => Package::where('type_cpt', $user->type_customer)->get()->random()->id,
@@ -143,8 +144,8 @@ class LifeCommand extends Command
                 'email' => $user->email,
                 'type' => $user->type_customer,
                 'civility' => $user->type_customer == 'part' ? $civ : '',
-                'firstname' => $firstname,
-                'lastname' => $lastname,
+                'firstname' => $user->type_customer == 'part' ? $firstname : null,
+                'lastname' => $user->type_customer == 'part' ? $lastname : null,
                 'datebirth' => $user->type_customer == 'part' ? Carbon::createFromTimestamp($faker->dateTimeBetween('1980-01-01', now()->endOfYear()->subYears(18))->getTimestamp()) : null,
                 'citybirth' => $user->type_customer == 'part' ? $faker->city : null,
                 'countrybirth' => $user->type_customer == 'part' ? "FR" : null,
