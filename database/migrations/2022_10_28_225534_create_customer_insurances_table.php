@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('end_date');
             $table->float('mensuality')->default(0);
             $table->enum('type_prlv', ['mensuel', 'trim', 'annuel', 'ponctuel'])->default('mensuel');
+            $table->string('beneficiaire')->nullable();
             $table->timestamps();
 
             $table->foreignId('customer_id')
