@@ -28,11 +28,15 @@
                 <td class="fs-2">
                     <div class="fw-bolder mb-2">Vos Informations</div>
                 </td>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="fs-2">Nom - Prénom</td>
+                            <td class="fs-2">{{ $customer->info->firstname }} {{ $customer->info->lastname }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </tr>
-        <tr>
-            <td class="fs-2">Nom - Prénom</td>
-            <td class="fs-2">{{ $customer->info->firstname }} {{ $customer->info->lastname }}</td>
-        </tr>
         </tbody>
     </table>
 @endsection
