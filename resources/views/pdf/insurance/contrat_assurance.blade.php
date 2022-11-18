@@ -112,4 +112,13 @@
         Les Assurances
     </div>
     <div class="fs-4 mb-4 fs-underline">{{ $data->insurance->package->name }}</div>
+    <p>{{ Str::upper($data->insurance->package->name) }} - Demande d'adhésion valant Certificat Individuel d'Adhésion</p>
+    <p>N° D'ADHESION: {{ $data->insurance->reference }}</p>
+    <p>
+        Contrat d'assurance collective sur la vie à adhésion facultative souscrit par {{ config('app.name') }} et ses filiales auprès de {{ config('app.name') }} - Assurance.
+        Ce contrat est présenté par {{ config('app.name') }} (Immatriculations au registre des intermédiaires en assurance
+        n° 07 022 493).<br>
+        Garantie financière et assurance de responsabilité civile professionnelle conformes aux articles L. 512-6 et L. 512-7 du Code des
+        assurances.
+    </p>
 @endsection
