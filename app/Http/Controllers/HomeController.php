@@ -103,6 +103,6 @@ class HomeController extends Controller
         $document = new DocumentFile();
         $wallet = $customer->wallets()->first();
 
-        return $document->generatePDF('general.mandat_prelevement_sepa', $customer, null, ["wallet" => $wallet], false, false, null, true, 'simple');
+        return $document->generatePDF('insurance.condition_general_mon_assurance_au_quotidien', $customer, null, [], false, false, null, true, 'simple');
     }
 }
