@@ -32,7 +32,7 @@ class CustomerFaceliaHelper
         return $facelia;
     }
 
-    private static function createFaceliaPret($wallet, $customer, $amount, $card): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerPret_QB|\App\Models\Customer\CustomerPret
+    private static function createFaceliaPret($wallet, $customer, $amount, $card): array
     {
         return CustomerLoanHelper::create(
             $wallet->id,
