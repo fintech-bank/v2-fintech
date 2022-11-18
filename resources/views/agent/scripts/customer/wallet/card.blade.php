@@ -137,9 +137,9 @@
 
                     toastr.success(`La souscription au crédit renouvelable FACELIA à été pris en compte`, `Carte Bancaire`)
 
-                    /*setTimeout(() => {
+                    setTimeout(() => {
                         window.location.reload()
-                    }, 1200)*/
+                    }, 1200)
                 } else {
                     btn.removeAttr('data-kt-indicator')
 
