@@ -77,6 +77,18 @@
                         <div class="fw-bolder fs-2">Carte Affilié</div>
                         <div class="ps-5">{{ $facelia->card->number_format }}</div>
                     </div>
+                    @if($facelia->pret->status == 'study')
+                    <div class="separator separator-dashed border-black border-3 my-3"></div>
+                    <div class="d-flex flex-column">
+                        <div class="fw-bolder fs-2">Information à vérifié</div>
+                        <div class="ps-5">
+                            <ul>
+                                <li>Signature du contrat envoyé en requete</li>
+                                <li>Information sur la fiche de paie = information bancaire</li>
+                            </ul>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
