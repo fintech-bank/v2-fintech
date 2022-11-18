@@ -15,7 +15,10 @@
             <li>Adresse mail: <strong>{{ $customer->info->email }}</strong></li>
             <li>Téléphone portable: <strong>{{ $customer->info->mobile }}</strong></li>
             <li class="mb-3">Domicile: <strong>{{ $customer->info->line_address }}</strong></li>
-            <li>Pays de résidence fiscal: <strong>{{ \App\Helper\CountryHelper::getCountryName($customer->info->country) }}</strong></li>
+            <li class="mb-3">Pays de résidence fiscal: <strong>{{ \App\Helper\CountryHelper::getCountryName($customer->info->country) }}</strong></li>
+            <li>Vous êtes: <strong>{{ $customer->situation->pro_category }}</strong></li>
+            <li class="mb-3">Vous êtes: <strong>{{ $customer->situation->logement }}</strong></li>
+            <li>Vous êtes: <strong>{{ $customer->situation->family_situation }}</strong></li>
         </ul>
     </div>
     @endif
