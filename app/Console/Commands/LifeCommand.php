@@ -225,15 +225,15 @@ class LifeCommand extends Command
                         $title,
                         now());
                 } else {
-                    $title = "Dépot de capital en compte courant";
+                    $title_pro = "Dépot de capital en compte courant";
                     CustomerTransactionHelper::create(
                         'credit',
                         'depot',
-                        $title,
+                        $title_pro,
                         rand(1,99999999),
                         $account->id,
                         true,
-                        $title,
+                        $title_pro,
                         now()
                     );
                 }
