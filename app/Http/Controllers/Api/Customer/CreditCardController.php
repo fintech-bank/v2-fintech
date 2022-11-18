@@ -284,6 +284,10 @@ class CreditCardController extends ApiController
 
                     $card->wallet->customer->info->notify(new NewPretNotification($card->wallet->customer, $pret, $docs));
 
+                    $card->update([
+                        'facelia' => 1
+                    ]);
+
                     return $this->sendSuccess();
                 } else {
                     return $this->sendWarning("Certains pré-requis ne sont pas remplie pour acceder au crédit renouvelable FACELIA.");
