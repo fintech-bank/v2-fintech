@@ -21,7 +21,7 @@
             <li>Vous êtes: <strong>{{ $customer->situation->family_situation }}</strong></li>
             <li class="mb-3">Vous êtes: <strong>{{ $customer->situation->pro_category }},{{ $customer->situation->pro_profession }}</strong></li>
             <li>Mon patrimoine est de: <strong>{{ eur($customer->income->patrimoine) }}</strong></li>
-            <li>Mon revenue mensuelle est de: <strong>{{ eur($customer->income->patrimoine) }}</strong></li>
+            <li>Mon revenue mensuelle est de: <strong>{{ eur($customer->income->pro_income) }}</strong></li>
         </ul>
     </div>
 
