@@ -144,6 +144,9 @@
                     btn.removeAttr('data-kt-indicator')
 
                     toastr.warning(`${data.message}`, `Carte Bancaire`)
+                    if(data.data.errors) {
+                        console.log(data.data.errors)
+                    }
                 }
             },
             error: data => {
