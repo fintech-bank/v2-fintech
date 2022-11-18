@@ -12,6 +12,9 @@
                 <strong>{{ $customer->info->full_name }}</strong> née le <strong>{{ $customer->info->datebirth->format('d/m/Y') }}</strong> à <strong>{{ $customer->info->citybirth }}</strong>,
                 {{ \App\Helper\CountryHelper::getCountryName($customer->info->countrybirth) }}
             </li>
+            <li>Adresse mail: <strong>{{ $customer->info->email }}</strong></li>
+            <li>Téléphone portable: <strong>{{ $customer->info->mobile }}</strong></li>
+            <li>Domicile: <strong>{{ $customer->info->line_address }}</strong></li>
         </ul>
     </div>
     @endif
