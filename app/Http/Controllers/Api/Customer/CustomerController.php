@@ -212,6 +212,7 @@ class CustomerController extends Controller
         $charge = $customer->charge->rent + $customer->charge->credit + $customer->charge->divers;
 
         $reste_vivre = $customer->income->pro_incoming - ($customer->charge->rent + $customer->charge->credit + $customer->charge->divers);
+        dd($income, $charge, $reste_vivre);
         $end = $income / $charge * 100;
 
         return response()->json([
