@@ -32,6 +32,14 @@
                             <tr>
                                 <td class="fs-2">Nom - Prénom</td>
                                 <td class="fs-2">{{ $customer->info->firstname }} {{ $customer->info->lastname }}</td>
+                                <td class="fs-2">Adresse</td>
+                                <td class="fs-2">{{ $customer->info->address }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fs-2">Code postal</td>
+                                <td class="fs-2">{{ $customer->info->postal }}</td>
+                                <td class="fs-2">Ville</td>
+                                <td class="fs-2">{{ $customer->info->city }}</td>
                             </tr>
                         </tbody>
                     </table>

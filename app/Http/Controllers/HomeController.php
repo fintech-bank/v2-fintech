@@ -101,7 +101,9 @@ class HomeController extends Controller
     {
         $customer = Customer::find(1);
         $document = new DocumentFile();
+        $cardless = new \App\Services\GoCardless\Customer();
+        dd($cardless->lists());
 
-        return $document->generatePDF('general.mandat_prelevement_sepa', $customer, null, [], false, false, null, true, 'simple');
+        //return $document->generatePDF('general.mandat_prelevement_sepa', $customer, null, [], false, false, null, true, 'simple');
     }
 }

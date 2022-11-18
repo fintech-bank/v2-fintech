@@ -57,6 +57,10 @@ return [
 
     'slack' => [
         'hook' => env('SLACK_HOOK')
-    ]
+    ],
+
+    'gocardless' => [
+        'access_token' => env('GOCARDLESS_ACCESS_TOKEN')
+    ],
 
 ];

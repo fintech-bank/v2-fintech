@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76883722c312c12c017713d5d95e8746",
+    "content-hash": "8972308c2ee2d5cfd9dd47b1d742227f",
     "packages": [
         {
             "name": "1pilotapp/laravel-client",
@@ -2447,6 +2447,61 @@
                 "source": "https://github.com/globalcitizen/php-iban/tree/v4.1.1"
             },
             "time": "2022-08-10T20:06:53+00:00"
+        },
+        {
+            "name": "gocardless/gocardless-pro",
+            "version": "4.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gocardless/gocardless-pro-php.git",
+                "reference": "3df49bbc748900fba6cb3de428c21e488b058940"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gocardless/gocardless-pro-php/zipball/3df49bbc748900fba6cb3de428c21e488b058940",
+                "reference": "3df49bbc748900fba6cb3de428c21e488b058940",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^6.0 | ^7.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^7.5",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GoCardlessPro\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "GoCardless and contributors",
+                    "homepage": "https://github.com/gocardless/gocardless-pro-php/contributors"
+                }
+            ],
+            "description": "GoCardless Pro PHP Client Library",
+            "homepage": "https://gocardless.com/",
+            "keywords": [
+                "api",
+                "direct debit",
+                "gocardless"
+            ],
+            "support": {
+                "issues": "https://github.com/gocardless/gocardless-pro-php/issues",
+                "source": "https://github.com/gocardless/gocardless-pro-php/tree/v4.20.0"
+            },
+            "time": "2022-07-25T09:57:58+00:00"
         },
         {
             "name": "google/auth",

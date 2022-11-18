@@ -20,6 +20,7 @@
         "do-inc/laravel-persona-kyc": "^0.10.22",
         "fruitcake/laravel-cors": "^3.0",
         "globalcitizen/php-iban": "^4.1",
+        "gocardless/gocardless-pro": "^4.20",
         "gotenberg/gotenberg-php": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "infureal/artisan-gui": "^2.0",
