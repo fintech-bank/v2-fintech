@@ -93,6 +93,14 @@
             </div>
         </div>
         <div class="col-md-9 col-sm-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex flex-end">
+                        <button class="btn btn-xs btn-success me-2"><i class="fa-solid fa-check me-2"></i> Valider le pret</button>
+                        <button class="btn btn-xs btn-danger"><i class="fa-solid fa-xmark me-2"></i> Refuser le pret</button>
+                    </div>
+                </div>
+            </div>
             <div class="bg-gray-600 text-white p-5 fs-1 rounded-3 mb-5">
                 <strong>Situation</strong> aux {{ now()->format('d/m/Y') }}
             </div>
