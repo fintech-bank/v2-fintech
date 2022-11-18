@@ -378,7 +378,7 @@
 
     let chartEnd = (data) => {
         let chart = new ApexCharts(elements.chartEndet, {
-            series: [20],
+            series: [data],
             chart: {
                 type: 'radialBar',
                 offsetY: -20,
