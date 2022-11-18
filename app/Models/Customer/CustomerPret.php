@@ -147,7 +147,7 @@ class CustomerPret extends Model
         } else {
             return match ($this->status) {
                 "open" => "fa-pen",
-                "study", "progress" => "fa-spinner fa-spin",
+                "study", "progress" => "fa-spinner fa-spin-pulse",
                 "accepted", "terminated" => "fa-check-circle",
                 "refused" => "fa-xmark-circle",
                 "error" => "fa-exclamation-circle",
