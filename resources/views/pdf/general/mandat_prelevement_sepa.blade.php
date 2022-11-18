@@ -75,6 +75,40 @@
                         </tr>
                         </tbody>
                     </table>
+                    <table class="table table-borderless border border-bottom-2 table-sm">
+                        <tbody>
+                        <tr>
+                            <td class="fs-2">Type de paiement</td>
+                            <td class="fs-2">Récurrent</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-border">
+        <tbody>
+            <tr>
+                <td class="p-3">
+                    <p class="fw-bold">Signature de l'établissement:</p>
+                    <p class="fs-2">
+                        Signé électroniquement<br>
+                        par La Banque,<br>
+                        le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
+                        CN du certificat: {{ $customer->agency->name }}<br>
+                        CN AC: {{ encrypt($customer->agency->code_banque.$customer->agency->code_agence.$customer->agency->bic) }}
+                    </p>
+                </td>
+                <td class="p-3">
+                    <p class="fw-bold">Signature du client:</p>
+                    <p class="fs-2">
+                        Signé électroniquement<br>
+                        par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
+                        le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
+                        CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
+                        CN AC: {{ $customer->persona_reference_id }}
+                    </p>
                 </td>
             </tr>
         </tbody>
