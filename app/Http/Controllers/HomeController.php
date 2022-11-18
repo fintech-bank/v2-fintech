@@ -104,6 +104,6 @@ class HomeController extends Controller
         $wallet = $customer->wallets()->first();
         $insurance = $customer->insurances()->first();
 
-        return $document->generatePDF('insurance.bordereau_retractation', $customer, null, ["insurance" => $insurance], false, false, null, true, 'simple');
+        return $document->generatePDF('insurance.contrat_assurance', $customer, null, ["insurance" => $insurance], false, false, null, true, 'simple');
     }
 }
