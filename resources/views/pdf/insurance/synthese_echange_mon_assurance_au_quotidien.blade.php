@@ -4,11 +4,11 @@
     {{ $customer->info->full_name }},
     <p>
         Conformément aux besoins et souhaits exprimés lors de notre échange, vous avez accepté de signer électroniquement la souscription
-        en ligne de votre Assurance MON ASSURANCE AU QUOTIDIEN.
+        en ligne de votre Assurance {{ Str::upper($data->insurance->package->name) }}.
     </p>
     <p>Pour mémoire, voici les principales caractéristiques de votre demande :</p>
     <ul>
-        <li>Offre: MON ASSURANCE AU QUOTIDIEN</li>
+        <li>Offre: {{ Str::upper($data->insurance->package->name) }} - {{ Str::upper($data->insurance->form->name) }}</li>
         <li>Assuré(e): {{ $customer->info->full_name }}</li>
         <li>Bénéficiaire: {{ $data->insurance->beneficiaire ?? "LUI MÊME" }}</li>
     </ul>
