@@ -43,7 +43,7 @@
                             </tr>
                             <tr>
                                 <td class="fs-2">Pays</td>
-                                <td class="fs-2" colspan="2">{{ \App\Helper\CountryHelper::getCountryName($customer->info->country) }}</td>
+                                <td class="fs-2" colspan="1">{{ \App\Helper\CountryHelper::getCountryName($customer->info->country) }}</td>
                             </tr>
                             <tr>
                                 <td class="fs-2">IBAN</td>
