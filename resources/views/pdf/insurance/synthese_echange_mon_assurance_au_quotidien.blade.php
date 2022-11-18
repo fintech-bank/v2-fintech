@@ -29,4 +29,12 @@
         moment dans la rubrique « Mes demandes » de votre Espace Client ou de votre application mobile. Au-delà, votre accord ne pourra
         plus être pris en compte et vous devrez à nouveau nous contacter pour souscrire un contrat en ligne
     </p>
+    <p>
+        Si vous considérez que ce récapitulatif ne reflète pas les termes de notre échange, vous pouvez quitter le parcours de signature en
+        cliquant sur la croix en haut à droite et annuler la proposition soumise depuis la rubrique « Mes demandes » (attention cette action est
+        définitive).
+    </p>
+    <p>Nous demeurons naturellement à votre disposition pour toute question ou demande complémentaire.</p>
+    <p>Bien cordialement, </p>
+    <p>{{ $customer->agent->name }}</p>
 @endsection
