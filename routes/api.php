@@ -169,6 +169,10 @@ Route::prefix('customer')->group(function () {
             Route::post('/', [\App\Http\Controllers\Api\Customer\CreditCardController::class, 'store']);
             Route::put('{card_id}', [\App\Http\Controllers\Api\Customer\CreditCardController::class, 'update']);
         });
+
+        Route::prefix('{number_account}/pret')->group(function () {
+            Route::put('{pret_reference}', [\App\Http\Controllers\Api\Customer\PretController::class, 'update']);
+        });
     });
 
     Route::prefix('{customer_id}/beneficiaire')->group(function () {
