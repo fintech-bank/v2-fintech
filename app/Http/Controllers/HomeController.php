@@ -102,6 +102,6 @@ class HomeController extends Controller
         $customer = Customer::find(1);
         $document = new DocumentFile();
 
-        return $document->generatePDF('general.fiche_de_dialogue', $customer, null, [], false, false, null, true, 'simple');
+        return $document->generatePDF('general.mandat_prelevement_sepa', $customer, null, [], false, false, null, true, 'simple');
     }
 }
