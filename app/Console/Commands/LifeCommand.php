@@ -100,15 +100,24 @@ class LifeCommand extends Command
     {
         $r = rand(0, 5);
         $arr = [];
+        $faker = Factory::create('fr_FR');
+        $civility = ['M', 'Mme', 'Mlle'];
+        $civ = $civility[rand(0, 2)];
+        $customer_type = ['part', 'pro', 'orga', 'assoc'];
+        $customer_type_choice = $customer_type[rand(0,3)];
+        $firstname = $customer_type_choice == 'part' ? ($civ != 'M' ? $faker->firstNameFemale : $faker->firstNameMale) : '';
+        $lastname = $customer_type_choice == 'part' ? $faker->lastName : '';
+        $company = $customer_type_choice != 'part' ? $faker->company : null;
 
         $users = User::factory($r)->create([
             'identifiant' => UserHelper::generateID(),
             'agency_id' => Agency::all()->random()->id,
+            'email' => $customer_type_choice != 'part' ? $faker->companyEmail : $faker->email,
+            'name' => $customer_type_choice == 'part' ? $lastname.' '.$firstname : $company,
         ]);
 
         foreach ($users as $user) {
-            $customer_type = ['part', 'pro', 'orga', 'assoc'];
-            $customer_type_choice = $customer_type[rand(0,3)];
+
             $customer = Customer::factory()->create([
                 'user_id' => $user->id,
                 'package_id' => Package::where('type_cpt', $customer_type_choice)->get()->random()->id,
@@ -125,7 +134,15 @@ class LifeCommand extends Command
             $info = CustomerInfo::factory()->create([
                 'customer_id' => $customer->id,
                 'email' => $user->email,
-                'type' => $customer_type_choice
+                'type' => $customer_type_choice,
+                'civility' => $customer_type_choice == 'part' ? $civ : '',
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'datebirth' => $customer_type_choice == 'part' ? Carbon::createFromTimestamp($faker->dateTimeBetween('1980-01-01', now()->endOfYear()->subYears(18))->getTimestamp()) : null,
+                'citybirth' => $customer_type_choice == 'part' ? $faker->city : null,
+                'countrybirth' => $customer_type_choice == 'part' ? "FR" : null,
+                'company' => $company,
+                'siret' => $customer_type_choice != 'part' ? random_numeric(9).'000'.random_numeric(2) : null,
             ]);
 
             $info->setPhoneVerified($info->phone, 'phone');
