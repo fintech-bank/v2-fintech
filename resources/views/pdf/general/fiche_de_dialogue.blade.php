@@ -38,7 +38,7 @@
     <div class="border border-2 p-5 mb-10">
         <div class="fs-5 mb-3">Votre offre</div>
         <p>
-            Vous avez choisi l'offre: <strong>{{ $customer->package->name }}</strong>
+            Vous avez choisi l'offre: Forfait <strong>{{ $customer->package->name }}</strong>
         </p>
     </div>
 @endsection
