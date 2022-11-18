@@ -97,7 +97,7 @@
                         par La Banque,<br>
                         le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
                         CN du certificat: {{ $customer->agency->name }}<br>
-                        CN AC: {{ encrypt($customer->agency->code_banque.$customer->agency->code_agence.$customer->agency->bic) }}
+                        CN AC: {{ Str::limit(encrypt($customer->agency->code_banque.$customer->agency->code_agence.$customer->agency->bic), 15, '') }}
                     </p>
                 </td>
                 <td class="p-3">
