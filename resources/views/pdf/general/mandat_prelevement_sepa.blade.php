@@ -24,6 +24,12 @@
                     </ul>
                 </td>
             </tr>
+            <tr class="border-bottom border-gray-600">
+                <td class="fs-4">
+                    <div class="fw-bolder mb-2">Vos Informations</div>
+
+                </td>
+            </tr>
         </tbody>
     </table>
 @endsection
