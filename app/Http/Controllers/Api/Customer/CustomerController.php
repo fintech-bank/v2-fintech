@@ -216,7 +216,7 @@ class CustomerController extends Controller
 
         return response()->json([
             'reste' => $reste_vivre,
-            'percent' => $end,
+            'percent' => round($end,2),
             'income' => $income,
             'charge' => $charge
         ]);
