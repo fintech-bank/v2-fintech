@@ -394,7 +394,7 @@
                     startAngle: -90,
                     endAngle: 90,
                     track: {
-                        background: data > 0 && data <= 25 ? success : (data >= 26 && data <= 33 ? warn : danger),
+                        background: "#3f3f3f",
                         strokeWidth: '97%',
                         margin: 5, // margin is in pixels
                         dropShadow: {
