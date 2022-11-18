@@ -26,7 +26,7 @@
                         method: 'PUT',
                         data: {'action': 'state', 'state': 'study'},
                         success: () => {
-
+                            console.log("OK")
                         }
                     })
                 }
