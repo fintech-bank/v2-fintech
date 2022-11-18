@@ -523,6 +523,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex flex-row mb-5">
+                                <div class="fw-bolder">Taux d'endettement</div>
+                                <div class="" data-content="taux_end"></div>
+                            </div>
+                            <div class="d-flex flex-row mb-5">
+                                <div class="fw-bolder">Reste à vivre</div>
+                                <div class="" data-content="reste_vivre"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="accordion" id="accordion_customer">
                 <div class="accordion-item">
