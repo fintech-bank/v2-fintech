@@ -9,7 +9,7 @@
         <div class="fs-5">Vos Informations personnelles</div>
         <ul class="list-unstyled">
             <li>
-                <strong>{{ $customer->info->full_name }}</strong> née le <strong>{{ $customer->info->birthday->format('d/m/Y') }}</strong> à <strong>{{ $customer->info->citybirth }}</strong>,
+                <strong>{{ $customer->info->full_name }}</strong> née le <strong>{{ $customer->info->datebirth->format('d/m/Y') }}</strong> à <strong>{{ $customer->info->citybirth }}</strong>,
                 {{ \App\Helper\CountryHelper::getCountryName($customer->info->countrybirth) }}
             </li>
         </ul>
