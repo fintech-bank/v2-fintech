@@ -98,7 +98,7 @@ class LifeCommand extends Command
      */
     private function generateCustomers()
     {
-        $r = rand(0, 5);
+        $r = rand(1, 5);
         $arr = [];
         $faker = Factory::create('fr_FR');
         $civility = ['M', 'Mme', 'Mlle'];
@@ -106,7 +106,7 @@ class LifeCommand extends Command
         $customer_type = ['part', 'pro', 'orga', 'assoc'];
 
 
-        for ($i = 0; $i <= $r; $i++) {
+        for ($i = 1; $i <= $r; $i++) {
             $customer_type_choice = $customer_type[rand(0,3)];
             $firstname = $customer_type_choice == 'part' ? ($civ != 'M' ? $faker->firstNameFemale : $faker->firstNameMale) : '';
             $lastname = $customer_type_choice == 'part' ? $faker->lastName : '';
