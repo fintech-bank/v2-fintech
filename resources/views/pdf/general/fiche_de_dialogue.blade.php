@@ -5,7 +5,7 @@
     <p class="mb-5">Vous trouverez ci-après les principales caractéristiques de votre demande d'ouverture de compte de {{ $customer->info->type_text }}</p>
 
     @if($customer->info->type == 'part')
-    <div class="border border-2 p-5">
+    <div class="border border-2 p-5 mb-10">
         <div class="fs-5 mb-3">Vos Informations personnelles</div>
         <ul class="list-unstyled">
             <li>
@@ -19,7 +19,19 @@
             <li>Vous êtes: <strong>{{ $customer->situation->pro_category }}</strong></li>
             <li class="mb-3">Vous êtes: <strong>{{ $customer->situation->logement }}</strong></li>
             <li>Vous êtes: <strong>{{ $customer->situation->family_situation }}</strong></li>
+            <li class="mb-3">Vous êtes: <strong>{{ $customer->situation->pro_category }},{{ $customer->situation->pro_profession }}</strong></li>
+            <li>Mon patrimoine est de: <strong>{{ eur($customer->income->patrimoine) }}</strong></li>
+            <li>Mon revenue mensuelle est de: <strong>{{ eur($customer->income->patrimoine) }}</strong></li>
         </ul>
+    </div>
+
+    <div class="border border-2 p-5 mb-10">
+        <div class="fs-5 mb-3">Votre agence de référence</div>
+        <p>
+            {{ $agency->name }}<br>
+            {{ $agency->address }}<br>
+            {{ $agency->postal }} {{ $agency->city }}
+        </p>
     </div>
     @endif
 @endsection
