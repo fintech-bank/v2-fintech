@@ -106,24 +106,24 @@ class LifeCommand extends Command
         $civ = $civility[rand(0, 2)];
         $customer_type = ['part', 'pro', 'orga', 'assoc'];
 
-
+        $users = collect();
         for ($i = 1; $i <= $r; $i++) {
             $customer_type_choice = $customer_type[rand(0,3)];
             $firstname = $customer_type_choice == 'part' ? ($civ != 'M' ? $faker->firstNameFemale : $faker->firstNameMale) : '';
             $lastname = $customer_type_choice == 'part' ? $faker->lastName : '';
             $company = $customer_type_choice != 'part' ? $faker->company : null;
 
-            $users = User::create([
+            $users->push(User::create([
                 'name' => $customer_type_choice == 'part' ? $lastname.' '.$firstname : $company,
                 'email' => $customer_type_choice != 'part' ? $faker->companyEmail : $faker->email,
                 'password' => Hash::make('password'),
                 'identifiant' => UserHelper::generateID(),
                 'type_customer' => $customer_type_choice,
                 'agency_id' => Agency::all()->random()->id,
-            ]);
+            ]));
         }
 
-        foreach ($users as $user) {
+        foreach ($users->get() as $user) {
 
             $customer = Customer::factory()->create([
                 'user_id' => $user->id,
