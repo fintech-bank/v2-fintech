@@ -87,7 +87,7 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-border">
+    <table class="table table-border w-100">
         <tbody>
             <tr>
                 <td class="p-3">
