@@ -97,11 +97,14 @@
                 <div class="card-body">
                     <div class="d-flex flex-end">
                         @if($facelia->pret->status == 'study')
-                            <button class="btn btn-sm btn-success me-2"><i class="fa-solid fa-check me-2"></i> Valider le pret</button>
-                            <button class="btn btn-sm btn-danger"><i class="fa-solid fa-xmark me-2"></i> Refuser le pret</button>
+                            <button class="btn btn-sm btn-success btnAcceptPret me-2" data-pret="{{ $facelia->pret->id }}"><i class="fa-solid fa-check me-2"></i> Valider le pret</button>
+                            <button class="btn btn-sm btn-danger btnRejectPret me-2" data-pret="{{ $facelia->pret->id }}"><i class="fa-solid fa-xmark me-2"></i> Refuser le pret</button>
                         @endif
                         @if($facelia->pret->status == 'open')
-                                <button class="btn btn-sm btn-success me-2"><i class="fa-solid fa-question-circle me-2"></i> Passer le dossier en étude</button>
+                            <button class="btn btn-sm btn-success btnStudyPret me-2" data-pret="{{ $facelia->pret->id }}"><i class="fa-solid fa-question-circle me-2"></i> Passer le dossier en étude</button>
+                        @endif
+                        @if($facelia->pret->status == 'accepted')
+                            <button class="btn btn-sm btn-success btnProgressPret me-2" data-pret="{{ $facelia->pret->id }}"><i class="fa-solid fa-arrow-circle-left me-2"></i> Libéré le pret</button>
                         @endif
                     </div>
                 </div>
