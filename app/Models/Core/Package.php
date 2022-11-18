@@ -103,6 +103,11 @@ class Package extends Model
                 'text' => "Organisation / Service Public",
                 'color' => 'info'
             ],
+            [
+                'string' => 'assoc',
+                'text' => "Association",
+                'color' => 'success'
+            ],
         ];
         return collect($array);
     }
