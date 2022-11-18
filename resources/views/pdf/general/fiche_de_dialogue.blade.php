@@ -24,6 +24,7 @@
             <li>Mon revenue mensuelle est de: <strong>{{ eur($customer->income->pro_income) }}</strong></li>
         </ul>
     </div>
+    @endif
 
     <div class="border border-2 p-5 mb-10">
         <div class="fs-5 mb-3">Votre agence de référence</div>
@@ -33,5 +34,11 @@
             {{ $agence->postal }} {{ $agence->city }}
         </p>
     </div>
-    @endif
+
+    <div class="border border-2 p-5 mb-10">
+        <div class="fs-5 mb-3">Votre offre</div>
+        <p>
+            Vous avez choisi l'offre: <strong>{{ $customer->package->name }}</strong>
+        </p>
+    </div>
 @endsection
