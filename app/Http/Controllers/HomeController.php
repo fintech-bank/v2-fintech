@@ -102,7 +102,8 @@ class HomeController extends Controller
         $customer = Customer::find(1);
         $document = new DocumentFile();
         $wallet = $customer->wallets()->first();
+        $insurance = $customer->insurances()->first();
 
-        return $document->generatePDF('insurance.synthese_echange_mon_assurance_au_quotidien', $customer, null, [], false, false, null, true, 'simple');
+        return $document->generatePDF('insurance.synthese_echange_mon_assurance_au_quotidien', $customer, null, ["insurance" => $insurance], false, false, null, true, 'simple');
     }
 }
