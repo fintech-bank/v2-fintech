@@ -126,11 +126,22 @@ class LifeCommand extends Command
         foreach ($users as $user) {
             $firstname = Str::replaceFirst(' ', '', $user->name);
             $lastname = Str::replaceLast(' ', '', $user->name);
-            $customer = Customer::factory()->create([
+            $state_account = ['open', 'completed', 'accepted', 'declined', 'terminated', 'suspended', 'closed'];
+            $state = $state_account[rand(0,6)];
+
+            $customer = Customer::create([
+                'status_open_account' => $state,
+                'cotation' => 8,
+                'auth_code' => base64_encode('1234'),
+                'ficp' => $faker->boolean(),
+                'fcc' => $faker->boolean(),
+                'agent_id' => User::where('agent', 1)->get()->random()->id,
+                'persona_reference_id' => null,
                 'user_id' => $user->id,
                 'package_id' => Package::where('type_cpt', $user->type_customer)->get()->random()->id,
-                'agent_id' => User::where('agent', 1)->get()->random()->id,
+                'agency_id' => Agency::all()->random()->id,
             ]);
+
             $customer->update(['persona_reference_id' => 'customer_' . now()->format('dmYhi') . "_" . $customer->id]);
 
             $user->subscriptions()->create([
@@ -155,10 +166,6 @@ class LifeCommand extends Command
 
             $info->setPhoneVerified($info->phone, 'phone');
             $info->setPhoneVerified($info->mobile, 'mobile');
-
-            $user->update([
-                'name' => $info->type != 'part' ? $info->company : $info->firstname." ".$info->lastname
-            ]);
 
             if($info->type != 'part') {
                 BusinessParam::create([
