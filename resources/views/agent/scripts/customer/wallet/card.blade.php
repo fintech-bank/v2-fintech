@@ -146,6 +146,9 @@
                     toastr.warning(`${data.message}`, `Carte Bancaire`)
                     if(data.data.errors) {
                         console.log(data.data.errors)
+                        Array.from(data.data.errors).forEach(error => {
+                            toastr.warning(`${error}`, `Carte Bancaire`)
+                        })
                     }
                 }
             },
