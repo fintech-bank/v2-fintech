@@ -116,7 +116,7 @@ class LifeCommand extends Command
                 'identifiant' => UserHelper::generateID(),
                 'agency_id' => Agency::all()->random()->id,
                 'email' => $customer_type_choice != 'part' ? $faker->companyEmail : $faker->email,
-                'name' => $customer_type_choice == 'part' ? $lastname.' '.$firstname : $company,,
+                'name' => $customer_type_choice == 'part' ? $lastname.' '.$firstname : $company,
                 'customer_type' => $customer_type_choice
             ]);
         }
