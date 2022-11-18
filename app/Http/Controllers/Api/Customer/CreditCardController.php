@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api\Customer;
 
 use App\Helper\CustomerCreditCard;
 use App\Helper\CustomerFaceliaHelper;
+use App\Helper\CustomerLoanHelper;
 use App\Helper\CustomerTransactionHelper;
+use App\Helper\CustomerWalletHelper;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Models\Core\CreditCardOpposit;
@@ -107,12 +109,19 @@ class CreditCardController extends ApiController
         if ($card->facelias()->count() == 0) {
             if (CustomerFaceliaHelper::verify($card->wallet->customer, true, $card)) {
                 try {
-                    CustomerFaceliaHelper::create(
-                        $card->wallet,
+                    // Création du compte
+                    $pret = CustomerLoanHelper::create(
+                        $card->wallet->id,
                         $card->wallet->customer,
                         $request->get('amount_available'),
+                        6,
+                        '36',
+                        '20',
+                        'open',
                         $card
                     );
+
+                    return $this->sendSuccess(null, $pret);
                 } catch (\Exception $exception) {
                     return $this->sendError($exception);
                 }
@@ -122,8 +131,6 @@ class CreditCardController extends ApiController
         } else {
             return $this->sendWarning("Cette carte bancaire est déjà affilier à un crédit FACELIA");
         }
-
-        return $this->sendSuccess();
     }
 
     private function cancelCard(\App\Models\Customer\CustomerCreditCard $card)
