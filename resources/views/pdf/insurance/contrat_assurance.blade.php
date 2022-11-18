@@ -115,10 +115,24 @@
     <p>{{ Str::upper($data->insurance->package->name) }} - Demande d'adhésion valant Certificat Individuel d'Adhésion</p>
     <p>N° D'ADHESION: {{ $data->insurance->reference }}</p>
     <p>
-        Contrat d'assurance collective sur la vie à adhésion facultative souscrit par {{ config('app.name') }} et ses filiales auprès de {{ config('app.name') }} - Assurance.
+        Contrat d'assurance collective sur la vie à adhésion facultative souscrit par {{ config('app.name') }} et ses filiales auprès de {{ config('app.name') }} - Assurance.<br>
         Ce contrat est présenté par {{ config('app.name') }} (Immatriculations au registre des intermédiaires en assurance
         n° 07 022 493).<br>
         Garantie financière et assurance de responsabilité civile professionnelle conformes aux articles L. 512-6 et L. 512-7 du Code des
         assurances.
     </p>
+    <p>
+        J'adhère au contrat {{ $data->insurance->package->name }} dont la date d'effet des garanties est fixée à la date de signature électronique, sous réserve du
+        paiement de la première cotisation.
+    </p>
+    <p>
+        En adhérant à {{ $data->insurance->package->name }}, je suis couvert(e) dans les conditions énumérées et
+        {{ config('app.name') }} - Assurance s'engage à verser au(x) bénéficiaire(s) désigné(s) :
+    </p>
+    <ul>
+        @foreach($data->insurance->form->warranties as $warranty)
+            <li>{{ $warranty->designation }}</li>
+        @endforeach
+
+    </ul>
 @endsection
