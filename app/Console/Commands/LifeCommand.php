@@ -154,7 +154,7 @@ class LifeCommand extends Command
                 'customer_id' => $customer->id,
                 'email' => $user->email,
                 'type' => $user->type_customer,
-                'civility' => $user->type_customer == 'part' ? $civ : '',
+                'civility' => $user->type_customer == 'part' ? $civ : null,
                 'firstname' => $user->type_customer == 'part' ? $firstname : null,
                 'lastname' => $user->type_customer == 'part' ? $lastname : null,
                 'datebirth' => $user->type_customer == 'part' ? Carbon::createFromTimestamp($faker->dateTimeBetween('1980-01-01', now()->endOfYear()->subYears(18))->getTimestamp()) : null,
