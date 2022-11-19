@@ -464,6 +464,7 @@
                         </div>
                         <x-form.checkbox
                             name="responsability"
+                            value="1"
                             label="Le client est responsable du dommage ?" />
                     </div>
                     <div class="modal-footer">
