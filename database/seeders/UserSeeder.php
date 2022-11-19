@@ -77,7 +77,8 @@ class UserSeeder extends Seeder
             'lastname' => 'Demo',
             'isVerified' => true,
             'customer_id' => $customer->id,
-            'email' => $user->email
+            'email' => $user->email,
+            'datebirth' => now()->between(now()->subYears(18), now()->subYears(35)),
         ]);
 
         $info->setPhoneVerified($info->phone, 'phone');
