@@ -81,6 +81,11 @@ class CustomerInsurance extends Model
         return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
     }
 
+    public function pret()
+    {
+        return $this->hasOne(CustomerPret::class);
+    }
+
     public function getStatusTextAttribute()
     {
         return match ($this->status) {

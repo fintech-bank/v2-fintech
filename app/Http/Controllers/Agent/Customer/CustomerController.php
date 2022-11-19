@@ -249,6 +249,9 @@ class CustomerController extends Controller
 
         if($credit->required_insurance){
             $insurance = $this->subscribeInsurance($customer, $credit, $request->get('assurance_type'));
+            $credit->update([
+                'customer_insurance_id' => $insurance->id
+            ]);
         }
 
         $docs = [];

@@ -45,6 +45,14 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
         });
+
+        Schema::table('customer_prets', function (Blueprint $table) {
+            $table->foreignId('customer_insurance_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+        });
     }
 
     /**

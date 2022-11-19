@@ -131,6 +131,11 @@ class CustomerPret extends Model
         return $this->hasOne(CustomerFacelia::class);
     }
 
+    public function insurance()
+    {
+        return $this->belongsTo(CustomerInsurance::class, 'customer_insurance_id');
+    }
+
     //---------- Scope ------------------//
 
     //---------- Attribute -------------//
