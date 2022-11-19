@@ -56,6 +56,9 @@
             },
             success: data => {
                 console.log(data)
+                if(!data) {
+                    console.log(elements.cniField.parentNode)
+                }
             }
         })
     }
