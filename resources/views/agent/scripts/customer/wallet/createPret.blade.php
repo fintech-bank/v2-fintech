@@ -101,6 +101,8 @@
                 data: data,
                 success: data => {
                     console.log(data)
+                    block.blockResult.release()
+                    block.blockResult.destroy()
                     document.querySelector('[data-content="amount_loan"]').innerHTML = document.querySelector('[name="amount_loan"]').value
                     document.querySelector('[data-content="duration"]').innerHTML = document.querySelector('[name="duration"]').value
                     document.querySelector('[data-content="mensuality"]').innerHTML = data.data[0].mensuality
