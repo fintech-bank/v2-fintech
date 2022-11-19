@@ -187,3 +187,11 @@ Route::prefix('customer')->group(function () {
         Route::post('verify', [\App\Http\Controllers\Api\Customer\PretController::class, 'verify']);
     });
 });
+
+Route::prefix('insurance')->group(function () {
+    Route::post('/', [\App\Http\Controllers\Api\Insurance\InsuranceController::class, 'store']);
+
+    Route::prefix('{reference}/claim')->group(function () {
+        Route::post('/', [\App\Http\Controllers\Api\Insurance\ClaimController::class, 'store']);
+    });
+});

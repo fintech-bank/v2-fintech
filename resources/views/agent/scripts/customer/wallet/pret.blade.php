@@ -5,7 +5,9 @@
     }
     let elements = {}
     let modals = {}
-    let forms = {}
+    let forms = {
+        formAddClaim: document.querySelector("#formAddClaim")
+    }
     let dataTable = {
         datatableTransaction: $(tables.tableTransaction).DataTable({
             "scrollY": "350px",
@@ -23,4 +25,32 @@
         }),
     }
     let block = {}
+
+    $(forms.formAddClaim).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formAddClaim)
+        let url = '/api/insurance/{{ $wallet->loan->insurance->reference }}/claim'
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.setAttribute('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            success: data => {
+                btn.removeAttribute('data-kt-indicator')
+                toastr.success(`La déclaration de sinitre à bien été enregistré`, `Déclaration de sinistre`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            },
+            error: err => {
+                btn.removeAttribute('data-kt-indicator')
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+            }
+        })
+    })
 </script>
