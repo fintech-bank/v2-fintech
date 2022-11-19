@@ -388,9 +388,9 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-bordered table-striped gx-7 gy-7">
+                                    <table class="table table-rounded table-striped border gy-7 gs-7">
                                         <thead>
-                                            <tr>
+                                            <tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
                                                 <th>Référence</th>
                                                 <th>Date d'incident</th>
                                                 <th>Etat</th>
