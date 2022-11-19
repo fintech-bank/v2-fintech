@@ -174,7 +174,6 @@
                             <th class="d-none"></th>
                             <th class="min-w-175px">Libellé</th>
                             <th class="text-end">Montant</th>
-                            <th class="text-end"></th>
                         </tr>
                         </thead>
                         <tbody class="fw-semibold text-gray-600">
@@ -198,11 +197,6 @@
                                         <span class="text-danger">{{ $transaction->amount_format }}</span>
                                     @else
                                         <div class="text-success fw-semibold">+{{ $transaction->amount_format }}</div>
-                                    @endif
-                                </td>
-                                <td class="text-end">
-                                    @if($transaction->type == 'frais' || $transaction->type == 'souscription')
-                                        <button class="btn btn-xs btn-danger btn-icon btnRemb" data-transaction="{{ $transaction->uuid }}" data-bs-toggle="tooltip" title="Rembourser"><i class="fa-solid fa-ban"></i> </button>
                                     @endif
                                 </td>
                             </tr>
