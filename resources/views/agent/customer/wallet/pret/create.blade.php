@@ -44,7 +44,7 @@
         </div>
         <div class="card-body">
             <!--begin::Stepper-->
-            <div class="stepper stepper-pills stepper-column d-flex flex-column flex-lg-row" id="kt_stepper_example_vertical">
+            <div class="stepper stepper-pills stepper-column d-flex flex-column flex-lg-row" id="credit_stepper">
                 <!--begin::Aside-->
                 <div class="d-flex flex-row-auto w-100 w-lg-300px">
                     <!--begin::Nav-->
