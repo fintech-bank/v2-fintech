@@ -12,7 +12,7 @@
             Reporting Standard »</p>
         <p>Afin de permettre à {{ config('app.name') }} de se conformer à ses obligations, vous devez nous communiquer la
             résidence fiscale de la personne identifiée comme titulaire de comptes. Pour les comptes joints, chaque co-titulaire de
-            compte doit compléter un formulaire individuel</p>
+            compte doit remplir un formulaire individuel</p>
         <p><strong>Le présent formulaire n’est pas à utiliser si le titulaire de comptes n’est pas une personne physique.</strong>
             Merci de remplir dans ce cas le formulaire « Auto-certification de résidence fiscale – Personne Morale ».
         </p>
@@ -21,7 +21,7 @@
         </p>
         <p><strong>Si un changement de résidence fiscale</strong> intervient ultérieurement, vous devrez nous adresser une nouvelle
             auto-certification dans un délai de 90 jours suivant ce changement de circonstance.</p>
-        <p><strong>Pour les comptes joints</strong>, chaque co-titulaire de compte doit compléter un formulaire séparé.</p>
+        <p><strong>Pour les comptes joints</strong>, chaque co-titulaire de compte doit remplir un formulaire séparé.</p>
         <p>{{ config('app.name') }} n’est pas habilitée à remplir ce document en votre nom. Si vous avez des questions sur la façon
             de remplir ce formulaire ou sur les modalités de détermination de votre résidence fiscale, nous vous invitons à
             consulter votre conseiller fiscal ou les autorités administratives de votre lieu de résidence fiscale.</p>

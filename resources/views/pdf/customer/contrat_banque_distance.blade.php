@@ -109,7 +109,7 @@
     </p>
     <div class="page-break"></div>
     <div class="mt-10 mb-10 text-center" style="border: solid 2px #000000; background-color: #a4a4a4">ACCÈS AUX SERVICES DE BANQUE À DISTANCE</div>
-    <p>Je soussigné(e), {{ \App\Helper\CustomerHelper::getName($customer) }}, demande l'accès aux services de Banque à Distance aux conditions ci-dessous.</p>
+    <p>Je soussigné(e), {{ $customer->info->full_name }}, demande l'accès aux services de Banque à Distance aux conditions ci-dessous.</p>
     <p>
         Je suis informé(e) que je bénéficie du service de dématérialisation des documents tel que décrit dans les Conditions
         Générales de fonctionnement de Banque à distance. Ainsi, mes différents documents de banque éligibles au service,
@@ -180,13 +180,13 @@
             <tbody>
             <tr>
                 <td style="width: 60%;">
-                    Nom et Prénom du signataire: {{ \App\Helper\CustomerHelper::getName($customer) }}<br>
+                    Nom et Prénom du signataire: {{ $customer->info->full_name }}<br>
                     Fait à: {{ $customer->agency->city }}<br>
                     Le: {{ now()->format('d/m/Y') }}
                 </td>
                 <td style="width: 20%; text-align: center">
-                    @if(isset($document) && $document->signed_by_client == true)
-                        Signé éléctroniquement le {{ now()->format('d/m/Y') }}.<br>@if($customer->info->type == 'part') {{ $customer->info->civility.'. '. $customer->info->lastname.' '.$customer->info->firstname }} @else {{ $customer->info->company }} @endif
+                    @if(isset($document) && $document->signed_by_client)
+                        Signé électroniquement le {{ now()->format('d/m/Y') }}.<br>@if($customer->info->type == 'part') {{ $customer->info->full_name }} @else {{ $customer->info->company }} @endif
                     @endif
                 </td>
             </tr>

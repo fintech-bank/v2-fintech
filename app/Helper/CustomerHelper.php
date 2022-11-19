@@ -368,7 +368,7 @@ class CustomerHelper
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents');
         \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
         foreach (DocumentCategory::all() as $doc) {
-            \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents/' . $doc->name);
+            \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents/' . $doc->slug);
         }
 
         DocumentFile::createDoc(
@@ -454,8 +454,6 @@ class CustomerHelper
             false,
             false,
             ["wallet" => $wallet]);
-
-        \Storage::disk('public')->copy('gdd/shared/info_tarif.pdf', 'gdd/' . $user->id . '/documents/courriers/info_tarif.pdf');
 
         $documents = [];
 
@@ -615,74 +613,48 @@ class CustomerHelper
             'subscribe_id' => $contract->id
         ]);
 
-        DocumentFile::createDoc($customer,
-            'insurance.condition_general_' . \Str::snake($contract->package->name),
-            'Condition Général ' . $contract->package->name,
-            1,
-            $contract->reference,
-            false,
-            false,
-            false,
-            true
-        );
-
-        DocumentFile::createDoc($customer,
-            'insurance.ddac_' . \Str::snake($contract->package->name),
-            'DDAC ' . $contract->package->name,
-            1,
-            $contract->reference,
-            true,
-            true,
-            true,
-            true
-        );
-
-        DocumentFile::createDoc($customer,
-            "insurance.document_information_produit_assurance_" . \Str::snake($contract->package->name),
+        $doc_cnt = DocumentFile::createDoc($customer,
+            "insurance.contrat_assurance" . \Str::snake($contract->package->name),
             "Document d'information sur le produit d'assurance " . $contract->package->name,
             1,
             $contract->reference,
-            false,
-            false,
+            true,
+            true,
             false,
             true,
-            ['package' => $contract->package]
+            ['insurance' => $contract]
+        );
+
+        $request_insurance = RequestHelper::create(
+            $customer,
+            "Signature d'un document",
+            "Afin de finaliser votre contrat d'assurance, veuillez signer le document suivant: {$doc_cnt->name}",
+            CustomerInsurance::class,
+            $contract->id
         );
 
         DocumentFile::createDoc($customer,
-            'insurance.synthese_echange_' . \Str::snake($contract->package->name),
+            'insurance.synthese_echange',
             "Synthèse des echanges " . $contract->package->name,
             1,
             $contract->reference,
+            false,
+            false,
+            false,
             true,
-            true,
-            true,
-            true,
-            []
+            ['insurance' => $contract]
         );
 
         DocumentFile::createDoc($customer,
-            'insurance.condition_particuliere_' . \Str::snake($contract->package->name),
-            "Condition Particuliere " . $contract->package->name,
-            1,
-            $contract->reference,
-            true,
-            true,
-            true,
-            true,
-            ["contract" => $contract]
-        );
-
-        DocumentFile::createDoc($customer,
-            'general.condition_operation_bancaire',
-            "Conditions appliques au operation bancaire",
+            'insurance.bordereau_retractation',
+            "Bordereau de retractation",
             1,
             $contract->reference,
             false,
             false,
             false,
             true,
-            []
+            ["insurance" => $contract]
         );
 
         $documents = [];
