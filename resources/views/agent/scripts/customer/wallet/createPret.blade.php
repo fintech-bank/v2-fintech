@@ -54,6 +54,8 @@
                         method: 'POST',
                         data: {"verify": 'loan'},
                         success: data => {
+                            block.blockResultPret.release()
+                            block.blockResultPret.destroy()
                             let elDiv = elements.validResultPret.querySelector('.card-body');
                             elDiv.innerHTML = ``
                             if(data.data === 'false') {
@@ -63,6 +65,14 @@
                                     <div class="fw-bolder fs-1">Condition financière non atteinte</div>
                                 </div>
                                 `
+                            } else {
+                                elDiv.innerHTML += `
+                                <div class="d-flex flex-center w-100 mx-auto">
+                                    <i class="fa-solid fa-check-circle text-success fs-3tx"></i>
+                                    <div class="fw-bolder fs-1">Condition financière atteinte</div>
+                                </div>
+                                `
+                                elements.btnNextElement.removeAttribute('disabled')
                             }
                         }
                     })
