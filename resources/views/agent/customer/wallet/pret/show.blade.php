@@ -419,6 +419,36 @@
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="cautions" role="tabpanel">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">Caution sur le pret</h3>
+                    <div class="card-toolbar">
+                        <button type="button" class="btn btn-sm btn-light">
+                            Ajouter une caution
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table border" id="liste_caution">
+                        <thead>
+                            <tr>
+                                <th>Identité</th>
+                                <th>Date de naissance</th>
+                                <th>Adresse Postal</th>
+                                <th>Coordonnée</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($wallet->loan->caution as $caution)
+                                @dd($caution)
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal fade" tabindex="-1" id="AddClaim">
         <div class="modal-dialog modal-lg">
