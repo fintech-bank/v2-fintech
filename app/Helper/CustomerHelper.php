@@ -615,7 +615,7 @@ class CustomerHelper
         ]);
 
         $doc_cnt = DocumentFile::createDoc($customer,
-            "insurance.contrat_assurance" . \Str::snake($contract->package->name),
+            "insurance.contrat_assurance",
             "Document d'information sur le produit d'assurance " . $contract->package->name,
             1,
             $contract->reference,
