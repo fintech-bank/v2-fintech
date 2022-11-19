@@ -366,21 +366,13 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="d-flex flex-column">
+                                                @foreach($wallet->loan->insurance->form->warranties()->where('check', 1)->get() as $warranty)
                                                 <li class="d-flex align-items-center py-2">
-                                                    <span class="bullet bullet-vertical me-5"></span> Item 1
+                                                    <span class="bullet bullet-vertical bg-success me-5"></span>
+                                                    <strong>{{ $warranty->designation }}</strong><br>
+                                                    <p>{{ $warranty->condition }}</p>
                                                 </li>
-                                                <li class="d-flex align-items-center py-2">
-                                                    <span class="bullet bullet-vertical bg-danger me-5"></span> Item 2
-                                                </li>
-                                                <li class="d-flex align-items-center py-2">
-                                                    <span class="bullet bullet-vertical bg-success me-5"></span> Item 3
-                                                </li>
-                                                <li class="d-flex align-items-center py-2">
-                                                    <span class="bullet bullet-vertical bg-info me-5"></span> Item 4
-                                                </li>
-                                                <li class="d-flex align-items-center py-2">
-                                                    <span class="bullet bullet-vertical bg-primary me-5"></span> Item 5
-                                                </li>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
