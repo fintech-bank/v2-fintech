@@ -84,12 +84,12 @@
                         <div class="d-flex my-4">
                             @if($wallet->loan->payment->solde_remaining <= 0)
                                 @if($wallet->loan->first_payment_at->subDays(3)->startOfDay() <= now()->startOfDay())
-                                    <div class="text-warning"><i class="fa-solid fa-exclamation-triangle text-warning me-2"></i> Compte de paiement débiteur, la mensualité va être rejetée dans {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
+                                    <div class="text-warning"><i class="fa-solid fa-exclamation-triangle text-warning me-2"></i> Compte de paiement débiteur, la mensualité va être rejetée {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
                                 @else
-                                    <div class="text-success"><i class="fa-solid fa-check text-success me-2"></i> La prochainement mensualité de {{ $wallet->loan->mensuality_format }} sera débité dans {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
+                                    <div class="text-success"><i class="fa-solid fa-check text-success me-2"></i> La prochainement mensualité de {{ $wallet->loan->mensuality_format }} sera débité {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
                                 @endif
                             @else
-                                <div class="text-success"><i class="fa-solid fa-check text-success me-2"></i> La prochainement mensualité de {{ $wallet->loan->mensuality_format }} sera débité dans {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
+                                <div class="text-success"><i class="fa-solid fa-check text-success me-2"></i> La prochainement mensualité de {{ $wallet->loan->mensuality_format }} sera débité {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
                             @endif
                         </div>
                     </div>
@@ -144,6 +144,11 @@
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#infos"><i class="fa-solid fa-info-circle me-2"></i> Informations</a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#cautions"><i class="fa-solid fa-users-between-lines me-2"></i> Cautions</a>
                 </li>
                 <!--end::Nav item-->
                 <!--begin::Nav item-->
@@ -215,6 +220,7 @@
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="infos"></div>
     </div>
 @endsection
 
