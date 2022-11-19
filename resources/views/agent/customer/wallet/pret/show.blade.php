@@ -365,7 +365,11 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-
+                                            <ul>
+                                                @foreach($wallet->loan->insurance->form->warranties()->where('check', 1) as $warranty)
+                                                <li>{{ $warranty->designation }}</li>
+                                                @endforeach
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
