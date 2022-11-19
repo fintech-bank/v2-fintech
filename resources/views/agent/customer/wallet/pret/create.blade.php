@@ -174,6 +174,14 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <x-form.input
+                                            name="amount_loan"
+                                            label="Montant Souhaité"
+                                            required="true" />
+                                    </div>
+                                </div>
                             </div>
                             <!--begin::Step 1-->
 
