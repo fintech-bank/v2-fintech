@@ -117,7 +117,7 @@
                                 <!--begin::Label-->
                                 <div class="stepper-label">
                                     <h3 class="stepper-title">
-                                        Récapitulatif
+                                        Validation
                                     </h3>
                                 </div>
                                 <!--end::Label-->
@@ -144,31 +144,7 @@
                                 <!--begin::Label-->
                                 <div class="stepper-label">
                                     <h3 class="stepper-title">
-                                        Contrat
-                                    </h3>
-                                </div>
-                                <!--end::Label-->
-                            </div>
-                            <!--end::Wrapper-->
-                            <div class="stepper-line h-40px"></div>
-                        </div>
-                        <!--end::Step 4-->
-
-                        <!--begin::Step 4-->
-                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
-                            <!--begin::Wrapper-->
-                            <div class="stepper-wrapper d-flex align-items-center">
-                                <!--begin::Icon-->
-                                <div class="stepper-icon w-40px h-40px">
-                                    <i class="stepper-check fas fa-check"></i>
-                                    <span class="stepper-number">5</span>
-                                </div>
-                                <!--begin::Icon-->
-
-                                <!--begin::Label-->
-                                <div class="stepper-label">
-                                    <h3 class="stepper-title">
-                                        Justificatifs
+                                        Souscription
                                     </h3>
                                 </div>
                                 <!--end::Label-->
@@ -189,14 +165,14 @@
                         <div class="mb-5">
                             <!--begin::Step 1-->
                             <div class="flex-row current" data-kt-stepper-element="content">
-                                <div class="d-flex flex-row w-25">
-                                    <div class="symbol symbol-200px me-3">
-                                        <div class="symbol-label"><i class="fa-solid fa-user-circle fs-4hx text-bank"></i></div>
-                                    </div>
-                                    <div class="text-bank uppercase underline fs-1">Informations Préalable</div>
-                                </div>
-                                <div class="w-75">
-
+                                <div class="mb-10">
+                                    <label for="loan_plan_id" class="form-label required">Type de crédit</label>
+                                    <select class="form-control form-control-solid" data-control="select2" name="loan_plan_id" data-placeholder="Selectionner un type de crédit">
+                                        <option value=""></option>
+                                        @foreach(\App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get() as $plan)
+                                            <option value="{{ $plan->id }}">{{ $plan->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <!--begin::Step 1-->
