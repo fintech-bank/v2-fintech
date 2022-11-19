@@ -209,7 +209,7 @@
                                 <div class="card shadow-sm">
                                     <div class="card-body">
                                         <table class="table table-border table-sm">
-                                            <tbody>
+                                            <tbody class="border border-bottom-2 border-gray-300">
                                                 <tr>
                                                     <td class="fw-bolder">Montant de l'emprunt</td>
                                                     <td></td>
