@@ -33,14 +33,14 @@
         let data = form.serializeArray()
         let btn = form.find('.btn-bank')
 
-        btn.setAttribute('data-kt-indicator', 'on')
+        btn.attr('data-kt-indicator', 'on')
 
         $.ajax({
             url: url,
             method: 'POST',
             data: data,
             success: () => {
-                btn.removeAttribute('data-kt-indicator')
+                btn.removeAttr('data-kt-indicator')
                 toastr.success(`La déclaration de sinitre à bien été enregistré`, `Déclaration de sinistre`)
 
                 setTimeout(() => {
@@ -48,7 +48,7 @@
                 }, 1200)
             },
             error: () => {
-                btn.removeAttribute('data-kt-indicator')
+                btn.removeAttr('data-kt-indicator')
                 toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
             }
         })
