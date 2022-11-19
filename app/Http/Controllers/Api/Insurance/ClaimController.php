@@ -6,7 +6,8 @@ use App\Helper\RequestHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerInsurance;
 use App\Models\Customer\CustomerInsuranceClaim;
-use Illuminate\Support\Facades\Request;
+use Request;
+
 
 class ClaimController extends Controller
 {
