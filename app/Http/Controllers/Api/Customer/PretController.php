@@ -25,11 +25,12 @@ class PretController extends ApiController
     {
         $customer = Customer::find($customer_id);
         try {
-            $match = match($request->get('verify')) {
+            $match = match ($request->get('verify')) {
                 "prerequest" => VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer),
-                "loan" => VerifCompatibilityBeforeLoanTrait::verify($customer)
+                "loan" => VerifCompatibilityBeforeLoanTrait::verify($customer),
+                default => $this->result($customer, $request)
             };
-        }catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             return $this->sendError($exception);
         }
 
@@ -45,5 +46,10 @@ class PretController extends ApiController
         $pret->customer->info->notify(new UpdateStatusPretNotification($pret->customer, $pret));
 
         return $this->sendSuccess();
+    }
+
+    private function result(Customer $customer, Request $request)
+    {
+
     }
 }

@@ -95,7 +95,6 @@
             block.blockResult.block()
             let form = $(forms.formAddCredit)
             let data = form.serializeArray()
-            data.push({'verify': 'result'})
             $.ajax({
                 url: '/api/customer/{{ $customer->id }}/pret/verify',
                 method: 'POST',
