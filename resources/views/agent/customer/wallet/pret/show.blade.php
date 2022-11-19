@@ -105,9 +105,9 @@
                         <!--end::Wrapper-->
                         <!--begin::Progress-->
                         <div class="d-flex flex-column w-200px w-sm-450px mt-3">
-                            <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border border-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} rounded-2">
-                                <div class="fw-bolder fs-2">Solde</div>
-                                <div class="text-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} fs-3">{{ $wallet->balance_actual_format }}</div>
+                            <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border rounded-2">
+                                <div class="fw-bolder fs-2">Capital restant du au {{ now()->format('d/m/Y') }}</div>
+                                <div class="text-black fs-3">{{ $wallet->loan->amount_du_format }}</div>
                             </div>
                         </div>
                         <!--end::Progress-->
