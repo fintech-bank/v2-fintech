@@ -442,7 +442,21 @@
                         </thead>
                         <tbody>
                             @foreach(json_decode($wallet->loan->caution) as $caution)
-                                @dd($caution)
+                                <tr>
+                                    <td>
+                                        <strong>{{ $caution->name }} {{ $caution->lastname }}</strong><br>
+                                        <div class="text-muted">{{ $caution->cni }}</div>
+                                    </td>
+                                    <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($caution->birthdate))->format('d/m/Y') }}</td>
+                                    <td>
+                                        {{ $caution->address }}<br>
+                                        {{ $caution->postal }} {{ $caution->city }}<br>
+                                        {{ $caution->country }}
+                                    </td>
+                                    <td>
+                                        <i class="fa-solid fa-phone me-2"></i>: {{ $caution->phone }}
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
