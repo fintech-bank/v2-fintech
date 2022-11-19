@@ -93,9 +93,9 @@ Route::prefix('connect')->group(function () {
 Route::prefix('user')->group(function () {
     Route::get('list', [\App\Http\Controllers\Api\User\UserController::class, 'lists']);
     Route::get("{user_id}/info", [\App\Http\Controllers\Api\User\UserController::class, 'info']);
-    Route::post('verify/customer', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifyCustomer']);
-    Route::post('verify/domicile', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifyDomicile']);
-    Route::post('verify/revenue', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifyRevenue']);
+    Route::post('verify/customer', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verify']);
+    Route::post('verify/domicile', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verify']);
+    Route::post('verify/revenue', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verify']);
     Route::post('signate', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'signateDocument']);
     Route::get('signate/verify', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifySign']);
 });

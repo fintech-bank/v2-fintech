@@ -264,7 +264,7 @@
                     $.ajax({
                         url: '/api/user/verify/customer',
                         method: 'POST',
-                        data: {"customer_id": {{ $customer->id }}},
+                        data: {"customer_id": {{ $customer->id }}, 'verify': 'identity'},
                         success: () => {
                             window.location.href = "/agence/customer/create/finish?refresh&customer_id=" + {{ $customer->id }}
                         }
@@ -300,7 +300,7 @@
                         $.ajax({
                         url: '/api/user/verify/domicile',
                         method: 'POST',
-                        data: {"customer_id": {{ $customer->id }}},
+                        data: {"customer_id": {{ $customer->id }}, 'verify': 'address'},
                         success: () => {
                             window.location.href = "/agence/customer/create/finish?refresh&customer_id=" + {{ $customer->id }}
                         }
