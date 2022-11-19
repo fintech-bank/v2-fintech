@@ -406,7 +406,7 @@
                                                     <td>{{ $claim->updated_at->format('d/m/Y') }}</td>
                                                     <td>{!! $claim->status_label !!}</td>
                                                     <td>
-                                                        <a href="" class="btn btn-xs btn-icon btn-bank"><i class="fa-solid fa-eye"></i> </a>
+                                                        <a href="" class="btn btn-xs btn-icon btn-bank"><i class="fa-solid fa-eye text-white"></i> </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
