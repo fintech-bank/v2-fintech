@@ -28,7 +28,7 @@ class PretController extends ApiController
             "prerequest" => VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer)
         };
 
-        return $this->sendSuccess(null, $match);
+        return $this->sendSuccess(null, [$match]);
     }
 
     private function updateState(CustomerPret $pret, $state)
