@@ -295,9 +295,19 @@
             <div class="card shadow-sm">
                 <div class="card-header">
                     <h3 class="card-title">Assurance</h3>
+                    <div class="card-toolbar">
+
+                    </div>
                 </div>
                 <div class="card-body">
-
+                    <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#insurance_contract"><i class="fa-solid fa-file-contract me-2"></i> Contrat</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#insurance_claims"><i class="fa-solid fa-house-damage me-2"></i> Sinistres</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
