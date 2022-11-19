@@ -264,6 +264,10 @@
                                 <td>{{ $wallet->loan->amount_du_format }}</td>
                             </tr>
                             <tr>
+                                <td class="fw-bold">Mensualité</td>
+                                <td>{{ $wallet->loan->mensuality_format }}</td>
+                            </tr>
+                            <tr>
                                 <td class="fw-bold">Total Payé</td>
                                 <td class="text-success">{{ \App\Scope\CalcLoanTrait::calcAmountPaid($wallet->loan) }}</td>
                             </tr>
