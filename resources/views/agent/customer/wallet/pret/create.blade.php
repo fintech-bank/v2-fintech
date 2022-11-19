@@ -191,9 +191,12 @@
                             <div class="flex-row current" data-kt-stepper-element="content">
                                 <div class="d-flex flex-row w-25">
                                     <div class="symbol symbol-200px me-3">
-                                        <div class="symbol-label"><i class="fa-solid fa-user-md fs-4hx text-bank"></i></div>
+                                        <div class="symbol-label"><i class="fa-solid fa-user-circle fs-4hx text-bank"></i></div>
                                     </div>
                                     <div class="text-bank uppercase fs-1">Informations Préalable</div>
+                                </div>
+                                <div class="w-75">
+
                                 </div>
                             </div>
                             <!--begin::Step 1-->
