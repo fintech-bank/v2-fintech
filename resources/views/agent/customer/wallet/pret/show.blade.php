@@ -263,7 +263,7 @@
                             </tr>
                             <tr>
                                 <td class="fw-bold">Total Payé</td>
-                                <td>{{ \App\Scope\CalcLoanTrait::calcRestantDu($wallet->loan) }}</td>
+                                <td>{{ \App\Scope\CalcLoanTrait::calcAmountPaid($wallet->loan) }}</td>
                             </tr>
                         </tbody>
                     </table>

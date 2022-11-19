@@ -66,4 +66,8 @@ trait CalcLoanTrait
         };
     }
 
+    public static function calcAmountPaid(CustomerPret $pret)
+    {
+        return eur($pret->wallet->transactions()->where('confirmed', true)->sum('amount'));
+    }
 }
