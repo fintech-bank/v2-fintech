@@ -104,6 +104,6 @@ class HomeController extends Controller
         $wallet = $customer->wallets()->first();
         $insurance = $customer->insurances()->first();
 
-        return $document->generatePDF('loan.autorisation_decouvert_permanent', $customer, null, [], false, false, null, true, 'simple');
+        return $document->generatePDF('loan.autorisation_decouvert_permanent', $customer, null, ["wallet" => $wallet], false, false, null, true, 'simple');
     }
 }

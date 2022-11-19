@@ -26,5 +26,21 @@
         Adresse: {{ $customer->info->line_address }}<br>
         <strong>Matricule:</strong> {{ $customer->user->identifiant }}
     </p>
-    <p class="fw-bolder fs-italic">Ci-après dénommé(e)(s) l’"Emprunteur" ou le « Client » même en cas de pluralité d’emprunteurs,</p>
+    <p class="fw-bolder fs-italic mb-10">Ci-après dénommé(e)(s) l’"Emprunteur" ou le « Client » même en cas de pluralité d’emprunteurs,</p>
+    <div class="rounded py-1 px-1 border">
+        <div class="fw-bolder bg-gray-300 uppercase">CARACTERISTIQUES ESSENTIELLES DU CREDIT</div>
+        <p><strong>Type de crédit:</strong> Autorisation de découvert</p>
+        <p>
+            <span class="fw-bolder">Conditions de mise à disposition des fonds :</span><br>
+            Le Prêteur autorise l’Emprunteur à faire fonctionner le compte désigné ci-dessous en position débitrice dans la limite du
+            montant précité et pour une durée indéterminée. Il est ici précisé, en tant que de besoin, que la présente autorisation de
+            découvert se substitue à toute autre autorisation antérieure.
+        </p>
+        <p>
+            <span class="fw-bolder">Désignation du compte : {{ $data->wallet->number_account }}</span><br>
+            Le contrat de crédit ne pourra pas commencer à être exécuté et les fonds ne pourront être utilisés qu’à l’expiration du
+            délai de rétractation de 14 jours, ou dès le 8ᵉ jour sur demande expresse de l’Emprunteur.
+        </p>
+        <p><strong>Durée du contrat de crédit:</strong> le présent contrat est conclu pour une durée indéterminée.</p>
+    </div>
 @endsection
