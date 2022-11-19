@@ -29,8 +29,8 @@
         stepper.goPrevious();
     });
 
-    stepper.on("kt.stepper.changed", function(stepper) {
-        if(stepper.getCurrentStepIndex() === 2) {
+    stepper.on("kt.stepper.changed", function (stepper) {
+        if (stepper.getCurrentStepIndex() === 2) {
             block.blockResultPrerequest.block()
             block.blockResultPret.block()
             elements.btnNextElement.setAttribute('disabled', '')
@@ -40,7 +40,11 @@
                 method: 'POST',
                 data: {"verify": 'prerequest'},
                 success: data => {
-                    console.log(data)
+                    let elDiv = elements.validResultPrerequest.querySelector('.modal-body');
+                    elDiv.innerHTML = ``
+                    Array.from(data.data).forEach(alert => {
+                        elDiv.innerHTML += `${alert}`
+                    })
                 }
             })
         }
