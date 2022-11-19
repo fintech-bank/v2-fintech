@@ -3,7 +3,7 @@
 @section("content")
     <div class="text-center fw-bolder fs-3 mb-5">
         <div class="">OFFRE DE CONTRAT DE CREDIT</div>
-        <div class="">AUTORISATION DE DÉCOUVERT</div>
+        <div class="">{{ $data->pret->plan->name }}</div>
     </div>
     <p>
         La présente offre de crédit est faite en application de l’article L.312-1 et suivants du code de la consommation.
