@@ -24,6 +24,8 @@
     });
 
     stepper.on("kt.stepper.changed", function(stepper) {
-        console.log(stepper.getCurrentStepIndex())
+        if(stepper.getCurrentStepIndex() === 2) {
+
+        }
     });
 </script>

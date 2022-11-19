@@ -190,47 +190,14 @@
                             <!--begin::Step 1-->
 
                             <!--begin::Step 1-->
-                            <div class="flex-column" data-kt-stepper-element="content">
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label">Example Label 1</label>
-                                    <!--end::Label-->
-
-                                    <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" name="input1" placeholder="" value=""/>
-                                    <!--end::Input-->
+                            <div class="flex-column w-100" data-kt-stepper-element="content">
+                                <div class="card shadow-sm" id="validResultPrerequest">
+                                    <div class="card-body">
+                                        <div class="text-success mb-1" data-content="customerVerified"><i class="fa-solid fa-check-circle fs-3 me-2"></i> Le compte du client est vérifier</div>
+                                        <div class="text-success mb-1" data-content="addressVerified"><i class="fa-solid fa-check-circle fs-3 me-2"></i> L'adresse postale du client est vérifier</div>
+                                        <div class="text-success mb-1" data-content="incomeVerified"><i class="fa-solid fa-check-circle fs-3 me-2"></i> Les informations de revenues du client sont vérifier</div>
+                                    </div>
                                 </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label">Example Label 2</label>
-                                    <!--end::Label-->
-
-                                    <!--begin::Input-->
-                                    <textarea class="form-control form-control-solid" rows="3" name="input2" placeholder=""></textarea>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label">Example Label 3</label>
-                                    <!--end::Label-->
-
-                                    <!--begin::Input-->
-                                    <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" checked="checked" type="checkbox" value="1"/>
-                                        <span class="form-check-label">
-                                Checkbox
-                            </span>
-                                    </label>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
                             </div>
                             <!--begin::Step 1-->
 
