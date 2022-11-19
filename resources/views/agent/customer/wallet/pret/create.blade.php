@@ -165,14 +165,17 @@
                         <div class="mb-5">
                             <!--begin::Step 1-->
                             <div class="flex-column w-100 current" data-kt-stepper-element="content">
-                                <x-form.checkbox
-                                    name="required_insurance"
-                                    label="Assurance emprunteur requise"
-                                    value="1" />
-                                <x-form.checkbox
-                                    name="required_caution"
-                                    label="Caution requise"
-                                    value="1" />
+                                <div class="d-flex flex-row mb-10">
+                                    <x-form.checkbox
+                                        name="required_insurance"
+                                        label="Assurance emprunteur requise"
+                                        value="1" />
+                                    <x-form.checkbox
+                                        name="required_caution"
+                                        label="Caution requise"
+                                        value="1" />
+                                </div>
+
                                 <div class="mb-10">
                                     <label for="loan_plan_id" class="form-label required">Type de crédit</label>
                                     <select class="form-control form-control-solid" data-control="select2" name="loan_plan_id" data-placeholder="Selectionner un type de crédit">
