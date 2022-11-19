@@ -1474,6 +1474,132 @@ class InsurancePackageWarrantySeeder extends Seeder
             'designation' => "Choix des prestataires obsèques",
             'check' => true,
             'price' => 3.36,
+        ])->create([
+            'insurance_package_form_id' => 39,
+            'designation' => "Décès Accidentel",
+            'check' => true,
+            'price' => 0,
+            'condition' => "garantie par laquelle l’assureur s’engage, en cas de
+décès de l’assuré consécutif à un Accident, à verser la prestation
+prévue (capital) à l’établissement prêteur."
+        ])->create([
+            'insurance_package_form_id' => 39,
+            'designation' => "Perte Totale et Irréversible d’Autonomie",
+            'check' => false,
+            'price' => 0,
+            'condition' => "lorsque à la suite d’un accident ou d'une maladie, l’assuré se trouve
+médicalement dans l’impossibilité totale et définitive de se livrer à toute
+occupation et à toute activité rémnunérée ou pouvant lui procurer gain
+ou profit et qui se trouve dans l'obligation définitive de recourir à
+l’assistance permanence d’une tierce personne pour accomplir les
+actes ordinaires de la vie (s’habiller, se laver, manger, se déplacer).
+Perte Totale et Irréversible d’Autonomie (PTIA) Accidentelle :
+PTIA qui survient à la suite d’un Accident."
+        ])->create([
+            'insurance_package_form_id' => 39,
+            'designation' => "Incapacité Totale de Travail",
+            'check' => false,
+            'price' => 0,
+            'condition' => "état médicalement reconnu qui
+place l'assuré, suite à un accident ou à une maladie :
+- pour les assurés exerçant une activité professionnelle ou en
+recherche d’emploi au jour du sinistre : dans l'impossibilité absolue
+d'exercer son activité professionnelle ou toute recherche d'emploi
+même partiellement,
+ou
+- pour les assurés n’exerçant pas d’activité professionnelle au jour du
+sinistre : dans l'impossibilité absolue d'exercer ses activités habituelles
+non professionnelles, même partiellement."
+        ])->create([
+            'insurance_package_form_id' => 39,
+            'designation' => "Perte d'emploi",
+            'check' => false,
+            'price' => 0,
+            'condition' => "état qui fais suite à une perte d'emploi flagrante sans licenciement pour faute grave."
+        ])->create([
+            'insurance_package_form_id' => 40,
+            'designation' => "Décès Accidentel",
+            'check' => true,
+            'price' => 0,
+            'condition' => "garantie par laquelle l’assureur s’engage, en cas de
+décès de l’assuré consécutif à un Accident, à verser la prestation
+prévue (capital) à l’établissement prêteur."
+        ])->create([
+            'insurance_package_form_id' => 40,
+            'designation' => "Perte Totale et Irréversible d’Autonomie",
+            'check' => true,
+            'price' => 0,
+            'condition' => "lorsque à la suite d’un accident ou d'une maladie, l’assuré se trouve
+médicalement dans l’impossibilité totale et définitive de se livrer à toute
+occupation et à toute activité rémnunérée ou pouvant lui procurer gain
+ou profit et qui se trouve dans l'obligation définitive de recourir à
+l’assistance permanence d’une tierce personne pour accomplir les
+actes ordinaires de la vie (s’habiller, se laver, manger, se déplacer).
+Perte Totale et Irréversible d’Autonomie (PTIA) Accidentelle :
+PTIA qui survient à la suite d’un Accident."
+        ])->create([
+            'insurance_package_form_id' => 40,
+            'designation' => "Incapacité Totale de Travail",
+            'check' => true,
+            'price' => 0,
+            'condition' => "état médicalement reconnu qui
+place l'assuré, suite à un accident ou à une maladie :
+- pour les assurés exerçant une activité professionnelle ou en
+recherche d’emploi au jour du sinistre : dans l'impossibilité absolue
+d'exercer son activité professionnelle ou toute recherche d'emploi
+même partiellement,
+ou
+- pour les assurés n’exerçant pas d’activité professionnelle au jour du
+sinistre : dans l'impossibilité absolue d'exercer ses activités habituelles
+non professionnelles, même partiellement."
+        ])->create([
+            'insurance_package_form_id' => 40,
+            'designation' => "Perte d'emploi",
+            'check' => false,
+            'price' => 0,
+            'condition' => "état qui fais suite à une perte d'emploi flagrante sans licenciement pour faute grave."
+        ])->create([
+            'insurance_package_form_id' => 41,
+            'designation' => "Décès Accidentel",
+            'check' => true,
+            'price' => 0,
+            'condition' => "garantie par laquelle l’assureur s’engage, en cas de
+décès de l’assuré consécutif à un Accident, à verser la prestation
+prévue (capital) à l’établissement prêteur."
+        ])->create([
+            'insurance_package_form_id' => 41,
+            'designation' => "Perte Totale et Irréversible d’Autonomie",
+            'check' => true,
+            'price' => 0,
+            'condition' => "lorsque à la suite d’un accident ou d'une maladie, l’assuré se trouve
+médicalement dans l’impossibilité totale et définitive de se livrer à toute
+occupation et à toute activité rémnunérée ou pouvant lui procurer gain
+ou profit et qui se trouve dans l'obligation définitive de recourir à
+l’assistance permanence d’une tierce personne pour accomplir les
+actes ordinaires de la vie (s’habiller, se laver, manger, se déplacer).
+Perte Totale et Irréversible d’Autonomie (PTIA) Accidentelle :
+PTIA qui survient à la suite d’un Accident."
+        ])->create([
+            'insurance_package_form_id' => 41,
+            'designation' => "Incapacité Totale de Travail",
+            'check' => true,
+            'price' => 0,
+            'condition' => "état médicalement reconnu qui
+place l'assuré, suite à un accident ou à une maladie :
+- pour les assurés exerçant une activité professionnelle ou en
+recherche d’emploi au jour du sinistre : dans l'impossibilité absolue
+d'exercer son activité professionnelle ou toute recherche d'emploi
+même partiellement,
+ou
+- pour les assurés n’exerçant pas d’activité professionnelle au jour du
+sinistre : dans l'impossibilité absolue d'exercer ses activités habituelles
+non professionnelles, même partiellement."
+        ])->create([
+            'insurance_package_form_id' => 41,
+            'designation' => "Perte d'emploi",
+            'check' => true,
+            'price' => 0,
+            'condition' => "état qui fais suite à une perte d'emploi flagrante sans licenciement pour faute grave."
         ]);
     }
 }
