@@ -148,6 +148,11 @@
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#infos"><i class="fa-solid fa-info-circle me-2"></i> Informations</a>
                 </li>
                 <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#actions"><i class="fa-solid fa-pen me-2"></i> Action</a>
+                </li>
+                <!--end::Nav item-->
             </ul>
             <!--begin::Navs-->
         </div>
