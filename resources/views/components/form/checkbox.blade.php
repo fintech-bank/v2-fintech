@@ -1,5 +1,5 @@
 <div class="mb-5">
-    <div class="form-check form-check-custom form-check-solid {{ $class ? $class : '' }}">
+    <div class="form-check form-check-custom form-check-solid {{ $class ?? '' }}">
         <input class="form-check-input" type="checkbox" name="{{ $name }}" value="{{ $value }}" id="{{ $name }}" {{ $checked == true ? 'checked' : '' }}/>
         <label class="form-check-label" for="{{ $name }}">
             {{ $label }}
