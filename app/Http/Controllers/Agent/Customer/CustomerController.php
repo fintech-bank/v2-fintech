@@ -139,6 +139,11 @@ class CustomerController extends Controller
         return view('agent.customer.wallet.pret.create', compact('customer'));
     }
 
+    public function storePret($customer_id, Request $request)
+    {
+        dd($request->all());
+    }
+
     private function updateStatus(Customer $customer, Request $request)
     {
         if ($request->get('status_open_account') == 'closed') {
