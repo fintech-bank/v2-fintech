@@ -17,7 +17,6 @@
     }
 
     let stepper = new KTStepper(elements.stepperElement)
-    console.log(stepper.getClickedStepIndex())
 
     stepper.on("kt.stepper.click", function (stepper) {
         stepper.goTo(stepper.getClickedStepIndex());
@@ -58,8 +57,7 @@
                             block.blockResultPret.destroy()
                             let elDiv = elements.validResultPret.querySelector('.card-body');
                             elDiv.innerHTML = ``
-                            console.log(data.data)
-                            if(data.data === 'false') {
+                            if(data.data[0] === 'false') {
                                 elDiv.innerHTML += `
                                 <div class="d-flex flex-center w-100 mx-auto">
                                     <i class="fa-solid fa-xmark-circle text-danger fs-3tx"></i>
