@@ -132,7 +132,7 @@
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#createPret" data-bs-toggle="modal" class="menu-link px-3">Pret Bancaire</a>
+                                                <a href="{{ route('agent.customer.pret', $customer->id) }}" class="menu-link px-3">Pret Bancaire</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu separator-->

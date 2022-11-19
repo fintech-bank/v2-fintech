@@ -132,6 +132,13 @@ class CustomerController extends Controller
 
     }
 
+    public function createPret($customer_id)
+    {
+        $customer = Customer::find($customer_id);
+
+        return view('agent.customer.wallet.pret.create', compact('customer'));
+    }
+
     private function updateStatus(Customer $customer, Request $request)
     {
         if ($request->get('status_open_account') == 'closed') {
