@@ -34,6 +34,8 @@ class ClaimController extends Controller
                 <li><strong>Etes-vous responsable ?</strong> <?= $claim->responsability ? 'OUI' : 'NON' ?></li>
                 <li><strong>Description de l'incident:</strong> <?= $claim->incidentDesc ?></li>
             </ul>
+            <p>Vous devez également nous soumettre un ou plusieurs justificatifs en relation avec ce sinistre.</p>
+
             <?php
             $comment = ob_get_clean();
             RequestHelper::create(

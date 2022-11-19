@@ -466,6 +466,8 @@
                             name="responsability"
                             value="1"
                             label="Le client est responsable du dommage ?" />
+
+                        <x-form.input-file
                     </div>
                     <div class="modal-footer">
                         <x-form.button />
