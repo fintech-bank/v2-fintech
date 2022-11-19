@@ -441,7 +441,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($wallet->loan->caution as $caution)
+                            @foreach(json_decode($wallet->loan->caution) as $caution)
                                 @dd($caution)
                             @endforeach
                         </tbody>
