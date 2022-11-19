@@ -59,6 +59,9 @@
                 if(!data) {
                     elements.cniField.classList.add('is-valid')
                     elements.cniField.classList.add('is-invalid')
+                    let p = elements.cniField.insertAfter('p')
+                    p.classList.add('text-danger')
+                    p.innerHTML = 'Numéro de carte erroné !'
                 } else {
                     elements.cniField.classList.remove('is-invalid')
                     elements.cniField.classList.add('is-valid')
