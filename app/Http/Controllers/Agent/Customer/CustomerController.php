@@ -170,7 +170,7 @@ class CustomerController extends Controller
             'amount_du' => 0,
             'amount_interest' => 0,
             'mensuality' => 0,
-            'prlv_day' => $request->get('prlv_day'),
+            'prlv_day' => $request->get('prlv_day') ?? 20,
             'duration' => $request->get('duration') * 12,
             'assurance_type' => $request->get('assurance_type'),
             'customer_wallet_id' => $wallet->id,
