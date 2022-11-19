@@ -5,6 +5,7 @@
         btnNextElement: document.querySelector('[data-kt-stepper-action="next"]'),
         validResultPrerequest: document.querySelector("#validResultPrerequest"),
         validResultPret: document.querySelector("#validResultPret"),
+        result: document.querySelector("#result"),
     }
     let modals = {}
     let forms = {
@@ -14,6 +15,7 @@
     let block = {
         blockResultPrerequest: new KTBlockUI(elements.validResultPrerequest),
         blockResultPret: new KTBlockUI(elements.validResultPret),
+        blockResult: new KTBlockUI(elements.result),
     }
 
     let stepper = new KTStepper(elements.stepperElement)
@@ -86,6 +88,18 @@
                             }
                         }
                     })
+                }
+            })
+        }
+        if(stepper.getCurrentStepIndex() === 3) {
+            block.blockResult.block()
+
+            $.ajax({
+                url: '/api/customer/{{ $customer->id }}/pret/verify',
+                method: 'POST',
+                data: {"verify": 'result'},
+                success: data => {
+                    console.log(data)
                 }
             })
         }

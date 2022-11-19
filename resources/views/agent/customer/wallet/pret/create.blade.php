@@ -208,41 +208,41 @@
                             <div class="flex-column" data-kt-stepper-element="content">
                                 <div class="card shadow-sm">
                                     <div class="card-body">
-                                        <table class="table table-border table-sm gy-3 gx-3">
+                                        <table class="table table-border table-sm gy-3 gx-3" id="result">
                                             <tbody class="border border-bottom-2 border-gray-300">
                                                 <tr>
                                                     <td class="fw-bolder">Montant de l'emprunt</td>
-                                                    <td></td>
+                                                    <td data-content="amount_loan"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">Durée</td>
-                                                    <td></td>
+                                                    <td data-content="duration"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">Mensualité</td>
-                                                    <td></td>
+                                                    <td data-content="mensuality"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">TAEG (Taux Annuel Effectif Global)</td>
-                                                    <td></td>
+                                                    <td data-content="taux"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">Montant total dû par l'emprunteur</td>
-                                                    <td></td>
+                                                    <td data-content="amount_du"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">Type d'assurance emprunteur</td>
-                                                    <td></td>
+                                                    <td data-content="assurance_type"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">TAAE (Taux Annuel Assurance emprunteur)</td>
-                                                    <td></td>
+                                                    <td data-content="taxe_assurance"></td>
                                                 </tr>
                                             </tbody>
                                             <tfoot>
                                                 <tr class="fw-bolder fs-3">
                                                     <td>Montant total dû</td>
-                                                    <td></td>
+                                                    <td data-content="amount_du_assurance"></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
