@@ -349,10 +349,23 @@
                                     </div>
                                 </div>
                                 <div class="col-md-9 col-sm-12">
-                                    <div class="card shadow-sm">
+                                    <div class="card shadow-sm mb-5">
                                         <div class="card-body">
                                             <div class="fw-bolder">De quel type d’assurance s’agit-il ?</div>
                                             <p>{{ $wallet->loan->insurance->package->description }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="card shadow-sm">
+                                        <div class="card-header bg-success">
+                                            <h3 class="card-title text-white"><i class="fa-solid fa-umbrella text-white me-2"></i> Qu'est-ce qui est assuré ?</h3>
+                                            <div class="card-toolbar">
+                                                <!--<button type="button" class="btn btn-sm btn-light">
+                                                    Action
+                                                </button>-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+
                                         </div>
                                     </div>
                                 </div>
