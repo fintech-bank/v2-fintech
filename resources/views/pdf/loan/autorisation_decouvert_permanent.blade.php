@@ -75,5 +75,11 @@
         <p>
             <span class="fw-bolder"><span class="underline">Montant total du crédit dû par l’Emprunteur : </span>{{ eur($data->wallet->balance_decouvert) }}</span>
         </p>
+        <p>
+            <span class="fw-bolder">Sûretés et assurances exigées :</span><br>
+            <ul>
+                <li>Test</li>
+            </ul>
+        </p>
     </div>
 @endsection
