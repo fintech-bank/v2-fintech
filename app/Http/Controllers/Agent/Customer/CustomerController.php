@@ -236,7 +236,7 @@ class CustomerController extends Controller
 
         DocumentFile::createDoc(
             $customer,
-            'loan.plan_amortissement',
+            'loan.plan_damortissement',
             "Plan d'amortissement",
             3,
             $credit->reference,
