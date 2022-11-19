@@ -206,48 +206,42 @@
 
                             <!--begin::Step 1-->
                             <div class="flex-column" data-kt-stepper-element="content">
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label d-flex align-items-center">
-                                        <span class="required">Input 1</span>
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Example tooltip"></i>
-                                    </label>
-                                    <!--end::Label-->
-
-                                    <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" name="input1" placeholder="" value=""/>
-                                    <!--end::Input-->
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <table class="table table-border table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="fw-bolder">Montant de l'emprunt</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bolder">Durée</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bolder">Mensualité</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bolder">TAEG (Taux Annuel Effectif Global)</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bolder">Montant total dû par l'emprunteur</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bolder">Type d'assurance emprunteur</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bolder">TAAE (Taux Annuel Assurance emprunteur)</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label">
-                                        Input 2
-                                    </label>
-                                    <!--end::Label-->
-
-                                    <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" name="input2" placeholder="" value=""/>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label">
-                                        Input 3
-                                    </label>
-                                    <!--end::Label-->
-
-                                    <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" name="input3" placeholder="" value=""/>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
                             </div>
                             <!--begin::Step 1-->
                         </div>
