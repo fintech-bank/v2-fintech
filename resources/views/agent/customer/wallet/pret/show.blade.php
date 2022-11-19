@@ -82,6 +82,11 @@
                         </div>
                         <!--end::User-->
                         <div class="d-flex my-4">
+                            @if($wallet->loan->payment->solde_remaining <= 0)
+                                @if($wallet->loan->first_payment_at->subDays(3)->startOfDay() != now()->startOfDay())
+                                    <div class="text-warning"><i class="fa-solid fa-exclamation-triangle text-warning me-2"></i> Compte de paiement débiteur, la mensualité va être rejetée dans {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
+                                @endif
+                            @endif
                         </div>
                     </div>
                     <!--end::Title-->
@@ -163,11 +168,7 @@
                         </div>
                     </div>
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                        @if($wallet->loan->payment->solde_remaining <= 0)
-                            @if($wallet->loan->first_payment_at->subDays(3)->startOfDay() != now()->startOfDay())
-                                <div class="text-warning"><i class="fa-solid fa-exclamation-circle text-warning me-2"></i> Compte de paiement débiteur, la mensualité va être rejetée dans {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
-                            @endif
-                        @endif
+
                     </div>
                 </div>
                 <div class="card-body pt-0">
