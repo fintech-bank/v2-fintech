@@ -100,11 +100,11 @@
                     <div class="d-flex flex-wrap flex-stack">
                         <!--begin::Wrapper-->
                         <div class="d-flex flex-row flex-grow-1 pe-8">
-                            &nbsp;<div class="d-flex flex-column border rounded p-2 mb-2">
+                            &nbsp;<div class="d-flex flex-column border rounded p-2 mb-2 me-2">
                                 <div class="fs-4 fw-bolder">Etat du Prêt</div>
                                 <div class="" data-bs-toggle="tooltip" title="{{ $wallet->loan->status_explanation }}">{!! $wallet->loan->status_label !!}</div>
                             </div>
-                            <div class="d-flex flex-column border rounded p-2 mb-2">
+                            <div class="d-flex flex-column border rounded p-2 mb-2 me-2">
                                 <div class="fs-4 fw-bolder">Type de pret</div>
                                 <div class="">{{ $wallet->loan->plan->name }}</div>
                             </div>
