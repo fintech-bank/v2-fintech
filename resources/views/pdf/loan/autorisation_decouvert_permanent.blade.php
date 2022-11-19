@@ -73,7 +73,7 @@
             d’origine.
         </p>
         <p>
-            <span class="fw-bolder"><span class="uppercase">Montant total du crédit dû par l’Emprunteur : </span>{{ $wallet->balance_decouvert_format }}</span>
+            <span class="fw-bolder"><span class="uppercase">Montant total du crédit dû par l’Emprunteur : </span>{{ $data->wallet->balance_decouvert_format }}</span>
         </p>
     </div>
 @endsection
