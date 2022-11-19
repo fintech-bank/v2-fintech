@@ -181,6 +181,17 @@
                                             label="Montant Souhaité"
                                             required="true" />
                                     </div>
+                                    <div class="col-4">
+                                        <x-form.input
+                                            name="duration"
+                                            label="Durée du crédit (en année)"
+                                            required="true" />
+                                    </div>
+                                    <div class="col-4">
+                                        <x-form.input
+                                            name="prlv_day"
+                                            label="Jours de prélèvement" />
+                                    </div>
                                 </div>
                             </div>
                             <!--begin::Step 1-->
