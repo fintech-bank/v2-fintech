@@ -71,7 +71,7 @@
             d’origine.
         </p>
         <p>
-            <span class="fw-bolder"><span class="underline">Montant total du crédit dû par l’Emprunteur : </span>{{ eur($data->pret->amount_loan_format) }}</span>
+            <span class="fw-bolder"><span class="underline">Montant total du crédit dû par l’Emprunteur : </span>{{ eur($data->pret->amount_loan) }}</span>
         </p>
         <p>
             <span class="fw-bolder">Sûretés et assurances exigées :</span><br>
