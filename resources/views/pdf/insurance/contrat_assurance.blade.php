@@ -144,4 +144,26 @@
     <div class="page-break"></div>
     <p>{{ Str::upper($data->insurance->package->name) }} - Demande d'adhésion valant Certificat Individuel d'Adhésion</p>
     <p>N° D'ADHESION: {{ $data->insurance->reference }}</p>
+    <p class="underline uppercase">DECLARATION DE L'ADHERENT :</p>
+    <p>
+        Je reconnais que, préalablement à la signature de la présente Demande d'Adhésion valant Certificat Individuel d'Adhésion du contrat
+        {{ $data->insurance->package->name }}, mon intermédiaire s'est assuré que ce contrat était conforme à mes besoins et à mes exigences. A ce titre, j'ai reçu,
+        préalablement à la signature de mon contrat le « document d’information sur le produit d’assurance » {{ $data->insurance->package->name }} et le document
+        « Vos besoins - Nos conseils » que j’ai signé, ces deux documents reprenant les principales caractéristiques du contrat.
+    </p>
+    <p>
+        Je suis informé(e), que dans le cas d'une entrée en relation, le paiement de la première cotisation sera effectué 15 jours après la date
+        d'agrément.
+    </p>
+    <p>
+        En signant ma Demande d'Adhésion, je reconnais avoir été informé que mon adhésion est conclue à la date de signature de la présente
+        demande sous réserve du paiement de la première cotisation.
+    </p>
+    <p class="fs-2">
+        Signé électroniquement<br>
+        par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
+        le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
+        CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
+        CN AC: {{ $customer->persona_reference_id }}
+    </p>
 @endsection
