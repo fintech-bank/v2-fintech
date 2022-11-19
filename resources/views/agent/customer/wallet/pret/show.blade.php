@@ -457,12 +457,14 @@
                                     required="true" />
                             </div>
                             <div class="col-6">
-                                <x-form.input-date
+                                <x-form.input
                                     name="incidentTime"
-                                    type="text"
                                     label="Heure de l'incident" />
                             </div>
                         </div>
+                        <x-form.checkbox
+                            name="responsability"
+                            label="Le client est responsable du dommage ?" />
                     </div>
                     <div class="modal-footer">
                         <x-form.button />
