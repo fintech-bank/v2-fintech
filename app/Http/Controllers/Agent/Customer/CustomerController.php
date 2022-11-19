@@ -195,7 +195,7 @@ class CustomerController extends Controller
         $contrat = DocumentFile::createDoc(
             $customer,
             'loan.contrat_de_credit_personnel',
-            'Contrat de Credit Personnel - '.Str::slug($credit->plan->name),
+            'Contrat de Credit Personnel',
             3,
             $credit->reference,
             true,
