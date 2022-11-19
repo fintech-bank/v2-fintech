@@ -169,7 +169,7 @@
                                     <x-form.checkbox
                                         name="required_insurance"
                                         label="Assurance emprunteur requise"
-                                        value="1" />
+                                        value="1" class="me-5"/>
                                     <x-form.checkbox
                                         name="required_caution"
                                         label="Caution requise"
