@@ -55,5 +55,25 @@
         <span class="fw-bolder">Taux débiteur :</span> Le taux débiteur est révisable. Toute position débitrice résultant de l’utilisation du découvert donne lieu
         à la perception d’intérêts débiteurs <strong>Taux variable : COT + 11,100, SOIT A CE JOUR {{ round(($customer->cotation / 2.3) + 11.10, 2) }}% au
         {{ now()->format("d/m/Y") }}.</strong>
+        <p>
+            Le taux indiqué est ainsi constitué d’un taux de référence majoré d’un certain nombre de points. Ce taux de référence est
+            contractuellement sujet à variation et entraîne la variation du taux débiteur. Le Prêteur informera préalablement l’Emprunteur
+            de chaque variation du taux de référence par une mention portée sur son relevé de compte. Le relevé de compte
+            mentionnera par ailleurs, le taux annuel effectif global des intérêts portés au débit du compte.
+            Le relevé de compte mentionnera par ailleurs, le taux annuel effectif global des intérêts portés au débit du compte.
+            A réception de cette information, l’emprunteur pourra sur demande écrite adressée à la banque, refuser cette révision.
+            Dans ce cas, l'autorisation de découvert prendra fin et le remboursement du crédit déjà utilisé devra intervenir dans les
+            30 jours suivant le refus de la révision.
+        </p>
+        <p>
+            En cas de perturbations affectant les marchés, entraînant la disparition du taux de référence, le Prêteur procèdera
+            immédiatement au remplacement de ce taux par un taux de marché équivalent qui sera porté à la connaissance de
+            l’Emprunteur par tout moyen et notamment par une mention portée sur le relevé de compte. Le nouveau taux sera
+            appliqué de façon rétroactive au jour de la modification, disparition ou cessation de publication du taux de référence
+            d’origine.
+        </p>
+        <p>
+            <span class="fw-bolder"><span class="uppercase">Montant total du crédit dû par l’Emprunteur : </span>{{ $wallet->balance_decouvert_format }}</span>
+        </p>
     </div>
 @endsection
