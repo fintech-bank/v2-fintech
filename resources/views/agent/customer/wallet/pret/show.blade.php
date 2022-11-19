@@ -112,6 +112,10 @@
                                 <div class="fs-4 fw-bolder">Date de fin</div>
                                 <div class="">{{ $wallet->loan->first_payment_at->addMonths($wallet->loan->duration)->format("d/m/Y") }}</div>
                             </div>
+                            <div class="d-flex flex-column border rounded p-2 mb-2 me-2">
+                                <div class="fs-4 fw-bolder">Caution Obligatoire</div>
+                                <div class="">{{ $wallet->loan->required_caution }}</div>
+                            </div>
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Progress-->
