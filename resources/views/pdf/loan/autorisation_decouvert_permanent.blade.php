@@ -23,6 +23,8 @@
         <span class="fw-bolder underline">Titulaire du compte:</span><br>
         Nom, Prénom: {{ $customer->info->full_name }}<br>
         Date de naissance: {{ $customer->info->datebirth->format("d/m/Y") }} -- Lieu: {{ $customer->info->citybirth }}<br>
-        Adresse: {{ $customer->info->line_address }}
+        Adresse: {{ $customer->info->line_address }}<br>
+        <strong>Matricule:</strong> {{ $customer->user->identifiant }}
     </p>
+    <p class="fw-bolder fs-italic">Ci-après dénommé(e)(s) l’"Emprunteur" ou le « Client » même en cas de pluralité d’emprunteurs,</p>
 @endsection
