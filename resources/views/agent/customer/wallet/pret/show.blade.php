@@ -226,8 +226,24 @@
                     <table class="table table-striped table-bordered table-sm gx-3 gy-3">
                         <tbody>
                             <tr>
-                                <td>Référence du pret</td>
+                                <td class="fw-bold">Référence du pret</td>
                                 <td>{{ $wallet->loan->reference }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Type de pret</td>
+                                <td>{{ $wallet->loan->plan->name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Emprunteur</td>
+                                <td>{{ $wallet->loan->customer->info->full_name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Identifiant Client</td>
+                                <td>{{ $wallet->loan->customer->user->identifiant }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Etat du pret</td>
+                                <td>{!! $wallet->loan->status_label !!}</td>
                             </tr>
                         </tbody>
                     </table>
