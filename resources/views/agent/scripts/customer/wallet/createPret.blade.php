@@ -34,6 +34,15 @@
             block.blockResultPrerequest.block()
             block.blockResultPret.block()
             elements.btnNextElement.setAttribute('disabled', '')
+
+            $.ajax({
+                url: '/api/customer/{{ $customer->id }}/pret/verify',
+                method: 'POST',
+                data: {"verify": 'prerequest'},
+                success: data => {
+                    console.log(data)
+                }
+            })
         }
     });
 </script>
