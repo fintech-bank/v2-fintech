@@ -32,16 +32,15 @@
         <p><strong>Type de crédit:</strong> {{ $data->pret->plan->name }}</p>
         <p>
             <span class="fw-bolder">Conditions de mise à disposition des fonds :</span><br>
-            Le Prêteur autorise l’Emprunteur à faire fonctionner le compte désigné ci-dessous en position débitrice dans la limite du
-            montant précité et pour une durée indéterminée. Il est ici précisé, en tant que de besoin, que la présente autorisation de
-            découvert se substitue à toute autre autorisation antérieure.
+            Le Prêteur met à disposition un encours égale à la demande utilisable par l'emprunteur par l'intermédiaire de virement bancaire, ou autre
+            dans la limite du montant de l'encours autorisée par le Prêteur.
         </p>
         <p>
-            <span class="fw-bolder">Désignation du compte : {{ $data->wallet->number_account }}</span><br>
+            <span class="fw-bolder">Désignation du compte : {{ $data->pret->wallet->number_account }}</span><br>
             Le contrat de crédit ne pourra pas commencer à être exécuté et les fonds ne pourront être utilisés qu’à l’expiration du
             délai de rétractation de 14 jours, ou dès le 8ᵉ jour sur demande expresse de l’Emprunteur.
         </p>
-        <p><strong>Durée du contrat de crédit:</strong> le présent contrat est conclu pour une durée indéterminée.</p>
+        <p><strong>Durée du contrat de crédit:</strong> le présent contrat est conclu pour une durée de un an renouvellable par tacite reconduction.</p>
         <p>
             <span class="fw-bolder mb-1">Remboursement par l’Emprunteur :</span>
             Le compte peut être débiteur à concurrence du montant précisé ci-dessus en dehors de toute prise d’effet d’une
