@@ -183,8 +183,8 @@ class CustomerController extends Controller
         ]);
 
         $amount_interest =  CalcLoanTrait::getLoanInterest($credit->amount_loan, $credit->plan->tarif->type_taux == 'fixe' ? $credit->plan->tarif->interest : CalcLoanTrait::calcLoanIntestVariableTaxe($credit));
-        $amount_du = $amount + $amount_interest;
-        $mensuality = $amount_du / $duration;
+        $amount_du = $request->get('amount_loan') + $amount_interest;
+        $mensuality = $amount_du / ($request->get('duration') * 12);
 
         $credit->update([
             'amount_du' => $amount_du,
