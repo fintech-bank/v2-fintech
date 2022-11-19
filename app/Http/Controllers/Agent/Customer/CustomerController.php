@@ -343,7 +343,7 @@ class CustomerController extends Controller
         $contract = DocumentFile::createDoc(
             $customer,
             'insurance.contrat_assurance',
-            'Contrat Assurance: '.$insurance->package->name,
+            'Contrat Assurance '.$insurance->package->name,
             3,
             $insurance->reference,
             true,
@@ -387,7 +387,7 @@ class CustomerController extends Controller
             ['insurance' => $insurance]
         );
         $docs = [
-            ['url' => $contract->url_folder]
+            ['url' => public_path($contract->url_folder)]
         ];
 
         $customer->info->notify(new NewContractInsuranceNotification($customer, $insurance, $docs));
