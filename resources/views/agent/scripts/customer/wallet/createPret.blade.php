@@ -1,12 +1,18 @@
 <script type="text/javascript">
     let tables = {}
     let elements = {
-        stepperElement: document.querySelector("#credit_stepper")
+        stepperElement: document.querySelector("#credit_stepper"),
+        btnNextElement: document.querySelector('[data-kt-stepper-action="next"]'),
+        validResultPrerequest: document.querySelector("#validResultPrerequest"),
+        validResultPret: document.querySelector("#validResultPret"),
     }
     let modals = {}
     let forms = {}
     let dataTable = {}
-    let block = {}
+    let block = {
+        blockResultPrerequest: new KTBlockUI(elements.validResultPrerequest),
+        blockResultPret: new KTBlockUI(elements.validResultPret),
+    }
 
     let stepper = new KTStepper(elements.stepperElement)
     console.log(stepper.getClickedStepIndex())
@@ -25,7 +31,9 @@
 
     stepper.on("kt.stepper.changed", function(stepper) {
         if(stepper.getCurrentStepIndex() === 2) {
-
+            block.blockResultPrerequest.block()
+            block.blockResultPret.block()
+            elements.btnNextElement.setAttribute('disabled', '')
         }
     });
 </script>
