@@ -447,6 +447,22 @@
                             name="incident"
                             label="Description de l'incident"
                             required="true" />
+
+                        <div class="row">
+                            <div class="col-6">
+                                <x-form.input-date
+                                    name="incidentDate"
+                                    type="text"
+                                    label="Date de l'incident"
+                                    required="true" />
+                            </div>
+                            <div class="col-6">
+                                <x-form.input-date
+                                    name="incidentTime"
+                                    type="text"
+                                    label="Heure de l'incident" />
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <x-form.button />
