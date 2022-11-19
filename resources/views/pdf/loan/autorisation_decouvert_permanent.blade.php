@@ -51,4 +51,9 @@
         </p>
     </div>
     <div class="page-break"></div>
+    <div class="rounded py-1 px-1 border">
+        <span class="fw-bolder">Taux débiteur :</span> Le taux débiteur est révisable. Toute position débitrice résultant de l’utilisation du découvert donne lieu
+        à la perception d’intérêts débiteurs <strong>Taux variable : COT + 11,100, SOIT A CE JOUR {{ $customer->cotation + 11.10 }}% au
+        {{ now()->format("d/m/Y") }}.</strong>
+    </div>
 @endsection
