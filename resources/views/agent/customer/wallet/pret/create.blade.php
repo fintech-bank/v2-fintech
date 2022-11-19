@@ -64,12 +64,8 @@
                                     <!--begin::Label-->
                                     <div class="stepper-label">
                                         <h3 class="stepper-title">
-                                            Step 1
+                                            Informations
                                         </h3>
-
-                                        <div class="stepper-desc">
-                                            Description
-                                        </div>
                                     </div>
                                     <!--end::Label-->
                                 </div>
@@ -95,12 +91,8 @@
                                     <!--begin::Label-->
                                     <div class="stepper-label">
                                         <h3 class="stepper-title">
-                                            Step 2
+                                            Offre
                                         </h3>
-
-                                        <div class="stepper-desc">
-                                            Description
-                                        </div>
                                     </div>
                                     <!--end::Label-->
                                 </div>
@@ -126,12 +118,8 @@
                                     <!--begin::Label-->
                                     <div class="stepper-label">
                                         <h3 class="stepper-title">
-                                            Step 3
+                                            Récapitulatif
                                         </h3>
-
-                                        <div class="stepper-desc">
-                                            Description
-                                        </div>
                                     </div>
                                     <!--end::Label-->
                                 </div>
@@ -157,12 +145,31 @@
                                     <!--begin::Label-->
                                     <div class="stepper-label">
                                         <h3 class="stepper-title">
-                                            Step 4
+                                            Contrat
                                         </h3>
+                                    </div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                            <!--end::Step 4-->
 
-                                        <div class="stepper-desc">
-                                            Description
-                                        </div>
+                            <!--begin::Step 4-->
+                            <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                                <!--begin::Wrapper-->
+                                <div class="stepper-wrapper d-flex align-items-center">
+                                    <!--begin::Icon-->
+                                    <div class="stepper-icon w-40px h-40px">
+                                        <i class="stepper-check fas fa-check"></i>
+                                        <span class="stepper-number">5</span>
+                                    </div>
+                                    <!--begin::Icon-->
+
+                                    <!--begin::Label-->
+                                    <div class="stepper-label">
+                                        <h3 class="stepper-title">
+                                            Justificatifs
+                                        </h3>
                                     </div>
                                     <!--end::Label-->
                                 </div>
