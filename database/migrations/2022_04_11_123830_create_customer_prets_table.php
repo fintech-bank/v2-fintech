@@ -27,7 +27,7 @@ return new class extends Migration
             $table->boolean('signed_customer')->default(false);
             $table->boolean('signed_bank')->default(false);
             $table->boolean('alert')->default(false);
-            $table->enum('assurance_type', ['D', 'DIM', 'DIMC'])->default('DIM');
+            $table->enum('assurance_type', ['D', 'DIM', 'DIMC', 'NONE'])->default('DIM');
             $table->bigInteger('customer_wallet_id')->unsigned();
             $table->bigInteger('wallet_payment_id')->unsigned();
             $table->timestamps();

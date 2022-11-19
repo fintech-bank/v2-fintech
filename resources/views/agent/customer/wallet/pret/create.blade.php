@@ -194,12 +194,22 @@
                                     </div>
                                 </div>
                                 <div class="mb-10">
-                                    <label for="wallet_payment_id" class="form-label required">Type de crédit</label>
+                                    <label for="wallet_payment_id" class="form-label required">Compte de Paiement</label>
                                     <select class="form-control form-control-solid" data-control="select2" name="wallet_payment_id" data-placeholder="Selectionner un compte de paiement">
                                         <option value=""></option>
                                         @foreach($customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $wallet)
                                             <option value="{{ $wallet->id }}">{{ $wallet->name_account }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-10">
+                                    <label for="assurance_type" class="form-label required">Type d'assurance emprunteur</label>
+                                    <select class="form-control form-control-solid" data-control="select2" name="assurance_type" data-placeholder="Selectionner un type d'assurance emprunteur">
+                                        <option value=""></option>
+                                        <option value="NONE">Aucune Assurance</option>
+                                        <option value="D">Décès</option>
+                                        <option value="DIM">Décès, Invalidité, Maladie</option>
+                                        <option value="DIMC">Décès, Invalidité, Maladie, Perte d'emploi</option>
                                     </select>
                                 </div>
                             </div>
