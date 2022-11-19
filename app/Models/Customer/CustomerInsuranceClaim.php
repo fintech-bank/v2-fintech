@@ -37,9 +37,38 @@ class CustomerInsuranceClaim extends Model
 {
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at', 'incidentDate', 'incidentTime'];
+    protected $appends = ['status_label'];
 
     public function insurance()
     {
         return $this->belongsTo(CustomerInsurance::class, 'customer_insurance_id');
+    }
+
+    public function getStatus($format = '')
+    {
+        if($format == 'text') {
+            return match($this->status) {
+                "waiting" => "En attente",
+                "progress" => "En cours",
+                "finish" => "Terminer",
+            };
+        } elseif ($format == 'color') {
+            return match($this->status) {
+                "waiting" => "info",
+                "progress" => "warning",
+                "finish" => "success",
+            };
+        } else {
+            return match($this->status) {
+                "waiting" => "fa-pen",
+                "progress" => "fa-spin fa-spinner-pulse",
+                "finish" => "fa-check-circle",
+            };
+        }
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid {$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</span>";
     }
 }

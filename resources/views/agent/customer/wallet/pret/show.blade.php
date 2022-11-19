@@ -393,6 +393,7 @@
                                             <tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
                                                 <th>Référence</th>
                                                 <th>Date d'incident</th>
+                                                <th>Date de déclaration</th>
                                                 <th>Etat</th>
                                                 <th></th>
                                             </tr>
@@ -401,7 +402,9 @@
                                             @foreach($wallet->loan->insurance->claims as $claim)
                                                 <tr>
                                                     <td>{{ $claim->reference }}</td>
+                                                    <td>{{ $claim->updated_at->format('d/m/Y') }}</td>
                                                     <td>{{ $claim->incidentDate->format('d/m/Y') }}</td>
+                                                    <td>{!! $claim->status_label !!}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
