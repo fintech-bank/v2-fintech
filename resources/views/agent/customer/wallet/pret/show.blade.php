@@ -271,10 +271,12 @@
                                 <td class="fw-bold">Pénalité de retard</td>
                                 <td>0,50 %</td>
                             </tr>
+                            @if($wallet->loan->status != 'open')
                             <tr>
                                 <td class="fw-bold">Date de confirmation</td>
                                 <td>{{ $wallet->loan->confirmed_at->format("d/m/Y") }}</td>
                             </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
