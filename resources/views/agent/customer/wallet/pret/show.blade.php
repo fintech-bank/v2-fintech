@@ -100,7 +100,10 @@
                     <div class="d-flex flex-wrap flex-stack">
                         <!--begin::Wrapper-->
                         <div class="d-flex flex-column flex-grow-1 pe-8">
-                            &nbsp;
+                            &nbsp;<div class="d-flex flex-column border rounded p-2">
+                                <div class="fs-4 fw-bolder">Etat du Prêt</div>
+                                <div class="">{!! $wallet->loan->status_label !!}</div>
+                            </div>
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Progress-->
@@ -139,11 +142,6 @@
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#infos"><i class="fa-solid fa-info-circle me-2"></i> Informations</a>
-                </li>
-                <!--end::Nav item-->
-                <!--begin::Nav item-->
-                <li class="nav-item mt-2">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#transfers"><i class="fa-solid fa-exchange me-2"></i> Virements</a>
                 </li>
                 <!--end::Nav item-->
             </ul>
