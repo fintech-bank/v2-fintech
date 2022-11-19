@@ -57,7 +57,11 @@
             success: data => {
                 console.log(data)
                 if(!data) {
-                    console.log(elements.cniField.parentNode)
+                    elements.cniField.classList.add('is-valid')
+                    elements.cniField.classList.add('is-invalid')
+                } else {
+                    elements.cniField.classList.remove('is-invalid')
+                    elements.cniField.classList.add('is-valid')
                 }
             }
         })
