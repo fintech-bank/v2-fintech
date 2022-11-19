@@ -97,7 +97,7 @@
             $.ajax({
                 url: '/api/customer/{{ $customer->id }}/pret/verify',
                 method: 'POST',
-                data: {"verify": 'result'},
+                data: {"verify": 'result', "form": $(forms.formAddCredit).serializeArray()},
                 success: data => {
                     console.log(data)
                 }
