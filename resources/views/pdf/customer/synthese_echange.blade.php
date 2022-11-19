@@ -56,7 +56,7 @@
         <p>Vous avez choisi l'offre: <strong>{{ $customer->package->name }}</strong></p>
         <p>Forfait à <strong class="fs-5">{{ eur($customer->package->price) }}</strong> / par mois avec:</p>
         <ul>
-            <li>Une carte bancaire VISA {{ Str::ucfirst($data->card->support)}} à débit {{ \App\Helper\CustomerCreditCard::getDebit($data->card->debit) }}</li>
+            <li>Une carte bancaire VISA {{ Str::ucfirst($data->card->support->name)}} à débit {{ $data->card->debit_format }}</li>
             <li>Un compte courant avec RIB Français</li>
         </ul>
     </div>
