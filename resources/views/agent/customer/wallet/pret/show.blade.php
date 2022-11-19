@@ -82,14 +82,16 @@
                         </div>
                         <!--end::User-->
                         <div class="d-flex my-4">
-                            @if($wallet->loan->payment->solde_remaining <= 0)
-                                @if($wallet->loan->first_payment_at->subDays(3)->startOfDay() <= now()->startOfDay())
-                                    <div class="text-warning"><i class="fa-solid fa-exclamation-triangle text-warning me-2"></i> Compte de paiement débiteur, la mensualité va être rejetée {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
+                            @if($wallet->loan->status != 'open')
+                                @if($wallet->loan->payment->solde_remaining <= 0)
+                                    @if($wallet->loan->first_payment_at->subDays(3)->startOfDay() <= now()->startOfDay())
+                                        <div class="text-warning"><i class="fa-solid fa-exclamation-triangle text-warning me-2"></i> Compte de paiement débiteur, la mensualité va être rejetée {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
+                                    @else
+                                        <div class="text-success"><i class="fa-solid fa-check text-success me-2"></i> La prochainement mensualité de {{ $wallet->loan->mensuality_format }} sera débité {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
+                                    @endif
                                 @else
                                     <div class="text-success"><i class="fa-solid fa-check text-success me-2"></i> La prochainement mensualité de {{ $wallet->loan->mensuality_format }} sera débité {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
                                 @endif
-                            @else
-                                <div class="text-success"><i class="fa-solid fa-check text-success me-2"></i> La prochainement mensualité de {{ $wallet->loan->mensuality_format }} sera débité {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
                             @endif
                         </div>
                     </div>
