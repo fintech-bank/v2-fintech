@@ -7,7 +7,9 @@
         validResultPret: document.querySelector("#validResultPret"),
     }
     let modals = {}
-    let forms = {}
+    let forms = {
+        formAddCredit: document.querySelector("#formAddCredit")
+    }
     let dataTable = {}
     let block = {
         blockResultPrerequest: new KTBlockUI(elements.validResultPrerequest),
@@ -40,10 +42,20 @@
                 method: 'POST',
                 data: {"verify": 'prerequest'},
                 success: data => {
+                    block.blockResultPrerequest.release()
+                    block.blockResultPrerequest.destroy()
                     let elDiv = elements.validResultPrerequest.querySelector('.card-body');
                     elDiv.innerHTML = ``
                     Array.from(data.data).forEach(alert => {
-                        elDiv.innerHTML += `${alert}`
+                        elDiv.innerHTML += `${alert}<br>`
+                    })
+                    $.ajax({
+                        url: '/api/customer/{{ $customer->id }}/pret/verify',
+                        method: 'POST',
+                        data: {"verify": 'loan'},
+                        success: data => {
+                            console.log(data)
+                        }
                     })
                 }
             })

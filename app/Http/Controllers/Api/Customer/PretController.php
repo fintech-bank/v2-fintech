@@ -24,9 +24,14 @@ class PretController extends ApiController
     public function verify($customer_id, Request $request)
     {
         $customer = Customer::find($customer_id);
-        $match = match($request->get('verify')) {
-            "prerequest" => VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer)
-        };
+        try {
+            $match = match($request->get('verify')) {
+                "prerequest" => VerifCompatibilityBeforeLoanTrait::prerequestLoan($customer),
+                "loan" => VerifCompatibilityBeforeLoanTrait::verify($customer)
+            };
+        }catch (\Exception $exception) {
+            return $this->sendError($exception);
+        }
 
         return $this->sendSuccess(null, [$match]);
     }
