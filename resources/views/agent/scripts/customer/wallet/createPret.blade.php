@@ -104,6 +104,11 @@
                     document.querySelector('[data-content="amount_loan"]').innerHTML = document.querySelector('[name="amount_loan"]').value
                     document.querySelector('[data-content="duration"]').innerHTML = document.querySelector('[name="duration"]').value
                     document.querySelector('[data-content="mensuality"]').innerHTML = data.data[0].mensuality
+                    document.querySelector('[data-content="taux"]').innerHTML = data.data[0].taux
+                    document.querySelector('[data-content="amount_du"]').innerHTML = data.data[0].amount_du
+                    document.querySelector('[data-content="assurance_type"]').innerHTML = document.querySelector('[name="assurance_type"]').value
+                    document.querySelector('[data-content="taxe_assurance"]').innerHTML = data.data[0].taxe_assurance
+                    document.querySelector('[data-content="amount_du_assurance"]').innerHTML = data.data[0].amount_du
                 }
             })
         }

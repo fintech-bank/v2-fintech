@@ -65,7 +65,7 @@ class PretController extends ApiController
             $mensuality = eur($request->get('amount_loan') / ($request->get('duration') * 12));
             $taux = $plan->tarif->type_taux == 'fixe' ? $plan->tarif->interest : $this->CalcTauxVariable($request->get('amount_loan'), $plan);
             $interest = $request->get('amount_loan') * $taux / 100;
-            $amount_du = $request->get('amount_loan') + $interest;
+            $amount_du = eur($request->get('amount_loan') + $interest);
             $taxe_assurance = 'Non Renseignable';
 
             return [

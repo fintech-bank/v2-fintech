@@ -186,6 +186,15 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="mb-10">
+                                    <label for="assurance_type" class="form-label required">Compte de Paiement</label>
+                                    <select class="form-control form-control-solid" data-control="select2" name="assurance_type" data-placeholder="Selectionner un compte de paiement" required>
+                                        <option value=""></option>
+                                        <option value="D">Décès</option>
+                                        <option value="DIM">Décès, Invalidité, Maladie</option>
+                                        <option value="DIMC">Décès, Invalidité, Maladie, Perte d'emploi</option>
+                                    </select>
+                                </div>
                             </div>
                             <!--begin::Step 1-->
 
