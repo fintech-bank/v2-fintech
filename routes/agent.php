@@ -105,4 +105,13 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
             });
         });
     });
+
+    Route::prefix('insurance')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Agent\Insurance\InsuranceController::class, 'index'])->name('agent.insurance');
+        Route::get('{reference}', [\App\Http\Controllers\Agent\Insurance\InsuranceController::class, 'show'])->name('agent.insurance.show');
+
+        Route::prefix('{reference}/claims')->group(function () {
+            Route::get('{reference}', [\App\Http\Controllers\Agent\Insurance\ClaimController::class, 'index'])->name('agent.insurance.claim.show');
+        });
+    });
 });
