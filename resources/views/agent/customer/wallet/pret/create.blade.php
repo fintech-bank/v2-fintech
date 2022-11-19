@@ -165,6 +165,14 @@
                         <div class="mb-5">
                             <!--begin::Step 1-->
                             <div class="flex-column w-100 current" data-kt-stepper-element="content">
+                                <x-form.checkbox
+                                    name="required_insurance"
+                                    label="Assurance emprunteur requise"
+                                    value="1" />
+                                <x-form.checkbox
+                                    name="required_caution"
+                                    label="Caution requise"
+                                    value="1" />
                                 <div class="mb-10">
                                     <label for="loan_plan_id" class="form-label required">Type de crédit</label>
                                     <select class="form-control form-control-solid" data-control="select2" name="loan_plan_id" data-placeholder="Selectionner un type de crédit">
@@ -200,16 +208,6 @@
                                         @foreach($customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $wallet)
                                             <option value="{{ $wallet->id }}">{{ $wallet->name_account }}</option>
                                         @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-10">
-                                    <label for="assurance_type" class="form-label required">Type d'assurance emprunteur</label>
-                                    <select class="form-control form-control-solid" data-control="select2" name="assurance_type" data-placeholder="Selectionner un type d'assurance emprunteur">
-                                        <option value=""></option>
-                                        <option value="NONE">Aucune Assurance</option>
-                                        <option value="D">Décès</option>
-                                        <option value="DIM">Décès, Invalidité, Maladie</option>
-                                        <option value="DIMC">Décès, Invalidité, Maladie, Perte d'emploi</option>
                                     </select>
                                 </div>
                             </div>
