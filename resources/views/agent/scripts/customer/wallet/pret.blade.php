@@ -2,6 +2,7 @@
     let tables = {
         tableTransaction: document.querySelector("#kt_transaction_table"),
         tableClaims: document.querySelector("#liste_claims"),
+        tableCaution: document.querySelector("#liste_caution"),
     }
     let elements = {}
     let modals = {}
@@ -19,6 +20,11 @@
             pageLength: 10,
         }),
         datatableClaims: $(tables.tableClaims).DataTable({
+            info: !1,
+            order: [],
+            pageLength: 10,
+        }),
+        datatableCaution: $(tables.tableCaution).DataTable({
             info: !1,
             order: [],
             pageLength: 10,
