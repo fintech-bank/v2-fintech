@@ -164,7 +164,7 @@
                     </div>
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                         @if($wallet->loan->payment->solde_remaining <= 0)
-                            @if($wallet->loan->first_payment_at->subDays(3)->startOfDay() == now()->startOfDay())
+                            @if($wallet->loan->first_payment_at->subDays(3)->startOfDay() != now()->startOfDay())
                                 <div class="text-warning"><i class="fa-solid fa-exclamation-triangle text-white me-2"></i> Compte de paiement débiteur, la mensualité va être rejetée dans {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
                             @endif
                         @endif
