@@ -263,7 +263,11 @@
                             </tr>
                             <tr>
                                 <td class="fw-bold">Total Payé</td>
-                                <td>{{ \App\Scope\CalcLoanTrait::calcAmountPaid($wallet->loan) }}</td>
+                                <td class="text-success">{{ \App\Scope\CalcLoanTrait::calcAmountPaid($wallet->loan) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Pénalité de retard</td>
+                                <td>0,50 %</td>
                             </tr>
                         </tbody>
                     </table>
