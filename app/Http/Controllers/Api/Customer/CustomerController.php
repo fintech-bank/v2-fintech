@@ -278,7 +278,7 @@ class CustomerController extends Controller
 
     private function verifyCni(string $name, string $dep_nai, string $genre, string $birthdate, string $cni, string $pays_nai, string $versionCNI = '1995')
     {
-        $cni_array = explode($cni, ',');
+        $cni_array = explode(',', $cni);
         dd($cni_array);
         if($versionCNI == '1995') {
             return VerifCNITrait::version1992($cni_array[0], $cni_array[1], $pays_nai, $name, $dep_nai, $birthdate, $genre);
