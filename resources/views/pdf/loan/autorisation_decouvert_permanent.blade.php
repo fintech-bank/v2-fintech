@@ -1,7 +1,7 @@
 @extends('pdf.layouts.app')
 
 @section("content")
-    <div class="text-center fw-bolder fs-3">
+    <div class="text-center fw-bolder fs-3 mb-5">
         <div class="">OFFRE DE CONTRAT DE CREDIT</div>
         <div class="">AUTORISATION DE DÉCOUVERT</div>
     </div>
