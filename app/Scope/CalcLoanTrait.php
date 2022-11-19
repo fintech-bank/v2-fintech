@@ -65,4 +65,5 @@ trait CalcLoanTrait
             default => 12,
         };
     }
+
 }
