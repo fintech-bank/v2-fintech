@@ -260,7 +260,7 @@ class CustomerController extends Controller
 
         $customer->info->notify(new NewPretNotification($customer, $credit, $docs));
 
-        return redirect()->route('agent.customer.wallet.show', $wallet->id)->with('success', "Le contrat de crédit {$credit->reference} à été créer avec succès");
+        return redirect()->route('agent.customer.wallet.show', $wallet->number_account)->with('success', "Le contrat de crédit {$credit->reference} à été créer avec succès");
     }
 
     private function updateStatus(Customer $customer, Request $request)
