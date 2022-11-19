@@ -344,7 +344,7 @@ class CustomerController extends Controller
             $customer,
             'insurance.contrat_assurance',
             'Contrat Assurance '.$insurance->package->name,
-            3,
+            1,
             $insurance->reference,
             true,
             true,
@@ -365,7 +365,7 @@ class CustomerController extends Controller
             $customer,
             'insurance.synthese_echange',
             'Synthese Echange '.$insurance->package->name,
-            3,
+            1,
             $insurance->reference,
             false,
             false,
@@ -378,7 +378,7 @@ class CustomerController extends Controller
             $customer,
             'insurance.bordereau_retractation',
             'Bordereau de retractation',
-            3,
+            1,
             $insurance->reference,
             false,
             false,
@@ -386,9 +386,13 @@ class CustomerController extends Controller
             true,
             ['insurance' => $insurance]
         );
-        $docs = [
-            ['url' => public_path($contract->url_folder)]
-        ];
+
+        $docs = [];
+        foreach ($customer->documents()->where('reference', $insurance->reference)->get() as $doc) {
+            $docs[] = [
+                'url' => public_path($doc->url_folder)
+            ];
+        }
 
         $customer->info->notify(new NewContractInsuranceNotification($customer, $insurance, $docs));
 
