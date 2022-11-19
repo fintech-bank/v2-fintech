@@ -11,6 +11,7 @@ use App\Models\Customer\CustomerDocument;
 use App\Notifications\Customer\Sending\SendVerifyAddressCustomerLinkNotification;
 use App\Notifications\Customer\Sending\SendVerifyIdentityCustomerLinkNotification;
 use App\Notifications\Customer\Sending\SendVerifyIncomeCustomerLinkNotification;
+use App\Scope\VerifCNITrait;
 use App\Services\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -200,8 +201,18 @@ class CustomerController extends Controller
 
             case 'income':
                 $customer->info->notify(new SendVerifyIncomeCustomerLinkNotification($customer));
+                break;
 
             case 'cni':
+                $cn = $this->verifyCni(
+                    $request->get('name'),
+                    $request->get('dep_nai'),
+                    $request->get('genre'),
+                    $request->get('birthdate'),
+                    $request->get('cni_number'),
+                    $request->get('pays_nai'),
+                    $request->get('cni_version')
+                );
 
         }
 
@@ -265,9 +276,12 @@ class CustomerController extends Controller
         return response()->json(['offer' => "Offre de bienvenue"]);
     }
 
-    private function verifyCni(string $cni)
+    private function verifyCni(string $name, string $dep_nai, string $genre, string $birthdate, string $cni, string $pays_nai, string $versionCNI = '1995')
     {
-        $string = $cni;
+        $cni_array = explode($cni, ',');
+        if($versionCNI == '1995') {
+            return VerifCNITrait::version1992($cni_array[0], $cni_array[1], $pays_nai, $name, $dep_nai, $birthdate, $genre);
+        }
 
     }
 }

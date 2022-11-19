@@ -10,4 +10,11 @@ class CountryHelper
 
         return $response->first()->name->common;
     }
+
+    public static function getCountryByName($pays, $field = null)
+    {
+        $response = collect(\Http::get('https://restcountries.com/v3.1/name/'.$pays)->object());
+
+        return $field ? $response->first()->$field : $response->first()->name->common;
+    }
 }

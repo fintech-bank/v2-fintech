@@ -565,9 +565,28 @@
                                     required="true" />
                             </div>
                         </div>
+                        <div class="mb-10">
+                            <label for="" class="form-label required">Version de la carte d'identité</label>
+                            <select name="cni_version" class="form-control form-control-solid" data-control="select2">
+                                <option value="1995">1995</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <x-form.input name="dep_nai" label="Département de naissance" required="true" />
+                            </div>
+                            <div class="col-md-3">
+                                <x-form.input name="pays_nai" label="Pays de naissance" required="true" />
+                            </div>
+                        </div>
                         <x-form.input
                             name="cni_number"
                             label="N° Carte d'identité"
+                            required="true" />
+                        <x-form.input
+                            name="dep_birthday"
+                            label="Département de naissance"
                             required="true" />
                         <x-form.textarea
                             name="address"
