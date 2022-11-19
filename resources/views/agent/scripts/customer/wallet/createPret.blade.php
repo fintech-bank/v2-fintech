@@ -23,7 +23,7 @@
         stepper.goPrevious();
     });
 
-    stepper.on("kt.stepper.change", function(stepper) {
+    stepper.on("kt.stepper.changed", function(stepper) {
         console.log(stepper.getCurrentStepIndex())
     });
 </script>
