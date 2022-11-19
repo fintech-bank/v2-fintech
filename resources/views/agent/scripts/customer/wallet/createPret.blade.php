@@ -21,4 +21,8 @@
     stepper.on("kt.stepper.previous", function (stepper) {
         stepper.goPrevious();
     });
+
+    stepper.on("kt.stepper.change", function(stepper) {
+        console.log(stepper.getCurrentStepIndex())
+    });
 </script>
