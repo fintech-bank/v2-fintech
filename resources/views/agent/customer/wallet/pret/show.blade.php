@@ -307,7 +307,28 @@
                     </div>
                 </div>
                 <div class="card-body">
-
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="insurance_contract" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-12 mb-5">
+                                    <div class="card shadow-sm">
+                                        <div class="card-header">
+                                            <h3 class="card-title">{{ $wallet->loan->insurance->package->name }}</h3>
+                                            <div class="card-toolbar">
+                                                <!--<button type="button" class="btn btn-sm btn-light">
+                                                    Action
+                                                </button>-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            
+                                        </div>   
+                                    </div>
+                                </div>
+                                <div class="col-md-9 col-sm-12"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
