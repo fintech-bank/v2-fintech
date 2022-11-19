@@ -535,7 +535,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formAddCaution" action="" method="post" enctype="multipart/form-data">
+                <form id="formAddCaution" action="{{ route('agent.customer.wallet.caution', $wallet->number_account) }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">

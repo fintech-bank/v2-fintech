@@ -57,6 +57,27 @@ class CustomerWalletController extends Controller
         }
     }
 
+    public function caution($number_account, Request $request)
+    {
+        $wallet = CustomerWallet::where('number_account', $number_account)->first();
+
+        $cautions = collect(json_decode($wallet->loan->caution));
+
+        $cautions->push([
+            'name' => $request->get('name'),
+            'lastname' => $request->get('lastname'),
+            'birthdate' => $request->get('birthdate'),
+            'cni' => $request->get('cni_number'),
+            'address' => $request->get('address'),
+            'postal' => $request->get('postal'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+            'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
+            'caution_type' => $request->get('caution_type'),
+        ])
+    }
+
     private function createCompte(Customer $customer)
     {
         return CustomerWalletHelper::createWallet(
