@@ -239,6 +239,12 @@
                                                     <td></td>
                                                 </tr>
                                             </tbody>
+                                            <tfoot>
+                                                <tr class="fw-bolder fs-3">
+                                                    <td>Montant total dû</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
