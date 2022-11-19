@@ -62,7 +62,7 @@ class PretController extends ApiController
         $plan = LoanPlan::find($request->get('wallet_payment_id'));
 
         try {
-            $mensuality = eur($request->get('amount_loan') / $request->get('duration'));
+            $mensuality = eur($request->get('amount_loan') / ($request->get('duration') * 12));
             $taux = $plan->tarif->type_taux == 'fixe' ? $plan->tarif->interest : $this->CalcTauxVariable($request->get('amount_loan'), $plan);
             $interest = $request->get('amount_loan') * $taux / 100;
             $amount_du = $request->get('amount_loan') + $interest;
