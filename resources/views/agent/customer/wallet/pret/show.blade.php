@@ -382,7 +382,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Sinistres</h3>
                                     <div class="card-toolbar">
-                                        <button type="button" class="btn btn-sm btn-light">
+                                        <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#AddClaim">
                                             Déclarer un sinistre
                                         </button>
                                     </div>
@@ -416,6 +416,25 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="AddClaim">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Déclaration de sinitre</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+
                 </div>
             </div>
         </div>
