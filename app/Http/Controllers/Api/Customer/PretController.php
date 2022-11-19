@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api\Customer;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
+use App\Models\Core\LoanPlan;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerPret;
 use App\Notifications\Customer\UpdateStatusPretNotification;
+use App\Scope\CalcLoanTrait;
 use App\Scope\VerifCompatibilityBeforeLoanTrait;
 use Illuminate\Http\Request;
 
@@ -50,6 +52,48 @@ class PretController extends ApiController
 
     private function result(Customer $customer, Request $request)
     {
+        $request->validate([
+            'loan_plan_id' => "required",
+            'amount_loan' => "required",
+            'duration' => "required|int|min_digits:1|max_digits:30",
+            'wallet_payment_id' => "required"
+        ]);
 
+        $plan = LoanPlan::find($request->get('wallet_payment_id'));
+
+        try {
+            $mensuality = eur($request->get('amount_loan') / $request->get('duration'));
+            $taux = $plan->tarif->type_taux == 'fixe' ? $plan->tarif->interest : $this->CalcTauxVariable($request->get('amount_loan'), $plan);
+            $interest = $request->get('amount_loan') * $taux / 100;
+            $amount_du = $request->get('amount_loan') + $interest;
+            $taxe_assurance = 'Non Renseignable';
+
+            return [
+                'mensuality' => $mensuality,
+                'taux' => $taux." %",
+                'amount_du' => $amount_du,
+                'taxe_assurance' => $taxe_assurance
+            ];
+        }catch (\Exception $exception) {
+            return [];
+        }
+    }
+
+    private function CalcTauxVariable($amount,LoanPlan $plan)
+    {
+        $min = $plan->tarif->min_interest;
+        $max = $plan->tarif->max_interest;
+
+        if($amount <= 100) {
+            return $min;
+        } elseif($amount > 101 && $amount <= 500) {
+            return $min/1.3;
+        } elseif($amount > 501 && $amount <= 3000) {
+            return $min/2.6;
+        } elseif($amount > 3001 && $amount <= 5000) {
+            return ceil($min/3.1);
+        } else {
+            return $max;
+        }
     }
 }
