@@ -4,7 +4,9 @@
         tableClaims: document.querySelector("#liste_claims"),
         tableCaution: document.querySelector("#liste_caution"),
     }
-    let elements = {}
+    let elements = {
+        cniField: document.querySelector('[name="cni_number"]')
+    }
     let modals = {}
     let forms = {
         formAddClaim: document.querySelector("#formAddClaim")
@@ -31,6 +33,32 @@
         }),
     }
     let block = {}
+
+    if(elements.cniField) {
+        elements.cniField.addEventListener('blur', e => {
+            verifyCni(e)
+        })
+    }
+
+    let verifyCni = (fie) => {
+        $.ajax({
+            url: '/api/customer/{{ $wallet->customer->id }}/verify',
+            method: 'POST',
+            data: {
+                "verify": "cni",
+                "name": document.querySelector('[name="name"]').value,
+                "dep_nai": document.querySelector('[name="dep_nai"]').value,
+                "genre": document.querySelector('[name="genre"]').value,
+                "birthdate": document.querySelector('[name="birthdate"]').value,
+                "cni_number": fie.target.value,
+                "pays_nai": document.querySelector('[name="pays_nai"]').value,
+                "cni_version": document.querySelector('[name="cni_version"]').value,
+            },
+            success: data => {
+                console.log(data)
+            }
+        })
+    }
 
     $(forms.formAddClaim).on('submit', e => {
         e.preventDefault()
