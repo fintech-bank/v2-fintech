@@ -424,7 +424,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Caution sur le pret</h3>
                     <div class="card-toolbar">
-                        <button type="button" class="btn btn-sm btn-light">
+                        <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#AddCaution">
                             Ajouter une caution
                         </button>
                     </div>
