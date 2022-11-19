@@ -109,5 +109,12 @@ class InsurancePackageSeeder extends Seeder
             'slug' => "complementary-health-insurance",
             'synopsis' => "Couverture adaptée à vos besoins et à votre budget. 4 formules au choix et 5 renforts en option. À partir de 15,12 euros par mois.",
         ]);
+
+        InsurancePackage::query()->create([
+            'insurance_type_id' => 3,
+            'name' => 'Assurance Emprunteur',
+            'slug' => "holder-insurance",
+            'synopsis' => "Couverture de votre prêt bancaire souscrit à ".config('app.name'),
+        ]);
     }
 }

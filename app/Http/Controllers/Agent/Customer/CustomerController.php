@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Agent\Customer;
 
 use App\Helper\CustomerHelper;
+use App\Helper\CustomerLoanHelper;
+use App\Helper\CustomerWalletHelper;
+use App\Helper\CustomerWalletTrait;
 use App\Helper\DocumentFile;
 use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
@@ -11,6 +14,7 @@ use App\Models\Customer\Customer;
 use App\Notifications\Customer\LogNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -142,6 +146,35 @@ class CustomerController extends Controller
     public function storePret($customer_id, Request $request)
     {
         dd($request->all());
+        $customer = Customer::find($customer_id);
+
+        $wallet = CustomerWalletHelper::createWallet(
+            $customer,
+            'pret'
+        );
+
+        // Création du Crédit
+        $credit = $customer->prets()->create([
+            'uuid' => Str::uuid(),
+            'reference' => generateReference(10),
+            'amount_loan' => $request->get('amount_loan'),
+            'amount_du' => 0,
+            'amount_interest' => 0,
+            'mensuality' => 0,
+            'prlv_day' => $request->get('prlv_day'),
+            'duration' => $request->get('duration') * 12,
+            'assurance_type' => $request->get('assurance_type'),
+            'customer_wallet_id' => $wallet->id,
+            'wallet_payment_id' => $request->get('wallet_payment_id'),
+            'first_payment_at' => null,
+            'required_caution' => $request->has('required_caution'),
+            'required_insurance' => $request->has('required_insurance'),
+            'loan_plan_id' => $request->get('loan_plan_id'),
+            'customer_id' => $customer_id
+        ]);
+
+
+
     }
 
     private function updateStatus(Customer $customer, Request $request)

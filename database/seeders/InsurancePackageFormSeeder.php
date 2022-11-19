@@ -201,6 +201,21 @@ class InsurancePackageFormSeeder extends Seeder
             'insurance_package_id' => 17,
             'name' => 'Optimale',
             'typed_price' => 64.25
+        ])->create([
+            'insurance_package_id' => 18,
+            'name' => 'D',
+            'synopsis' => 'Garantie Décès',
+            'typed_price' => 0
+        ])->create([
+            'insurance_package_id' => 18,
+            'name' => 'DIM',
+            'synopsis' => 'Garantie Décès, Invalidité, Maladie',
+            'typed_price' => 0
+        ])->create([
+            'insurance_package_id' => 18,
+            'name' => 'DIMC',
+            'synopsis' => 'Garantie Décès, Invalidité, Maladie, Perte d\'emploi',
+            'typed_price' => 0
         ]);
     }
 }
