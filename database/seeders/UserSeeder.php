@@ -15,6 +15,7 @@ use App\Models\Customer\CustomerSituationCharge;
 use App\Models\Customer\CustomerSituationIncome;
 use App\Models\Customer\CustomerWallet;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -78,7 +79,7 @@ class UserSeeder extends Seeder
             'isVerified' => true,
             'customer_id' => $customer->id,
             'email' => $user->email,
-            'datebirth' => now()->between(now()->subYears(18), now()->subYears(35)),
+            'datebirth' => Carbon::create(rand(1980,2004), rand(1,12), rand(1,31)),
         ]);
 
         $info->setPhoneVerified($info->phone, 'phone');
