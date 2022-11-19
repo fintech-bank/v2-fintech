@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('designation');
             $table->boolean('check');
             $table->float('price');
-            $table->string('condition')->nullable();
+            $table->longText('condition')->nullable();
             $table->integer('count')->nullable();
 
             $table->foreignId('insurance_package_form_id')
