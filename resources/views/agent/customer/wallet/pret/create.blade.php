@@ -159,7 +159,7 @@
                 <!--begin::Content-->
                 <div class="flex-row-fluid">
                     <!--begin::Form-->
-                    <form id="formAddCredit" class="form w-lg-500px" action="{{ route('agent.customer.pret.store', $customer->id) }}" method="POST">
+                    <form id="formAddCredit" class="form" action="{{ route('agent.customer.pret.store', $customer->id) }}" method="POST">
                         @csrf
                         <!--begin::Group-->
                         <div class="mb-5">
