@@ -138,4 +138,10 @@
         Le montant de ma cotisation {{ $data->insurance->type_prlv_text }} s'élève à {{ $data->insurance->mensuality_format }}. Le compte bancaire associé à la présente Demande d'Adhésion est le :<br>
         IBAN : FR76 3000 3017 4200 0501 7057 192.
     </p>
+    <p>Je suis informé(e) que l'adhésion est valable un an et se renouvellera annuellement par tacite reconduction à la date anniversaire de la
+        date d'effet, sauf renonciation.</p>
+
+    <div class="page-break"></div>
+    <p>{{ Str::upper($data->insurance->package->name) }} - Demande d'adhésion valant Certificat Individuel d'Adhésion</p>
+    <p>N° D'ADHESION: {{ $data->insurance->reference }}</p>
 @endsection
