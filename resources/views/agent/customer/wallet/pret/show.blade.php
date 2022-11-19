@@ -402,8 +402,8 @@
                                             @foreach($wallet->loan->insurance->claims as $claim)
                                                 <tr>
                                                     <td>{{ $claim->reference }}</td>
-                                                    <td>{{ $claim->updated_at->format('d/m/Y') }}</td>
                                                     <td>{{ $claim->incidentDate->format('d/m/Y') }}</td>
+                                                    <td>{{ $claim->updated_at->format('d/m/Y') }}</td>
                                                     <td>{!! $claim->status_label !!}</td>
                                                 </tr>
                                             @endforeach
