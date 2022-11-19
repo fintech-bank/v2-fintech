@@ -387,15 +387,6 @@ class CustomerController extends Controller
             ['insurance' => $insurance]
         );
 
-        $docs = [];
-        foreach ($customer->documents()->where('reference', $insurance->reference)->get() as $doc) {
-            $docs[] = [
-                'url' => public_path($doc->url_folder)
-            ];
-        }
-
-        $customer->info->notify(new NewContractInsuranceNotification($customer, $insurance, $docs));
-
         return $insurance;
     }
 }
