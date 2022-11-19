@@ -10,6 +10,10 @@
 
     let stepper = new KTStepper(elements.stepperElement)
 
+    stepper.on("kt.stepper.click", function (stepper) {
+        stepper.goTo(stepper.getClickedStepIndex());
+    });
+
     stepper.on("kt.stepper.next", function (stepper) {
         stepper.goNext();
     });
