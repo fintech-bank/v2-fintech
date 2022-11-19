@@ -193,9 +193,7 @@
                             <div class="flex-column w-100" data-kt-stepper-element="content">
                                 <div class="card shadow-sm mb-10" id="validResultPrerequest">
                                     <div class="card-body">
-                                        <div class="text-success mb-1" data-content="customerVerified"><i class="fa-solid fa-check-circle text-success fs-3 me-2"></i> Le compte du client est vérifier</div>
-                                        <div class="text-success mb-1" data-content="addressVerified"><i class="fa-solid fa-check-circle text-success fs-3 me-2"></i> L'adresse postale du client est vérifier</div>
-                                        <div class="text-success mb-1" data-content="incomeVerified"><i class="fa-solid fa-check-circle text-success fs-3 me-2"></i> Les informations de revenues du client sont vérifier</div>
+
                                     </div>
                                 </div>
                                 <div class="card shadow-sm mb-10" id="validResultPret">
