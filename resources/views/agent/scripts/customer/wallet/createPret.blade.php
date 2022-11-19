@@ -57,6 +57,7 @@
                             block.blockResultPret.destroy()
                             let elDiv = elements.validResultPret.querySelector('.card-body');
                             elDiv.innerHTML = ``
+                            console.log(data.data[0])
                             if(data.data[0] === 'false') {
                                 elDiv.innerHTML += `
                                 <div class="d-flex flex-center w-100 mx-auto">
