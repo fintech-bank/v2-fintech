@@ -50,7 +50,7 @@
     </div>
     <div class="page-break"></div>
     <div class="rounded py-1 px-1 border">
-        <span class="fw-bolder">Taux débiteur :</span> Le taux débiteur est variable. Toute utilisations résultant de l’utilisation de l'encours donne lieu
+        <span class="fw-bolder">Taux débiteur :</span> Le taux débiteur est variable. Toutes utilisations résultant de l’utilisation de l'encours donne lieu
         à la perception d’intérêts. <strong>Taux variable : de {{ $data->pret->plan->tarif->max_interest }}% à {{ $data->pret->plan->tarif->min_interest }} au
             {{ now()->format("d/m/Y") }}.</strong>
         <p>
@@ -71,7 +71,7 @@
             d’origine.
         </p>
         <p>
-            <span class="fw-bolder"><span class="underline">Montant total du crédit dû par l’Emprunteur : </span>{{ eur($data->wallet->balance_decouvert) }}</span>
+            <span class="fw-bolder"><span class="underline">Montant total du crédit dû par l’Emprunteur : </span>{{ eur($data->pret->amount_loan_format) }}</span>
         </p>
         <p>
             <span class="fw-bolder">Sûretés et assurances exigées :</span><br>
