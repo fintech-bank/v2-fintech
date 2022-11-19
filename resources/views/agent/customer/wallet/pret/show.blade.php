@@ -468,6 +468,8 @@
                             label="Le client est responsable du dommage ?" />
 
                         <x-form.input-file
+                            name="justificatif"
+                            label="Justificatif du sinistre" />
                     </div>
                     <div class="modal-footer">
                         <x-form.button />

@@ -35,7 +35,9 @@ class ClaimController extends Controller
                 <li><strong>Description de l'incident:</strong> <?= $claim->incidentDesc ?></li>
             </ul>
             <p>Vous devez également nous soumettre un ou plusieurs justificatifs en relation avec ce sinistre.</p>
-
+            <x-form.input-file
+                name="justificatif"
+                label="Justificatif du sinistre" />
             <?php
             $comment = ob_get_clean();
             RequestHelper::create(
