@@ -72,6 +72,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read string $assurance_type_format
  * @property-read string $mensuality_format
  * @property-read mixed $taux_variable
+ * @property int $required_insurance
+ * @property int $required_caution
+ * @property mixed|null $caution nom/prénom/datedenaissance/cni/address/telephone
+ * @property-read mixed $caution_text
+ * @property-read mixed $insurance_text
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereCaution($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereRequiredCaution($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereRequiredInsurance($value)
  */
 class CustomerPret extends Model
 {

@@ -51,6 +51,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $beneficiaire
  * @property-read \App\Models\Customer\CustomerWallet|null $payment
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsurance whereBeneficiaire($value)
+ * @property int $customer_wallet_id
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsurance whereCustomerWalletId($value)
  */
 class CustomerInsurance extends Model
 {

@@ -568,7 +568,7 @@ class CustomerHelper
         }
 
         if (isset($session->subscribe['daily_insurance'])) {
-            $this->createDailyAssuranceContract($customer);
+            $this->createDailyAssuranceContract($customer, $wallet);
         }
 
         if (isset($session->subscribe['card_code'])) {
@@ -591,7 +591,7 @@ class CustomerHelper
         }
     }
 
-    private function createDailyAssuranceContract(Customer $customer)
+    private function createDailyAssuranceContract(Customer $customer, CustomerWallet $wallet)
     {
         $contract = $customer->insurances()->create([
             'reference' => random_numeric(),
@@ -601,7 +601,8 @@ class CustomerHelper
             'mensuality' => 0,
             'customer_id' => $customer->id,
             'insurance_package_id' => 11,
-            'insurance_package_form_id' => 26
+            'insurance_package_form_id' => 26,
+            'customer_wallet_id' =>
         ]);
 
         $contract->update([
