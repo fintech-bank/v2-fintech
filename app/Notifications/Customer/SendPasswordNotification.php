@@ -33,10 +33,10 @@ class SendPasswordNotification extends Notification
 
     private function getMessage()
     {
-        $message = config('app.name');
-        $message .= "Afin de vous connecter à votre espace, voici vos identifiants:<br>";
-        $message .= "Identifiant: ".$this->identifiant;
-        $message .= "Mot de passe: ".$this->password;
+        $message = config('app.name')."\n\r";
+        $message .= "Afin de vous connecter à votre espace, voici vos identifiants:\n\r";
+        $message .= "Identifiant: ".$this->identifiant."\n\r";
+        $message .= "Mot de passe: ".$this->password."\n\r";
         $message .= "Veillez à changer votre mot de passe dès la première connexion.";
         return $message;
     }
