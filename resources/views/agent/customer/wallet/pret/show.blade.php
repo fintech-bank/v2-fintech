@@ -249,14 +249,12 @@
                                 <td class="fw-bold">Etat du pret</td>
                                 <td>{!! $wallet->loan->status_label !!}</td>
                             </tr>
-                            <tr>
-                                <td class="fw-bold">Date du premier Paiement</td>
-                                <td>{{ \Carbon\Carbon::create($wallet->loan->created_at->year, $wallet->loan->created_at->addMonth()->month, $wallet->loan->prlv_day)->format('d/m/Y') }}</td>
-                            </tr>
+                            @if($wallet->loan->status != 'open')
                             <tr>
                                 <td class="fw-bold">Date de fin du prêt</td>
                                 <td>{{ $wallet->loan->first_payment_at->addMonths($wallet->loan->duration)->format('d/m/Y') }}</td>
                             </tr>
+                            @endif
                             <tr>
                                 <td class="fw-bold">Capital demandée</td>
                                 <td>{{ $wallet->loan->amount_loan_format }}</td>
