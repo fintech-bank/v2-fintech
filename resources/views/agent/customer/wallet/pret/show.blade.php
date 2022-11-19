@@ -437,6 +437,7 @@
                                 <th>Date de naissance</th>
                                 <th>Adresse Postal</th>
                                 <th>Coordonnée</th>
+                                <th>Type de caution</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -456,6 +457,7 @@
                                     <td>
                                         <i class="fa-solid fa-phone me-2"></i>: {{ $caution->phone }}
                                     </td>
+                                    <td>Caution {{ $caution->caution_type }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
