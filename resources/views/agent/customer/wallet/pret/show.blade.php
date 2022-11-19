@@ -377,6 +377,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="insurance_claims" role="tabpanel">
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h3 class="card-title">Sinistres</h3>
+                                    <div class="card-toolbar">
+                                        <button type="button" class="btn btn-sm btn-light">
+                                            Déclarer un sinistre
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -87,6 +87,11 @@ class CustomerInsurance extends Model
         return $this->hasOne(CustomerPret::class);
     }
 
+    public function claims()
+    {
+        return $this->hasMany(CustomerInsuranceClaim::class);
+    }
+
     public function getStatusTextAttribute()
     {
         return match ($this->status) {
