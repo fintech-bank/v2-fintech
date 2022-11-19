@@ -54,6 +54,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $customer_wallet_id
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsurance whereCustomerWalletId($value)
  * @property-read \App\Models\Customer\CustomerPret|null $pret
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerInsuranceClaim[] $claims
+ * @property-read int|null $claims_count
  */
 class CustomerInsurance extends Model
 {

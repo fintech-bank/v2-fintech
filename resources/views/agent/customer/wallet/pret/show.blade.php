@@ -388,7 +388,24 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-
+                                    <table class="table table-bordered table-striped gx-7 gy-7">
+                                        <thead>
+                                            <tr>
+                                                <th>Référence</th>
+                                                <th>Date d'incident</th>
+                                                <th>Etat</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($wallet->loan->insurance->claims as $claim)
+                                                <tr>
+                                                    <td>{{ $claim->reference }}</td>
+                                                    <td>{{ $claim->incidentDate->format('d/m/Y') }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
