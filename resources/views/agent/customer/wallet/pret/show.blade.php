@@ -321,8 +321,31 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            
-                                        </div>   
+                                            <div class="d-flex flex-column">
+                                                <div class="fs-5 fw-bolder">Formule</div>
+                                                <div class="fs-4">{{ $wallet->loan->insurance->form->name }}</div>
+                                            </div>
+                                            <div class="separator my-5"></div>
+                                            <div class="d-flex flex-column">
+                                                <div class="fs-5 fw-bolder">Référence</div>
+                                                <div class="fs-4">{{ $wallet->loan->insurance->reference }}</div>
+                                            </div>
+                                            <div class="separator my-5"></div>
+                                            <div class="d-flex flex-column">
+                                                <div class="fs-5 fw-bolder">Date d'effet</div>
+                                                <div class="fs-4">{{ $wallet->loan->insurance->effect_date->format("d/m/Y") }}</div>
+                                            </div>
+                                            <div class="separator my-5"></div>
+                                            <div class="d-flex flex-column">
+                                                <div class="fs-5 fw-bolder">Date de fin de contrat</div>
+                                                <div class="fs-4">{{ $wallet->loan->insurance->end_date->format("d/m/Y") }}</div>
+                                            </div>
+                                            <div class="separator my-5"></div>
+                                            <div class="d-flex flex-column">
+                                                <div class="fs-5 fw-bolder">Mensualité</div>
+                                                <div class="fs-4">{{ $wallet->loan->insurance->mensuality_format }}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-9 col-sm-12"></div>
