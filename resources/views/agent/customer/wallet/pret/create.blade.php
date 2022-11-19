@@ -174,7 +174,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="row">
+                                <div class="row mb-10">
                                     <div class="col-4">
                                         <x-form.input
                                             name="amount_loan"
@@ -192,6 +192,15 @@
                                             name="prlv_day"
                                             label="Jours de prélèvement" />
                                     </div>
+                                </div>
+                                <div class="mb-10">
+                                    <label for="wallet_payment_id" class="form-label required">Type de crédit</label>
+                                    <select class="form-control form-control-solid" data-control="select2" name="wallet_payment_id" data-placeholder="Selectionner un compte de paiement">
+                                        <option value=""></option>
+                                        @foreach($customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $wallet)
+                                            <option value="{{ $wallet->id }}">{{ $wallet->name_account }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <!--begin::Step 1-->
