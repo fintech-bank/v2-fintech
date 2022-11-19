@@ -15,7 +15,7 @@ class ClaimController extends Controller
     {
         $insurance = CustomerInsurance::where('reference', $insurance_reference)->first();
 
-        $claim = $insurance->claims->create([
+        $claim = $insurance->claims()->create([
             'reference' => generateReference(),
             'responsability' => $request->has('responsability'),
             'incidentDate' => $request->get('incidentDate'),
