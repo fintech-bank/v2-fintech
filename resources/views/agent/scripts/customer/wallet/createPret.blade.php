@@ -40,7 +40,7 @@
                 method: 'POST',
                 data: {"verify": 'prerequest'},
                 success: data => {
-                    let elDiv = elements.validResultPrerequest.querySelector('.modal-body');
+                    let elDiv = elements.validResultPrerequest.querySelector('.card-body');
                     elDiv.innerHTML = ``
                     Array.from(data.data).forEach(alert => {
                         elDiv.innerHTML += `${alert}`
