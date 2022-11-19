@@ -163,34 +163,7 @@
                         </div>
                     </div>
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                        <div class="input-group w-250px">
-                            <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Ranger de date" id="kt_transaction_flatpickr" />
-                            <button class="btn btn-icon btn-light" id="kt_transaction_flatpickr_clear">
-                                <span class="svg-icon svg-icon-2">
-									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor" />
-										<rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor" />
-									</svg>
-								</span>
-                            </button>
-                        </div>
-                        <div class="w-100 mw-150px">
-                            <!--begin::Select2-->
-                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Types" data-kt-transaction-filter="types">
-                                <option></option>
-                                <option value="all">Tous</option>
-                                <option value="depot">Dépot</option>
-                                <option value="retrait">Retrait</option>
-                                <option value="payment">Paiement CB</option>
-                                <option value="virement">Virement bancaire</option>
-                                <option value="sepa">Prélèvement</option>
-                                <option value="frais">Frais Bancaire</option>
-                                <option value="souscription">Souscription</option>
-                                <option value="autre">Autre</option>
-                                <option value="facelia">Crédit Facelia</option>
-                            </select>
-                            <!--end::Select2-->
-                        </div>
+
                     </div>
                 </div>
                 <div class="card-body pt-0">
