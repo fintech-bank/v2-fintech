@@ -200,6 +200,9 @@ class CustomerController extends Controller
 
             case 'income':
                 $customer->info->notify(new SendVerifyIncomeCustomerLinkNotification($customer));
+
+            case 'cni':
+
         }
 
         return response()->json();
@@ -260,5 +263,11 @@ class CustomerController extends Controller
         session()->put('subscribe.offert', true);
 
         return response()->json(['offer' => "Offre de bienvenue"]);
+    }
+
+    private function verifyCni(string $cni)
+    {
+        $string = $cni;
+
     }
 }

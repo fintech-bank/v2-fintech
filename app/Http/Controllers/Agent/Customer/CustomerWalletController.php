@@ -75,7 +75,7 @@ class CustomerWalletController extends Controller
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
             'caution_type' => $request->get('caution_type'),
-        ])
+        ]);
     }
 
     private function createCompte(Customer $customer)

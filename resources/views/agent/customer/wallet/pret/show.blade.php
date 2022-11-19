@@ -537,6 +537,13 @@
 
                 <form id="formAddCaution" action="{{ route('agent.customer.wallet.caution', $wallet->number_account) }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
+                        <div class="mb-10">
+                            <label for="" class="form-label required">Genre</label>
+                            <select name="genre" class="form-control form-control-solid" data-control="select2">
+                                <option value="m">Masculin</option>
+                                <option value="f">Féminin</option>
+                            </select>
+                        </div>
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
                                 <x-form.input
