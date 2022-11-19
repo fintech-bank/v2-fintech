@@ -365,14 +365,14 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <ul class="d-flex flex-column">
+                                            <div class="d-flex flex-column">
                                                 @foreach($wallet->loan->insurance->form->warranties()->where('check', 1)->get() as $warranty)
 
                                                 <li class="d-flex align-items-center py-2">
                                                     <span class="bullet bullet-vertical bg-success me-5">{{ $warranty->designation }} </span>
                                                 </li>
                                                 @endforeach
-                                            </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
