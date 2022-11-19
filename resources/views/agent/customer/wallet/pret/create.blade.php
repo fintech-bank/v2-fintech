@@ -76,33 +76,6 @@
                         </div>
                         <!--end::Step 1-->
 
-                        <!--begin::Step 2-->
-                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
-                            <!--begin::Wrapper-->
-                            <div class="stepper-wrapper d-flex align-items-center">
-                                <!--begin::Icon-->
-                                <div class="stepper-icon w-40px h-40px">
-                                    <i class="stepper-check fas fa-check"></i>
-                                    <span class="stepper-number">2</span>
-                                </div>
-                                <!--begin::Icon-->
-
-                                <!--begin::Label-->
-                                <div class="stepper-label">
-                                    <h3 class="stepper-title">
-                                        Offre
-                                    </h3>
-                                </div>
-                                <!--end::Label-->
-                            </div>
-                            <!--end::Wrapper-->
-
-                            <!--begin::Line-->
-                            <div class="stepper-line h-40px"></div>
-                            <!--end::Line-->
-                        </div>
-                        <!--end::Step 2-->
-
                         <!--begin::Step 3-->
                         <div class="stepper-item me-5" data-kt-stepper-element="nav">
                             <!--begin::Wrapper-->
@@ -110,7 +83,7 @@
                                 <!--begin::Icon-->
                                 <div class="stepper-icon w-40px h-40px">
                                     <i class="stepper-check fas fa-check"></i>
-                                    <span class="stepper-number">3</span>
+                                    <span class="stepper-number">2</span>
                                 </div>
                                 <!--begin::Icon-->
 
@@ -137,7 +110,7 @@
                                 <!--begin::Icon-->
                                 <div class="stepper-icon w-40px h-40px">
                                     <i class="stepper-check fas fa-check"></i>
-                                    <span class="stepper-number">4</span>
+                                    <span class="stepper-number">3</span>
                                 </div>
                                 <!--begin::Icon-->
 
