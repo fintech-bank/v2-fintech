@@ -444,7 +444,7 @@
                             />
 
                         <x-form.textarea
-                            name="incident"
+                            name="incidentDesc"
                             label="Description de l'incident"
                             required="true" />
 
