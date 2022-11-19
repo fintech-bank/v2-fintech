@@ -36,7 +36,7 @@
     </p>
     <p>Nous demeurons naturellement à votre disposition pour toute question ou demande complémentaire.</p>
     <p>Bien cordialement, </p>
-    <p>{{ $customer->agent->name }}</p>
+    <p>{{ $customer->agent->name ?? '' }}</p>
     <p class="fs-2">
         Signé électroniquement<br>
         par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
