@@ -164,7 +164,7 @@
                         <!--begin::Group-->
                         <div class="mb-5">
                             <!--begin::Step 1-->
-                            <div class="flex-row current" data-kt-stepper-element="content">
+                            <div class="flex-column current" data-kt-stepper-element="content">
                                 <div class="mb-10">
                                     <label for="loan_plan_id" class="form-label required">Type de crédit</label>
                                     <select class="form-control form-control-solid" data-control="select2" name="loan_plan_id" data-placeholder="Selectionner un type de crédit">
