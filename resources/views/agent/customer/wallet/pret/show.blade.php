@@ -82,17 +82,6 @@
                         </div>
                         <!--end::User-->
                         <div class="d-flex my-4">
-                            <button class="btn btn-sm btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                <i class="fa-solid fa-chevron-down fs-3 me-2"></i> Outils
-                            </button>
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-300px py-3" data-kt-menu="true">
-                                <div class="menu-item px-3">
-                                    <a href="#showRib" class="menu-link px-3" data-bs-toggle="modal"><span class="iconify fs-3 me-2" data-icon="icon-park-twotone:bank-card"></span> Afficher le RIB</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="#updateStateAccount" class="menu-link px-3" data-bs-toggle="modal"><span class="iconify fs-3 me-2" data-icon="fluent-mdl2:status-circle-checkmark"></span> Changer le status du compte</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!--end::Title-->
