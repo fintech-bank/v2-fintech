@@ -356,24 +356,24 @@
                                 <!--begin::Wrapper-->
                                 <div class="me-2">
                                     <button type="button" class="btn btn-light btn-active-light-primary" data-kt-stepper-action="previous">
-                                        Back
+                                        Retour
                                     </button>
                                 </div>
                                 <!--end::Wrapper-->
 
                                 <!--begin::Wrapper-->
                                 <div>
-                                    <button type="button" class="btn btn-primary" data-kt-stepper-action="submit">
-                        <span class="indicator-label">
-                            Submit
-                        </span>
+                                    <button type="submit" class="btn btn-bank" data-kt-stepper-action="submit">
+                                        <span class="indicator-label">
+                                            Créer le dossier
+                                        </span>
                                         <span class="indicator-progress">
-                            Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                        </span>
+                                            Veuillez patienter... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                        </span>
                                     </button>
 
                                     <button type="button" class="btn btn-primary" data-kt-stepper-action="next">
-                                        Continue
+                                        Suivant
                                     </button>
                                 </div>
                                 <!--end::Wrapper-->
