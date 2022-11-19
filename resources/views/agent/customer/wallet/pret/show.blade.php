@@ -150,6 +150,11 @@
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#infos"><i class="fa-solid fa-info-circle me-2"></i> Informations</a>
                 </li>
                 <!--end::Nav item-->
+                @if(isset($wallet->loan->customer_insurance_id))
+                    <li class="nav-item mt-2">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#insurance"><i class="fa-solid fa-house-crack me-2"></i> Assurance</a>
+                    </li>
+                @endif
                 <!--begin::Nav item-->
                 <li class="nav-item mt-2">
                     <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#cautions"><i class="fa-solid fa-users-between-lines me-2"></i> Cautions</a>

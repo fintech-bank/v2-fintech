@@ -80,6 +80,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereCaution($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereRequiredCaution($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereRequiredInsurance($value)
+ * @property string|null $confirmed_at Date de confirmation 'Approve' du pret bancaire
+ * @property int|null $customer_insurance_id
+ * @property-read \App\Models\Customer\CustomerInsurance|null $insurance
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereConfirmedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereCustomerInsuranceId($value)
  */
 class CustomerPret extends Model
 {

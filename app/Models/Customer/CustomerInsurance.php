@@ -53,6 +53,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsurance whereBeneficiaire($value)
  * @property int $customer_wallet_id
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsurance whereCustomerWalletId($value)
+ * @property-read \App\Models\Customer\CustomerPret|null $pret
  */
 class CustomerInsurance extends Model
 {
