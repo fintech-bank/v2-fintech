@@ -602,7 +602,7 @@ class CustomerHelper
             'customer_id' => $customer->id,
             'insurance_package_id' => 11,
             'insurance_package_form_id' => 26,
-            'customer_wallet_id' =>
+            'customer_wallet_id' => $wallet->id
         ]);
 
         $contract->update([
