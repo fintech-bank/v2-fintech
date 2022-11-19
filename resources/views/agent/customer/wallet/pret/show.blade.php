@@ -436,7 +436,7 @@
                 <form id="formAddClaim" action="" method="post">
                     <div class="modal-body">
                         <x-base.alert
-                            type="simple"
+                            type="basic"
                             color="primary"
                             icon="info-circle"
                             title="Déclaration de sinistre pour un client"
