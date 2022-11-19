@@ -8,11 +8,15 @@ use App\Helper\CustomerWalletHelper;
 use App\Helper\CustomerWalletTrait;
 use App\Helper\DocumentFile;
 use App\Helper\LogHelper;
+use App\Helper\RequestHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerPret;
 use App\Notifications\Customer\LogNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
+use App\Scope\CalcLoanInsuranceTrait;
+use App\Scope\CalcLoanTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -153,6 +157,8 @@ class CustomerController extends Controller
             'pret'
         );
 
+        $wallet_payment = $customer->wallets()->find($request->get('wallet_payment_id'));
+
         // Création du Crédit
         $credit = $customer->prets()->create([
             'uuid' => Str::uuid(),
@@ -173,7 +179,74 @@ class CustomerController extends Controller
             'customer_id' => $customer_id
         ]);
 
+        $amount_interest =  CalcLoanTrait::getLoanInterest($credit->amount_loan, $credit->plan->tarif->type_taux == 'fixe' ? $credit->plan->tarif->interest : CalcLoanTrait::calcLoanIntestVariableTaxe($credit));
+        $amount_du = $amount + $amount_interest;
+        $mensuality = $amount_du / $duration;
 
+        $credit->update([
+            'amount_du' => $amount_du,
+            'amount_interest' => $amount_interest,
+            'mensuality' => $mensuality
+        ]);
+
+        $contrat = DocumentFile::createDoc(
+            $customer,
+            'loan.contrat_de_credit_personnel',
+            'Contrat de Crédit Personnel - '.$credit->plan->name,
+            3,
+            $credit->reference,
+            true,
+            true,
+            false,
+            true,
+            ["pret" => $credit]
+        );
+
+        RequestHelper::create(
+            $customer,
+            "Signature d'un document",
+            "Veuillez signer le document intitulé: {$contrat->name}",
+            CustomerPret::class,
+            $credit->id,
+        );
+
+        $mandat = DocumentFile::createDoc(
+            $customer,
+            'general.mandat_prelevement_sepa',
+            'Mandat de prélèvement SEPA',
+            3,
+            $credit->reference,
+            true,
+            true,
+            false,
+            true,
+            ['wallet' => $wallet_payment]
+        );
+
+        RequestHelper::create(
+            $customer,
+            "Signature d'un document",
+            "Veuillez signer le document intitulé: {$mandat->name}",
+            CustomerPret::class,
+            $credit->id,
+        );
+
+        DocumentFile::createDoc(
+            $customer,
+            'loan.plan_amortissement',
+            "Plan d'amortissement",
+            3,
+            $credit->reference,
+            false,
+            false,
+            false,
+            true,
+            ["loan" => $credit]
+        );
+
+        if($credit->required_insurance){
+
+        }
 
     }
 
@@ -233,5 +306,21 @@ class CustomerController extends Controller
             $customer->user->notify(new \App\Notifications\Customer\Customer\Customer\UpdateTypeAccountNotification($customer, $package, $doc->url_forlder));
         }
         return response()->json();
+    }
+
+    private function subscribeInsurance(Customer $customer, CustomerPret $pret, $assurance_type)
+    {
+        $customer->insurances()->create([
+            'reference' => generateReference(),
+            'date_member' => now(),
+            'effect_date' => now(),
+            'end_date' => now()->addMonths($pret->duration),
+            'mensuality' => CalcLoanInsuranceTrait::calcul($customer, $pret, $assurance_type)->mensuality,
+            'type_prlv' => 'mensuel',
+            'beneficiaire' => null,
+            'customer_id' => $customer->id,
+            'customer_wallet_id' => $pret->wallet->id,
+            'insurance_package_id' => ""
+        ]);
     }
 }
