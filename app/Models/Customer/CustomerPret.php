@@ -88,7 +88,9 @@ class CustomerPret extends Model
         'amount_du_format',
         'mensuality_format',
         'assurance_type_format',
-        'taux_variable'
+        'taux_variable',
+        'caution_text',
+        'insurance_text'
     ];
 
     public function plan()
@@ -205,6 +207,16 @@ class CustomerPret extends Model
             "DIM" => "Décès, Invalidité, Maladie",
             default => "Décès, Invalidité, Maladie, Chomage",
         };
+    }
+
+    public function getCautionTextAttribute()
+    {
+        return $this->required_caution ? "Oui" : "Non";
+    }
+
+    public function getInsuranceTextAttribute()
+    {
+        return $this->required_insurance ? "Oui" : "Non";
     }
 
 

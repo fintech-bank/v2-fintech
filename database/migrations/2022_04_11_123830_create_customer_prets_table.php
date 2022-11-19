@@ -32,6 +32,9 @@ return new class extends Migration
             $table->bigInteger('wallet_payment_id')->unsigned();
             $table->timestamps();
             $table->timestamp('first_payment_at')->nullable();
+            $table->boolean('required_insurance')->default(false);
+            $table->boolean('required_caution')->default(false);
+            $table->json('caution')->nullable()->comment("nom/prénom/datedenaissance/cni/address/telephone");
 
             $table->foreign('customer_wallet_id')->references('id')->on('customer_wallets')
                 ->cascadeOnUpdate()

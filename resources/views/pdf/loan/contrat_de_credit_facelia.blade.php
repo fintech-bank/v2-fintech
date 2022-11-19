@@ -51,7 +51,7 @@
     <div class="page-break"></div>
     <div class="rounded py-1 px-1 border">
         <span class="fw-bolder">Taux débiteur :</span> Le taux débiteur est variable. Toutes utilisations résultant de l’utilisation de l'encours donne lieu
-        à la perception d’intérêts. <strong>Taux variable : de {{ $data->pret->plan->tarif->max_interest }}% à {{ $data->pret->plan->tarif->min_interest }} au
+        à la perception d’intérêts.<br> <strong>Taux variable : de {{ $data->pret->plan->tarif->max_interest }}% à {{ $data->pret->plan->tarif->min_interest }}% au
             {{ now()->format("d/m/Y") }}.</strong>
         <p>
             Le taux indiqué est ainsi constitué d’un taux de référence majoré d’un certain nombre de points. Ce taux de référence est
