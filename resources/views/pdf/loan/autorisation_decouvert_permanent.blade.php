@@ -77,9 +77,45 @@
         </p>
         <p>
             <span class="fw-bolder">Sûretés et assurances exigées :</span><br>
-            <ul>
-                <li>Test</li>
-            </ul>
         </p>
+        <ul>
+            <li class="fw-bolder">Assurance exigée : Non</li>
+            <li class="fw-bolder">Caution personne physique : Non</li>
+        </ul>
     </div>
+    <div class="fs-4 fw-bolder">ACCEPTATION DE L’OFFRE DE CONTRAT DE CREDIT PAR L’EMPRUNTEUR</div>
+    <p>
+        Après avoir reçu et pris connaissance de la Fiche d’Information Précontractuelle annexée aux présentes et l’ensemble
+        des conditions de l’offre de contrat de crédit, je déclare accepter la présente offre de contrat de crédit.
+    </p>
+    <p>
+        Je reconnais avoir reçu toutes les explications de la part du Prêteur me permettant de déterminer si le présent crédit est
+        adapté à mes besoins et ma situation financière et me permettant d’appréhender clairement l’étendue de mon
+        engagement. Mon attention a été attirée sur les caractéristiques essentielles du crédit et sur les conséquences que ce
+        crédit peut avoir sur ma situation financière.
+        Je reconnais rester en possession d’un exemplaire de cette offre, dotée d’un formulaire détachable de « bordereau de
+        rétractation ».
+    </p>
+    <table class="table table-sm table-border w-100">
+        <tbody>
+            <tr>
+                <td class="fw-bold">Signature de l'emprunteur</td>
+                <td class="fw-bold">Signature de la banque</td>
+            </tr>
+            <tr class="h-50px">
+                <td>
+                    Signé électroniquement<br>
+                    par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
+                    le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
+                    CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
+                    CN AC: {{ $customer->persona_reference_id }}
+                </td>
+                <td>
+                    Signé électroniquement<br>
+                    par La Banque,<br>
+                    le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 @endsection
