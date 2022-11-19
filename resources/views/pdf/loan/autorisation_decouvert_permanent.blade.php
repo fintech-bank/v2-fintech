@@ -20,7 +20,7 @@
     <p class="fw-bolder fs-italic">Ci-après dénommée le « Prêteur » ou la « Banque »</p>
     <div class="uppercase underline bg-secondary fs-4 p-2 text-white my-2">Emprunteur(s)</div>
     <p>
-        <span class="fw-bolder">Titulaire du compte:</span><br>
+        <span class="fw-bolder underline">Titulaire du compte:</span><br>
         Nom, Prénom: {{ $customer->info->full_name }}<br>
         Date de naissance: {{ $customer->info->datebirth->format("d/m/Y") }} -- Lieu: {{ $customer->info->citybirth }}<br>
         Adresse: {{ $customer->info->line_address }}
