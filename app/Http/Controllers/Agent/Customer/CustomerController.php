@@ -12,8 +12,12 @@ use App\Helper\RequestHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerInsurance;
 use App\Models\Customer\CustomerPret;
+use App\Models\Insurance\InsurancePackageForm;
 use App\Notifications\Customer\LogNotification;
+use App\Notifications\Customer\NewContractInsuranceNotification;
+use App\Notifications\Customer\NewPretNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Scope\CalcLoanInsuranceTrait;
 use App\Scope\CalcLoanTrait;
@@ -149,7 +153,6 @@ class CustomerController extends Controller
 
     public function storePret($customer_id, Request $request)
     {
-        dd($request->all());
         $customer = Customer::find($customer_id);
 
         $wallet = CustomerWalletHelper::createWallet(
@@ -245,9 +248,19 @@ class CustomerController extends Controller
         );
 
         if($credit->required_insurance){
-
+            $insurance = $this->subscribeInsurance($customer, $credit, $request->get('assurance_type'));
         }
 
+        $docs = [];
+        foreach ($customer->documents()->where('reference', $credit->reference)->get() as $doc) {
+            $docs[] = [
+                'url' => $doc->url_folder
+            ];
+        }
+
+        $customer->info->notify(new NewPretNotification($customer, $credit, $docs));
+
+        return redirect()->route('agent.customer.wallet.show', $wallet->id)->with('success', "Le contrat de crédit {$credit->reference} à été créer avec succès");
     }
 
     private function updateStatus(Customer $customer, Request $request)
@@ -310,7 +323,7 @@ class CustomerController extends Controller
 
     private function subscribeInsurance(Customer $customer, CustomerPret $pret, $assurance_type)
     {
-        $customer->insurances()->create([
+        $insurance = $customer->insurances()->create([
             'reference' => generateReference(),
             'date_member' => now(),
             'effect_date' => now(),
@@ -320,7 +333,62 @@ class CustomerController extends Controller
             'beneficiaire' => null,
             'customer_id' => $customer->id,
             'customer_wallet_id' => $pret->wallet->id,
-            'insurance_package_id' => ""
+            'insurance_package_id' => 18,
+            'insurance_package_form_id' => InsurancePackageForm::where('name', $assurance_type)->first()->id,
         ]);
+
+        $contract = DocumentFile::createDoc(
+            $customer,
+            'insurance.contrat_assurance',
+            'Contrat Assurance: '.$insurance->package->name,
+            3,
+            $insurance->reference,
+            true,
+            true,
+            false,
+            true,
+            ['insurance' => $insurance]
+        );
+
+        RequestHelper::create(
+            $customer,
+            "Signature d'un document",
+            "Veuillez signer le document suivant: {$contract->name}",
+            CustomerInsurance::class,
+            $insurance->id,
+        );
+
+        DocumentFile::createDoc(
+            $customer,
+            'insurance.synthese_echange',
+            'Synthese Echange '.$insurance->package->name,
+            3,
+            $insurance->reference,
+            false,
+            false,
+            false,
+            true,
+            ['insurance' => $insurance]
+        );
+
+        DocumentFile::createDoc(
+            $customer,
+            'insurance.bordereau_retractation',
+            'Bordereau de retractation',
+            3,
+            $insurance->reference,
+            false,
+            false,
+            false,
+            true,
+            ['insurance' => $insurance]
+        );
+        $docs = [
+            ['url' => $contract->url_folder]
+        ];
+
+        $customer->info->notify(new NewContractInsuranceNotification($customer, $insurance, $docs));
+
+        return $insurance;
     }
 }
