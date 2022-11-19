@@ -326,7 +326,7 @@ class CustomerController extends Controller
 
     private function subscribeInsurance(Customer $customer, CustomerPret $pret, $assurance_type)
     {
-        dd(CalcLoanInsuranceTrait::calcul($customer, $pret, $assurance_type));
+        dd(CalcLoanInsuranceTrait::calcul($customer, $pret, $assurance_type)['mensuality']);
         $insurance = $customer->insurances()->create([
             'reference' => generateReference(),
             'date_member' => now(),
