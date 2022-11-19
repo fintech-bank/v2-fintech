@@ -42,5 +42,13 @@
             délai de rétractation de 14 jours, ou dès le 8ᵉ jour sur demande expresse de l’Emprunteur.
         </p>
         <p><strong>Durée du contrat de crédit:</strong> le présent contrat est conclu pour une durée indéterminée.</p>
+        <p>
+            <span class="fw-bolder mb-1">Remboursement par l’Emprunteur :</span>
+            Le compte peut être débiteur à concurrence du montant précisé ci-dessus en dehors de toute prise d’effet d’une
+            dénonciation de l’autorisation de découvert par l’Emprunteur ou par le Prêteur. Le compte devra redevenir en position
+            créditrice lors de la prise d’effet de la dénonciation de l’autorisation, objet du présent contrat, par l’Emprunteur ou le
+            Prêteur, notamment à l’expiration du délai de préavis éventuel.
+        </p>
     </div>
+    <div class="page-break"></div>
 @endsection
