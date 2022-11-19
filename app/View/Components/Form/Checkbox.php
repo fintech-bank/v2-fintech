@@ -16,6 +16,10 @@ class Checkbox extends Component
      * @var bool
      */
     public $checked;
+    /**
+     * @var null
+     */
+    public $class;
 
     /**
      * Create a new component instance.
@@ -25,13 +29,14 @@ class Checkbox extends Component
      * @param $value
      * @param  bool  $checked
      */
-    public function __construct($name, $label, $value, $checked = false)
+    public function __construct($name, $label, $value, $checked = false, $class = null)
     {
         //
         $this->name = $name;
         $this->label = $label;
         $this->value = $value;
         $this->checked = $checked;
+        $this->class = $class;
     }
 
     /**
