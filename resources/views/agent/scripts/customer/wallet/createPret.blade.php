@@ -9,7 +9,7 @@
     let block = {}
 
     let stepper = new KTStepper(elements.stepperElement)
-    console.log(stepper.getCurrentStepIndex())
+    console.log(stepper.getClickedStepIndex())
 
     stepper.on("kt.stepper.click", function (stepper) {
         stepper.goTo(stepper.getClickedStepIndex());
@@ -24,6 +24,6 @@
     });
 
     stepper.on("kt.stepper.change", function(stepper) {
-        console.log(stepper.getCurrentStepIndex())
+        console.log(stepper.getClickedStepIndex())
     });
 </script>
