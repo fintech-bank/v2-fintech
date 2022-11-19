@@ -291,6 +291,16 @@
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="insurance" role="tabpanel">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">Assurance</h3>
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
