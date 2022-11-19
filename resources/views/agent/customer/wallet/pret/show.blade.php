@@ -442,6 +442,11 @@
                             title="Déclaration de sinistre pour un client"
                             content="La déclaration de sinistre pour un client émettra une requete au client demandent de valider la déclaration."
                             />
+
+                        <x-form.textarea
+                            name="incident"
+                            label="Description de l'incident"
+                            required="true" />
                     </div>
                     <div class="modal-footer">
                         <x-form.button />
