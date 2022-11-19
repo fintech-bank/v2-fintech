@@ -24,6 +24,6 @@
     });
 
     stepper.on("kt.stepper.change", function(stepper) {
-        console.log(stepper.getClickedStepIndex())
+        console.log(stepper.getCurrentStepIndex())
     });
 </script>
