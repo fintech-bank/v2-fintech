@@ -458,6 +458,7 @@
                                         <i class="fa-solid fa-phone me-2"></i>: {{ $caution->phone }}
                                     </td>
                                     <td>Caution {{ $caution->caution_type }}</td>
+                                    <td></td>
                                 </tr>
                             @endforeach
                         </tbody>
