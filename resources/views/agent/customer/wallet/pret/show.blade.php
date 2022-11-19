@@ -114,7 +114,11 @@
                             </div>
                             <div class="d-flex flex-column border rounded p-2 mb-2 me-2">
                                 <div class="fs-4 fw-bolder">Caution Obligatoire</div>
-                                <div class="">{{ $wallet->loan->required_caution }}</div>
+                                <div class="">{{ $wallet->loan->caution_text }}</div>
+                            </div>
+                            <div class="d-flex flex-column border rounded p-2 mb-2 me-2">
+                                <div class="fs-4 fw-bolder">Assurance Obligatoire</div>
+                                <div class="">{{ $wallet->loan->insurance_text }}</div>
                             </div>
                         </div>
                         <!--end::Wrapper-->
