@@ -102,7 +102,7 @@
                         <div class="d-flex flex-column flex-grow-1 pe-8">
                             &nbsp;<div class="d-flex flex-column border rounded p-2">
                                 <div class="fs-4 fw-bolder">Etat du Prêt</div>
-                                <div class="">{!! $wallet->loan->status_label !!}</div>
+                                <div class="" data-bs-toggle="tooltip" title="{{ $wallet->loan->status_explanation }}">{!! $wallet->loan->status_label !!}</div>
                             </div>
                         </div>
                         <!--end::Wrapper-->
