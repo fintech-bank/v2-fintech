@@ -430,7 +430,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table border" id="liste_caution">
+                    <table class="table border gs-7 gy-7" id="liste_caution">
                         <thead>
                             <tr>
                                 <th>Identité</th>
