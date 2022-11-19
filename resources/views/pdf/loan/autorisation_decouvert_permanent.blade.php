@@ -96,7 +96,7 @@
         Je reconnais rester en possession d’un exemplaire de cette offre, dotée d’un formulaire détachable de « bordereau de
         rétractation ».
     </p>
-    <table class="table table-sm table-border w-75">
+    <table class="table table-sm table-border w-100">
         <tbody>
             <tr>
                 <td class="fw-bold">Signature de l'emprunteur</td>
