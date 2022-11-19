@@ -23,8 +23,8 @@
                 <span class="bullet bg-gray-200 w-5px h-2px"></span>
             </li>
             <li class="breadcrumb-item text-muted">
-                <a href="{{ route('agent.customer.show', $wallet->customer->id) }}"
-                   class="text-muted text-hover-primary">{{ $wallet->customer->user->identifiant }} - {{ $wallet->customer->info->full_name }}</a>
+                <a href="{{ route('agent.customer.show', $customer->id) }}"
+                   class="text-muted text-hover-primary">{{ $customer->user->identifiant }} - {{ $customer->info->full_name }}</a>
             </li>
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-200 w-5px h-2px"></span>
