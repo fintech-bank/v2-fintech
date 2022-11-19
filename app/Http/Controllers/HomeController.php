@@ -101,10 +101,10 @@ class HomeController extends Controller
     {
         $customer = Customer::find(1);
         $document = new DocumentFile();
-        $wallet = $customer->wallets()->first();
+        $wallet = $customer->wallets()->find(3);
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        return $document->generatePDF('loan.contrat_de_credit_facelia', $customer, null, ["pret" => $pret], false, false, null, true, 'simple');
+        return $document->generatePDF('loan.contrat_de_credit_facelia', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }
 }
