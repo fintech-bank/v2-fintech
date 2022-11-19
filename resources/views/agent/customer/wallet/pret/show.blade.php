@@ -433,9 +433,14 @@
                     <!--end::Close-->
                 </div>
 
-                <div class="modal-body">
+                <form id="formAddClaim" action="" method="post">
+                    <div class="modal-body">
 
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <x-form.button />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
