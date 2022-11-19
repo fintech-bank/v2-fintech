@@ -220,7 +220,20 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="infos"></div>
+        <div class="tab-pane fade" id="infos" role="tabpanel">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <table class="table table-striped table-bordered table-sm gx-3 gy-3">
+                        <tbody>
+                            <tr>
+                                <td>Référence du pret</td>
+                                <td>{{ $wallet->loan->reference }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
