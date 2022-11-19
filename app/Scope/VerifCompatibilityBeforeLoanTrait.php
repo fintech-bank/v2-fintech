@@ -69,7 +69,7 @@ trait VerifCompatibilityBeforeLoanTrait
         }
 
         $result = "
-            Demande de crédit Facelia: Client: {$customer->info->full_name} | Score: {$calc} % | Resultat: <span class='text-{$color}'>{$serv}</span><br>
+            Demande de crédit: Client: {$customer->info->full_name} | Score: {$calc} % | Resultat: <span class='text-{$color}'>{$serv}</span><br>
             <table class='table table-sm'>
                 <tbody>
                     <tr>
