@@ -29,7 +29,7 @@
             <li class="breadcrumb-item">
                 <span class="bullet bg-gray-200 w-5px h-2px"></span>
             </li>
-            <li class="breadcrumb-item text-dark">{{ $wallet->type_text }} - N°{{ $wallet->number_account }}</li>
+            <li class="breadcrumb-item text-dark">{{ $wallet->type_text }} - N°{{ $wallet->loan->reference }}</li>
         </ul>
     </div>
     <div class="d-flex align-items-center gap-2 gap-lg-3">
