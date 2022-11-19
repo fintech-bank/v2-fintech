@@ -43,16 +43,15 @@
         <p><strong>Durée du contrat de crédit:</strong> le présent contrat est conclu pour une durée de un an renouvellable par tacite reconduction.</p>
         <p>
             <span class="fw-bolder mb-1">Remboursement par l’Emprunteur :</span>
-            Le compte peut être débiteur à concurrence du montant précisé ci-dessus en dehors de toute prise d’effet d’une
-            dénonciation de l’autorisation de découvert par l’Emprunteur ou par le Prêteur. Le compte devra redevenir en position
-            créditrice lors de la prise d’effet de la dénonciation de l’autorisation, objet du présent contrat, par l’Emprunteur ou le
-            Prêteur, notamment à l’expiration du délai de préavis éventuel.
+            L'emprunteur peut rembourser par mensualité définie lors de son contrat ou modulable par l'intermédiaire de son espace client, de son conseiller ou par
+            demande expresse au centre de relation client.<br>
+            Il peut également rembourser par anticipation tout ou en partie le montant utilisé par son contrat.
         </p>
     </div>
     <div class="page-break"></div>
     <div class="rounded py-1 px-1 border">
-        <span class="fw-bolder">Taux débiteur :</span> Le taux débiteur est révisable. Toute position débitrice résultant de l’utilisation du découvert donne lieu
-        à la perception d’intérêts débiteurs <strong>Taux variable : COT + 11,100, SOIT A CE JOUR {{ round(($customer->cotation / 2.3) + 11.10, 2) }}% au
+        <span class="fw-bolder">Taux débiteur :</span> Le taux débiteur est variable. Toute utilisations résultant de l’utilisation de l'encours donne lieu
+        à la perception d’intérêts. <strong>Taux variable : de {{ $data->pret->plan->tarif->max_interest }}% à {{ $data->pret->plan->tarif->min_interest }} au
             {{ now()->format("d/m/Y") }}.</strong>
         <p>
             Le taux indiqué est ainsi constitué d’un taux de référence majoré d’un certain nombre de points. Ce taux de référence est
