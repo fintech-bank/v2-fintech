@@ -101,6 +101,9 @@
                 data: data,
                 success: data => {
                     console.log(data)
+                    document.querySelector('[data-content="amount_loan"]').innerHTML = document.querySelector('[name="amount_loan"]')
+                    document.querySelector('[data-content="duration"]').innerHTML = document.querySelector('[name="duration"]')
+                    document.querySelector('[data-content="mensuality"]').innerHTML = data.data[0].mensuality
                 }
             })
         }
