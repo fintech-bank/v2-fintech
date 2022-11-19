@@ -39,7 +39,7 @@
             url: url,
             method: 'POST',
             data: data,
-            success: data => {
+            success: () => {
                 btn.removeAttribute('data-kt-indicator')
                 toastr.success(`La déclaration de sinitre à bien été enregistré`, `Déclaration de sinistre`)
 
@@ -47,7 +47,7 @@
                     window.location.reload()
                 }, 1200)
             },
-            error: err => {
+            error: () => {
                 btn.removeAttribute('data-kt-indicator')
                 toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
             }
