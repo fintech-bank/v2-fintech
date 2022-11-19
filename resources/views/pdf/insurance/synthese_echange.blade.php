@@ -37,6 +37,7 @@
     <p>Nous demeurons naturellement à votre disposition pour toute question ou demande complémentaire.</p>
     <p>Bien cordialement, </p>
     <p>{{ $customer->agent->name ?? '' }}</p>
+    @if(isset($document) && $document->signable && $document->signed_by_client)
     <p class="fs-2">
         Signé électroniquement<br>
         par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
@@ -44,4 +45,5 @@
         CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
         CN AC: {{ $customer->persona_reference_id }}
     </p>
+    @endif
 @endsection
