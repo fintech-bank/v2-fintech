@@ -107,7 +107,19 @@
                         <div class="d-flex flex-column w-200px w-sm-450px mt-3">
                             <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border rounded-2">
                                 <div class="fw-bolder fs-3 w-50">Capital restant du au {{ now()->format('d/m/Y') }}</div>
-                                <div class="text-black fs-3 w-50">{{ $wallet->loan->amount_du_format }}</div>
+                                <div class="text-black fs-3 w-50 text-end">{{ $wallet->loan->amount_du_format }}</div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border rounded-2">
+                                <div class="fw-bolder fs-3 w-50">Capital emprunté</div>
+                                <div class="text-black fs-3 w-50 text-end">{{ $wallet->loan->amount_loan_format }}</div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border rounded-2">
+                                <div class="fw-bolder fs-3 w-50">Montant du prochain prélèvement</div>
+                                <div class="text-black fs-3 w-50 text-end">{{ $wallet->loan->mensuality_format }}</div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border rounded-2">
+                                <div class="fw-bolder fs-3 w-50">Date du prochain prélèvement</div>
+                                <div class="text-black fs-3 w-50 text-end">{{ $wallet->loan->first_payment_at->format('d/m/Y') }}</div>
                             </div>
                         </div>
                         <!--end::Progress-->
