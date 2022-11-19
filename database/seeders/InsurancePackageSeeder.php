@@ -115,6 +115,9 @@ class InsurancePackageSeeder extends Seeder
             'name' => 'Assurance Emprunteur',
             'slug' => "holder-insurance",
             'synopsis' => "Couverture de votre prêt bancaire souscrit à ".config('app.name'),
+            "description" => "Assurance temporaire souscrite à l’occasion de la mise en place d’un crédit à la consommation, qui garantit la prise en charge de
+tout ou partie du crédit en cas de survenance de certains événements (en cas de décès, de Perte Totale et Irréversible d’Autonomie
+(PTIA), et d’Incapacité temporaire Totale de Travail (ITT) de l’emprunteur)."
         ]);
     }
 }

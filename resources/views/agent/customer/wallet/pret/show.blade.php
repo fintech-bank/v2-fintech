@@ -348,7 +348,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-9 col-sm-12"></div>
+                                <div class="col-md-9 col-sm-12">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body">
+                                            <div class="fw-bolder">De quel type d’assurance s’agit-il ?</div>
+                                            <p>{{ $wallet->loan->insurance->package->description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
