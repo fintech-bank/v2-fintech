@@ -43,11 +43,22 @@
                 success: data => {
                     block.blockResultPrerequest.release()
                     block.blockResultPrerequest.destroy()
-                    let elDiv = elements.validResultPrerequest.querySelector('.card-body');
+                    let elDiv = elements.validResultPrerequest.querySelector('.card-body').querySelector('ul');
                     elDiv.innerHTML = ``
-                    Array.from(data.data).forEach(alert => {
-                        elDiv.innerHTML += `${alert}<br>`
-                    })
+                    if(Array.from(data.data).length !== 0) {
+                        Array.from(data.data).forEach(alert => {
+                            elDiv.innerHTML += `<li class="text-danger">${alert}</li>`
+                        })
+                    } else {
+                        elDiv.parentNode.innerHTML = ``
+                        elDiv.innerHTML = `
+                                <div class="d-flex flex-center w-100 mx-auto">
+                                    <i class="fa-solid fa-check-circle text-success fs-3tx me-2"></i>
+                                    <div class="fw-bolder fs-1">Condition Personnel atteinte</div>
+                                </div>
+                                `
+                    }
+
                     $.ajax({
                         url: '/api/customer/{{ $customer->id }}/pret/verify',
                         method: 'POST',
@@ -60,14 +71,14 @@
                             if(data.data[0] === false) {
                                 elDiv.innerHTML = `
                                 <div class="d-flex flex-center w-100 mx-auto">
-                                    <i class="fa-solid fa-xmark-circle text-danger fs-3tx"></i>
+                                    <i class="fa-solid fa-xmark-circle text-danger fs-3tx me-2"></i>
                                     <div class="fw-bolder fs-1">Condition financière non atteinte</div>
                                 </div>
                                 `
                             } else {
                                 elDiv.innerHTML = `
                                 <div class="d-flex flex-center w-100 mx-auto">
-                                    <i class="fa-solid fa-check-circle text-success fs-3tx"></i>
+                                    <i class="fa-solid fa-check-circle text-success fs-3tx me-2"></i>
                                     <div class="fw-bolder fs-1">Condition financière atteinte</div>
                                 </div>
                                 `

@@ -193,7 +193,7 @@
                             <div class="flex-column w-100" data-kt-stepper-element="content">
                                 <div class="card shadow-sm mb-10" id="validResultPrerequest">
                                     <div class="card-body">
-
+                                        <ul></ul>
                                     </div>
                                 </div>
                                 <div class="card shadow-sm mb-10" id="validResultPret">
