@@ -355,7 +355,7 @@
                                             <p>{{ $wallet->loan->insurance->package->description }}</p>
                                         </div>
                                     </div>
-                                    <div class="card shadow-sm">
+                                    <div class="card shadow-sm mb-2">
                                         <div class="card-header bg-success">
                                             <h3 class="card-title text-white"><i class="fa-solid fa-umbrella text-white me-2"></i> Qu'est-ce qui est assuré ?</h3>
                                             <div class="card-toolbar">
