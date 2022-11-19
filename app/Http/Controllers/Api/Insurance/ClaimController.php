@@ -30,7 +30,7 @@ class ClaimController extends Controller
         <p>Veuillez revoir les informations ci-dessous et valider cette déclaration.</p>
         <ul>
             <li><strong>Référence de l'incident:</strong> <?= $claim->reference; ?></li>
-            <li><strong>Date / Heure de l'incident:</strong> <?= $claim->incidentDate->format('d/m/Y'); ?> <?= $claim->incidentTime->format('H:i'); ?></li>
+            <li><strong>Date / Heure de l'incident:</strong> <?= $claim->incidentDate->format('d/m/Y'); ?> <?= isset($claim->incidentTime) ? $claim->incidentTime->format('H:i') : ''; ?></li>
             <li><strong>Etes-vous responsable ?</strong> <?= $claim->responsability ? 'OUI' : 'NON' ?></li>
             <li><strong>Description de l'incident:</strong> <?= $claim->incidentDesc ?></li>
         </ul>
