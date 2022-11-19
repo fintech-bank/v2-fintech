@@ -365,7 +365,7 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <ul>
+                                            <ul class="d-flex flex-column">
                                                 @foreach($wallet->loan->insurance->form->warranties()->where('check', 1)->get() as $warranty)
 
                                                 <li class="d-flex align-items-center py-2">
