@@ -369,7 +369,7 @@
                                                 @foreach($wallet->loan->insurance->form->warranties()->where('check', 1)->get() as $warranty)
                                                 <li class="d-flex align-items-center py-2">
                                                     <span class="bullet bullet-vertical bg-success me-5"></span>
-                                                    <strong>{{ $warranty->designation }}</strong><br>
+                                                    <strong class="me-2">{{ $warranty->designation }}</strong><br>
                                                     <p>{{ $warranty->condition }}</p>
                                                 </li>
                                                 @endforeach
