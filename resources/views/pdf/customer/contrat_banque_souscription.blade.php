@@ -197,20 +197,20 @@
     <div class="mt-10 mb-10 text-center" style="border: solid 2px #000000; background-color: #a4a4a4">Carte de Paiement</div>
     <div class="mb-10">
         <div class="fs-2 fs-underline">NOM DE LA CARTE CHOISIE</div>
-        <p>Carte {{ $data->card->support->name }} à débit {{ \App\Helper\CustomerCreditCard::getDebit($data->card->debit) }} de {{ \App\Helper\CustomerHelper::getName($customer) }}</p>
+        <p>Carte {{ $data->card->support->name }} à débit {{ $data->card->debit_format }} de {{ $customer->info->full_name }}</p>
     </div>
     <div class="mb-10">
         <div class="fs-2 fs-underline">TITULAIRE DE LA CARTE</div>
-        {{ \App\Helper\CustomerInfoHelper::getCivility($customer->info->civility) }} {{ $customer->info->lastname }}
+        {{ $customer->info->full_name }}
     </div>
     <div class="mb-10">
         <div class="fs-2 fs-underline">Carte {{ Str::ucfirst($data->card->support->name) }}</div>
-        <p>Carte de débit à autorisation systématique - CB VISA de {{ Str::upper(\App\Helper\CustomerHelper::getName($customer)) }}</p>
+        <p>Carte de débit à autorisation systématique - CB VISA de {{ $customer->info->full_name }}</p>
         <table class="table table-bordered table-sm gs-5 gy-5">
             <tbody>
                 <tr>
                     <td>Type de débit:</td>
-                    <td>{{ \App\Helper\CustomerCreditCard::getDebit($data->card->debit) }}</td>
+                    <td>$data->card->debit_format</td>
                 </tr>
                 <tr>
                     <td>Capacité de paiement:</td>
@@ -222,7 +222,7 @@
                 </tr>
                 <tr>
                     <td> Adresse envoi correspondance :</td>
-                    <td>{!! \App\Helper\CustomerInfoHelper::getAddress($customer->info) !!}</td>
+                    <td>{!! $customer->info->line_address !!}</td>
                 </tr>
                 <tr>
                     <td> Compte Débité:</td>
@@ -241,13 +241,13 @@
             <tbody>
             <tr>
                 <td style="width: 60%;">
-                    Nom et Prénom du signataire: {{ \App\Helper\CustomerHelper::getName($customer) }}<br>
+                    Nom et Prénom du signataire: {{ $customer->info->full_name }}<br>
                     Fait à: {{ $customer->agency->city }}<br>
                     Le: {{ now()->format('d/m/Y') }}
                 </td>
                 <td style="width: 20%; text-align: center">
                     @if(isset($document) && $document->signed_by_client == true)
-                        Signé éléctroniquement le {{ now()->format('d/m/Y') }}.<br>@if($customer->info->type == 'part') {{ $customer->info->civility.'. '. $customer->info->lastname.' '.$customer->info->firstname }} @else {{ $customer->info->company }} @endif
+                        Signé éléctroniquement le {{ now()->format('d/m/Y') }}.<br>@if($customer->info->type == 'part') {{ $customer->info->full_name }} @else {{ $customer->info->company }} @endif
                     @endif
                 </td>
             </tr>
