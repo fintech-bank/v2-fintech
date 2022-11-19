@@ -388,7 +388,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-rounded table-striped border gy-7 gs-7">
+                                    <table class="table table-rounded table-striped border gy-7 gs-7" id="liste_claims">
                                         <thead>
                                             <tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
                                                 <th>Référence</th>
@@ -405,6 +405,7 @@
                                                     <td>{{ $claim->incidentDate->format('d/m/Y') }}</td>
                                                     <td>{{ $claim->updated_at->format('d/m/Y') }}</td>
                                                     <td>{!! $claim->status_label !!}</td>
+                                                    <td></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
