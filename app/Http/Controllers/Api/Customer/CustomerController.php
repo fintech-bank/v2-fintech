@@ -214,6 +214,8 @@ class CustomerController extends Controller
                     $request->get('cni_version')
                 );
 
+                return response()->json($cn);
+
         }
 
         return response()->json();
