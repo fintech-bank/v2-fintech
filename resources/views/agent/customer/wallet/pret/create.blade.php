@@ -151,6 +151,7 @@
                                     <!--end::Label-->
                                 </div>
                                 <!--end::Wrapper-->
+                                <div class="stepper-line h-40px"></div>
                             </div>
                             <!--end::Step 4-->
 
