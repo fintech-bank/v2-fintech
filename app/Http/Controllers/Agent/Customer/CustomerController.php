@@ -254,7 +254,7 @@ class CustomerController extends Controller
         $docs = [];
         foreach ($customer->documents()->where('reference', $credit->reference)->get() as $doc) {
             $docs[] = [
-                'url' => $doc->url_folder
+                'url' => public_path($doc->url_folder)
             ];
         }
 
