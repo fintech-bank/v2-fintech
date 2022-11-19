@@ -315,9 +315,7 @@
                                         <div class="card-header">
                                             <h3 class="card-title">{{ $wallet->loan->insurance->package->name }}</h3>
                                             <div class="card-toolbar">
-                                                <!--<button type="button" class="btn btn-sm btn-light">
-                                                    Action
-                                                </button>-->
+                                                {!! $wallet->loan->insurance->status_label !!}
                                             </div>
                                         </div>
                                         <div class="card-body">
