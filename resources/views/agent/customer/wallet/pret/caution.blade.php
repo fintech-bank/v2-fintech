@@ -101,7 +101,7 @@
                         <div class="col-md-6 col-sm-12">
                             <x-form.input-group
                                 name="cni_number"
-                                label="Numéro de carte bancaire"
+                                label="Numéro de carte d'identité"
                                 symbol="<i class='fa-solid fa-id-card'></i>"
                                 placement="left" />
                         </div>
