@@ -30,9 +30,9 @@ class Select extends Component
      * @param $datas
      * @param $label
      * @param  null  $placeholder
-     * @param  bool  $required
+     * @param bool $required
      */
-    public function __construct($name, $datas, $label, $placeholder = null, $required = true, array $value = [])
+    public function __construct($name, $datas, $label, $placeholder = null, bool $required = false, array $value = [])
     {
         //
         $this->name = $name;
