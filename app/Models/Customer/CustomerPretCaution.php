@@ -128,6 +128,21 @@ class CustomerPretCaution extends Model
         ])->toJson();
     }
 
+    public static function getTypeEntrepriseData()
+    {
+        return collect([
+            ['id' => 'EI', 'name' => "Entrepreneur individuel"],
+            ['id' => 'EURL', 'name' => "Entreprise unipersonnelle à responsabilité limitée"],
+            ['id' => 'SARL', 'name' => "Société à responsabilité limitée"],
+            ['id' => 'SASU', 'name' => "Société par actions simplifiée unipersonnelle"],
+            ['id' => 'SAS', 'name' => "Société par actions simplifiée"],
+            ['id' => 'SA', 'name' => "Société anonyme"],
+            ['id' => 'SNC', 'name' => "Société en nom collectif"],
+            ['id' => 'SCS', 'name' => "Société en commandite simple"],
+            ['id' => 'SCA', 'name' => "Société en commandite par actions"],
+        ])->toJson();
+    }
+
     public function getTypeCaution($format = '')
     {
         if($format == 'text') {

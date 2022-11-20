@@ -144,7 +144,35 @@
                     </div>
 
                 </div>
-                <div id="moral"></div>
+                <div id="moral">
+                    <x-base.underline
+                        title="Information sur la personne morale"
+                        class="w-500px mt-5 mb-5"
+                        size-text="fs-1"
+                        size="3"
+                        color="bank" />
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <x-form.select
+                                name="type_structure"
+                                :datas="\App\Models\Customer\CustomerPretCaution::getTypeEntrepriseData()"
+                                label="Type de Structure"
+                                required="true" />
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <x-form.input
+                                name="company"
+                                label="Nom de l'entreprise" />
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <x-form.input
+                                name="siret"
+                                label="Siret" />
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </form>
