@@ -143,6 +143,7 @@
                         </div>
                     </div>
 
+
                 </div>
                 <div id="moral">
                     <x-base.underline
@@ -172,6 +173,9 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="card-footer">
+                <x-base.button />
             </div>
         </div>
     </form>
