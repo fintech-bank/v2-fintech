@@ -51,7 +51,7 @@
             <div class="card-body">
                 <x-form.select
                     name="type_caution"
-                    :datas="\App\Models\Customer\CustomerPretCaution::getTypeCautionData()->all()"
+                    :datas="\App\Models\Customer\CustomerPretCaution::getTypeCautionData()"
                     label="Type de caution"
                     required="true" />
 

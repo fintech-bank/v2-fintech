@@ -102,7 +102,7 @@ class CustomerPretCaution extends Model
                 'key' => 'solidaire',
                 'value' => "Caution Solidaire"
             ],
-        ]);
+        ])->toJson();
     }
 
     public function getTypeCaution($format = '')
