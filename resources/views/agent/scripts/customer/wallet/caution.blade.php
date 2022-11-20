@@ -13,6 +13,11 @@
     if(elements.selectCountry) {
         elements.selectCountry.addEventListener('change', e => {
             stateBirthByCountry(e.target)
+        })
+    }
+
+    if(elements.selectDep) {
+        elements.selectDep.addEventListener('change', e => {
             cityBirthByCountry(e.target)
         })
     }
