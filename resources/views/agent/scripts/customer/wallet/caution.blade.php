@@ -30,4 +30,23 @@
             }
         })
     }
+    let cityBirthByCountry = (item) => {
+        let country = item.value
+        console.log(country)
+
+        $.ajax({
+            url: '/api/core/geo/cities',
+            method: 'POST',
+            data: {
+                'country': country,
+            },
+            success: data => {
+                elements.selectCity.querySelector('select').innerHTML = '<option></option>'
+                Array.from(data).forEach(option => {
+                    elements.selectCity.querySelector('select').innerHTML += `<option value="${option.name}">${option.name}</option>`
+                })
+                $(elements.selectCity.querySelector('select')).select2()
+            }
+        })
+    }
 </script>

@@ -24,18 +24,14 @@ class GeoController extends Controller
     public function cities(Request $request)
     {
         $results = GeoHelper::getCitiesFromCountry($request->get('country'));
-        ob_start(); ?>
-        <label for="citybirth" class="required form-label">
-            Ville de Naissance
-        </label>
-        <select id="citybirth" class="form-select form-select-solid" data-placeholder="Selectionnez une ville de naissance" name="citybirth">
-            <option value=""></option>
-            <?php foreach ($results as $result) { ?>
-                <option value="<?= $result ?>"><?= $result ?></option>
-            <?php } ?>
-        </select>
-        <?php
-        return response()->json(ob_get_clean());
+        $data = [];
+        if($request->get('q')) {
+            $data = $results->search($request->get('q'));
+        } else {
+            $data = $results->all();
+        }
+
+        return response()->json($data);
     }
 
     public function citiesByPostal($postal)
