@@ -207,6 +207,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <x-form.input-group
+                            name="phone"
+                            symbol="<i class='fa-solid fa-phone'></i>"
+                            placement="left"
+                            label="Numéro de Téléphone"
+                            required="true" />
+                        <p>Téléphone fixe ou portable</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <x-form.input-group
+                            name="email"
+                            symbol="<i class='fa-solid fa-envelope'></i>"
+                            placement="left"
+                            label="Adresse Mail"
+                            required="true" />
+                    </div>
+                </div>
 
             </div>
             <div class="card-footer text-end">
