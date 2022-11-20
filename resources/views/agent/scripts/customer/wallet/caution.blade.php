@@ -25,7 +25,6 @@
             success: data => {
                 elements.selectDep.querySelector('select').innerHTML = data
                 elements.selectDep.querySelector('select').removeAttribute('disabled')
-                elements.selectDep.querySelector('select').selectpicker()
             }
         })
     }

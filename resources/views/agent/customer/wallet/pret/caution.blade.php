@@ -127,8 +127,8 @@
                         </div>
                         <div class="col-md-4 col-sm-12 selectDep">
                             <div class="mb-10">
-                                <label for="dep_naissance" class="form-label">Pays de naissance</label>
-                                <select id="dep_naissance" name="dep_naissance" class="form-control form-control-solid" data-placeholder="Selectionner un département de naissance">
+                                <label for="dep_naissance" class="form-label">Département de naissance</label>
+                                <select id="dep_naissance" name="dep_naissance" class="form-control form-control-solid selectpicker" data-placeholder="Selectionner un département de naissance">
                                     <option value=""></option>
                                 </select>
                             </div>
