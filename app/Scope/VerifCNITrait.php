@@ -20,7 +20,7 @@ trait VerifCNITrait
         $lenght = \Str::length($cni_number1.$cni_number2);
 
         if($lenght >= 10 && $lenght <= 72) {
-            dd(strpos($cni_number2, Carbon::createFromTimestamp(strtotime($bithdate))->format('ymd')));
+            dd(strpos($cni_number2, Carbon::createFromTimestamp(strtotime($bithdate))->format('ym')));
             if(!strpos($cni_number1, 'ID')) {
                 return false;
             }
