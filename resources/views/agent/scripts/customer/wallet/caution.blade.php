@@ -10,6 +10,9 @@
     let dataTable = {}
     let block = {}
 
+    elements.selectDep.querySelector('select').setAttribute('disabled', '')
+    elements.selectCity.querySelector('select').setAttribute('disabled', '')
+
 
     let stateBirthByCountry = (item) => {
         let country = item.value
