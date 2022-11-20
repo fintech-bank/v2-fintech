@@ -103,6 +103,11 @@
             })
         })
     }
+    if(elements.selectType) {
+        elements.selectType.addEventListener('change', e => {
+            selectType(e.target)
+        })
+    }
 
     elements.selectDep.addEventListener('change', e => {
         cityBirthByCountry(e.target)
