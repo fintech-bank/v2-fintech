@@ -105,6 +105,20 @@ class CustomerPretCaution extends Model
         ])->toJson();
     }
 
+    public static function getTypeData()
+    {
+        return collect([
+            [
+                'id' => 'physique',
+                'name' => "Personne Physique"
+            ],
+            [
+                'id' => 'moral',
+                'name' => "Personne Moral"
+            ],
+        ])->toJson();
+    }
+
     public function getTypeCaution($format = '')
     {
         if($format == 'text') {

@@ -49,11 +49,22 @@
                 </div>
             </div>
             <div class="card-body">
-                <x-form.select
-                    name="type_caution"
-                    :datas="\App\Models\Customer\CustomerPretCaution::getTypeCautionData()"
-                    label="Type de caution"
-                    required="true" />
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <x-form.select
+                            name="type_caution"
+                            :datas="\App\Models\Customer\CustomerPretCaution::getTypeCautionData()"
+                            label="Type de caution"
+                            required="true" />
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <x-form.select
+                            name="type"
+                            :datas="\App\Models\Customer\CustomerPretCaution::getTypeData()"
+                            label="Type de personne"
+                            required="true" />
+                    </div>
+                </div>
 
             </div>
         </div>
