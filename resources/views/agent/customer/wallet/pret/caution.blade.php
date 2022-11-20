@@ -68,7 +68,10 @@
                 <div id="physique">
                     <x-base.underline
                         title="Information sur la personne physique"
-                        class="w-400px mt-5 mb-5" />
+                        class="w-400px mt-5 mb-5"
+                        size-text="fs-1"
+                        size="3"
+                        color="bank" />
                 </div>
                 <div id="moral"></div>
             </div>
