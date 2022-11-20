@@ -1,13 +1,16 @@
 <script type="text/javascript">
     let tables = {}
     let elements = {
+        selectType: document.querySelector('#type'),
         selectCountry: document.querySelector('.selectCountry'),
         selectDep: document.querySelector('.selectDep'),
         selectCity: document.querySelector('.selectCity'),
         inputCni: document.querySelector('[name="cni_number"]'),
         inputSiret: document.querySelector('[name="siret"]'),
         inputCompany: document.querySelector('[name="company"]'),
-        cardCaution: document.querySelector("#cardCaution")
+        cardCaution: document.querySelector("#cardCaution"),
+        divPhysique: document.querySelector("#physique"),
+        divMoral: document.querySelector("#moral"),
     }
     let modals = {}
     let forms = {}
@@ -15,6 +18,9 @@
     let block = {
         blockCaution: new KTBlockUI(elements.cardCaution)
     }
+
+    elements.divPhysique.classList.add('d-none')
+    elements.divMoral.classList.add('d-none')
 
     if(elements.selectCountry) {
         elements.selectCountry.addEventListener('change', e => {
@@ -139,6 +145,17 @@
                 $(elements.selectCity.querySelector('select')).select2()
             }
         })
+    }
+    let selectType = (item) => {
+        let value = item.value
+
+        if(value === 'physique') {
+            elements.divPhysique.classList.remove('d-none')
+            elements.divMoral.classList.add('d-none')
+        } else {
+            elements.divPhysique.classList.add('d-none')
+            elements.divMoral.classList.remove('d-none')
+        }
     }
 
 </script>
