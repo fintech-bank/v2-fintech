@@ -1,7 +1,7 @@
 <script type="text/javascript">
     let tables = {}
     let elements = {
-        selectType: document.querySelector('#type'),
+        selectType: document.querySelector('[name="type"]'),
         selectCountry: document.querySelector('.selectCountry'),
         selectDep: document.querySelector('.selectDep'),
         selectCity: document.querySelector('.selectCity'),
