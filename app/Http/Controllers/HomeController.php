@@ -107,7 +107,7 @@ class HomeController extends Controller
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        dd(GeoHelper::getCitiesFromCountry('France'));
+        dd(GeoHelper::getStateFromCountry('France'));
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }

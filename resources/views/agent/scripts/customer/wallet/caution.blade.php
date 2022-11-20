@@ -14,5 +14,9 @@
     let stateBirthByCountry = (item) => {
         let country = item.value
         console.log(country)
+
+        $.ajax({
+            url '/api/core/geo'
+        })
     }
 </script>

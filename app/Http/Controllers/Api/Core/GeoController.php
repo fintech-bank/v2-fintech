@@ -9,6 +9,18 @@ use Vicopo\Vicopo;
 
 class GeoController extends Controller
 {
+    public function states(Request $request)
+    {
+        $results = GeoHelper::getStateFromCountry($request->get('country'));
+        ob_start();
+        ?>
+        <?php foreach ($results as $result): ?>
+        <option value="<?= $result ?>"></option>
+        <?php endforeach; ?>
+        <?php
+
+        return response()->json(ob_get_clean());
+    }
     public function cities(Request $request)
     {
         $results = GeoHelper::getCitiesFromCountry($request->get('country'));

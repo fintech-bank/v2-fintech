@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('core')->group(function () {
     Route::prefix('geo')->group(function () {
+        Route::post('states', [\App\Http\Controllers\Api\Core\GeoController::class, 'states']);
         Route::post('cities', [\App\Http\Controllers\Api\Core\GeoController::class, 'cities']);
         Route::get('cities/{postal}', [\App\Http\Controllers\Api\Core\GeoController::class, 'citiesByPostal']);
     });
