@@ -20,6 +20,7 @@ use App\Notifications\Customer\NewPretNotification;
 use App\Notifications\Customer\NewPretNotificationP;
 use App\Notifications\Customer\NewWalletNotification;
 use App\Notifications\Customer\SendLinkForContractNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CustomerWalletController extends Controller
@@ -87,7 +88,7 @@ class CustomerWalletController extends Controller
             'email' => $request->get('email'),
             'password' => null,
             'num_cni' => $request->get('type') == 'physique' ? $request->get('num_cni') : '',
-            'date_naissance' => $request->get('type') == 'physique' ? $request->get('date_naissance') : '',
+            'date_naissance' => $request->get('type') == 'physique' ? Carbon::createFromTimestamp(strtotime($request->get('date_naissance'))) : '',
             'country_naissance' => $request->get('type') == 'physique' ? $request->get('country_naissance') : '',
             'dep_naissance' => $request->get('type') == 'physique' ? $request->get('dep_naissance') : '',
             'ville_naissance' => $request->get('type') == 'physique' ? $request->get('city_naissance') : '',
