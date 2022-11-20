@@ -29,7 +29,7 @@
                     ajax: {
                         url: '/api/core/geo/states',
                         method: 'POST',
-                        data:{"country": country},
+
                         dataType: 'json',
                         delay: 250,
                         processResults: function (data) {
