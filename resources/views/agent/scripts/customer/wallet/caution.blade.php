@@ -1,6 +1,10 @@
 <script type="text/javascript">
     let tables = {}
-    let elements = {}
+    let elements = {
+        selectCountry: document.querySelector('.selectCountry'),
+        selectDep: document.querySelector('.selectDep'),
+        selectCity: document.querySelector('.selectCity'),
+    }
     let modals = {}
     let forms = {}
     let dataTable = {}
@@ -17,6 +21,11 @@
         template += item.text;
         span.innerHTML = template;
         return $(span);
+    }
+
+    let stateBirthByCountry = (item) => {
+        let country = item.value
+        console.log(country)
     }
 
     $("#country_naissance").select2({
