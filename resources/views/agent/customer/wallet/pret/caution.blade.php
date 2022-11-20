@@ -41,7 +41,7 @@
     <form action="{{ route('agent.customer.wallet.caution.post', $wallet->number_account) }}" method="post" enctype="multipart/form-data">
         <div class="card shadow-sm">
             <div class="card-header">
-                <h3 class="card-title">Ajout d'une caution au {{ $wallet->name_account }}</h3>
+                <h3 class="card-title">Ajout d'une caution au {{ $wallet->name_account_generic }}</h3>
                 <div class="card-toolbar">
                     <!--<button type="button" class="btn btn-sm btn-light">
                         Action
