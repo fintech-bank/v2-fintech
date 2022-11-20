@@ -32,6 +32,4 @@
             }
         })
     }
-
-    $(".selectpicker").selectpicker()
 </script>
