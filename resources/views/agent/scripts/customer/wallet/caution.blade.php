@@ -24,6 +24,7 @@
             data: {'country': country},
             success: data => {
                 elements.selectDep.querySelector('select').innerHTML = data
+                elements.selectDep.querySelector('select').removeAttribute('disabled')
             }
         })
     }
