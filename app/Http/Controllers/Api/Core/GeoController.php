@@ -15,7 +15,7 @@ class GeoController extends Controller
         ob_start();
         ?>
         <?php foreach ($results as $result): ?>
-        <option value="<?= $result ?>"></option>
+        <option value="<?= $result->name ?>"><?= $result->name ?></option>
         <?php endforeach; ?>
         <?php
 

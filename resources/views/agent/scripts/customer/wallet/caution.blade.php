@@ -16,7 +16,12 @@
         console.log(country)
 
         $.ajax({
-            url '/api/core/geo'
+            url: '/api/core/geo/states',
+            method: 'POST',
+            data: {'country': country},
+            success: data => {
+                console.log(data)
+            }
         })
     }
 </script>
