@@ -442,7 +442,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(json_decode($wallet->loan->caution) as $caution)
+                            @foreach(json_decode($wallet->loan->caution) as $key => $caution)
                                 <tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
                                     <td>
                                         <strong>{{ $caution->name }} {{ $caution->lastname }}</strong><br>
@@ -458,7 +458,9 @@
                                         <i class="fa-solid fa-phone me-2"></i>: {{ $caution->phone }}
                                     </td>
                                     <td>Caution {{ $caution->caution_type }}</td>
-                                    <td></td>
+                                    <td>
+                                        <button class="btn btn-xs btn-danger btn-icon"><i class="fa-solid fa-trash text-white"></i> </button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
