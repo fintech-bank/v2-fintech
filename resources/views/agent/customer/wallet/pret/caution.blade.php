@@ -117,7 +117,7 @@
                         <div class="col-md-4 col-sm-12 selectCountry">
                             <div class="mb-10">
                                 <label for="country_naissance" class="form-label">Pays de naissance</label>
-                                <select id="country_naissance" name="country_naissance" class="form-control form-control-solid selectpicker" data-live-search="true" data-placeholder="Selectionner un pays de naissance">
+                                <select id="country_naissance" name="country_naissance" class="form-control form-control-solid selectpicker" data-live-search="true" data-placeholder="Selectionner un pays de naissance" onchange="stateBirthByCountry(this)">
                                     <option value=""></option>
                                     @foreach(\App\Helper\CountryHelper::getAll() as $country)
                                         <option value="{{ $country->name->common }}" data-content="<div class='d-flex flex-row mb-1 h-20px'><div class='symbol symbol-20px me-2'><img src='{{ $country->flags->png }}' alt=''/></div> {{ $country->name->common }}</div>">{{ $country->name->common }}</option>
@@ -128,7 +128,7 @@
                         <div class="col-md-4 col-sm-12 selectDep">
                             <div class="mb-10">
                                 <label for="dep_naissance" class="form-label">Pays de naissance</label>
-                                <select id="dep_naissance" name="dep_naissance" class="form-control form-control-solid" data-placeholder="Selectionner un département de naissance" onchange="stateBirthByCountry(this)">
+                                <select id="dep_naissance" name="dep_naissance" class="form-control form-control-solid" data-placeholder="Selectionner un département de naissance">
                                     <option value=""></option>
                                 </select>
                             </div>
