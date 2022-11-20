@@ -4,6 +4,9 @@
         selectCountry: document.querySelector('.selectCountry'),
         selectDep: document.querySelector('.selectDep'),
         selectCity: document.querySelector('.selectCity'),
+        inputCni: document.querySelector('[name="cni_number"]'),
+        inputSiret: document.querySelector('[name="siret"]'),
+        inputCompany: document.querySelector('[name="company"]'),
     }
     let modals = {}
     let forms = {}
@@ -13,6 +16,18 @@
     if(elements.selectCountry) {
         elements.selectCountry.addEventListener('change', e => {
             stateBirthByCountry(e.target)
+        })
+    }
+    if(elements.inputCni) {
+        elements.inputCni.addEventListener('keyup', e => {
+            e.preventDefault()
+            if(e.target.value.length === 12 || e.target.value.length === 9 ) {
+                elements.inputCni.classList.remove('is-invalid')
+                elements.inputCni.classList.add('is-valid')
+            } else {
+                elements.inputCni.classList.remove('is-valid')
+                elements.inputCni.classList.add('is-invalid')
+            }
         })
     }
 
@@ -39,7 +54,7 @@
             }
         })
     }
-    let cityBirthByCountry = (item) => {
+    let cityBirthByCountry = () => {
         let country = elements.selectCountry.querySelector('select').value
         console.log(country)
 
@@ -58,4 +73,5 @@
             }
         })
     }
+
 </script>
