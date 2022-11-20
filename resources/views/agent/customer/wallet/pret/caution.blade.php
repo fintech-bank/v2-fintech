@@ -97,6 +97,22 @@
                                 label="Accès FICAP" />
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <x-form.input-group
+                                name="cni_number"
+                                label="Numéro de carte bancaire"
+                                symbol="<i class='fa-solid fa-id-card'></i>"
+                                placement="left" />
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <x-form.input-date
+                                name="date_naissance"
+                                label="Date de naissance"
+                                type="text" />
+
+                        </div>
+                    </div>
 
                 </div>
                 <div id="moral"></div>
