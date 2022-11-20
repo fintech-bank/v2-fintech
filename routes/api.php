@@ -84,11 +84,13 @@ Route::prefix('core')->group(function () {
     });
 
 
+
 });
 
 Route::prefix('connect')->group(function () {
     Route::get('/customer_verify', [\App\Http\Controllers\Api\Connect\ConnectController::class, 'verifyCustomer']);
     Route::get('/bank/{bank_id}', [\App\Http\Controllers\Api\Connect\ConnectController::class, 'infoBank']);
+    Route::post('/siret', [\App\Http\Controllers\Api\Connect\ConnectController::class, 'verifySiret']);
 });
 
 Route::prefix('user')->group(function () {

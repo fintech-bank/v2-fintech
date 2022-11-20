@@ -7,11 +7,14 @@
         inputCni: document.querySelector('[name="cni_number"]'),
         inputSiret: document.querySelector('[name="siret"]'),
         inputCompany: document.querySelector('[name="company"]'),
+        cardCaution: document.querySelector("#cardCaution")
     }
     let modals = {}
     let forms = {}
     let dataTable = {}
-    let block = {}
+    let block = {
+        blockCaution: new KTBlockUI(elements.cardCaution)
+    }
 
     if(elements.selectCountry) {
         elements.selectCountry.addEventListener('change', e => {
@@ -28,6 +31,20 @@
                 elements.inputCni.classList.remove('is-valid')
                 elements.inputCni.classList.add('is-invalid')
             }
+        })
+    }
+    if(elements.inputSiret) {
+        elements.inputSiret.addEventListener('change', e => {
+            block.blockCaution.block();
+
+            $.ajax({
+                url: '/api/connect/siret',
+                method: 'POST',
+                data: {"siret": e.target.value},
+                success: () => {
+
+                }
+            })
         })
     }
 

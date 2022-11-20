@@ -23,4 +23,9 @@ class ConnectController extends Controller
 
         return response()->json($bank);
     }
+
+    public function verifySiret(Request $request)
+    {
+        dd(\Insee::siret($request->get('siret')));
+    }
 }

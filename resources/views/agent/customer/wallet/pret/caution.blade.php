@@ -39,7 +39,7 @@
 
 @section("content")
     <form action="{{ route('agent.customer.wallet.caution.post', $wallet->number_account) }}" method="post" enctype="multipart/form-data">
-        <div class="card shadow-sm">
+        <div class="card shadow-sm" id="cardCaution">
             <div class="card-header">
                 <h3 class="card-title">Ajout d'une caution au {{ $wallet->name_account_generic }}</h3>
                 <div class="card-toolbar">
