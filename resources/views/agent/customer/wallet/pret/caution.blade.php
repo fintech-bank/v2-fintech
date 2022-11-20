@@ -1,7 +1,7 @@
 @extends("agent.layouts.app")
 
 @section("css")
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 @endsection
 
 @section('toolbar')
@@ -125,6 +125,17 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="mb-10">
+                                <label for="dep_naissance" class="form-label">Département de naissance</label>
+                                <select id="dep_naissance" name="dep_naissance" class="form-control form-control-solid" data-placeholder="Selectionner un département de naissance">
+                                    <option value=""></option>
+                                    @foreach(\App\Helper\CountryHelper::getAll() as $country)
+                                        <option value="{{ $country->name->common }}" data-flag="{{ $country->flags->png }}">{{ $country->name->common }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -135,5 +146,7 @@
 @endsection
 
 @section("script")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-fr.min.js"></script>
     @include("agent.scripts.customer.wallet.caution")
 @endsection

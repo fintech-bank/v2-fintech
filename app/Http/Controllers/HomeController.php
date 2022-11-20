@@ -6,6 +6,7 @@ use App\Events\Core\PersonnaWebbhookEvent;
 use App\Helper\CountryHelper;
 use App\Helper\CustomerLoanHelper;
 use App\Helper\DocumentFile;
+use App\Helper\GeoHelper;
 use App\Helper\LogHelper;
 use App\Helper\UserHelper;
 use App\Models\Core\Agency;
@@ -106,7 +107,7 @@ class HomeController extends Controller
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        dd(CountryHelper::getAll());
+        dd(GeoHelper::getStateFromCountry('France'));
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }

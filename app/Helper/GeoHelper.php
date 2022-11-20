@@ -28,6 +28,11 @@ class GeoHelper
         return \Http::post('https://countriesnow.space/api/v0.1/countries/cities', ['country' => \Str::lower($country)])->object()->data;
     }
 
+    public static function getStateFromCountry($country)
+    {
+        return collect(Http::post('https://countriesnow.space/api/v0.1/countries/states', ['country' => Str::lower($country)])->object()->data)->all();
+    }
+
     public static function getSingleCountry($country)
     {
         return Http::post('https://countriesnow.space/api/v0.1/countries/flag/images', ['country' => Str::lower($country)])->object()->data;
