@@ -91,6 +91,20 @@ class CustomerPretCaution extends Model
         return $this->belongsTo(CustomerPret::class, 'customer_pret_id');
     }
 
+    public static function getTypeCautionData()
+    {
+        return collect([
+            [
+                'key' => 'simple',
+                'value' => "Caution simple"
+            ],
+            [
+                'key' => 'solidaire',
+                'value' => "Caution Solidaire"
+            ],
+        ]);
+    }
+
     public function getTypeCaution($format = '')
     {
         if($format == 'text') {
