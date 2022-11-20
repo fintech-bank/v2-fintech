@@ -21,10 +21,14 @@
         $.ajax({
             url: '/api/core/geo/states',
             method: 'POST',
-            data: {'country': country},
+            data: {
+                'country': country,
+                'name': 'dep_naissance',
+                'label': 'Département de naissance',
+                'placeholder': 'Selectionner un département de naissance'
+            },
             success: data => {
-                elements.selectDep.querySelector('select').innerHTML = data
-                elements.selectDep.querySelector('select').removeAttribute('disabled')
+                elements.selectDep.innerHTML = data
             }
         })
     }
