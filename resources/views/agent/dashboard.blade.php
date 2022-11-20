@@ -297,7 +297,6 @@
                                             </div>
                                             <div class="d-flex flex-column align-items-center me-10">
                                                 <div class="fw-bolder">{{ $user->name }}</div>
-                                                {!! $user->customers->info->type_label !!}
                                             </div>
                                         </div>
                                         <div class="d-flex flex-column align-items-center justify-content-center">
