@@ -460,6 +460,12 @@
                                     <td>Caution {{ $caution->caution_type }}</td>
                                     <td>
                                         <button class="btn btn-xs btn-danger btn-icon btnDeleteCaution" data-caution="{{ $key }}"><i class="fa-solid fa-trash text-white"></i> </button>
+                                        <x-base.button
+                                            class="btn btn-xs btn-danger btn-icon btnDeleteCaution"
+                                            text="<i class='fa-solid fa-trash text-white'></i>"
+                                            :datas="[['name' => 'caution', 'value' => $key]]"
+                                            />
+
                                     </td>
                                 </tr>
                             @endforeach

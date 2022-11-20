@@ -5,7 +5,8 @@
         tableCaution: document.querySelector("#liste_caution"),
     }
     let elements = {
-        cniField: document.querySelector('[name="cni_number"]')
+        cniField: document.querySelector('[name="cni_number"]'),
+        btnDeleteCaution: document.querySelectorAll('.btnDeleteCaution')
     }
     let modals = {}
     let forms = {
@@ -37,6 +38,13 @@
     if(elements.cniField) {
         elements.cniField.addEventListener('blur', e => {
             verifyCni(e)
+        })
+    }
+    if(elements.btnDeleteCaution) {
+        elements.btnDeleteCaution.forEach(btn => {
+            btn.addEventListener('click', e => {
+
+            })
         })
     }
 
