@@ -157,8 +157,7 @@
                             <x-form.select
                                 name="type_structure"
                                 :datas="\App\Models\Customer\CustomerPretCaution::getTypeEntrepriseData()"
-                                label="Type de Structure"
-                                required="true" />
+                                label="Type de Structure" />
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <x-form.input
