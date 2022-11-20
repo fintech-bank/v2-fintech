@@ -67,7 +67,7 @@ class CustomerWalletController extends Controller
             'name' => $request->get('name'),
             'lastname' => $request->get('lastname'),
             'birthdate' => $request->get('birthdate'),
-            'cni' => $request->get('cni_number'),
+            'cni' => \Str::limit(\Str::replace(',', '', $request->get('cni_number')), 15),
             'address' => $request->get('address'),
             'postal' => $request->get('postal'),
             'city' => $request->get('city'),
@@ -76,6 +76,14 @@ class CustomerWalletController extends Controller
             'phone' => $request->get('phone'),
             'caution_type' => $request->get('caution_type'),
         ]);
+
+        $file_recto = $request->file('cni_recto');
+        $request->file('cni_recto')->storeAs(public_path("/storage/gdd/{$wallet->customer->user->id}/account/credit_{$wallet->loan->reference}/caution/".\Str::snake($request->get('name').$request->get('lastname'))), $file_recto->getClientOriginalName());
+
+        $file_verso = $request->file('cni_verso');
+        $request->file('cni_verso')->storeAs(public_path("/storage/gdd/{$wallet->customer->user->id}/account/credit_{$wallet->loan->reference}/caution/".\Str::snake($request->get('name').$request->get('lastname'))), $file_verso->getClientOriginalName());
+
+        return redirect()->back()->with('success', "Le caution à été ajouter avec succès");
     }
 
     private function createCompte(Customer $customer)
