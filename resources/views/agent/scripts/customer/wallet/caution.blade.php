@@ -48,7 +48,7 @@
                         let p = document.createElement('p')
                         elements.inputSiret.classList.remove('is-valid')
                         elements.inputSiret.classList.add('is-invalid')
-                        elements.inputSiret.append(p)
+                        elements.inputSiret.parentNode.append(p)
                         p.classList.remove('text-success')
                         p.classList.add('text-danger')
                         p.innerHTML = data.header.message
@@ -56,7 +56,7 @@
                         let p = document.createElement('p')
                         elements.inputSiret.classList.remove('is-invalid')
                         elements.inputSiret.classList.add('is-valid')
-                        elements.inputSiret.append(p)
+                        elements.inputSiret.parentNode.append(p)
                         p.classList.remove('text-danger')
                         p.classList.add('text-success')
                         p.innerHTML = data.header.message
