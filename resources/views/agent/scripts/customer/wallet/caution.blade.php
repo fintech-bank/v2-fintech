@@ -42,6 +42,8 @@
                 method: 'POST',
                 data: {"siret": e.target.value},
                 success: data => {
+                    block.blockCaution.release()
+                    block.blockCaution.destroy()
                     if(data.header.statut === 404) {
                         let p = document.createElement('p')
                         elements.inputSiret.classList.remove('is-valid')
