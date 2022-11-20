@@ -70,7 +70,7 @@ class CustomerWalletController extends Controller
 
     public function postCaution($number_account, Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
         $caution = CustomerPretCaution::create([
