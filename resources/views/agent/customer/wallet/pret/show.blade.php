@@ -424,9 +424,9 @@
                 <div class="card-header">
                     <h3 class="card-title">Caution sur le pret</h3>
                     <div class="card-toolbar">
-                        <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#AddCaution">
+                        <a href="{{ route('agent.customer.wallet.caution', $wallet->number_account) }}" class="btn btn-sm btn-light">
                             Ajouter une caution
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -523,132 +523,6 @@
                             value="1"
                             label="Le client est responsable du dommage ?" />
 
-                    </div>
-                    <div class="modal-footer">
-                        <x-form.button />
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" tabindex="-1" id="AddCaution">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-bank">
-                    <h3 class="modal-title text-white">Nouvelle caution</h3>
-
-                    <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-solid fa-xmark text-white fs-1"></i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-
-                <form id="formAddCaution" action="{{ route('agent.customer.wallet.caution', $wallet->number_account) }}" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="mb-10">
-                            <label for="" class="form-label required">Genre</label>
-                            <select name="genre" class="form-control form-control-solid" data-control="select2">
-                                <option value="m">Masculin</option>
-                                <option value="f">Féminin</option>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-12">
-                                <x-form.input
-                                    name="name"
-                                    label="Nom de famille"
-                                    required="true" />
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <x-form.input
-                                    name="lastname"
-                                    label="Prénom"
-                                    required="true" />
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <x-form.input
-                                    name="birthdate"
-                                    label="Date de naissance"
-                                    type="text"
-                                    required="true" />
-                            </div>
-                        </div>
-                        <div class="mb-10">
-                            <label for="" class="form-label required">Version de la carte d'identité</label>
-                            <select name="cni_version" class="form-control form-control-solid" data-control="select2">
-                                <option value="1995">1995</option>
-                                <option value="2021">2021</option>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <x-form.input name="dep_nai" label="Département de naissance" required="true" />
-                            </div>
-                            <div class="col-md-3">
-                                <x-form.input name="pays_nai" label="Pays de naissance" required="true" />
-                            </div>
-                        </div>
-                        <x-form.input
-                            name="cni_number"
-                            label="N° Carte d'identité"
-                            required="true" />
-                        <x-form.input
-                            name="dep_birthday"
-                            label="Département de naissance"
-                            required="true" />
-                        <x-form.textarea
-                            name="address"
-                            label="Adresse Postal"
-                            required="true" />
-                        <div class="row">
-                            <div class="col-md-4 col-sm-12">
-                                <x-form.input
-                                    name="postal"
-                                    label="Code postal"
-                                    required="true" />
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <x-form.input
-                                    name="city"
-                                    label="Ville"
-                                    required="true" />
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <x-form.input
-                                    name="country"
-                                    label="Pays"
-                                    required="true" />
-                            </div>
-                        </div>
-                        <x-form.input
-                            name="email"
-                            type="email"
-                            label="Adresse Mail"
-                            required="true" />
-                        <x-form.input
-                            name="phone"
-                            label="Numéro de téléphone"
-                            required="true" />
-                        <x-form.input
-                            name="caution_type"
-                            label="Type de caution"
-                            required="true" />
-
-                        <div class="row">
-                            <div class="col-6">
-                                <x-form.input-file
-                                    name="cni_recto"
-                                    label="CNI Recto"
-                                    required="true" />
-                            </div>
-                            <div class="col-6">
-                                <x-form.input-file
-                                    name="cni_verso"
-                                    label="CNI Verso"
-                                    required="true" />
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <x-form.button />

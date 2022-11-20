@@ -57,49 +57,11 @@ class CustomerWalletController extends Controller
         }
     }
 
-    public function caution($number_account, Request $request)
+    public function caution($number_account)
     {
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
-        try {
-            $cautions = collect(json_decode($wallet->loan->caution));
-
-            $cautions->push([
-                'name' => $request->get('name'),
-                'lastname' => $request->get('lastname'),
-                'birthdate' => $request->get('birthdate'),
-                'cni' => \Str::limit(\Str::replace(',', '', $request->get('cni_number')), 15),
-                'address' => $request->get('address'),
-                'postal' => $request->get('postal'),
-                'city' => $request->get('city'),
-                'country' => $request->get('country'),
-                'email' => $request->get('email'),
-                'phone' => $request->get('phone'),
-                'caution_type' => $request->get('caution_type'),
-            ]);
-
-            $wallet->loan->update([
-                'caution' => json_encode($cautions->all())
-            ]);
-        }catch (\Exception $exception) {
-            return redirect()->back()->with('error', $exception->getMessage());
-        }
-
-        try {
-            $file_recto = $request->file('cni_recto');
-            $request->file('cni_recto')->storeAs(public_path("/storage/gdd/{$wallet->customer->user->id}/account/credit_{$wallet->loan->reference}/caution/".\Str::snake($request->get('name').$request->get('lastname'))), $file_recto->getClientOriginalName());
-        }catch (\Exception $exception) {
-            return redirect()->back()->with('error', $exception->getMessage());
-        }
-
-        try {
-            $file_verso = $request->file('cni_verso');
-            $request->file('cni_verso')->storeAs(public_path("/storage/gdd/{$wallet->customer->user->id}/account/credit_{$wallet->loan->reference}/caution/".\Str::snake($request->get('name').$request->get('lastname'))), $file_verso->getClientOriginalName());
-        }catch (\Exception $exception) {
-            return redirect()->back()->with('error', $exception->getMessage());
-        }
-
-        return redirect()->back()->with('success', "Le caution à été ajouter avec succès");
+        return view('agent.customer.wallet.pret.caution', compact('wallet'));
     }
 
     private function createCompte(Customer $customer)
