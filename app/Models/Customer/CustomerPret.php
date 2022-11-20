@@ -85,6 +85,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Customer\CustomerInsurance|null $insurance
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereConfirmedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereCustomerInsuranceId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerPretCaution[] $cautions
+ * @property-read int|null $cautions_count
  */
 class CustomerPret extends Model
 {

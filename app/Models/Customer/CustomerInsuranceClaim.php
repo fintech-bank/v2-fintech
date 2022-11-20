@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsuranceClaim whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInsuranceClaim whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read mixed $status_label
  */
 class CustomerInsuranceClaim extends Model
 {

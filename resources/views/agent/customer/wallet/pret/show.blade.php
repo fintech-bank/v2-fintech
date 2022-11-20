@@ -433,40 +433,24 @@
                     <table class="table border gs-7 gy-7" id="liste_caution">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Identité</th>
-                                <th>Date de naissance</th>
-                                <th>Adresse Postal</th>
-                                <th>Coordonnée</th>
                                 <th>Type de caution</th>
+                                <th>Etat de la caution</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(json_decode($wallet->loan->cautions) as $caution)
+                            @foreach($wallet->loan->cautions as $caution)
                                 <tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
+                                    <td>{{ $caution->id }}</td>
                                     <td>
-                                        <strong>{{ $caution->name }} {{ $caution->lastname }}</strong><br>
-                                        <div class="text-muted">{{ $caution->cni }}</div>
-                                    </td>
-                                    <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($caution->birthdate))->format('d/m/Y') }}</td>
-                                    <td>
-                                        {{ $caution->address }}<br>
-                                        {{ $caution->postal }} {{ $caution->city }}<br>
-                                        {{ $caution->country }}
-                                    </td>
-                                    <td>
-                                        <i class="fa-solid fa-phone me-2"></i>: {{ $caution->phone }}
-                                    </td>
-                                    <td>Caution {{ $caution->caution_type }}</td>
-                                    <td>
-                                        <x-base.button
-                                            class="btn btn-xs btn-danger btn-icon btnDeleteCaution"
-                                            text="<i class='fa-solid fa-trash text-white'></i>"
-                                            :datas="[['name' => 'caution', 'value' => $key]]"
-                                            tooltip="Supprimer la caution"
-                                            text-indicator=""
-                                            />
-
+                                        @if($caution->type == 'physique')
+                                            {{ $caution->civility }} {{ $caution->lastname }} {{ $caution->firstname }}<br>
+                                        @else
+                                            {{ $caution->company }}<br>
+                                        @endif
+                                            {!! $caution->type_caution_label !!}
                                     </td>
                                 </tr>
                             @endforeach
