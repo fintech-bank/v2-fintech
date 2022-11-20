@@ -43,6 +43,7 @@ class PretController extends ApiController
     {
         $credit = CustomerPret::where('reference', $pret_reference)->first();
         $caution = collect(json_decode($credit->caution))->reject(function ($value, $caution_id) {
+            dd($value, $caution_id);
             return $value == $caution_id;
         });
 
