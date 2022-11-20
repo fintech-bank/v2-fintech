@@ -20,7 +20,7 @@
             method: 'POST',
             data: {'country': country},
             success: data => {
-                console.log(data)
+                elements.selectDep.querySelector('select').innerHTML = data
             }
         })
     }
