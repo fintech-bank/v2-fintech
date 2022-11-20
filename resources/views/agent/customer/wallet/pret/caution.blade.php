@@ -72,6 +72,26 @@
                         size-text="fs-1"
                         size="3"
                         color="bank" />
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <x-form.select
+                                name="civility"
+                                :datas="\App\Models\Customer\CustomerPretCaution::getCivilityData()"
+                                label="Civilité" />
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <x-form.input
+                                label="Nom de famille"
+                                name="firstname" />
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <x-form.input
+                                label="Prénom"
+                                name="lastname" />
+                        </div>
+                    </div>
+
                 </div>
                 <div id="moral"></div>
             </div>

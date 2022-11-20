@@ -119,6 +119,15 @@ class CustomerPretCaution extends Model
         ])->toJson();
     }
 
+    public static function getCivilityData()
+    {
+        return collect([
+            ['id' => 'M', 'name' => "Monsieur"],
+            ['id' => 'Mme', 'name' => "Madame"],
+            ['id' => 'Mlle', 'name' => "Mademoiselle"],
+        ])->toJson();
+    }
+
     public function getTypeCaution($format = '')
     {
         if($format == 'text') {
