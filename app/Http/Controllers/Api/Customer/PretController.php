@@ -42,6 +42,7 @@ class PretController extends ApiController
     public function deleteCaution($customer_id, $pret_reference, $caution_id)
     {
         $credit = CustomerPret::where('reference', $pret_reference);
+        dd($credit)
         $caution = collect(json_decode($credit->caution))->reject(function ($caution_id, $key) {
             dd($caution_id, $key);
             return $value == $caution_id;
