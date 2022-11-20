@@ -105,6 +105,6 @@ class HomeController extends Controller
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        return $document->generatePDF('loan.contrat_de_credit_personnel', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
+        return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }
 }
