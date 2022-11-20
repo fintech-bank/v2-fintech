@@ -278,11 +278,13 @@ class CustomerController extends Controller
         return response()->json(['offer' => "Offre de bienvenue"]);
     }
 
-    private function verifyCni(string $name, string $dep_nai, string $genre, string $birthdate, string $cni, string $pays_nai, string $versionCNI = '1995')
+    private function verifyCni(string $cni, string $versionCNI = '1995')
     {
         $cni_array = explode(',', $cni);
         if($versionCNI == '1995') {
             return VerifCNITrait::version1992($cni_array[0], $cni_array[1]);
+        } else {
+            return VerifCNITrait::version2021($cni_array[0], $cni_array[1]);
         }
 
     }

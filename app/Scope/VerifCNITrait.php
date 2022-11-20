@@ -20,4 +20,14 @@ trait VerifCNITrait
             return 'false';
         }
     }
+
+    public static function version2021(string $cni_number1, string $cni_number2)
+    {
+        $lenght = \Str::length($cni_number1.$cni_number2);
+        if($lenght >= 30 && $lenght <= 90) {
+            return 'true';
+        } else {
+            return 'false';
+        }
+    }
 }
