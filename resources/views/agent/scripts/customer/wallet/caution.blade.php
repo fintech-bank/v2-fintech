@@ -29,7 +29,7 @@
                     ajax: {
                         url: '/api/core/geo/states',
                         method: 'POST',
-                        data:{"country": country, 'q': elements.selectDep.querySelector('[role="search"]').value},
+                        data:{"country": country, 'q': elements.selectDep.querySelector('[role="search"]')},
                         dataType: 'json',
                         delay: 250,
                         processResults: function (data) {
