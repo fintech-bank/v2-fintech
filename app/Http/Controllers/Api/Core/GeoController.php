@@ -12,22 +12,14 @@ class GeoController extends Controller
     public function states(Request $request)
     {
         $results = GeoHelper::getStateFromCountry($request->get('country'));
-        ob_start();
-        ?>
-        <div class="mb-10">
-            <label for="<?= $request->get('name') ?>" class="form-label"><?= $request->has('label') ? $request->get('label') : $request->get('name') ?></label>
-            <select id="<?= $request->get('name') ?>" name="<?= $request->get('name') ?>" class="form-control form-control-solid" data-placeholder="<?= $request->get('placeholder') ?>">
-                <?php foreach ($results as $result): ?>
-                    <option value="<?= $result->name; ?>"><?= $result->name; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <script type="text/javascript">
-            $("#<?= $request->get('name') ?>").selectpicker()
-        </script>
-        <?php
+        $data = [];
+        if($request->get('q')) {
+            $data = $results->search($request->get('q'));
+        } else {
+            $data = $results->all();
+        }
 
-        return response()->json(ob_get_clean());
+        return response()->json($data);
     }
     public function cities(Request $request)
     {

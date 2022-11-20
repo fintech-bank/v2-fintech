@@ -30,7 +30,7 @@ class GeoHelper
 
     public static function getStateFromCountry($country)
     {
-        return collect(Http::post('https://countriesnow.space/api/v0.1/countries/states', ['country' => Str::lower($country)])->object()->data->states)->all();
+        return collect(Http::post('https://countriesnow.space/api/v0.1/countries/states', ['country' => Str::lower($country)])->object()->data->states);
     }
 
     public static function getSingleCountry($country)

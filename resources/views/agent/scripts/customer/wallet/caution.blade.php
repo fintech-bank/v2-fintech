@@ -28,7 +28,24 @@
                 'placeholder': 'Selectionner un département de naissance'
             },
             success: data => {
-                elements.selectDep.innerHTML = data
+                $(elements.selectDep.querySelector('select')).select2({
+                    ajax: {
+                        url: '/api/core/geo/state',
+                        dataType: 'json',
+                        delay: 250,
+                        processResults: function (data) {
+                            return {
+                                results:  $.map(data, function (item) {
+                                    return {
+                                        text: item.name,
+                                        id: item.id
+                                    }
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                })
             }
         })
     }
