@@ -141,6 +141,11 @@ class CustomerPret extends Model
         return $this->belongsTo(CustomerInsurance::class, 'customer_insurance_id');
     }
 
+    public function cautions()
+    {
+        return $this->hasMany(CustomerPretCaution::class);
+    }
+
     //---------- Scope ------------------//
 
     //---------- Attribute -------------//
