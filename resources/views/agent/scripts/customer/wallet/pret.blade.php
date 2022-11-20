@@ -43,7 +43,8 @@
     if(elements.btnDeleteCaution) {
         elements.btnDeleteCaution.forEach(btn => {
             btn.addEventListener('click', e => {
-
+                e.preventDefault()
+                btn.setAttribute('data-kt-indicator', true)
             })
         })
     }

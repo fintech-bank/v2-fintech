@@ -464,6 +464,7 @@
                                             text="<i class='fa-solid fa-trash text-white'></i>"
                                             :datas="[['name' => 'caution', 'value' => $key]]"
                                             tooltip="Supprimer la caution"
+                                            text-indicator=""
                                             />
 
                                     </td>
