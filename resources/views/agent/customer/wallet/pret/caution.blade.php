@@ -113,6 +113,17 @@
 
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="mb-10">
+                                <label for="country_naissance" class="form-label">Pays de naissance</label>
+                                <select name="country_naissance" class="form-control form-control-solid" data-control="select2" data-placeholder="Selectionner un pays de naissance">
+                                    <option value=""></option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <div id="moral"></div>

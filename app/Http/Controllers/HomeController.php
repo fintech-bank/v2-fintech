@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Core\PersonnaWebbhookEvent;
+use App\Helper\CountryHelper;
 use App\Helper\CustomerLoanHelper;
 use App\Helper\DocumentFile;
 use App\Helper\LogHelper;
@@ -104,6 +105,8 @@ class HomeController extends Controller
         $wallet = $customer->wallets()->find(3);
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
+
+        dd(CountryHelper::getAll());
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }
