@@ -95,12 +95,12 @@ class CustomerPretCaution extends Model
     {
         return collect([
             [
-                'key' => 'simple',
-                'value' => "Caution simple"
+                'id' => 'simple',
+                'name' => "Caution simple"
             ],
             [
-                'key' => 'solidaire',
-                'value' => "Caution Solidaire"
+                'id' => 'solidaire',
+                'name' => "Caution Solidaire"
             ],
         ])->toJson();
     }
