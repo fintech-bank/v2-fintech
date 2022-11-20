@@ -20,31 +20,6 @@ trait VerifCNITrait
         $lenght = \Str::length($cni_number1.$cni_number2);
 
         if($lenght >= 10 && $lenght <= 72) {
-            if(!strpos($cni_number1, 'ID')) {
-                return 'false';
-            }
-
-            if(!strpos($cni_number1, CountryHelper::getCountryByName($pays, 'cca3'))) {
-                return 'false';
-            }
-
-            if(!strpos($cni_number1, \Str::upper($nom_famille))) {
-                return 'false';
-            }
-
-            if(!strpos($cni_number1, $departement)) {
-               return 'false';
-            }
-
-            // deuxième ligne
-            if(!strpos($cni_number2, Carbon::createFromTimestamp(strtotime($bithdate))->format('ymd'))) {
-                return 'false';
-            }
-
-            if(!strpos($cni_number2, $sexe)) {
-                return 'false';
-            }
-
             return 'true';
         } else {
             return 'false';
