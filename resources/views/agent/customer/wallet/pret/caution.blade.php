@@ -90,6 +90,12 @@
                                 label="Prénom"
                                 name="lastname" />
                         </div>
+                        <div class="col-md-1 col-sm-2">
+                            <x-form.checkbox
+                                name="ficap"
+                                value="1"
+                                label="Accès FICAP" />
+                        </div>
                     </div>
 
                 </div>
