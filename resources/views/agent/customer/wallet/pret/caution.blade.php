@@ -1,7 +1,7 @@
 @extends("agent.layouts.app")
 
 @section("css")
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
 @endsection
 
 @section('toolbar')
@@ -146,6 +146,6 @@
 @endsection
 
 @section("script")
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
     @include("agent.scripts.customer.wallet.caution")
 @endsection
