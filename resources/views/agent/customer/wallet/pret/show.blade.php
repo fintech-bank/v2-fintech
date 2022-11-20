@@ -459,7 +459,7 @@
                                     </td>
                                     <td>Caution {{ $caution->caution_type }}</td>
                                     <td>
-                                        <button class="btn btn-xs btn-danger btn-icon"><i class="fa-solid fa-trash text-white"></i> </button>
+                                        <button class="btn btn-xs btn-danger btn-icon btnDeleteCaution" data-caution="{{ $key }}"><i class="fa-solid fa-trash text-white"></i> </button>
                                     </td>
                                 </tr>
                             @endforeach
