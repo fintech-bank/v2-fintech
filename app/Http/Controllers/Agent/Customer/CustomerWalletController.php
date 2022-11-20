@@ -11,6 +11,7 @@ use App\Helper\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerEpargne;
+use App\Models\Customer\CustomerPretCaution;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\Ficap\NewCautionFicapNotification;
 use App\Notifications\Customer\NewCautionNotification;
@@ -70,7 +71,7 @@ class CustomerWalletController extends Controller
     {
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
-        $caution = $wallet->loan->cautions->create([
+        $caution = CustomerPretCaution::create([
             'type_caution' => $request->get('type_caution'),
             'type' => $request->get('type'),
             'civility' => $request->get('type') == 'physique' ? $request->get('civility') : '',
