@@ -20,7 +20,6 @@ trait VerifCNITrait
         $lenght = \Str::length($cni_number1.$cni_number2);
 
         if($lenght >= 10 && $lenght <= 72) {
-            dd($sexe);
             dd(strpos($cni_number2, \Str::upper($sexe)));
             if(!strpos($cni_number1, 'ID')) {
                 return false;
