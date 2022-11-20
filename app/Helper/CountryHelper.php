@@ -6,7 +6,7 @@ class CountryHelper
 {
     public static function getAll()
     {
-        $response = collect(\Http::get('https://restcountries.com/v3.1/')->object());
+        $response = collect(\Http::get('https://restcountries.com/v3.1/all')->object());
 
         return $response->all();
     }
