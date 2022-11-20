@@ -25,7 +25,7 @@
                 'placeholder': 'Selectionner un département de naissance'
             },
             success: data => {
-                elements.selectDep.querySelector('select').innerHTML = ''
+                elements.selectDep.querySelector('select').innerHTML = '<option></option>'
                 Array.from(data).forEach(option => {
                     elements.selectDep.querySelector('select').innerHTML += `<option value="${option.name}">${option.name}</option>`
                 })
