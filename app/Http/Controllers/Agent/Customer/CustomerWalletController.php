@@ -61,7 +61,7 @@ class CustomerWalletController extends Controller
     {
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
-        return view('agent.customer.wallet.pret.caution', compact('wallet'));
+        return view('agent.customer.wallet.pret.caution', ["wallet" => $wallet]);
     }
 
     private function createCompte(Customer $customer)
