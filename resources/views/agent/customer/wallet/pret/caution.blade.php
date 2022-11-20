@@ -73,7 +73,7 @@
                         size="3"
                         color="bank" />
 
-                    <div class="row">
+                    <div class="row align-items-center">
                         <div class="col-md-3 col-sm-12">
                             <x-form.select
                                 name="civility"
