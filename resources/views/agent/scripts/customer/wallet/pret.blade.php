@@ -47,7 +47,17 @@
                 btn.setAttribute('data-kt-indicator', 'on')
 
                 $.ajax({
-                    url: '/api/customer/{{ $wallet->customer->id }}/'
+                    url: '/api/customer/{{ $wallet->customer->id }}/pret/{{ $wallet->loan->reference }}/caution/'+btn.dataset.caution,
+                    method: 'DELETE',
+                    success: () => {
+                        btn.removeAttribute('data-kt-indicator')
+
+                        toastr.success(`Caution supprimé`, ``)
+
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1200)
+                    }
                 })
             })
         })

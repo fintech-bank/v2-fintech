@@ -39,6 +39,20 @@ class PretController extends ApiController
         return $this->sendSuccess(null, [$match]);
     }
 
+    public function deleteCaution($customer_id, $pret_reference, $caution_id)
+    {
+        $credit = CustomerPret::where('reference', $pret_reference)->first();
+        $caution = collect(json_decode($credit->caution))->reject(function ($value, $caution_id) {
+            return $value == $caution_id;
+        });
+
+        $credit->update([
+            'caution' => $caution->all()
+        ]);
+
+        return $this->sendSuccess();
+    }
+
     private function updateState(CustomerPret $pret, $state)
     {
         $pret->update([
