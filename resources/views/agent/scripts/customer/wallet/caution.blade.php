@@ -16,11 +16,9 @@
         })
     }
 
-    if(elements.selectDep) {
-        elements.selectDep.addEventListener('change', e => {
-            cityBirthByCountry(e.target)
-        })
-    }
+    elements.selectDep.addEventListener('change', e => {
+        cityBirthByCountry(e.target)
+    })
 
     let stateBirthByCountry = (item) => {
         let country = item.value
