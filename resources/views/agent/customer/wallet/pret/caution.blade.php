@@ -173,6 +173,41 @@
                     </div>
 
                 </div>
+                <x-base.underline
+                    title="Adresse & Coordonnée"
+                    class="w-500px mt-5 mb-5"
+                    size-text="fs-1"
+                    size="3"
+                    color="bank" />
+
+                <x-form.textarea
+                    name="address"
+                    label="Adresse Postal" />
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <x-form.input
+                            name="postal"
+                            label="Code Postal" />
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <x-form.input
+                            name="city"
+                            label="Ville" />
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="mb-10">
+                            <label for="country" class="form-label">Pays</label>
+                            <select id="country" name="country" class="form-control form-control-solid selectpicker" data-live-search="true" data-placeholder="Selectionner un pays">
+                                <option value=""></option>
+                                @foreach(\App\Helper\CountryHelper::getAll() as $country)
+                                    <option value="{{ $country->name->common }}" data-content="<div class='d-flex flex-row mb-1 h-20px'><div class='symbol symbol-20px me-2'><img src='{{ $country->flags->png }}' alt=''/></div> {{ $country->name->common }}</div>">{{ $country->name->common }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="card-footer text-end">
                 <x-form.button />
