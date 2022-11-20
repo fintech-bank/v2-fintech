@@ -20,7 +20,7 @@ trait VerifCNITrait
         $lenght = \Str::length($cni_number1.$cni_number2);
 
         if($lenght >= 10 && $lenght <= 72) {
-            dd(strpos($cni_number2, CountryHelper::getCountryByName($pays, 'cca3')));
+            dd(strpos($cni_number1, \Str::upper($nom_famille)));
             if(!strpos($cni_number1, 'ID')) {
                 return false;
             }
