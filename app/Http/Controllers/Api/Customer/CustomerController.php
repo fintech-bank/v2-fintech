@@ -205,12 +205,7 @@ class CustomerController extends Controller
 
             case 'cni':
                 $cn = $this->verifyCni(
-                    $request->get('name'),
-                    $request->get('dep_nai'),
-                    $request->get('genre'),
-                    $request->get('birthdate'),
                     $request->get('cni_number'),
-                    $request->get('pays_nai'),
                     $request->get('cni_version')
                 );
 
