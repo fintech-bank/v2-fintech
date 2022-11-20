@@ -120,7 +120,7 @@
                                 <select id="country_naissance" name="country_naissance" class="form-control form-control-solid selectpicker" data-live-search="true" data-placeholder="Selectionner un pays de naissance">
                                     <option value=""></option>
                                     @foreach(\App\Helper\CountryHelper::getAll() as $country)
-                                        <option value="{{ $country->name->common }}" data-content="<div class='d-flex flex-row mb-1 h-20px'><div class='symbol symbol-20px'><img src='{{ $country->flags->png }}' alt=''/></div> {{ $country->name->common }}</div>">{{ $country->name->common }}</option>
+                                        <option value="{{ $country->name->common }}" data-content="<div class='d-flex flex-row mb-1 h-20px'><div class='symbol symbol-20px me-2'><img src='{{ $country->flags->png }}' alt=''/></div> {{ $country->name->common }}</div>">{{ $country->name->common }}</option>
                                     @endforeach
                                 </select>
                             </div>
