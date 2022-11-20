@@ -117,7 +117,7 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="mb-10">
                                 <label for="country_naissance" class="form-label">Pays de naissance</label>
-                                <select id="country_naissance" name="country_naissance" class="form-control form-control-solid" data-control="select2" data-placeholder="Selectionner un pays de naissance">
+                                <select id="country_naissance" name="country_naissance" class="form-control form-control-solid" data-placeholder="Selectionner un pays de naissance">
                                     <option value=""></option>
                                     @foreach(\App\Helper\CountryHelper::getAll() as $country)
                                         <option value="{{ $country->name->common }}" data-flag="{{ $country->flags->png }}">{{ $country->name->common }}</option>
