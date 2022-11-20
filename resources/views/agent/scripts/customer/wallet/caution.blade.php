@@ -20,9 +20,6 @@
             method: 'POST',
             data: {
                 'country': country,
-                'name': 'dep_naissance',
-                'label': 'Département de naissance',
-                'placeholder': 'Selectionner un département de naissance'
             },
             success: data => {
                 elements.selectDep.querySelector('select').innerHTML = '<option></option>'
