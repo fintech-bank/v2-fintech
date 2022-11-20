@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-4 col-sm-12 selectCountry">
                             <div class="mb-10">
                                 <label for="country_naissance" class="form-label">Pays de naissance</label>
                                 <select id="country_naissance" name="country_naissance" class="form-control form-control-solid" data-placeholder="Selectionner un pays de naissance">
@@ -125,14 +125,19 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-4 col-sm-12 selectDep">
+                            <div class="mb-10">
+                                <label for="dep_naissance" class="form-label">Pays de naissance</label>
+                                <select id="dep_naissance" name="dep_naissance" class="form-control form-control-solid" data-placeholder="Selectionner un département de naissance">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 selectCity">
                             <div class="mb-10">
                                 <label for="city_naissance" class="form-label">Ville de naissance</label>
                                 <select id="city_naissance" name="city_naissance" data-live-search="true" class="form-control form-control-solid selectpicker" data-placeholder="Selectionner une ville de naissance">
                                     <option value=""></option>
-                                    @foreach(\App\Helper\GeoHelper::getCitiesFromCountry('France') as $city)
-                                        <option value="{{ $city }}">{{ $city }}</option>
-                                    @endforeach
                                 </select>
                             </div>
                         </div>
