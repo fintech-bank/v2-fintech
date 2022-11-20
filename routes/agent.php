@@ -112,7 +112,7 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
         Route::get('{reference}', [\App\Http\Controllers\Agent\Insurance\InsuranceController::class, 'show'])->name('agent.insurance.show');
 
         Route::prefix('{reference}/claims')->group(function () {
-            Route::get('{reference}', [\App\Http\Controllers\Agent\Insurance\ClaimController::class, 'index'])->name('agent.insurance.claim.show');
+            Route::get('{claim_reference}', [\App\Http\Controllers\Agent\Insurance\ClaimController::class, 'index'])->name('agent.insurance.claim.show');
         });
     });
 });
