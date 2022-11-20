@@ -442,7 +442,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(json_decode($wallet->loan->caution) as $key => $caution)
+                            @foreach(json_decode($wallet->loan->cautions) as $caution)
                                 <tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
                                     <td>
                                         <strong>{{ $caution->name }} {{ $caution->lastname }}</strong><br>
