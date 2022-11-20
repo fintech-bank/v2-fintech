@@ -450,8 +450,11 @@
                                         @else
                                             {{ $caution->company }}<br>
                                         @endif
-                                            {!! $caution->type_caution_label !!}
+                                            {!! $caution->type_label !!}
                                     </td>
+                                    <td>{!! $caution->type_caution_label !!}</td>
+                                    <td>{!! $caution->status_label !!}</td>
+                                    <td></td>
                                 </tr>
                             @endforeach
                         </tbody>
