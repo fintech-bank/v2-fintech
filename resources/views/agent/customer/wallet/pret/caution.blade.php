@@ -128,10 +128,10 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="mb-10">
                                 <label for="dep_naissance" class="form-label">Département de naissance</label>
-                                <select id="dep_naissance" name="dep_naissance" class="form-control form-control-solid" data-placeholder="Selectionner un département de naissance">
+                                <select id="dep_naissance" name="dep_naissance" class="form-control form-control-solid selectpicker" data-placeholder="Selectionner un département de naissance">
                                     <option value=""></option>
-                                    @foreach(\App\Helper\CountryHelper::getAll() as $country)
-                                        <option value="{{ $country->name->common }}" data-flag="{{ $country->flags->png }}">{{ $country->name->common }}</option>
+                                    @foreach(\App\Helper\GeoHelper::getCitiesFromCountry('France') as $city)
+                                        <option value="{{ $city-> }}" data-flag="{{ $country->flags->png }}">{{ $country->name->common }}</option>
                                     @endforeach
                                 </select>
                             </div>
