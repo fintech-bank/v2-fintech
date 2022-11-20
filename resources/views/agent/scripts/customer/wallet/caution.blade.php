@@ -10,6 +10,12 @@
     let dataTable = {}
     let block = {}
 
+    if(elements.selectCountry) {
+        elements.selectCountry.addEventListener('change', e => {
+            stateBirthByCountry(e)
+            cityBirthByCountry(e)
+        })
+    }
 
     let stateBirthByCountry = (item) => {
         let country = item.value
