@@ -27,6 +27,6 @@ class ConnectController extends Controller
 
     public function verifySiret(Request $request)
     {
-        dd(Sirene::siret($request->get('siret')));
+        return Sirene::siret($request->get('siret'));
     }
 }
