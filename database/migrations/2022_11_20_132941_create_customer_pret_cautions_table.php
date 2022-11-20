@@ -41,12 +41,17 @@ return new class extends Migration {
             // Information de caution (Personne Moral)
             $table->string('type_structure')->nullable()->comment("SASU, SARL, ETc..");
             $table->string('siret')->nullable();
-            $table->boolean('identityVerify')->default(false);
+            $table->boolean('companyVerify')->default(false);
 
             // Signature document
             $table->boolean('sign_caution')->default(false);
             $table->timestamp('signed_at')->nullable();
             $table->timestamps();
+
+            $table->foreignId('customer_pret_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 
