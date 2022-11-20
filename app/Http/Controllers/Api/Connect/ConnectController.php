@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Connect;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Bank;
 use App\Services\BankFintech;
+use App\Services\Sirene;
 use Illuminate\Http\Request;
 
 class ConnectController extends Controller
@@ -26,6 +27,6 @@ class ConnectController extends Controller
 
     public function verifySiret(Request $request)
     {
-        dd(\Insee::siret($request->get('siret')));
+        dd(Sirene::siret($request->get('siret')));
     }
 }
