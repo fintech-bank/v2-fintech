@@ -27,6 +27,10 @@ class ConnectController extends Controller
 
     public function verifySiret(Request $request)
     {
-        return Sirene::siret($request->get('siret'));
+        if($request->get('siret')) {
+            return Sirene::siret($request->get('siret'));
+        } else {
+            return Sirene::other($request->get('company'));
+        }
     }
 }

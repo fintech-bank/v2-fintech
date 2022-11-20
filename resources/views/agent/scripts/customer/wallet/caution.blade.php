@@ -65,6 +65,38 @@
             })
         })
     }
+    if(elements.inputCompany) {
+        elements.inputCompany.addEventListener('change', e => {
+            block.blockCaution.block();
+
+            $.ajax({
+                url: '/api/connect/siret',
+                method: 'POST',
+                data: {"company": e.target.value},
+                success: data => {
+                    block.blockCaution.release()
+                    block.blockCaution.destroy()
+                    if(data.header.statut === 404) {
+                        let p = document.createElement('p')
+                        elements.inputCompany.classList.remove('is-valid')
+                        elements.inputCompany.classList.add('is-invalid')
+                        elements.inputCompany.parentNode.append(p)
+                        p.classList.remove('text-success')
+                        p.classList.add('text-danger')
+                        p.innerHTML = data.header.message
+                    } else {
+                        let p = document.createElement('p')
+                        elements.inputCompany.classList.remove('is-invalid')
+                        elements.inputCompany.classList.add('is-valid')
+                        elements.inputCompany.parentNode.append(p)
+                        p.classList.remove('text-danger')
+                        p.classList.add('text-success')
+                        p.innerHTML = data.header.message
+                    }
+                }
+            })
+        })
+    }
 
     elements.selectDep.addEventListener('change', e => {
         cityBirthByCountry(e.target)
