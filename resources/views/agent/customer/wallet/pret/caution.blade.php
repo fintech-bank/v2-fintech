@@ -175,7 +175,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <x-base.button />
+                <x-form.button />
             </div>
         </div>
     </form>
