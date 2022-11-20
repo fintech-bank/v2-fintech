@@ -49,7 +49,7 @@
             success: data => {
                 elements.selectCity.querySelector('select').innerHTML = '<option></option>'
                 Array.from(data).forEach(option => {
-                    elements.selectCity.querySelector('select').innerHTML += `<option value="${option.name}">${option.name}</option>`
+                    elements.selectCity.querySelector('select').innerHTML += `<option value="${option}">${option}</option>`
                 })
                 $(elements.selectCity.querySelector('select')).select2()
             }
