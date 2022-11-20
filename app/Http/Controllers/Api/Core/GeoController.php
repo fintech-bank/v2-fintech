@@ -16,15 +16,12 @@ class GeoController extends Controller
         ?>
         <div class="mb-10">
             <label for="<?= $request->get('name') ?>" class="form-label"><?= $request->has('label') ? $request->get('label') : $request->get('name') ?></label>
-            <select id="<?= $request->get('name') ?>" name="<?= $request->get('name') ?>" class="form-control form-control-solid" data-placeholder="<?= $request->get('placeholder') ?>">
+            <select id="<?= $request->get('name') ?>" name="<?= $request->get('name') ?>" class="form-control form-control-solid selectpicker" data-placeholder="<?= $request->get('placeholder') ?>">
                 <?php foreach ($results as $result): ?>
                     <option value="<?= $result->name; ?>"><?= $result->name; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <script>
-            $("#<?= $request->get('name') ?>").selectpicker()
-        </script>
         <?php
 
         return response()->json(ob_get_clean());
