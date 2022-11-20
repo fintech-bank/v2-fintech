@@ -21,32 +21,33 @@ trait VerifCNITrait
 
         if($lenght >= 10 && $lenght <= 72) {
             if(!strpos($cni_number1, 'ID')) {
-                return false;
+                return 'false';
             }
 
             if(!strpos($cni_number1, CountryHelper::getCountryByName($pays, 'cca3'))) {
-                return false;
+                return 'false';
             }
 
             if(!strpos($cni_number1, \Str::upper($nom_famille))) {
-                return false;
+                return 'false';
             }
 
             if(!strpos($cni_number1, $departement)) {
-               return false;
+               return 'false';
             }
 
             // deuxième ligne
             if(!strpos($cni_number2, Carbon::createFromTimestamp(strtotime($bithdate))->format('ymd'))) {
-                return false;
+                return 'false';
             }
 
             if(!strpos($cni_number2, $sexe)) {
-                return false;
+                return 'false';
             }
-            return true;
+
+            return 'true';
         } else {
-            return false;
+            return 'false';
         }
     }
 }
