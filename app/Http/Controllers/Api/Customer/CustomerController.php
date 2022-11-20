@@ -282,7 +282,7 @@ class CustomerController extends Controller
     {
         $cni_array = explode(',', $cni);
         if($versionCNI == '1995') {
-            return VerifCNITrait::version1992($cni_array[0], $cni_array[1], $pays_nai, $name, $dep_nai, $birthdate, $genre);
+            return VerifCNITrait::version1992($cni_array[0], $cni_array[1]);
         }
 
     }
