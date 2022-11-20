@@ -31,6 +31,7 @@
                 $(elements.selectDep.querySelector('select')).select2({
                     ajax: {
                         url: '/api/core/geo/state',
+                        method: 'post',
                         dataType: 'json',
                         delay: 250,
                         processResults: function (data) {
@@ -38,7 +39,7 @@
                                 results:  $.map(data, function (item) {
                                     return {
                                         text: item.name,
-                                        id: item.id
+                                        id: item.name
                                     }
                                 })
                             };
