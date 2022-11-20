@@ -12,8 +12,8 @@
 
     if(elements.selectCountry) {
         elements.selectCountry.addEventListener('change', e => {
-            stateBirthByCountry(e)
-            cityBirthByCountry(e)
+            stateBirthByCountry(e.target)
+            cityBirthByCountry(e.target)
         })
     }
 
