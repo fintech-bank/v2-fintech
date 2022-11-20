@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerEpargne;
 use App\Models\Customer\CustomerWallet;
+use App\Notifications\Customer\Ficap\NewCautionFicapNotification;
+use App\Notifications\Customer\NewCautionNotification;
 use App\Notifications\Customer\NewEpargneNotification;
 use App\Notifications\Customer\NewPretNotification;
 use App\Notifications\Customer\NewPretNotificationP;
@@ -62,6 +64,82 @@ class CustomerWalletController extends Controller
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
         return view('agent.customer.wallet.pret.caution', ["wallet" => $wallet]);
+    }
+
+    public function postCaution($number_account, Request $request)
+    {
+        $wallet = CustomerWallet::where('number_account', $number_account)->first();
+
+        $caution = $wallet->loan->cautions->create([
+            'type_caution' => $request->get('type_caution'),
+            'type' => $request->get('type'),
+            'civility' => $request->get('type') == 'physique' ? $request->get('civility') : '',
+            'firstname' => $request->get('type') == 'physique' ? $request->get('firstname') : '',
+            'lastname' => $request->get('type') == 'physique' ? $request->get('lastname') : '',
+            'company' => $request->get('type') != 'physique' ? $request->get('company') : '',
+            'ficap' => $request->has('ficap'),
+            'address' => $request->get('address'),
+            'postal' => $request->get('postal'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+            'phone' => $request->get('phone'),
+            'email' => $request->get('email'),
+            'password' => null,
+            'num_cni' => $request->get('type') == 'physique' ? $request->get('num_cni') : '',
+            'date_naissance' => $request->get('type') == 'physique' ? $request->get('date_naissance') : '',
+            'country_naissance' => $request->get('type') == 'physique' ? $request->get('country_naissance') : '',
+            'dep_naissance' => $request->get('type') == 'physique' ? $request->get('dep_naissance') : '',
+            'ville_naissance' => $request->get('type') == 'physique' ? $request->get('city_naissance') : '',
+            'persona_reference_id' => 'caution_'.$request->get('type').'_'.now()->format('dmY'),
+            'type_structure' => $request->get('type') != 'physique' ? $request->get('type_structure') : '',
+            'siret' => $request->get('type') != 'physique' ? $request->get('siret') : '',
+            'customer_pret_id' => $wallet->loan->id
+        ]);
+
+        if($caution->ficap) {
+            $password = \Str::random(8);
+
+            $caution->update([
+                'password' => \Hash::make($password)
+            ]);
+
+            \Notification::route('mail', $caution->email)
+                ->notify(new NewCautionFicapNotification($caution, $password));
+        }
+
+        if($caution->type_caution == 'simple') {
+            $doc_caution = DocumentFile::createDoc(
+                $wallet->customer,
+                'loan.caution_simple',
+                $wallet->name_account_generic." - Caution Simple",
+                3,
+                $wallet->loan->reference,
+                false,
+                false,
+                false,
+                true,
+                ['caution' => $caution],
+                'simple'
+            );
+        } else {
+            $doc_caution = DocumentFile::createDoc(
+                $wallet->customer,
+                'loan.caution_solidaire',
+                $wallet->name_account_generic." - Caution Solidaire",
+                3,
+                $wallet->loan->reference,
+                false,
+                false,
+                false,
+                true,
+                ['caution' => $caution],
+                'simple'
+            );
+        }
+
+        $wallet->customer->info->notify(new NewCautionNotification($wallet->customer, $caution));
+
+        return redirect()->route('agent.customer.wallet.show', $wallet->number_account)->with('success', "Le cautionnaire à été ajouté avec succès");
     }
 
     private function createCompte(Customer $customer)
