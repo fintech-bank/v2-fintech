@@ -185,6 +185,7 @@ Route::prefix('customer')->group(function () {
     });
     Route::prefix('{customer_id}/pret')->group(function () {
         Route::post('verify', [\App\Http\Controllers\Api\Customer\PretController::class, 'verify']);
+        Route::delete('{reference}/caution/{id}', [\App\Http\Controllers\Api\Customer\PretController::class, 'deleteCaution']);
     });
 });
 

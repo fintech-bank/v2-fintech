@@ -44,7 +44,11 @@
         elements.btnDeleteCaution.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
-                btn.setAttribute('data-kt-indicator', true)
+                btn.setAttribute('data-kt-indicator', 'on')
+
+                $.ajax({
+                    url: '/api/customer/{{ $wallet->customer->id }}/'
+                })
             })
         })
     }
