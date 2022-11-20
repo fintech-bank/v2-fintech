@@ -25,7 +25,7 @@ class GeoHelper
      */
     public static function getCitiesFromCountry($country)
     {
-        return \Http::post('https://countriesnow.space/api/v0.1/countries/cities', ['country' => \Str::lower($country)])->object()->data;
+        return collect(\Http::post('https://countriesnow.space/api/v0.1/countries/cities', ['country' => \Str::lower($country)])->object()->data);
     }
 
     public static function getStateFromCountry($country)
