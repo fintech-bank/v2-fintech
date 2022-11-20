@@ -40,7 +40,7 @@
         })
     }
     let cityBirthByCountry = (item) => {
-        let country = item.value
+        let country = elements.selectCountry.querySelector('select').value
         console.log(country)
 
         $.ajax({
