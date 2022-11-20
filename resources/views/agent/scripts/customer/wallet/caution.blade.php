@@ -27,7 +27,8 @@
             success: data => {
                 $(elements.selectDep.querySelector('select')).select2({
                     ajax: {
-                        url: '/api/core/geo/state',
+                        url: '/api/core/geo/states',
+                        method: 'POST',
                         dataType: 'json',
                         delay: 250,
                         processResults: function (data) {
