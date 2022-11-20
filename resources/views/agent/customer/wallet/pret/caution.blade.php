@@ -163,7 +163,7 @@
                         <div class="col-md-4 col-sm-12">
                             <x-form.input
                                 name="company"
-                                label="Nom de l'entreprise" />
+                                label="Nom de l'entreprises" />
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <x-form.input
