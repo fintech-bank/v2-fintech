@@ -153,6 +153,7 @@
     }
     let selectType = (item) => {
         let value = item.value
+        console.log(value)
 
         if(value === 'physique') {
             elements.divPhysique.classList.remove('d-none')
