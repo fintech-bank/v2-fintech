@@ -77,6 +77,10 @@ class CustomerWalletController extends Controller
                 'phone' => $request->get('phone'),
                 'caution_type' => $request->get('caution_type'),
             ]);
+
+            $wallet->loan->update([
+                'caution' => json_encode($cautions->all())
+            ]);
         }catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
