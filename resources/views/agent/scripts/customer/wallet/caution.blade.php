@@ -25,6 +25,10 @@
                 'placeholder': 'Selectionner un département de naissance'
             },
             success: data => {
+                elements.selectDep.querySelector('select').innerHTML = ''
+                Array.from(data).forEach(option => {
+                    elements.selectDep.querySelector('select').innerHTML += `<option value="${option.name}">${option.name}</option>`
+                })
                 $(elements.selectDep.querySelector('select')).select2()
             }
         })
