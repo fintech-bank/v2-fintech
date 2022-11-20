@@ -11,6 +11,6 @@ class Sirene
 
     public static function siret($siret)
     {
-        return \Http::withBasicAuth(config("insee.consumer_key"), config("insee.consumer_secret"))->post('https://api.insee.fr/entreprises/sirene/V3/siren', ["q" => "siret:".$siret])->status();
+        return \Http::withBasicAuth(config("insee.consumer_key"), config("insee.consumer_secret"))->post('https://api.insee.fr/entreprises/sirene/V3/siret', ["q" => "siret:".$siret])->status();
     }
 }
