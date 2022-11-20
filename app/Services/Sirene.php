@@ -11,6 +11,6 @@ class Sirene
 
     public static function siret($siret)
     {
-        return \Http::withToken('05c06cd6-ef2c-3c8c-bf55-f4e757d5c113')->get('https://api.insee.fr/entreprises/sirene/V3/siret', ["q" => "siret:".$siret])->body();
+        return \Http::withToken('05c06cd6-ef2c-3c8c-bf55-f4e757d5c113')->get('https://api.insee.fr/entreprises/sirene/V3/siret', ["q" => "siret:".$siret])->object();
     }
 }
