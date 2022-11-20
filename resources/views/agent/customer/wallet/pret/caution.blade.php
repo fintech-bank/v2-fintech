@@ -136,7 +136,7 @@
                         <div class="col-md-4 col-sm-12 selectCity">
                             <div class="mb-10">
                                 <label for="city_naissance" class="form-label">Ville de naissance</label>
-                                <select id="city_naissance" name="city_naissance" data-live-search="true" class="form-control form-control-solid selectpicker" data-placeholder="Selectionner une ville de naissance">
+                                <select id="city_naissance" name="city_naissance" class="form-control form-control-solid" data-placeholder="Selectionner une ville de naissance">
                                     <option value=""></option>
                                 </select>
                             </div>
