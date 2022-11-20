@@ -41,8 +41,14 @@
                 url: '/api/connect/siret',
                 method: 'POST',
                 data: {"siret": e.target.value},
-                success: () => {
-
+                success: data => {
+                    if(data.header.statut === 404) {
+                        let p = document.createElement('p')
+                        elements.inputSiret.classList.remove('is-valid')
+                        elements.inputSiret.classList.add('is-invalid')
+                        elements.inputSiret.append(p)
+                        p.classList.add(data.header.message)
+                    }
                 }
             })
         })
