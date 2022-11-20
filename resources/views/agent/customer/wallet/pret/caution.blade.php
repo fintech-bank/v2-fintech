@@ -65,7 +65,12 @@
                             required="true" />
                     </div>
                 </div>
-
+                <div id="physique">
+                    <x-base.underline
+                        title="Information sur la personne physique"
+                        class="w-400px mt-5 mb-5" />
+                </div>
+                <div id="moral"></div>
             </div>
         </div>
     </form>
