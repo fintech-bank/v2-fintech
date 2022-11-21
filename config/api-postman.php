@@ -22,7 +22,7 @@ return [
     |
     */
 
-    'filename' => '{timestamp}_{app}_collection.json',
+    'filename' => env('APP_NAME').'_collection.json',
 
     /*
     |--------------------------------------------------------------------------
