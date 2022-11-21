@@ -121,10 +121,10 @@ class UserSeeder extends Seeder
             'credit_card_support_id' => 1
         ]);
 
-        \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents');
-        \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/account');
+        \Storage::disk('gdd')->makeDirectory($user->id . '/documents');
+        \Storage::disk('gdd')->makeDirectory($user->id . '/account');
         foreach (DocumentCategory::all() as $doc) {
-            \Storage::disk('public')->makeDirectory('gdd/' . $user->id . '/documents/' . $doc->slug);
+            \Storage::disk('gdd')->makeDirectory($user->id . '/documents/' . $doc->slug);
         }
 
 
