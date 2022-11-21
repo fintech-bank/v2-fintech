@@ -56,6 +56,19 @@ return [
             'throw' => false,
         ],
 
+        'gdd' => [
+            'driver' => 's3',
+            'key' => env("AWS_ACCESS_KEY_ID"),
+            'secret' => env("AWS_SECRET_ACCESS_KEY"),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => 'fintech-gdd',
+            'use_path_style_endpoint' => true,
+            'options' => [
+                'override_visibility_on_copy' => 'private',
+            ]
+        ],
+
     ],
 
     /*

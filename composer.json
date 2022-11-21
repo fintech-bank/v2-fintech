@@ -44,6 +44,7 @@
         "macropage/laravel-scheduler-watcher": "^1.1",
         "mad-web/laravel-initializer": "^3.4",
         "mmockelyn/api-response": "dev-master",
+        "mmockelyn/flysystem-aws-s3-v3-minio": "^1.0",
         "mmockelyn/iban-generator": "^1.0",
         "mmockelyn/laravel-insee": "dev-master",
         "mmockelyn/pushover": "dev-master",
