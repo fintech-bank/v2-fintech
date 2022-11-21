@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'base_url' => env('APP_URL', 'http://localhost').'/api',
+    'base_url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
