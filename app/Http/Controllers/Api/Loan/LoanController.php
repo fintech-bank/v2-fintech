@@ -24,7 +24,7 @@ class LoanController extends ApiController
             'limit' => $limit,
             'start' => $start == null ? now()->startOfYear() : $start,
             'end' => $end == null ? now()->endOfYear() : $end,
-        ])->first();
+        ]);
         dd($data);
 
         $call = CustomerPret::whereBetween('created_at', [$data->start, $data->end])->limit($data->limit)->get();
