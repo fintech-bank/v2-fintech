@@ -40,6 +40,7 @@
         "laravel/slack-notification-channel": "^2.4",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
+        "league/flysystem-aws-s3-v3": "^3.10",
         "lsnepomuceno/laravel-a1-pdf-sign": "*",
         "macropage/laravel-scheduler-watcher": "^1.1",
         "mad-web/laravel-initializer": "^3.4",
