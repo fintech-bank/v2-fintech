@@ -24,9 +24,9 @@ class LoanController extends ApiController
             'limit' => $limit,
             'start' => $start == null ? now()->startOfYear() : $start,
             'end' => $end == null ? now()->endOfYear() : $end,
-        ]);
+        ])->toArray();
 
-        $call = CustomerPret::whereBetween('created_at', [$data->start, $data->end])->limit($data->limit)->get();
+        $call = CustomerPret::whereBetween('created_at', [$data['start'], $data['end']])->limit($data['limit'])->get();
 
         return $this->sendSuccess(null, [$call]);
     }
