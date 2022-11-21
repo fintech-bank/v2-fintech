@@ -57,12 +57,18 @@
                             label="Type de caution"
                             required="true" />
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
                         <x-form.select
                             name="type"
                             :datas="\App\Models\Customer\CustomerPretCaution::getTypeData()"
                             label="Type de personne"
                             required="true" />
+                    </div>
+                    <div class="col-md-1 col-sm-2">
+                        <x-form.checkbox
+                            name="ficap"
+                            value="1"
+                            label="Accès FICAP" />
                     </div>
                 </div>
                 <div id="physique">
