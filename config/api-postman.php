@@ -22,7 +22,7 @@ return [
     |
     */
 
-    'filename' => env('APP_NAME').'_collection.json',
+    'filename' => env('APP_NAME').'_'.now()->format('his').'_collection.json',
 
     /*
     |--------------------------------------------------------------------------
