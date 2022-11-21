@@ -205,6 +205,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\CanvasServiceProvider::class,
 
+        App\Providers\MinioStorageServiceProvider::class,
     ],
 
     /*
