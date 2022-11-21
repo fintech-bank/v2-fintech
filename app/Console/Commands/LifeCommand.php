@@ -12,6 +12,7 @@ use App\Helper\UserHelper;
 use App\Models\Business\BusinessParam;
 use App\Models\Core\Agency;
 use App\Models\Core\CreditCardSupport;
+use App\Models\Core\DocumentCategory;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerBeneficiaire;
@@ -252,8 +253,15 @@ class LifeCommand extends Command
                     );
                 }
 
+                \Storage::disk('gdd')->makeDirectory($user->id . '/documents');
+                \Storage::disk('gdd')->makeDirectory($user->id . '/account');
+                foreach (DocumentCategory::all() as $doc) {
+                    \Storage::disk('gdd')->makeDirectory($user->id . '/documents/' . $doc->slug);
+                }
 
             }
+
+
 
             $arr [] = [
                 $customer->info->full_name,
