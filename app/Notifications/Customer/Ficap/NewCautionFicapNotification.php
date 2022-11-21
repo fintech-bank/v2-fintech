@@ -47,19 +47,7 @@ class NewCautionFicapNotification extends Notification
 
     private function choiceChannel()
     {
-        if (config("app.env") == "local") {
-            if($this->customer->setting->notif_mail) {
-                return "mail";
-            }
-
-            return "database";
-        } else {
-            if($this->customer->setting->notif_mail) {
-                return "mail";
-            }
-
-            return "database";
-        }
+        return "mail";
     }
 
     public function via($notifiable)
