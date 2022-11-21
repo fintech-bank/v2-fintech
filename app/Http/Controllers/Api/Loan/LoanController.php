@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 class LoanController extends ApiController
 {
     /**
-     * @param Request $request
+     * @param int $limit
+     * @param null $start
+     * @param null $end
      * @return JsonResponse
      */
     public function list($limit = 10, $start = null, $end = null)
