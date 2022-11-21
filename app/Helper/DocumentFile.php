@@ -192,9 +192,13 @@ class DocumentFile
             ]);
 
             if($provider == 'gdd') {
-                $pdf->save(\Storage::disk($provider)->putFile($customer->user->id.'/document/'.$categorie->slug, $nameless.'.pdf'));
+                $pdf->save($customer->user->id.'/document/'.$categorie->slug.'/'.$nameless.'.pdf');
+                $getFile = \Storage::disk('public')->get('/storage/gdd/'.$customer->user->id.'/document/'.$categorie->slug.'/'.$nameless.'.pdf');
+                \Storage::disk('gdd')->put($customer->user->id.'/document/'.$categorie->slug.'/'.$nameless.'.pdf', $getFile);
             } else {
-                $pdf->save(\Storage::disk($provider)->putFile($pathProvider, $nameless.'.pdf', $nameless.'.pdf'));
+                $pdf->save($pathProvider.'/'.$nameless.'.pdf');
+                $getFile = \Storage::disk('public')->get('/storage/'.$pathProvider.'/'.$nameless.'.pdf');
+                \Storage::disk($provider)->put($pathProvider.'/'.$nameless.'.pdf', $getFile);
             }
         }
 
