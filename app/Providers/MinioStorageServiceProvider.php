@@ -17,22 +17,22 @@ class MinioStorageServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        Storage::extend('minio', function () {
+        Storage::extend('minio', function ($app, $config) {
             $client = new S3Client([
                 'credentials' => [
-                    'key'    => config('filesystems.disks.s3.key'),
-                    'secret' => config('filesystems.disks.s3.secret')
+                    'key'    => $config["key"],
+                    'secret' => $config["secret"]
                 ],
-                'region'      => config('filesystems.disks.s3.region'),
+                'region'      => $config["region"],
                 'version'     => "latest",
                 'bucket_endpoint' => false,
                 'use_path_style_endpoint' => true,
-                'endpoint'    => config('filesystems.disks.s3.endpoint'),
+                'endpoint'    => $config["endpoint"],
             ]);
             $options = [
                 'override_visibility_on_copy' => true
             ];
-            return new Filesystem(new AwsS3Adapter($client, config('filesystems.disks.s3.endpoint'), '', $options));
+            return new Filesystem(new AwsS3Adapter($client, $config["bucket"], '', $options));
         });
     }
 }
