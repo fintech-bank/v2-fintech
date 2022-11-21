@@ -93,7 +93,7 @@
                                     <div class="text-success"><i class="fa-solid fa-check text-success me-2"></i> La prochainement mensualité de {{ $wallet->loan->mensuality_format }} sera débité {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
                                 @endif
                             @endif
-                            @if($wallet->loan->required_caution)
+                            @if($wallet->loan->required_caution && $wallet->loan->cautions()->where('status', 'process')->count() != 0)
                             <span class="text-primary"><i class="fa-solid fa-info-circle text-primary me-2"></i> Cautionnement requis</span>
                             @endif
                         </div>
