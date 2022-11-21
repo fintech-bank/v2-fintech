@@ -57,13 +57,12 @@ return [
         ],
 
         'gdd' => [
-            'driver' => 's3',
-            'key' => env("AWS_ACCESS_KEY_ID"),
-            'secret' => env("AWS_SECRET_ACCESS_KEY"),
-            'endpoint' => env('AWS_ENDPOINT'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => 'fintech-gdd',
-            'use_path_style_endpoint' => true,
+            'driver' => 'minio',
+            'key' => env('MINIO_KEY', 'your minio server key'),
+            'secret' => env('MINIO_SECRET', 'your minio server secret'),
+            'region' => 'us-east-1',
+            'bucket' => env('MINIO_BUCKET','your minio bucket name'),
+            'endpoint' => env('MINIO_ENDPOINT','http://localhost:9000')
         ],
 
     ],

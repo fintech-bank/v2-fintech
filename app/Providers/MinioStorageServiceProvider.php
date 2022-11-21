@@ -5,8 +5,8 @@ namespace App\Providers;
 use Aws\S3\S3Client;
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
-use League\Flysystem\AwsS3V3\AwsS3V3Adapter;
 use League\Flysystem\Filesystem;
+use Storage;
 
 class MinioStorageServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,7 @@ class MinioStorageServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        \Storage::extend('minio', function () {
+        Storage::extend('minio', function () {
             $client = new S3Client([
                 'credentials' => [
                     'key'    => config('filesystems.disks.s3.key'),
