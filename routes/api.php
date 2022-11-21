@@ -199,3 +199,7 @@ Route::prefix('insurance')->group(function () {
         Route::post('/', [\App\Http\Controllers\Api\Insurance\ClaimController::class, 'store']);
     });
 });
+
+Route::prefix('loan')->group(function () {
+
+});

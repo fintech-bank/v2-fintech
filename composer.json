@@ -10,6 +10,7 @@
         "ext-json": "*",
         "1pilotapp/laravel-client": "^1.0",
         "akibatech/laravel-free-mobile-sms": "^1.0",
+        "andreaselia/laravel-api-to-postman": "^1.13",
         "appoly/mail-web": "^4.0",
         "arcanedev/log-viewer": "^9.0",
         "authy/php": "^4.0@RC",
