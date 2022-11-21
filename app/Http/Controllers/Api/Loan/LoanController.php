@@ -41,7 +41,7 @@ class LoanController extends ApiController
                 ->where('reference', $loan_reference)
                 ->first();
 
-            return $this->sendSuccess(null, $call);
+            return $this->sendSuccess(null, [$call]);
         }catch (\Exception $exception) {
             return $this->sendError($exception);
         }
