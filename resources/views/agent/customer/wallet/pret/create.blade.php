@@ -187,8 +187,8 @@
                                     </select>
                                 </div>
                                 <div class="mb-10">
-                                    <label for="assurance_type" class="form-label required">Compte de Paiement</label>
-                                    <select class="form-control form-control-solid" data-control="select2" name="assurance_type" data-placeholder="Selectionner un compte de paiement" required>
+                                    <label for="assurance_type" class="form-label required">Type d'assurance</label>
+                                    <select class="form-control form-control-solid" data-control="select2" name="assurance_type" data-placeholder="Selectionner un type d'assurance" required>
                                         <option value=""></option>
                                         <option value="D">Décès</option>
                                         <option value="DIM">Décès, Invalidité, Maladie</option>
