@@ -254,7 +254,7 @@
                                 <td class="fw-bold">Etat du pret</td>
                                 <td>{!! $wallet->loan->status_label !!}</td>
                             </tr>
-                            @if($wallet->loan->status != 'open')
+                            @if($wallet->loan->status == 'progress')
                             <tr>
                                 <td class="fw-bold">Date de fin du prêt</td>
                                 <td>{{ $wallet->loan->first_payment_at->addMonths($wallet->loan->duration)->format('d/m/Y') }}</td>
@@ -280,7 +280,7 @@
                                 <td class="fw-bold">Pénalité de retard</td>
                                 <td>0,50 %</td>
                             </tr>
-                            @if($wallet->loan->status != 'open')
+                            @if($wallet->loan->status == 'progress')
                             <tr>
                                 <td class="fw-bold">Date de confirmation</td>
                                 <td>{{ $wallet->loan->confirmed_at->format("d/m/Y") }}</td>
