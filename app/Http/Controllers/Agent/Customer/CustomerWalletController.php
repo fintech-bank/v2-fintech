@@ -89,7 +89,7 @@ class CustomerWalletController extends Controller
             'email' => $request->get('email'),
             'password' => null,
             'num_cni' => $request->get('num_cni'),
-            'date_naissance' => Carbon::createFromTimestamp(strtotime($request->get('date_naissance')))->toDateTime(),
+            'date_naissance' => $request->get('date_naissance') != 'null' ? Carbon::createFromTimestamp(strtotime($request->get('date_naissance')))->toDateTime() : null,
             'country_naissance' => $request->get('country_naissance'),
             'dep_naissance' => $request->get('dep_naissance'),
             'ville_naissance' => $request->get('city_naissance'),
