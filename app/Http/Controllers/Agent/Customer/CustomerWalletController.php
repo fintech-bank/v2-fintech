@@ -106,8 +106,12 @@ class CustomerWalletController extends Controller
                 'password' => \Hash::make($password)
             ]);
 
-            \Notification::route('mail', $caution->email)
-                ->notify(new NewCautionFicapNotification($caution, $password));
+            try {
+                \Notification::route('mail', $caution->email)
+                    ->notify(new NewCautionFicapNotification($caution, $password));
+            }catch (\Exception $exception) {
+                LogHelper::notify('critical', $exception->getMessage());
+            }
         }
 
         if($caution->type_caution == 'simple') {
