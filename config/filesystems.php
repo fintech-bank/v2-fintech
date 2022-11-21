@@ -64,9 +64,6 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => 'fintech-gdd',
             'use_path_style_endpoint' => true,
-            'options' => [
-                'override_visibility_on_copy' => 'private',
-            ]
         ],
 
     ],
