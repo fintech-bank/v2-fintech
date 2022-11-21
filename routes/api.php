@@ -202,4 +202,5 @@ Route::prefix('insurance')->group(function () {
 
 Route::prefix('loan')->group(function () {
     Route::get('/list', [\App\Http\Controllers\Api\Loan\LoanController::class, 'list']);
+    Route::get('{reference_pret}', [\App\Http\Controllers\Api\Loan\LoanController::class, 'retrieve']);
 });

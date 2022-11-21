@@ -26,8 +26,24 @@ class LoanController extends ApiController
             'end' => $end == null ? now()->endOfYear() : $end,
         ])->toArray();
 
-        $call = CustomerPret::with('plan', 'customer', 'wallet', 'payment', 'card', 'facelia', 'insurance', 'cautions')->whereBetween('created_at', [$data['start'], $data['end']])->limit($data['limit'])->get();
+        $call = CustomerPret::with('plan', 'customer', 'wallet', 'payment', 'card', 'facelia', 'insurance', 'cautions')
+            ->whereBetween('created_at', [$data['start'], $data['end']])
+            ->limit($data['limit'])
+            ->get();
 
         return $this->sendSuccess(null, [$call]);
+    }
+
+    public function retrieve($loan_reference)
+    {
+        try {
+            $call = CustomerPret::with('plan', 'customer', 'wallet', 'payment', 'card', 'facelia', 'insurance', 'cautions')
+                ->where('reference', $loan_reference)
+                ->first();
+
+            return $this->sendSuccess(null, $call);
+        }catch (\Exception $exception) {
+            return $this->sendError($exception);
+        }
     }
 }
