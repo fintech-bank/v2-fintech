@@ -93,18 +93,9 @@
                                     <div class="text-success"><i class="fa-solid fa-check text-success me-2"></i> La prochainement mensualité de {{ $wallet->loan->mensuality_format }} sera débité {{ $wallet->loan->first_payment_at->diffForHumans() }}</div>
                                 @endif
                             @endif
-                            <div class="card shadow-sm">
-                                <div class="card-header">
-                                    <h3 class="card-title">Note</h3>
-                                    <div class="card-toolbar">
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <ul>
-                                        <li>Test</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @if($wallet->loan->required_caution)
+                            <span class="text-primary"><i class="fa-solid fa-info-circle text-primary me-2"></i> Cautionnement requis</span>
+                            @endif
                         </div>
                     </div>
                     <!--end::Title-->
