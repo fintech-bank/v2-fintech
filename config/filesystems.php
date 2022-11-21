@@ -59,7 +59,7 @@ return [
         'gdd' => [
             'driver' => 'sftp',
             'host' => '192.168.1.50',
-            'port' => '5555',
+            'port' => 5555,
             'username' => env('SSH_USERNAME'),
             'password' => env("SSH_PASSWORD"),
             'root' => '/www/wwwroot/files.fintech.ovh/gdd/'
