@@ -46,10 +46,10 @@
                                 <!--end:Media-->
                                 <!--begin:Text-->
                                 <div style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
-                                    @if($caution->type == 'physique')
-                                    <p style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700">Bonjour, {{ $caution->civility }}. {{ $caution->firstname }} {{ $caution->lastname }}</p>
+                                    @if($customer->type == 'physique')
+                                    <p style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700">Bonjour, {{ $customer->civility }}. {{ $customer->firstname }} {{ $customer->lastname }}</p>
                                     @else
-                                        <p style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700">Bonjour, {{ $caution->company }}</p>
+                                        <p style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700">Bonjour, {{ $customer->company }}</p>
                                     @endif
                                     {!! $content !!}
                                 </div>

@@ -14,7 +14,7 @@ class NewCautionFicapNotification extends Notification
     public string $link;
     public string $message;
     public CustomerPretCaution $customer;
-    private string $password;
+    public string $password;
 
     /**
      * @param CustomerPretCaution $customer
