@@ -197,7 +197,7 @@ class DocumentFile
                 \Storage::disk('gdd')->put($customer->user->id.'/document/'.$categorie->slug.'/'.$nameless.'.pdf', $getFile);
             } else {
                 $pdf->save('/storage/'.$pathProvider.'/'.$nameless.'.pdf');
-                $getFile = \Storage::disk('public')->get('/storage/'.$pathProvider.'/'.$nameless.'.pdf');
+                $getFile = file_get_contents(public_path('/storage/'.$pathProvider.'/'.$nameless.'.pdf'));
                 \Storage::disk($provider)->put($pathProvider.'/'.$nameless.'.pdf', $getFile);
             }
         }
