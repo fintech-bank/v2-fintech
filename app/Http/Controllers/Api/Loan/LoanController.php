@@ -6,6 +6,7 @@ use App\Helper\CustomerLoanHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerPret;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -13,11 +14,11 @@ class LoanController extends ApiController
 {
     /**
      * @param int $limit
-     * @param null $start
-     * @param null $end
+     * @param Carbon|null $start
+     * @param Carbon|null $end
      * @return JsonResponse
      */
-    public function list($limit = 10, $start = null, $end = null)
+    public function list(int $limit = 10,Carbon $start = null, Carbon $end = null)
     {
         $data = collect([
             'limit' => $limit,
