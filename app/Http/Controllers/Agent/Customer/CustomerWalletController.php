@@ -126,6 +126,8 @@ class CustomerWalletController extends Controller
                 false,
                 true,
                 ['caution' => $caution],
+                'gdd',
+                null,
                 'simple'
             );
         } else {
@@ -140,6 +142,8 @@ class CustomerWalletController extends Controller
                 false,
                 true,
                 ['caution' => $caution],
+                'gdd',
+                null,
                 'simple'
             );
         }
