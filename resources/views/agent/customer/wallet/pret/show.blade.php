@@ -108,7 +108,7 @@
                                 <div class="fs-4 fw-bolder">Type de pret</div>
                                 <div class="">{{ $wallet->loan->plan->name }}</div>
                             </div>
-                            @if($wallet->loan->status != 'open')
+                            @if($wallet->loan->status == 'progress')
                                 <div class="d-flex flex-column border rounded p-2 mb-2 me-2">
                                     <div class="fs-4 fw-bolder">Date de fin</div>
                                     <div class="">{{ $wallet->loan->first_payment_at->addMonths($wallet->loan->duration)->format("d/m/Y") }}</div>
