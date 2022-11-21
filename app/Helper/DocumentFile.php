@@ -164,6 +164,8 @@ class DocumentFile
         bool $signed_client = false,
         bool $pdf = false,
         array $pdfData = [],
+        string $provider = 'gdd',
+        string $pathProvider = null,
         string $headerType = 'address'
     )
     {
@@ -189,7 +191,11 @@ class DocumentFile
                 'document' => $document,
             ]);
 
-            $pdf->save(public_path('/storage/gdd/' . $customer->user->id . '/documents/' . $categorie->slug . '/' . $nameless . '.pdf'));
+            if($provider == 'gdd') {
+                $pdf->save(\Storage::disk($provider)->putFileAs($customer->user->id.'/document/'.$category->slug, $nameless.'.pdf', $nameless.'.pdf'));
+            } else {
+                $pdf->save(\Storage::disk($provider)->putFileAs($pathProvider, $nameless.'.pdf', $nameless.'.pdf'));
+            }
         }
 
         return $document;
