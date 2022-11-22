@@ -59,6 +59,15 @@ class UserSeeder extends Seeder
             'type_customer' => 'part'
         ]);
 
+        User::create([
+            'name' => "FINTECH DAB",
+            'email' => 'dab@fintech.ovh',
+            'password' => \Hash::make('password'),
+            'customer' => false,
+            'reseller' => true,
+            'identifiant' => UserHelper::generateID()
+        ]);
+
         $user->subscriptions()->create([
             'subscribe_type' => Package::class,
             'subscribe_id' => 3,

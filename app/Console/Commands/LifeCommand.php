@@ -35,8 +35,8 @@ use App\Models\User;
 use App\Notifications\Customer\MensualReleverNotification;
 use App\Notifications\Customer\NewPrlvPresented;
 use App\Notifications\Customer\SendAlertaInfoNotification;
-use App\Notifications\Reseller\ShipTpeNotification;
-use App\Notifications\Reseller\WelcomeNotification;
+use App\Notifications\Reseller\ShipTpeNotificationP;
+use App\Notifications\Reseller\WelcomeNotificationP;
 use App\Scope\TransactionTrait;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Mapbox;
@@ -334,16 +334,46 @@ class LifeCommand extends Command
                     if ($type[rand(0,1)] == 'debit') {
                         switch ($category_debit[rand(0,1)]) {
                             case 'retrait':
-                                $amount = -$faker->randomFloat(2, 0,1200);
+                                $amount = $faker->randomFloat(2, 0,1200);
                                 $card = $wallet->cards()->where('status', 'active')->get()->random();
-                                /*CustomerTransactionHelper::createDebit(
+                                $dab = CustomerWithdrawDab::where('open', 1)->get()->random();
+                                CustomerTransactionHelper::createDebit(
                                     $wallet->id,
                                     'retrait',
-                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')}")
-                                );*/
+                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} ".Str::limit($dab->name, 10, '')),
+                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} ".Str::limit($dab->name, 10, '')),
+                                    $amount,
+                                    true,
+                                    $now
+                                );
+                                break;
+
+                            case 'payment':
+                                $amount = $faker->randomFloat(2, 0,1200);
+                                $card = $wallet->cards()->where('status', 'active')->get()->random();
+                                $confirmed = $faker->boolean;
+                                $differed = !$confirmed ? $faker->boolean : false;
+
+                                CustomerTransactionHelper::createDebit(
+                                    $wallet->id,
+                                    'payment',
+                                    "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
+                                    "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
+                                    $amount,
+                                    $confirmed,
+                                    $confirmed ? $now : null,
+                                    $differed,
+                                    $differed ? $now->endOfMonth() : null,
+                                    $card->id
+                                );
                         }
                     } else {
+                        $type_depot = ['money', 'check'];
+                        $td = $type_depot[rand(0,1)];
 
+                        if($td == 'money') {
+
+                        }
                     }
 
                 }
@@ -717,7 +747,7 @@ class LifeCommand extends Command
                 'shipping_id' => $shipTPE->id,
             ]);
             $res->shippings()->attach($shipTPE->id);
-            $res->user->notify(new ShipTpeNotification($res, $shipTPE));
+            $res->user->notify(new ShipTpeNotificationP($res, $shipTPE));
 
             $document = null;
             $agence = Agency::find(1);
@@ -738,7 +768,7 @@ class LifeCommand extends Command
             ]);
 
             $pdf->save(public_path('storage/reseller/'.$user->id.'/contrat.pdf'));
-            $res->user->notify(new WelcomeNotification($res, $password));
+            $res->user->notify(new WelcomeNotificationP($res, $password));
 
         }
 

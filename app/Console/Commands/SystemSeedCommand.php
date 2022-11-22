@@ -118,6 +118,11 @@ class SystemSeedCommand extends Command
         $this->info('Seeding: Liste des Utilisateur de Test');
         $this->call('db:seed', ['class' => 'UserSeeder', 'force']);
 
+        $this->info('Seeding: Liste des Distributeurs Auto');
+        $this->call('db:seed', ['class' => 'CustomerWithdrawDabSeeder', 'force']);
+
+        $this->info('Seeding: Liste des Distributeurs');
+        $this->call('db:seed', ['class' => 'ResellerSeeder', 'force']);
         return 0;
     }
 
