@@ -16,7 +16,7 @@ class Mapbox
             'limit' => 5,
             'language' => 'fr',
             'country' => 'fr',
-            'proximity' => ['7.2661','43.7031'],
+            'proximity' => '7.2661,43.7031',
             'access_token' => config('services.mapbox.api_key')
         ];
         return \Http::get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$category.'.json', $data)->object();
