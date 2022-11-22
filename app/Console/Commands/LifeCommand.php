@@ -772,7 +772,7 @@ class LifeCommand extends Command
                     'persona_reference_id' => 'caution_'.now()->format('dmYHis'),
                     'identityVerify' => 1,
                     'addressVerify' => 1,
-                    'siret' => $type == 'moral' ? random_numeric(14) : null,
+                    'siret' => $type == 'moral' ? random_numeric(9) . '000' . random_numeric(2) : null,
                     'companyVerify' => 1,
                     'sign_caution' => 1,
                     'signed_at' => now(),
