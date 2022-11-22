@@ -695,7 +695,10 @@ class LifeCommand extends Command
                 'effect_date' => now(),
                 'end_date' => now()->addMonths(36),
                 'beneficiaire' => $customer->info->full_name,
-                'customer_id' => $customer->id
+                'customer_id' => $customer->id,
+                'insurance_package_id' => 18,
+                'insurance_package_form_id' => rand(39,41),
+                'customer_wallet_id' => $cpt_pret->id,
             ]);
 
             DocumentFile::createDoc(
