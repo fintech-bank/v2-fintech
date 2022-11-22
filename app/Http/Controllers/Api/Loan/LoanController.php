@@ -65,7 +65,7 @@ class LoanController extends ApiController
     private function acceptCredit(CustomerPret $credit)
     {
         if(CustomerDocument::where('reference', $credit->reference)->where('signable', 1)->where('signed_by_client', 0)->count() == 0) {
-            if($credit->cautions()->where('sign_caution', 1)->count() == 0) {
+            if($credit->cautions()->where('sign_caution', 1)->count() != 0) {
                 $credit->update([
                     'status' => "accepted",
                     'confirmed_at' => now()
