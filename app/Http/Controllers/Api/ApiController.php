@@ -25,6 +25,15 @@ class ApiController extends Controller
         ], $status);
     }
 
+    public function sendDanger(string $message = null, array $data = null,int $status = 200)
+    {
+        return response()->json([
+            "message" => $message,
+            "data" => $data,
+            "state" => "danger"
+        ], $status);
+    }
+
     public function sendError(array|\Exception $data = null,int $status = 500)
     {
         LogHelper::notify('critical', "Erreur lors de l'execution de l'appel: ".$data->getFile(), $data);

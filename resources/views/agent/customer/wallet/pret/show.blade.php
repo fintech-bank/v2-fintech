@@ -528,7 +528,7 @@
                                 </div>
                                 @if($wallet->loan->status == 'progress')
                                     <div class="tab-pane fade" id="report" role="tabpanel">
-                                        <form id="formUpPrlvDay" action="/api/loan/{{ $wallet->loan->reference }}" method="post">
+                                        <form id="formEcheanceReport" action="/api/loan/{{ $wallet->loan->reference }}" method="post">
                                             @csrf
                                             <input type="hidden" name="action" value="report_echeance">
                                             <div class="text-end">

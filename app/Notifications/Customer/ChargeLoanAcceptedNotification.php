@@ -85,6 +85,7 @@ class ChargeLoanAcceptedNotification extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
+        $message->subject($this->title);
         $message->view('emails.customer.charge_loan_accepted', [
             'content' => $this->message,
             'customer' => $this->customer,

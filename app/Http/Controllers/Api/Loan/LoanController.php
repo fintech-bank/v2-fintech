@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerDocument;
 use App\Models\Customer\CustomerPret;
+use App\Notifications\Customer\Loan\ChangePrlvDayNotification;
+use App\Notifications\Customer\Loan\ReportEcheanceNotification;
 use App\Notifications\Customer\UpdateStatusPretNotification;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -54,12 +56,33 @@ class LoanController extends ApiController
         $credit = CustomerPret::where('reference', $loan_reference)->first();
 
         return match ($request->get('action')) {
-            "up_prlv_date" =>
-                CustomerLoanHelper::update($credit, ["prlv_day" => $request->get('prlv_day')]) ? $this->sendSuccess() : $this->sendError(),
+            "up_prlv_date" => $this->prlv_day($credit, $request->get('prlv_day')),
             "accept" => $this->acceptCredit($credit),
-            "reject" => $this->rejectCredit($credit)
+            "reject" => $this->rejectCredit($credit),
+            'report_echeance' => $this->report_echeance($credit)
 
         };
+    }
+
+    private function prlv_day(CustomerPret $credit, $prlv_day)
+    {
+        if($credit->plan->avantage->adapt_mensuality) {
+            if($credit->nb_adapt_mensuality <= $credit->plan->condition->adapt_mensuality_month) {
+                $credit->update([
+                    'prlv_day' => $prlv_day,
+                    'nb_adapat_mensuality' => $credit->nb_adapt_mensuality++,
+                    'first_payment_at' => Carbon::create($credit->first_payment_at->year, $credit->first_payment_at->month, $prlv_day)
+                ]);
+
+                $credit->customer->info->notify(new ChangePrlvDayNotification($credit->customer, $credit));
+
+                return $this->sendSuccess();
+            } else {
+                return $this->sendWarning("Le nombre de changement de mensualité à été dépassé pour ce crédit");
+            }
+        } else {
+            return $this->sendDanger("Le changement de date de mensualité n'est pas disponible pour ce crédit");
+        }
     }
 
     private function acceptCredit(CustomerPret $credit)
@@ -91,5 +114,25 @@ class LoanController extends ApiController
         $credit->customer->info->notify(new UpdateStatusPretNotification($credit->customer, $credit));
 
         return $this->sendSuccess();
+    }
+
+    private function report_echeance(CustomerPret $credit)
+    {
+        if($credit->plan->avantage->report_echeance) {
+            if($credit->nb_report_echeance <= $credit->plan->condition->report_echeance_max) {
+                $credit->update([
+                    'nb_echeance_max' => $credit->nb_echeance_max++,
+                    'first_payment_at' => $credit->first_payment_at->addMonth()
+                ]);
+
+                $credit->wallet->customer->info->notify(new ReportEcheanceNotification($credit->wallet->customer, $credit));
+
+                return $this->sendSuccess();
+            } else {
+                return $this->sendWarning("Ce crédit ne peut plus faire l'objet d'un report d'échéance");
+            }
+        } else {
+            return $this->sendDanger("Ce crédit ne peut pas faire l'objet d'un report d'échéance");
+        }
     }
 }

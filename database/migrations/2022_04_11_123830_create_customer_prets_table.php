@@ -36,6 +36,8 @@ return new class extends Migration
             $table->boolean('required_caution')->default(false);
             $table->json('caution')->nullable()->comment("nom/prénom/datedenaissance/cni/address/telephone");
             $table->timestamp('confirmed_at')->nullable()->comment("Date de confirmation 'Approve' du pret bancaire");
+            $table->integer('nb_report_echeance')->default(0);
+            $table->integer('nb_adapt_mensuality')->default(0);
 
             $table->foreign('customer_wallet_id')->references('id')->on('customer_wallets')
                 ->cascadeOnUpdate()
