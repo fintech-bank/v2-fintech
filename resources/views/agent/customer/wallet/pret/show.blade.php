@@ -471,13 +471,13 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <ul class="nav nav-tabs nav-pills border-0 flex-row flex-md-column me-5 mb-3 mb-md-0 fs-6">
-                                <li class="nav-item w-md-200px me-0 p-5">
+                                <li class="nav-item me-0 p-5">
                                     <a class="nav-link active" data-bs-toggle="tab" href="#prlv">Modifier la date de prélèvement</a>
                                 </li>
-                                <li class="nav-item w-md-200px me-0">
+                                <li class="nav-item me-0">
                                     <a class="nav-link" data-bs-toggle="tab" href="#kt_vtab_pane_2">Link 2</a>
                                 </li>
-                                <li class="nav-item w-md-200px">
+                                <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#kt_vtab_pane_3">Link 3</a>
                                 </li>
                             </ul>
