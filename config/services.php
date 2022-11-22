@@ -63,4 +63,8 @@ return [
         'access_token' => env('GOCARDLESS_ACCESS_TOKEN')
     ],
 
+    'mapbox' => [
+        'api_key' => env('MAPBOX_TOKEN')
+    ]
+
 ];

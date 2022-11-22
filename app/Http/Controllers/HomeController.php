@@ -27,6 +27,7 @@ use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\GeoPortailLook;
+use App\Services\Mapbox;
 use App\Services\PushbulletApi;
 use App\Services\SlackNotifier;
 use App\Services\Twilio\Lookup;
@@ -103,11 +104,12 @@ class HomeController extends Controller
     {
         $customer = Customer::find(1);
         $document = new DocumentFile();
+        $map = new Mapbox();
         $wallet = $customer->wallets()->find(3);
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        dd($pret->confirmed_at->addDays(1)->startOfDay(), now()->startOfDay());
+        dd($map->call());
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }

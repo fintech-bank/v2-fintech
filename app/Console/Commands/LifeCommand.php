@@ -314,44 +314,34 @@ class LifeCommand extends Command
     private function generateDebit()
     {
         $customers = Customer::where('status_open_account', 'terminated')->get();
-        $nb = 0;
-        $arr = [];
 
         foreach ($customers as $customer) {
-            $wallet = $customer->wallets()->where('type', 'compte')->where('status', 'active')->first();
-            if (isset($wallet)) {
-                $select = rand(0, 2);
-                $balance_wallet = $wallet->balance_actual + $wallet->balance_decouvert;
+            foreach ($customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $wallet) {
+                for ($i=0; $i <= rand(0,5); $i++) {
+                    $category_debit = ['retrait', 'payment'];
+                    $category_credit = ['depot'];
+                    $type = ['debit', 'credit'];
+                    $faker = Factory::create('fr_FR');
+                    $now = now();
 
-                if (rand(0, 1) == 1) {
-                    try {
-                        if ($balance_wallet > 0) {
-                            for ($i=1; $i <= rand(1,5); $i++) {
-                                $confirmed = rand(0, 1);
-                                $transaction = match ($select) {
-                                    0 => $this->generateDepot($wallet->id),
-                                    1 => $this->generateRetrait($wallet->id),
-                                    2 => $this->generatePayment($wallet)
-                                };
-                                $nb++;
-                                $arr[] = [
-                                    $transaction->wallet->customer->info->full_name,
-                                    $transaction->designation,
-                                    $transaction->amount_format
-                                ];
-                            }
-
+                    if ($type[rand(0,1)] == 'debit') {
+                        switch ($category_debit[rand(0,1)]) {
+                            case 'retrait':
+                                $amount = -$faker->randomFloat(2, 0,1200);
+                                $card = $wallet->cards()->where('status', 'active')->get()->random();
+                                /*CustomerTransactionHelper::createDebit(
+                                    $wallet->id,
+                                    'retrait',
+                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')}")
+                                );*/
                         }
-                    } catch (Exception $exception) {
-                        $this->error($exception->getMessage());
+                    } else {
+
                     }
+
                 }
             }
         }
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
-        $this->line('Génération des Transactions: ' . $nb);
-        $this->output->table(['Client', 'Mouvement', 'Montant'], $arr);
-        $this->slack->send("Génération des Transactions", json_encode($arr));
     }
 
     /**
