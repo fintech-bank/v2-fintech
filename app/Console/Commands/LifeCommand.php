@@ -432,7 +432,7 @@ class LifeCommand extends Command
                             ]);
                         } else {
                             $status_type = ['pending', 'progress', 'terminated'];
-                            $status = $status_type[rand(0, 3)];
+                            $status = $status_type[rand(0, 2)];
                             $deposit = CustomerCheckDeposit::createDeposit($wallet->id, $amount, $status);
                             for ($i = 1; $i <= rand(1, 9); $i++) {
                                 $am = $faker->randomFloat(2, 10, 2500);
