@@ -180,7 +180,7 @@ class LifeCommand extends Command
                 'company' => $company,
                 'siret' => $user->type_customer != 'part' ? random_numeric(9) . '000' . random_numeric(2) : null,
                 'address' => $faker->streetAddress,
-                'postal' => $postcode,
+                'postal' => Str::replace('.0', '', round(intval($postcode), -1)),
                 'city' => collect(Vicopo::https(Str::replace('.0', '', round(intval($postcode), -1))))[0]->city,
                 'country' => 'FR',
                 'phone' => $faker->e164PhoneNumber,
