@@ -207,5 +207,5 @@ Route::prefix('loan')->group(function () {
 
 Route::prefix('document')->group(function () {
     Route::post('request-code', [\App\Http\Controllers\Api\Document\DocumentController::class, 'request']);
-    Route::post('verify-code', [\App\Http\Controllers\Api\Document\DocumentController::class, 'request']);
+    Route::post('verify-code', [\App\Http\Controllers\Api\Document\DocumentController::class, 'verify']);
 });

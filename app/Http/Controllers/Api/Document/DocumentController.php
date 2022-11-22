@@ -27,6 +27,21 @@ class DocumentController extends ApiController
         };
     }
 
+    /**
+     * Dans la requète donnée encrypt ref_doc/num_phone/sector/code ex: caution/client/transaction/transfer/auth
+     * @param Request $request
+     * @return mixed
+     */
+    public function verify(Request $request)
+    {
+        $string = base64_decode($request->get('token'));
+        $tab = explode('/', $string);
+
+        return match ($tab[2]) {
+            "caution" => $this->verifyCaution($tab[1], $tab[3])
+        };
+    }
+
     private function codeCaution($num_phone)
     {
         $code = base64_encode(random_numeric(6));
@@ -41,6 +56,24 @@ class DocumentController extends ApiController
             return $this->sendSuccess();
         }else {
             return $this->sendWarning("Caution inconnu");
+        }
+    }
+
+    private function verifyCaution($num_phone, $code)
+    {
+        $caution = CustomerPretCaution::where('phone', $num_phone)->first();
+
+        if($caution->code_sign == $code) {
+            $caution->update([
+                'code_sign' => null,
+                'status' => 'process',
+                'sign_caution' => true,
+                'signed_at' => now(),
+            ]);
+
+            return $this->sendSuccess();
+        } else {
+            return $this->sendWarning("Code Invalide");
         }
     }
 }
