@@ -67,6 +67,7 @@ class CustomerWithdraw extends Model
 
     public static function createWithdraw($wallet_id, $amount, $dab_id, $status = 'pending', $transaction_id = null)
     {
+        $code = random_numeric(6);
         return self::create([
             'reference' => generateReference(),
             'status' => $status,
@@ -74,7 +75,7 @@ class CustomerWithdraw extends Model
             'customer_wallet_id' => $wallet_id,
             'customer_transaction_id' => $transaction_id,
             'customer_withdraw_dab_id' => $dab_id,
-            'code' => base64_encode(0000)
+            'code' => base64_encode($code)
         ]);
     }
 

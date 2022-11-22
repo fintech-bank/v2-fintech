@@ -92,13 +92,15 @@ class CustomerMoneyDeposit extends Model
      */
     public static function createDeposit(float $amount, int $wallet_id, int $dab_id, int $transaction_id = null,): Model|CustomerMoneyDeposit
     {
+        $code = random_numeric(6);
         return self::create([
             'reference' => generateReference(),
             'amount' => $amount,
             'status' => 'pending',
             'customer_wallet_id' => $wallet_id,
             'customer_transaction_id' => $transaction_id,
-            'customer_withdraw_dab_id' => $dab_id
+            'customer_withdraw_dab_id' => $dab_id,
+            'code' => base64_encode($code)
         ]);
     }
 }
