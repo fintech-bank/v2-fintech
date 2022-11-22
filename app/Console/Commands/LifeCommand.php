@@ -184,7 +184,7 @@ class LifeCommand extends Command
                 'city' => collect(Vicopo::https(Str::replace('.0', '', round(intval($postcode), -1))))[0]->city,
                 'country' => 'FR',
                 'phone' => $faker->e164PhoneNumber,
-                'mobile' => "+33".rand(6,7)."00000000",
+                'mobile' => "+33".rand(6,7).random_numeric(8),
                 'country_code' => "+33",
                 'email' => $user->email,
                 'isVerified' => $faker->boolean,
