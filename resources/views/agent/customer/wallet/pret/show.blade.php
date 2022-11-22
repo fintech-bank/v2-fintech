@@ -473,12 +473,32 @@
                             <div class="menu menu-column menu-rounded menu-state-bg menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary mb-10">
                                 <div class="menu-item mb-3">
                                     <a href="#prlv" data-bs-toggle="tab" class="menu-link active">
-                                        <span class="menu-title text-black text-active-primary fw-bold">Modifier la date de prélèvement</span>
+                                        <span class="menu-title text-black active fw-bold">Modifier la date de prélèvement</span>
                                     </a>
                                 </div>
                                 <div class="menu-item mb-3">
                                     <a href="#report" data-bs-toggle="tab" class="menu-link">
                                         <span class="menu-title text-black text-active-primary fw-bold">Report d'échéance</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item mb-3">
+                                    <a href="#amort" data-bs-toggle="tab" class="menu-link">
+                                        <span class="menu-title text-black text-active-primary fw-bold">Tableau d'amortissement</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item mb-3">
+                                    <a href="#cpt_prlv" data-bs-toggle="tab" class="menu-link">
+                                        <span class="menu-title text-black text-active-primary fw-bold">Compte de prélèvement</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item mb-3">
+                                    <a href="#remb_loan" data-bs-toggle="tab" class="menu-link">
+                                        <span class="menu-title text-black text-active-primary fw-bold">Remboursement par anticipation</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item mb-3">
+                                    <a href="#change_taux" data-bs-toggle="tab" class="menu-link">
+                                        <span class="menu-title text-black text-active-primary fw-bold">Changer le taux d'interet</span>
                                     </a>
                                 </div>
                             </div>
