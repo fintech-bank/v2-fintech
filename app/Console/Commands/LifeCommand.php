@@ -765,7 +765,7 @@ class LifeCommand extends Command
                     'ficap' => $ficap,
                     'address' => $faker->address,
                     'postal' => $postal,
-                    'city' => collect(Vicopo::https(Str::replace('.0', '', round(intval($postal), -1))))[0]->city,
+                    'city' => collect(Vicopo::https(Str::replace('.0', '', round(intval($postal), -1))))[0]->city ?? 'Les Sables d Olonne',
                     'country' => "France",
                     'phone' => $faker->e164PhoneNumber,
                     'email' => $faker->email,
