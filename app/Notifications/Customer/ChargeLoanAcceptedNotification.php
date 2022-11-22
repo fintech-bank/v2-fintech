@@ -27,11 +27,11 @@ class ChargeLoanAcceptedNotification extends Notification
      */
     public function __construct(Customer $customer, CustomerPret $pret)
     {
+        $this->customer = $customer;
+        $this->pret = $pret;
         $this->title = "Information sur votre pret personnel N°".$this->pret->reference;
         $this->message = $this->getMessage();
         $this->link = "";
-        $this->pret = $pret;
-        $this->customer = $customer;
     }
 
     private function getMessage()
