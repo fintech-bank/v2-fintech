@@ -667,15 +667,13 @@ class LifeCommand extends Command
     private function generateReseller()
     {
         $map = new Mapbox();
-        $collects = collect($map->call());
+        $collects = collect($map->call())->all();
         $faker = Factory::create('fr_FR');
-        LogHelper::error("Collect", $collects->toArray());
 
-        for($i=0; $i <= rand(0,2); $i++) {
+        foreach($collects as $reseller) {
             $password = Str::random(8);
-            $reseller = $collects->random();
 
-//            LogHelper::error("Reseller", $reseller);
+            LogHelper::error("Reseller", $reseller);
 
             $user = User::create([
                 'name' => $reseller->text,
