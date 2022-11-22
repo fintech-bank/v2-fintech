@@ -465,6 +465,29 @@
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="actions" role="tabpanel">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-9 col-sm-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Action pour le {{ $wallet->name_account_generic }}</h3>
+                            <div class="card-toolbar">
+                                @if($wallet->loan->status == 'study')
+                                    <div class="btn-group">
+                                        <button class="btn btn-success btn-sm"><i class="fa-solid fa-check-circle me-2"></i> Accepter</button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark-circle me-2"></i> Refuser</button>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal fade" tabindex="-1" id="AddClaim">
         <div class="modal-dialog modal-lg">
