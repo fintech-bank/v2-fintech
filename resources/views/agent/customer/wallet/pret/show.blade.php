@@ -474,18 +474,22 @@
                                 <li class="nav-item me-0 p-5">
                                     <a class="nav-link active" data-bs-toggle="tab" href="#prlv">Modifier la date de prélèvement</a>
                                 </li>
+                                @if($wallet->loan->status == 'progress')
                                 <li class="nav-item me-0 p-5">
                                     <a class="nav-link" data-bs-toggle="tab" href="#report">Reporter une échéance</a>
                                 </li>
+                                @endif
                                 <li class="nav-item me-0 p-5">
                                     <a class="nav-link" data-bs-toggle="tab" href="#amort">Tableau d'amortissement</a>
                                 </li>
                                 <li class="nav-item me-0 p-5">
                                     <a class="nav-link" data-bs-toggle="tab" href="#cpt_loan">Compte de prélèvement</a>
                                 </li>
+                                @if($wallet->loan->status == 'progress')
                                 <li class="nav-item me-0 p-5">
                                     <a class="nav-link" data-bs-toggle="tab" href="#remb">Remboursement</a>
                                 </li>
+                                @endif
                                 <li class="nav-item me-0 p-5">
                                     <a class="nav-link" data-bs-toggle="tab" href="#change_taux">Modifier le taux d'intêret</a>
                                 </li>
@@ -523,7 +527,18 @@
                                     </form>
                                 </div>
                                 <div class="tab-pane fade" id="report" role="tabpanel">
-                                    ...
+                                    <form id="formUpPrlvDay" action="/api/loan/{{ $wallet->loan->reference }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="action" value="report_echeance">
+
+                                        <x-form.input
+                                            name="prlv_day"
+                                            label="Nouveau jour de prélèvement" />
+
+                                        <div class="text-end">
+                                            <x-form.button />
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="tab-pane fade" id="amort" role="tabpanel">
                                     ...
