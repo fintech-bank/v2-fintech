@@ -77,14 +77,14 @@
             </tr>
         </thead>
         <tbody>
-            @for($i=1; $i <= $data->loan->duration; $i++)
+            @foreach($data->credit->amortissements as $amortissement)
                 <tr>
-                    <td>{{ $i }}</td>
-                    <td>{{ \Carbon\Carbon::create(now()->year, now()->month, $data->loan->prlv_day)->addMonths($i)->format('d/m/Y') }}</td>
+                    <td>{{ $amortissement->id }}</td>
+                    <td>{{ $amortissement->date_prlv->format("d/m/Y") }}</td>
                     <td>{{ $data->loan->mensuality }}</td>
                     <td>{{ eur(($data->loan->amount_du-$data->loan->mensuality) / $i ) }}</td>
                 </tr>
-            @endfor
+            @endforeach
         </tbody>
     </table>
 @endsection
