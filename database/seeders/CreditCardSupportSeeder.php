@@ -113,5 +113,49 @@ class CreditCardSupportSeeder extends Seeder
             'business_travel' => true,
             'credit_card_support_id' => 5
         ]);
+
+        CreditCardSupport::query()->create([
+            'name' => "Visa Business",
+            'slug' => 'visa-business',
+            'type_customer' => 'orga',
+            'limit_retrait' => 3500,
+            'limit_payment' => 10000,
+            'visa_spec' => true,
+            'choice_code' => true
+        ])->insurance()->create([
+            'insurance_sante' => true,
+            'insurance_accident_travel' => true,
+            'trip_cancellation' => true,
+            'civil_liability_abroad' => true,
+            'cash_breakdown_abroad' => true,
+            'guarantee_snow' => true,
+            'guarantee_loan' => true,
+            'guarantee_purchase' => true,
+            'advantage' => true,
+            'business_travel' => true,
+            'credit_card_support_id' => 6
+        ]);
+
+        CreditCardSupport::query()->create([
+            'name' => "Visa Business",
+            'slug' => 'visa-business',
+            'type_customer' => 'assoc',
+            'limit_retrait' => 1500,
+            'limit_payment' => 10000,
+            'visa_spec' => true,
+            'choice_code' => false
+        ])->insurance()->create([
+            'insurance_sante' => true,
+            'insurance_accident_travel' => false,
+            'trip_cancellation' => false,
+            'civil_liability_abroad' => true,
+            'cash_breakdown_abroad' => false,
+            'guarantee_snow' => true,
+            'guarantee_loan' => false,
+            'guarantee_purchase' => false,
+            'advantage' => false,
+            'business_travel' => false,
+            'credit_card_support_id' => 7
+        ]);
     }
 }
