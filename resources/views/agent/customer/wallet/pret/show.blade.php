@@ -526,15 +526,17 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="tab-pane fade" id="report" role="tabpanel">
-                                    <form id="formUpPrlvDay" action="/api/loan/{{ $wallet->loan->reference }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name="action" value="report_echeance">
-                                        <div class="text-end">
-                                            <x-form.button text="Reporter la prochaine échéance au {{ $wallet->loan->first_payment_at->addMonth()->format('d/m/Y') }}"/>
-                                        </div>
-                                    </form>
-                                </div>
+                                @if($wallet->loan->status == 'progress')
+                                    <div class="tab-pane fade" id="report" role="tabpanel">
+                                        <form id="formUpPrlvDay" action="/api/loan/{{ $wallet->loan->reference }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="action" value="report_echeance">
+                                            <div class="text-end">
+                                                <x-form.button text="Reporter la prochaine échéance au {{ $wallet->loan->first_payment_at->addMonth()->format('d/m/Y') }}"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @endif
                                 <div class="tab-pane fade" id="amort" role="tabpanel">
                                     ...
                                 </div>
