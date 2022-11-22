@@ -110,7 +110,7 @@ class HomeController extends Controller
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        dd(Vicopo::https(85100));
+        dd(collect(Vicopo::https(85100)));
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }
