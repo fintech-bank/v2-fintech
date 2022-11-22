@@ -475,10 +475,19 @@
                                     <a class="nav-link active" data-bs-toggle="tab" href="#prlv">Modifier la date de prélèvement</a>
                                 </li>
                                 <li class="nav-item me-0">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#kt_vtab_pane_2">Link 2</a>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#report">Reporter une échéance</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#kt_vtab_pane_3">Link 3</a>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#amort">Tableau d'amortissement</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#cpt_loan">Compte de prélèvement</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#remb">Remboursement</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#change_taux">Modifier le taux d'intêret</a>
                                 </li>
                             </ul>
                         </div>
