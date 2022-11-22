@@ -6,7 +6,9 @@
     }
     let elements = {
         cniField: document.querySelector('[name="cni_number"]'),
-        btnDeleteCaution: document.querySelectorAll('.btnDeleteCaution')
+        btnDeleteCaution: document.querySelectorAll('.btnDeleteCaution'),
+        btnAcceptLoan: document.querySelector('.btnAcceptLoan'),
+        btnRejectLoan: document.querySelector('.btnRejectLoan'),
     }
     let modals = {}
     let forms = {
@@ -60,6 +62,42 @@
                         }, 1200)
                     }
                 })
+            })
+        })
+    }
+    if(elements.btnAcceptLoan) {
+        elements.btnAcceptLoan.addEventListener('click', e => {
+            e.preventDefault()
+
+            $.ajax({
+                url: '/api/loan/{{ $wallet->loan->reference }}',
+                method: 'PUT',
+                data: {"action": "accept"},
+                success: () => {
+                    toastr.success(`Le Crédit à été accepté`, `Mise à jour du crédit`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
+            })
+        })
+    }
+    if(elements.btnRejectLoan) {
+        elements.btnRejectLoan.addEventListener('click', e => {
+            e.preventDefault()
+
+            $.ajax({
+                url: '/api/loan/{{ $wallet->loan->reference }}',
+                method: 'PUT',
+                data: {"action": "reject"},
+                success: () => {
+                    toastr.success(`Le Crédit à été refusé`, `Mise à jour du crédit`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
             })
         })
     }

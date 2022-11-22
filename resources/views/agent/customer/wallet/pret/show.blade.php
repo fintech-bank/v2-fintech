@@ -504,8 +504,8 @@
                             <div class="card-toolbar">
                                 @if($wallet->loan->status == 'study')
                                     <div class="btn-group">
-                                        <button class="btn btn-success btn-sm"><i class="fa-solid fa-check-circle me-2"></i> Accepter</button>
-                                        <button class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark-circle me-2"></i> Refuser</button>
+                                        <button class="btn btn-success btn-sm btnAcceptLoan" data-credit="{{ $wallet->loan->reference }}"><i class="fa-solid fa-check-circle me-2"></i> Accepter</button>
+                                        <button class="btn btn-danger btn-sm btnRejectLoan" data-credit="{{ $wallet->loan->reference }}"><i class="fa-solid fa-xmark-circle me-2"></i> Refuser</button>
                                     </div>
                                 @endif
                             </div>
