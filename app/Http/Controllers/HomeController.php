@@ -107,7 +107,7 @@ class HomeController extends Controller
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        dd(\Storage::disk('gdd')->allDirectories());
+        dd($pret->confirmed_at->addDays(1)->startOfDay(), now()->startOfDay());
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }
