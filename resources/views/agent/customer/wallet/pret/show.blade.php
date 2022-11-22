@@ -530,17 +530,21 @@
                                     <form id="formUpPrlvDay" action="/api/loan/{{ $wallet->loan->reference }}" method="post">
                                         @csrf
                                         <input type="hidden" name="action" value="report_echeance">
-
-                                        <x-form.input
-                                            name="prlv_day"
-                                            label="Nouveau jour de prélèvement" />
-
                                         <div class="text-end">
-                                            <x-form.button />
+                                            <x-form.button text="Reporter la prochaine échéance au {{ $wallet->loan->first_payment_at->addMonth()->format('d/m/Y') }}"/>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="tab-pane fade" id="amort" role="tabpanel">
+                                    ...
+                                </div>
+                                <div class="tab-pane fade" id="cpt_loan" role="tabpanel">
+                                    ...
+                                </div>
+                                <div class="tab-pane fade" id="remb" role="tabpanel">
+                                    ...
+                                </div>
+                                <div class="tab-pane fade" id="change_taux" role="tabpanel">
                                     ...
                                 </div>
                             </div>
