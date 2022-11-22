@@ -80,6 +80,10 @@ use Illuminate\Notifications\Notifiable;
  * @property-read mixed $status_label
  * @property-read mixed $type_caution_label
  * @property-read mixed $type_label
+ * @property string|null $code_sign
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerPretCaution whereCodeSign($value)
  */
 class CustomerPretCaution extends Model
 {

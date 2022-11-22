@@ -538,7 +538,18 @@
                                     </div>
                                 @endif
                                 <div class="tab-pane fade" id="amort" role="tabpanel">
-                                    ...
+                                    <table class="table table-striped table-row-bordered gy-5 gs-7" id="plan_amortissement">
+                                        <thead>
+                                            <tr class="fw-semibold fs-6 text-gray-800">
+                                                <th>N°Echéance</th>
+                                                <th>Date d'échéance</th>
+                                                <th>Montant Mensualité</th>
+                                                <th>Capital restant dù</th>
+                                                <th>Etat</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                                 <div class="tab-pane fade" id="cpt_loan" role="tabpanel">
                                     ...

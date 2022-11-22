@@ -174,6 +174,10 @@ class SystemAgentCommand extends Command
                     'first_payment_at' => Carbon::create(now()->year, now()->addMonth()->month, $pret->prlv_day),
                 ]);
 
+                $pret->wallet->update([
+                    'status' => 'active'
+                ]);
+
                 $pret->customer->info->notify(new ChargeLoanAcceptedNotification($pret->customer, $pret));
                 $arr[] = [
                     $pret->customer->info->full_name,

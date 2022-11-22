@@ -87,6 +87,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereCustomerInsuranceId($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerPretCaution[] $cautions
  * @property-read int|null $cautions_count
+ * @property int|null $nb_report_echeance
+ * @property int|null $nb_adapt_mensuality
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerLoanAmortissement[] $amortissements
+ * @property-read int|null $amortissements_count
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereNbAdaptMensuality($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereNbReportEcheance($value)
  */
 class CustomerPret extends Model
 {
@@ -146,6 +152,11 @@ class CustomerPret extends Model
     public function cautions()
     {
         return $this->hasMany(CustomerPretCaution::class);
+    }
+
+    public function amortissements()
+    {
+        return $this->hasMany(CustomerLoanAmortissement::class);
     }
 
     //---------- Scope ------------------//
