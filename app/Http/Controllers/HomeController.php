@@ -38,6 +38,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Jenssegers\Agent\Agent;
 use RTippin\Messenger\Messenger;
+use Vicopo\Vicopo;
 
 class HomeController extends Controller
 {
@@ -109,7 +110,7 @@ class HomeController extends Controller
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        dd(collect($map->call()->features)->all());
+        dd(Vicopo::https(85100));
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }
