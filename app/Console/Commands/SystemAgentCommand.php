@@ -212,14 +212,13 @@ class SystemAgentCommand extends Command
                     'status' => 'rejected'
                 ]);
 
-                CustomerTransactionHelper::create(
-                    'debit',
-                    'frais',
-                    "Frais Bancaire",
-                    2.5,
+                CustomerTransactionHelper::createDebit(
                     $sepa->wallet->id,
-                    true,
+                    'frais',
+                    'Frais Bancaire',
                     "Frais rejet prélèvement - {$sepa->number_mandate}",
+                    2.5,
+                    true,
                     now()
                 );
             }
@@ -394,14 +393,13 @@ class SystemAgentCommand extends Command
 
         foreach ($wallets as $wallet) {
             if($wallet->epargne->start->startOfDay() == $wallet->epargne->start->startOfDay()) {
-                CustomerTransactionHelper::create(
-                    'credit',
+                CustomerTransactionHelper::createCredit(
+                    $wallet->id,
                     'virement',
+                    'Intêret sur compte',
                     'Intêret courue sur la période du '.$wallet->epargne->start->format("d/m/Y")." au ".now()->format('d/m/Y'),
                     $wallet->epargne->profit,
-                    $wallet->id,
                     true,
-                    'Intêret',
                     now()
                 );
 
@@ -428,6 +426,16 @@ class SystemAgentCommand extends Command
                 ]);
 
             } else {
+                CustomerTransactionHelper::createDebit(
+                    $transfer->wallet->id,
+                    'frais',
+                    "Commission d'intervention",
+                    'Frais rejet de virement - '.$transfer->reference,
+                    2.5,
+                    true,
+                    now()
+                );
+
                 CustomerTransactionHelper::deleteTransaction($transaction);
 
                 $transfer->update([
@@ -437,6 +445,16 @@ class SystemAgentCommand extends Command
                 $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Rejet de la banque distante"));
             }
         } else {
+            CustomerTransactionHelper::createDebit(
+                $transfer->wallet->id,
+                'frais',
+                "Commission d'intervention",
+                'Frais rejet de virement - '.$transfer->reference,
+                2.5,
+                true,
+                now()
+            );
+
             CustomerTransactionHelper::deleteTransaction($transaction);
 
             $transfer->update([
@@ -464,6 +482,15 @@ class SystemAgentCommand extends Command
         if ($transfer->amount <= $transfer->wallet->solde_remaining) {
             if ($transfer->transfer_date->startOfDay() == now()->startOfDay()) {
                 if ($trans->callTransfer($transfer) == '201') {
+                    CustomerTransactionHelper::createDebit(
+                        $transfer->wallet->id,
+                        'frais',
+                        "Commission d'intervention",
+                        'Frais rejet de virement - '.$transfer->reference,
+                        2.5,
+                        true,
+                        now()
+                    );
                     CustomerTransactionHelper::updated($transaction);
                     $transfer->update([
                         'status' => $transfer->status == 'in_transit' ? 'paid' : 'in_transit'
@@ -483,14 +510,13 @@ class SystemAgentCommand extends Command
                 'status' => 'failed'
             ]);
 
-            CustomerTransactionHelper::create(
-                'debit',
+            CustomerTransactionHelper::createDebit(
+                $transfer->wallet->id,
                 'frais',
                 "Commission d'intervention",
-                $transfer->amount * 1.25 / 100,
-                $transfer->wallet->id,
+                'Frais rejet de virement - '.$transfer->reference,
+                2.5,
                 true,
-                "Frais Rejet Virement bancaire | " . $transfer->reference,
                 now()
             );
 
