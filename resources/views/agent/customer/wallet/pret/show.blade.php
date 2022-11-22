@@ -467,7 +467,24 @@
         </div>
         <div class="tab-pane fade" id="actions" role="tabpanel">
             <div class="row">
-                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="menu menu-column menu-rounded menu-state-bg menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary mb-10">
+                                <div class="menu-item mb-3">
+                                    <a href="#prlv" data-bs-toggle="tab" class="menu-link active">
+                                        <span class="menu-title fw-bold">Modifier la date de prélèvement</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item mb-3">
+                                    <a href="#report" data-bs-toggle="tab" class="menu-link">
+                                        <span class="menu-title fw-bold">Report d'échéance</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-9 col-sm-12">
                     <div class="card shadow-sm">
                         <div class="card-header">
