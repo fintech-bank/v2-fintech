@@ -147,26 +147,25 @@ class SystemAgentCommand extends Command
 
         foreach ($prets as $pret) {
             if ($pret->confirmed_at->addDays(1)->startOfDay() == now()->startOfDay()) {
-                CustomerTransactionHelper::create(
-                    'debit',
+
+                CustomerTransactionHelper::createDebit(
+                    $pret->wallet->id,
                     'autre',
+                    $pret->wallet->name_account_generic,
                     $pret->wallet->name_account_generic." - Libération du crédit",
                     $pret->amount_loan,
-                    $pret->wallet->id,
                     true,
-                    $pret->wallet->name_account_generic,
                     now(),
                 );
 
-                CustomerTransactionHelper::create(
-                    'credit',
+                CustomerTransactionHelper::createDebit(
+                    $pret->payment->id,
                     'autre',
+                    $pret->wallet->name_account_generic,
                     $pret->wallet->name_account_generic." - Libération du crédit",
                     $pret->amount_loan,
-                    $pret->payment->id,
                     true,
-                    $pret->wallet->name_account_generic,
-                    now()
+                    now(),
                 );
 
                 $pret->update([

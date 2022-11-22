@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Models\Core\InvoicePayment;
+use App\Scope\TransactionTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -62,7 +63,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CustomerTransaction extends Model
 {
-    use HasFactory;
+    use HasFactory, TransactionTrait;
 
     protected $guarded = [];
     protected $appends = ['type_text', 'type_symbol', 'amount_format', 'is_opposit'];

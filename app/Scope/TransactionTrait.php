@@ -57,6 +57,50 @@ trait TransactionTrait
         return $transaction;
     }
 
+    /**
+     * @param int $wallet_id
+     * @param string $type_mvm
+     * @param string $designation
+     * @param string $description
+     * @param float $amount
+     * @param bool $confirmed
+     * @param Carbon|null $confirmed_at
+     * @param bool $differed
+     * @param Carbon|null $differed_at
+     * @param int|null $card_id
+     * @return Model|CustomerTransaction
+     */
+    public function createCredit(int $wallet_id, string $type_mvm, string $designation, string $description, float $amount, bool $confirmed = false, Carbon $confirmed_at = null, bool $differed = false, Carbon $differed_at = null, int $card_id = null): \Illuminate\Database\Eloquent\Model|CustomerTransaction
+    {
+        $wallet = CustomerWallet::find($wallet_id);
+
+        $transaction = CustomerTransaction::create([
+            'uuid' => Str::uuid(),
+            'type' => $type_mvm,
+            'designation' => $designation,
+            'description' => $description,
+            'amount' => $amount,
+            'confirmed' => $confirmed ?? false,
+            'confirmed_at' => $confirmed ? $confirmed_at : null,
+            'differed' => $differed ?? false,
+            'differed_at' => $differed ? $differed_at : null,
+            'customer_wallet_id' => $wallet_id,
+            'customer_credit_card_id' => $card_id
+        ]);
+
+        if ($confirmed) {
+            $wallet->update([
+                'balance_actual' => $wallet->balance_actual + $amount,
+            ]);
+        } else {
+            $wallet->update([
+                'balance_coming' => $wallet->balance_coming + $amount
+            ]);
+        }
+
+        return $transaction;
+    }
+
     public function generateDepot($wallet_id)
     {
         return CustomerTransactionHelper::create(
