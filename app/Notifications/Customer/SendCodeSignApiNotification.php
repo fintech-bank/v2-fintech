@@ -21,8 +21,8 @@ class SendCodeSignApiNotification extends Notification
      */
     public function __construct(string $code)
     {
-        $this->message = $this->getMessage();
         $this->code = $code;
+        $this->message = $this->getMessage();
     }
 
     private function getMessage()
