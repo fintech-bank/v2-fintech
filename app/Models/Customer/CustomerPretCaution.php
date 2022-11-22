@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * App\Models\Customer\CustomerPretCaution
@@ -82,6 +83,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CustomerPretCaution extends Model
 {
+    use Notifiable;
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at', 'date_naissance', 'signed_at'];
     protected $appends = ['type_label', 'type_caution_label', 'status_label'];

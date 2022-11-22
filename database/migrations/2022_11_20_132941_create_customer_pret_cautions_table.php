@@ -46,6 +46,7 @@ return new class extends Migration {
             // Signature document
             $table->boolean('sign_caution')->default(false);
             $table->timestamp('signed_at')->nullable();
+            $table->string('code_sign')->nullable();
             $table->timestamps();
 
             $table->foreignId('customer_pret_id')
