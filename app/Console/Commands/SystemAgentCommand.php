@@ -146,7 +146,7 @@ class SystemAgentCommand extends Command
         $arr = [];
 
         foreach ($prets as $pret) {
-            if ($pret->updated_at > now()->addDays(8)) {
+            if ($pret->confirmed_at->startOfDay() > now()->addDays(8)->startOfDay()) {
                 CustomerTransactionHelper::create(
                     'debit',
                     'autre',

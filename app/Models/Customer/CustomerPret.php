@@ -94,7 +94,7 @@ class CustomerPret extends Model
 
     protected $guarded = [];
 
-    protected $dates = ['created_at', 'updated_at', 'first_payment_at'];
+    protected $dates = ['created_at', 'updated_at', 'first_payment_at', 'confirmed_at'];
     protected $append = [
         'status_label',
         'status_explanation',
