@@ -11,8 +11,8 @@ class ResellerSeeder extends Seeder
     {
         Reseller::create([
             'status' => 'active',
-            'limit_incoming' => 1000000,
-            'limit_outgoing' => 1000000,
+            'limit_incoming' => 10000,
+            'limit_outgoing' => 10000,
             'user_id' => 4,
             'customer_withdraw_dabs_id' => 1
         ]);
