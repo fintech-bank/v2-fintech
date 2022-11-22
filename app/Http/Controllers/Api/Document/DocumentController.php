@@ -33,7 +33,7 @@ class DocumentController extends ApiController
         $caution = CustomerPretCaution::where('phone', $num_phone)->first();
         if(isset($caution)) {
             $caution->update([
-                'code_sign' => base64_decode($code)
+                'code_sign' => base64_encode($code)
             ]);
 
             $caution->notify(new SendCodeSignApiNotification(base64_decode($code)));
