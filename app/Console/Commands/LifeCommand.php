@@ -674,7 +674,7 @@ class LifeCommand extends Command
             $password = Str::random(8);
             $reseller = $collects->random();
 
-            LogHelper::notify('info', $reseller);
+            LogHelper::insertLogSystem('info', $reseller);
 
             $user = User::create([
                 'name' => $reseller->text,
