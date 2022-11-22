@@ -640,6 +640,7 @@ class LifeCommand extends Command
         $vitesse = $duration[rand(0, 2)];
         $status_wallet_type = ['pending', 'active', 'suspended', 'closed'];
         $status_wallet = $status_wallet_type[rand(0,3)];
+        $payment_wallet = $customer->wallets()->where('type', 'compte')->where('status', 'active')->first();
 
         $number_account = random_numeric(9);
         $ibanG = new Generator($customer->user->agency->code_banque, $number_account, 'fr');
@@ -668,7 +669,7 @@ class LifeCommand extends Command
             "status" => "progress",
             "signed_customer" => 1,
             "signed_bank" => 1,
-            "wallet_payment_id" => $customer->wallets()->where('type', 'compte')->where('status', 'active')->first()->id,
+            "wallet_payment_id" => $payment_wallet->id,
             'customer_wallet_id' => $cpt_pret->id,
             "first_payment_at" => Carbon::create(now()->year, now()->addMonth()->month, 5),
             'required_caution' => $req_caution,
@@ -838,35 +839,10 @@ class LifeCommand extends Command
             ['credit' => $pr]
         );
 
-        DocumentFile::createDoc(
-            $customer,
-            'Assurance Emprunteur',
-            $pr->reference . ' - Assurance Emprunteur',
-            3,
-            null,
-            false,
-            false,
-            false,
-            true,
-            []
-        );
 
         DocumentFile::createDoc(
             $customer,
-            'Avis de conseil relatif assurance',
-            $pr->reference . ' - Avis de conseil Relatif au assurance emprunteur',
-            3,
-            null,
-            false,
-            false,
-            false,
-            true,
-            []
-        );
-
-        DocumentFile::createDoc(
-            $customer,
-            'contrat de credit facelia',
+            'loan.contrat_de_credit_facelia',
             $pr->reference . ' - Contrat de Crédit FACELIA',
             3,
             null,
@@ -879,7 +855,7 @@ class LifeCommand extends Command
 
         DocumentFile::createDoc(
             $customer,
-            'Fiche de dialogue',
+            'general.fiche_de_dialogue',
             $pr->reference . ' - Fiche de Dialogue',
             3,
             null,
@@ -892,7 +868,7 @@ class LifeCommand extends Command
 
         DocumentFile::createDoc(
             $customer,
-            'Information précontractuel normalise',
+            'loan.information_precontractuel_normalise',
             $pr->reference . ' - Information Précontractuel Normalisé',
             3,
             null,
@@ -905,7 +881,7 @@ class LifeCommand extends Command
 
         DocumentFile::createDoc(
             $customer,
-            'Mandat Prélevement sepa',
+            'general.mandat_prelevement_sepa',
             $pr->reference . ' - Mandat Prélèvement SEPA',
             3,
             null,
@@ -913,7 +889,7 @@ class LifeCommand extends Command
             false,
             false,
             true,
-            ['loan' => $pr]
+            ["wallet" => $payment_wallet->id]
         );
 
     }
