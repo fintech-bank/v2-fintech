@@ -21,6 +21,7 @@ use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\SlackNotifier;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 
@@ -146,12 +147,34 @@ class SystemAgentCommand extends Command
 
         foreach ($prets as $pret) {
             if ($pret->updated_at > now()->addDays(8)) {
-                $pret->wallet->update([
-                    'balance_coming' => $pret->wallet->balance_coming - $pret->amount_loan,
-                    'balance_actual' => $pret->wallet->balance_actual + $pret->amount_loan
+                CustomerTransactionHelper::create(
+                    'debit',
+                    'autre',
+                    $pret->wallet->name_account_generic." - Libération du crédit",
+                    -$pret->amount_loan,
+                    $pret->wallet->id,
+                    true,
+                    $pret->wallet->name_account_generic,
+                    now(),
+                );
+
+                CustomerTransactionHelper::create(
+                    'credit',
+                    'autre',
+                    $pret->wallet->name_account_generic." - Libération du crédit",
+                    $pret->amount_loan,
+                    $pret->payment->id,
+                    true,
+                    $pret->wallet->name_account_generic,
+                    now()
+                );
+
+                $pret->update([
+                    'status' => 'progress',
+                    'first_payment_at' => Carbon::create(now()->year, now()->addMonth()->month, $pret->prlv_day),
                 ]);
 
-                $pret->customer->info->notify(new ChargeLoanAcceptedNotification($pret));
+                $pret->customer->info->notify(new ChargeLoanAcceptedNotification($pret->customer, $pret));
                 $arr[] = [
                     $pret->customer->info->full_name,
                     $pret->plan->name,
