@@ -3,7 +3,7 @@
 @section("content")
     <div class="m-5 fs-1">
         <div class="fw-bolder">Numéro de pret personnel</div>
-        {{ $data->loan->reference }}
+        {{ $data->credit->reference }}
     </div>
     <table style="width: 90%; margin-right: auto; margin-left: auto;">
         <tbody>
@@ -13,21 +13,21 @@
                         <tbody>
                         <tr style="border: none">
                             <td class="fw-bolder">Capital prété:</td>
-                            <td class="text-right">{{ eur($data->loan->amount_loan) }}</td>
+                            <td class="text-right">{{ eur($data->credit->amount_loan) }}</td>
                         </tr>
                         <tr style="border: none">
                             <td class="fw-bolder">Taux:</td>
                             <td class="text-right">
-                                @if($data->loan->plan->tarif->type_taux == 'fixe')
-                                    {{ $data->loan->plan->tarif->interest }} %
+                                @if($data->credit->plan->tarif->type_taux == 'fixe')
+                                    {{ $data->credit->plan->tarif->interest }} %
                                 @else
-                                    {{ \App\Helper\CustomerLoanHelper::calcLoanIntestVariableTaxe($data->loan) }} %
+                                    {{ \App\Helper\CustomerLoanHelper::calcLoanIntestVariableTaxe($data->credit) }} %
                                 @endif
                             </td>
                         </tr>
                         <tr style="border: none">
                             <td class="fw-bolder">Durée:</td>
-                            <td class="text-right">{{ $data->loan->duration }} mois</td>
+                            <td class="text-right">{{ $data->credit->duration }} mois</td>
                         </tr>
                         </tbody>
                     </table>
