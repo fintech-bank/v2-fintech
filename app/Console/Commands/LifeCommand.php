@@ -184,7 +184,7 @@ class LifeCommand extends Command
                 'siret' => $user->type_customer != 'part' ? random_numeric(9) . '000' . random_numeric(2) : null,
                 'address' => $faker->streetAddress,
                 'postal' => Str::replace('.0', '', round(intval($postcode), -1)),
-                'city' => collect(Vicopo::https(Str::replace('.0', '', round(intval($postcode), -1))))[0]->city,
+                'city' => isset(collect(Vicopo::https(Str::replace('.0', '', round(intval($postcode), -1))))[0]->city) ?? 'Les Sables d Olonne',
                 'country' => 'FR',
                 'phone' => $faker->e164PhoneNumber,
                 'mobile' => "+33".rand(6,7).random_numeric(8),
