@@ -74,11 +74,15 @@
                 method: 'PUT',
                 data: {"action": "accept"},
                 success: data => {
-                    /*toastr.success(`Le Crédit à été accepté`, `Mise à jour du crédit`)
+                    if(data.state === 'warning') {
+                        toastr.warning(`${data.message}`, `Mise à jour du crédit`)
+                    } else {
+                        toastr.success(`Le Crédit à été accepté`, `Mise à jour du crédit`)
 
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 1200)*/
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1200)
+                    }
                 }
             })
         })
