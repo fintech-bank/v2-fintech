@@ -90,7 +90,7 @@ class CustomerPretCaution extends Model
     use Notifiable;
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at', 'date_naissance', 'signed_at'];
-    protected $appends = ['type_label', 'type_caution_label', 'status_label'];
+    protected $appends = ['type_label', 'type_caution_label', 'status_label', 'full_name'];
 
     public function loan()
     {
@@ -224,5 +224,14 @@ class CustomerPretCaution extends Model
     public function getStatusLabelAttribute()
     {
         return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid {$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</span>";
+    }
+
+    public function getFullNameAttribute()
+    {
+        if($this->type == 'physique') {
+            return $this->civility.". ".$this->lastname." ".$this->firstname;
+        } else {
+            return $this->company;
+        }
     }
 }

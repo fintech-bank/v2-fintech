@@ -6,6 +6,7 @@ use App\Helper\CustomerHelper;
 use App\Helper\CustomerLoanHelper;
 use App\Helper\CustomerTransactionHelper;
 use App\Helper\DocumentFile;
+use App\Helper\GeoHelper;
 use App\Helper\LogHelper;
 use App\Helper\UserHelper;
 use App\Models\Business\BusinessParam;
@@ -24,8 +25,10 @@ use App\Models\Customer\CustomerCreditCard;
 use App\Models\Customer\CustomerCreditor;
 use App\Models\Customer\CustomerFacelia;
 use App\Models\Customer\CustomerInfo;
+use App\Models\Customer\CustomerInsurance;
 use App\Models\Customer\CustomerMoneyDeposit;
 use App\Models\Customer\CustomerPret;
+use App\Models\Customer\CustomerPretCaution;
 use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerSetting;
 use App\Models\Customer\CustomerSituation;
@@ -627,37 +630,48 @@ class LifeCommand extends Command
 
     private function createFacelia(Customer $customer, CustomerCreditCard $card)
     {
+        $faker = Factory::create('fr_FR');
         $amount = [500, 1000, 1500, 2000, 2500, 3000];
         $duration = ['low', 'middle', 'fast'];
         $amount_loan = $amount[rand(0, 5)];
         $vitesse = $duration[rand(0, 2)];
+        $status_wallet_type = ['pending', 'active', 'suspended', 'closed'];
+        $status_wallet = $status_wallet_type[rand(0,3)];
 
         $number_account = random_numeric(9);
         $ibanG = new Generator($customer->user->agency->code_banque, $number_account, 'fr');
 
-        $cpt_pret = CustomerWallet::query()->create([
+        $cpt_pret = CustomerWallet::create([
             'uuid' => Str::uuid(),
             'number_account' => $number_account,
             'iban' => $ibanG->generate($customer->user->agency->code_banque, $number_account, 'fr'),
             'rib_key' => $ibanG->getBban($customer->user->agency->code_banque, $number_account),
             'type' => 'pret',
-            'status' => 'active',
-            'balance_actual' => $amount_loan,
+            'status' => $status_wallet,
+            'balance_actual' => 0,
             'customer_id' => $customer->id,
         ]);
 
-        $pr = CustomerPret::factory()->create([
-            'amount_loan' => $amount_loan,
-            'amount_interest' => 0,
-            'amount_du' => 0,
-            'mensuality' => 0,
-            'prlv_day' => 30,
-            'duration' => CustomerLoanHelper::getPeriodicMensualityFromVitess($vitesse),
-            'status' => 'accepted',
+        $req_caution = $faker->boolean;
+        $req_insurance = $faker->boolean;
+        $pr = CustomerPret::create([
+            "uuid" => Str::uuid(),
+            "reference" => generateReference(),
+            "amount_loan" => $amount_loan,
+            "amount_du" => 0,
+            "amount_interest" => 0,
+            "mensuality" => 0,
+            "duration" => 36,
+            "status" => "progress",
+            "signed_customer" => 1,
+            "signed_bank" => 1,
+            "wallet_payment_id" => $customer->wallets()->where('type', 'compte')->where('status', 'active')->first()->id,
             'customer_wallet_id' => $cpt_pret->id,
-            'wallet_payment_id' => $card->wallet->id,
-            'first_payment_at' => Carbon::create(now()->year, now()->addMonth()->month, 30),
-            'loan_plan_id' => 6,
+            "first_payment_at" => Carbon::create(now()->year, now()->addMonth()->month, 5),
+            'required_caution' => $req_caution,
+            'required_insurance' => $req_insurance,
+            'confirmed_at' => now(),
+            'loan_plan_id' => 8,
             'customer_id' => $customer->id,
         ]);
         $interestTaxe = CustomerLoanHelper::calcLoanIntestVariableTaxe($pr);
@@ -670,11 +684,124 @@ class LifeCommand extends Command
             'amount_interest' => $interest
         ]);
 
+        if($req_insurance) {
+            $insurance = CustomerInsurance::create([
+                'status' => 'active',
+                'reference' => generateReference(),
+                'date_member' => now(),
+                'effect_date' => now(),
+                'end_date' => now()->addMonths(36),
+                'beneficiaire' => $customer->info->full_name,
+                'customer_id' => $customer->id
+            ]);
+
+            DocumentFile::createDoc(
+                $customer,
+                'insurance.synthese_echange',
+                $insurance->reference. ' - Synthèse Echange',
+                1,
+                $insurance->reference,
+                false,
+                false,
+                false,
+                true,
+                ["insurance" => $insurance]
+            );
+
+            DocumentFile::createDoc(
+                $customer,
+                'insurance.bordereau_retractation',
+                $insurance->reference.' - Bordereau de retractation',
+                1,
+                $insurance->reference,
+                false,
+                false,
+                false,
+                true,
+                ["insurance" => $insurance]
+            );
+
+            $cnt_insu = DocumentFile::createDoc(
+                $customer,
+                'insurance.contrat_assurance',
+                $insurance->reference. " - Contrat assurance",
+                1,
+                $insurance->reference,
+                true,
+                true,
+                true,
+                true,
+                ['insurance' => $insurance]
+            );
+        }
+
+        if($req_caution) {
+            for($i=0; $i <= rand(1,3); $i++) {
+                $civility_type = ["M", "Mme", "Mlle"];
+                $civility = $civility_type[rand(0,2)];
+                $type_caution_type = ['simple', 'solidaire'];
+                $type_type = ['physique', 'moral'];
+                $status_type = ['process', 'retired'];
+                $type_caution = $type_caution_type[rand(0,1)];
+                $type = $type_type[rand(0,1)];
+                $status = $status_type[rand(0,1)];
+                $ficap = $faker->boolean;
+                $postal = $faker->postcode;
+
+                $caution = CustomerPretCaution::create([
+                    'type_caution' => $type_caution,
+                    'type' => $type,
+                    'status' => $status,
+                    'civility' => $type == 'physique' ? $civility : null,
+                    'firstname' => $type == 'physique' ? ($civility == 'M' ? $faker->firstNameMale : $faker->firstNameFemale) : null,
+                    'lastname' => $type == 'physique' ? $faker->lastName : null,
+                    'company' => $type == 'moral' ? $faker->companySuffix : null,
+                    'ficap' => $ficap,
+                    'address' => $faker->address,
+                    'postal' => $postal,
+                    'city' => collect(Vicopo::https(Str::replace('.0', '', round(intval($postal), -1))))[0]->city,
+                    'country' => "France",
+                    'phone' => $faker->e164PhoneNumber,
+                    'email' => $faker->email,
+                    'password' => $ficap ? Hash::make('password') : null,
+                    'num_cni' => $type == 'physique' ? Str::random(36) : null,
+                    'date_naissance' => $type == 'physique' ? Carbon::create(now()->subYears(rand(0,40))->year, rand(1,12), rand(1,30)) : null,
+                    'country_naissance' => $type == 'physique' ? $faker->boolean(75) ? 'France' : $faker->country : null,
+                    'dep_naissance' => $type == 'physique' ? GeoHelper::getStateFromCountry('France')->random()->name : null,
+                    'ville_naissance' => $type == 'physique' ? GeoHelper::getCitiesFromCountry('France')->random() : null,
+                    'persona_reference_id' => 'caution_'.now()->format('dmYHis'),
+                    'identityVerify' => 1,
+                    'addressVerify' => 1,
+                    'siret' => $type == 'moral' ? random_numeric(14) : null,
+                    'companyVerify' => 1,
+                    'sign_caution' => 1,
+                    'signed_at' => now(),
+                    'customer_pret_id' => $pr->id,
+                ]);
+
+                DocumentFile::createDoc(
+                    $customer,
+                    'loan.caution_'.$type_caution,
+                    $pr->reference." - Caution ".Str::ucfirst($type_caution)." - {$caution->full_name}",
+                    3,
+                    $pr->reference,
+                    true,
+                    true,
+                    false,
+                    true,
+                    ['caution' => $caution],
+                    '',
+                    '',
+                    'simple'
+                );
+            }
+        }
+
         $card->update([
             'customer_pret_id' => $pr->id,
         ]);
 
-        $facelia = CustomerFacelia::query()->create([
+        $facelia = CustomerFacelia::create([
             'reference' => generateReference(),
             'amount_available' => $amount_loan,
             'amount_interest' => 0,
@@ -694,15 +821,15 @@ class LifeCommand extends Command
 
         DocumentFile::createDoc(
             $customer,
-            'Plan d\'amortissement',
+            'loan.plan_damortissement',
             $pr->reference . " - Plan d'amortissement",
             3,
-            null,
+            $pr->reference,
             false,
             false,
             false,
             true,
-            ['loan' => $pr, 'card' => $card]
+            ['credit' => $pr]
         );
 
         DocumentFile::createDoc(
