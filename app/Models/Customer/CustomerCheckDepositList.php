@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class CustomerCheckDepositList extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
     public $timestamps = false;
     protected $dates = ['date_deposit'];
@@ -52,9 +54,22 @@ class CustomerCheckDepositList extends Model
         return $this->belongsTo(CustomerCheckDeposit::class, 'customer_check_deposit_id');
     }
 
+    public static function insertCheck(int $deposit_id, int $number, float $amount, string $name, string $bank_deposit, Carbon $date_deposit, bool $verified)
+    {
+        return self::create([
+            'number' => $number,
+            'amount' => $amount,
+            'name_deposit' => $name,
+            'bank_deposit' => $bank_deposit,
+            'date_deposit' => $date_deposit,
+            'verified' => $verified,
+            'customer_check_deposit_id' => $deposit_id
+        ]);
+    }
+
     public function getIsVerifiedLabelAttribute()
     {
-        if($this->verified) {
+        if ($this->verified) {
             return "<span class='badge badge-success'><i class='fa-solid fa-check me-2'></i> Valider</span>";
         } else {
             return "<span class='badge badge-danger'><i class='fa-solid fa-xmark me-2'></i> A Vérifier</span>";

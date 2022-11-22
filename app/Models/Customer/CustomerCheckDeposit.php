@@ -63,6 +63,17 @@ class CustomerCheckDeposit extends Model
         return $this->hasMany(CustomerCheckDepositList::class);
     }
 
+    public static function createDeposit($wallet_id, $amount, $state = 'pending', $transaction_id = null)
+    {
+        return self::create([
+            'reference' => generateReference(),
+            'state' => $state,
+            'amount' => $amount,
+            'customer_wallet_id' => $wallet_id,
+            'customer_transaction_id' => $transaction_id
+        ]);
+    }
+
     /**
      * @return string|null
      */

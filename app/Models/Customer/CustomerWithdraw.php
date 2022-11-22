@@ -65,6 +65,18 @@ class CustomerWithdraw extends Model
         return $this->belongsTo(CustomerWithdrawDab::class, 'customer_withdraw_dab_id');
     }
 
+    public static function createWithdraw($wallet_id, $amount, $dab_id, $status = 'pending', $transaction_id = null)
+    {
+        return self::create([
+            'reference' => generateReference(),
+            'status' => $status,
+            'amount' => $amount,
+            'customer_wallet_id' => $wallet_id,
+            'customer_transaction_id' => $transaction_id,
+            'customer_withdraw_dab_id' => $dab_id
+        ]);
+    }
+
     public function getDecodedCodeAttribute()
     {
         return base64_decode($this->code);

@@ -45,6 +45,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerMoneyDeposit extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
     public function wallet()
@@ -80,5 +81,24 @@ class CustomerMoneyDeposit extends Model
     public function getAmountFormatAttribute()
     {
         return eur($this->amount);
+    }
+
+    /**
+     * @param float $amount
+     * @param int $wallet_id
+     * @param int $dab_id
+     * @param int|null $transaction_id
+     * @return Model|CustomerMoneyDeposit
+     */
+    public static function createDeposit(float $amount, int $wallet_id, int $dab_id, int $transaction_id = null,): Model|CustomerMoneyDeposit
+    {
+        return self::create([
+            'reference' => generateReference(),
+            'amount' => $amount,
+            'status' => 'pending',
+            'customer_wallet_id' => $wallet_id,
+            'customer_transaction_id' => $transaction_id,
+            'customer_withdraw_dab_id' => $dab_id
+        ]);
     }
 }

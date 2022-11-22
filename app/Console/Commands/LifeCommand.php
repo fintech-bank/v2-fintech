@@ -10,6 +10,7 @@ use App\Helper\LogHelper;
 use App\Helper\UserHelper;
 use App\Models\Business\BusinessParam;
 use App\Models\Core\Agency;
+use App\Models\Core\Bank;
 use App\Models\Core\CreditCardSupport;
 use App\Models\Core\DocumentCategory;
 use App\Models\Core\Package;
@@ -17,10 +18,13 @@ use App\Models\Core\Shipping;
 use App\Models\Core\ShippingTrack;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerBeneficiaire;
+use App\Models\Customer\CustomerCheckDeposit;
+use App\Models\Customer\CustomerCheckDepositList;
 use App\Models\Customer\CustomerCreditCard;
 use App\Models\Customer\CustomerCreditor;
 use App\Models\Customer\CustomerFacelia;
 use App\Models\Customer\CustomerInfo;
+use App\Models\Customer\CustomerMoneyDeposit;
 use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerSetting;
@@ -54,6 +58,7 @@ use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 class LifeCommand extends Command
 {
     use LaravelSchedulerCustomMutex, TransactionTrait;
+
     /**
      * The name and signature of the console command.
      *
@@ -116,13 +121,13 @@ class LifeCommand extends Command
 
         $users = collect();
         for ($i = 1; $i <= $r; $i++) {
-            $customer_type_choice = $customer_type[rand(0,3)];
+            $customer_type_choice = $customer_type[rand(0, 3)];
             $firstname = $customer_type_choice == 'part' ? ($civ != 'M' ? $faker->firstNameFemale : $faker->firstNameMale) : '';
             $lastname = $customer_type_choice == 'part' ? $faker->lastName : '';
             $company = $customer_type_choice != 'part' ? $faker->company : null;
 
             $users->push(User::create([
-                'name' => $customer_type_choice == 'part' ? $lastname.' '.$firstname : $company,
+                'name' => $customer_type_choice == 'part' ? $lastname . ' ' . $firstname : $company,
                 'email' => $customer_type_choice != 'part' ? $faker->companyEmail : $faker->email,
                 'password' => Hash::make('password'),
                 'identifiant' => UserHelper::generateID(),
@@ -135,7 +140,7 @@ class LifeCommand extends Command
             $firstname = Str::replaceFirst(' ', '', $user->name);
             $lastname = Str::replaceLast(' ', '', $user->name);
             $state_account = ['open', 'completed', 'accepted', 'declined', 'terminated', 'suspended', 'closed'];
-            $state = $state_account[rand(0,6)];
+            $state = $state_account[rand(0, 6)];
 
             $customer = Customer::create([
                 'status_open_account' => $state,
@@ -169,13 +174,13 @@ class LifeCommand extends Command
                 'citybirth' => $user->type_customer == 'part' ? $faker->city : null,
                 'countrybirth' => $user->type_customer == 'part' ? "FR" : null,
                 'company' => $company,
-                'siret' => $user->type_customer != 'part' ? random_numeric(9).'000'.random_numeric(2) : null,
+                'siret' => $user->type_customer != 'part' ? random_numeric(9) . '000' . random_numeric(2) : null,
             ]);
 
             $info->setPhoneVerified($info->phone, 'phone');
             $info->setPhoneVerified($info->mobile, 'mobile');
 
-            if($info->type != 'part') {
+            if ($info->type != 'part') {
                 BusinessParam::create([
                     'name' => $info->full_name,
                     'customer_id' => $customer->id,
@@ -238,7 +243,7 @@ class LifeCommand extends Command
                         'credit',
                         'depot',
                         $title_pro,
-                        rand(1,99999999),
+                        rand(1, 99999999),
                         $account->id,
                         true,
                         $title_pro,
@@ -269,14 +274,13 @@ class LifeCommand extends Command
             }
 
 
-
             $arr [] = [
                 $customer->info->full_name,
                 $customer->status_open_account
             ];
         }
 
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
+        $this->line("Date: " . now()->format("d/m/Y à H:i"));
         $this->line('Nombre de nouveau client: ' . $r);
         $this->output->table(['client', 'Etat du compte'], $arr);
 
@@ -292,7 +296,7 @@ class LifeCommand extends Command
         $customers = Customer::where('status_open_account', 'terminated')->get();
 
         foreach ($customers as $customer) {
-            if($customer->info->type == 'part') {
+            if ($customer->info->type == 'part') {
                 $wallet = $customer->wallets()->where('type', 'compte')->first();
                 $title = "Virement Salaire " . now()->monthName;
 
@@ -309,7 +313,7 @@ class LifeCommand extends Command
             }
         }
 
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
+        $this->line("Date: " . now()->format("d/m/Y à H:i"));
         $this->line('Check des virements des salaires terminer');
         $this->slack->send("Check des virements des salaires terminer");
     }
@@ -324,32 +328,37 @@ class LifeCommand extends Command
 
         foreach ($customers as $customer) {
             foreach ($customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $wallet) {
-                for ($i=0; $i <= rand(0,5); $i++) {
+                for ($i = 0; $i <= rand(0, 5); $i++) {
                     $category_debit = ['retrait', 'payment'];
-                    $category_credit = ['depot'];
                     $type = ['debit', 'credit'];
                     $faker = Factory::create('fr_FR');
                     $now = now();
 
-                    if ($type[rand(0,1)] == 'debit') {
-                        switch ($category_debit[rand(0,1)]) {
+                    if ($type[rand(0, 1)] == 'debit') {
+                        switch ($category_debit[rand(0, 1)]) {
                             case 'retrait':
-                                $amount = $faker->randomFloat(2, 0,1200);
+                                $amount = $faker->randomFloat(2, 0, 1200);
                                 $card = $wallet->cards()->where('status', 'active')->get()->random();
                                 $dab = CustomerWithdrawDab::where('open', 1)->get()->random();
-                                CustomerTransactionHelper::createDebit(
+                                $status_type = ['pending', 'accepted', 'rejected', 'terminated'];
+                                $status = $status_type[rand(0, 3)];
+                                $withdraw = CustomerWithdraw::createWithdraw($wallet->id, $amount, $dab->id, $status);
+
+                                $transaction = CustomerTransactionHelper::createDebit(
                                     $wallet->id,
                                     'retrait',
-                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} ".Str::limit($dab->name, 10, '')),
-                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} ".Str::limit($dab->name, 10, '')),
+                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
+                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
                                     $amount,
                                     true,
                                     $now
                                 );
+
+                                $withdraw->update(["customer_transaction_id" => $transaction->id]);
                                 break;
 
                             case 'payment':
-                                $amount = $faker->randomFloat(2, 0,1200);
+                                $amount = $faker->randomFloat(2, 0, 1200);
                                 $card = $wallet->cards()->where('status', 'active')->get()->random();
                                 $confirmed = $faker->boolean;
                                 $differed = !$confirmed ? $faker->boolean : false;
@@ -369,13 +378,69 @@ class LifeCommand extends Command
                         }
                     } else {
                         $type_depot = ['money', 'check'];
-                        $td = $type_depot[rand(0,1)];
+                        $td = $type_depot[rand(0, 1)];
+                        $dab = CustomerWithdrawDab::all()->random();
+                        $amount = $faker->randomFloat(2, 0, 1200);
 
-                        if($td == 'money') {
-
+                        if ($td == 'money') {
+                            $status_type = ['pending', 'accepted', 'rejected', 'terminated'];
+                            $status = $status_type[rand(0, 3)];
+                            $deposit = CustomerMoneyDeposit::createDeposit($amount, $wallet->id, $dab->id);
+                            $transaction = CustomerTransactionHelper::createCredit(
+                                $wallet->id,
+                                'depot',
+                                "Dépot d'espèce N°{$deposit->reference}",
+                                "Dépot d'espèce N°{$deposit->reference} - {$dab->name}",
+                                $amount,
+                                $status == 'terminated',
+                                $status == 'terminated' ? $now : null
+                            );
+                            $deposit->update([
+                                'customer_transaction_id' => $transaction->id
+                            ]);
+                        } else {
+                            $status_type = ['pending', 'progress', 'terminated'];
+                            $status = $status_type[rand(0, 3)];
+                            $deposit = CustomerCheckDeposit::createDeposit($wallet->id, $amount, $status);
+                            for ($i = 1; $i <= rand(1, 9); $i++) {
+                                $am = $faker->randomFloat(2, 10, 2500);
+                                CustomerCheckDepositList::insertCheck(
+                                    $deposit->id,
+                                    random_numeric(7),
+                                    $am,
+                                    $faker->name,
+                                    Bank::where('check_manage', 1)->get()->random()->id,
+                                    Carbon::create($now->year, rand(1, 12), rand(1, 30)),
+                                    $faker->boolean
+                                );
+                            }
+                            $calc = CustomerCheckDepositList::where('customer_check_deposit_id', $deposit->id)->sum('amount');
+                            $deposit->update(["amount" => $calc]);
+                            match ($status) {
+                                "progress" => $transaction = CustomerTransactionHelper::createCredit(
+                                    $wallet->id,
+                                    'depot',
+                                    "Remise de chèque N°" . $deposit->reference,
+                                    "Remise de " . CustomerCheckDepositList::where('customer_check_deposit_id', $deposit->id)->count() . " Chèques",
+                                    $deposit->amount,
+                                    false,
+                                    null
+                                ),
+                                "terminated" => $transaction =  CustomerTransactionHelper::createCredit(
+                                    $wallet->id,
+                                    'depot',
+                                    "Remise de chèque N°" . $deposit->reference,
+                                    "Remise de " . CustomerCheckDepositList::where('customer_check_deposit_id', $deposit->id)->count() . " Chèques",
+                                    $deposit->amount,
+                                    true,
+                                    $now
+                                )
+                            };
+                            $deposit->update([
+                                'customer_transaction_id' => $transaction->id
+                            ]);
                         }
                     }
-
                 }
             }
         }
@@ -394,16 +459,16 @@ class LifeCommand extends Command
             foreach ($customer->wallets()->where('status', 'active')->where('type', 'compte')->get() as $wallet) {
                 if (rand(0, 1) == 1) {
                     $sepas = [];
-                    for ($i = 0; $i <= rand(1,5); $i++) {
+                    for ($i = 0; $i <= rand(1, 5); $i++) {
                         $faker = Factory::create('fr_FR');
                         $sepas[] = CustomerSepa::create([
                             'uuid' => Str::uuid(),
                             'creditor' => $faker->company,
-                            'number_mandate' => generateReference(rand(8,15)),
-                            'amount' => -rand(5,3500),
+                            'number_mandate' => generateReference(rand(8, 15)),
+                            'amount' => -rand(5, 3500),
                             'status' => 'waiting',
                             'customer_wallet_id' => $wallet->id,
-                            'processed_time' => now()->addDays(rand(1,5))->startOfDay()
+                            'processed_time' => now()->addDays(rand(1, 5))->startOfDay()
                         ]);
                     }
 
@@ -425,7 +490,7 @@ class LifeCommand extends Command
 
                         try {
                             $customer->user->notify(new NewPrlvPresented($sepa));
-                        }catch (Exception $exception) {
+                        } catch (Exception $exception) {
                             LogHelper::notify('critical', $exception);
                         }
                         $arr[] = [
@@ -439,7 +504,7 @@ class LifeCommand extends Command
             }
         }
 
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
+        $this->line("Date: " . now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', 'Mandataire', 'Montant', 'Date de Prélèvement'], $arr);
         $this->slack->send("Génération des prélèvement bancaire", json_encode($arr));
     }
@@ -473,9 +538,9 @@ class LifeCommand extends Command
             $i++;
         }
 
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
+        $this->line("Date: " . now()->format("d/m/Y à H:i"));
         $this->info('Nombre de relevé généré: ' . $i);
-        $this->slack->send("Génération des relevé mensuel", json_encode(["Nombre de relevé: ".$i]));
+        $this->slack->send("Génération des relevé mensuel", json_encode(["Nombre de relevé: " . $i]));
     }
 
     /**
@@ -500,7 +565,7 @@ class LifeCommand extends Command
             }
         }
 
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
+        $this->line("Date: " . now()->format("d/m/Y à H:i"));
         $this->table(['Reference', 'Montant', 'Client'], $arr);
         $this->slack->send("Suppression des retraits non effectuer");
         return 0;
@@ -531,7 +596,7 @@ class LifeCommand extends Command
             }
         }
 
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
+        $this->line("Date: " . now()->format("d/m/Y à H:i"));
     }
 
     private function createFacelia(Customer $customer, CustomerCreditCard $card)
@@ -700,7 +765,7 @@ class LifeCommand extends Command
         $collects = collect($map->call()->features);
         $faker = Factory::create('fr_FR');
 
-        for($i=0; $i <= rand(0,4); $i++) {
+        for ($i = 0; $i <= rand(0, 4); $i++) {
             $password = Str::random(8);
             $reseller = $collects->random();
 
@@ -708,7 +773,7 @@ class LifeCommand extends Command
 
             $user = User::create([
                 'name' => $reseller->text,
-                'email' => Str::snake(Str::limit($reseller->text, 15, '')).'@'.$faker->safeEmailDomain,
+                'email' => Str::snake(Str::limit($reseller->text, 15, '')) . '@' . $faker->safeEmailDomain,
                 'password' => \Hash::make($password),
                 'customer' => 0,
                 'reseller' => 1,
@@ -725,7 +790,7 @@ class LifeCommand extends Command
                 'latitude' => $reseller->center[0],
                 'longitude' => $reseller->center[1],
                 'img' => null,
-                'open' => rand(0,1),
+                'open' => rand(0, 1),
                 'phone' => null
             ]);
 
@@ -756,18 +821,18 @@ class LifeCommand extends Command
                 'isHtml5ParserEnabled' => true,
                 'isRemoteEnabled' => true,
                 'chroot' => [
-                    realpath(base_path()).'/public/css',
-                    realpath(base_path()).'/storage/logo',
+                    realpath(base_path()) . '/public/css',
+                    realpath(base_path()) . '/storage/logo',
                 ],
                 'enable-local-file-access' => true,
                 'viewport-size' => '1280x1024',
-            ])->loadView('pdf.reseller.contrat' , [
+            ])->loadView('pdf.reseller.contrat', [
                 'agence' => $agence,
                 'title' => $document != null ? $document->name : 'Document',
                 'reseller' => $reseller
             ]);
 
-            $pdf->save(public_path('storage/reseller/'.$user->id.'/contrat.pdf'));
+            $pdf->save(public_path('storage/reseller/' . $user->id . '/contrat.pdf'));
             $res->user->notify(new WelcomeNotificationP($res, $password));
 
         }
