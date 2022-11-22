@@ -549,6 +549,18 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
+                                        <tbody>
+                                            @foreach($wallet->loan->amortissements as $k => $amortissement)
+                                                <tr>
+                                                    <td>{{ $k }}</td>
+                                                    <td>{{ $amortissement->date_prlv->format('d/m/Y') }}</td>
+                                                    <td>{{ $amortissement->amount_format }}</td>
+                                                    <td>{{ $amortissement->capital_du_format }}</td>
+                                                    <td>{!! $amortissement->status_label !!}</td>
+                                                    <td></td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div class="tab-pane fade" id="cpt_loan" role="tabpanel">

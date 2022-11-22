@@ -81,8 +81,8 @@
                 <tr>
                     <td>{{ $amortissement->id }}</td>
                     <td>{{ $amortissement->date_prlv->format("d/m/Y") }}</td>
-                    <td>{{ $data->loan->mensuality }}</td>
-                    <td>{{ eur(($data->loan->amount_du-$data->loan->mensuality) / $i ) }}</td>
+                    <td>{{ $amortissement->amount_format }}</td>
+                    <td>{{ $amortissement->capital_du_format }}</td>
                 </tr>
             @endforeach
         </tbody>
