@@ -36,7 +36,6 @@ class DocumentController extends ApiController
     {
         $string = base64_decode($request->get('token'));
         $tab = explode('/', $string);
-        dd($tab);
 
         return match ($tab[2]) {
             "caution" => $this->verifyCaution($tab[1], $tab[3])
@@ -63,6 +62,7 @@ class DocumentController extends ApiController
     private function verifyCaution($num_phone, $code)
     {
         $caution = CustomerPretCaution::where('phone', $num_phone)->first();
+        dd($caution);
 
         if($caution->code_sign == $code) {
             $caution->update([
