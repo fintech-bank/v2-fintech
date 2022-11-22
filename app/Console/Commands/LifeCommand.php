@@ -669,7 +669,7 @@ class LifeCommand extends Command
         $map = new Mapbox();
         $collects = collect($map->call());
         $faker = Factory::create('fr_FR');
-        LogHelper::error("Collect", $collects);
+        LogHelper::error("Collect", $collects->toArray());
 
         for($i=0; $i <= rand(0,2); $i++) {
             $password = Str::random(8);
