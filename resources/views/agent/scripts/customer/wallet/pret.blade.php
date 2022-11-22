@@ -73,12 +73,12 @@
                 url: '/api/loan/{{ $wallet->loan->reference }}',
                 method: 'PUT',
                 data: {"action": "accept"},
-                success: () => {
-                    toastr.success(`Le Crédit à été accepté`, `Mise à jour du crédit`)
+                success: data => {
+                    /*toastr.success(`Le Crédit à été accepté`, `Mise à jour du crédit`)
 
                     setTimeout(() => {
                         window.location.reload()
-                    }, 1200)
+                    }, 1200)*/
                 }
             })
         })
