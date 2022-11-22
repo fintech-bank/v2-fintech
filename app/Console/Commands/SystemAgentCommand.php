@@ -6,6 +6,7 @@ use App\Helper\CustomerTransactionHelper;
 use App\Jobs\Customer\AcceptSepaJob;
 use App\Models\Core\Event;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerDocument;
 use App\Models\Customer\CustomerPret;
 use App\Models\Customer\CustomerSepa;
 use App\Models\Customer\CustomerTransaction;
@@ -112,11 +113,18 @@ class SystemAgentCommand extends Command
         $arr = [];
 
         foreach ($prets as $pret) {
-            $pret->update([
-                'status' => 'study'
-            ]);
+            if(CustomerDocument::where('reference', $pret->reference)->where('signable', true)->where('signed_by_client', 0)->count() == 0) {
+                if($pret->required_caution) {
+                    if($pret->cautions()->where('sign_caution', 0)->count() == 0) {
+                        $pret->update([
+                            'status' => 'study'
+                        ]);
 
-            $pret->customer->info->notify(new VerifRequestLoanNotification($pret));
+                        $pret->customer->info->notify(new VerifRequestLoanNotification($pret));
+                    }
+                }
+            }
+
             $arr[] = [
                 $pret->customer->info->full_name,
                 $pret->plan->name,
