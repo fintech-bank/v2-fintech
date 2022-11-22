@@ -141,7 +141,7 @@ class LifeCommand extends Command
         }
 
         foreach ($users as $user) {
-            $firstname = Str::replaceFirst(' ', '', $user->name);
+            $firstname = Str::start();
             $lastname = Str::replaceLast(' ', '', $user->name);
             $state_account = ['open', 'completed', 'accepted', 'declined', 'terminated', 'suspended', 'closed'];
             $state = $state_account[rand(0, 6)];

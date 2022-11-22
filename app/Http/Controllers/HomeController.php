@@ -111,7 +111,7 @@ class HomeController extends Controller
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        dd(Str::replace('.0', '', round(85160, -1)));
+        dd(Str::start("MOCKELYN Maxime", " "));
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }
