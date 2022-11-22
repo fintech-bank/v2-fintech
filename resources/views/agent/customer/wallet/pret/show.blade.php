@@ -515,6 +515,7 @@
 
                                         <x-form.input-date
                                             name="prlv_day"
+                                            type="text"
                                             label="Nouveau jour de prélèvement" />
                                     </form>
                                 </div>
