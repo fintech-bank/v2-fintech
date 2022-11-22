@@ -509,7 +509,14 @@
                         <div class="card-body">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="prlv" role="tabpanel">
-                                    ...
+                                    <form action="" method="post">
+                                        @csrf
+                                        <input type="hidden" name="action" value="up_prlv_date">
+
+                                        <x-form.input-date
+                                            name="prlv_day"
+                                            label="Nouveau jour de prélèvement" />
+                                    </form>
                                 </div>
                                 <div class="tab-pane fade" id="report" role="tabpanel">
                                     ...
