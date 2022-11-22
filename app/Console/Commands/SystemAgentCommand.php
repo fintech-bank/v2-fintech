@@ -151,7 +151,7 @@ class SystemAgentCommand extends Command
                     'debit',
                     'autre',
                     $pret->wallet->name_account_generic." - Libération du crédit",
-                    -$pret->amount_loan,
+                    $pret->amount_loan,
                     $pret->wallet->id,
                     true,
                     $pret->wallet->name_account_generic,
