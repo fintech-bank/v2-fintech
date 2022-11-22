@@ -73,7 +73,8 @@ class CustomerWithdraw extends Model
             'amount' => $amount,
             'customer_wallet_id' => $wallet_id,
             'customer_transaction_id' => $transaction_id,
-            'customer_withdraw_dab_id' => $dab_id
+            'customer_withdraw_dab_id' => $dab_id,
+            'code' => base64_encode(0000)
         ]);
     }
 
