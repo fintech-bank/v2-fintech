@@ -509,13 +509,17 @@
                         <div class="card-body">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="prlv" role="tabpanel">
-                                    <form action="" method="post">
+                                    <form id="formUpPrlvDay" action="/api/loan/{{ $wallet->loan->reference }}" method="post">
                                         @csrf
                                         <input type="hidden" name="action" value="up_prlv_date">
 
                                         <x-form.input
                                             name="prlv_day"
                                             label="Nouveau jour de prélèvement" />
+
+                                        <div class="text-end">
+                                            <x-form.button />
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="tab-pane fade" id="report" role="tabpanel">

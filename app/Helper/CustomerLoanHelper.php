@@ -210,4 +210,14 @@ class CustomerLoanHelper
         }
     }
 
+    public static function update(CustomerPret $credit, array $data)
+    {
+        try {
+            return $credit->update($data);
+        }catch (\Exception $exception) {
+            LogHelper::notify('critical', $exception->getMessage());
+            return $exception;
+        }
+    }
+
 }

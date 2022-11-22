@@ -46,4 +46,14 @@ class LoanController extends ApiController
             return $this->sendError($exception);
         }
     }
+
+    public function update($loan_reference, Request $request)
+    {
+        $credit = CustomerPret::where('reference', $loan_reference)->first();
+
+        return match ($request->get('action')) {
+            "up_prlv_date" =>
+                CustomerLoanHelper::update($credit, ["prlv_day" => $request->get('prlv_day')]) ? $this->sendSuccess() : $this->sendError(),
+        };
+    }
 }

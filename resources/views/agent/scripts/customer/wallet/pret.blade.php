@@ -10,7 +10,8 @@
     }
     let modals = {}
     let forms = {
-        formAddClaim: document.querySelector("#formAddClaim")
+        formAddClaim: document.querySelector("#formAddClaim"),
+        formUpPrlvDay: document.querySelector("#formUpPrlvDay"),
     }
     let dataTable = {
         datatableTransaction: $(tables.tableTransaction).DataTable({
@@ -110,6 +111,33 @@
             success: () => {
                 btn.removeAttr('data-kt-indicator')
                 toastr.success(`La déclaration de sinitre à bien été enregistré`, `Déclaration de sinistre`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            },
+            error: () => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+            }
+        })
+    })
+    $(forms.formUpPrlvDay).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formUpPrlvDay)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data,
+            success: () => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.success(`Le jour de prélèvement à été mise à jour`, `Mise à jour du crédit`)
 
                 setTimeout(() => {
                     window.location.reload()
