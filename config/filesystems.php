@@ -62,7 +62,7 @@ return [
             'port' => 5555,
             'username' => env('SSH_USERNAME'),
             'password' => env("SSH_PASSWORD"),
-            'root' => '/www/wwwroot/files.fintech.ovh/gdd/'
+            'root' => '/www/wwwroot/files.fintech.ovh/'
         ],
 
         'ficap' => [
