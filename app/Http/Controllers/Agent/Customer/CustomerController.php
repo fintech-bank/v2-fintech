@@ -254,7 +254,7 @@ class CustomerController extends Controller
             false,
             false,
             true,
-            ["loan" => $credit]
+            ["credit" => $credit]
         );
 
         if($credit->required_insurance){
