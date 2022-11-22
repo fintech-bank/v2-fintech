@@ -54,6 +54,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
+use Vicopo\Vicopo;
 
 class LifeCommand extends Command
 {
@@ -163,10 +164,10 @@ class LifeCommand extends Command
                 'user_id' => $user->id
             ]);
 
-            $info = CustomerInfo::factory()->create([
-                'customer_id' => $customer->id,
-                'email' => $user->email,
+            $postcode = $faker->postcode;
+            $info = CustomerInfo::create([
                 'type' => $user->type_customer,
+                'customer_id' => $customer->id,
                 'civility' => $user->type_customer == 'part' ? $civ : null,
                 'firstname' => $user->type_customer == 'part' ? $firstname : null,
                 'lastname' => $user->type_customer == 'part' ? $lastname : null,
@@ -175,14 +176,39 @@ class LifeCommand extends Command
                 'countrybirth' => $user->type_customer == 'part' ? "FR" : null,
                 'company' => $company,
                 'siret' => $user->type_customer != 'part' ? random_numeric(9) . '000' . random_numeric(2) : null,
+                'address' => $faker->streetAddress,
+                'postal' => $postcode,
+                'city' => Vicopo::https($postcode),
+                'country' => 'FR',
+                'phone' => $faker->e164PhoneNumber,
+                'mobile' => "+33".rand(6,7)."00000000",
+                'country_code' => "+33",
+                'email' => $user->email,
+                'isVerified' => $faker->boolean,
+                'mobileVerified' => $faker->boolean,
+                'addressVerified' => $faker->boolean,
+                'incomeVerified' => $faker->boolean,
             ]);
 
-            $info->setPhoneVerified($info->phone, 'phone');
-            $info->setPhoneVerified($info->mobile, 'mobile');
-
             if ($info->type != 'part') {
+                $forme_type = ['EI', 'EURL', 'SASU', 'SAS', 'SARL', 'SCI', 'Other'];
+                $forme = $forme_type[rand(0,6)];
                 BusinessParam::create([
                     'name' => $info->full_name,
+                    'forme' => $forme,
+                    'financement' => $faker->boolean,
+                    'apport_personnel' => $faker->randomFloat(0, 1000),
+                    'finance' => $faker->randomFloat(0, 1000),
+                    'ca' => $faker->randomFloat(0, 1000),
+                    'achat' => $faker->randomFloat(0, 1000),
+                    'frais' => $faker->randomFloat(0, 1000),
+                    'salaire' => $faker->randomFloat(0, 1000),
+                    'impot' => $faker->randomFloat(0, 1000),
+                    'other_product' => $faker->randomFloat(0, 1000),
+                    'other_charge' => $faker->randomFloat(0, 1000),
+                    'result' => $faker->randomFloat(0, 10000),
+                    'result_finance' => $faker->randomFloat(0, 10000),
+                    'indicator' => $faker->boolean,
                     'customer_id' => $customer->id,
                 ]);
             }
