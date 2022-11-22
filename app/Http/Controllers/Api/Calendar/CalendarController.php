@@ -9,6 +9,39 @@ use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
+    /**
+     * @OA\POST(
+     *      path="/v1/calendar/list",
+     *      operationId="listAllCalendar",
+     *      tags={"Tests"},
+
+     *      summary="Liste des évènement d'un utilisateur",
+     *      description="Retourne la liste des évènement propre à un utilisateur",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Succès",
+     *          @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     * @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     * @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *  )
+     */
     public function list(Request $request)
     {
         $events = User::find($request->get('user_id'))->events;
