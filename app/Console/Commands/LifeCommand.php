@@ -641,7 +641,7 @@ class LifeCommand extends Command
         $pr->update([
             'amount_du' => $du,
             'mensuality' => $du / CustomerLoanHelper::getPeriodicMensualityFromVitess($vitesse),
-            'interest' => $interest
+            'amount_interest' => $interest
         ]);
 
         $card->update([
