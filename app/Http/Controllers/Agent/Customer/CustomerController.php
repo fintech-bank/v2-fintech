@@ -21,6 +21,7 @@ use App\Notifications\Customer\NewPretNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Scope\CalcLoanInsuranceTrait;
 use App\Scope\CalcLoanTrait;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -191,6 +192,15 @@ class CustomerController extends Controller
             'amount_interest' => $amount_interest,
             'mensuality' => $mensuality
         ]);
+
+        for ($i=1; $i <= $credit->duration; $i++) {
+            $credit->amortissements()->create([
+                'customer_pret_id' => $credit->id,
+                'date_prlv' => Carbon::create(now()->year, now()->month, $credit->prlv_day)->addMonths($i),
+                'amount' => $credit->mensuality,
+                'capital_du' => ($credit->amount_du-$credit->mensuality) / $i,
+            ]);
+        }
 
         $contrat = DocumentFile::createDoc(
             $customer,
