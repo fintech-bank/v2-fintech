@@ -177,7 +177,7 @@ class LifeCommand extends Command
                 'datebirth' => $user->type_customer == 'part' ? Carbon::createFromTimestamp($faker->dateTimeBetween('1980-01-01', now()->endOfYear()->subYears(18))->getTimestamp()) : null,
                 'citybirth' => $user->type_customer == 'part' ? $faker->city : null,
                 'countrybirth' => $user->type_customer == 'part' ? "FR" : null,
-                'company' => $company,
+                'company' => $user->type_customer != 'part' ? $faker->companySuffix : null,
                 'siret' => $user->type_customer != 'part' ? random_numeric(9) . '000' . random_numeric(2) : null,
                 'address' => $faker->streetAddress,
                 'postal' => Str::replace('.0', '', round(intval($postcode), -1)),
