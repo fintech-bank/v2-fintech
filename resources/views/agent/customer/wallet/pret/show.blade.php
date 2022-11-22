@@ -473,12 +473,12 @@
                             <div class="menu menu-column menu-rounded menu-state-bg menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary mb-10">
                                 <div class="menu-item mb-3">
                                     <a href="#prlv" data-bs-toggle="tab" class="menu-link active">
-                                        <span class="menu-title fw-bold">Modifier la date de prélèvement</span>
+                                        <span class="menu-title text-black text-active-primary fw-bold">Modifier la date de prélèvement</span>
                                     </a>
                                 </div>
                                 <div class="menu-item mb-3">
                                     <a href="#report" data-bs-toggle="tab" class="menu-link">
-                                        <span class="menu-title fw-bold">Report d'échéance</span>
+                                        <span class="menu-title text-black text-active-primary fw-bold">Report d'échéance</span>
                                     </a>
                                 </div>
                             </div>
