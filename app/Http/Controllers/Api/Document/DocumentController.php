@@ -62,9 +62,8 @@ class DocumentController extends ApiController
     private function verifyCaution($num_phone, $code)
     {
         $caution = CustomerPretCaution::where('phone', $num_phone)->first();
-        dd(base64_decode($caution->code_sign), base64_encode($code));
 
-        if(base64_decode($caution->code_sign) == $code) {
+        if(base64_decode($caution->code_sign) == base64_encode($code)) {
             $caution->update([
                 'code_sign' => null,
                 'status' => 'process',
