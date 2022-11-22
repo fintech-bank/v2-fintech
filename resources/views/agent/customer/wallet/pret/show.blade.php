@@ -519,7 +519,17 @@
                             </div>
                         </div>
                         <div class="card-body">
-
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="prlv" role="tabpanel">
+                                    ...
+                                </div>
+                                <div class="tab-pane fade" id="report" role="tabpanel">
+                                    ...
+                                </div>
+                                <div class="tab-pane fade" id="amort" role="tabpanel">
+                                    ...
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
