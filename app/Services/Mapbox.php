@@ -6,11 +6,11 @@ class Mapbox
 {
     /**
      * insurance/supermarket/bar/contractor/shopping center
-     * @param $category
      * @return object|array
      */
-    public function call($category): object|array
+    public function call(): object|array
     {
+        $cat = ['insurance', 'supermarket', 'bar', 'contractor', 'shopping center'];
         $data = [
             'type' => 'poi',
             'limit' => 5,
@@ -19,6 +19,6 @@ class Mapbox
             'proximity' => '-1.795493,46.492958',
             'access_token' => config('services.mapbox.api_key')
         ];
-        return \Http::get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$category.'.json', $data)->object();
+        return \Http::get('https://api.mapbox.com/geocoding/v5/mapbox.places/'.$cat[rand(0,4)].'.json', $data)->object();
     }
 }

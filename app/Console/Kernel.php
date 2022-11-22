@@ -111,6 +111,10 @@ class Kernel extends ConsoleKernel
             ->weeklyOn(7)
             ->between('08:00', '17:00')
             ->description("Envoie d'un relevé flash [log]");
+
+        $schedule->command("life generateReseller")
+            ->dailyAt('08:00')
+            ->description("Nouveau Distributeur");
     }
 
     /**

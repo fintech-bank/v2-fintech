@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Helper\CustomerFaceliaHelper;
 use App\Helper\CustomerHelper;
 use App\Helper\CustomerLoanHelper;
 use App\Helper\CustomerTransactionHelper;
@@ -14,6 +13,8 @@ use App\Models\Core\Agency;
 use App\Models\Core\CreditCardSupport;
 use App\Models\Core\DocumentCategory;
 use App\Models\Core\Package;
+use App\Models\Core\Shipping;
+use App\Models\Core\ShippingTrack;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerBeneficiaire;
 use App\Models\Customer\CustomerCreditCard;
@@ -28,14 +29,19 @@ use App\Models\Customer\CustomerSituationCharge;
 use App\Models\Customer\CustomerSituationIncome;
 use App\Models\Customer\CustomerWallet;
 use App\Models\Customer\CustomerWithdraw;
+use App\Models\Customer\CustomerWithdrawDab;
+use App\Models\Reseller\Reseller;
 use App\Models\User;
 use App\Notifications\Customer\MensualReleverNotification;
 use App\Notifications\Customer\NewPrlvPresented;
 use App\Notifications\Customer\SendAlertaInfoNotification;
+use App\Notifications\Reseller\ShipTpeNotification;
+use App\Notifications\Reseller\WelcomeNotification;
 use App\Scope\TransactionTrait;
 use App\Services\Fintech\Payment\Sepa;
+use App\Services\Mapbox;
 use App\Services\SlackNotifier;
-use App\Services\Twilio\Verify;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Exception;
 use Faker\Factory;
@@ -88,7 +94,8 @@ class LifeCommand extends Command
             'generatePrlvSepa' => $this->generatePrlvSepa(),
             'generateMensualReleve' => $this->generateMensualReleve(),
             'limitWithdraw' => $this->limitWithdraw(),
-            'alerta' => $this->sendAlertaInfo()
+            'alerta' => $this->sendAlertaInfo(),
+            "generateReseller" => $this->generateReseller()
         };
         return Command::SUCCESS;
 
@@ -654,6 +661,85 @@ class LifeCommand extends Command
             true,
             ['loan' => $pr]
         );
+
+    }
+
+    private function generateReseller()
+    {
+        $map = new Mapbox();
+        $collects = collect($map->call());
+        $faker = Factory::create('fr_FR');
+
+        for($i=0; $i <= rand(0,2); $i++) {
+            $password = Str::random(8);
+            $reseller = $collects->random();
+
+            $user = User::create([
+                'name' => $reseller->text,
+                'email' => Str::snake(Str::limit($reseller->text, 15, '')).'@'.$faker->safeEmailDomain,
+                'password' => \Hash::make($password),
+                'customer' => 0,
+                'reseller' => 1,
+                'identifiant' => UserHelper::generateID(),
+                'agency_id' => 1
+            ]);
+
+            $dab = CustomerWithdrawDab::create([
+                'type' => $reseller->properties->category,
+                'name' => $reseller->text,
+                'address' => $reseller->properties->address,
+                'postal' => $reseller->context[1]->text,
+                'city' => $reseller->context[2]->text,
+                'latitude' => $reseller->center[0],
+                'longitude' => $reseller->center[1],
+                'img' => null,
+                'open' => rand(0,1),
+                'phone' => null
+            ]);
+
+            $res = Reseller::create([
+                'limit_outgoing' => ceil(random_numeric(4)),
+                'limit_incoming' => ceil(random_numeric(4)),
+                'user_id' => $user->id,
+                'customer_withdraw_dabs_id' => $dab->id
+            ]);
+
+            $shipTPE = Shipping::create([
+                'number_ship' => Str::random(18),
+                'product' => 'TPE Distributeur',
+                'date_delivery_estimated' => now()->addDays(5)
+            ]);
+
+            ShippingTrack::create([
+                'state' => 'ordered',
+                'shipping_id' => $shipTPE->id,
+            ]);
+            $res->shippings()->attach($shipTPE->id);
+            $res->user->notify(new ShipTpeNotification($res, $shipTPE));
+
+            $document = null;
+            $agence = Agency::find(1);
+
+            $pdf = PDF::setOptions([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true,
+                'chroot' => [
+                    realpath(base_path()).'/public/css',
+                    realpath(base_path()).'/storage/logo',
+                ],
+                'enable-local-file-access' => true,
+                'viewport-size' => '1280x1024',
+            ])->loadView('pdf.reseller.contrat' , [
+                'agence' => $agence,
+                'title' => $document != null ? $document->name : 'Document',
+                'reseller' => $reseller
+            ]);
+
+            $pdf->save(public_path('storage/reseller/'.$user->id.'/contrat.pdf'));
+            $res->user->notify(new WelcomeNotification($res, $password));
+
+        }
+
 
     }
 }
