@@ -670,7 +670,7 @@ class LifeCommand extends Command
         $collects = collect($map->call()->features);
         $faker = Factory::create('fr_FR');
 
-        for($i=0; $i <= rand(0,2); $i++) {
+        for($i=0; $i <= rand(0,4); $i++) {
             $password = Str::random(8);
             $reseller = $collects->random();
 
