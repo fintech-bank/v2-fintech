@@ -18,7 +18,7 @@ class DocumentController extends ApiController
      */
     public function request(Request $request)
     {
-        $string = decrypt($request->get('token'));
+        $string = base64_decode($request->get('token'));
         $tab = explode('/', $string);
 
         return match ($tab[2]) {
@@ -29,11 +29,11 @@ class DocumentController extends ApiController
 
     private function codeCaution($num_phone)
     {
-        $code = encrypt(random_numeric(6));
+        $code = base64_encode(random_numeric(6));
         $caution = CustomerPretCaution::where('phone', $num_phone)->first();
         if(isset($caution)) {
             $caution->update([
-                'code_sign' => encrypt($code)
+                'code_sign' => base64_decode($code)
             ]);
 
             $caution->notify(new SendCodeSignApiNotification(decrypt($code)));
