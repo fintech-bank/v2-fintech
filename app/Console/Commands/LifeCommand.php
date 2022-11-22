@@ -669,12 +669,13 @@ class LifeCommand extends Command
         $map = new Mapbox();
         $collects = collect($map->call());
         $faker = Factory::create('fr_FR');
+        LogHelper::error("Collect", $collects);
 
         for($i=0; $i <= rand(0,2); $i++) {
             $password = Str::random(8);
             $reseller = $collects->random();
 
-            LogHelper::error("Reseller", $reseller);
+//            LogHelper::error("Reseller", $reseller);
 
             $user = User::create([
                 'name' => $reseller->text,
