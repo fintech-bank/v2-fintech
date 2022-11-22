@@ -60,7 +60,7 @@ class SystemSeedCommand extends Command
     {
         if ($this->option('base')) {
             $this->call('migrate:fresh', ['--force']);
-            \Storage::disk('gdd')->deleteDirectory('gdd/');
+            \Storage::disk('gdd')->deleteDirectory('*');
             \Storage::disk('gdd')->deleteDirectory('reseller/');
         }
 
