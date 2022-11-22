@@ -36,7 +36,7 @@ class DocumentController extends ApiController
                 'code_sign' => base64_decode($code)
             ]);
 
-            $caution->notify(new SendCodeSignApiNotification(decrypt($code)));
+            $caution->notify(new SendCodeSignApiNotification(base64_decode($code)));
 
             return $this->sendSuccess();
         }else {
