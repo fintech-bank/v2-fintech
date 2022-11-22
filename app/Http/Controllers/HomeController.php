@@ -110,7 +110,7 @@ class HomeController extends Controller
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        dd(intval(round(85158, 2)));
+        dd(round(85158, 2, PHP_ROUND_HALF_UP));
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }
