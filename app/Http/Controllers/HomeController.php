@@ -35,6 +35,7 @@ use App\Services\Twilio\Messaging\Whatsapp;
 use App\Services\YousignApi;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Jenssegers\Agent\Agent;
 use RTippin\Messenger\Messenger;
@@ -110,7 +111,7 @@ class HomeController extends Controller
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
 
-        dd(round(85160, -1));
+        dd(Str::replace('.0', '', round(85160, -1)));
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }
