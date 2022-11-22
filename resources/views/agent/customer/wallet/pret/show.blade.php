@@ -513,9 +513,8 @@
                                         @csrf
                                         <input type="hidden" name="action" value="up_prlv_date">
 
-                                        <x-form.input-date
+                                        <x-form.input
                                             name="prlv_day"
-                                            type="text"
                                             label="Nouveau jour de prélèvement" />
                                     </form>
                                 </div>
