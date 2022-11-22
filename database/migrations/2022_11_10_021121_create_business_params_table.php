@@ -19,19 +19,19 @@ return new class extends Migration
             $table->enum('forme', ['EI', 'EURL', 'SASU', 'SARL', 'SAS', 'SCI', 'Other'])->default('SAS');
             $table->boolean('financement')->default(false);
 
-            $table->float('apport_personnel')->default(0);
-            $table->float('finance')->default(0);
+            $table->float('apport_personnel', 50)->default(0);
+            $table->float('finance', 50)->default(0);
 
-            $table->float('ca')->default(0);
-            $table->float('achat')->default(0);
-            $table->float('frais')->default(0);
-            $table->float('salaire')->default(0);
-            $table->float('impot')->default(0);
-            $table->float('other_product')->default(0);
-            $table->float('other_charge')->default(0);
+            $table->float('ca', 50)->default(0);
+            $table->float('achat', 50)->default(0);
+            $table->float('frais', 50)->default(0);
+            $table->float('salaire', 50)->default(0);
+            $table->float('impot', 50)->default(0);
+            $table->float('other_product', 50)->default(0);
+            $table->float('other_charge', 50)->default(0);
 
-            $table->float('result')->default(0);
-            $table->float('result_finance')->default(0);
+            $table->float('result', 50)->default(0);
+            $table->float('result_finance', 50)->default(0);
             $table->boolean('indicator')->default(0);
 
             $table->foreignId('customer_id')
