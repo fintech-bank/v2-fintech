@@ -22,7 +22,8 @@ class DocumentController extends ApiController
         $tab = explode('/', $string);
 
         return match ($tab[2]) {
-            "caution" => $this->codeCaution($tab[1])
+            "caution" => $this->codeCaution($tab[1]),
+            "client" => ''
         };
     }
 
