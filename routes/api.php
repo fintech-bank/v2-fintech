@@ -208,11 +208,11 @@ Route::prefix('loan')->group(function () {
 });
 
 Route::prefix('epargne')->group(function () {
-    Route::get('/list', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'list']);
-    Route::post('/', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'create']);
-    Route::get('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'retrieve']);
-    Route::put('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'update']);
-    Route::delete('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'delete']);
+    Route::get('/list', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'list'])->name('api.epargne.list');
+    Route::post('/', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'create'])->name('api.epargne.create');
+    Route::get('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'retrieve'])->name('api.epargne.retrieve');
+    Route::put('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'update'])->name('api.epargne.update');
+    Route::delete('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'delete'])->name('api.epargne.delete');
 });
 
 Route::prefix('document')->group(function () {

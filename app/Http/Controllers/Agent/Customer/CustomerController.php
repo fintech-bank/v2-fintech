@@ -29,12 +29,6 @@ use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
-    private $stripe;
-    public function __construct()
-    {
-        $this->stripe = new Stripe();
-    }
-
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('agent.customer.index', [
