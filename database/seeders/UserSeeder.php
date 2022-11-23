@@ -168,6 +168,8 @@ class UserSeeder extends Seeder
             ]
         ]);
 
+        $wallet->update(["sepa_stripe_mandate" => $s_intent->mandate]);
+
         $pm_stripe = $stripe->client->paymentMethods->create([
             'type' => "sepa_debit",
             'sepa_debit' => [
