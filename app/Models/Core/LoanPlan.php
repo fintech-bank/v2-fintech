@@ -59,7 +59,7 @@ class LoanPlan extends Model
         foreach ($query as $value) {
             $datas->push([
                 'id' => $value->id,
-                'name' => $value->name
+                'value' => $value->name
             ]);
         }
 
