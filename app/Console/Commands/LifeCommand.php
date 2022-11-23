@@ -571,7 +571,8 @@ class LifeCommand extends Command
                                     $deposit->amount,
                                     true,
                                     $now
-                                )
+                                ),
+                                default => null
                             };
                             $deposit->update([
                                 'customer_transaction_id' => $transaction->id
