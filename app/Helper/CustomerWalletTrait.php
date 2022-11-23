@@ -70,6 +70,6 @@ trait CustomerWalletTrait
             ->whereBetween('confirmed_at', [now()->startOfMonth(), now()->endOfMonth()])
             ->where('amount', '>', 0)->sum('amount');
 
-        return $credit - $debit;
+        return $debit - $credit;
     }
 }
