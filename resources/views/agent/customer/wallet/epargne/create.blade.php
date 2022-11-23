@@ -41,6 +41,29 @@
     <form action="{{ route('api.epargne.create') }}" method="post">
         @csrf
         <input type="hidden" name="customer_id" value="{{ $customer->id }}">
+        <div class="row">
+            <div class="col-md-9 col-sm-12">
+
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <div class="card shadow-sm" data-kt-sticky="true" data-kt-sticky-name="epargne-summary"
+                     data-kt-sticky-offset="{default: false, lg: '200px'}"
+                     data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-left="auto"
+                     data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
+                    <div class="card-header">
+                        <h3 class="card-title"></h3>
+                        <div class="card-toolbar">
+                            <!--<button type="button" class="btn btn-sm btn-light">
+                                Action
+                            </button>-->
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 @endsection
 
