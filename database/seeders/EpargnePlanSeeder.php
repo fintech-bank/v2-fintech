@@ -170,7 +170,8 @@ class EpargnePlanSeeder extends Seeder
                 ]
             ]),
             'description' => "Vous avez un projet immobilier ? Le Compte Épargne Logement (CEL) permet de constituer une épargne à votre rythme et d’obtenir un prêt épargne logement à des conditions spécifiques. Le CEL est le complément naturel du PEL (Plan Épargne Logement) !",
-            'droit_credit' => json_encode([
+            'droit_credit' => true,
+            'info_credit' => json_encode([
                 'name' => 'Le Prêt épargne logement',
                 'limit' => 23000,
                 'unlock_days' => 547,
@@ -202,7 +203,8 @@ class EpargnePlanSeeder extends Seeder
                 ]
             ]),
             'description' => "Vous avez un projet immobilier en tête ? Avec le Plan Épargne Logement (PEL), vous constituez progressivement votre apport en bénéficiant d’une rémunération garantie. De plus, vous cumulez des droits à prêt pour financer votre projet à un taux connu dès le départ.",
-            'droit_credit' => json_encode([
+            'droit_credit' => true,
+            'info_credit' => json_encode([
                 'name' => 'Le Prêt épargne logement',
                 'limit' => 23000,
                 'unlock_days' => 1095,
