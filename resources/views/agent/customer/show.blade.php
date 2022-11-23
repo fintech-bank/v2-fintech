@@ -654,13 +654,13 @@
                                                 <x-form.select
                                                     name="legal_capacity"
                                                     :datas="\App\Helper\CustomerSituationHelper::dataLegalCapacity()"
-                                                    label="Capacité Juridique" required="false"/>
+                                                    label="Capacité Juridique" required="false" />
                                             </div>
                                             <div class="col-6">
                                                 <x-form.select
                                                     name="family_situation"
                                                     :datas="\App\Helper\CustomerSituationHelper::dataFamilySituation()"
-                                                    label="Situation Familiale" required="false"/>
+                                                    label="Situation Familiale" required="false" />
                                             </div>
                                         </div>
                                         <div class="row">
@@ -668,7 +668,7 @@
                                                 <x-form.select
                                                     name="logement"
                                                     :datas="\App\Helper\CustomerSituationHelper::dataLogement()"
-                                                    label="Dans votre logement, vous êtes" required="false"/>
+                                                    label="Dans votre logement, vous êtes" required="false" />
                                             </div>
                                             <div class="col-6">
                                                 <x-form.input-date
