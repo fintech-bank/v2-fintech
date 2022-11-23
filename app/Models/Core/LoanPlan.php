@@ -51,7 +51,7 @@ class LoanPlan extends Model
         return $this->hasMany(LoanPlanInterest::class);
     }
 
-    public function toSelect($query)
+    public function scopeToSelect($query)
     {
         $datas = collect();
 
