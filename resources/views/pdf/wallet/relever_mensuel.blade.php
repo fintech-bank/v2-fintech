@@ -51,7 +51,10 @@
             <tr class="fw-bolder">
                 <td colspan="3" class="text-end">TOTAUX DES MOUVEMENTS</td>
                 <td class="text-end">
-                    {{  }}
+                    {{ $data->wallet->getSumDebitForRelever() }}
+                </td>
+                <td class="text-end">
+                    {{ $data->wallet->getSumCreditForRelever() }}
                 </td>
             </tr>
         </tfoot>
