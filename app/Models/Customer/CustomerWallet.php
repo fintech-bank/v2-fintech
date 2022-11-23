@@ -227,6 +227,20 @@ class CustomerWallet extends Model
         return $this->hasMany(CustomerInsurance::class);
     }
 
+    public static function toSelect($query)
+    {
+        $datas = collect();
+
+        foreach ($query as $value) {
+            $datas->push([
+                'id' => $value->id,
+                'value' => $value->name_account
+            ]);
+        }
+
+        return $datas->all();
+    }
+
     /**
      * @return string|null
      */

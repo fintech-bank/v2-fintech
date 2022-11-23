@@ -154,6 +154,7 @@
                                     label="Type de Crédit"
                                     placeholder="Selectionner un type de crédit..."
                                     :datas="\App\Models\Core\LoanPlan::toSelect(\App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get())" />
+
                                 <div class="row mb-10">
                                     <div class="col-4">
                                         <x-form.input
@@ -173,15 +174,13 @@
                                             label="Jours de prélèvement" />
                                     </div>
                                 </div>
-                                <div class="mb-10">
-                                    <label for="wallet_payment_id" class="form-label required">Compte de Paiement</label>
-                                    <select class="form-control form-control-solid" data-control="select2" name="wallet_payment_id" data-placeholder="Selectionner un compte de paiement">
-                                        <option value=""></option>
-                                        @foreach($customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $wallet)
-                                            <option value="{{ $wallet->id }}">{{ $wallet->name_account }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+
+                                <x-form.select
+                                    name="wallet_payment_id"
+                                    label="Compte de Paiement"
+                                    placeholder="Selectionner un compte de paiement..."
+                                    :datas="\App\Models\Customer\CustomerWallet::toSelect(\App\Models\Customer\CustomerWallet::where('type', 'compte')->where('status', 'active')->get())" />
+
                                 <div class="mb-10">
                                     <label for="assurance_type" class="form-label required">Type d'assurance</label>
                                     <select class="form-control form-control-solid" data-control="select2" name="assurance_type" data-placeholder="Selectionner un type d'assurance" required>
