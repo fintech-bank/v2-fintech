@@ -53,6 +53,22 @@ trait CustomerWalletTrait
             ->where('amount', '<=', 0)->sum('amount'));
     }
 
+    public function getSumDebitFraisForRelever()
+    {
+        return eur($this->transactions()->where('confirmed', 1)
+            ->where('type', 'frais')
+            ->whereBetween('confirmed_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->where('amount', '<=', 0)->sum('amount'));
+    }
+
+    public function getSumCreditFraisForRelever()
+    {
+        return eur($this->transactions()->where('confirmed', 1)
+            ->where('type', 'frais')
+            ->whereBetween('confirmed_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->where('amount', '>', 0)->sum('amount'));
+    }
+
     public function getSumCreditForRelever()
     {
         return eur($this->transactions()->where('confirmed', 1)

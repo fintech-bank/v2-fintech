@@ -72,4 +72,10 @@
             </tr>
         </tfoot>
     </table>
+    <ul>
+        <li>
+            Sur la période du {{ now()->startOfMonth()->format('d/m/Y') }} au {{ now()->endOfMonth()->format('d/m/Y') }}, le total des frais sur vos opérations courantes relevant de la convention de compte est
+            {{ $data->wallet->getSumDebitFraisForRelever() }} de et celui des remboursements effectués par {{ config('app.name') }} est de {{ $data->wallet->getSumCreditFraisForRelever() }}.
+        </li>
+    </ul>
 @endsection
