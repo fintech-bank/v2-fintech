@@ -162,7 +162,7 @@
                                     name="loan_plan_id"
                                     label="Type de Crédit"
                                     placeholder="Selectionner un type de crédit..."
-                                    datas="{{ \App\Models\Core\LoanPlan::select('id, name')->where('type_pret', $customer->info->type)->get() }}" />
+                                    datas="{{ \App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get()->pluck('id', 'name') }}" />
                                 <div class="row mb-10">
                                     <div class="col-4">
                                         <x-form.input
