@@ -157,6 +157,20 @@ class SystemAgentCommand extends Command
         foreach ($prets as $pret) {
             if ($pret->confirmed_at->addDays(1)->startOfDay() == now()->startOfDay()) {
 
+                $stripe->client->subscriptions->create([
+                    "customer" => $pret->customer->stripe_customer_id,
+                    "items" => [
+                        "price_data" => [
+                            "currency" => "EUR",
+                            "product" => $pret->wallet->number_account,
+                            "reccuring" => [
+                                "interval" => "month"
+                            ],
+                            "unit_amount_decimal" => $pret->mensuality * 100
+                        ]
+                    ],
+                ]);
+
                 CustomerTransactionHelper::createDebit(
                     $pret->wallet->id,
                     'autre',
@@ -184,20 +198,6 @@ class SystemAgentCommand extends Command
 
                 $pret->wallet->update([
                     'status' => 'active'
-                ]);
-
-                $stripe->client->subscriptions->create([
-                    "customer" => $pret->customer->stripe_customer_id,
-                    "items" => [
-                        "price_data" => [
-                            "currency" => "EUR",
-                            "product" => $pret->wallet->number_account,
-                            "reccuring" => [
-                                "interval" => "month"
-                            ],
-                            "unit_amount" => $pret->mensuality * 100
-                        ]
-                    ],
                 ]);
 
                 $pret->customer->info->notify(new ChargeLoanAcceptedNotification($pret->customer, $pret));
