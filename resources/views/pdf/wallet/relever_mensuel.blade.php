@@ -14,7 +14,7 @@
             </tr>
         </tbody>
     </table>
-    <div class="separator my-2"></div>
+    <div class="separator mt-2 mb-5"></div>
     <table class="table table-borderless border border-2 table-sm table-striped gx-4">
         <thead>
             <tr>
