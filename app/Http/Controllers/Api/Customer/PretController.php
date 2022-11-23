@@ -75,7 +75,7 @@ class PretController extends ApiController
             'wallet_payment_id' => "required"
         ]);
 
-        $plan = LoanPlan::find($request->get('wallet_payment_id'));
+        $plan = LoanPlan::find($request->get('loan_plan_id'));
 
         try {
             $mensuality = eur($request->get('amount_loan') / ($request->get('duration') * 12));
