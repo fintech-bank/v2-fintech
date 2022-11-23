@@ -91,7 +91,7 @@
                             name="wallet_payment_id"
                             label="Compte de retrait"
                             required="true"
-                            :datas="\App\Models\Customer\CustomerWallet::toSelect(\App\Models\Customer\CustomerWallet::where('customer_id', $customer->id)->where('type', '!=', 'pret')->get())" />
+                            :datas="\App\Models\Customer\CustomerWallet::toSelect(\App\Models\Customer\CustomerWallet::where('customer_id', $customer->id)->where('type', '!=', 'pret')->get(), true)" />
 
                     </div>
                 </div>
