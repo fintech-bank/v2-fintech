@@ -172,6 +172,17 @@ class UserSeeder extends Seeder
             'type' => "sepa_debit",
             'sepa_debit' => [
                 'iban' => $wallet->iban
+            ],
+            'billing_details' => [
+                'address' => [
+                    'city' => $info->city,
+                    'country' => 'FR',
+                    'line1' => $info->address,
+                    'postal_code' => $info->postal,
+                ],
+                'name' => $info->full_name,
+                'email' => $user->email,
+                'phone' => $info->mobile
             ]
         ]);
 
@@ -194,6 +205,17 @@ class UserSeeder extends Seeder
                 'exp_month' => $card->exp_month,
                 'number' => $card->number,
                 'cvc' => $card->cvc
+            ],
+            'billing_details' => [
+                'address' => [
+                    'city' => $info->city,
+                    'country' => 'FR',
+                    'line1' => $info->address,
+                    'postal_code' => $info->postal,
+                ],
+                'name' => $info->full_name,
+                'email' => $user->email,
+                'phone' => $info->mobile
             ]
         ]);
 
