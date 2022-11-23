@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('type_pret', ['part', 'pro', 'orga', 'assoc'])->default('part');
             $table->float('minimum');
-            $table->float('maximum');
+            $table->float('maximum',40);
             $table->integer('duration')->comment('En Mois');
             $table->boolean('frais')->default(false);
             $table->text('instruction')->nullable();
