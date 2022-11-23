@@ -166,19 +166,19 @@ class CustomerPret extends Model
         return collect([
             [
                 "id" => "D",
-                "name" => "Décès"
+                "value" => "Décès"
             ],
             [
                 "id" => "DIM",
-                "name" => "Décès, Invalidité, Maladie"
+                "value" => "Décès, Invalidité, Maladie"
             ],
             [
                 "id" => "DIMC",
-                "name" => "Décès, Invalidité, Maladie, Perte d'emploi"
+                "value" => "Décès, Invalidité, Maladie, Perte d'emploi"
             ],
             [
                 "id" => "NONE",
-                "name" => "Aucune"
+                "value" => "Aucune"
             ],
 
         ]);
