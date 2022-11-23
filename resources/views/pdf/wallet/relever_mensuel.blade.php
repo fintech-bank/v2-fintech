@@ -1,7 +1,13 @@
 @extends('pdf.layouts.app')
 
 @section("content")
-    <div class="fw-bolder fs-4 uppercase">RELEVÉ DES OPÉRATIONS</div>
+    <div class="d-flex flex-row">
+        <div class="fw-bolder fs-4 uppercase">RELEVÉ DES OPÉRATIONS</div>
+        <div class="d-flex flex-column">
+            N° {{ $data->wallet->number_account }}<br>
+            <div class="fw-bolder">du {{ now()->startOfMonth()->format('d/m/Y') }} au {{ now()->endOfMonth()->format('d/m/Y') }}</div>
+        </div>
+    </div>
     <div class="separator my-2"></div>
     <table class="table table-borderless border border-2 table-sm table-striped gx-4">
         <thead>
