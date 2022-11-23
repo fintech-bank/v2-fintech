@@ -1,16 +1,10 @@
 <div class="mb-10">
-
-    <label for="{{ $name }}" class="{{ $required ? 'required' : '' }} form-label">
+    <label for="{{ $name }}" class="form-label {{ isset($required) ? "required" : "" }}">
         {{ $label }}
     </label>
-    <select id="{{ $name }}" class="form-select form-select-solid selectpicker" @isset($placeholder) data-placeholder="{{ $placeholder }}" @else data-placeholder="{{ $label }}" @endisset name="{{ $name }}">
-        @if(array_key_exists('key', $value))
-            <option value="{{ $value['key'] }}">{{ $value['value'] }}</option>
-        @else
-            <option value=""></option>
-        @endif
+    <select id="{{ $name }}" class="form-control selectpicker" name="{{ $name }}" data-live-search="true" data-header="{{ isset($placeholder) ?? $label }}">
         @foreach(json_decode($datas, true) as $data)
-            <option value="{{ isset($data['id']) ? $data['id'] : $data['name'] }}">{{ $data['name'] }}</option>
+            <option value="{{ $data['id'] }}" @if(isset($value) && $data['id'] == $value) selected="selected" @endif data-content="{!! $data['value'] !!}">{{ $data['value'] }}</option>
         @endforeach
     </select>
 </div>
