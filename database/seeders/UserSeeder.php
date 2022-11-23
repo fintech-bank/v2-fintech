@@ -186,9 +186,6 @@ class UserSeeder extends Seeder
             ]
         ]);
 
-        $seti = $stripe->client->setupIntents->confirm($s_intent->id, [
-            'payment_method' => $pm_stripe->id
-        ]);
 
         $card = CustomerCreditCard::factory()->create([
             'customer_wallet_id' => $wallet->id,
@@ -201,7 +198,7 @@ class UserSeeder extends Seeder
         $pm_stripe = $stripe->client->paymentMethods->create([
             'type' => 'card',
             'card' => [
-                'exp_month' => $card->exp_year,
+                'exp_year' => $card->exp_year,
                 'exp_month' => $card->exp_month,
                 'number' => $card->number,
                 'cvc' => $card->cvc
@@ -219,9 +216,6 @@ class UserSeeder extends Seeder
             ]
         ]);
 
-        $seti = $stripe->client->setupIntents->confirm($s_intent->id, [
-            'payment_method' => $pm_stripe->id
-        ]);
 
         \Storage::disk('gdd')->makeDirectory($user->id . '/documents');
         \Storage::disk('gdd')->makeDirectory($user->id . '/account');
