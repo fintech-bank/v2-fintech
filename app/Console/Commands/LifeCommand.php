@@ -177,9 +177,9 @@ class LifeCommand extends Command
                 'civility' => $user->type_customer == 'part' ? $civ : null,
                 'firstname' => $user->type_customer == 'part' ? $firstname : null,
                 'lastname' => $user->type_customer == 'part' ? $lastname : null,
-                'datebirth' => $user->type_customer == 'part' ? Carbon::createFromTimestamp($faker->dateTimeBetween('1980-01-01', now()->endOfYear()->subYears(18))->getTimestamp()) : null,
-                'citybirth' => $user->type_customer == 'part' ? $faker->city : null,
-                'countrybirth' => $user->type_customer == 'part' ? "FR" : null,
+                'datebirth' => Carbon::createFromTimestamp($faker->dateTimeBetween('1980-01-01', now()->endOfYear()->subYears(18))->getTimestamp()),
+                'citybirth' => $faker->city,
+                'countrybirth' => "FR",
                 'company' => $user->type_customer != 'part' ? $faker->company : null,
                 'siret' => $user->type_customer != 'part' ? random_numeric(9) . '000' . random_numeric(2) : null,
                 'address' => $faker->streetAddress,
@@ -219,12 +219,21 @@ class LifeCommand extends Command
                 ]);
             }
 
-            CustomerSetting::factory()->create([
+            CustomerSetting::create([
                 'customer_id' => $customer->id,
+                'notif_sms' => $faker->boolean,
+                'notif_app' => $faker->boolean,
+                'notif_mail' => $faker->boolean,
+                'nb_physical_card' => $customer->package->nb_carte_physique,
+                'nb_virtual_card' => $customer->package->nb_carte_virtuel,
+                'check' => $customer->package->check,
+                'alerta' => $faker->boolean,
             ]);
 
-            CustomerSituation::factory()->create([
+            CustomerSituation::create([
                 'customer_id' => $customer->id,
+                'child' => $customer->type == 'part' ? rand(0,5) : 0,
+                'person_charged' => $customer->type == 'part' ? rand(0,5) : 0,
             ]);
 
             CustomerSituationCharge::factory()->create([
