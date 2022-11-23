@@ -472,46 +472,48 @@ class LifeCommand extends Command
                     $now = now();
 
                     if ($type[rand(0, 1)] == 'debit') {
-                        switch ($category_debit[rand(0, 1)]) {
-                            case 'retrait':
-                                $amount = $faker->randomFloat(2, 0, 1200);
-                                $card = $wallet->cards()->where('status', 'active')->get()->random();
-                                $dab = CustomerWithdrawDab::where('open', 1)->get()->random();
-                                $status_type = ['pending', 'accepted', 'rejected', 'terminated'];
-                                $status = $status_type[rand(0, 3)];
-                                $withdraw = CustomerWithdraw::createWithdraw($wallet->id, $amount, $dab->id, $status);
+                        if($wallet->cards()->where('status', 'active')->count() != 0) {
+                            switch ($category_debit[rand(0, 1)]) {
+                                case 'retrait':
+                                    $amount = $faker->randomFloat(2, 0, 1200);
+                                    $card = $wallet->cards()->where('status', 'active')->get()->random();
+                                    $dab = CustomerWithdrawDab::where('open', 1)->get()->random();
+                                    $status_type = ['pending', 'accepted', 'rejected', 'terminated'];
+                                    $status = $status_type[rand(0, 3)];
+                                    $withdraw = CustomerWithdraw::createWithdraw($wallet->id, $amount, $dab->id, $status);
 
-                                $transaction = CustomerTransactionHelper::createDebit(
-                                    $wallet->id,
-                                    'retrait',
-                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
-                                    Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
-                                    $amount,
-                                    true,
-                                    $now
-                                );
+                                    $transaction = CustomerTransactionHelper::createDebit(
+                                        $wallet->id,
+                                        'retrait',
+                                        Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
+                                        Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
+                                        $amount,
+                                        true,
+                                        $now
+                                    );
 
-                                $withdraw->update(["customer_transaction_id" => $transaction->id]);
-                                break;
+                                    $withdraw->update(["customer_transaction_id" => $transaction->id]);
+                                    break;
 
-                            case 'payment':
-                                $amount = $faker->randomFloat(2, 0, 1200);
-                                $card = $wallet->cards()->where('status', 'active')->get()->random();
-                                $confirmed = $faker->boolean;
-                                $differed = !$confirmed ? $faker->boolean : false;
+                                case 'payment':
+                                    $amount = $faker->randomFloat(2, 0, 1200);
+                                    $card = $wallet->cards()->where('status', 'active')->get()->random();
+                                    $confirmed = $faker->boolean;
+                                    $differed = !$confirmed ? $faker->boolean : false;
 
-                                CustomerTransactionHelper::createDebit(
-                                    $wallet->id,
-                                    'payment',
-                                    "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
-                                    "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
-                                    $amount,
-                                    $confirmed,
-                                    $confirmed ? $now : null,
-                                    $differed,
-                                    $differed ? $now->endOfMonth() : null,
-                                    $card->id
-                                );
+                                    CustomerTransactionHelper::createDebit(
+                                        $wallet->id,
+                                        'payment',
+                                        "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
+                                        "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
+                                        $amount,
+                                        $confirmed,
+                                        $confirmed ? $now : null,
+                                        $differed,
+                                        $differed ? $now->endOfMonth() : null,
+                                        $card->id
+                                    );
+                            }
                         }
                     } else {
                         $type_depot = ['money', 'check'];
