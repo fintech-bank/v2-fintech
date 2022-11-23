@@ -36,7 +36,7 @@ return [
     */
 
     'structured' => true,
-    'crud_folders' => true,
+    'crud_folders' => false,
 
     /*
     |--------------------------------------------------------------------------
