@@ -31,6 +31,36 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereProfitPercent($value)
  * @mixin \Eloquent
  * @mixin IdeHelperEpargnePlan
+ * @property string $type_customer
+ * @property string $type_epargne
+ * @property float $limit_amount
+ * @property int $unique
+ * @property int $droit_credit
+ * @property int $duration
+ * @property int $garantie_deces
+ * @property int $partial_liberation
+ * @property string $description
+ * @property mixed $info_versement
+ * @property mixed $info_retrait
+ * @property mixed|null $info_credit
+ * @property mixed|null $info_deces
+ * @property mixed|null $info_liberation
+ * @property mixed|null $info_frais
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereDroitCredit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereDuration($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereGarantieDeces($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereInfoCredit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereInfoDeces($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereInfoFrais($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereInfoLiberation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereInfoRetrait($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereInfoVersement($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereLimitAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan wherePartialLiberation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereTypeCustomer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereTypeEpargne($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereUnique($value)
  */
 class EpargnePlan extends Model
 {

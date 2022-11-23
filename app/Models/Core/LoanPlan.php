@@ -37,6 +37,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|LoanPlan whereTarif($value)
  * @property string $type_pret
  * @method static \Illuminate\Database\Eloquent\Builder|LoanPlan whereTypePret($value)
+ * @property int $frais
+ * @property mixed|null $info_frais
+ * @method static Builder|LoanPlan whereFrais($value)
+ * @method static Builder|LoanPlan whereInfoFrais($value)
  */
 class LoanPlan extends Model
 {
