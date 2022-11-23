@@ -48,13 +48,26 @@
             @endforeach
         </tbody>
         <tfoot>
-            <tr class="fw-bolder">
+            <tr class="fw-bolder border">
                 <td colspan="3" class="text-end">TOTAUX DES MOUVEMENTS</td>
                 <td class="text-end">
-                    {{ $data->wallet->getSumDebitForRelever() }}
+                    {{ \Illuminate\Support\Str::replace('-', '', $data->wallet->getSumDebitForRelever()) }}
                 </td>
                 <td class="text-end">
-                    {{ $data->wallet->getSumCreditForRelever() }}
+                    {{ \Illuminate\Support\Str::replace('-', '', $data->wallet->getSumCreditForRelever()) }}
+                </td>
+            </tr>
+            <tr class="fw-bolder border fs-4">
+                <td colspan="3" class="text-end">Nouveau solde au {{ now()->format('d/m/Y') }}</td>
+                <td class="text-end">
+                    @if($data->wallet->getSumAllMvmForRelever() < 0)
+                        {{ eur($data->wallet->getSumAllMvmForRelever()) }}
+                    @endif
+                </td>
+                <td class="text-end">
+                    @if($data->wallet->getSumAllMvmForRelever() >= 0)
+                        {{ eur($data->wallet->getSumAllMvmForRelever()) }}
+                    @endif
                 </td>
             </tr>
         </tfoot>
