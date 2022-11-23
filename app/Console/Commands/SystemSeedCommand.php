@@ -66,9 +66,13 @@ class SystemSeedCommand extends Command
             \Storage::disk('gdd')->deleteDirectory('reseller/');
 
             $customers = $stripe->client->customers->all();
-
             foreach ($customers as $customer) {
                 $stripe->client->customers->delete($customer->id);
+            }
+
+            $credits = $stripe->client->products->all();
+            foreach ($credits as $credit) {
+                $stripe->client->products->delete($credit->id);
             }
         }
 
