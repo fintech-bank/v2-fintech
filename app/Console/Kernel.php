@@ -79,9 +79,9 @@ class Kernel extends ConsoleKernel
             ->daily()
             ->description("Virement des intêret des comptes épargnes");
 
-        $schedule->command('system:agent virProfitEpargne')
+        $schedule->command('system:agent prlvCreditMensuality')
             ->daily()
-            ->description("Virement des intêret des comptes épargnes");
+            ->description("Prélèvement mensuel des mensualités de crédit");
 
         // Life
         $schedule->command("life generateCustomers")
