@@ -74,11 +74,6 @@ class SystemSeedCommand extends Command
             foreach ($subscriptions as $subscription) {
                 $stripe->client->subscriptions->cancel($subscription->id);
             }
-
-            $credits = $stripe->client->products->all();
-            foreach ($credits as $credit) {
-                $stripe->client->products->delete($credit->id);
-            }
         }
 
         $this->info('Seeding: Liste des agences');
