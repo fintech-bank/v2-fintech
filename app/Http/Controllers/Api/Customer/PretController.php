@@ -90,7 +90,7 @@ class PretController extends ApiController
                 'taxe_assurance' => $taxe_assurance
             ];
         }catch (\Exception $exception) {
-            return [];
+            return [$exception];
         }
     }
 
