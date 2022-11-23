@@ -47,18 +47,13 @@ class CustomerSepaHelper
 
     public static function createPrlv($amount, $wallet, $designation, $date_prlv)
     {
-        $mandate = self::generateMandate();
 
-        $transaction = CustomerTransactionHelper::create(
-            'debit',
+        $transaction = CustomerTransactionHelper::createDebit(
+            $wallet,
             'sepa',
-            'PRLV EUROPE '.$mandate,
-            $amount,
-            $wallet->id,
-            false,
             $designation,
-            null,
-            $date_prlv,
+            $designation,
+            $amount,
         );
 
         CustomerSepa::create([

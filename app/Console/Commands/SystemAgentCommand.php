@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Helper\CustomerSepaHelper;
 use App\Helper\CustomerTransactionHelper;
 use App\Jobs\Customer\AcceptSepaJob;
 use App\Models\Core\Event;
@@ -156,20 +157,6 @@ class SystemAgentCommand extends Command
 
         foreach ($prets as $pret) {
             if ($pret->confirmed_at->addDays(1)->startOfDay() == now()->startOfDay()) {
-
-                $stripe->client->subscriptions->create([
-                    "customer" => $pret->customer->stripe_customer_id,
-                    "items" => [
-                        "price_data" => [
-                            "currency" => "EUR",
-                            "product" => $pret->wallet->number_account,
-                            "reccuring" => [
-                                "interval" => "month"
-                            ],
-                            "unit_amount_decimal" => $pret->mensuality * 100
-                        ]
-                    ],
-                ]);
 
                 CustomerTransactionHelper::createDebit(
                     $pret->wallet->id,
@@ -439,11 +426,33 @@ class SystemAgentCommand extends Command
 
     private function prlvCreditMensuality()
     {
+        $stripe = new Stripe();
         $credits = CustomerPret::where('status', 'progress')->get();
 
         foreach ($credits as $credit) {
             // Création du prélèvement SEPA en base et par stripe
             if($credit->first_payment_at->subDays(2)->startOfDay() == now()->startOfDay()) {
+                $amount = $credit->insurance()->count() == 0 ? $credit->mensuality : $credit->mensuality + $credit->insurance->mensuality;
+                $sepa = CustomerSepaHelper::createPrlv(
+                    $amount,
+                    $credit->payment->id,
+                    $credit->wallet->name_account_generic. ' - '.now()->locale('fr')->monthName,
+                    $credit->first_payment_at
+                );
+
+                $charge = $stripe->client->charges->create([
+                    'amount' => $amount,
+                    'currency' => 'EUR',
+                    'customer' => $credit->customer->stripe_customer_id,
+                    'description' => $credit->wallet->name_account_generic." - Echéance ".$credit->first_payment_at->locale('fr')->monthName,
+                    'metadata' => [
+                        'sepa_uuid' => $sepa->uuid
+                    ]
+                ])
+            }
+
+            if($credit->first_payment_at->startOfDay() == now()->startOfDay()) {
+
 
             }
         }

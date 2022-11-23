@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->float('amount');
             $table->float('capital_du');
             $table->enum('status', ['program', 'progress', 'finish', 'error'])->default('program');
+            $table->string('stripe_charge_id')->nullable();
 
             $table->foreignId('customer_pret_id')
                 ->constrained()
