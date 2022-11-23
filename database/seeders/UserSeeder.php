@@ -195,6 +195,7 @@ class UserSeeder extends Seeder
             'credit_card_support_id' => 1
         ]);
 
+
         $pm_stripe = $stripe->client->paymentMethods->create([
             'type' => 'card',
             'card' => [
@@ -215,6 +216,8 @@ class UserSeeder extends Seeder
                 'phone' => $info->mobile
             ]
         ]);
+
+        $stripe->client->paymentMethods->attach($pm_stripe->id, ['customer' => $customer->stripe_customer_id]);
 
 
         \Storage::disk('gdd')->makeDirectory($user->id . '/documents');
