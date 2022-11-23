@@ -43,7 +43,15 @@
         <input type="hidden" name="customer_id" value="{{ $customer->id }}">
         <div class="row">
             <div class="col-md-9 col-sm-12">
-
+                <div class="card shadow-sm mb-10">
+                    <div class="card-header">
+                        <h3 class="card-title">Client</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-gray-500 fw-semibold fs-5 mb-5">Client désigné pour le nouveau compte épargne:</div>
+                        {!! $customer->customer_card !!}
+                    </div>
+                </div>
             </div>
             <div class="col-md-3 col-sm-12">
                 <div class="card shadow-sm" data-kt-sticky="true" data-kt-sticky-name="epargne-summary"
@@ -51,7 +59,7 @@
                      data-kt-sticky-width="{lg: '250px', xl: '300px'}" data-kt-sticky-left="auto"
                      data-kt-sticky-top="150px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
                     <div class="card-header">
-                        <h3 class="card-title"></h3>
+                        <h3 class="card-title">Récapitulatif de l'épargne</h3>
                         <div class="card-toolbar">
                             <!--<button type="button" class="btn btn-sm btn-light">
                                 Action

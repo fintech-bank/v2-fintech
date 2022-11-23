@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $capital_du_format
  * @property-read mixed $status_label
  * @property-read \App\Models\Customer\CustomerSepa $sepa
+ * @property int|null $customer_sepa_id
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerLoanAmortissement whereCustomerSepaId($value)
  */
 class CustomerLoanAmortissement extends Model
 {

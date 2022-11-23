@@ -82,6 +82,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $requests_count
  * @property string|null $stripe_customer_id
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereStripeCustomerId($value)
+ * @property-read mixed $customer_card
  */
 class Customer extends Model
 {
@@ -90,7 +91,7 @@ class Customer extends Model
     protected $guarded = [];
 
     public $timestamps = false;
-    protected $appends = ['status_label', 'sum_account', 'sum_epargne', 'next_debit_package'];
+    protected $appends = ['status_label', 'sum_account', 'sum_epargne', 'next_debit_package', 'customer_card'];
 
     public function user()
     {
@@ -230,6 +231,22 @@ class Customer extends Model
     public function getStatusLabelAttribute()
     {
         return "<span class='badge badge-sm badge-".$this->getStatusColorAttribute()."'>".$this->getStatusTextAttribute()."</span>";
+    }
+
+    public function getCustomerCardAttribute()
+    {
+        ob_start();
+        ?>
+        <div class="d-flex align-items-center p-3 mb-2">
+            <?= $this->user->avatar_symbol; ?>
+            <div class="d-flex flex-column">
+                <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2"><?= $this->info->full_name; ?></a>
+                <a href="#" class="fw-semibold text-gray-600 text-hover-primary"><?= $this->info->email; ?></a>
+            </div>
+            <!--end::Info-->
+        </div>
+        <?php
+        return ob_get_clean();
     }
 
     public function getSumAccountAttribute()
