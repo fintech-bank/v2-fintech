@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Customer;
 
+use App\Helper\LogHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Core\LoanPlan;
@@ -90,6 +91,7 @@ class PretController extends ApiController
                 'taxe_assurance' => $taxe_assurance
             ];
         }catch (\Exception $exception) {
+            LogHelper::error("Erreur", $exception);
             return $exception;
         }
     }
