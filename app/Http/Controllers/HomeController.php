@@ -30,7 +30,6 @@ use App\Services\GeoPortailLook;
 use App\Services\Mapbox;
 use App\Services\PushbulletApi;
 use App\Services\SlackNotifier;
-use App\Services\Stripe;
 use App\Services\Twilio\Lookup;
 use App\Services\Twilio\Messaging\Whatsapp;
 use App\Services\YousignApi;
@@ -106,8 +105,13 @@ class HomeController extends Controller
     public function test()
     {
         $customer = Customer::find(1);
-        $credit = $customer->prets()->first();
-        $amount = $credit->insurance()->count() == 0 ? $credit->mensuality : $credit->mensuality + $credit->insurance->mensuality;
-        $stripe = new Stripe();
+        $document = new DocumentFile();
+        $map = new Mapbox();
+        $wallet = $customer->wallets()->find(3);
+        $insurance = $customer->insurances()->first();
+        $pret = $customer->prets()->first();
+        $call = \App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get();
+
+        return $document->generatePDF('wallet.relever_mensuel', $customer, null, ["wallet" => $wallet], false, false, null, true, 'simple');
     }
 }
