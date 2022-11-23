@@ -103,11 +103,11 @@ class CustomerPretCaution extends Model
         return collect([
             [
                 'id' => 'simple',
-                'name' => "Caution simple"
+                'value' => "Caution simple"
             ],
             [
                 'id' => 'solidaire',
-                'name' => "Caution Solidaire"
+                'value' => "Caution Solidaire"
             ],
         ])->toArray();
     }
@@ -117,11 +117,11 @@ class CustomerPretCaution extends Model
         return collect([
             [
                 'id' => 'physique',
-                'name' => "Personne Physique"
+                'value' => "Personne Physique"
             ],
             [
                 'id' => 'moral',
-                'name' => "Personne Moral"
+                'value' => "Personne Moral"
             ],
         ])->toArray();
     }
@@ -129,24 +129,24 @@ class CustomerPretCaution extends Model
     public static function getCivilityData()
     {
         return collect([
-            ['id' => 'M', 'name' => "Monsieur"],
-            ['id' => 'Mme', 'name' => "Madame"],
-            ['id' => 'Mlle', 'name' => "Mademoiselle"],
+            ['id' => 'M', 'value' => "Monsieur"],
+            ['id' => 'Mme', 'value' => "Madame"],
+            ['id' => 'Mlle', 'value' => "Mademoiselle"],
         ])->toArray();
     }
 
     public static function getTypeEntrepriseData()
     {
         return collect([
-            ['id' => 'EI', 'name' => "Entrepreneur individuel"],
-            ['id' => 'EURL', 'name' => "Entreprise unipersonnelle à responsabilité limitée"],
-            ['id' => 'SARL', 'name' => "Société à responsabilité limitée"],
-            ['id' => 'SASU', 'name' => "Société par actions simplifiée unipersonnelle"],
-            ['id' => 'SAS', 'name' => "Société par actions simplifiée"],
-            ['id' => 'SA', 'name' => "Société anonyme"],
-            ['id' => 'SNC', 'name' => "Société en nom collectif"],
-            ['id' => 'SCS', 'name' => "Société en commandite simple"],
-            ['id' => 'SCA', 'name' => "Société en commandite par actions"],
+            ['id' => 'EI', 'value' => "Entrepreneur individuel"],
+            ['id' => 'EURL', 'value' => "Entreprise unipersonnelle à responsabilité limitée"],
+            ['id' => 'SARL', 'value' => "Société à responsabilité limitée"],
+            ['id' => 'SASU', 'value' => "Société par actions simplifiée unipersonnelle"],
+            ['id' => 'SAS', 'value' => "Société par actions simplifiée"],
+            ['id' => 'SA', 'value' => "Société anonyme"],
+            ['id' => 'SNC', 'value' => "Société en nom collectif"],
+            ['id' => 'SCS', 'value' => "Société en commandite simple"],
+            ['id' => 'SCA', 'value' => "Société en commandite par actions"],
         ])->toArray();
     }
 
