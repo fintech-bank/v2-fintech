@@ -12,6 +12,7 @@
     <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used by this page)-->
     <link href="/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <!--end::Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
     <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
@@ -101,6 +102,7 @@
 <script src="https://cdn.withpersona.com/dist/persona-v4.2.0.js"></script>
 <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.0.279/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/function.js"></script>
 @auth
