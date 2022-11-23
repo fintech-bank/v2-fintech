@@ -69,7 +69,8 @@ class SystemAgentCommand extends Command
             "executeActiveAccount" => $this->executeActiveAccount(),
             "executeVirement" => $this->executeVirement(),
             "executeCalcProfitEpargne" => $this->executeCalcProfitEpargne(),
-            "virProfitEpargne" => $this->virProfitEpargne()
+            "virProfitEpargne" => $this->virProfitEpargne(),
+            "prlvCreditMensuality" => $this->prlvCreditMensuality()
         };
 
         return Command::SUCCESS;
@@ -412,6 +413,18 @@ class SystemAgentCommand extends Command
         }
 
         $this->slack->send("Virement des intêret des comptes épargnes", json_encode([strip_tags("Nombre de compte mise a jours: ").$i]));
+    }
+
+    private function prlvCreditMensuality()
+    {
+        $credits = CustomerPret::where('status', 'progress')->get();
+
+        foreach ($credits as $credit) {
+            // Création du prélèvement SEPA en base et par stripe
+            if($credit->first_payment_at->subDays(2)->startOfDay() == now()->startOfDay()) {
+
+            }
+        }
     }
 
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)

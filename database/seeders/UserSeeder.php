@@ -15,6 +15,7 @@ use App\Models\Customer\CustomerSituationCharge;
 use App\Models\Customer\CustomerSituationIncome;
 use App\Models\Customer\CustomerWallet;
 use App\Models\User;
+use App\Services\Stripe;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $stripe = new Stripe();
         User::create([
             'name' => 'Administrator',
             'email' => 'admin@fintech.io',
@@ -80,6 +82,7 @@ class UserSeeder extends Seeder
             'user_id' => $user->id
         ]);
 
+
         $info = CustomerInfo::factory()->create([
             'type' => 'part',
             'civility' => 'M',
@@ -93,6 +96,20 @@ class UserSeeder extends Seeder
 
         $info->setPhoneVerified($info->phone, 'phone');
         $info->setPhoneVerified($info->mobile, 'mobile');
+
+        $s_customer = $stripe->client->customers->create([
+            'address' => [
+                'city' => $info->city,
+                'country' => 'FR',
+                'line1' => $info->address,
+                'postal_code' => $info->postal,
+            ],
+            'email' => $user->email,
+            'name' => $info->full_name,
+            'phone' => $info->mobile,
+        ]);
+
+        $customer->update(["stripe_customer_id" => $s_customer->id]);
 
         CustomerSetting::factory()->create([
             'notif_sms' => false,
@@ -121,13 +138,50 @@ class UserSeeder extends Seeder
         $wallet = CustomerWallet::factory()->create([
             'customer_id' => $customer->id
         ]);
+        $s_intent = $stripe->client->setupIntents->create([
+            'customer' => $customer->stripe_customer_id,
+            'payment_method_types' => ['card', 'sepa_debit'],
+            'payment_method_data' => [
+                'type' => 'sepa_debit',
+                'sepa_debit' => [
+                    'iban' => $wallet->iban
+                ]
+            ],
+            'confirm' => true,
+            'return_url' => config('app.url')
+        ]);
 
-        CustomerCreditCard::factory()->create([
+        $pm_stripe = $stripe->client->paymentMethods->create([
+            'type' => "sepa_debit",
+            'sepa' => [
+                'iban' => $wallet->iban
+            ]
+        ]);
+
+        $seti = $stripe->client->setupIntents->confirm($s_intent->id, [
+            'payment_method' => $pm_stripe->id
+        ]);
+
+        $card = CustomerCreditCard::factory()->create([
             'customer_wallet_id' => $wallet->id,
             'status' => 'active',
             'debit' => 'differed',
             'facelia' => false,
             'credit_card_support_id' => 1
+        ]);
+
+        $pm_stripe = $stripe->client->paymentMethods->create([
+            'type' => 'card',
+            'card' => [
+                'exp_month' => $card->exp_year,
+                'exp_month' => $card->exp_month,
+                'number' => $card->number,
+                'cvc' => $card->cvc
+            ]
+        ]);
+
+        $seti = $stripe->client->setupIntents->confirm($s_intent->id, [
+            'payment_method' => $pm_stripe->id
         ]);
 
         \Storage::disk('gdd')->makeDirectory($user->id . '/documents');
