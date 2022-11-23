@@ -95,7 +95,7 @@
                     <p class="fs-2">
                         Signé électroniquement<br>
                         par La Banque,<br>
-                        le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
+                        le {{ isset($document) && $document->signed_at ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
                         CN du certificat: {{ $customer->agency->name }}<br>
                         CN AC: {{ Str::limit(encrypt($customer->agency->code_banque.$customer->agency->code_agence.$customer->agency->bic), 15, '') }}
                     </p>
@@ -105,7 +105,7 @@
                     <p class="fs-2">
                         Signé électroniquement<br>
                         par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
-                        le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
+                        le {{ isset($document) && $document->signed_at ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
                         CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
                         CN AC: {{ $customer->persona_reference_id }}
                     </p>
