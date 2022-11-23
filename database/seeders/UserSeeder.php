@@ -170,7 +170,7 @@ class UserSeeder extends Seeder
 
         $pm_stripe = $stripe->client->paymentMethods->create([
             'type' => "sepa_debit",
-            'sepa' => [
+            'sepa_debit' => [
                 'iban' => $wallet->iban
             ]
         ]);
