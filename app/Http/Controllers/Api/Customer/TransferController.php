@@ -105,16 +105,14 @@ class TransferController extends Controller
             }
         }
 
-        $transaction = CustomerTransactionHelper::create(
-            'debit',
+        $transaction = CustomerTransactionHelper::createDebit(
+            $wallet->id,
             'virement',
+            'Virement emis pour: '.CustomerTransferHelper::getNameBeneficiaire($beneficiaire)." chez: ".$transfer->beneficiaire->bic,
             $transfer->reason,
             $transfer->amount,
-            $wallet->id,
             !($transfer->access == 'classic'),
-            'Virement emis pour: '.CustomerTransferHelper::getNameBeneficiaire($beneficiaire)." chez: ".$transfer->beneficiaire->bic,
             $transfer->access == 'express' ? now() : null,
-            $transfer->access == 'express' ? null : now()
         );
 
         $transfer->update([
@@ -152,14 +150,15 @@ class TransferController extends Controller
             ]);
         }
 
-        $transaction = CustomerTransactionHelper::create(
-            'debit',
+        $transaction = CustomerTransactionHelper::createDebit(
+            $wallet->id,
             'virement',
+            'Virement emis pour: '.CustomerTransferHelper::getNameBeneficiaire($beneficiaire)." chez: ".$transfer->beneficiaire->bic,
             $transfer->reason,
             $transfer->amount,
-            $wallet->id,
             false,
-            'Virement emis pour: '.CustomerTransferHelper::getNameBeneficiaire($beneficiaire)." chez: ".$transfer->beneficiaire->bic,
+            null,
+            false,
             null,
             $transfer->transfer_date
         );

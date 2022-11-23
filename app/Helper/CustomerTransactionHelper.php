@@ -88,7 +88,18 @@ class CustomerTransactionHelper
      * @param int|null $card_id
      * @return Model|CustomerTransaction
      */
-    public static function createDebit(int $wallet_id, string $type_mvm, string $designation, string $description, float $amount, bool $confirmed = false, Carbon $confirmed_at = null, bool $differed = false, Carbon $differed_at = null, int $card_id = null): \Illuminate\Database\Eloquent\Model|CustomerTransaction
+    public static function createDebit(
+        int $wallet_id,
+        string $type_mvm,
+        string $designation,
+        string $description,
+        float $amount, bool
+        $confirmed = false,
+        Carbon $confirmed_at = null,
+        bool $differed = false,
+        Carbon $differed_at = null,
+        Carbon $updated_at = null,
+        int $card_id = null): \Illuminate\Database\Eloquent\Model|CustomerTransaction
     {
         $amount = -$amount;
         $wallet = CustomerWallet::find($wallet_id);
@@ -103,6 +114,7 @@ class CustomerTransactionHelper
             'confirmed_at' => $confirmed ? $confirmed_at : null,
             'differed' => $differed ?? false,
             'differed_at' => $differed ? $differed_at : null,
+            'updated_at' => $updated_at != null ? $updated_at : now(),
             'customer_wallet_id' => $wallet_id,
             'customer_credit_card_id' => $card_id
         ]);
