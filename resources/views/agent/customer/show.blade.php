@@ -1502,10 +1502,10 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formCreateEpargne" action="/api/customer/{{ $customer->id }}/wallet"
+                <form id="formCreateEpargne" action="{{ route('api.epargne.create') }}"
                       method="post">
                     @csrf
-                    <input type="hidden" name="action" value="epargne">
+                    <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                     <div class="modal-body">
                         <div class="mb-10">
                             <label for="epargne_plan_id" class="form-label">Plan du compte</label>
