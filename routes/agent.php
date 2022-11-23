@@ -57,6 +57,7 @@ Route::prefix('agence')->middleware(['auth', 'agent'])->group(function () {
         Route::prefix('{customer_id}')->group(function () {
             Route::get('pret', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'createPret'])->name('agent.customer.pret');
             Route::post('pret', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'storePret'])->name('agent.customer.pret.store');
+            Route::get('epargne', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'createEpargne'])->name('agent.customer.epargne');
         });
         Route::prefix('create')->group(function() {
             Route::get('start', [\App\Http\Controllers\Agent\Customer\CustomerController::class, 'start'])->name('agent.customer.create.start');

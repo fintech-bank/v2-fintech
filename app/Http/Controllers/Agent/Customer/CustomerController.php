@@ -290,6 +290,13 @@ class CustomerController extends Controller
         return redirect()->route('agent.customer.wallet.show', $wallet->number_account)->with('success', "Le contrat de crédit {$credit->reference} à été créer avec succès");
     }
 
+    public function createEpargne($customer_id)
+    {
+        $customer = Customer::find($customer_id);
+
+        return view('agent.customer.wallet.epargne.create', ['customer' => $customer]);
+    }
+
     private function updateStatus(Customer $customer, Request $request)
     {
         if ($request->get('status_open_account') == 'closed') {
