@@ -34,6 +34,11 @@ Route::prefix('verify')->group(function () {
     Route::get('/verify-error', [\App\Http\Controllers\VerifyController::class, 'error'])->name('verify-error');
 });
 
+Route::prefix('stripe')->group(function () {
+    Route::get('/cancel', [\App\Http\Controllers\StripeController::class, 'cancel'])->name('stripe.cancel');
+    Route::get('/success', [\App\Http\Controllers\StripeController::class, 'success'])->name('stripe.success');
+});
+
 Auth::routes();
 Route::mailweb();
 

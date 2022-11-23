@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $amount_format
  * @property-read mixed $capital_du_format
  * @property-read mixed $status_label
+ * @property-read \App\Models\Customer\CustomerSepa $sepa
  */
 class CustomerLoanAmortissement extends Model
 {
@@ -38,6 +39,11 @@ class CustomerLoanAmortissement extends Model
     public function loan()
     {
         return $this->belongsTo(CustomerPret::class, 'customer_pret_id');
+    }
+
+    public function sepa()
+    {
+        return $this->belongsTo(CustomerSepa::class, 'customer_sepa_id');
     }
 
     public function getAmountFormatAttribute()

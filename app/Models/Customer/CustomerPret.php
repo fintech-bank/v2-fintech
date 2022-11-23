@@ -93,6 +93,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $amortissements_count
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereNbAdaptMensuality($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereNbReportEcheance($value)
+ * @property string|null $stripe_credit_id
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerPret whereStripeCreditId($value)
  */
 class CustomerPret extends Model
 {

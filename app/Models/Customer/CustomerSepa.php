@@ -46,6 +46,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $status_text
  * @property-read mixed $updated_at_format
  * @property-read \App\Models\Customer\CustomerCreditor|null $creditors
+ * @property-read \App\Models\Customer\CustomerLoanAmortissement|null $amort
  */
 class CustomerSepa extends Model
 {
@@ -70,6 +71,11 @@ class CustomerSepa extends Model
     public function creditors()
     {
         return $this->hasOne(CustomerCreditor::class);
+    }
+
+    public function amort()
+    {
+        return $this->hasOne(CustomerLoanAmortissement::class);
     }
 
     public function getAmountFormatAttribute()

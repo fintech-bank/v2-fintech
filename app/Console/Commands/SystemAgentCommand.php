@@ -15,7 +15,9 @@ use App\Models\Customer\CustomerTransfer;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Agent\CalendarAlert;
 use App\Notifications\Customer\ChargeLoanAcceptedNotification;
+use App\Notifications\Customer\CheckoutPayNotification;
 use App\Notifications\Customer\RejectedTransferNotification;
+use App\Notifications\Customer\RejectSepaNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\CotationClient;
@@ -427,35 +429,77 @@ class SystemAgentCommand extends Command
     private function prlvCreditMensuality()
     {
         $stripe = new Stripe();
+        $s_sepa = new Sepa();
         $credits = CustomerPret::where('status', 'progress')->get();
+        $prepare = 0;
+        $pass = 0;
+        $error = 0;
 
         foreach ($credits as $credit) {
             // Création du prélèvement SEPA en base et par stripe
             if($credit->first_payment_at->subDays(2)->startOfDay() == now()->startOfDay()) {
                 $amount = $credit->insurance()->count() == 0 ? $credit->mensuality : $credit->mensuality + $credit->insurance->mensuality;
-                $sepa = CustomerSepaHelper::createPrlv(
-                    $amount,
+                $amort = $credit->amortissements()->where('date_prlv', $credit->first_payment_at->startOfDay())->first();
+                $sepa = $amort->sepa;
+
+                $transaction = CustomerTransactionHelper::createDebit(
                     $credit->payment->id,
-                    $credit->wallet->name_account_generic. ' - '.now()->locale('fr')->monthName,
-                    $credit->first_payment_at
+                    'sepa',
+                    $credit->wallet->name_account_generic." - Echéance {$amort->date_prlv->locale('fr')->monthName}",
+                    $credit->wallet->name_account_generic." - Echéance {$amort->date_prlv->locale('fr')->monthName}",
+                    $amount,
                 );
 
-                $charge = $stripe->client->charges->create([
-                    'amount' => $amount,
-                    'currency' => 'EUR',
-                    'customer' => $credit->customer->stripe_customer_id,
-                    'description' => $credit->wallet->name_account_generic." - Echéance ".$credit->first_payment_at->locale('fr')->monthName,
-                    'metadata' => [
-                        'sepa_uuid' => $sepa->uuid
-                    ]
-                ]);
+                $sepa->update(['transaction_id' => $transaction->id]);
+                $amort->update(['status' => 'progress']);
+                $prepare++;
             }
 
             if($credit->first_payment_at->startOfDay() == now()->startOfDay()) {
+                $amort = $credit->amortissements()->where('date_prlv', $credit->first_payment_at->startOfDay())->first();
+                $sepa = $amort->sepa;
+                $transaction = $sepa->transaction;
 
+                if($s_sepa->acceptSepa()) {
+                    CustomerTransactionHelper::updated($transaction);
+                    $sepa->update(['status' => 'processed']);
+                    $amort->update(['status' => 'finish']);
+                    $pass++;
+                } else {
+                    CustomerTransactionHelper::deleteTransaction($transaction);
+                    $sepa->update(['status' => 'rejected']);
+                    $amort->update(['status' => 'error']);
+
+                    $session = $stripe->client->checkout->sessions->create([
+                        'cancel_url' => route('stripe.cancel'),
+                        'mode' => 'payment',
+                        'success_url' => route('stripe.success'),
+                        'customer' => $transaction->wallet->customer->stripe_customer_id,
+                        'line_items' => [
+                            'price_data' => [
+                                'currency' => 'eur',
+                                'product_data' => [
+                                    'name' => $transaction->designation
+                                ],
+                                'unit_amount' => $sepa->amount * 100,
+                                ''
+                            ],
+                            'quantity' => 1
+                        ],
+                        'payment_method_types' => ['card', 'sepa_debit']
+                    ]);
+
+                    $transaction->wallet->customer->info->notify(new RejectSepaNotification($transaction->wallet->customer, $sepa));
+                    $transaction->wallet->customer->info->notify(new CheckoutPayNotification($transaction->wallet->customer, $sepa, $session->url));
+                    $error++;
+                }
 
             }
         }
+
+        $this->slack->send("Préparation des prélèvement des mensualités de crédit", json_encode([strip_tags("Nombre de compte mise a jours: ").$prepare]));
+        $this->slack->send("Prélèvement des mensualités de crédit", json_encode([strip_tags("Nombre de compte mise a jours: ").$pass]));
+        $this->slack->send("Echec Prélèvement des mensualités de crédit", json_encode([strip_tags("Nombre de compte mise a jours: ").$error]));
     }
 
     private function immediateTransfer(CustomerTransfer $transfer, CustomerTransaction $transaction)

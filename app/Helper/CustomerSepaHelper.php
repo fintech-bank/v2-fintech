@@ -47,25 +47,13 @@ class CustomerSepaHelper
 
     public static function createPrlv($amount, $wallet, $designation, $date_prlv)
     {
-
-        $transaction = CustomerTransactionHelper::createDebit(
-            $wallet,
-            'sepa',
-            $designation,
-            $designation,
-            $amount,
-        );
-
-        $sepa = CustomerSepa::create([
+        return CustomerSepa::create([
             'uuid' => Str::uuid(),
             'creditor' => "FINTECH ASSURANCE",
             'number_mandate' => self::generateMandate(),
             'amount' => $amount,
             'status' => 'waiting',
-            'transaction_id' => $transaction->id,
             'customer_wallet_id' => $wallet->id
         ]);
-
-        return $sepa;
     }
 }

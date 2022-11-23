@@ -205,7 +205,7 @@ class CustomerController extends Controller
         for ($i=1; $i <= $credit->duration; $i++) {
             $amort = $credit->amortissements()->create([
                 'customer_pret_id' => $credit->id,
-                'date_prlv' => Carbon::create(now()->year, now()->month, $credit->prlv_day)->addMonths($i),
+                'date_prlv' => Carbon::create(now()->year, now()->month, $credit->prlv_day)->addMonths($i)->startOfDay(),
                 'amount' => $credit->mensuality,
                 'capital_du' => ($credit->amount_du-$credit->mensuality) / $i,
             ]);
