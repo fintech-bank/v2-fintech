@@ -249,10 +249,10 @@ class EpargnePlanSeeder extends Seeder
                     'percent_amount' => 100
                 ]
             ]),
-            'info_frais' => [
+            'info_frais' => json_encode([
                 'percent' => 0.07,
                 'type_prlv' => 'month' // month/sem/year
-            ]
+            ])
         ])->create([
             'type_customer' => 'pro',
             'type_epargne' => 'simple',
