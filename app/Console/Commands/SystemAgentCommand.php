@@ -158,7 +158,7 @@ class SystemAgentCommand extends Command
                     now(),
                 );
 
-                CustomerTransactionHelper::createDebit(
+                CustomerTransactionHelper::createCredit(
                     $pret->payment->id,
                     'autre',
                     $pret->wallet->name_account_generic,
