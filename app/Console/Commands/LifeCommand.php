@@ -715,7 +715,7 @@ class LifeCommand extends Command
             }
         }
 
-        $this->slack->send("Suppression des retraits non effectuer", json_encode(["Retrait supprimé: " . $i]));
+        $this->slack->send("Suppression des retraits non effectuer", json_encode(["Retrait supprime: " . $i]));
         return 0;
     }
 
