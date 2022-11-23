@@ -117,7 +117,7 @@ class SystemAgentCommand extends Command
 
         foreach ($prets as $pret) {
             if(CustomerDocument::where('reference', $pret->reference)->where('signable', true)->where('signed_by_client', 0)->count() == 0) {
-                if($pret->required_caution) {
+                if($pret->required_caution != 0) {
                     if($pret->cautions()->where('sign_caution', 0)->count() == 0) {
                         $pret->update([
                             'status' => 'study'
@@ -125,6 +125,12 @@ class SystemAgentCommand extends Command
 
                         $pret->customer->info->notify(new VerifRequestLoanNotification($pret));
                     }
+                } else {
+                    $pret->update([
+                        'status' => 'study'
+                    ]);
+
+                    $pret->customer->info->notify(new VerifRequestLoanNotification($pret));
                 }
             }
 
