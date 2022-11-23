@@ -62,6 +62,30 @@
                             label="Plan d'épargne"
                             required="true"
                             :datas="\App\Models\Core\EpargnePlan::toSelect(\App\Models\Core\EpargnePlan::where('type_customer', $customer->info->type)->get())" />
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <x-form.input
+                                    name="initial_payment"
+                                    label="Montant Initial"
+                                    required="true"
+                                    help="true"
+                                    help-text="Montant qui và vous êtes prélevé dès l'ouverture du compte épargne" />
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <x-form.input
+                                    name="monthly_payment"
+                                    label="Montant déposé tous les mois"
+                                    required="true"
+                                    help="true"
+                                    help-text="Montant qui và vous êtes prélevé tous les mois de manière récursive" />
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <x-form.input
+                                    name="monthly_day"
+                                    label="Date de prélèvement" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
