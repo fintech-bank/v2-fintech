@@ -57,7 +57,7 @@ class LoanPlan extends Model
     {
         $datas = collect();
 
-        foreach ($query->get() as $value) {
+        foreach ($query as $value) {
             $datas->push([
                 'id' => $value->id,
                 'name' => $value->name
