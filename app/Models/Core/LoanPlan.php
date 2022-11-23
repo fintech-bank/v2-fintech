@@ -3,6 +3,7 @@
 namespace App\Models\Core;
 
 use App\Helper\LogHelper;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -51,11 +52,11 @@ class LoanPlan extends Model
         return $this->hasMany(LoanPlanInterest::class);
     }
 
-    public function scopeToSelect($query)
+    public function scopeToSelect(Builder $query)
     {
         $datas = collect();
 
-        foreach ($query as $value) {
+        foreach ($query->get() as $value) {
             $datas->push([
                 'id' => $value->id,
                 'name' => $value->name
