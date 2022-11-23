@@ -51,6 +51,20 @@ class LoanPlan extends Model
         return $this->hasMany(LoanPlanInterest::class);
     }
 
+    public function toSelect($query)
+    {
+        $datas = collect();
+
+        foreach ($query as $value) {
+            $datas->push([
+                'id' => $value->id,
+                'name' => $value->name
+            ]);
+        }
+
+        return $datas->all();
+    }
+
     public function getAvantageAttribute($value)
     {
         return json_decode($value);
