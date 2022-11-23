@@ -654,14 +654,14 @@
                                                 <x-form.select
                                                     name="legal_capacity"
                                                     :datas="\App\Helper\CustomerSituationHelper::dataLegalCapacity()"
-                                                    :value="{{ $customer->situation->legal_capacity }}"
+                                                    value="{{ $customer->situation->legal_capacity }}"
                                                     label="Capacité Juridique" required="false"/>
                                             </div>
                                             <div class="col-6">
                                                 <x-form.select
                                                     name="family_situation"
                                                     :datas="\App\Helper\CustomerSituationHelper::dataFamilySituation()"
-                                                    :value="{{ $customer->situation->family_situation}}"
+                                                    value="{{ $customer->situation->family_situation}}"
                                                     label="Situation Familiale" required="false"/>
                                             </div>
                                         </div>
@@ -670,7 +670,7 @@
                                                 <x-form.select
                                                     name="logement"
                                                     :datas="\App\Helper\CustomerSituationHelper::dataLogement()"
-                                                    :value="{{ $customer->situation->logement }}"
+                                                    value="{{ $customer->situation->logement }}"
                                                     label="Dans votre logement, vous êtes" required="false"/>
                                             </div>
                                             <div class="col-6">
@@ -705,7 +705,7 @@
                                         <x-form.select
                                             name="pro_category"
                                             :datas="\App\Helper\CustomerSituationHelper::dataProCategories()"
-                                            :value="{{ $customer->situation->pro_category }}"
+                                            value="{{ $customer->situation->pro_category }}"
                                             label="Catégorie sociaux Professionnel" />
 
                                         <x-form.input
