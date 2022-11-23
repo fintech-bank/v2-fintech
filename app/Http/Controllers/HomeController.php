@@ -112,7 +112,7 @@ class HomeController extends Controller
         $pret = $customer->prets()->first();
         $call = \App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get();
 
-        dd($call->toSelect());
+        dd(LoanPlan::toSe);
 
         return $document->generatePDF('loan.caution_simple', $customer, null, ["pret" => $pret, "wallet" => $wallet], false, false, null, true, 'simple');
     }

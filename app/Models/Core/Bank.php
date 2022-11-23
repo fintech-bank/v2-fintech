@@ -37,6 +37,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|CustomerMobility[] $mobility
  * @property-read int|null $mobility_count
  * @property-read mixed $bank_symbol
+ * @property int $check_manage
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank whereCheckManage($value)
  */
 class Bank extends Model
 {

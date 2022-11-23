@@ -83,6 +83,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $status_label
  * @property-read bool $is_differed
  * @property-read CreditCardOpposit|null $opposition
+ * @property-read mixed $number_small_format
  */
 class CustomerCreditCard extends Model
 {

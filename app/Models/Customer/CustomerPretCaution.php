@@ -84,6 +84,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerPretCaution whereCodeSign($value)
+ * @property-read mixed $full_name
  */
 class CustomerPretCaution extends Model
 {

@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|LoanPlan whereTarif($value)
  * @property string $type_pret
  * @method static \Illuminate\Database\Eloquent\Builder|LoanPlan whereTypePret($value)
+ * @method static Builder|LoanPlan toSelect()
  */
 class LoanPlan extends Model
 {
@@ -52,7 +53,7 @@ class LoanPlan extends Model
         return $this->hasMany(LoanPlanInterest::class);
     }
 
-    public function scopeToSelect(Builder $query)
+    public static function toSelect(Builder $query)
     {
         $datas = collect();
 
