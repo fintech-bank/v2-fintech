@@ -30,6 +30,7 @@ use App\Models\Customer\CustomerSituationIncome;
 use App\Models\Customer\CustomerTransaction;
 use App\Models\Customer\CustomerWallet;
 use App\Models\User;
+use App\Services\Stripe;
 use Carbon\Carbon;
 use IbanGenerator\Generator;
 use Illuminate\Console\Command;
@@ -58,10 +59,17 @@ class SystemSeedCommand extends Command
      */
     public function handle()
     {
+        $stripe = new Stripe();
         if ($this->option('base')) {
             $this->call('migrate:fresh', ['--force']);
             \Storage::disk('gdd')->deleteDirectory('gdd/');
             \Storage::disk('gdd')->deleteDirectory('reseller/');
+
+            $customers = $stripe->client->customers->all();
+
+            foreach ($customers as $customer) {
+                $stripe->client->customers->delete($customer->id);
+            }
         }
 
         $this->info('Seeding: Liste des agences');
