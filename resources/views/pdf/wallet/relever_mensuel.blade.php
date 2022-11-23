@@ -49,7 +49,7 @@
         </tbody>
         <tfoot>
             <tr class="fw-bolder border">
-                <td colspan="3" class="text-end w-25">TOTAUX DES MOUVEMENTS</td>
+                <td colspan="3" class="text-end w-230px">TOTAUX DES MOUVEMENTS</td>
                 <td class="text-end">
                     {{ \Illuminate\Support\Str::replace('-', '', $data->wallet->getSumDebitForRelever()) }}
                 </td>
@@ -58,7 +58,7 @@
                 </td>
             </tr>
             <tr class="fw-bolder border fs-4">
-                <td colspan="3" class="text-end w-5025">Nouveau solde au {{ now()->format('d/m/Y') }}</td>
+                <td colspan="3" class="text-end w-230px">Nouveau solde au {{ now()->format('d/m/Y') }}</td>
                 <td class="text-end">
                     @if($data->wallet->getSumAllMvmForRelever() < 0)
                         - {{ eur($data->wallet->getSumAllMvmForRelever()) }}
