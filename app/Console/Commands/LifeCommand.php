@@ -675,7 +675,7 @@ class LifeCommand extends Command
         foreach ($wallets as $wallet) {
             $file = DocumentFile::createDoc(
                 $wallet->customer,
-                'Relever Mensuel',
+                'wallet.relever_mensuel',
                 'Relever Mensuel ' . now()->monthName,
                 2,
                 null,
