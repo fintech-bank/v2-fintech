@@ -704,30 +704,25 @@ class LifeCommand extends Command
     private function limitWithdraw()
     {
         $withdraws = CustomerWithdraw::where('status', 'pending')->get();
-        $arr = [];
+        $i = 0;
 
         foreach ($withdraws as $withdraw) {
             $limit = $withdraw->created_at->addDays(5);
             if ($limit->startOfDay() == now()->startOfDay()) {
                 $withdraw->transaction()->delete();
                 $withdraw->delete();
-                $arr[] = [
-                    'reference' => $withdraw->reference,
-                    'amount' => eur($withdraw->amount),
-                    'customer' => CustomerHelper::getName($withdraw->wallet->customer)
-                ];
+                $i++;
             }
         }
 
-        $this->line("Date: " . now()->format("d/m/Y à H:i"));
-        $this->table(['Reference', 'Montant', 'Client'], $arr);
-        $this->slack->send("Suppression des retraits non effectuer");
+        $this->slack->send("Suppression des retraits non effectuer", json_encode(["Retrait supprimé: " . $i]));
         return 0;
     }
 
     private function sendAlertaInfo()
     {
         $customers = Customer::where('status_open_account', 'terminated')->get();
+        $i = 0;
 
         foreach ($customers as $customer) {
             if ($customer->setting->alerta) {
@@ -747,10 +742,11 @@ class LifeCommand extends Command
                     ->first();
 
                 $customer->info->notify(new SendAlertaInfoNotification($wallet, $waiting, $mouvement));
+                $i++;
             }
         }
 
-        $this->line("Date: " . now()->format("d/m/Y à H:i"));
+        $this->slack->send("Envoie ALERTA", json_encode(["Nombre d'alerte envoye: " . $i]));
     }
 
     private function createFacelia(Customer $customer, CustomerCreditCard $card)
