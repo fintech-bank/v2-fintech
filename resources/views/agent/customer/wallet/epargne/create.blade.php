@@ -52,6 +52,18 @@
                         {!! $customer->customer_card !!}
                     </div>
                 </div>
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h3 class="card-title">Simulation de l'épargne</h3>
+                    </div>
+                    <div class="card-body">
+                        <x-form.select
+                            name="epargne_plan_id"
+                            label="Plan d'épargne"
+                            required="true"
+                            datas="{{  }}"
+                    </div>
+                </div>
             </div>
             <div class="col-md-3 col-sm-12">
                 <div class="card shadow-sm" data-kt-sticky="true" data-kt-sticky-name="epargne-summary"

@@ -45,6 +45,20 @@ class EpargnePlan extends Model
         return $this->hasMany(CustomerEpargne::class);
     }
 
+    public static function toSelect($query)
+    {
+        $datas = collect();
+
+        foreach ($query as $value) {
+            $datas->push([
+                'id' => $value->id,
+                'value' => $value->name
+            ]);
+        }
+
+        return $datas->all();
+    }
+
     public static function boot()
     {
         parent::boot();
