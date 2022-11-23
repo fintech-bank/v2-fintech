@@ -88,7 +88,20 @@ class LoanController extends ApiController
     private function acceptCredit(CustomerPret $credit)
     {
         if(CustomerDocument::where('reference', $credit->reference)->where('signable', 1)->where('signed_by_client', 0)->count() == 0) {
-            if($credit->cautions()->where('sign_caution', 1)->count() != 0) {
+            if($credit->required_caution != 0) {
+                if($credit->cautions()->where('sign_caution', 1)->count() != 0) {
+                    $credit->update([
+                        'status' => "accepted",
+                        'confirmed_at' => now()
+                    ]);
+
+                    $credit->customer->info->notify(new UpdateStatusPretNotification($credit->customer, $credit));
+
+                    return $this->sendSuccess();
+                } else {
+                    return $this->sendWarning("Une ou plusieurs cautions ne sont pas recevable");
+                }
+            } else {
                 $credit->update([
                     'status' => "accepted",
                     'confirmed_at' => now()
@@ -97,8 +110,6 @@ class LoanController extends ApiController
                 $credit->customer->info->notify(new UpdateStatusPretNotification($credit->customer, $credit));
 
                 return $this->sendSuccess();
-            } else {
-                return $this->sendWarning("Une ou plusieurs cautions ne sont pas recevable");
             }
         } else {
             return $this->sendWarning("Tous les documents relatifs au crédit ne sont pas signée");
