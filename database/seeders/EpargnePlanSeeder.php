@@ -202,14 +202,14 @@ class EpargnePlanSeeder extends Seeder
                     'sepa_assoc' => false,
                 ]
             ]),
-            'description' => "Vous avez un projet immobilier en tête ? Avec le Plan Épargne Logement (PEL), vous constituez progressivement votre apport en bénéficiant d’une rémunération garantie. De plus, vous cumulez des droits à prêt pour financer votre projet à un taux connu dès le départ.",
             'droit_credit' => true,
             'info_credit' => json_encode([
                 'name' => 'Le Prêt épargne logement',
                 'limit' => 23000,
                 'unlock_days' => 1095,
                 'percent_interest' => 2.75
-            ])
+            ]),
+            'description' => "Vous avez un projet immobilier en tête ? Avec le Plan Épargne Logement (PEL), vous constituez progressivement votre apport en bénéficiant d’une rémunération garantie. De plus, vous cumulez des droits à prêt pour financer votre projet à un taux connu dès le départ.",
         ])->create([
             'type_customer' => 'part',
             'type_epargne' => 'retraite',
