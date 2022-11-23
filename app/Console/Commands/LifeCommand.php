@@ -253,10 +253,6 @@ class LifeCommand extends Command
                     'customer_id' => $customer->id,
                 ]);
 
-                if ($card->facelia == 1) {
-                    $this->createFacelia($customer, $card);
-                }
-
                 if ($customer->info->type == 'part') {
                     // Transfers du salaire
                     $title = 'Virement Salaire ' . now()->monthName;
@@ -269,6 +265,10 @@ class LifeCommand extends Command
                         true,
                         $title,
                         now());
+
+                    if ($card->facelia == 1) {
+                        $this->createFacelia($customer, $card);
+                    }
                 } else {
                     $title_pro = "Dépot de capital en compte courant";
                     CustomerTransactionHelper::create(
