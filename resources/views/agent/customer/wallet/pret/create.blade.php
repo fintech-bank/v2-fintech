@@ -179,7 +179,7 @@
                                     name="wallet_payment_id"
                                     label="Compte de Paiement"
                                     placeholder="Selectionner un compte de paiement..."
-                                    :datas="\App\Models\Customer\CustomerWallet::toSelect(\App\Models\Customer\CustomerWallet::where('type', 'compte')->where('status', 'active')->get())" />
+                                    :datas="\App\Models\Customer\CustomerWallet::toSelect($customer->wallets()->where('type', 'compte')->where('status', 'active')->get())" />
 
                                 <div class="mb-10">
                                     <label for="assurance_type" class="form-label required">Type d'assurance</label>
