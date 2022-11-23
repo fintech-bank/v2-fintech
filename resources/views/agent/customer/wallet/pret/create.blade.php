@@ -184,7 +184,7 @@
                                     :datas="\App\Models\Customer\CustomerWallet::toSelect($customer->wallets()->where('type', 'compte')->where('status', 'active')->get())" />
 
                                 <x-form.select
-                                    name="wallet_payment_id"
+                                    name="assurance_type"
                                     label="Type d'asurance"
                                     placeholder="Selectionner un type d'assurance..."
                                     :datas="\App\Models\Customer\CustomerPret::dataTypeInsurance()->all()" />
