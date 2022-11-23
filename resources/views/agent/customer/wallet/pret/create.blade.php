@@ -149,20 +149,11 @@
                                         value="1" />
                                 </div>
 
-                                <!--<div class="mb-10">
-                                    <label for="loan_plan_id" class="form-label required">Type de crédit</label>
-                                    <select class="form-control form-control-solid" data-control="select2" name="loan_plan_id" data-placeholder="Selectionner un type de crédit">
-                                        <option value=""></option>
-                                        @foreach(\App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get() as $plan)
-                                            <option value="{{ $plan->id }}">{{ $plan->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>-->
                                 <x-form.select
                                     name="loan_plan_id"
                                     label="Type de Crédit"
                                     placeholder="Selectionner un type de crédit..."
-                                    :datas="\App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get()->pluck('id', 'name')" />
+                                    :datas="\App\Models\Core\LoanPlan::toSelect(\App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get())" />
                                 <div class="row mb-10">
                                     <div class="col-4">
                                         <x-form.input
