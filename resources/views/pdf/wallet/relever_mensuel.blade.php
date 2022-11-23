@@ -2,6 +2,7 @@
 
 @section("content")
     <div class="fw-bolder fs-4 uppercase">RELEVÉ DES OPÉRATIONS</div>
+    <div class="separator my-2"></div>
     <table class="table table-borderless border border-2 table-sm table-striped gx-4">
         <thead>
             <tr>
@@ -21,12 +22,12 @@
                         {{ $transaction->designation }}<br>
                         <i>{{ $transaction->description }}</i>
                     </td>
-                    <td>
+                    <td class="text-end">
                         @if($transaction->amount <= 0)
                             {{ $transaction->amount_format }}
                         @endif
                     </td>
-                    <td>
+                    <td class="text-end">
                         @if($transaction->amount > 0)
                             {{ $transaction->amount_format }}
                         @endif
