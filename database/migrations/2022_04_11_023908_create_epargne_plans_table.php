@@ -21,8 +21,8 @@ return new class extends Migration
             $table->float('profit_percent');
             $table->integer('lock_days');
             $table->integer('profit_days')->default(30);
-            $table->float('init')->default(0);
-            $table->float('limit_amount');
+            $table->float('init', 40)->default(0);
+            $table->float('limit_amount', 40);
             $table->boolean('unique')->default(false);
             $table->boolean('droit_credit')->default(false);
             $table->integer('duration')->default(0);
