@@ -41,11 +41,13 @@
         <p>Tarif: <strong>{{ $customer->package->price_format }} / par mois</strong></p>
     </div>
 
-    <p class="fs-2">
-        Signé électroniquement<br>
-        par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
-        le {{ isset($document) ? $document->signed_at->format("d/m/Y") : now()->format('d/m/Y') }}<br>
-        CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
-        CN AC: {{ $customer->persona_reference_id }}
-    </p>
+    @if(isset($document) && $document->signed_by_client)
+        <p class="fs-2">
+            Signé électroniquement<br>
+            par {{ $customer->info->lastname }} {{ $customer->info->firstname }},<br>
+            le {{ $document->signed_at->format("d/m/Y") }}<br>
+            CN du certificat: {{ $customer->info->lastname }} {{ $customer->info->firstname }}<br>
+            CN AC: {{ $customer->persona_reference_id }}
+        </p>
+    @endif
 @endsection
