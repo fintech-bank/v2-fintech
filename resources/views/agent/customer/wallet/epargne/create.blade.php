@@ -61,7 +61,7 @@
                             name="epargne_plan_id"
                             label="Plan d'épargne"
                             required="true"
-                            datas="{{ \App\Models\Core\EpargnePlan::toSelect(\App\Models\Core\EpargnePlan::where('type_customer', $customer->info->type)->get()) }}" />
+                            :datas="\App\Models\Core\EpargnePlan::toSelect(\App\Models\Core\EpargnePlan::where('type_customer', $customer->info->type)->get())" />
                     </div>
                 </div>
             </div>
