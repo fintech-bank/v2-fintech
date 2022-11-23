@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Core\LoanPlan;
+use App\Services\Stripe;
 use Illuminate\Database\Seeder;
 
 class LoanPlanSeeder extends Seeder

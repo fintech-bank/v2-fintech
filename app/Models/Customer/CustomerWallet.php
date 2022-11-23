@@ -92,6 +92,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $iban_format
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerInsurance[] $insurances
  * @property-read int|null $insurances_count
+ * @property string|null $sepa_stripe_mandate
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereSepaStripeMandate($value)
  */
 class CustomerWallet extends Model
 {

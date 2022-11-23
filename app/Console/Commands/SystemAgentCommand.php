@@ -21,6 +21,7 @@ use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\SlackNotifier;
+use App\Services\Stripe;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
@@ -143,6 +144,7 @@ class SystemAgentCommand extends Command
 
     private function chargeLoanAccepted()
     {
+        $stripe = new Stripe();
         $prets = CustomerPret::where('status', 'accepted')->get();
         $arr = [];
 
@@ -176,6 +178,20 @@ class SystemAgentCommand extends Command
 
                 $pret->wallet->update([
                     'status' => 'active'
+                ]);
+
+                $stripe->client->subscriptions->create([
+                    "customer" => $pret->customer->stripe_customer_id,
+                    "items" => [
+                        "price_data" => [
+                            "currency" => "EUR",
+                            "product" => $pret->stripe_credit_id,
+                            "reccuring" => [
+                                "interval" => "month"
+                            ],
+                            "unit_amount_decimal" => $pret->mensuality
+                        ]
+                    ],
                 ]);
 
                 $pret->customer->info->notify(new ChargeLoanAcceptedNotification($pret->customer, $pret));

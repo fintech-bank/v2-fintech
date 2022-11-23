@@ -21,12 +21,19 @@ use App\Notifications\Customer\NewPretNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Scope\CalcLoanInsuranceTrait;
 use App\Scope\CalcLoanTrait;
+use App\Services\Stripe;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
+    private $stripe;
+    public function __construct()
+    {
+        $this->stripe = new Stripe();
+    }
+
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('agent.customer.index', [
@@ -192,6 +199,24 @@ class CustomerController extends Controller
             'amount_interest' => $amount_interest,
             'mensuality' => $mensuality
         ]);
+
+        $product = $this->stripe->client->products->create([
+            'id' => $credit->reference,
+            'name' => $credit->wallet->name_account_generic,
+            'metadata' => [
+                'type_pret' => $credit->plan->name,
+                'stripe_customer_id' => $credit->customer->stripe_customer_id
+            ],
+            'default_price_data' => [
+                'currency' => 'EUR',
+                'recurring' => [
+                    'interval' => 'month',
+                    'interval_count' => 1
+                ],
+                'unit_amount_decimal' => $credit->mensuality
+            ]
+        ]);
+        $credit->update(['stripe_credit_id' => $product->id]);
 
         for ($i=1; $i <= $credit->duration; $i++) {
             $credit->amortissements()->create([

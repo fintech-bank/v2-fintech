@@ -80,6 +80,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read BusinessParam|null $business
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerRequest[] $requests
  * @property-read int|null $requests_count
+ * @property string|null $stripe_customer_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Customer whereStripeCustomerId($value)
  */
 class Customer extends Model
 {
