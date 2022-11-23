@@ -22,7 +22,7 @@ return [
     |
     */
 
-    'filename' => env('APP_NAME').'_'.now()->format('his').'_collection.json',
+    'filename' => env('APP_NAME').'_collection.json',
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ return [
     */
 
     'structured' => true,
-    'crud_folders' => false,
+    'crud_folders' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -107,6 +107,7 @@ return [
 
     'print_rules' => true, // @requires: 'enable_formdata' ===  true
     'rules_to_human_readable' => true, // @requires: 'parse_rules' ===  true
+    'parse_rules' => true,
 
     /*
     |--------------------------------------------------------------------------
