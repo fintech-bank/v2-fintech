@@ -207,6 +207,14 @@ Route::prefix('loan')->group(function () {
     Route::put('{reference_pret}', [\App\Http\Controllers\Api\Loan\LoanController::class, 'update']);
 });
 
+Route::prefix('epargne')->group(function () {
+    Route::get('/list', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'list']);
+    Route::post('/', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'create']);
+    Route::get('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'retrieve']);
+    Route::put('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'update']);
+    Route::delete('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'delete']);
+});
+
 Route::prefix('document')->group(function () {
     Route::post('request-code', [\App\Http\Controllers\Api\Document\DocumentController::class, 'request']);
     Route::post('verify-code', [\App\Http\Controllers\Api\Document\DocumentController::class, 'verify']);
