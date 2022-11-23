@@ -161,6 +161,29 @@ class CustomerPret extends Model
 
     //---------- Scope ------------------//
 
+    public static function dataTypeInsurance()
+    {
+        return collect([
+            [
+                "id" => "D",
+                "name" => "Décès"
+            ],
+            [
+                "id" => "DIM",
+                "name" => "Décès, Invalidité, Maladie"
+            ],
+            [
+                "id" => "DIMC",
+                "name" => "Décès, Invalidité, Maladie, Perte d'emploi"
+            ],
+            [
+                "id" => "NONE",
+                "name" => "Aucune"
+            ],
+
+        ]);
+    }
+
     //---------- Attribute -------------//
 
     public function getStatus($format = '')

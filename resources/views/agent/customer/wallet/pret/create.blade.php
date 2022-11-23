@@ -181,6 +181,12 @@
                                     placeholder="Selectionner un compte de paiement..."
                                     :datas="\App\Models\Customer\CustomerWallet::toSelect($customer->wallets()->where('type', 'compte')->where('status', 'active')->get())" />
 
+                                <x-form.select
+                                    name="wallet_payment_id"
+                                    label="Compte de Paiement"
+                                    placeholder="Selectionner un compte de paiement..."
+                                    :datas="\App\Models\Customer\CustomerPret::dataTypeInsurance()->all()" />
+
                                 <div class="mb-10">
                                     <label for="assurance_type" class="form-label required">Type d'assurance</label>
                                     <select class="form-control form-control-solid" data-control="select2" name="assurance_type" data-placeholder="Selectionner un type d'assurance" required>
