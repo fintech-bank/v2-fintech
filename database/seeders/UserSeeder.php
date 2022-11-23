@@ -159,7 +159,13 @@ class UserSeeder extends Seeder
                 ]
             ],
             'confirm' => true,
-            'return_url' => config('app.url')
+            'return_url' => config('app.url'),
+            'mandate_data' => [
+                'customer_acceptance' => [
+                    'type' => 'offline',
+                    'accepted_at' => now(),
+                ]
+            ]
         ]);
 
         $pm_stripe = $stripe->client->paymentMethods->create([
