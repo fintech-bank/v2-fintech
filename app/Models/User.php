@@ -258,7 +258,7 @@ class User extends Authenticatable
         if(\Gravatar::exists($this->email)) {
             return "<img src='".Gravatar::get($this->email)."' class='rounded-circle h-40px me-3' alt='' />";
         } else {
-            return '<div class="symbol-label fs-2 fw-bold text-'.random_color().'">'.\Str::limit($this->name, 2).'</div>';
+            return '<div class="symbol-label fs-2 fw-bold text-'.random_color().'">'.\Str::limit($this->name, 2, '').'</div>';
         }
     }
 
