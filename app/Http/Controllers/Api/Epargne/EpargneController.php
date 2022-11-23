@@ -28,9 +28,9 @@ class EpargneController extends ApiController
     {
         $call = CustomerEpargne::with('plan', 'wallet', 'payment');
         $start != null ? $call->whereBetween('start', [$start, $end]) : $call;
-        $call->limit($limit)->get()->toArray();
+        $call->limit($limit)->get();
 
-        return $this->sendSuccess(null, $call);
+        return $this->sendSuccess(null, [$call]);
     }
 
     /**
