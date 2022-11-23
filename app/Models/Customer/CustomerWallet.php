@@ -229,15 +229,24 @@ class CustomerWallet extends Model
         return $this->hasMany(CustomerInsurance::class);
     }
 
-    public static function toSelect($query)
+    public static function toSelect($query, $format = false)
     {
         $datas = collect();
 
-        foreach ($query as $value) {
-            $datas->push([
-                'id' => $value->id,
-                'value' => $value->name_account
-            ]);
+        if(!$format) {
+            foreach ($query as $value) {
+                $datas->push([
+                    'id' => $value->id,
+                    'value' => $value->name_account
+                ]);
+            }
+        } else {
+            foreach ($query as $value) {
+                $datas->push([
+                    'id' => $value->id,
+                    'value' => "<span class='badge badge-primary me-2'>".$value->type_text."</span> {$value->name_account_generic}"
+                ]);
+            }
         }
 
         return $datas->all();
