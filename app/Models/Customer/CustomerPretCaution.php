@@ -109,7 +109,7 @@ class CustomerPretCaution extends Model
                 'id' => 'solidaire',
                 'name' => "Caution Solidaire"
             ],
-        ])->toJson();
+        ])->toArray();
     }
 
     public static function getTypeData()
@@ -123,7 +123,7 @@ class CustomerPretCaution extends Model
                 'id' => 'moral',
                 'name' => "Personne Moral"
             ],
-        ])->toJson();
+        ])->toArray();
     }
 
     public static function getCivilityData()
@@ -132,7 +132,7 @@ class CustomerPretCaution extends Model
             ['id' => 'M', 'name' => "Monsieur"],
             ['id' => 'Mme', 'name' => "Madame"],
             ['id' => 'Mlle', 'name' => "Mademoiselle"],
-        ])->toJson();
+        ])->toArray();
     }
 
     public static function getTypeEntrepriseData()
@@ -147,7 +147,7 @@ class CustomerPretCaution extends Model
             ['id' => 'SNC', 'name' => "Société en nom collectif"],
             ['id' => 'SCS', 'name' => "Société en commandite simple"],
             ['id' => 'SCA', 'name' => "Société en commandite par actions"],
-        ])->toJson();
+        ])->toArray();
     }
 
     public function getTypeCaution($format = '')
