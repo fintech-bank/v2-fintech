@@ -195,13 +195,21 @@ class UserSeeder extends Seeder
             'credit_card_support_id' => 1
         ]);
 
-
+        $card_type = collect([
+            '4242424242424242',
+            '4000056655665556',
+            '5555555555554444',
+            '2223003122003222',
+            '5200828282828210',
+            '4000002500003155',
+            '4001000360000005'
+        ]);
         $pm_stripe = $stripe->client->paymentMethods->create([
             'type' => 'card',
             'card' => [
                 'exp_year' => $card->exp_year,
                 'exp_month' => $card->exp_month,
-                'number' => $card->number,
+                'number' => $card_type[rand(0,6)],
                 'cvc' => $card->cvc
             ],
             'billing_details' => [
