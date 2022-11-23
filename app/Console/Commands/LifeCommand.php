@@ -48,6 +48,7 @@ use App\Scope\TransactionTrait;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Mapbox;
 use App\Services\SlackNotifier;
+use App\Services\Stripe;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Exception;
@@ -116,6 +117,7 @@ class LifeCommand extends Command
      */
     private function generateCustomers()
     {
+        $stripe = new Stripe();
         $r = rand(1, 5);
         $arr = [];
         $faker = Factory::create('fr_FR');
@@ -196,6 +198,20 @@ class LifeCommand extends Command
                 'incomeVerified' => $faker->boolean,
             ]);
 
+            $s_customer = $stripe->client->customers->create([
+                'address' => [
+                    'city' => $info->city,
+                    'country' => 'FR',
+                    'line1' => $info->address,
+                    'postal_code' => $info->postal,
+                ],
+                'email' => $user->email,
+                'name' => $info->full_name,
+                'phone' => $info->mobile,
+            ]);
+
+            $customer->update(["stripe_customer_id" => $s_customer->id]);
+
             if ($info->type != 'part') {
                 $forme_type = ['EI', 'EURL', 'SASU', 'SAS', 'SARL', 'SCI', 'Other'];
                 $forme = $forme_type[rand(0,6)];
@@ -251,10 +267,90 @@ class LifeCommand extends Command
                 'customer_id' => $customer->id,
             ]);
 
+            $s_intent = $stripe->client->setupIntents->create([
+                'customer' => $customer->stripe_customer_id,
+                'payment_method_types' => ['card', 'sepa_debit'],
+                'payment_method_data' => [
+                    'type' => 'sepa_debit',
+                    'sepa_debit' => [
+                        'iban' => $account->iban
+                    ],
+                    'billing_details' => [
+                        'address' => [
+                            'city' => $info->city,
+                            'country' => 'FR',
+                            'line1' => $info->address,
+                            'postal_code' => $info->postal,
+                        ],
+                        'name' => $info->full_name,
+                        'email' => $user->email,
+                        'phone' => $info->mobile
+                    ]
+                ],
+                'confirm' => true,
+                'return_url' => config('app.url'),
+                'mandate_data' => [
+                    'customer_acceptance' => [
+                        'type' => 'offline',
+                        'accepted_at' => now()->timestamp,
+                    ]
+                ]
+            ]);
+            $account->update(["sepa_stripe_mandate" => $s_intent->mandate]);
+            $pm_stripe = $stripe->client->paymentMethods->create([
+                'type' => "sepa_debit",
+                'sepa_debit' => [
+                    'iban' => $account->iban
+                ],
+                'billing_details' => [
+                    'address' => [
+                        'city' => $info->city,
+                        'country' => 'FR',
+                        'line1' => $info->address,
+                        'postal_code' => $info->postal,
+                    ],
+                    'name' => $info->full_name,
+                    'email' => $user->email,
+                    'phone' => $info->mobile
+                ]
+            ]);
+
             $card = CustomerCreditCard::factory()->create([
                 'customer_wallet_id' => $account->id,
                 'credit_card_support_id' => CreditCardSupport::where('type_customer', $user->type_customer)->get()->random()->id,
             ]);
+
+            $card_type = collect([
+                '4242424242424242',
+                '4000056655665556',
+                '5555555555554444',
+                '2223003122003222',
+                '5200828282828210',
+                '4000002500003155',
+                '4001000360000005'
+            ]);
+            $pm_stripe = $stripe->client->paymentMethods->create([
+                'type' => 'card',
+                'card' => [
+                    'exp_year' => $card->exp_year,
+                    'exp_month' => $card->exp_month,
+                    'number' => $card_type[rand(0,6)],
+                    'cvc' => $card->cvc
+                ],
+                'billing_details' => [
+                    'address' => [
+                        'city' => $info->city,
+                        'country' => 'FR',
+                        'line1' => $info->address,
+                        'postal_code' => $info->postal,
+                    ],
+                    'name' => $info->full_name,
+                    'email' => $user->email,
+                    'phone' => $info->mobile
+                ]
+            ]);
+
+            $stripe->client->paymentMethods->attach($pm_stripe->id, ['customer' => $customer->stripe_customer_id]);
 
             if ($customer->status_open_account == 'terminated') {
 
