@@ -238,7 +238,9 @@ class Customer extends Model
         ob_start();
         ?>
         <div class="d-flex align-items-center p-3 mb-2">
-            <?= $this->user->avatar_symbol; ?>
+            <div class="symbol symbol-60px symbol-circle me-3">
+                <?= $this->user->avatar_symbol; ?>
+            </div>
             <div class="d-flex flex-column">
                 <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2"><?= $this->info->full_name; ?></a>
                 <a href="#" class="fw-semibold text-gray-600 text-hover-primary"><?= $this->info->email; ?></a>
