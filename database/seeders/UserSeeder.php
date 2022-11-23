@@ -145,6 +145,17 @@ class UserSeeder extends Seeder
                 'type' => 'sepa_debit',
                 'sepa_debit' => [
                     'iban' => $wallet->iban
+                ],
+                'billing_details' => [
+                    'address' => [
+                        'city' => $info->city,
+                        'country' => 'FR',
+                        'line1' => $info->address,
+                        'postal_code' => $info->postal,
+                    ],
+                    'name' => $info->full_name,
+                    'email' => $user->email,
+                    'phone' => $info->mobile
                 ]
             ],
             'confirm' => true,
