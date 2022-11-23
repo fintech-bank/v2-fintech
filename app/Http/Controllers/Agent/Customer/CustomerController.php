@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Agent\Customer;
 
 use App\Helper\CustomerHelper;
 use App\Helper\CustomerLoanHelper;
+use App\Helper\CustomerSepaHelper;
 use App\Helper\CustomerWalletHelper;
 use App\Helper\CustomerWalletTrait;
 use App\Helper\DocumentFile;
@@ -202,11 +203,22 @@ class CustomerController extends Controller
 
 
         for ($i=1; $i <= $credit->duration; $i++) {
-            $credit->amortissements()->create([
+            $amort = $credit->amortissements()->create([
                 'customer_pret_id' => $credit->id,
                 'date_prlv' => Carbon::create(now()->year, now()->month, $credit->prlv_day)->addMonths($i),
                 'amount' => $credit->mensuality,
                 'capital_du' => ($credit->amount_du-$credit->mensuality) / $i,
+            ]);
+
+            $sepa = CustomerSepaHelper::createPrlv(
+                $credit->mensuality,
+                $credit->payment->id,
+                $credit->wallet->name_account_generic. " - Echéance {$amort->date_prlv->locale('fr')->monthName}",
+                $amort->date_prlv,
+            );
+
+            $amort->update([
+                'customer_sepa_id' => $sepa->id
             ]);
         }
 

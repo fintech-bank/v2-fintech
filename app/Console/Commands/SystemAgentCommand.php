@@ -448,7 +448,7 @@ class SystemAgentCommand extends Command
                     'metadata' => [
                         'sepa_uuid' => $sepa->uuid
                     ]
-                ])
+                ]);
             }
 
             if($credit->first_payment_at->startOfDay() == now()->startOfDay()) {

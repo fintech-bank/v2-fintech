@@ -56,7 +56,7 @@ class CustomerSepaHelper
             $amount,
         );
 
-        CustomerSepa::create([
+        $sepa = CustomerSepa::create([
             'uuid' => Str::uuid(),
             'creditor' => "FINTECH ASSURANCE",
             'number_mandate' => self::generateMandate(),
@@ -65,5 +65,7 @@ class CustomerSepaHelper
             'transaction_id' => $transaction->id,
             'customer_wallet_id' => $wallet->id
         ]);
+
+        return $sepa;
     }
 }
