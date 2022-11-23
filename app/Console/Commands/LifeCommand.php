@@ -462,6 +462,10 @@ class LifeCommand extends Command
     private function generateDebit()
     {
         $customers = Customer::where('status_open_account', 'terminated')->get();
+        $retrait = 0;
+        $payment = 0;
+        $depot_espece = 0;
+        $depot_chq = 0;
 
         foreach ($customers as $customer) {
             foreach ($customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $wallet) {
@@ -493,6 +497,7 @@ class LifeCommand extends Command
                                     );
 
                                     $withdraw->update(["customer_transaction_id" => $transaction->id]);
+                                    $retrait++;
                                     break;
 
                                 case 'payment':
@@ -513,6 +518,7 @@ class LifeCommand extends Command
                                         $differed ? $now->endOfMonth() : null,
                                         $card->id
                                     );
+                                    $payment++;
                             }
                         }
                     } else {
@@ -537,6 +543,7 @@ class LifeCommand extends Command
                             $deposit->update([
                                 'customer_transaction_id' => $transaction->id
                             ]);
+                            $depot_espece++;
                         } else {
                             $status_type = ['pending', 'progress', 'terminated'];
                             $status = $status_type[rand(0, 2)];
@@ -579,11 +586,18 @@ class LifeCommand extends Command
                             $deposit->update([
                                 'customer_transaction_id' => $transaction->id
                             ]);
+                            $depot_chq++;
                         }
                     }
                 }
             }
         }
+
+        $this->slack->send("Génération des débits bancaires", json_encode([strip_tags("Nombre de retrait bancaire: ").$retrait]));
+        $this->slack->send("Génération des débits bancaires", json_encode([strip_tags("Nombre de paiement par carte: ").$payment]));
+        $this->slack->send("Génération des débits bancaires", json_encode([strip_tags("Nombre de depot d'espèce: ").$depot_espece]));
+        $this->slack->send("Génération des débits bancaires", json_encode([strip_tags("Nombre de depot de chèque: ").$depot_chq]));
+
     }
 
     /**
