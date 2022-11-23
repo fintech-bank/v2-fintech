@@ -153,6 +153,7 @@
                                     name="loan_plan_id"
                                     label="Type de Crédit"
                                     placeholder="Selectionner un type de crédit..."
+                                    required="true"
                                     :datas="\App\Models\Core\LoanPlan::toSelect(\App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get())" />
 
                                 <div class="row mb-10">
@@ -179,6 +180,7 @@
                                     name="wallet_payment_id"
                                     label="Compte de Paiement"
                                     placeholder="Selectionner un compte de paiement..."
+                                    required="true"
                                     :datas="\App\Models\Customer\CustomerWallet::toSelect($customer->wallets()->where('type', 'compte')->where('status', 'active')->get())" />
 
                                 <x-form.select
