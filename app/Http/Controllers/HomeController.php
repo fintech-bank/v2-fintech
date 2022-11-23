@@ -107,7 +107,7 @@ class HomeController extends Controller
         $customer = Customer::find(1);
         $document = new DocumentFile();
         $map = new Mapbox();
-        $wallet = $customer->wallets()->find(3);
+        $wallet = $customer->wallets()->first();
         $insurance = $customer->insurances()->first();
         $pret = $customer->prets()->first();
         $call = \App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get();
