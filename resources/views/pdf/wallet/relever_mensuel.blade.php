@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($wallet->transactions()->where('confirmed', true)->whereBetween('confirmed_at', [now()->startOfMonth(), now()->endOfMonth()])->get() as $transaction)
+            @foreach($data->wallet->transactions()->where('confirmed', true)->whereBetween('confirmed_at', [now()->startOfMonth(), now()->endOfMonth()])->get() as $transaction)
                 <tr>
                     <td>{{ $transaction->confirmed_at->format("d/m/Y") }}</td>
                     <td>{{ $transaction->updated_at->format("d/m/Y") }}</td>
