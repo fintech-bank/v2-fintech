@@ -163,7 +163,7 @@ class UserSeeder extends Seeder
             'mandate_data' => [
                 'customer_acceptance' => [
                     'type' => 'offline',
-                    'accepted_at' => now(),
+                    'accepted_at' => now()->timestamp,
                 ]
             ]
         ]);
