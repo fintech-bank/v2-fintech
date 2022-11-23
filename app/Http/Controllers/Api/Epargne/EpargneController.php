@@ -22,13 +22,15 @@ class EpargneController extends ApiController
      * @param int $limit
      * @param Carbon|null $start
      * @param Carbon|null $end
-     * @return void
+     * @return JsonResponse
      */
     public function list(int $limit = 10, Carbon $start = null, Carbon $end = null)
     {
         $call = CustomerEpargne::with('plan', 'wallet', 'payment');
         $start != null ? $call->whereBetween('start', [$start, $end]) : $call;
         $call->limit($limit)->get();
+
+        return $this->sendSuccess(null, $call);
     }
 
     /**
