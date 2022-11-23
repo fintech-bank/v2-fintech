@@ -150,4 +150,5 @@ class CustomerTransaction extends Model
             return false;
         }
     }
+
 }

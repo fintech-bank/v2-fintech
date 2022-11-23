@@ -45,4 +45,18 @@ trait CustomerWalletTrait
         return ob_get_clean();
         endif;
     }
+
+    public function getSumDebitForRelever()
+    {
+        return eur($this->transactions()->where('confirmed', 1)
+            ->whereBetween('confirmed_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->where('amount', '<=', 0)->sum('amount'));
+    }
+
+    public function getSumCreditForRelever()
+    {
+        return eur($this->transactions()->where('confirmed', 1)
+            ->whereBetween('confirmed_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->where('amount', '>', 0)->sum('amount'));
+    }
 }

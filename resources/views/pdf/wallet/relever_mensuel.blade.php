@@ -47,5 +47,13 @@
                 </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr class="fw-bolder">
+                <td colspan="3" class="text-end">TOTAUX DES MOUVEMENTS</td>
+                <td class="text-end">
+                    {{  }}
+                </td>
+            </tr>
+        </tfoot>
     </table>
 @endsection
