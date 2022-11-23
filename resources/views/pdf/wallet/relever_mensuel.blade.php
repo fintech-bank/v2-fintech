@@ -1,7 +1,7 @@
 @extends('pdf.layouts.app')
 
 @section("content")
-    <table>
+    <table class="w-100">
         <tbody>
             <tr>
                 <td>
