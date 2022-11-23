@@ -91,7 +91,7 @@ class PretController extends ApiController
                 'taxe_assurance' => $taxe_assurance
             ];
         }catch (\Exception $exception) {
-            LogHelper::error("Erreur", $exception);
+            LogHelper::error("Erreur", [$exception]);
             return $exception;
         }
     }
