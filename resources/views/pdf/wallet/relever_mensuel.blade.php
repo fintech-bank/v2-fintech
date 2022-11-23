@@ -30,7 +30,7 @@
                 <tr>
                     <td>{{ $transaction->confirmed_at->format("d/m/Y") }}</td>
                     <td>{{ $transaction->updated_at->format("d/m/Y") }}</td>
-                    <td>
+                    <td class="w-50">
                         {{ $transaction->designation }}<br>
                         <i>{{ $transaction->description }}</i>
                     </td>
@@ -61,12 +61,12 @@
                 <td colspan="3" class="text-end">Nouveau solde au {{ now()->format('d/m/Y') }}</td>
                 <td class="text-end">
                     @if($data->wallet->getSumAllMvmForRelever() < 0)
-                        {{ eur($data->wallet->getSumAllMvmForRelever()) }}
+                        - {{ eur($data->wallet->getSumAllMvmForRelever()) }}
                     @endif
                 </td>
                 <td class="text-end">
                     @if($data->wallet->getSumAllMvmForRelever() >= 0)
-                        {{ eur($data->wallet->getSumAllMvmForRelever()) }}
+                        + {{ eur($data->wallet->getSumAllMvmForRelever()) }}
                     @endif
                 </td>
             </tr>
