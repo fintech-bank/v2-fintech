@@ -7,6 +7,8 @@ use App\Notifications\Customer\NewWalletNotification;
 use App\Notifications\Customer\SendLinkForContractNotification;
 use App\Notifications\Customer\SendRequestNotification;
 use IbanGenerator\Generator;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class CustomerWalletHelper
@@ -14,21 +16,21 @@ class CustomerWalletHelper
     /**
      * Création d'un compte
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $customer
+     * @param  Model  $customer
      * @param  string  $type
      * @param  int  $balance_actual
      * @param  int  $balance_coming
      * @param  int  $decouvert
      * @param  int  $bal_decouvert
      * @param  string  $status
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     * @return Builder|Model
      */
-    public static function createWallet($customer, $type, $balance_actual = 0, $balance_coming = 0, $decouvert = 0, $bal_decouvert = 0, $status = 'pending')
+    public static function createWallet($customer, $type, $balance_actual = 0, $balance_coming = 0, $decouvert = 0, $bal_decouvert = 0, $status = 'pending'): Model|Builder
     {
         $number_account = random_numeric(9);
         $ibanG = new Generator($customer->agency->code_banque, $number_account);
 
-        $wallet = CustomerWallet::query()->create([
+        $wallet = CustomerWallet::create([
             'uuid' => \Str::uuid(),
             'number_account' => $number_account,
             'iban' => $ibanG->generate($customer->agency->code_banque, $number_account, 'FR'),
