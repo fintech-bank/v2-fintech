@@ -200,23 +200,6 @@ class CustomerController extends Controller
             'mensuality' => $mensuality
         ]);
 
-        $product = $this->stripe->client->products->create([
-            'id' => $credit->reference,
-            'name' => $credit->wallet->name_account_generic,
-            'metadata' => [
-                'type_pret' => $credit->plan->name,
-                'stripe_customer_id' => $credit->customer->stripe_customer_id
-            ],
-            'default_price_data' => [
-                'currency' => 'EUR',
-                'recurring' => [
-                    'interval' => 'month',
-                    'interval_count' => 1
-                ],
-                'unit_amount_decimal' => $credit->mensuality
-            ]
-        ]);
-        $credit->update(['stripe_credit_id' => $product->id]);
 
         for ($i=1; $i <= $credit->duration; $i++) {
             $credit->amortissements()->create([

@@ -185,11 +185,11 @@ class SystemAgentCommand extends Command
                     "items" => [
                         "price_data" => [
                             "currency" => "EUR",
-                            "product" => $pret->stripe_credit_id,
+                            "product" => $pret->wallet->number_account,
                             "reccuring" => [
                                 "interval" => "month"
                             ],
-                            "unit_amount_decimal" => $pret->mensuality
+                            "unit_amount" => $pret->mensuality * 100
                         ]
                     ],
                 ]);
