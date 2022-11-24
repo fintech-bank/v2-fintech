@@ -32,8 +32,8 @@ class CustomerWalletHelper
         $ibanG = new Generator($customer->agency->code_banque, $number_account, 'FR');
         $faker = Factory::create('fr_FR');
         $iban = $faker->iban('FR');
-        $number_account = Str::substr($iban, 3, 12);
-        $key = Str::substr($iban, 13, 15);
+        $number_account = Str::substr($iban, 4, 9);
+        $key = Str::substr($iban, 14, 2);
 
         $wallet = CustomerWallet::create([
             'uuid' => \Str::uuid(),
