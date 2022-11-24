@@ -333,8 +333,12 @@
                         @foreach($wallet->transfers()->where('status', 'pending')->get() as $transfer)
                             <div class="card shadow-lg">
                                 <div class="card-body">
-                                    <span class="bullet bullet-vertical h-40px bg-gray-800"></span>
-                                    djsqkjdkqlsdjqs
+                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
+                                            depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
