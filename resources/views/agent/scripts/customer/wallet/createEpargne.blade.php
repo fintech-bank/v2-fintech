@@ -36,4 +36,38 @@
             })
         })
     }
+
+    $(forms.formAddEpargne).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formAddEpargne);
+        let url = form.attr('action')
+        let btn = form.find('.btn-bank')
+        let data = form.serializeArray()
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+
+                if(data.state === 'warning') {
+                    toastr.warning(`${data.message}`, `Création d'un compte d'épargne`)
+                } else {
+                    toastr.success(`Le compte d'épargne N°${data.data.wallet.number} à été créer avec succès`, `Création d'un compte d'épargne`)
+
+                    setTimeout(() => {
+                        window.location.href={{ route('agent.customer.show', $customer->id) }}
+                    }, 1200)
+                }
+            },
+            error: err => {
+                btn.removeAttr('data-kt-indicator')
+
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+            }
+        })
+    })
 </script>
