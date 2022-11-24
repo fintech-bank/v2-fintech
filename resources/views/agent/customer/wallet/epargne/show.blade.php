@@ -204,7 +204,7 @@
                     @foreach($wallet->transactions as $transaction)
                         <a class="d-flex flex-row h-100px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
                             <div class="align-items-center">
-                                {!! $transaction->getTypeSymbolAttribute('10px') !!}
+                                {!! $transaction->getTypeSymbolAttribute(10) !!}
                                 {{ $transaction->designation }}
                             </div>
                             {{ $transaction->amount_format }}
