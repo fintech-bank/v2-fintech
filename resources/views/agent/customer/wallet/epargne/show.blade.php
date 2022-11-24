@@ -315,7 +315,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Virement</a>
                         </li>
-                        @if($wallet->epargne->info_retrait->retrait_type->sepa_orga)
+                        @if($wallet->epargne->info_retrait['retrait_type']['sepa_assoc'])
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Virement vers organisme</a>
                         </li>
