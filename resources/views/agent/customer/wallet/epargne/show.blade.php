@@ -332,6 +332,7 @@
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
                             @foreach($wallet->transfers()->where('status', 'pending')->orWhere('status', 'in_transit')->get() as $transfer)
+                                @dd(count($transfer))
                                 <div class="card shadow-lg mb-5">
                                     <div class="card-body">
                                         <div class="d-flex flex-row justify-content-between align-items-center mb-5">
