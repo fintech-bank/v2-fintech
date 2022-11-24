@@ -526,7 +526,7 @@
 
                             <div class="mb-10">
                                 <label for="" class="form-label required">Type de virement</label>
-                                <select name="type" class="form-control selectpicker" required onclick="selectTypeTransfer(this)">
+                                <select name="type" class="form-control selectpicker" required onchange="selectTypeTransfer(this)">
                                     <option value="immediat">Immédiat</option>
                                     <option value="differed">Différé</option>
                                     <option value="permanent">Permanent</option>
