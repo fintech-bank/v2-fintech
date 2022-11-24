@@ -170,23 +170,27 @@
                 data-kt-search-min-length="2"
                 data-kt-search-enter="true"
                 data-kt-search-layout="inline">
-                <form data-kt-search-element="form" class="w-100 position-relative mb-5" autocomplete="off">
-                    <input type="hidden"/>
-                    <div class="input-group mb-5">
-                        <input type="text" class="form-control form-control-lg form-control-solid px-15"
-                               name="search"
-                               value=""
-                               placeholder="Search by username, full name or email..."
-                               data-kt-search-element="input"/>
-                        <div class="input-group-addon" id="basic-addon1">
-                            <select class="form-control selectpicker" name="duration">
-                                <option value="mensuel">Sur les 30 derniers jours</option>
-                                <option value="trimestriel" selected>Sur les 30 derniers jours</option>
-                                <option value="semestriel">Sur les 30 derniers jours</option>
-                            </select>
-                        </div>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form data-kt-search-element="form" class="w-100 position-relative mb-5" autocomplete="off">
+                            <input type="hidden"/>
+                            <div class="input-group mb-5">
+                                <input type="text" class="form-control form-control-lg form-control-solid px-15"
+                                       name="search"
+                                       value=""
+                                       placeholder="Search by username, full name or email..."
+                                       data-kt-search-element="input"/>
+                                <div class="input-group-addon" id="basic-addon1">
+                                    <select class="form-control selectpicker" name="duration">
+                                        <option value="mensuel">Sur les 30 derniers jours</option>
+                                        <option value="trimestriel" selected>Sur les 30 derniers jours</option>
+                                        <option value="semestriel">Sur les 30 derniers jours</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="infos" role="tabpanel">
