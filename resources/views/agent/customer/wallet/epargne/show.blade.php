@@ -537,7 +537,15 @@
                                     name="transfer_date"
                                     label="Date de transfer"
                                     :value="now()->hour >= 16 ? now()->addDay()->format('Y-m-d H:i') : now()->format('Y-m-d H:i')" />
+                            </div>
 
+                            <div id="permanent">
+                                <x-form.input-date
+                                    name="recurring_start"
+                                    label="Date de début" />
+                                <x-form.input-date
+                                    name="recurring_start"
+                                    label="Date de fin" />
                             </div>
                         </div>
                         <div class="modal-footer">
