@@ -45,15 +45,16 @@
         inputSearch.addEventListener('keydown', e => {
             if (e.key === "Enter") {
                 e.preventDefault()
+                let searchObject = new KTSearch(elements.searchElement)
+                searchObject.on('kt.search.process', processSearch)
+                searchObject.on('kt.search.clear', clear)
+                handleSearchInput()
             }
         })
     }
 
     let searchWrapper = elements.searchElement.querySelector('[data-kt-search-element="wrapper"]')
-    let searchObject = new KTSearch(elements.searchElement)
-    searchObject.on('kt.search.process', processSearch)
-    searchObject.on('kt.search.clear', clear)
-    handleSearchInput()
+
 
 
     if (elements.btnAcceptTransaction) {
