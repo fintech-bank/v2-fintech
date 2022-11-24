@@ -60,6 +60,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Customer\CustomerPaymentOpposit|null $opposit
  * @property-read mixed $is_opposit
  * @method static Builder|CustomerTransaction isDiffered()
+ * @property-read mixed $type_color
  */
 class CustomerTransaction extends Model
 {

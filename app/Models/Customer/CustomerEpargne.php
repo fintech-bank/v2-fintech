@@ -49,6 +49,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Customer\Customer $customer
  * @property int $customer_id
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereCustomerId($value)
+ * @property int $customer_wallet_id
+ * @property \Illuminate\Support\Carbon|null $next_profit
+ * @property string|null $unlocked_at
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereCustomerWalletId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereNextProfit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereUnlockedAt($value)
  */
 class CustomerEpargne extends Model
 {

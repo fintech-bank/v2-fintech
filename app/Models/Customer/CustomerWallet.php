@@ -98,6 +98,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toCompte()
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toCredit()
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toEpargne()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toPending()
  */
 class CustomerWallet extends Model
 {

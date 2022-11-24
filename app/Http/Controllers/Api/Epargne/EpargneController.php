@@ -68,7 +68,7 @@ class EpargneController extends ApiController
                     'initial_payment' => $request->get('initial_payment'),
                     'monthly_payment' => $request->get('monthly_payment'),
                     'monthly_days' => $request->get('monthly_days'),
-                    'wallet_id' => $wallet->id,
+                    'customer_wallet_id' => $wallet->id,
                     'next_prlv' => Carbon::create(now()->year, now()->addMonth()->month, $request->get('monthly_days')),
                     "start" => now(),
                     'wallet_payment_id' => $request->get('wallet_payment_id'),
