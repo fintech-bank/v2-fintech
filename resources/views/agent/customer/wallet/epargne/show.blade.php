@@ -513,7 +513,7 @@
                         <!--end::Close-->
                     </div>
 
-                    <form id="formNewTransfer" action="/api/epargne/{{ $wallet->epargne->id }}/transfer" method="post">
+                    <form id="formNewTransfer" action="/api/epargne/{{ $wallet->epargne->reference }}/transfer" method="post">
                         @csrf
                         <div class="modal-body">
                             <input type="hidden" name="customer_wallet_id" value="{{ $wallet->id }}">
