@@ -38,7 +38,7 @@
 @endsection
 
 @section("content")
-    <form action="{{ route('api.epargne.create') }}" method="post">
+    <form id="formAddEpargne" action="{{ route('api.epargne.create') }}" method="post">
         @csrf
         <input type="hidden" name="customer_id" value="{{ $customer->id }}">
         <div class="row">
