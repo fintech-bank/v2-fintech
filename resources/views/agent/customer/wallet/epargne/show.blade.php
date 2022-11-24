@@ -237,6 +237,15 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <div class="fw-bolder fs-1">Information sur le {{ $wallet->name_account_generic }}</div>
+                            <div class="separator separator-dashed my-5"></div>
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4">
+                                    <div class="d-flex flex-column">
+                                        <h5 class="fw-bolder">Intêret</h5>
+                                        <div class="">{{ $wallet->epargne->profit_percent }}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
