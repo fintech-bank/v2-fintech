@@ -241,7 +241,7 @@
                                             size-text="fs-3"
                                             size="3"
                                             color="{{ $transaction->type_color }}" />
-                                        <div class="d-flex flex-row justify-content-around">
+                                        <div class="d-flex flex-row justify-content-start">
                                             <div>{{ $transaction->description }}</div>
                                         </div>
                                     </div>
