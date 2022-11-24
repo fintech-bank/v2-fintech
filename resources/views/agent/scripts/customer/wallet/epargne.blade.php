@@ -23,7 +23,7 @@
 
 
     let processSearch = (search) => {
-        console.log(search)
+        console.log(search.formElement)
         elements.searchSuggestion.classList.add('d-none')
 
     }
