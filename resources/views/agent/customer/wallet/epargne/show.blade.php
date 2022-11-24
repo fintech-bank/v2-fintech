@@ -523,7 +523,7 @@
                             <x-form.input
                                 name="amount"
                                 label="Montant à envoyer"
-                                :value="$wallet->epargne->plan->info_retrait->amount"
+                                :value="json_decode($wallet->epargne->plan->info_retrait)->amount"
                                 required="true" />
 
                             <div class="mb-10">
