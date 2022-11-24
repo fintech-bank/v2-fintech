@@ -332,8 +332,8 @@
                         <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
                         @foreach($wallet->transfers()->where('status', 'pending')->get() as $transfer)
                             <div class="card shadow-lg">
-                                <span class="bullet bullet-vertical h-40px bg-gray-800"></span>
                                 <div class="card-body">
+                                    <span class="bullet bullet-vertical h-auto m-0 bg-gray-800"></span>
                                 </div>
                             </div>
                         @endforeach
