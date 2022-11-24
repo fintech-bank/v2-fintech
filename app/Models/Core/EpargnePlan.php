@@ -61,6 +61,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereTypeCustomer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereTypeEpargne($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EpargnePlan whereUnique($value)
+ * @property-read mixed $init_format
+ * @property-read mixed $limit_amount_format
+ * @property-read mixed $profit_percent_format
  */
 class EpargnePlan extends Model
 {
@@ -69,6 +72,8 @@ class EpargnePlan extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    protected $appends = ['profit_percent_format', 'init_format', 'limit_amount_format'];
 
     public function epargnes()
     {
@@ -104,5 +109,20 @@ class EpargnePlan extends Model
         static::deleted(function () {
             LogHelper::insertLogSystem('success', "Un plan d'épargne à été supprimer");
         });
+    }
+
+    public function getProfitPercentFormatAttribute()
+    {
+        return number_format($this->profit_percent, 2)." %";
+    }
+
+    public function getInitFormatAttribute()
+    {
+        return eur($this->init);
+    }
+
+    public function getLimitAmountFormatAttribute()
+    {
+        return eur($this->init);
     }
 }

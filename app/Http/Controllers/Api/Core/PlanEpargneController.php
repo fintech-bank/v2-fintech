@@ -11,7 +11,7 @@ class PlanEpargneController extends Controller
 {
     public function info($plan_id)
     {
-        $plan = EpargnePlan::find($plan_id);
+        $plan = EpargnePlan::find($plan_id)->append('profit_percent_format', 'init_format', 'limit_amount_format');
 
         return response()->json($plan);
     }
