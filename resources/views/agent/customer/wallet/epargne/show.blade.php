@@ -228,7 +228,7 @@
                                         size-text="fs-3"
                                         size="3"
                                         color="{{ $transaction->type_color }}" />
-                                    <div class="d-flex flex-row justify-content-between">
+                                    <div class="d-flex flex-row justify-content-around">
                                         <div>Transaction effectuée le: {{ $transaction->updated_at->format("d/m/Y") }}</div>
                                         <div>Comptabilisé à la date du: {{ $transaction->confirmed ? $transaction->confirmed_at->format("d/m/Y") : ($transaction->differed ? $transaction->differed_at->format("d/m/Y") : $transaction->updated_at->format("d/m/Y")) }}</div>
                                     </div>
