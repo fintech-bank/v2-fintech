@@ -28,7 +28,7 @@ class CustomerWalletHelper
     public static function createWallet($customer, $type, $balance_actual = 0, $balance_coming = 0, $decouvert = 0, $bal_decouvert = 0, $status = 'pending'): Model|Builder
     {
         $number_account = random_numeric(9);
-        $ibanG = new Generator($customer->agency->code_banque, $number_account);
+        $ibanG = new Generator($customer->agency->code_banque, $number_account, 'FR');
 
         $wallet = CustomerWallet::create([
             'uuid' => \Str::uuid(),
