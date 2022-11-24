@@ -345,7 +345,7 @@
                                         {{ $transfer->transfer_date->format("d/m/Y") }}
                                     </div>
                                 </div>
-                                <div class="card-footer h-20px">
+                                <div class="card-footer">
                                     <div class="d-flex flex-row justify-content-between">
                                         {{ $transfer->type_text }}
                                         <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
