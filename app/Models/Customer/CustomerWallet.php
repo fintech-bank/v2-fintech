@@ -252,6 +252,21 @@ class CustomerWallet extends Model
         return $datas->all();
     }
 
+    public function scopeEpargne($query)
+    {
+        return $query->where('type', 'epargne');
+    }
+
+    public function scopeCompte($query)
+    {
+        return $query->where('type', 'compte');
+    }
+
+    public function scopeCredit($query)
+    {
+        return $query->where('type', 'pret');
+    }
+
     /**
      * @return string|null
      */
