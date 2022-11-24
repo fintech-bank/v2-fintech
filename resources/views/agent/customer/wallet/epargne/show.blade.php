@@ -532,7 +532,7 @@
                                     <option value="permanent">Permanent</option>
                                 </select>
                             </div>
-                            <div id="immediat" class="d-none">
+                            <div id="immediat">
                                 <x-form.input-date
                                     name="transfer_date"
                                     label="Date de transfer"
