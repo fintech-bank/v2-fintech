@@ -170,7 +170,7 @@
                 data-kt-search-min-length="2"
                 data-kt-search-enter="true"
                 data-kt-search-layout="inline">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm mb-10">
                     <div class="card-body">
                         <form data-kt-search-element="form" class="w-100 position-relative mb-5" autocomplete="off">
                             <input type="hidden"/>
@@ -200,7 +200,19 @@
                     </div>
                 </div>
                 <div data-kt-search-element="suggestions">
-                    ...
+                    <div class="accordion" id="transaction_accordion">
+                        <div class="card card-flush my-1 accordion-item">
+                            <div class="card-header accordion-header">
+                                <button class="accordion-button fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-expanded="true" aria-controls="kt_accordion_1_body_1">
+                                    Accordion Item #1
+                                </button>
+                            </div>
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div data-kt-search-element="results" class="d-none">
                     ...
