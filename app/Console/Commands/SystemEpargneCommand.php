@@ -54,6 +54,7 @@ class SystemEpargneCommand extends Command
         $i = 0;
 
         foreach ($wallets as $wallet) {
+            dd($wallet);
             if ($wallet->customer->documents()->where('reference', $wallet->epargne->reference)->where('signed_by_client', 1)->count() != 0){
                 $wallet->update(['status' => 'active']);
                 $i++;
