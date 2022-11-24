@@ -45,7 +45,7 @@ class CustomerWalletController extends Controller
     {
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
         //dd($wallet->cards->count(), $wallet->customer->package->nb_carte_physique);
-        dd($wallet->epargne->plan->info_retrait->retrait_type->transfer);
+        dd($wallet->epargne->plan->info_retrait);
 
         if($wallet->type == 'compte') {
             return view('agent.customer.wallet.compte.show', [
