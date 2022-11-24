@@ -188,7 +188,7 @@
                 block.blockApp.block()
 
                 $.ajax({
-                    url: '/api/epargne/{{ $wallet->epargne->reference }}/transfers/'+e.target.dataset.transfer,
+                    url: '/api/epargne/{{ $wallet->epargne->reference }}/transfer/'+e.target.dataset.transfer,
                     method: 'PUT',
                     data: {"action": "accept"},
                     success: data => {
