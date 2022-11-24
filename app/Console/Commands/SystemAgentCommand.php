@@ -96,23 +96,6 @@ class SystemAgentCommand extends Command
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
     }
 
-    private function updateCotation()
-    {
-        $cotation = new CotationClient();
-        $customers = Customer::all();
-        $arr = [];
-        foreach ($customers as $customer) {
-            $customer->update(['cotation' => $cotation->calc($customer)]);
-            $arr[] = [
-                "client" => $customer->info->full_name,
-                "cotation" => $customer->cotation
-            ];
-        }
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
-        $this->output->table(["client", "cotation"], $arr);
-        $this->slack->send("Cotation client", json_encode($arr));
-    }
-
     private function verifRequestLoanOpen()
     {
         $prets = CustomerPret::where('status', 'open')->get();
@@ -284,29 +267,6 @@ class SystemAgentCommand extends Command
         $this->error("Liste des transactions entrante rejeté");
         $this->output->table(['Client', 'Type', 'Compte', 'Montant', "Raison"], $arr_reject);
         $this->slack->send("Liste des transactions entrante rejeté", json_encode($arr_reject));
-    }
-
-    private function executeActiveAccount()
-    {
-        $accounts = Customer::where('status_open_account', 'accepted')->get();
-        $arr = [];
-
-        foreach ($accounts as $account) {
-            $account->update([
-                'status_open_account' => 'terminated'
-            ]);
-
-            $account->info->notify(new UpdateStatusAccountNotification($account, $account->status_open_account));
-
-            $arr[] = [
-                $account->info->full_name,
-                "Accepted => Terminated",
-            ];
-        }
-
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
-        $this->output->table(['Client', "Etat"], $arr);
-        $this->slack->send("Comptes Effectifs", json_encode($arr));
     }
 
     private function executeVirement()

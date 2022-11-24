@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Schedules\SystemAdminSchedule;
+use App\Console\Schedules\SystemCustomerSchedule;
 use App\Console\Schedules\SystemEpargneSchedule;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -17,37 +19,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         SystemEpargneSchedule::boot($schedule);
-        // $schedule->command('inspire')->hourly();
-        // Administration
-        $schedule->command('system:admin deleteLog')
-            ->twiceMonthly(1, 16, '00:00')
-            ->description("Suppression des logs bancaires [log]");
+        SystemAdminSchedule::boot($schedule);
+        SystemCustomerSchedule::boot($schedule);
 
-        $schedule->command('system:admin shipTpe')
-            ->dailyAt('08:00')
-            ->description("Mise à jour des trackers d'envoie [log]");
-
-        $schedule->command('system:admin generateInvoiceReseller')
-            ->lastDayOfMonth()
-            ->description("Génération des factures des distributeurs [log]");
-
-        $schedule->command('system:admin notifyResellerInvoicePayment');
-
-
-        // Agent
-        /*$schedule->command('system:agent calendarAlert')
-            ->everyFiveMinutes()
-            ->description("Alert Evenement [log]")
-            ->onSuccess(function (Stringable $output) {
-                LogHelper::notify('notice', "Alerte d'évènement", $output);
-            })
-            ->onFailure(function(Stringable $output) {
-                LogHelper::notify('alert', "Alerte d'évènement", $output);
-            });*/
-
-        $schedule->command('system:agent updateCotation')
-            ->daily()
-            ->description("Mise à jour des cotation client [log]");
 
         $schedule->command('system:agent verifRequestLoanOpen')
             ->everySixHours()
@@ -65,9 +39,7 @@ class Kernel extends ConsoleKernel
             ->everySixHours()
             ->description("Execution des transactions entrente [log]");
 
-        $schedule->command('system:agent executeActiveAccount')
-            ->everySixHours()
-            ->description("Passage des compte accepté à terminer [log]'");
+
 
         $schedule->command('system:agent executeVirement')
             ->everySixHours()
