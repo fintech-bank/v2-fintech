@@ -267,6 +267,19 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-2 col-sm-4">
+                                    <div class="d-flex flex-row p-2 border border-dashed border-gray-400 h-100px">
+                                        <div class="symbol symbol-50px me-3">
+                                            <div class="symbol-label"><i class="fa-solid fa-calendar fs-2"></i> </div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h3 class="fw-bolder">Prochain calcul des intêrets</h3>
+                                            <div class="fs-2">
+                                                <span class="text-warning">{{ $wallet->epargne->next_profit->diffForHumans() }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
