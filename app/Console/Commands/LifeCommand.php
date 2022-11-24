@@ -545,48 +545,50 @@ class LifeCommand extends Command
                             ]);
                             $depot_espece++;
                         } else {
-                            $status_type = ['pending', 'progress', 'terminated'];
-                            $status = $status_type[rand(0, 2)];
-                            $deposit = CustomerCheckDeposit::createDeposit($wallet->id, $amount, $status);
-                            for ($i = 1; $i <= rand(1, 9); $i++) {
-                                $am = $faker->randomFloat(2, 10, 2500);
-                                CustomerCheckDepositList::insertCheck(
-                                    $deposit->id,
-                                    random_numeric(7),
-                                    $am,
-                                    $faker->name,
-                                    Bank::where('check_manage', 1)->get()->random()->id,
-                                    Carbon::create($now->year, rand(1, 12), rand(1, 30)),
-                                    $faker->boolean
-                                );
+                            if($customer->setting->check) {
+                                $status_type = ['pending', 'progress', 'terminated'];
+                                $status = $status_type[rand(0, 2)];
+                                $deposit = CustomerCheckDeposit::createDeposit($wallet->id, $amount, $status);
+                                for ($i = 1; $i <= rand(1, 9); $i++) {
+                                    $am = $faker->randomFloat(2, 10, 2500);
+                                    CustomerCheckDepositList::insertCheck(
+                                        $deposit->id,
+                                        random_numeric(7),
+                                        $am,
+                                        $faker->name,
+                                        Bank::where('check_manage', 1)->get()->random()->id,
+                                        Carbon::create($now->year, rand(1, 12), rand(1, 30)),
+                                        $faker->boolean
+                                    );
+                                }
+                                $calc = CustomerCheckDepositList::where('customer_check_deposit_id', $deposit->id)->sum('amount');
+                                $deposit->update(["amount" => $calc]);
+                                match ($status) {
+                                    "progress" => $transaction = CustomerTransactionHelper::createCredit(
+                                        $wallet->id,
+                                        'depot',
+                                        "Remise de chèque N°" . $deposit->reference,
+                                        "Remise de " . CustomerCheckDepositList::where('customer_check_deposit_id', $deposit->id)->count() . " Chèques",
+                                        $deposit->amount,
+                                        false,
+                                        null
+                                    ),
+                                    "terminated" => $transaction =  CustomerTransactionHelper::createCredit(
+                                        $wallet->id,
+                                        'depot',
+                                        "Remise de chèque N°" . $deposit->reference,
+                                        "Remise de " . CustomerCheckDepositList::where('customer_check_deposit_id', $deposit->id)->count() . " Chèques",
+                                        $deposit->amount,
+                                        true,
+                                        $now
+                                    ),
+                                    default => null
+                                };
+                                $deposit->update([
+                                    'customer_transaction_id' => $transaction->id
+                                ]);
+                                $depot_chq++;
                             }
-                            $calc = CustomerCheckDepositList::where('customer_check_deposit_id', $deposit->id)->sum('amount');
-                            $deposit->update(["amount" => $calc]);
-                            match ($status) {
-                                "progress" => $transaction = CustomerTransactionHelper::createCredit(
-                                    $wallet->id,
-                                    'depot',
-                                    "Remise de chèque N°" . $deposit->reference,
-                                    "Remise de " . CustomerCheckDepositList::where('customer_check_deposit_id', $deposit->id)->count() . " Chèques",
-                                    $deposit->amount,
-                                    false,
-                                    null
-                                ),
-                                "terminated" => $transaction =  CustomerTransactionHelper::createCredit(
-                                    $wallet->id,
-                                    'depot',
-                                    "Remise de chèque N°" . $deposit->reference,
-                                    "Remise de " . CustomerCheckDepositList::where('customer_check_deposit_id', $deposit->id)->count() . " Chèques",
-                                    $deposit->amount,
-                                    true,
-                                    $now
-                                ),
-                                default => null
-                            };
-                            $deposit->update([
-                                'customer_transaction_id' => $transaction->id
-                            ]);
-                            $depot_chq++;
                         }
                     }
                 }
