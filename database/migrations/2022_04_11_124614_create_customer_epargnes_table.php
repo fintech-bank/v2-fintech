@@ -25,6 +25,7 @@ return new class extends Migration
             $table->timestamp('next_prlv')->nullable();
             $table->timestamp('next_profit')->nullable();
             $table->timestamp('start')->nullable();
+            $table->timestamp('unlocked_at')->nullable();
             $table->foreign('customer_wallet_id')->references('id')->on('customer_wallets')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();

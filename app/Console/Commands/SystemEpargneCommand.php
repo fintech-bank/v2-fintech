@@ -11,6 +11,7 @@ use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 class SystemEpargneCommand extends Command
 {
     use LaravelSchedulerCustomMutex;
+
     /**
      * The name and signature of the console command.
      *
@@ -58,16 +59,19 @@ class SystemEpargneCommand extends Command
             foreach ($customer->epargnes()->get() as $epargne) {
                 $wallet = $epargne->wallet;
                 if ($wallet->status == 'pending') {
-                    if($customer->documents()->where('reference', $epargne->reference)->where('signable', 1)->where('signed_by_client', 1)->count() != 0) {
+                    if ($customer->documents()->where('reference', $epargne->reference)->where('signable', 1)->where('signed_by_client', 1)->count() != 0) {
                         $wallet->update(['status' => 'active']);
-                        if($epargne->plan->profit_days != 0)
-                            $epargne->update(['next_profit' => now()->addDays($epargne->plan->profit_days)]);
+                        if ($epargne->plan->profit_days != 0)
+                            $epargne->update([
+                                'next_profit' => now()->addDays($epargne->plan->profit_days),
+                                'unlocked_at' => now()->addDays($epargne->plan->unlocked_at)
+                            ]);
                         $i++;
                     }
                 }
             }
         }
 
-        $this->slack->send("Activation des comptes d'épargne", json_encode([strip_tags("Nombre de compte mise a jours: ").$i]));
+        $this->slack->send("Activation des comptes d'épargne", json_encode([strip_tags("Nombre de compte mise a jours: ") . $i]));
     }
 }
