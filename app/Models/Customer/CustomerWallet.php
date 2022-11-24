@@ -275,6 +275,10 @@ class CustomerWallet extends Model
     {
         return $query->where('status', 'active');
     }
+    public function scopeToPending($query)
+    {
+        return $query->where('status', 'active');
+    }
 
     /**
      * @return string|null
