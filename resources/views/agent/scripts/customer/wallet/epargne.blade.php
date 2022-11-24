@@ -40,9 +40,7 @@
             }
         })
     }
-    if (!elements.searchElement) {
-        return;
-    }
+
     let searchObject = new KTSearch(elements.searchElement)
     searchObject.on('kt.search.process', processSearch)
     searchObject.on('kt.search.clear', clear)
