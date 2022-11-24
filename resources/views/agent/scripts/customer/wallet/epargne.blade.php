@@ -2,6 +2,7 @@
     KTDrawer.createInstances()
     let tables = {}
     let elements = {
+        app: document.querySelector('#app'),
         btnAcceptTransaction: document.querySelectorAll('.btnAcceptTransaction'),
         btnRejectTransaction: document.querySelectorAll('.btnRejectTransaction'),
         btnOppositPayment: document.querySelectorAll('.btnOppositPayment'),
@@ -14,22 +15,27 @@
         formUpdateStateAccount: document.querySelector("#formUpdateStateAccount"),
     }
     let dataTable = {}
-    let block = {}
+    let block = {
+        blockApp: new KTBlockUI(elements.app, {
+            message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Chargement...</div>',
+            overlayClass: "bg-gray-600 bg-opacity-25",
+        })
+    }
     let plugins = {}
 
     if (elements.btnAcceptTransaction) {
         elements.btnAcceptTransaction.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
-                block.blockTableComing.block()
+                block.blockApp.block()
 
                 $.ajax({
                     url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/' + btn.dataset.transaction,
                     method: 'POST',
                     data: {"action": "accept"},
                     success: () => {
-                        block.blockTableComing.release()
-                        block.blockTableComing.destroy()
+                        block.blockApp.release()
+                        block.blockApp.destroy()
                         toastr.success(`La transaction à bien été accepté`, `Transaction`)
 
                         setTimeout(() => {
@@ -37,8 +43,8 @@
                         }, 1200)
                     },
                     error: err => {
-                        block.blockTableComing.release()
-                        block.blockTableComing.destroy()
+                        block.blockApp.release()
+                        block.blockApp.destroy()
                         console.error(err)
                     }
                 })
@@ -49,7 +55,7 @@
         elements.btnRejectTransaction.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
-                block.blockTableComing.block()
+                block.blockApp.block()
                 Swal.fire({
                     title: 'Donner la raison de ce rejet',
                     input: 'text',
@@ -65,8 +71,8 @@
                             method: 'POST',
                             data: {"action": "reject", "raison": raison},
                             success: () => {
-                                block.blockTableComing.release()
-                                block.blockTableComing.destroy()
+                                block.blockApp.release()
+                                block.blockApp.destroy()
                                 toastr.success(`La transaction à bien été refusé`, `Transaction`)
 
                                 setTimeout(() => {
@@ -74,8 +80,8 @@
                                 }, 1200)
                             },
                             error: err => {
-                                block.blockTableComing.release()
-                                block.blockTableComing.destroy()
+                                block.blockApp.release()
+                                block.blockApp.destroy()
                                 console.error(err)
                             }
                         })
@@ -89,7 +95,7 @@
         elements.btnOppositPayment.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
-                block.blockTableComing.block()
+                block.blockApp.block()
                 Swal.fire({
                     title: 'Donner la raison de cette opposition',
                     input: 'text',
@@ -105,8 +111,8 @@
                             method: 'POST',
                             data: {"action": "opposit", "raison": raison},
                             success: () => {
-                                block.blockTableComing.release()
-                                block.blockTableComing.destroy()
+                                block.blockApp.release()
+                                block.blockApp.destroy()
                                 toastr.success(`La transaction à bien été opposé`, `Transaction`)
 
                                 setTimeout(() => {
@@ -114,8 +120,8 @@
                                 }, 1200)
                             },
                             error: err => {
-                                block.blockTableComing.release()
-                                block.blockTableComing.destroy()
+                                block.blockApp.release()
+                                block.blockApp.destroy()
                                 console.error(err)
                             }
                         })
@@ -129,15 +135,15 @@
         elements.btnRemb.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
-                block.blockTableTransaction.block()
+                block.blockApp.block()
 
                 $.ajax({
                     url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/' + btn.dataset.transaction,
                     method: 'POST',
                     data: {"action": "remb"},
                     success: () => {
-                        block.blockTableTransaction.release()
-                        block.blockTableTransaction.destroy()
+                        block.blockApp.release()
+                        block.blockApp.destroy()
                         toastr.success(`La transaction à bien été remboursé`, `Transaction`)
 
                         setTimeout(() => {
@@ -145,8 +151,8 @@
                         }, 1200)
                     },
                     error: err => {
-                        block.blockTableTransaction.release()
-                        block.blockTableTransaction.destroy()
+                        block.blockApp.release()
+                        block.blockApp.destroy()
                         console.error(err)
                     }
                 })
