@@ -162,7 +162,7 @@
             <x-base.underline
                 title="Transaction au {{ now()->format('d/m/Y') }}"
                 class="w-650px" />
-            <div class="separator separator-2 mb-4"></div>
+            <div class="separator separator-2 mt-2 mb-4"></div>
         </div>
         <div class="tab-pane fade" id="infos" role="tabpanel">
             <div class="row">
