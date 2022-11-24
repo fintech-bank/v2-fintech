@@ -218,6 +218,11 @@
                                 <span class="text-success fw-bolder">+ {{ $transaction->amount_format }}</span>
                             @endif
                         </a>
+                        <div class="collapse" id="content">
+                            <div class="card card-body">
+                                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                            </div>
+                        </div>
                     @endforeach
 
                 </div>
