@@ -85,4 +85,5 @@ class CustomerBeneficiaire extends Model
     {
         return \Str::replace("\r\n", " ", chunk_split($this->iban, 4));
     }
+
 }

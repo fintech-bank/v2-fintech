@@ -338,6 +338,7 @@
                                             <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
                                             depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
                                         </div>
+                                        <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
                                     </div>
                                 </div>
                             </div>
