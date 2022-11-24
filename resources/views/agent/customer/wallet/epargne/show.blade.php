@@ -238,7 +238,7 @@
                         <div class="card-body">
                             <div class="fw-bolder fs-1">Information sur le {{ $wallet->name_account_generic }}</div>
                             <div class="separator separator-dashed my-5"></div>
-                            <div class="row">
+                            <div class="row align-items-center">
                                 <div class="col-md-2 col-sm-4">
                                     <div class="d-flex flex-row p-2 border border-dashed border-gray-400 h-100px align-items-center">
                                         <div class="symbol symbol-50px me-3">
@@ -281,9 +281,27 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 justify-content-end">
-                                    <div class="d-flex align-items-end w-200px w-sm-300px flex-column mt-3 justify-content-end">
+                                    @if($wallet->epargne->plan->limit_amount == 0 || $wallet->epargne->plan->limit_amount == 999999999)
+                                        <div class="d-flex align-items-end flex-column mt-3 justify-content-end">
+                                            <div class="d-flex justify-content-between w-100 mt-auto mb-2">
+                                                <span class="fw-semibold fs-6 text-gray-400">Limite de fond</span>
+                                                <div class="">Aucune Limite</div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="d-flex align-items-end flex-column mt-3 justify-content-end">
+                                            <div class="d-flex justify-content-between w-100 mt-auto mb-2">
+                                                <span class="fw-semibold fs-6 text-gray-400">Limite de fond</span>
+                                                <span class="fw-bold fs-6">50%</span>
+                                            </div>
+                                            <div class="h-5px mx-3 w-100 bg-light mb-3">
+                                                <div class="bg-success rounded h-5px" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <div class="d-flex align-items-end flex-column mt-3 justify-content-end">
                                         <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                            <span class="fw-semibold fs-6 text-gray-400">Profile Compleation</span>
+                                            <span class="fw-semibold fs-6 text-gray-400">Limite de fond</span>
                                             <span class="fw-bold fs-6">50%</span>
                                         </div>
                                         <div class="h-5px mx-3 w-100 bg-light mb-3">
