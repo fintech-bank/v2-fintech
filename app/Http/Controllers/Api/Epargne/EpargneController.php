@@ -6,6 +6,7 @@ use App\Helper\CustomerTransactionHelper;
 use App\Helper\CustomerWalletHelper;
 use App\Helper\DocumentFile;
 use App\Http\Controllers\Api\ApiController;
+use App\Models\Core\EpargnePlan;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerEpargne;
 use App\Models\Customer\CustomerWallet;
@@ -62,6 +63,7 @@ class EpargneController extends ApiController
             }
 
             try {
+                $plan = EpargnePlan::find($request->get('epargne_plan_id'));
                 $epargne = CustomerEpargne::create([
                     'uuid' => \Str::uuid(),
                     'reference' => generateReference(),
@@ -70,6 +72,8 @@ class EpargneController extends ApiController
                     'monthly_days' => $request->get('monthly_days'),
                     'customer_wallet_id' => $wallet->id,
                     'next_prlv' => Carbon::create(now()->year, now()->addMonth()->month, $request->get('monthly_days')),
+                    'next_profit' => now()->addDays($plan->profit_days),
+                    'unlocked_at' => now()->addDays($plan->unlocked_at),
                     "start" => now(),
                     'wallet_payment_id' => $request->get('wallet_payment_id'),
                     'epargne_plan_id' => $request->get('epargne_plan_id'),
