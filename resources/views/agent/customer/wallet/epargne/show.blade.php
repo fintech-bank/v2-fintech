@@ -331,7 +331,7 @@
                     <div class="tab-pane fade show active" id="transfer" role="tabpanel">
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
-                            @foreach($wallet->transfers()->where('status', 'pending')->orWhere('status', 'in_transit')->get() as $transfer)
+                            @foreach($wallet->transfers()->where('status', 'pending')->where('status', 'in_transit')->get() as $transfer)
                                 @if($transfer->count() == 0)
                                     <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
                                         <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
