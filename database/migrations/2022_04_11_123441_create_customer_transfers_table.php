@@ -33,6 +33,7 @@ return new class extends Migration
                             ->cascadeOnDelete();
 
             $table->foreignId('customer_beneficiaire_id')
+                            ->nullable()
                             ->constrained()
                             ->cascadeOnUpdate()
                             ->cascadeOnDelete();
