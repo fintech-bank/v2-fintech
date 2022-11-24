@@ -276,7 +276,11 @@
                                                 @if($wallet->epargne->plan->lock_days == 0)
                                                     <span class="text-success">Disponible</span>
                                                 @else
-                                                    <span class="text-warning">{{ now()->diffForHumans(now()->addDays($wallet->epargne->plan->lock_days)) }}</span>
+                                                    @if(now()->startOfDay() <= $wallet->epargne->unlocked_at->startOfDay())
+                                                        <div class="text-warning">{{ now()->diffForHumans($wallet->epargne->unlocked_at) }}</div>
+                                                    @else
+                                                        <span class="text-success">Disponible</span>
+                                                    @endif
                                                 @endif
                                             </div>
                                         </div>
