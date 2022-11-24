@@ -206,7 +206,7 @@
                             <div class="d-flex flex-row align-items-center">
                                 {!! $transaction->getTypeSymbolAttribute(20) !!}
                                 <div class="d-flex flex-column">
-                                    {{ $transaction->designation }}
+                                    {{ $transaction->designation }}<br>
                                     {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format("d/m/Y")) }}
                                 </div>
                             </div>
