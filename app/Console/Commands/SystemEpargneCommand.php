@@ -49,7 +49,7 @@ class SystemEpargneCommand extends Command
 
     private function activeWallet()
     {
-        $wallets = CustomerWallet::toEpargne()->toPending()->get();
+        $wallets = CustomerWallet::where('type', 'epargne')->where('status', 'pending')->get();
         $i = 0;
 
         dd($wallets);
