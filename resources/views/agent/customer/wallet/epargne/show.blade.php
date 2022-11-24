@@ -233,97 +233,10 @@
         </div>
         <div class="tab-pane fade" id="infos" role="tabpanel">
             <div class="row">
-                <div class="col-md-8 col-sm-12 mb-5">
-                    <div class="card shadow-sm mb-10">
-                        <div class="card-header">
-                            <h3 class="card-title">Information sur le compte {{ $wallet->number_account }}</h3>
-                            <div class="card-toolbar">
-                                <!--<button type="button" class="btn btn-sm btn-light">
-                                    Action
-                                </button>-->
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart_summary" class="mb-10 h-350px"></div>
-                        </div>
-                    </div>
+                <div class="col-md-12">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <div class="row mb-5">
-                                <div class="col-4">
-                                    <div class="fw-bolder mt-5">Numéro de compte</div>
-                                    <div class="text-gray-600">{{ $wallet->number_account }}</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="fw-bolder mt-5">IBAN</div>
-                                    <div class="text-gray-600">{{ $wallet->iban }}</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="fw-bolder mt-5">Type</div>
-                                    <div class="text-gray-600">{{ Str::ucfirst($wallet->type) }}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="card shadow-sm mb-5">
-                        <div class="card-header">
-                            <h3 class="card-title">Epargne N°{{ $wallet->epargne->reference }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex flex-column">
-                                <div class="fw-bolder">N° du contrat</div>
-                                <div class="fs-4 ps-3">{{ $wallet->epargne->reference }}</div>
-                            </div>
-                            <div class="separator border-2 my-5"></div>
-                            <div class="d-flex flex-column">
-                                <div class="fw-bolder">Type de contrat</div>
-                                <div class="fs-4 ps-3">{{ $wallet->epargne->plan->name }}</div>
-                            </div>
-                            <div class="separator border-2 my-5"></div>
-                            <div class="d-flex flex-column">
-                                <div class="fw-bolder">Montant prélevé par mois</div>
-                                <div class="fs-4 ps-3">{{ $wallet->epargne->monthly_payment_format }}</div>
-                            </div>
-                            <div class="separator border-2 my-5"></div>
-                            <div class="d-flex flex-column">
-                                <div class="fw-bolder">Compte Lié</div>
-                                <div class="fs-4 ps-3">{{ $wallet->epargne->payment->name_account_generic }}</div>
-                            </div>
-                            <div class="separator border-2 my-5"></div>
-                            <div class="d-flex flex-column">
-                                <div class="fw-bolder">Prochain Prélèvement</div>
-                                <div class="fs-4 ps-3">{{ $wallet->epargne->next_prlv->format('d/m/Y') }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <div class="d-flex flex-row p-5 align-items-center">
-                                        <i class="fa-solid fa-euro fs-2tx me-2"></i>
-                                        <div class="d-flex flex-column">
-                                            <div class="fw-bolder">Capital Actuel</div>
-                                            <div class="fs-3 ps-2">{{ $wallet->balance_actual_format }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <div class="d-flex flex-row p-5 align-items-center">
-                                        <i class="fa-solid fa-percentage fs-2tx me-2"></i>
-                                        <div class="d-flex flex-column">
-                                            <div class="fw-bolder">Intêret cumulé</div>
-                                            <div class="fs-3 ps-2">{{ $wallet->epargne->profit_format }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="fw-bolder fs-1">Information sur le {{ $wallet->name_account_generic }}</div>
                         </div>
                     </div>
                 </div>
