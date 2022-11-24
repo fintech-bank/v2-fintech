@@ -248,6 +248,9 @@
             }
         })
     }
+    let processSearch = (search) => {
+        
+    }
     selectTypeBeneficiaire()
 
     let e, t, n, r, o, a = (e, n, a) => {
