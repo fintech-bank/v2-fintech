@@ -332,55 +332,67 @@
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
                             @foreach($wallet->transfers()->where('status', 'pending')->orWhere('status', 'in_transit')->get() as $transfer)
-                                @dd(count($transfer))
-                                <div class="card shadow-lg mb-5">
-                                    <div class="card-body">
-                                        <div class="d-flex flex-row justify-content-between align-items-center mb-5">
-                                            <div class="d-flex flex-column">
-                                                <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
-                                                depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
+                                @if($transfer->count() == 0)
+                                    <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
+                                        <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
+                                        <div class="fs-1">Aucun virement en attente actuellement</div>
+                                    </div>
+                                @else
+                                    <div class="card shadow-lg mb-5">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-row justify-content-between align-items-center mb-5">
+                                                <div class="d-flex flex-column">
+                                                    <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
+                                                    depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
+                                                </div>
+                                                <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
                                             </div>
-                                            <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
+                                            <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                                                {!! $transfer->status_label !!}
+                                                {{ $transfer->transfer_date->format("d/m/Y") }}
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-row justify-content-between align-items-center mb-2">
-                                            {!! $transfer->status_label !!}
-                                            {{ $transfer->transfer_date->format("d/m/Y") }}
+                                        <div class="card-footer">
+                                            <div class="d-flex flex-row justify-content-between">
+                                                {{ $transfer->type_text }}
+                                                <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <div class="d-flex flex-row justify-content-between">
-                                            {{ $transfer->type_text }}
-                                            <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endif
                             @endforeach
                         </div>
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement passés</div>
                             @foreach($wallet->transfers()->where('status', 'paid')->get() as $transfer)
-                                @dd(count($transfer->toArray()))
-                                <div class="card shadow-lg mb-5">
-                                    <div class="card-body">
-                                        <div class="d-flex flex-row justify-content-between align-items-center mb-5">
-                                            <div class="d-flex flex-column">
-                                                <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
-                                                depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
+                                @if($transfer->count() == 0)
+                                    <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
+                                        <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
+                                        <div class="fs-1">Aucun virement en attente actuellement</div>
+                                    </div>
+                                @else
+                                    <div class="card shadow-lg mb-5">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-row justify-content-between align-items-center mb-5">
+                                                <div class="d-flex flex-column">
+                                                    <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
+                                                    depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
+                                                </div>
+                                                <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
                                             </div>
-                                            <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
+                                            <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                                                {!! $transfer->status_label !!}
+                                                {{ $transfer->transfer_date->format("d/m/Y") }}
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-row justify-content-between align-items-center mb-2">
-                                            {!! $transfer->status_label !!}
-                                            {{ $transfer->transfer_date->format("d/m/Y") }}
+                                        <div class="card-footer">
+                                            <div class="d-flex flex-row justify-content-between">
+                                                {{ $transfer->type_text }}
+                                                <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <div class="d-flex flex-row justify-content-between">
-                                            {{ $transfer->type_text }}
-                                            <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
