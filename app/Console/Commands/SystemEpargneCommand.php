@@ -57,10 +57,14 @@ class SystemEpargneCommand extends Command
         foreach ($customers as $customer) {
             foreach ($customer->epargnes()->get() as $epargne) {
                 $wallet = $epargne->wallet;
-                dd($wallet);
+                if ($wallet->status == 'pending') {
+                    if($customer->documents()->where('reference', $epargne->reference)->where('signable', 1)->where('signed_by_client', 1)->count() != 0) {
+                        $wallet->update(['status' => 'active']);
+                        $i++;
+                    }
+                }
             }
         }
-
 
         $this->slack->send("Activation des comptes d'épargne", json_encode([strip_tags("Nombre de compte mise a jours: ").$i]));
     }
