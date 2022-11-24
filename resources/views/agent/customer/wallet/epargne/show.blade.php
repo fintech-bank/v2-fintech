@@ -205,8 +205,10 @@
                             <div class="card card-flush my-1 accordion-item">
                                 <div class="card-header accordion-header">
                                     <div class="d-flex flex-row justify-content-between align-items-center p-5" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-expanded="true" aria-controls="kt_accordion_1_body_1">
-                                        {!! $transaction->type_symbol !!}
-                                        {{ $transaction->designation }}
+                                        <div class="">
+                                            {!! $transaction->type_symbol !!}
+                                            {{ $transaction->designation }}
+                                        </div>
                                         <div class="text-end">
                                             {{ $transaction->amount_format }}
                                         </div>
