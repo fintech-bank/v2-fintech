@@ -16,13 +16,6 @@ class TransferController extends ApiController
     {
         $epargne = CustomerEpargne::where('reference', $reference)->first();
 
-        return match ($request->get('type_wallet')) {
-            "epargne" => $this->transferEpargne($epargne, $request),
-        };
-    }
-
-    private function transferEpargne(CustomerEpargne $epargne, Request $request)
-    {
         if (CustomerEpargneTrait::verifyInfoTransfer($epargne, $request)) {
             $transfer = CustomerTransfer::create([
                 'uuid' => \Str::uuid(),
@@ -74,6 +67,49 @@ class TransferController extends ApiController
             ]);
 
             return $this->sendWarning("Certaines vérification sont invalide mais le virement à été enregistré", [$transfer]);
+        }
+    }
+
+    public function update($epargne_reference, $transfer_reference, Request $request)
+    {
+        $transfer = CustomerTransfer::where('reference', $transfer_reference)->first();
+
+        return match ($request->get('action')) {
+            "accept" => "",
+            "refuse" => ""
+        };
+    }
+
+    private function acceptTransfer(CustomerTransfer $transfer, Request $request)
+    {
+        if($transfer->amount > $transfer->wallet->balance_actual) {
+            return $this->sendWarning("Le montant du transfers ne permet pas sont envoie");
+        } else {
+            $transfer->update([
+                'status' => 'in_transit'
+            ]);
+
+            $transaction_ep = CustomerTransactionHelper::createDebit(
+                $transfer->wallet->id,
+                'virement',
+                'Virement ' . $transfer->wallet->name_account_generic,
+                'REFERENCE ' . $transfer->reference . ' | ' . $transfer->wallet->epargne->plan->name . ' ~ ' . $transfer->wallet->number_account,
+                $transfer->amount,
+            );
+
+            CustomerTransactionHelper::createCredit(
+                $transfer->wallet->epargne->payment->id,
+                'virement',
+                'Virement ' . $transfer->wallet->name_account_generic,
+                'REFERENCE ' . $transfer->reference . ' | ' . $transfer->wallet->epargne->plan->name . ' ~ ' . $transfer->wallet->number_account,
+                $transfer->amount,
+            );
+
+            $transfer->update([
+                'transaction_id' => $transaction_ep->id
+            ]);
+
+            return $this->sendSuccess();
         }
     }
 }

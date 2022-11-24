@@ -7,6 +7,9 @@
         btnRejectTransaction: document.querySelectorAll('.btnRejectTransaction'),
         btnOppositPayment: document.querySelectorAll('.btnOppositPayment'),
         btnRemb: document.querySelectorAll('.btnRemb'),
+        btnViewTransfer: document.querySelectorAll('.btnViewTransfer'),
+        btnAcceptTransfer: document.querySelectorAll('.btnAcceptTransfer'),
+        btnRefuseTransfer: document.querySelectorAll('.btnRefuseTransfer'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -168,6 +171,38 @@
                         setTimeout(() => {
                             window.location.reload()
                         }, 1200)
+                    },
+                    error: err => {
+                        block.blockApp.release()
+                        block.blockApp.destroy()
+                        console.error(err)
+                    }
+                })
+            })
+        })
+    }
+    if (elements.btnAcceptTransfer) {
+        elements.btnAcceptTransfer.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockApp.block()
+
+                $.ajax({
+                    url: '/api/epargne/{{ $wallet->epargne->reference }}/transfers/'+e.target.transfer,
+                    method: 'POST',
+                    data: {"action": "accept"},
+                    success: data => {
+                        block.blockApp.release()
+                        block.blockApp.destroy()
+                        if(data.state === 'warning') {
+                            toastr.warning(`${data.message}`, `Virement Bancaire`)
+                        } else {
+                            toastr.success(`Le virement à bien été accepté`, `Virement Bancaire`)
+
+                            setTimeout(() => {
+                                window.location.reload()
+                            }, 1200)
+                        }
                     },
                     error: err => {
                         block.blockApp.release()
