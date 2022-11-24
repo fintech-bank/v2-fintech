@@ -150,15 +150,14 @@ class EpargneController extends ApiController
                     now()
                 );
 
-                CustomerTransactionHelper::create(
-                    'credit',
+                CustomerTransactionHelper::createCredit(
+                    $wallet->id,
                     'virement',
                     'Virement Compte Epargne '.$wallet->number_account,
-                    $request->get('initial_payment'),
-                    $wallet->id,
-                    true,
                     "REFERENCE " . $epargne->reference . " | Livret " . $wallet->epargne->plan->name . " ~ " . $wallet->number_account,
-                    now(),
+                    $request->get('initial_payment'),
+                    true,
+                    now()
                 );
             }catch (\Exception $exception) {
                 return $this->sendError($exception);
