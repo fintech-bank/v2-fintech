@@ -326,24 +326,24 @@
                         </li>
                         @endif
                     </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="transfer" role="tabpanel">
-                            <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
-                            @foreach($wallet->transfers()->where('status', 'pending')->get() as $transfer)
-                                <div class="card shadow-lg border-left-1 border-gray-800">
-                                    <div class="card-body">
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="transfer" role="tabpanel">
+                        <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
+                        @foreach($wallet->transfers()->where('status', 'pending')->get() as $transfer)
+                            <div class="card shadow-lg border-left-1 border-gray-800">
+                                <div class="card-body">
 
-                                    </div>
                                 </div>
-                            @endforeach
+                            </div>
+                        @endforeach
 
-                        </div>
-                        <div class="tab-pane fade" id="transfer_orga" role="tabpanel">
-                            ...
-                        </div>
-                        <div class="tab-pane fade" id="transfer_assoc" role="tabpanel">
-                            ...
-                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="transfer_orga" role="tabpanel">
+                        ...
+                    </div>
+                    <div class="tab-pane fade" id="transfer_assoc" role="tabpanel">
+                        ...
                     </div>
                 </div>
             </div>
