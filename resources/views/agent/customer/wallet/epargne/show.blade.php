@@ -518,6 +518,12 @@
                             <input type="hidden" name="customer_wallet_id" value="{{ $wallet->id }}">
                             <input type="hidden" name="customer_customer_id" value="{{ $wallet->customer->id }}">
 
+                            <x-form.input
+                                name="amount"
+                                label="Montant à envoyer"
+                                :value="$wallet->epargne->plan->info_retrait->amount"
+                                required="true" />
+
                             <div class="mb-10">
                                 <label for="" class="form-label required">Type de virement</label>
                                 <select name="type" class="form-control selectpicker" required>
