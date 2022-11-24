@@ -6,10 +6,6 @@
         btnRejectTransaction: document.querySelectorAll('.btnRejectTransaction'),
         btnOppositPayment: document.querySelectorAll('.btnOppositPayment'),
         btnRemb: document.querySelectorAll('.btnRemb'),
-        searchSuggestion: document.querySelector('[data-kt-search-element="suggestions"]'),
-        searchResult: document.querySelector('[data-kt-search-element="results"]'),
-        searchEmpty: document.querySelector('[data-kt-search-element="empty"]'),
-        searchElement: document.querySelector('#kt_docs_search_handler_basic'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -20,45 +16,6 @@
     let dataTable = {}
     let block = {}
     let plugins = {}
-
-
-    let processSearch = (search) => {
-        console.log(search.formElement)
-        elements.searchSuggestion.classList.add('d-none')
-
-        $.ajax({
-            url: '{{ route('api.transaction.search') }}',
-            method: 'get',
-            data: $(search.formElement).serializeArray(),
-            success: data => {
-                console.log(data)
-            }
-        })
-    }
-    let clear = (search) => {
-        elements.searchSuggestion.classList.remove('d-none')
-        elements.searchResult.classList.add('d-none')
-        elements.searchEmpty.classList.add('d-none')
-    }
-    let handleSearchInput = () => {
-        const inputSearch = elements.searchElement.querySelector('[data-kt-search-element="input"]')
-        inputSearch.addEventListener('keyup', e => {
-            e.preventDefault()
-            console.log(e.key)
-            if (e.key === "Enter") {
-                e.preventDefault()
-                let searchObject = new KTSearch(elements.searchElement)
-                searchObject.on('kt.search.process', processSearch)
-                searchObject.on('kt.search.clear', clear)
-                handleSearchInput()
-            }
-        })
-    }
-
-    let searchWrapper = elements.searchElement.querySelector('[data-kt-search-element="wrapper"]')
-    handleSearchInput()
-
-
 
     if (elements.btnAcceptTransaction) {
         elements.btnAcceptTransaction.forEach(btn => {
