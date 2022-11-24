@@ -351,7 +351,13 @@
                                         <div class="card-footer">
                                             <div class="d-flex flex-row justify-content-between">
                                                 {{ $transfer->type_text }}
-                                                <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-icon btn-bank btnViewTransfer" data-transfer="{{ $transfer->id }}" data-bs-toggle="tooltip" title="Voir le virement"><i class="fa-solid fa-eye text-white"></i> </button>
+                                                    @if($transfer->status == 'pending')
+                                                        <button class="btn btn-icon btn-success btnAcceptTransfer" data-transfer="{{ $transfer->id }}" data-bs-toggle="tooltip" title="Accepter le virement"><i class="fa-solid fa-check text-white"></i> </button>
+                                                        <button class="btn btn-icon btn-danger btnRefuseTransfer" data-transfer="{{ $transfer->id }}" data-bs-toggle="tooltip" title="Refuser le virement"><i class="fa-solid fa-xmark text-white"></i> </button>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

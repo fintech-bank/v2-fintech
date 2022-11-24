@@ -227,7 +227,7 @@
                 btn.removeAttr('data-kt-indicator')
 
                 if(data.state === 'warning') {
-                    toastr.success(`${data.message()}`, `Création d'un virement`)
+                    toastr.warning(`${data.message()}`, `Création d'un virement`)
 
                     setTimeout(() => {
                         window.location.reload()
