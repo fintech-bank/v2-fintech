@@ -83,6 +83,7 @@
                             <div class="col-md-4 col-sm-12">
                                 <x-form.input
                                     name="monthly_days"
+                                    required="true"
                                     label="Date de prélèvement" />
                             </div>
                         </div>
