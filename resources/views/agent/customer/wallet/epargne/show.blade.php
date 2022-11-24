@@ -311,7 +311,7 @@
             </div>
             <div class="tab-pane fade" id="transfers" role="tabpanel">
                 <div class="d-flex flex-center w-100 mb-10 p-5 bg-white rounded-2">
-                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                    <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Virement</a>
                         </li>
