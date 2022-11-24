@@ -200,7 +200,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="w-50 d-none" data-kt-search-element="suggestions">
+                <div class="w-50" data-kt-search-element="suggestions">
 
                     @foreach($wallet->transactions as $transaction)
                         <div class="mb-5">
@@ -253,10 +253,10 @@
                     @endforeach
 
                 </div>
-                <div data-kt-search-element="results" class="d-none">
+                <div data-kt-search-element="results" class="w-50 d-none">
                     ...
                 </div>
-                <div data-kt-search-element="empty" class="w-50 text-center">
+                <div data-kt-search-element="empty" class="w-50 text-center d-none">
                     <div class="fw-semibold py-0 mb-10">
                         <div class="text-gray-600 fs-3 mb-2">Nous sommes désolés, il n'y a aucun résultat correspondant à votre recherche.</div>
                         <div class="text-gray-400 fs-6">Veuillez vérifier l'orthographe des mots saisis ou complétez-les par un nouveau mot clé.</div>
