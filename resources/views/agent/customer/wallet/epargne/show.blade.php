@@ -249,7 +249,10 @@
                                     </div>
                                     <div class="text-center">
                                         <button class="btn btn-lg btn-circle btn-success btnAcceptTransaction me-2" data-transaction="{{ $transaction->id }}"><i class="fa-solid fa-check-circle me-2"></i> Accepter</button>
-                                        <button class="btn btn-lg btn-circle btn-danger btnRejectTransaction" data-transaction="{{ $transaction->id }}"><i class="fa-solid fa-xmark-circle me-2"></i> Refuser</button>
+                                        <button class="btn btn-lg btn-circle btn-danger btnRejectTransaction me-2" data-transaction="{{ $transaction->id }}"><i class="fa-solid fa-xmark-circle me-2"></i> Refuser</button>
+                                        @if($transaction->type == 'payment')
+                                            <button class="btn btn-lg btn-circle btn-info btnOppositPayment me-2" data-transaction="{{ $transaction->id }}"><i class="fa-solid fa-exchange me-2"></i> Remboursé</button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
