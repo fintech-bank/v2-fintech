@@ -329,6 +329,7 @@
                 </div>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="transfer" role="tabpanel">
+                        <button class="btn btn-bank w-100"><i class="fa-solid fa-plus-circle me-2"></i> Nouveau virement</button>
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
                             @foreach($wallet->transfers()->where('status', 'pending')->orWhere('status', 'in_transit')->get() as $transfer)
