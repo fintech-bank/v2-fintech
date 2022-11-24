@@ -32,6 +32,7 @@
     $(forms.formNewTransfer).find('#immediat').fadeIn()
     $(forms.formNewTransfer).find('#permanent').fadeOut()
     let selectTypeTransfer = (item) => {
+        console.log(item.value)
         if(item.value === 'immediat' || item.value === 'differed') {
             $(forms.formNewTransfer).find('#immediat').fadeIn()
             $(forms.formNewTransfer).find('#permanent').fadeOut()
