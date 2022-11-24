@@ -331,9 +331,9 @@
                     <div class="tab-pane fade show active" id="transfer" role="tabpanel">
                         <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
                         @foreach($wallet->transfers()->where('status', 'pending')->get() as $transfer)
-                            <div class="card shadow-lg border-left-1 border-gray-800">
+                            <div class="card shadow-lg">
                                 <div class="card-body">
-
+                                    <span class="bullet bullet-vertical h-40px bg-gray-800"></span>
                                 </div>
                             </div>
                         @endforeach
