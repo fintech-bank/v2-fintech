@@ -46,7 +46,7 @@
             e.preventDefault()
             console.log(e.key)
             if (e.key === "Enter") {
-
+                e.preventDefault()
                 let searchObject = new KTSearch(elements.searchElement)
                 searchObject.on('kt.search.process', processSearch)
                 searchObject.on('kt.search.clear', clear)

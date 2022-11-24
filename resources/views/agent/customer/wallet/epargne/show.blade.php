@@ -170,37 +170,6 @@
                 data-kt-search-min-length="2"
                 data-kt-search-enter="true"
                 data-kt-search-layout="inline">
-                <div class="card shadow-sm mb-10">
-                    <div class="card-body">
-                        <form data-kt-search-element="form" class="w-100 position-relative mb-5" autocomplete="off">
-                            <input type="hidden"/>
-                            <input type="hidden" name="wallet_id" value="{{ $wallet->id }}">
-                            <div class="input-group mb-5">
-                                <i class="fa-solid fa-search fs-2 text-gray-500 position-absolute top-50 ms-5 translate-middle-y"></i>
-                                <input type="text" class="form-control form-control-lg form-control-solid px-15"
-                                       name="search"
-                                       value=""
-                                       placeholder="Saisissez une enseigne, un montant ou un type d'opération"
-                                       data-kt-search-element="input"/>
-                                <span class="position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5" data-kt-search-element="spinner">
-                                    <span class="spinner-border h-15px w-15px align-middle text-gray-400"></span>
-                                </span>
-                                <span class="btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 me-5 d-none"
-                                      data-kt-search-element="clear">
-                                    <i class="fa-solid fa-xmark"></i>
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                </span>
-                                <div class="input-group-addon" id="basic-addon1">
-                                    <select class="form-control selectpicker" name="duration">
-                                        <option value="mensuel">Sur les 30 derniers jours</option>
-                                        <option value="trimestriel" selected>Sur les 30 derniers jours</option>
-                                        <option value="semestriel">Sur les 30 derniers jours</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
                 <div class="w-50" data-kt-search-element="suggestions">
 
                     @foreach($wallet->transactions as $transaction)
