@@ -9,6 +9,8 @@
         searchSuggestion: document.querySelector('[data-kt-search-element="suggestions"]'),
         searchResult: document.querySelector('[data-kt-search-element="results"]'),
         searchEmpty: document.querySelector('[data-kt-search-element="empty"]'),
+        searchElement: document.querySelector('#kt_docs_search_handler_basic'),
+        searchWrapper: element.querySelector('[data-kt-search-element="wrapper"]')
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -16,28 +18,45 @@
     let forms = {
         formUpdateStateAccount: document.querySelector("#formUpdateStateAccount"),
     }
-    let dataTable = {
-    }
-    let block = {
-
-    }
-    let plugins = {
-
-    }
+    let dataTable = {}
+    let block = {}
+    let plugins = {}
 
     let processSearch = (search) => {
+        console.log(search)
+        elements.searchSuggestion.classList.add('d-none')
 
     }
+    let clear = (search) => {
+        elements.searchSuggestion.classList.remove('d-none')
+        elements.searchResult.classList.add('d-none')
+        elements.searchEmpty.classList.add('d-none')
+    }
+    let handleSearchInput = () => {
+        const inputSearch = element.querySelector('[data-kt-search-element="input"]')
+        inputSearch.addEventListener('keydown', e => {
+            if (e.key === "Enter") {
+                e.preventDefault()
+            }
+        })
+    }
+    if (!elements.searchElement) {
+        return;
+    }
+    let searchObject = new KTSearch(elements.searchElement)
+    searchObject.on('kt.search.process', processSearch)
+    searchObject.on('kt.search.clear', clear)
+    handleSearchInput()
 
 
-    if(elements.btnAcceptTransaction) {
+    if (elements.btnAcceptTransaction) {
         elements.btnAcceptTransaction.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
                 block.blockTableComing.block()
 
                 $.ajax({
-                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+btn.dataset.transaction,
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/' + btn.dataset.transaction,
                     method: 'POST',
                     data: {"action": "accept"},
                     success: () => {
@@ -58,7 +77,7 @@
             })
         })
     }
-    if(elements.btnRejectTransaction) {
+    if (elements.btnRejectTransaction) {
         elements.btnRejectTransaction.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
@@ -74,7 +93,7 @@
                     showLoaderOnConfirm: true,
                     preConfirm: (raison) => {
                         $.ajax({
-                            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+btn.dataset.transaction,
+                            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/' + btn.dataset.transaction,
                             method: 'POST',
                             data: {"action": "reject", "raison": raison},
                             success: () => {
@@ -98,7 +117,7 @@
             })
         })
     }
-    if(elements.btnOppositPayment) {
+    if (elements.btnOppositPayment) {
         elements.btnOppositPayment.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
@@ -114,7 +133,7 @@
                     showLoaderOnConfirm: true,
                     preConfirm: (raison) => {
                         $.ajax({
-                            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+btn.dataset.transaction,
+                            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/' + btn.dataset.transaction,
                             method: 'POST',
                             data: {"action": "opposit", "raison": raison},
                             success: () => {
@@ -138,14 +157,14 @@
             })
         })
     }
-    if(elements.btnRemb) {
+    if (elements.btnRemb) {
         elements.btnRemb.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
                 block.blockTableTransaction.block()
 
                 $.ajax({
-                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+btn.dataset.transaction,
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/' + btn.dataset.transaction,
                     method: 'POST',
                     data: {"action": "remb"},
                     success: () => {
