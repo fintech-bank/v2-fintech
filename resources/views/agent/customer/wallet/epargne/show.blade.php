@@ -313,19 +313,30 @@
                 <div class="d-flex flex-center w-100 mb-10 p-5 bg-white rounded-2">
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Virement</a>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#transfer">Virement</a>
                         </li>
                         @if($wallet->epargne->plan->info_retrait->retrait_type->sepa_orga)
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Virement vers organisme</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#transfer_orga">Virement vers organisme</a>
                         </li>
                         @endif
                         @if($wallet->epargne->plan->info_retrait->retrait_type->sepa_assoc)
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3">Virement vers Association</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#transfer_assoc">Virement vers Association</a>
                         </li>
                         @endif
                     </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="transfer" role="tabpanel">
+                            ...
+                        </div>
+                        <div class="tab-pane fade" id="transfer_orga" role="tabpanel">
+                            ...
+                        </div>
+                        <div class="tab-pane fade" id="transfer_assoc" role="tabpanel">
+                            ...
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
