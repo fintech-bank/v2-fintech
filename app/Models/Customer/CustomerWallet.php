@@ -71,7 +71,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet active()
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet compte()
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet credit()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet epargne()
  * @method static \Database\Factories\Customer\CustomerWalletFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet newQuery()
@@ -95,6 +94,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereUuid($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toCompte()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toCredit()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toEpargne()
  */
 class CustomerWallet extends Model
 {
@@ -253,22 +256,22 @@ class CustomerWallet extends Model
         return $datas->all();
     }
 
-    public function scopeEpargne($query)
+    public function scopeToEpargne($query)
     {
         return $query->where('type', 'epargne');
     }
 
-    public function scopeCompte($query)
+    public function scopeToCompte($query)
     {
         return $query->where('type', 'compte');
     }
 
-    public function scopeCredit($query)
+    public function scopeToCredit($query)
     {
         return $query->where('type', 'pret');
     }
 
-    public function scopeActive($query)
+    public function scopeToActive($query)
     {
         return $query->where('status', 'active');
     }
