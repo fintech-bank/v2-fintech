@@ -205,7 +205,10 @@
                         <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
                             <div class="align-items-center">
                                 {!! $transaction->getTypeSymbolAttribute(20) !!}
-                                {{ $transaction->designation }}
+                                <div class="d-flex flex-column">
+                                    {{ $transaction->designation }}
+                                    {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format("d/m/Y")) }}
+                                </div>
                             </div>
                             {{ $transaction->amount_format }}
                         </a>
