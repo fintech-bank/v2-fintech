@@ -261,7 +261,7 @@
                                                 @if($wallet->epargne->plan->lock_days == 0)
                                                     <span class="text-success">Disponible</span>
                                                 @else
-                                                    @if
+                                                    <span class="text-warning">{{ now()->diffForHumans(now()->addDays($wallet->epargne->plan->lock_days)) }}</span>
                                                 @endif
                                             </div>
                                         </div>
