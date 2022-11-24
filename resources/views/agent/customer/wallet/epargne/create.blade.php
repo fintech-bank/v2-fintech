@@ -110,7 +110,30 @@
                         </div>
                     </div>
                     <div class="card-body">
-
+                        <div class="mb-7">
+                            <h5 class="mb-3">Intêret annuel</h5>
+                            <div class="mb-0" data-content="profit_percent"></div>
+                        </div>
+                        <div class="separator separator-dashed mb-7"></div>
+                        <div class="mb-7">
+                            <h5 class="mb-3">Interval de calcul des intêrets</h5>
+                            <div class="mb-0" data-content="profit_days"></div>
+                        </div>
+                        <div class="separator separator-dashed mb-7"></div>
+                        <div class="mb-7">
+                            <h5 class="mb-3">Interval de déblocage des fonds</h5>
+                            <div class="mb-0" data-content="lock_days"></div>
+                        </div>
+                        <div class="separator separator-dashed mb-7"></div>
+                        <div class="mb-7">
+                            <h5 class="mb-3">Montant de dépot initial minimum</h5>
+                            <div class="mb-0" data-content="init"></div>
+                        </div>
+                        <div class="separator separator-dashed mb-7"></div>
+                        <div class="mb-7">
+                            <h5 class="mb-3">Limite de capacité</h5>
+                            <div class="mb-0" data-content="limit_amount"></div>
+                        </div>
                     </div>
                 </div>
             </div>
