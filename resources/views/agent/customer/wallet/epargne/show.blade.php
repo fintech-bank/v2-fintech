@@ -242,6 +242,17 @@
                                 <div class="col-md-2 col-sm-4">
                                     <div class="d-flex flex-row p-2 border border-dashed border-gray-400">
                                         <div class="symbol symbol-50px me-3">
+                                            <div class="symbol-label"><i class="fa-solid fa-percentage"></i> </div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h3 class="fw-bolder">Intêret</h3>
+                                            <div class="fs-2">{{ $wallet->epargne->plan->profit_percent_format }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-4">
+                                    <div class="d-flex flex-row p-2 border border-dashed border-gray-400">
+                                        <div class="symbol symbol-50px me-3">
                                             <div class="symbol-label">L</div>
                                         </div>
                                         <div class="d-flex flex-column">
