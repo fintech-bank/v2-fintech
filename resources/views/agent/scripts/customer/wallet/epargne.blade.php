@@ -54,6 +54,7 @@
     }
 
     let searchWrapper = elements.searchElement.querySelector('[data-kt-search-element="wrapper"]')
+    handleSearchInput()
 
 
 
