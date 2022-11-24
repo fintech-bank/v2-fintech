@@ -1,7 +1,7 @@
 <script type="text/javascript">
     let tables = {}
     let elements = {
-        inputLoanPlanId: document.querySelector('[name="loan_plan_id"]')
+        inputEpargnePlanId: document.querySelector('[name="epargne_plan_id"]')
     }
     let modals = {}
     let forms = {
@@ -12,8 +12,8 @@
         blockForm: new KTBlockUI(forms.formAddEpargne)
     }
 
-    if(elements.inputLoanPlanId) {
-        elements.inputLoanPlanId.addEventListener('change', e => {
+    if(elements.inputEpargnePlanId) {
+        elements.inputEpargnePlanId.addEventListener('change', e => {
             e.preventDefault()
             block.blockForm.block()
 
