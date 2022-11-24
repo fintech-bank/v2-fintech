@@ -91,4 +91,22 @@ class CustomerEpargne extends Model
     {
         return eur($this->profit);
     }
+
+    public function getSoldeWalletForLimit($format = '')
+    {
+        $solde = $this->wallet->balance_actual;
+        if($format == 'percent') {
+            return $solde * $this->plan->limit_amount / 100;
+        } elseif ($format == 'percentFormat') {
+            return $solde * $this->plan->limit_amount / 100 ." %";
+        } elseif ($format = 'color') {
+            if($this->getSoldeWalletForLimit('percent') >= 0 && $this->getSoldeWalletForLimit('percent') <= 33) {
+                return 'success';
+            } elseif ($this->getSoldeWalletForLimit('percent') >= 34 && $this->getSoldeWalletForLimit('percent') <= 66) {
+                return 'warning';
+            } else {
+                return 'danger';
+            }
+        }
+    }
 }
