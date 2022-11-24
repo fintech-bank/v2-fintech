@@ -33,7 +33,7 @@ class CustomerWalletHelper
         $faker = Factory::create('fr_FR');
         $iban = $faker->iban('FR');
         $number_account = Str::substr($iban, 4, 9);
-        $key = Str::substr($iban, 14, 2);
+        $key = Str::substr($iban, 25, 2);
 
         $wallet = CustomerWallet::create([
             'uuid' => \Str::uuid(),
