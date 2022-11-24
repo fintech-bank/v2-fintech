@@ -34,7 +34,6 @@ class TransferController extends ApiController
                 'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
                 'recurring_end' => $request->get('type') == 'permanent' ? $request->get('recurring_end') : null,
                 'customer_wallet_id' => $request->get('customer_wallet_id'),
-                'customer_beneficiaire_id' => $request->get('customer_beneficiaire_id'),
                 'status' => 'in_transit'
             ]);
 
