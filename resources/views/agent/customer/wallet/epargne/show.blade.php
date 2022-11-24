@@ -311,16 +311,20 @@
             </div>
             <div class="tab-pane fade" id="transfers" role="tabpanel">
                 <div class="d-flex flex-center w-100 mb-10">
-                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x nav-justified mb-5 fs-6">
+                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Link 1</a>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Virement</a>
                         </li>
+                        @if($wallet->epargne->info_retrait->retrait_type->sepa_orga)
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Link 2</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Virement vers organisme</a>
                         </li>
+                        @endif
+                        @if($wallet->epargne->info_retrait->retrait_type->sepa_assoc)
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3">Link 3</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3">Virement vers Association</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </div>
