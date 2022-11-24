@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerWallet;
 use App\Services\SlackNotifier;
 use Illuminate\Console\Command;
@@ -50,16 +51,16 @@ class SystemEpargneCommand extends Command
 
     private function activeWallet()
     {
-        $wallets = CustomerWallet::where('type', 'epargne')->where('status', 'pending')->get();
+        $customers = Customer::where('status_open_account', 'terminated')->get();
         $i = 0;
 
-        foreach ($wallets as $wallet) {
-            dd($wallet->load('customer'));
-            if ($wallet->customer->documents()->where('reference', $wallet->epargne->reference)->where('signed_by_client', 1)->count() != 0){
-                $wallet->update(['status' => 'active']);
-                $i++;
+        foreach ($customers as $customer) {
+            foreach ($customer->epargnes()->get() as $epargne) {
+                $wallet = $epargne->wallet;
+                dd($wallet);
             }
         }
+
 
         $this->slack->send("Activation des comptes d'épargne", json_encode([strip_tags("Nombre de compte mise a jours: ").$i]));
     }
