@@ -96,9 +96,9 @@ class CustomerEpargne extends Model
     {
         $solde = $this->wallet->balance_actual;
         if($format == 'percent') {
-            return floatval($solde * 100 / $this->plan->limit_amount);
+            return number_format($solde * 100 / $this->plan->limit_amount, 2);
         } elseif ($format == 'percent_format') {
-            return floatval($solde * 100 / $this->plan->limit_amount) ." %";
+            return number_format($solde * 100 / $this->plan->limit_amount, 2) ." %";
         } elseif ($format = 'color') {
             if($this->getSoldeWalletForLimit('percent') >= 0 && $this->getSoldeWalletForLimit('percent') <= 33) {
                 return 'success';
