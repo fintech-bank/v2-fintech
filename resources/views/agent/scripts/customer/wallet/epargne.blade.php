@@ -10,18 +10,34 @@
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
+        modalNewTransfer: document.querySelector('#newTransfer'),
     }
     let forms = {
         formUpdateStateAccount: document.querySelector("#formUpdateStateAccount"),
+        formNewTransfer: document.querySelector('#formNewTransfer'),
     }
     let dataTable = {}
     let block = {
         blockApp: new KTBlockUI(elements.app, {
             message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Chargement...</div>',
             overlayClass: "bg-gray-600 bg-opacity-25",
-        })
+        }),
+        blockNewTransfer: new KTBlockUI(modals.modalNewTransfer.querySelector('.modal-body'), {
+            message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Chargement...</div>',
+            overlayClass: "bg-gray-600 bg-opacity-25",
+        }),
     }
     let plugins = {}
+
+    let selectTypeTransfer = (item) => {
+        if(item.value === 'immediat' || item.value === 'differed') {
+            $(forms.formNewTransfer).find('#immediat').fadeIn()
+            $(forms.formNewTransfer).find('#permanent').fadeOut()
+        } else {
+            $(forms.formNewTransfer).find('#immediat').fadeOut()
+            $(forms.formNewTransfer).find('#permanent').fadeIn()
+        }
+    }
 
     if (elements.btnAcceptTransaction) {
         elements.btnAcceptTransaction.forEach(btn => {

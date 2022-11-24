@@ -532,14 +532,14 @@
                                     <option value="permanent">Permanent</option>
                                 </select>
                             </div>
-                            <div id="immediat">
+                            <div id="immediat" class="d-none">
                                 <x-form.input-date
                                     name="transfer_date"
                                     label="Date de transfer"
                                     :value="now()->hour >= 16 ? now()->addDay()->format('Y-m-d H:i') : now()->format('Y-m-d H:i')" />
                             </div>
 
-                            <div id="permanent">
+                            <div id="permanent" class="d-none">
                                 <x-form.input-date
                                     name="recurring_start"
                                     label="Date de début" />
