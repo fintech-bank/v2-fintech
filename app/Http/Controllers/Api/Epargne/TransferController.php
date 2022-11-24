@@ -75,7 +75,7 @@ class TransferController extends ApiController
         $transfer = CustomerTransfer::where('reference', $transfer_reference)->first();
 
         return match ($request->get('action')) {
-            "accept" => "",
+            "accept" => $this->acceptTransfer($transfer, $request),
             "refuse" => ""
         };
     }
