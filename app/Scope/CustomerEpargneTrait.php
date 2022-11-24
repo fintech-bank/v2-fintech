@@ -16,7 +16,6 @@ trait CustomerEpargneTrait
 
     public static function verifyInfoTransfer(CustomerEpargne $epargne, Request $request)
     {
-        $error = collect();
         if(json_decode($epargne->plan->info_retrait)->amount < $request->get('amount')) {
             LogHelper::insertLogSystem('error', "Montant Supérieurs à la limite autorisée.");
             return false;
