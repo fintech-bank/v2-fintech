@@ -519,12 +519,19 @@
                             <input type="hidden" name="customer_customer_id" value="{{ $wallet->customer->id }}">
 
                             <div class="mb-10">
-                                <label for="">Type de virement</label>
-                                <select name="type" class="form-control selectpicker">
+                                <label for="" class="form-label required">Type de virement</label>
+                                <select name="type" class="form-control selectpicker" required>
                                     <option value="immediat">Immédiat</option>
                                     <option value="differed">Différé</option>
                                     <option value="permanent">Permanent</option>
                                 </select>
+                            </div>
+                            <div id="immediat">
+                                <x-form.input-date
+                                    name="transfer_date"
+                                    label="Date de transfer"
+                                    :value="now()->hour >= 16 ? now()->addDay()->format('Y-m-d H:i') : now()->format('Y-m-d H:i')" />
+
                             </div>
                         </div>
                         <div class="modal-footer">
