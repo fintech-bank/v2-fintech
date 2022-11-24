@@ -213,9 +213,9 @@
                                 </div>
                             </div>
                             @if($transaction->amount < 0)
-                                <span class="text-danger">{{ $transaction->amount_format }}</span>
+                                <span class="text-danger fw-bolder">{{ $transaction->amount_format }}</span>
                             @else
-                                <span class="text-success">{{ $transaction->amount_format }}</span>
+                                <span class="text-success fw-bolder">+ {{ $transaction->amount_format }}</span>
                             @endif
                         </a>
                     @endforeach
