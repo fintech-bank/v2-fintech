@@ -332,8 +332,7 @@
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
                             @foreach($wallet->transfers()->where('status', 'pending')->orWhere('status', 'in_transit')->get() as $transfer)
-                                @dd(isset($transfer) ? true : false)
-                                @if($transfer->count() == 0)
+                                @if(!$transfer)
                                     <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
                                         <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
                                         <div class="fs-1">Aucun virement en attente actuellement</div>
@@ -366,8 +365,7 @@
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement passés</div>
                             @foreach($wallet->transfers()->where('status', 'paid')->get() as $transfer)
-                                @dd($transfer->count())
-                                @if($transfer->count() == 0)
+                                @if(!$transfer)
                                     <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
                                         <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
                                         <div class="fs-1">Aucun virement en attente actuellement</div>
