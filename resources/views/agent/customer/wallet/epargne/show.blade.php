@@ -350,7 +350,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <div class="d-flex flex-row justify-content-between align-items-center">
-                                                {{ $transfer->type_text }}
+                                                <div class="fw-bold fs-3">{{ $transfer->type_text }}</div>
                                                 <div class="btn-group">
                                                     <button class="btn btn-icon btn-bank btnViewTransfer" data-transfer="{{ $transfer->id }}" data-bs-toggle="tooltip" title="Voir le virement"><i class="fa-solid fa-eye text-white"></i> </button>
                                                     @if($transfer->status == 'pending')
