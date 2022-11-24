@@ -47,6 +47,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $start
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereStart($value)
  * @property-read \App\Models\Customer\Customer $customer
+ * @property int $customer_id
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereCustomerId($value)
  */
 class CustomerEpargne extends Model
 {

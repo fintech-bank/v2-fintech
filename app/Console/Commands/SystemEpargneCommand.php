@@ -50,6 +50,16 @@ class SystemEpargneCommand extends Command
 
     private function activeWallet()
     {
-        $wallets = CustomerWallet::where('');
+        $wallets = CustomerWallet::epargne()->active()->get();
+        $i = 0;
+
+        foreach ($wallets as $wallet) {
+            if ($wallet->customer->documents()->where('signable', 1)->where('signed_by_client', 1)->count() != 0){
+                $wallet->update(['status' => 'active']);
+                $i++;
+            }
+        }
+
+        $this->slack->send("Activation des comptes d'épargne", json_encode([strip_tags("Nombre de compte mise a jours: ").$i]));
     }
 }

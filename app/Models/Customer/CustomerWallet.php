@@ -94,6 +94,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $insurances_count
  * @property string|null $sepa_stripe_mandate
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereSepaStripeMandate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet compte()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet credit()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet epargne()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet active()
  */
 class CustomerWallet extends Model
 {
@@ -265,6 +269,11 @@ class CustomerWallet extends Model
     public function scopeCredit($query)
     {
         return $query->where('type', 'pret');
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
     }
 
     /**
