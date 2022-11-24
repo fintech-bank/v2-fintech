@@ -329,31 +329,58 @@
                 </div>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="transfer" role="tabpanel">
-                        <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
-                        @foreach($wallet->transfers()->where('status', 'pending')->get() as $transfer)
-                            <div class="card shadow-lg">
-                                <div class="card-body">
-                                    <div class="d-flex flex-row justify-content-between align-items-center mb-5">
-                                        <div class="d-flex flex-column">
-                                            <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
-                                            depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
+                        <div class="mb-10">
+                            <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
+                            @foreach($wallet->transfers()->where('status', 'pending')->get() as $transfer)
+                                <div class="card shadow-lg mb-5">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row justify-content-between align-items-center mb-5">
+                                            <div class="d-flex flex-column">
+                                                <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
+                                                depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
+                                            </div>
+                                            <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
                                         </div>
-                                        <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
+                                        <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                                            {!! $transfer->status_label !!}
+                                            {{ $transfer->transfer_date->format("d/m/Y") }}
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-row justify-content-between align-items-center mb-2">
-                                        {!! $transfer->status_label !!}
-                                        {{ $transfer->transfer_date->format("d/m/Y") }}
+                                    <div class="card-footer">
+                                        <div class="d-flex flex-row justify-content-between">
+                                            {{ $transfer->type_text }}
+                                            <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="d-flex flex-row justify-content-between">
-                                        {{ $transfer->type_text }}
-                                        <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
+                            @endforeach
+                        </div>
+                        <div class="mb-10">
+                            <div class="fw-bolder fs-1 mb-5">Virement passés</div>
+                            @foreach($wallet->transfers()->where('status', 'paid')->get() as $transfer)
+                                <div class="card shadow-lg mb-5">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row justify-content-between align-items-center mb-5">
+                                            <div class="d-flex flex-column">
+                                                <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
+                                                depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
+                                            </div>
+                                            <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                                            {!! $transfer->status_label !!}
+                                            {{ $transfer->transfer_date->format("d/m/Y") }}
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex flex-row justify-content-between">
+                                            {{ $transfer->type_text }}
+                                            <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-
+                            @endforeach
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="transfer_orga" role="tabpanel">
                         ...
