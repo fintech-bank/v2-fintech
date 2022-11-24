@@ -6,6 +6,7 @@ use App\Helper\CustomerWalletTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 /**
  * App\Models\Customer\CustomerWallet
  *
@@ -20,9 +21,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $balance_coming
  * @property int $decouvert
  * @property float $balance_decouvert
+ * @property float $taux_decouvert
  * @property int $alert_debit
  * @property int $alert_fee
  * @property \Illuminate\Support\Carbon|null $alert_date
+ * @property int $nb_alert
+ * @property string|null $sepa_stripe_mandate
  * @property int $customer_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerCreditCard[] $cards
  * @property-read int|null $cards_count
@@ -31,10 +35,29 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerCreditor[] $creditors
  * @property-read int|null $creditors_count
  * @property-read \App\Models\Customer\Customer $customer
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerCheckDeposit[] $deposits
+ * @property-read int|null $deposits_count
  * @property-read \App\Models\Customer\CustomerEpargne|null $epargne
  * @property-read \App\Models\Customer\CustomerEpargne|null $epargne_payment
  * @property-read \App\Models\Customer\CustomerFacelia|null $facelia
+ * @property-read mixed $alert_status_comment
+ * @property-read mixed $alert_status_text
+ * @property-read mixed $balance_actual_format
+ * @property-read mixed $iban_format
+ * @property-read mixed $name_account
+ * @property-read mixed $name_account_generic
+ * @property-read mixed $solde_remaining
+ * @property-read mixed $status_color
+ * @property-read mixed $status_label
+ * @property-read mixed $status_text
+ * @property-read mixed $sum_month_operation
+ * @property-read string|null $type_text
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerInsurance[] $insurances
+ * @property-read int|null $insurances_count
  * @property-read \App\Models\Customer\CustomerPret|null $loan
+ * @property-read \App\Models\Customer\CustomerMobility|null $mobility
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMoneyDeposit[] $moneys
+ * @property-read int|null $moneys_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerRefundAccount[] $refunds
  * @property-read int|null $refunds_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerSepa[] $sepas
@@ -43,6 +66,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $transactions_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerTransfer[] $transfers
  * @property-read int|null $transfers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerWithdraw[] $withdraws
+ * @property-read int|null $withdraws_count
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet active()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet compte()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet credit()
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet epargne()
  * @method static \Database\Factories\Customer\CustomerWalletFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet newQuery()
@@ -57,47 +86,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereDecouvert($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereIban($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereNbAlert($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereNumberAccount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereRibKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereSepaStripeMandate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereTauxDecouvert($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereUuid($value)
  * @mixin \Eloquent
- * @mixin IdeHelperCustomerWallet
- * @property-read \App\Models\Customer\CustomerMobility|null $mobility
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerWithdraw[] $withdraws
- * @property-read int|null $withdraws_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerCheckDeposit[] $deposit_check
- * @property-read int|null $deposit_check_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerCheckDeposit[] $depositCheck
- * @property-read string|null $type_text
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerCheckDeposit[] $deposits
- * @property-read int|null $deposits_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMoneyDeposit[] $moneys
- * @property-read int|null $moneys_count
- * @property float $taux_decouvert
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereTauxDecouvert($value)
- * @property int $nb_alert
- * @property-read mixed $name_account
- * @property-read mixed $name_account_generic
- * @property-read mixed $status_label
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereNbAlert($value)
- * @property-read mixed $solde_remaining
- * @property-read mixed $sum_month_operation
- * @property-read mixed $balance_actual_format
- * @property-read mixed $alert_status_comment
- * @property-read mixed $alert_status_text
- * @property-read mixed $status_color
- * @property-read mixed $status_text
- * @property-read mixed $iban_format
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerInsurance[] $insurances
- * @property-read int|null $insurances_count
- * @property string|null $sepa_stripe_mandate
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet whereSepaStripeMandate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet compte()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet credit()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet epargne()
- * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet active()
  */
 class CustomerWallet extends Model
 {
