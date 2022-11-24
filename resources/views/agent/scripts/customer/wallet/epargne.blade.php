@@ -10,7 +10,6 @@
         searchResult: document.querySelector('[data-kt-search-element="results"]'),
         searchEmpty: document.querySelector('[data-kt-search-element="empty"]'),
         searchElement: document.querySelector('#kt_docs_search_handler_basic'),
-        searchWrapper: this.searchElement.querySelector('[data-kt-search-element="wrapper"]')
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
