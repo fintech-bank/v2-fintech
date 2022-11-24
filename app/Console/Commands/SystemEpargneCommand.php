@@ -41,10 +41,11 @@ class SystemEpargneCommand extends Command
         if ($this->checkCustomMutex()) {
             return 0;
         }
-        return match ($this->argument('action')) {
+        match ($this->argument('action')) {
             "activeWallet" => $this->activeWallet(),
         };
 
+        return Command::SUCCESS;
     }
 
     private function activeWallet()
