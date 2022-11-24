@@ -74,12 +74,12 @@ class EpargnePlan extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'info_versement' => 'array',
-        'info_credit' => 'array',
-        'info_retrait' => 'array',
-        'info_deces' => 'array',
-        'info_frais' => 'array',
-        'info_liberation' => 'array'
+        'info_versement' => 'object',
+        'info_credit' => 'object',
+        'info_retrait' => 'object',
+        'info_deces' => 'object',
+        'info_frais' => 'object',
+        'info_liberation' => 'object'
     ];
 
     protected $appends = ['profit_percent_format', 'init_format', 'limit_amount_format'];
