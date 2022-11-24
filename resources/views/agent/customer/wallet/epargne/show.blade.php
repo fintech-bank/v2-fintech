@@ -515,7 +515,17 @@
 
                     <form id="formNewTransfer" action="/api/customer/{{ $wallet->customer_id }}/wallet/{{ $wallet->number_account }}/transfers" method="post">
                         <div class="modal-body">
+                            <input type="hidden" name="customer_wallet_id" value="{{ $wallet->id }}">
+                            <input type="hidden" name="customer_customer_id" value="{{ $wallet->customer->id }}">
 
+                            <div class="mb-10">
+                                <label for="">Type de virement</label>
+                                <select name="type" class="form-control selectpicker">
+                                    <option value="immediat">Immédiat</option>
+                                    <option value="differed">Différé</option>
+                                    <option value="permanent">Permanent</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer">
 
