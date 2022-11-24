@@ -222,15 +222,28 @@
                             <div class="collapse" id="content">
                                 <div class="card card-body">
                                     <div class="ps-5 text-muted mb-5">{{ $transaction->type_text }}</div>
-                                    <x-base.underline
-                                        title="Détails de l'opération"
-                                        class="mb-2"
-                                        size-text="fs-3"
-                                        size="3"
-                                        color="{{ $transaction->type_color }}" />
-                                    <div class="d-flex flex-row justify-content-around">
-                                        <div>Transaction effectuée le: {{ $transaction->updated_at->format("d/m/Y") }}</div>
-                                        <div>Comptabilisé à la date du: {{ $transaction->confirmed ? $transaction->confirmed_at->format("d/m/Y") : ($transaction->differed ? $transaction->differed_at->format("d/m/Y") : $transaction->updated_at->format("d/m/Y")) }}</div>
+                                    <div class="mb-5">
+                                        <x-base.underline
+                                            title="Détails de l'opération"
+                                            class="mb-2"
+                                            size-text="fs-3"
+                                            size="3"
+                                            color="{{ $transaction->type_color }}" />
+                                        <div class="d-flex flex-row justify-content-around">
+                                            <div>Transaction effectuée le: {{ $transaction->updated_at->format("d/m/Y") }}</div>
+                                            <div>Comptabilisé à la date du: {{ $transaction->confirmed ? $transaction->confirmed_at->format("d/m/Y") : ($transaction->differed ? $transaction->differed_at->format("d/m/Y") : $transaction->updated_at->format("d/m/Y")) }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <x-base.underline
+                                            title="Libellé complet"
+                                            class="mb-2"
+                                            size-text="fs-3"
+                                            size="3"
+                                            color="{{ $transaction->type_color }}" />
+                                        <div class="d-flex flex-row justify-content-around">
+                                            <div>{{ $transaction->description }}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
