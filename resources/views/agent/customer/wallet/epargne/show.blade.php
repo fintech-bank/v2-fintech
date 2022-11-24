@@ -203,7 +203,7 @@
 
                     @foreach($wallet->transactions as $transaction)
                         <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
-                            <div class="align-items-center">
+                            <div class="d-flex flex-row align-items-center">
                                 {!! $transaction->getTypeSymbolAttribute(20) !!}
                                 <div class="d-flex flex-column">
                                     {{ $transaction->designation }}
