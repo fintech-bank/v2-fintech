@@ -500,7 +500,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" tabindex="-1" id="modalNewTransfer">
+        <div class="modal fade" tabindex="-1" id="newTransfer">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-bank">
@@ -515,7 +515,7 @@
 
                     <form id="formNewTransfer" action="/api/customer/{{ $wallet->customer_id }}/wallet/{{ $wallet->number_account }}/transfers" method="post">
                         <div class="modal-body">
-                            
+
                         </div>
                         <div class="modal-footer">
 
