@@ -24,16 +24,19 @@ class Button extends Component
      * @var array
      */
     public $dataset;
+    public bool $disabled;
 
     /**
      * Create a new component instance.
      *
-     * @param  array  $dataset
-     * @param  string  $text
-     * @param  string  $textProgress
-     * @param  null  $id
+     * @param string $class
+     * @param string $text
+     * @param string $textProgress
+     * @param null $id
+     * @param array $dataset
+     * @param bool $disabled
      */
-    public function __construct($class = 'btn-bank', $text = 'Valider', $textProgress = 'Veuillez patientez...', $id = null, $dataset = [])
+    public function __construct(string $class = 'btn-bank', string $text = 'Valider', string $textProgress = 'Veuillez patientez...', $id = null, array $dataset = [], bool $disabled = false)
     {
         //
         $this->class = $class;
@@ -41,6 +44,7 @@ class Button extends Component
         $this->textProgress = $textProgress;
         $this->id = $id;
         $this->dataset = $dataset;
+        $this->disabled = $disabled;
     }
 
     /**
