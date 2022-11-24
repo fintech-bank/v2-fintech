@@ -166,7 +166,7 @@ class EpargneController extends ApiController
 
             $customer->info->notify(new NewEpargneNotification($customer, $wallet));
 
-            return $this->sendSuccess(null, ["epargne" => $epargne]);
+            return $this->sendSuccess(null, ["epargne" => $epargne->with('wallet')]);
         } else {
             return $this->sendWarning("Prérequis non remplie", [VerifyEpargneFromPlanTrait::verifRequest($request, $customer)]);
         }
