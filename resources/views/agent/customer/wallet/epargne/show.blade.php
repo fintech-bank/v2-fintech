@@ -203,11 +203,13 @@
 
                     @foreach($wallet->transactions as $transaction)
                         <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
-                            <div class="d-flex flex-row align-items-center">
-                                {!! $transaction->getTypeSymbolAttribute(20) !!}
+                            <div class="d-flex flex-row align-items-center text-black">
+                                {!! $transaction->getTypeSymbolAttribute() !!}
                                 <div class="d-flex flex-column">
                                     {{ $transaction->designation }}<br>
-                                    {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format("d/m/Y")) }}
+                                    <div class="text-muted">
+                                        {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format("d/m/Y")) }}
+                                    </div>
                                 </div>
                             </div>
                             {{ $transaction->amount_format }}
