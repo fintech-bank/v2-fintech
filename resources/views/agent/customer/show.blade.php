@@ -480,7 +480,7 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex flex-row align-items-center">
-                                            {!! $transaction->getTypeSymbolAttribute('20px') !!}
+                                            {!! $transaction->getTypeSymbolAttribute(20) !!}
                                             <span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-html="true" title="<i class='fa-solid fa-info-circle me-2'></i>Information" data-bs-content="{{ $transaction->designation }}">{{ $transaction->description }}</span>
                                         </div>
                                     </td>

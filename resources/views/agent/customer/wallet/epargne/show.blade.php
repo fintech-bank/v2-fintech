@@ -329,7 +329,7 @@
                 </div>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="transfer" role="tabpanel">
-                        <button class="btn btn-bank w-100 mb-5"><i class="fa-solid fa-plus-circle fs-2 text-white me-2"></i> Nouveau virement</button>
+                        <button class="btn btn-bank w-100 mb-5" data-bs-toggle="modal" data-bs-target="#newTransfer"><i class="fa-solid fa-plus-circle fs-2 text-white me-2"></i> Nouveau virement</button>
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
                             @foreach($wallet->transfers()->where('status', 'pending')->orWhere('status', 'in_transit')->get() as $transfer)
@@ -495,6 +495,30 @@
                             <div class="d-flex align-items-end">
                                 <x-form.button />
                             </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" id="modalNewTransfer">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-bank">
+                        <h3 class="modal-title text-white">Nouveau virement vers {{ $wallet->epargne->payment->name_account_generic }}</h3>
+
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-solid fa-xmark fs-1"></i>
+                        </div>
+                        <!--end::Close-->
+                    </div>
+
+                    <form id="formNewTransfer" action="/api/customer/{{ $wallet->customer_id }}/wallet/{{ $wallet->number_account }}/transfers" method="post">
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+
                         </div>
                     </form>
                 </div>
