@@ -255,7 +255,7 @@
                 <div data-kt-search-element="results" class="d-none">
                     ...
                 </div>
-                <div data-kt-search-element="empty" class="text-center">
+                <div data-kt-search-element="empty" class="w-50 text-center">
                     <div class="fw-semibold py-0 mb-10">
                         <div class="text-gray-600 fs-3 mb-2">No users found</div>
                         <div class="text-gray-400 fs-6">Try to search by username, full name or email...</div>
