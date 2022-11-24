@@ -199,6 +199,15 @@
                         </form>
                     </div>
                 </div>
+                <div data-kt-search-element="suggestions">
+                    ...
+                </div>
+                <div data-kt-search-element="results" class="d-none">
+                    ...
+                </div>
+                <div data-kt-search-element="empty" class="text-center d-none">
+                    ...
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="infos" role="tabpanel">
