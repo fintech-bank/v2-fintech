@@ -138,13 +138,13 @@
 
                 @if($wallet->epargne->plan->info_retrait->retrait_type->money || $wallet->epargne->plan->info_retrait->retrait_type->card)
                     <li class="nav-item mt-2">
-                        <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#withdraw"><i class="fa-solid fa-up-down me-2"></i> Retrait bancaire</a>
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#withdraw"><i class="fa-solid fa-money-bill-transfer me-2"></i> Retrait bancaire</a>
                     </li>
                 @endif
 
                 @if($wallet->epargne->plan->info_versement->depot_type->money || $wallet->epargne->plan->info_versement->depot_type->card || $wallet->epargne->plan->info_versement->depot_type->check)
                     <li class="nav-item mt-2">
-                        <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#deposit"><i class="fa-solid fa-up-down me-2"></i> Dépot bancaire</a>
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#deposit"><i class="fa-solid fa-money-bill-transfer me-2"></i> Dépot bancaire</a>
                     </li>
                 @endif
 
