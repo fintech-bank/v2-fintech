@@ -175,6 +175,7 @@
                         <form data-kt-search-element="form" class="w-100 position-relative mb-5" autocomplete="off">
                             <input type="hidden"/>
                             <div class="input-group mb-5">
+                                <i class="fa-solid fa-search fs-2 text-gray-500 position-absolute top-50 ms-5 translate-middle-y"></i>
                                 <input type="text" class="form-control form-control-lg form-control-solid px-15"
                                        name="search"
                                        value=""
