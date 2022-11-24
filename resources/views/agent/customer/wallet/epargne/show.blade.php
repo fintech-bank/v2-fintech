@@ -180,6 +180,14 @@
                                        value=""
                                        placeholder="Search by username, full name or email..."
                                        data-kt-search-element="input"/>
+                                <span class="position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5" data-kt-search-element="spinner">
+                                    <span class="spinner-border h-15px w-15px align-middle text-gray-400"></span>
+                                </span>
+                                <span class="btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 me-5 d-none"
+                                      data-kt-search-element="clear">
+                                    <i class="fa-solid fa-xmark"></i>
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                </span>
                                 <div class="input-group-addon" id="basic-addon1">
                                     <select class="form-control selectpicker" name="duration">
                                         <option value="mensuel">Sur les 30 derniers jours</option>
