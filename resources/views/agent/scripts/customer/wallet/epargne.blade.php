@@ -33,7 +33,7 @@
         elements.searchEmpty.classList.add('d-none')
     }
     let handleSearchInput = () => {
-        const inputSearch = element.querySelector('[data-kt-search-element="input"]')
+        const inputSearch = elements.searchElement.querySelector('[data-kt-search-element="input"]')
         inputSearch.addEventListener('keydown', e => {
             if (e.key === "Enter") {
                 e.preventDefault()
