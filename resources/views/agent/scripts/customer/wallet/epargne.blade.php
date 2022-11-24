@@ -26,6 +26,14 @@
         console.log(search.formElement)
         elements.searchSuggestion.classList.add('d-none')
 
+        $.ajax({
+            url: '{{ route('api.transaction.search') }}',
+            method: 'get',
+            data: $(search.formElement).serializeArray(),
+            success: data => {
+                console.log(data)
+            }
+        })
     }
     let clear = (search) => {
         elements.searchSuggestion.classList.remove('d-none')

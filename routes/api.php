@@ -219,3 +219,12 @@ Route::prefix('document')->group(function () {
     Route::post('request-code', [\App\Http\Controllers\Api\Document\DocumentController::class, 'request']);
     Route::post('verify-code', [\App\Http\Controllers\Api\Document\DocumentController::class, 'verify']);
 });
+
+Route::prefix('transaction')->group(function () {
+    Route::get('/list', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'list'])->name('api.transaction.list');
+    Route::get('/search', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'search'])->name('api.transaction.search');
+    Route::post('/', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'create'])->name('api.transaction.create');
+    Route::get('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'retrieve'])->name('api.transaction.retrieve');
+    Route::put('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'update'])->name('api.transaction.update');
+    Route::delete('/{reference}', [\App\Http\Controllers\Api\Epargne\EpargneController::class, 'delete'])->name('api.transaction.delete');
+});
