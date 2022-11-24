@@ -227,7 +227,7 @@
                                         class="mb-2"
                                         size-text="fs-3"
                                         size="3"
-                                        color="primary" />
+                                        color="{{ $transaction->type_color }}" />
                                 </div>
                             </div>
                         </div>

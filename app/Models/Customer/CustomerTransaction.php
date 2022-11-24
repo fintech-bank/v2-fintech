@@ -66,7 +66,7 @@ class CustomerTransaction extends Model
     use HasFactory, TransactionTrait;
 
     protected $guarded = [];
-    protected $appends = ['type_text', 'type_symbol', 'amount_format', 'is_opposit'];
+    protected $appends = ['type_text', 'type_symbol', 'type_color', 'amount_format', 'is_opposit'];
 
     protected $dates = ['created_at', 'updated_at', 'confirmed_at', 'differed_at'];
 
@@ -114,6 +114,7 @@ class CustomerTransaction extends Model
     {
         return \Str::ucfirst($this->type);
     }
+
     public function getTypeIconAttribute()
     {
         return match ($this->type) {
@@ -130,10 +131,23 @@ class CustomerTransaction extends Model
         };
     }
 
+    public function getTypeColorAttribute()
+    {
+        return match ($this->type) {
+            'depot', 'souscription' => 'light-primary',
+            'retrait', 'autre' => 'secondary',
+            'payment', 'facelia' => 'light-success',
+            'sepa' => 'light-warning',
+            'frais' => 'light-danger',
+            default => 'light-info',
+        };
+    }
+
     public function getTypeSymbolAttribute($size = 30)
     {
-        return '<div class="symbol symbol-'.$size.'px symbol-circle me-2" data-bs-toggle="tooltip" title="'.$this->getTypeTextAttribute().'">
-                    <div class="symbol-label"><span class="iconify" data-icon="'.$this->getTypeIconAttribute().'"  data-width="'.$size.'" data-height="'.$size.'"></span></div>
+        $size_icon = $size - 6;
+        return '<div class="symbol symbol-' . $size . 'px symbol-circle me-2" data-bs-toggle="tooltip" title="' . $this->getTypeTextAttribute() . '">
+                    <div class="symbol-label"><span class="iconify" data-icon="' . $this->getTypeIconAttribute() . '"  data-width="' . $size_icon . '" data-height="' . $size_icon . '"></span></div>
                 </div>';
     }
 
@@ -144,7 +158,7 @@ class CustomerTransaction extends Model
 
     public function getIsOppositAttribute()
     {
-        if($this->opposit()->count() == 1) {
+        if ($this->opposit()->count() == 1) {
             return true;
         } else {
             return false;
