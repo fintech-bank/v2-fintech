@@ -50,7 +50,7 @@ class SystemEpargneCommand extends Command
 
     private function activeWallet()
     {
-        $wallets = CustomerWallet::toEpargne()->active()->get();
+        $wallets = CustomerWallet::toEpargne()->toActive()->get();
         $i = 0;
 
         foreach ($wallets as $wallet) {
