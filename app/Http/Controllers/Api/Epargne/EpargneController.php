@@ -45,7 +45,6 @@ class EpargneController extends ApiController
         $request->validate([
             'initial_payment' => 'required',
             'monthly_payment' => 'required',
-            'monthly_days' => 'required|integer',
             'wallet_payment_id' => 'required|integer',
             'epargne_plan_id' => 'required|integer',
             'customer_id' => 'required|integer'
