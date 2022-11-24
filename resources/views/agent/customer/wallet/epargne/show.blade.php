@@ -242,7 +242,7 @@
                                 <div class="col-md-2 col-sm-4">
                                     <div class="d-flex flex-column">
                                         <h5 class="fw-bolder">Intêret</h5>
-                                        <div class="">{{ $wallet->epargne->profit_percent }}</div>
+                                        <div class="">{{ $wallet->epargne->plan->profit_percent_format }}</div>
                                     </div>
                                 </div>
                             </div>
