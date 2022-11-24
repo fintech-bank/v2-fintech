@@ -15,7 +15,7 @@ trait CustomerEpargneTrait
 
     public static function verifyInfoTransfer(CustomerEpargne $epargne, Request $request)
     {
-        if($epargne->plan->info_retrait->amount < $request->get('amount')) {
+        if(json_decode($epargne->plan->info_retrait)->amount < $request->get('amount')) {
             return false;
         }
 
