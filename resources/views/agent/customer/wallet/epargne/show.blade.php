@@ -315,12 +315,12 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#transfer">Virement</a>
                         </li>
-                        @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type_type->sepa_orga)
+                        @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type->sepa_orga)
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#transfer_orga">Virement vers organisme</a>
                         </li>
                         @endif
-                        @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type_type->sepa_assoc)
+                        @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type->sepa_assoc)
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#transfer_assoc">Virement vers Association</a>
                         </li>
