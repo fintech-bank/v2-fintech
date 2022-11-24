@@ -203,9 +203,12 @@
                     <div class="accordion" id="transaction_accordion">
                         <div class="card card-flush my-1 accordion-item">
                             <div class="card-header accordion-header">
-                                <button class="accordion-button fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-expanded="true" aria-controls="kt_accordion_1_body_1">
+                                <div class="d-flex flex-row justify-content-between" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-expanded="true" aria-controls="kt_accordion_1_body_1">
                                     Accordion Item #1
-                                </button>
+                                </div>
+                                <!--<button class="accordion-button fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-expanded="true" aria-controls="kt_accordion_1_body_1">
+
+                                </button>-->
                             </div>
                             <div class="card-body accordion-collapse collapse show" id="kt_accordion_1_body_1" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#transaction_accordion">
                                 <div class="accordion-body">
