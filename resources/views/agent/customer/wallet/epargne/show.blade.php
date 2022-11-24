@@ -199,7 +199,7 @@
                         </form>
                     </div>
                 </div>
-                <div data-kt-search-element="suggestions">
+                <div class="w-50" data-kt-search-element="suggestions">
 
                     @foreach($wallet->transactions as $transaction)
                         <a class="d-flex flex-row h-30px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
