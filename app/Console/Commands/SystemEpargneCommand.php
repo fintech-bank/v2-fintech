@@ -41,18 +41,18 @@ class SystemEpargneCommand extends Command
         if ($this->checkCustomMutex()) {
             return 0;
         }
-        match ($this->argument('action')) {
+        return match ($this->argument('action')) {
             "activeWallet" => $this->activeWallet(),
         };
 
-        return Command::SUCCESS;
     }
 
     private function activeWallet()
     {
         $wallets = CustomerWallet::toEpargne()->toActive()->get();
         $i = 0;
-        return $wallets;
+
+        dd($wallets);
 
         foreach ($wallets as $wallet) {
             if ($wallet->customer->documents()->where('reference', $wallet->epargne->reference)->where('signed_by_client', 1)->count() != 0){
