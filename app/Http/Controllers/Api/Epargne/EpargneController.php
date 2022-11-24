@@ -51,7 +51,7 @@ class EpargneController extends ApiController
             'customer_id' => 'required|integer'
         ]);
         $customer = Customer::find($request->get('customer_id'));
-        if(VerifyEpargneFromPlanTrait::verifRequest($request, $customer)) {
+        if(VerifyEpargneFromPlanTrait::verifRequest($request, $customer)->state) {
             try {
                 $wallet = CustomerWalletHelper::createWallet(
                     $customer,
@@ -167,7 +167,7 @@ class EpargneController extends ApiController
 
             return $this->sendSuccess(null, ["epargne" => $epargne]);
         } else {
-            return $this->sendWarning("Prérequis non remplie");
+            return $this->sendWarning("Prérequis non remplie", [VerifyEpargneFromPlanTrait::verifRequest($request, $customer)]);
         }
     }
 
