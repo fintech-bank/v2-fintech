@@ -130,7 +130,7 @@
                 </li>
                 <!--end::Nav item-->
                 <!--begin::Nav item-->
-                @if($wallet->epargne->plan->info_retrait->transfer)
+                @if($wallet->epargne->plan->info_retrait->transfer == 'true')
                     <li class="nav-item mt-2">
                         <a class="nav-link text-active-primary ms-0 me-10 py-5" data-bs-toggle="tab" href="#transfers"><i class="fa-solid fa-exchange me-2"></i> Virements</a>
                     </li>
