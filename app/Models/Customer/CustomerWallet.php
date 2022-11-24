@@ -185,7 +185,7 @@ class CustomerWallet extends Model
 
     public function epargne()
     {
-        return $this->hasOne(CustomerEpargne::class);
+        return $this->hasOne(CustomerEpargne::class, 'id');
     }
 
     public function epargne_payment()
