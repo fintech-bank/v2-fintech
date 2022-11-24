@@ -240,9 +240,14 @@
                             <div class="separator separator-dashed my-5"></div>
                             <div class="row">
                                 <div class="col-md-2 col-sm-4">
-                                    <div class="d-flex flex-column">
-                                        <h5 class="fw-bolder">Intêret</h5>
-                                        <div class="">{{ $wallet->epargne->plan->profit_percent_format }}</div>
+                                    <div class="d-flex flex-row">
+                                        <div class="symbol symbol-50px me-3">
+                                            <div class="symbol-label">L</div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h3 class="fw-bolder">Intêret</h3>
+                                            <div class="fs-2">{{ $wallet->epargne->plan->profit_percent_format }}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
