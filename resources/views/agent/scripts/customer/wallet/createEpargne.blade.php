@@ -56,7 +56,7 @@
                 if(data.state === 'warning') {
                     toastr.warning(`${data.message}`, `Création d'un compte d'épargne`)
                 } else {
-                    toastr.success(`Le compte d'épargne N°${data.data.wallet.number} à été créer avec succès`, `Création d'un compte d'épargne`)
+                    toastr.success(`Le compte d'épargne N°${data.data.reference} à été créer avec succès`, `Création d'un compte d'épargne`)
 
                     setTimeout(() => {
                         window.location.href='{{ route('agent.customer.show', $customer->id) }}'
