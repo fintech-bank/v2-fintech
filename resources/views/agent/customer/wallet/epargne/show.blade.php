@@ -549,7 +549,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-
+                            <x-form.button />
                         </div>
                     </form>
                 </div>
