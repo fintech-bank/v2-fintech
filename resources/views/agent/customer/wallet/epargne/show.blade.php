@@ -320,7 +320,7 @@
                             <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Virement vers organisme</a>
                         </li>
                         @endif
-                        @if($wallet->epargne->info_retrait->retrait_type->sepa_assoc)
+                        @if($wallet->epargne->info_retrait['retrait_type']['sepa_assoc'])
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3">Virement vers Association</a>
                         </li>
