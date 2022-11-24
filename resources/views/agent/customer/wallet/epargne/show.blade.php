@@ -333,12 +333,16 @@
                         @foreach($wallet->transfers()->where('status', 'pending')->get() as $transfer)
                             <div class="card shadow-lg">
                                 <div class="card-body">
-                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                    <div class="d-flex flex-row justify-content-between align-items-center mb-2">
                                         <div class="d-flex flex-column">
                                             <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
                                             depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
                                         </div>
                                         <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
+                                    </div>
+                                    <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                                        {!! $transfer->status_label !!}
+                                        {{ $transfer->transfer_date->format("d/m/Y") }}
                                     </div>
                                 </div>
                             </div>
