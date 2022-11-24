@@ -20,11 +20,11 @@ return new class extends Migration
             $table->float('initial_payment', 50);
             $table->float('monthly_payment', 50);
             $table->integer('monthly_days')->default(15);
-            $table->bigInteger('wallet_id')->unsigned();
+            $table->bigInteger('customer_wallet_id')->unsigned();
             $table->float('profit')->default(0);
             $table->timestamp('next_prlv')->nullable();
             $table->timestamp('start')->nullable();
-            $table->foreign('wallet_id')->references('id')->on('customer_wallets')
+            $table->foreign('customer_wallet_id')->references('id')->on('customer_wallets')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 

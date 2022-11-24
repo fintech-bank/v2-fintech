@@ -69,7 +69,7 @@ class CustomerEpargne extends Model
 
     public function wallet()
     {
-        return $this->belongsTo(CustomerWallet::class, 'wallet_id');
+        return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
     }
 
     public function payment()
