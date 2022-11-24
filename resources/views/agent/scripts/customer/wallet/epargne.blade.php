@@ -1,10 +1,6 @@
 <script type="text/javascript">
     KTDrawer.createInstances()
-    let tables = {
-        tableTransaction: document.querySelector("#kt_transaction_table"),
-        tableTransfer: document.querySelector("#liste_transfers"),
-        tableBeneficiaire: document.querySelector("#liste_beneficiaires"),
-    }
+    let tables = {}
     let elements = {
         btnAcceptTransaction: document.querySelectorAll('.btnAcceptTransaction'),
         btnRejectTransaction: document.querySelectorAll('.btnRejectTransaction'),
