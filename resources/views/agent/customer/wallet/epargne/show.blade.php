@@ -257,8 +257,8 @@
                 </div>
                 <div data-kt-search-element="empty" class="w-50 text-center">
                     <div class="fw-semibold py-0 mb-10">
-                        <div class="text-gray-600 fs-3 mb-2">No users found</div>
-                        <div class="text-gray-400 fs-6">Try to search by username, full name or email...</div>
+                        <div class="text-gray-600 fs-3 mb-2">Nous sommes désolés, il n'y a aucun résultat correspondant à votre recherche.</div>
+                        <div class="text-gray-400 fs-6">Veuillez vérifier l'orthographe des mots saisis ou complétez-les par un nouveau mot clé.</div>
                     </div>
                     <div class="text-center px-4">
                         <img class="mw-100 mh-200px" alt="image" src="/assets/media/illustrations/sigma-1/2.png">
