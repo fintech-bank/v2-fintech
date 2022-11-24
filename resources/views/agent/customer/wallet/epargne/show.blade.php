@@ -202,25 +202,27 @@
                 <div class="w-50" data-kt-search-element="suggestions">
 
                     @foreach($wallet->transactions as $transaction)
-                        <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
-                            <div class="d-flex flex-row align-items-center text-black">
-                                {!! $transaction->getTypeSymbolAttribute() !!}
-                                <div class="d-flex flex-column">
-                                    {{ $transaction->designation }}<br>
-                                    <div class="text-muted">
-                                        {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format("d/m/Y")) }}
+                        <div class="mb-5">
+                            <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
+                                <div class="d-flex flex-row align-items-center text-black">
+                                    {!! $transaction->getTypeSymbolAttribute() !!}
+                                    <div class="d-flex flex-column">
+                                        {{ $transaction->designation }}<br>
+                                        <div class="text-muted">
+                                            {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format("d/m/Y")) }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            @if($transaction->amount < 0)
-                                <span class="text-danger fw-bolder">{{ $transaction->amount_format }}</span>
-                            @else
-                                <span class="text-success fw-bolder">+ {{ $transaction->amount_format }}</span>
-                            @endif
-                        </a>
-                        <div class="collapse" id="content">
-                            <div class="card card-body">
-                                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                                @if($transaction->amount < 0)
+                                    <span class="text-danger fw-bolder">{{ $transaction->amount_format }}</span>
+                                @else
+                                    <span class="text-success fw-bolder">+ {{ $transaction->amount_format }}</span>
+                                @endif
+                            </a>
+                            <div class="collapse" id="content">
+                                <div class="card card-body">
+                                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                                </div>
                             </div>
                         </div>
                     @endforeach
