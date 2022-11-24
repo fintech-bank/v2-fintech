@@ -332,12 +332,7 @@
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
                             @foreach($wallet->transfers()->where('status', 'pending')->orWhere('status', 'in_transit')->get() as $transfer)
-                                @if(!$transfer)
-                                    <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
-                                        <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
-                                        <div class="fs-1">Aucun virement en attente actuellement</div>
-                                    </div>
-                                @else
+                                @if($transfer->count() != 0)
                                     <div class="card shadow-lg mb-5">
                                         <div class="card-body">
                                             <div class="d-flex flex-row justify-content-between align-items-center mb-5">
@@ -358,6 +353,11 @@
                                                 <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
                                             </div>
                                         </div>
+                                    </div>
+                                @else
+                                    <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
+                                        <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
+                                        <div class="fs-1">Aucun virement en attente actuellement</div>
                                     </div>
                                 @endif
                             @endforeach
@@ -365,12 +365,7 @@
                         <div class="mb-10">
                             <div class="fw-bolder fs-1 mb-5">Virement passés</div>
                             @foreach($wallet->transfers()->where('status', 'paid')->get() as $transfer)
-                                @if(!$transfer)
-                                    <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
-                                        <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
-                                        <div class="fs-1">Aucun virement en attente actuellement</div>
-                                    </div>
-                                @else
+                                @if($transfer->count() != 0)
                                     <div class="card shadow-lg mb-5">
                                         <div class="card-body">
                                             <div class="d-flex flex-row justify-content-between align-items-center mb-5">
@@ -391,6 +386,11 @@
                                                 <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
                                             </div>
                                         </div>
+                                    </div>
+                                @else
+                                    <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
+                                        <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
+                                        <div class="fs-1">Aucun virement en attente actuellement</div>
                                     </div>
                                 @endif
                             @endforeach
