@@ -242,6 +242,7 @@
                                             size="3"
                                             color="{{ $transaction->type_color }}" />
                                         <div class="d-flex flex-row justify-content-start">
+                                            <div>{{ $transaction->designation }}</div>
                                             <div>{{ $transaction->description }}</div>
                                         </div>
                                     </div>
