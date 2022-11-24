@@ -207,6 +207,24 @@
             }
         })
     })
+    $(forms.formNewTransfer).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formNewTransfer)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: data,
+            success: data => {
+
+            }
+        })
+    })
 
     KTDrawer.createInstances()
 </script>
