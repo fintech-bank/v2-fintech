@@ -207,8 +207,10 @@
                                     Accordion Item #1
                                 </button>
                             </div>
-                            <div class="card-body">
-
+                            <div class="card-body accordion-collapse collapse show" id="kt_accordion_1_body_1" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#transaction_accordion">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
                             </div>
                         </div>
                     </div>
