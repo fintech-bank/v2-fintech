@@ -352,10 +352,10 @@
                                             <div class="d-flex flex-row justify-content-between align-items-center">
                                                 <div class="fw-bold fs-3">{{ $transfer->type_text }}</div>
                                                 <div class="btn-group">
-                                                    <button class="btn btn-icon btn-bank btnViewTransfer" data-transfer="{{ $transfer->id }}" data-bs-toggle="tooltip" title="Voir le virement"><i class="fa-solid fa-eye text-white"></i> </button>
+                                                    <button class="btn btn-icon btn-bank btnViewTransfer" data-transfer="{{ $transfer->reference }}" data-bs-toggle="tooltip" title="Voir le virement"><i class="fa-solid fa-eye text-white"></i> </button>
                                                     @if($transfer->status == 'pending')
-                                                        <button class="btn btn-icon btn-success btnAcceptTransfer" data-transfer="{{ $transfer->id }}" data-bs-toggle="tooltip" title="Accepter le virement"><i class="fa-solid fa-check text-white"></i> </button>
-                                                        <button class="btn btn-icon btn-danger btnRefuseTransfer" data-transfer="{{ $transfer->id }}" data-bs-toggle="tooltip" title="Refuser le virement"><i class="fa-solid fa-xmark text-white"></i> </button>
+                                                        <button class="btn btn-icon btn-success btnAcceptTransfer" data-transfer="{{ $transfer->reference }}" data-bs-toggle="tooltip" title="Accepter le virement"><i class="fa-solid fa-check text-white"></i> </button>
+                                                        <button class="btn btn-icon btn-danger btnRefuseTransfer" data-transfer="{{ $transfer->reference }}" data-bs-toggle="tooltip" title="Refuser le virement"><i class="fa-solid fa-xmark text-white"></i> </button>
                                                     @endif
                                                 </div>
                                             </div>
