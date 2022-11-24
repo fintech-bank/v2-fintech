@@ -225,6 +225,20 @@
                 block.blockNewTransfer.release()
                 block.blockNewTransfer.destroy()
                 btn.removeAttr('data-kt-indicator')
+
+                if(data.state === 'warning') {
+                    toastr.success(`${data.message()}`, `Création d'un virement`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                } else {
+                    toastr.success(`Le virement à été créer avec succès`, `Création d'un virement`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
             }
         })
     })

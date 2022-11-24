@@ -517,7 +517,8 @@
                         @csrf
                         <div class="modal-body">
                             <input type="hidden" name="customer_wallet_id" value="{{ $wallet->id }}">
-                            <input type="hidden" name="customer_customer_id" value="{{ $wallet->customer->id }}">s
+                            <input type="hidden" name="customer_beneficiaire_id" value="{{ $wallet->customer->id }}">
+                            <input type="hidden" name="type_wallet" value="epargne">
 
                             <x-form.input
                                 name="amount"
