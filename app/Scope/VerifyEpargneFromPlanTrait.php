@@ -12,7 +12,7 @@ trait VerifyEpargneFromPlanTrait
     {
         $plan = EpargnePlan::find($request->get('epargne_plan_id'));
 
-        if($request->get('initial_payment') <= $plan->init) {
+        if($request->get('initial_payment') < $plan->init) {
             return collect([
                 'state' => false,
                 'reason' => "Montant initial inférieur à {$plan->init_format}"
