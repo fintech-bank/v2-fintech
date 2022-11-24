@@ -52,6 +52,7 @@ class SystemEpargneCommand extends Command
     {
         $wallets = CustomerWallet::toEpargne()->toActive()->get();
         $i = 0;
+        return $wallets;
 
         foreach ($wallets as $wallet) {
             if ($wallet->customer->documents()->where('reference', $wallet->epargne->reference)->where('signed_by_client', 1)->count() != 0){
