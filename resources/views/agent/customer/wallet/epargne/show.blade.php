@@ -178,7 +178,7 @@
                                 <input type="text" class="form-control form-control-lg form-control-solid px-15"
                                        name="search"
                                        value=""
-                                       placeholder="Search by username, full name or email..."
+                                       placeholder="Saisissez une enseigne, un montant ou un type d'opération"
                                        data-kt-search-element="input"/>
                                 <span class="position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5" data-kt-search-element="spinner">
                                     <span class="spinner-border h-15px w-15px align-middle text-gray-400"></span>
