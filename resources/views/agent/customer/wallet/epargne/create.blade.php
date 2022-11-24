@@ -109,7 +109,7 @@
                             </button>-->
                         </div>
                     </div>
-                    <div class="card-body d-none">
+                    <div id="resultSimulation" class="card-body d-none">
                         <div class="mb-7">
                             <h5 class="mb-3">Intêret annuel</h5>
                             <div class="mb-0" data-content="profit_percent"></div>
