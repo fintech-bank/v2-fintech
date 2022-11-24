@@ -539,7 +539,7 @@
                                     :value="now()->hour >= 16 ? now()->addDay()->format('Y-m-d H:i') : now()->format('Y-m-d H:i')" />
                             </div>
 
-                            <div id="permanent" class="d-none">
+                            <div id="permanent">
                                 <x-form.input-date
                                     name="recurring_start"
                                     label="Date de début" />
