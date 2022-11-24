@@ -202,7 +202,7 @@
                 <div class="w-50" data-kt-search-element="suggestions">
 
                     @foreach($wallet->transactions as $transaction)
-                        <a class="d-flex flex-row h-100px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
+                        <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
                             <div class="align-items-center">
                                 {!! $transaction->getTypeSymbolAttribute(20) !!}
                                 {{ $transaction->designation }}
