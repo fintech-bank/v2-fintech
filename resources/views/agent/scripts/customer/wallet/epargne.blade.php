@@ -42,7 +42,7 @@
     }
     let handleSearchInput = () => {
         const inputSearch = elements.searchElement.querySelector('[data-kt-search-element="input"]')
-        inputSearch.addEventListener('keydown', e => {
+        inputSearch.addEventListener('keyup', e => {
             if (e.key === "Enter") {
                 e.preventDefault()
                 let searchObject = new KTSearch(elements.searchElement)
