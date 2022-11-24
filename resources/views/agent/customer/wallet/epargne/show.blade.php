@@ -280,7 +280,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-12 align-items-end">
+                                <div class="col-md-6 col-sm-12 align-items-end justify-content-end">
                                     <div class="d-flex align-items-end w-200px w-sm-300px flex-column mt-3">
                                         <div class="d-flex justify-content-between w-100 mt-auto mb-2">
                                             <span class="fw-semibold fs-6 text-gray-400">Profile Compleation</span>
