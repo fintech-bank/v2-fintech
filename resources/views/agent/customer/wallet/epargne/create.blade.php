@@ -136,7 +136,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <x-form.button text="Souscrire" />
+                        <x-form.button text="Souscrire" class="btn btn-bank" disabled />
                     </div>
                 </div>
             </div>
