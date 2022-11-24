@@ -46,6 +46,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereNextPrlv($value)
  * @property \Illuminate\Support\Carbon|null $start
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerEpargne whereStart($value)
+ * @property-read \App\Models\Customer\Customer $customer
  */
 class CustomerEpargne extends Model
 {
