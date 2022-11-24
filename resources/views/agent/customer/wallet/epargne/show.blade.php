@@ -333,7 +333,7 @@
                         @foreach($wallet->transfers()->where('status', 'pending')->get() as $transfer)
                             <div class="card shadow-lg">
                                 <div class="card-body">
-                                    <span class="bullet bullet-vertical h-100 bg-gray-800"></span>
+                                    <span class="bullet bullet-vertical h-40px bg-gray-800"></span>
                                     djsqkjdkqlsdjqs
                                 </div>
                             </div>
