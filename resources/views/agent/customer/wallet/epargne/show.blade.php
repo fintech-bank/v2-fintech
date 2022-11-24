@@ -109,6 +109,10 @@
                                 <div class="fw-bolder fs-2">Solde</div>
                                 <div class="text-{{ $wallet->balance_actual <= 0 ? 'danger' : 'success' }} fs-3">{{ $wallet->balance_actual_format }}</div>
                             </div>
+                            <div class="d-flex flex-row align-items-center justify-content-between mb-2 p-5 border rounded-2">
+                                <div class="fw-bolder fs-2">Intêret</div>
+                                <div class="text-info fs-3">{{ $wallet->epargne->profit_format }}</div>
+                            </div>
                         </div>
                         <!--end::Progress-->
                     </div>
