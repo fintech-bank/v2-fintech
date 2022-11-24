@@ -123,6 +123,6 @@ class EpargnePlan extends Model
 
     public function getLimitAmountFormatAttribute()
     {
-        return eur($this->init);
+        return eur($this->limit_amount);
     }
 }
