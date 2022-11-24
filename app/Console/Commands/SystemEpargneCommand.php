@@ -60,6 +60,8 @@ class SystemEpargneCommand extends Command
                 if ($wallet->status == 'pending') {
                     if($customer->documents()->where('reference', $epargne->reference)->where('signable', 1)->where('signed_by_client', 1)->count() != 0) {
                         $wallet->update(['status' => 'active']);
+                        if($epargne->plan->profit_days != 0)
+                            $epargne->update(['next_profit' => now()->addDays($epargne->plan->profit_days)]);
                         $i++;
                     }
                 }

@@ -242,7 +242,7 @@
                                 <div class="col-md-2 col-sm-4">
                                     <div class="d-flex flex-row p-2 border border-dashed border-gray-400">
                                         <div class="symbol symbol-50px me-3">
-                                            <div class="symbol-label"><i class="fa-solid fa-percentage"></i> </div>
+                                            <div class="symbol-label"><i class="fa-solid fa-percentage fs-2"></i> </div>
                                         </div>
                                         <div class="d-flex flex-column">
                                             <h3 class="fw-bolder">Intêret</h3>
@@ -253,11 +253,17 @@
                                 <div class="col-md-2 col-sm-4">
                                     <div class="d-flex flex-row p-2 border border-dashed border-gray-400">
                                         <div class="symbol symbol-50px me-3">
-                                            <div class="symbol-label">L</div>
+                                            <div class="symbol-label"><i class="fa-solid fa-unlock fs-2"></i> </div>
                                         </div>
                                         <div class="d-flex flex-column">
-                                            <h3 class="fw-bolder">Intêret</h3>
-                                            <div class="fs-2">{{ $wallet->epargne->plan->profit_percent_format }}</div>
+                                            <h3 class="fw-bolder">Déblocage des fond</h3>
+                                            <div class="fs-2">
+                                                @if($wallet->epargne->plan->lock_days == 0)
+                                                    <span class="text-success">Disponible</span>
+                                                @else
+                                                    @if
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

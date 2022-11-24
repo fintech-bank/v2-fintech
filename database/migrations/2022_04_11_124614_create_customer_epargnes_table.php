@@ -23,6 +23,7 @@ return new class extends Migration
             $table->bigInteger('customer_wallet_id')->unsigned();
             $table->float('profit')->default(0);
             $table->timestamp('next_prlv')->nullable();
+            $table->timestamp('next_profit')->nullable();
             $table->timestamp('start')->nullable();
             $table->foreign('customer_wallet_id')->references('id')->on('customer_wallets')
                 ->cascadeOnUpdate()
