@@ -310,7 +310,7 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="transfers" role="tabpanel">
-                <div class="d-flex flex-center w-50 mb-10">
+                <div class="d-flex flex-center w-100 mb-10">
                     <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x nav-justified mb-5 fs-6">
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Link 1</a>
