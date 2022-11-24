@@ -334,6 +334,7 @@
                             <div class="card shadow-lg">
                                 <div class="card-body">
                                     <span class="bullet bullet-vertical h-auto m-0 bg-gray-800"></span>
+                                    djsqkjdkqlsdjqs
                                 </div>
                             </div>
                         @endforeach
