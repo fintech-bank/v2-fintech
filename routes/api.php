@@ -216,7 +216,7 @@ Route::prefix('epargne')->group(function () {
 
     Route::prefix('{reference}/transfer')->group(function () {
         Route::post('/', [\App\Http\Controllers\Api\Epargne\TransferController::class, 'store']);
-        Route::put('{reference}', [\App\Http\Controllers\Api\Epargne\TransferController::class, 'update']);
+        Route::put('{transfer_reference}', [\App\Http\Controllers\Api\Epargne\TransferController::class, 'update']);
     });
 });
 
