@@ -168,7 +168,7 @@
 
                     @foreach($wallet->transactions as $transaction)
                         <div class="mb-5">
-                            <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#content">
+                            <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#{{ $transaction->type }}_{{ $transaction->id }}">
                                 <div class="d-flex flex-row align-items-center text-black">
                                     {!! $transaction->getTypeSymbolAttribute() !!}
                                     <div class="d-flex flex-column">
@@ -184,7 +184,7 @@
                                     <span class="text-success fs-2 fw-bolder">+ {{ $transaction->amount_format }}</span>
                                 @endif
                             </a>
-                            <div class="collapse" id="content">
+                            <div class="collapse" id="{{ $transaction->type }}_{{ $transaction->id }}">
                                 <div class="card card-body">
                                     <div class="ps-5 text-muted mb-5">{{ $transaction->type_text }}</div>
                                     <div class="mb-5">
