@@ -19,7 +19,8 @@ trait VerifyEpargneFromPlanTrait
             ])->all();
         }
 
-        if($customer->epargnes()->where('epargne_plan_id', $request->get('epargne_plan_id'))->count() >= $plan->unique ? 1 : 9999) {
+        $unique = $plan->unique == true ? 1 : 9999;
+        if($customer->epargnes()->where('epargne_plan_id', $request->get('epargne_plan_id'))->count() >= $unique) {
             return collect([
                 'state' => false,
                 'reason' => "Vous avez déjà un compte épargne de ce type: ".$customer->epargnes()->where('epargne_plan_id', $request->get('epargne_plan_id'))->count()
