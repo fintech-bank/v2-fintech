@@ -74,6 +74,11 @@ class CustomerEpargne extends Model
         return $this->belongsTo(CustomerWallet::class, 'wallet_payment_id');
     }
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
     public function getMonthlyPaymentFormatAttribute()
     {
         return eur($this->monthly_payment);

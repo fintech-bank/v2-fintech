@@ -72,7 +72,8 @@ class EpargneController extends ApiController
                     'next_prlv' => Carbon::create(now()->year, now()->addMonth()->month, $request->get('monthly_days')),
                     "start" => now(),
                     'wallet_payment_id' => $request->get('wallet_payment_id'),
-                    'epargne_plan_id' => $request->get('epargne_plan_id')
+                    'epargne_plan_id' => $request->get('epargne_plan_id'),
+                    'customer_id' => $customer->id
                 ]);
             }catch (\Exception $exception) {
                 return $this->sendError($exception);
