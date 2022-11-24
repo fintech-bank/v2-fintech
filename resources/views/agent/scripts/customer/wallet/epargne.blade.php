@@ -22,6 +22,7 @@
     let block = {}
     let plugins = {}
 
+
     let processSearch = (search) => {
         console.log(search)
         elements.searchSuggestion.classList.add('d-none')
@@ -41,6 +42,7 @@
         })
     }
 
+    let searchWrapper = elements.searchElement.querySelector('[data-kt-search-element="wrapper"]')
     let searchObject = new KTSearch(elements.searchElement)
     searchObject.on('kt.search.process', processSearch)
     searchObject.on('kt.search.clear', clear)
