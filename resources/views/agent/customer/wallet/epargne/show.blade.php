@@ -310,7 +310,19 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="transfers" role="tabpanel">
-
+                <div class="d-flex flex-center w-50">
+                    <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Link 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Link 2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3">Link 3</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="modal fade" tabindex="-1" id="showRib">
