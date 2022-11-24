@@ -59,7 +59,7 @@
                     toastr.success(`Le compte d'épargne N°${data.data.wallet.number} à été créer avec succès`, `Création d'un compte d'épargne`)
 
                     setTimeout(() => {
-                        window.location.href={{ route('agent.customer.show', $customer->id) }}
+                        window.location.href='{{ route('agent.customer.show', $customer->id) }}'
                     }, 1200)
                 }
             },
