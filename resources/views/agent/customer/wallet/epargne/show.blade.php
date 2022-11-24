@@ -221,7 +221,13 @@
                             </a>
                             <div class="collapse" id="content">
                                 <div class="card card-body">
-                                    <div class="ps-5 text-muted">{{ $transaction->type_text }}</div>
+                                    <div class="ps-5 text-muted mb-5">{{ $transaction->type_text }}</div>
+                                    <x-base.underline
+                                        title="Détails de l'opération"
+                                        class="mb-2"
+                                        size-text="fs-3"
+                                        size="3"
+                                        color="primary" />
                                 </div>
                             </div>
                         </div>
