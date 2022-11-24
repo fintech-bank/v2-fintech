@@ -28,7 +28,7 @@ class TransferController extends ApiController
                 'uuid' => \Str::uuid(),
                 'amount' => $request->get('amount'),
                 'reference' => generateReference(),
-                'reason' => null,
+                'reason' => 'Virement vers '.$epargne->payment->name_account_generic,
                 'type' => $request->get('type'),
                 'transfer_date' => $request->get('type') == 'immediat' || $request->get('type') == 'differed' ? $request->get('transfer_date') : null,
                 'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
