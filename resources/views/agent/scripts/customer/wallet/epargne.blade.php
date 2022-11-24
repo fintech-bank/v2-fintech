@@ -215,13 +215,16 @@
         let btn = form.find('.btn-bank')
 
         btn.attr('data-kt-indicator', 'on')
+        block.blockNewTransfer.block()
 
         $.ajax({
             url: url,
             method: 'post',
             data: data,
             success: data => {
-
+                block.blockNewTransfer.release()
+                block.blockNewTransfer.destroy()
+                btn.removeAttr('data-kt-indicator')
             }
         })
     })
