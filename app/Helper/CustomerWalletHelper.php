@@ -6,6 +6,7 @@ use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\NewWalletNotification;
 use App\Notifications\Customer\SendLinkForContractNotification;
 use App\Notifications\Customer\SendRequestNotification;
+use Faker\Factory;
 use IbanGenerator\Generator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -29,12 +30,16 @@ class CustomerWalletHelper
     {
         $number_account = random_numeric(9);
         $ibanG = new Generator($customer->agency->code_banque, $number_account, 'FR');
+        $faker = Factory::create('fr_FR');
+        $iban = $faker->iban('FR');
+        $number_account = Str::substr($iban, 3, 12);
+        $key = Str::substr($iban, 13, 15);
 
         $wallet = CustomerWallet::create([
             'uuid' => \Str::uuid(),
             'number_account' => $number_account,
-            'iban' => $ibanG->generate($customer->agency->code_banque, $number_account, 'FR'),
-            'rib_key' => $ibanG->getBban($customer->agency->code_banque, $number_account),
+            'iban' => $iban,
+            'rib_key' => $key,
             'type' => $type,
             'status' => $status,
             'balance_actual' => $balance_actual,
