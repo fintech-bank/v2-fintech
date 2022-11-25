@@ -482,7 +482,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($wallet->deposit_check as $withdraw)
+                                        @foreach($wallet->deposits as $withdraw)
                                             <tr>
                                                 <td>{{ $withdraw->reference }}</td>
                                                 <td>{{ $withdraw->amount_format }}</td>
