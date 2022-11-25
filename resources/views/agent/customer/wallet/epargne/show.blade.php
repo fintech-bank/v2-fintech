@@ -390,7 +390,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Retrait Bancaire</h3>
                             <div class="card-toolbar">
-                                <button type="button" class="btn btn-sm btn-light">
+                                <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#addRetrait">
                                     Nouveau retrait
                                 </button>
                             </div>
@@ -683,6 +683,40 @@
                                 <x-form.input
                                     name="iban_assoc"
                                     label="IBAN de l'association" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <x-form.button />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" id="addRetrait">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-bank">
+                        <h3 class="modal-title text-white">Nouveau retrait</h3>
+
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-solid fa-xmark fs-1"></i>
+                        </div>
+                        <!--end::Close-->
+                    </div>
+
+                    <form id="formNewWithdraw" action="/api/epargne/{{ $wallet->epargne->reference }}/withdraw" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-12">
+                                    <x-form.input
+                                        name="amount"
+                                        class="form-control-transparent"
+                                        label="Montant du retrait"
+                                        text="Montant limité à: {{ $wallet->solde_remaining }}"
+                                        required="true" />
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
