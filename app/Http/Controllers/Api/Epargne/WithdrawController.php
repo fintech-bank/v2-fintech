@@ -32,6 +32,8 @@ class WithdrawController extends ApiController
                 \Str::upper("Retrait d'espèce en Agence"),
                 \Str::upper("Retrait {$withdraw->reference} | {$withdraw->updated_at->format('d/m')} {$withdraw->updated_at->format('H:i')}"),
                 $withdraw->amount,
+                true,
+                now()
             );
 
             $withdraw->update([
