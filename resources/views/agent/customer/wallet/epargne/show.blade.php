@@ -583,7 +583,7 @@
                                     color="primary"
                                     icon="info-circle"
                                     title="Information"
-                                    content="Les virements vers une association est soumise au conditions des dons effectifs en réduction d'impôt" />
+                                    content="Les virement vers une association est soumise au conditions des dons effectifs en réduction d'impôt" />
 
                                 <x-form.input
                                     name="name_assoc"
