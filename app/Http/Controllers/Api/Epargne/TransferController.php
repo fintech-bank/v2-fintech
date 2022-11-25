@@ -23,13 +23,13 @@ class TransferController extends ApiController
             return match($request->get('type_transfer')) {
                 "courant" => $this->transfCourantVerify($epargne, $request),
                 "orga" => $this->transfOrgaVerify($epargne, $request),
-                "assoc" => "",
+                "assoc" => $this->transfAssocVerify($epargne, $request),
             };
         } else {
             return match($request->get('type_transfer')) {
                 "courant" => $this->transfCourantUnverify($epargne, $request),
                 "orga" => $this->transfOrgaUnverify($request),
-                "assoc" => "",
+                "assoc" => $this->transfAssocUnverify($request),
             };
         }
     }
@@ -253,7 +253,7 @@ class TransferController extends ApiController
             'uuid' => \Str::uuid(),
             'amount' => $request->get('amount'),
             'reference' => generateReference(),
-            'reason' => 'Virement vers '.$request->get('name_organisme'),
+            'reason' => 'Virement vers '.$request->get('name_assoc'),
             'type' => 'immediat',
             'transfer_date' => now()->format("H:i") > "18:00" ? now()->addDay() : now(),
             'customer_wallet_id' => $request->get('customer_wallet_id'),
