@@ -327,7 +327,19 @@
                 block.blockNewTransfer.destroy()
                 btn.removeAttr('data-kt-indicator')
 
+                if(data.state === 'warning') {
+                    toastr.warning(`${data.message()}`, `Création d'un retrait`)
 
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                } else {
+                    toastr.success(`Le virement à été créer avec succès`, `Création d'un retrait`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
             }
         })
     })

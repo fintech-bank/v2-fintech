@@ -20,7 +20,7 @@ class WithdrawController extends ApiController
             $withdraw = $epargne->wallet->withdraws->create([
                 'reference' => generateReference(),
                 'amount' => $request->get('amount'),
-                'status' => 'accepted',
+                'status' => 'terminated',
                 'code' => base64_encode($code),
                 'customer_wallet_id' => $epargne->wallet->id,
                 'customer_withdraw_dab_id' => 1
