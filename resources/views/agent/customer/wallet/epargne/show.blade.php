@@ -425,7 +425,7 @@
             @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money || json_decode($wallet->epargne->plan->info_versement)->depot_type->card || json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
                 <div class="tab-pane fade" id="deposit" role="tabpanel">
                     @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money || json_decode($wallet->epargne->plan->info_versement)->depot_type->card)
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm mb-10">
                             <div class="card-header">
                                 <h3 class="card-title">Dépot d'espèce</h3>
                                 <div class="card-toolbar">
