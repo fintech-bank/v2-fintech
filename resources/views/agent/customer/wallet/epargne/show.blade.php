@@ -424,7 +424,76 @@
             @endif
             @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money || json_decode($wallet->epargne->plan->info_versement)->depot_type->card || json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
                 <div class="tab-pane fade" id="deposit" role="tabpanel">
-
+                    @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money || json_decode($wallet->epargne->plan->info_versement)->depot_type->card)
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h3 class="card-title">Dépot d'espèce</h3>
+                                <div class="card-toolbar">
+                                    <button type="button" class="btn btn-sm btn-light">
+                                        Nouveau dépot
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped gx-5 gy-5">
+                                    <thead>
+                                    <tr>
+                                        <th>Référence</th>
+                                        <th>Lieu de dépot</th>
+                                        <th>Montant</th>
+                                        <th>Etat</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($wallet->moneys as $withdraw)
+                                        <tr>
+                                            <td>{{ $withdraw->reference }}</td>
+                                            <td>{{ $withdraw->dab->name }}</td>
+                                            <td>{{ $withdraw->amount_format }}</td>
+                                            <td>{{ $withdraw->status_text }}</td>
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    @endif
+                    @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h3 class="card-title">Dépot de chèque</h3>
+                                    <div class="card-toolbar">
+                                        <button type="button" class="btn btn-sm btn-light">
+                                            Nouveau dépot
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered table-striped gx-5 gy-5">
+                                        <thead>
+                                        <tr>
+                                            <th>Référence</th>
+                                            <th>Montant</th>
+                                            <th>Etat</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($wallet->deposit_check as $withdraw)
+                                            <tr>
+                                                <td>{{ $withdraw->reference }}</td>
+                                                <td>{{ $withdraw->amount_format }}</td>
+                                                <td>{{ $withdraw->status_text }}</td>
+                                                <td></td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    @endif
                 </div>
             @endif
         </div>
