@@ -16,59 +16,18 @@ class TransferController extends ApiController
     {
         $epargne = CustomerEpargne::where('reference', $reference)->first();
 
-        if($request->get('type_transfer') == 'standard') {
-            if (CustomerEpargneTrait::verifyInfoTransfer($epargne, $request)) {
-                $transfer = CustomerTransfer::create([
-                    'uuid' => \Str::uuid(),
-                    'amount' => $request->get('amount'),
-                    'reference' => generateReference(),
-                    'reason' => 'Virement vers '.$epargne->payment->name_account_generic,
-                    'type' => $request->get('type'),
-                    'transfer_date' => $request->get('type') == 'immediat' || $request->get('type') == 'differed' ? $request->get('transfer_date') : null,
-                    'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
-                    'recurring_end' => $request->get('type') == 'permanent' ? $request->get('recurring_end') : null,
-                    'customer_wallet_id' => $request->get('customer_wallet_id'),
-                    'status' => 'in_transit'
-                ]);
-
-                $transaction_ep = CustomerTransactionHelper::createDebit(
-                    $epargne->wallet->id,
-                    'virement',
-                    'Virement ' . $epargne->wallet->name_account_generic,
-                    'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account,
-                    $transfer->amount,
-                );
-
-                CustomerTransactionHelper::createCredit(
-                    $epargne->payment->id,
-                    'virement',
-                    'Virement ' . $epargne->wallet->name_account_generic,
-                    'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account,
-                    $transfer->amount,
-                );
-
-                $transfer->update([
-                    'transaction_id' => $transaction_ep->id
-                ]);
-
-                return $this->sendSuccess(null, [$transfer]);
-            } else {
-                $transfer = CustomerTransfer::create([
-                    'uuid' => \Str::uuid(),
-                    'amount' => $request->get('amount'),
-                    'reference' => generateReference(),
-                    'reason' => 'Virement vers '.$epargne->payment->name_account_generic,
-                    'type' => $request->get('type'),
-                    'transfer_date' => $request->get('type') == 'immediat' || $request->get('type') == 'differed' ? $request->get('transfer_date') : null,
-                    'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
-                    'recurring_end' => $request->get('type') == 'permanent' ? $request->get('recurring_end') : null,
-                    'customer_wallet_id' => $request->get('customer_wallet_id'),
-                    'customer_beneficiaire_id' => $request->get('customer_beneficiaire_id'),
-                    'status' => 'pending'
-                ]);
-
-                return $this->sendWarning("Certaines vérification sont invalide mais le virement à été enregistré", [$transfer]);
-            }
+        if(CustomerEpargneTrait::verifyInfoTransfer($epargne, $request)) {
+            return match($request->get('type_transfer')) {
+                "courant" => $this->transfCourantVerify($epargne, $request),
+                "orga" => $this->transfOrgaVerify($epargne, $request),
+                "assoc" => "",
+            };
+        } else {
+            return match($request->get('type_transfer')) {
+                "courant" => $this->transfCourantUnverify($epargne, $request),
+                "orga" => $this->transfOrgaUnverify($epargne, $request),
+                "assoc" => "",
+            };
         }
     }
 
@@ -78,7 +37,7 @@ class TransferController extends ApiController
 
         return match ($request->get('action')) {
             "accept" => $this->acceptTransfer($transfer, $request),
-            "refuse" => ""
+            "refuse" => $this->refuseTransfer($transfer, $request),
         };
     }
 
@@ -113,5 +72,122 @@ class TransferController extends ApiController
 
             return $this->sendSuccess();
         }
+    }
+    private function refuseTransfer(CustomerTransfer $transfer, Request $request)
+    {
+        $transfer->update([
+            'status' => 'in_transit'
+        ]);
+
+        CustomerTransactionHelper::createDebit(
+            $transfer->wallet->id,
+            'frais',
+            'Frais Bancaire',
+            'Rejet virement | REF.'.$transfer->reference.' | '.$transfer->amount_format,
+            2.5,
+            true,
+            now()
+        );
+
+        return $this->sendSuccess();
+    }
+
+    private function transfCourantVerify(CustomerEpargne $epargne, Request $request)
+    {
+        $transfer = CustomerTransfer::create([
+            'uuid' => \Str::uuid(),
+            'amount' => $request->get('amount'),
+            'reference' => generateReference(),
+            'reason' => 'Virement vers '.$epargne->payment->name_account_generic,
+            'type' => $request->get('type'),
+            'transfer_date' => $request->get('type') == 'immediat' || $request->get('type') == 'differed' ? $request->get('transfer_date') : null,
+            'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
+            'recurring_end' => $request->get('type') == 'permanent' ? $request->get('recurring_end') : null,
+            'customer_wallet_id' => $request->get('customer_wallet_id'),
+            'status' => 'in_transit'
+        ]);
+
+        $transaction_ep = CustomerTransactionHelper::createDebit(
+            $epargne->wallet->id,
+            'virement',
+            'Virement ' . $epargne->wallet->name_account_generic,
+            'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account,
+            $transfer->amount,
+        );
+
+        CustomerTransactionHelper::createCredit(
+            $epargne->payment->id,
+            'virement',
+            'Virement ' . $epargne->wallet->name_account_generic,
+            'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account,
+            $transfer->amount,
+        );
+
+        $transfer->update([
+            'transaction_id' => $transaction_ep->id
+        ]);
+
+        return $this->sendSuccess(null, [$transfer]);
+    }
+    private function transfCourantUnverify(CustomerEpargne $epargne, Request $request)
+    {
+        $transfer = CustomerTransfer::create([
+            'uuid' => \Str::uuid(),
+            'amount' => $request->get('amount'),
+            'reference' => generateReference(),
+            'reason' => 'Virement vers '.$epargne->payment->name_account_generic,
+            'type' => $request->get('type'),
+            'transfer_date' => $request->get('type') == 'immediat' || $request->get('type') == 'differed' ? $request->get('transfer_date') : null,
+            'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
+            'recurring_end' => $request->get('type') == 'permanent' ? $request->get('recurring_end') : null,
+            'customer_wallet_id' => $request->get('customer_wallet_id'),
+            'customer_beneficiaire_id' => $request->get('customer_beneficiaire_id'),
+            'status' => 'pending'
+        ]);
+
+        return $this->sendWarning("Certaines vérification sont invalide mais le virement à été enregistré", [$transfer]);
+    }
+
+    private function transfOrgaVerify(CustomerEpargne $epargne, Request $request)
+    {
+        $transfer = CustomerTransfer::create([
+            'uuid' => \Str::uuid(),
+            'amount' => $request->get('amount'),
+            'reference' => generateReference(),
+            'reason' => 'Virement vers '.$request->get('name_organisme'),
+            'type' => 'immediat',
+            'transfer_date' => now()->format('H:i') >= "18:00" ? now()->addDay() : now(),
+            'customer_wallet_id' => $request->get('customer_wallet_id'),
+            'status' => 'in_transit'
+        ]);
+
+        $transaction_ep = CustomerTransactionHelper::createDebit(
+            $epargne->wallet->id,
+            'virement',
+            'Virement vers ' . $request->get('name_organisme'),
+            'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account." - IBAN ".$request->get('iban_organisme'),
+            $transfer->amount,
+        );
+
+        $transfer->update([
+            'transaction_id' => $transaction_ep->id
+        ]);
+
+        return $this->sendSuccess(null, [$transfer]);
+    }
+    private function transfOrgaUnverify(CustomerEpargne $epargne, Request $request)
+    {
+        $transfer = CustomerTransfer::create([
+            'uuid' => \Str::uuid(),
+            'amount' => $request->get('amount'),
+            'reference' => generateReference(),
+            'reason' => 'Virement vers '.$request->get('name_organisme'),
+            'type' => 'immediat',
+            'transfer_date' => now()->format("H:i") > "18:00" ? now()->addDay() : now(),
+            'customer_wallet_id' => $request->get('customer_wallet_id'),
+            'status' => 'pending'
+        ]);
+
+        return $this->sendWarning("Certaines vérification sont invalide mais le virement à été enregistré", [$transfer]);
     }
 }
