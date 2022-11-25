@@ -218,6 +218,11 @@ Route::prefix('epargne')->group(function () {
         Route::post('/', [\App\Http\Controllers\Api\Epargne\TransferController::class, 'store']);
         Route::put('{transfer_reference}', [\App\Http\Controllers\Api\Epargne\TransferController::class, 'update']);
     });
+
+    Route::prefix('{reference}/withdraw')->group(function () {
+        Route::post('/', [\App\Http\Controllers\Api\Epargne\WithdrawController::class, 'store']);
+        Route::put('{withdraw_reference}', [\App\Http\Controllers\Api\Epargne\WithdrawController::class, 'update']);
+    });
 });
 
 Route::prefix('document')->group(function () {
