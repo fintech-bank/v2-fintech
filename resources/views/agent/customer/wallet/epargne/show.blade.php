@@ -510,7 +510,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-bank">
-                        <h3 class="modal-title text-white">Nouveau virement vers {{ $wallet->epargne->payment->name_account_generic }}</h3>
+                        <h3 class="modal-title text-white">Nouveau virement</h3>
 
                         <!--begin::Close-->
                         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
