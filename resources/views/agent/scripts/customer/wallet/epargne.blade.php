@@ -34,6 +34,10 @@
 
     $(forms.formNewTransfer).find('#immediat').fadeIn()
     $(forms.formNewTransfer).find('#permanent').fadeOut()
+    $("#courant").fadeIn()
+    $("#orga").fadeOut()
+    $("#assoc").fadeOut()
+
     let selectTypeTransfer = (item) => {
         console.log(item.value)
         if(item.value === 'immediat' || item.value === 'differed') {
@@ -42,6 +46,27 @@
         } else {
             $(forms.formNewTransfer).find('#immediat').fadeOut()
             $(forms.formNewTransfer).find('#permanent').fadeIn()
+        }
+    }
+    let selectDestTransfer = (item) => {
+        switch (item.value) {
+            case 'courant':
+                $("#courant").fadeIn()
+                $("#orga").fadeOut()
+                $("#assoc").fadeOut()
+                break;
+
+            case 'orga':
+                $("#courant").fadeOut()
+                $("#orga").fadeIn()
+                $("#assoc").fadeOut()
+                break;
+
+            case 'assoc':
+                $("#courant").fadeOut()
+                $("#orga").fadeOut()
+                $("#assoc").fadeIn()
+                break;
         }
     }
 
