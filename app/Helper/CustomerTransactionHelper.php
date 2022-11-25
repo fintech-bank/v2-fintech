@@ -101,7 +101,7 @@ class CustomerTransactionHelper
         Carbon $updated_at = null,
         int $card_id = null): \Illuminate\Database\Eloquent\Model|CustomerTransaction
     {
-        $amount = -$amount;
+        $amount = $amount;
         $wallet = CustomerWallet::find($wallet_id);
 
         $transaction = CustomerTransaction::create([
@@ -109,7 +109,7 @@ class CustomerTransactionHelper
             'type' => $type_mvm,
             'designation' => $designation,
             'description' => $description,
-            'amount' => $amount,
+            'amount' => -$amount,
             'confirmed' => $confirmed ?? false,
             'confirmed_at' => $confirmed ? $confirmed_at : null,
             'differed' => $differed ?? false,
