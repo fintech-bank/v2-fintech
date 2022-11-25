@@ -384,6 +384,16 @@
                     @endforeach
                 </div>
             </div>
+            @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type->money || json_decode($wallet->epargne->plan->info_retrait)->retrait_type->card)
+                <div class="tab-pane fade" id="withdraw" role="tabpanel">
+
+                </div>
+            @endif
+            @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money || json_decode($wallet->epargne->plan->info_versement)->depot_type->card || json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
+                <div class="tab-pane fade" id="deposit" role="tabpanel">
+
+                </div>
+            @endif
         </div>
         <div class="modal fade" tabindex="-1" id="showRib">
             <div class="modal-dialog ">
