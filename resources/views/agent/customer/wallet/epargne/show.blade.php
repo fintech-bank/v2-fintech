@@ -709,14 +709,13 @@
                         @csrf
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-3 col-sm-12">
-                                    <x-form.input
-                                        name="amount"
-                                        class="form-control-transparent"
-                                        label="Montant du retrait"
-                                        text="Montant limité à: {{ $wallet->solde_remaining }}"
-                                        required="true" />
-                                </div>
+                                <x-form.input
+                                    name="amount"
+                                    class="form-control-transparent"
+                                    label="Montant du retrait"
+                                    text="Montant limité à votre solde de: {{ $wallet->solde_remaining }} €"
+                                    required="true" />
+
                             </div>
                         </div>
                         <div class="modal-footer">
