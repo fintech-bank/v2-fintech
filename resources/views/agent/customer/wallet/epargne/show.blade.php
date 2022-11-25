@@ -310,105 +310,78 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="transfers" role="tabpanel">
-                <div class="d-flex flex-center w-100 mb-10 p-5 bg-white rounded-2">
-                    <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#transfer">Virement</a>
-                        </li>
-                        @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type->sepa_orga)
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#transfer_orga">Virement vers organisme</a>
-                        </li>
+                <button class="btn btn-bank w-100 mb-5" data-bs-toggle="modal" data-bs-target="#newTransfer"><i class="fa-solid fa-plus-circle fs-2 text-white me-2"></i> Nouveau virement</button>
+                <div class="mb-10">
+                    <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
+                    @foreach($wallet->transfers()->where('status', 'pending')->orWhere('status', 'in_transit')->get() as $transfer)
+                        @if($transfer->count() != 0)
+                            <div class="card shadow-lg mb-5">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row justify-content-between align-items-center mb-5">
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
+                                            depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
+                                        </div>
+                                        <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
+                                    </div>
+                                    <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                                        {!! $transfer->status_label !!}
+                                        {{ $transfer->transfer_date->format("d/m/Y") }}
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                        <div class="fw-bold fs-3">{{ $transfer->type_text }}</div>
+                                        <div class="btn-group">
+                                            <button class="btn btn-icon btn-bank btnViewTransfer" data-transfer="{{ $transfer->reference }}" data-bs-toggle="tooltip" title="Voir le virement"><i class="fa-solid fa-eye text-white"></i> </button>
+                                            @if($transfer->status == 'pending')
+                                                <button class="btn btn-icon btn-success btnAcceptTransfer" data-transfer="{{ $transfer->reference }}" data-bs-toggle="tooltip" title="Accepter le virement"><i class="fa-solid fa-check text-white"></i> </button>
+                                                <button class="btn btn-icon btn-danger btnRefuseTransfer" data-transfer="{{ $transfer->reference }}" data-bs-toggle="tooltip" title="Refuser le virement"><i class="fa-solid fa-xmark text-white"></i> </button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
+                                <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
+                                <div class="fs-1">Aucun virement en attente actuellement</div>
+                            </div>
                         @endif
-                        @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type->sepa_assoc)
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#transfer_assoc">Virement vers Association</a>
-                        </li>
-                        @endif
-                    </ul>
+                    @endforeach
                 </div>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="transfer" role="tabpanel">
-                        <button class="btn btn-bank w-100 mb-5" data-bs-toggle="modal" data-bs-target="#newTransfer"><i class="fa-solid fa-plus-circle fs-2 text-white me-2"></i> Nouveau virement</button>
-                        <div class="mb-10">
-                            <div class="fw-bolder fs-1 mb-5">Virement en attente</div>
-                            @foreach($wallet->transfers()->where('status', 'pending')->orWhere('status', 'in_transit')->get() as $transfer)
-                                @if($transfer->count() != 0)
-                                    <div class="card shadow-lg mb-5">
-                                        <div class="card-body">
-                                            <div class="d-flex flex-row justify-content-between align-items-center mb-5">
-                                                <div class="d-flex flex-column">
-                                                    <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
-                                                    depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
-                                                </div>
-                                                <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center mb-2">
-                                                {!! $transfer->status_label !!}
-                                                {{ $transfer->transfer_date->format("d/m/Y") }}
-                                            </div>
+                <div class="mb-10">
+                    <div class="fw-bolder fs-1 mb-5">Virement passés</div>
+                    @foreach($wallet->transfers()->where('status', 'paid')->get() as $transfer)
+                        @if($transfer->count() != 0)
+                            <div class="card shadow-lg mb-5">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row justify-content-between align-items-center mb-5">
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
+                                            depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
                                         </div>
-                                        <div class="card-footer">
-                                            <div class="d-flex flex-row justify-content-between align-items-center">
-                                                <div class="fw-bold fs-3">{{ $transfer->type_text }}</div>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-icon btn-bank btnViewTransfer" data-transfer="{{ $transfer->reference }}" data-bs-toggle="tooltip" title="Voir le virement"><i class="fa-solid fa-eye text-white"></i> </button>
-                                                    @if($transfer->status == 'pending')
-                                                        <button class="btn btn-icon btn-success btnAcceptTransfer" data-transfer="{{ $transfer->reference }}" data-bs-toggle="tooltip" title="Accepter le virement"><i class="fa-solid fa-check text-white"></i> </button>
-                                                        <button class="btn btn-icon btn-danger btnRefuseTransfer" data-transfer="{{ $transfer->reference }}" data-bs-toggle="tooltip" title="Refuser le virement"><i class="fa-solid fa-xmark text-white"></i> </button>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
                                     </div>
-                                @else
-                                    <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
-                                        <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
-                                        <div class="fs-1">Aucun virement en attente actuellement</div>
+                                    <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                                        {!! $transfer->status_label !!}
+                                        {{ $transfer->transfer_date->format("d/m/Y") }}
                                     </div>
-                                @endif
-                            @endforeach
-                        </div>
-                        <div class="mb-10">
-                            <div class="fw-bolder fs-1 mb-5">Virement passés</div>
-                            @foreach($wallet->transfers()->where('status', 'paid')->get() as $transfer)
-                                @if($transfer->count() != 0)
-                                    <div class="card shadow-lg mb-5">
-                                        <div class="card-body">
-                                            <div class="d-flex flex-row justify-content-between align-items-center mb-5">
-                                                <div class="d-flex flex-column">
-                                                    <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name }}</div>
-                                                    depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
-                                                </div>
-                                                <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between align-items-center mb-2">
-                                                {!! $transfer->status_label !!}
-                                                {{ $transfer->transfer_date->format("d/m/Y") }}
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="d-flex flex-row justify-content-between">
-                                                {{ $transfer->type_text }}
-                                                <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex flex-row justify-content-between">
+                                        {{ $transfer->type_text }}
+                                        <a href="" class="btn btn-link"><i class="fa-solid fs-2 fa-refresh me-2"></i> Renouveler</a>
                                     </div>
-                                @else
-                                    <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
-                                        <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
-                                        <div class="fs-1">Aucun virement en attente actuellement</div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="transfer_orga" role="tabpanel">
-                        ...
-                    </div>
-                    <div class="tab-pane fade" id="transfer_assoc" role="tabpanel">
-                        ...
-                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="d-flex flex-center w-25 rounded p-5 shadow-sm">
+                                <i class="fa-solid fa-xmark-circle fs-2hx text-danger mb-2"></i>
+                                <div class="fs-1">Aucun virement en attente actuellement</div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
