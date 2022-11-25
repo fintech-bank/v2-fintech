@@ -19,6 +19,7 @@ return new class extends Migration
             $table->float('amount', 50);
             $table->string('reference');
             $table->string('reason');
+            $table->enum('type_transfer', ['courant', 'orga', 'assoc'])->default('courant');
             $table->enum('type', ['immediat', 'differed', 'permanent']);
             $table->enum('access', ['classic', 'express'])->default('classic');
             $table->timestamp('transfer_date')->nullable();

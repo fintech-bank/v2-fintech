@@ -590,6 +590,10 @@
                                     label="Nom de l'association" />
 
                                 <x-form.input
+                                    name="email_assoc"
+                                    label="Adresse Mail de l'association" />
+
+                                <x-form.input
                                     name="iban_assoc"
                                     label="IBAN de l'association" />
                             </div>

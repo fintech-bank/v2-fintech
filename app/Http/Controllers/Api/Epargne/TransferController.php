@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api\Epargne;
 
 use App\Helper\CustomerTransactionHelper;
+use App\Helper\DocumentFile;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerEpargne;
 use App\Models\Customer\CustomerTransfer;
+use App\Notifications\Customer\NewTransferAssocDonNotification;
+use App\Notifications\Customer\NotifyTransferAssocNotification;
 use App\Scope\CustomerEpargneTrait;
 use Illuminate\Http\Request;
 
@@ -25,7 +28,7 @@ class TransferController extends ApiController
         } else {
             return match($request->get('type_transfer')) {
                 "courant" => $this->transfCourantUnverify($epargne, $request),
-                "orga" => $this->transfOrgaUnverify($epargne, $request),
+                "orga" => $this->transfOrgaUnverify($request),
                 "assoc" => "",
             };
         }
@@ -175,7 +178,76 @@ class TransferController extends ApiController
 
         return $this->sendSuccess(null, [$transfer]);
     }
-    private function transfOrgaUnverify(CustomerEpargne $epargne, Request $request)
+    private function transfOrgaUnverify(Request $request)
+    {
+        $transfer = CustomerTransfer::create([
+            'uuid' => \Str::uuid(),
+            'amount' => $request->get('amount'),
+            'reference' => generateReference(),
+            'reason' => 'Virement vers '.$request->get('name_organisme'),
+            'type' => 'immediat',
+            'transfer_date' => now()->format("H:i") > "18:00" ? now()->addDay() : now(),
+            'customer_wallet_id' => $request->get('customer_wallet_id'),
+            'status' => 'pending'
+        ]);
+
+        return $this->sendWarning("Certaines vérification sont invalide mais le virement à été enregistré", [$transfer]);
+    }
+
+    private function transfAssocVerify(CustomerEpargne $epargne, Request $request)
+    {
+        $transfer = CustomerTransfer::create([
+            'uuid' => \Str::uuid(),
+            'amount' => $request->get('amount'),
+            'reference' => generateReference(),
+            'reason' => 'Virement vers '.$request->get('name_assoc'),
+            'type' => 'immediat',
+            'transfer_date' => now()->format('H:i') >= "18:00" ? now()->addDay() : now(),
+            'customer_wallet_id' => $request->get('customer_wallet_id'),
+            'status' => 'in_transit'
+        ]);
+
+        $transaction_ep = CustomerTransactionHelper::createDebit(
+            $epargne->wallet->id,
+            'virement',
+            'Virement vers ' . $request->get('name_assoc'),
+            'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account." - IBAN ".$request->get('iban_assoc'),
+            $transfer->amount,
+        );
+
+        $association = [
+            'name' => $request->get('name_assoc'),
+            'iban' => $request->get('iban_assoc'),
+            'email' => $request->get('email_assoc')
+        ];
+
+        $doc_formulaire_don = DocumentFile::createDoc(
+            $epargne->customer,
+            'wallet.formulaire_don',
+            $transfer->reference." - Formulaire Don - ".$transfer->id,
+            5,
+            $epargne->reference,
+            false,
+            false,
+            false,
+            true,
+            ['transfer' => $transfer, 'association' => $association]
+        );
+
+        $transfer->update([
+            'transaction_id' => $transaction_ep->id
+        ]);
+
+        $docs = [];
+        $docs[] = ['url' => $doc_formulaire_don->url_folder];
+
+        $epargne->customer->info->notify(new NewTransferAssocDonNotification($epargne->customer, $transfer, $association, $docs));
+        \Notification::route('mail', $association['email'])
+            ->notify(new NotifyTransferAssocNotification($epargne->customer, $transfer, $association, $docs));
+
+        return $this->sendSuccess(null, [$transfer]);
+    }
+    private function transfAssocUnverify(Request $request)
     {
         $transfer = CustomerTransfer::create([
             'uuid' => \Str::uuid(),
