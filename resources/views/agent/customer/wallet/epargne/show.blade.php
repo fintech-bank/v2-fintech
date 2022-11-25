@@ -476,6 +476,7 @@
                                         <tr>
                                             <th>Référence</th>
                                             <th>Montant</th>
+                                            <th>Nb de chèque</th>
                                             <th>Etat</th>
                                             <th></th>
                                         </tr>
@@ -485,6 +486,7 @@
                                             <tr>
                                                 <td>{{ $withdraw->reference }}</td>
                                                 <td>{{ $withdraw->amount_format }}</td>
+                                                <td>{{ $withdraw->lists->count() }}</td>
                                                 <td>{{ $withdraw->status_text }}</td>
                                                 <td></td>
                                             </tr>
