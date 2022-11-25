@@ -386,7 +386,40 @@
             </div>
             @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type->money || json_decode($wallet->epargne->plan->info_retrait)->retrait_type->card)
                 <div class="tab-pane fade" id="withdraw" role="tabpanel">
-
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Retrait Bancaire</h3>
+                            <div class="card-toolbar">
+                                <button type="button" class="btn btn-sm btn-light">
+                                    Nouveau retrait
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped gx-5 gy-5">
+                                <thead>
+                                    <tr>
+                                        <th>Référence</th>
+                                        <th>Lieu de retrait</th>
+                                        <th>Montant</th>
+                                        <th>Etat</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($wallet->withdraws as $withdraw)
+                                    <tr>
+                                        <td>{{ $withdraw->reference }}</td>
+                                        <td>{{ $withdraw->dab->name }}</td>
+                                        <td>{{ $withdraw->amount_format }}</td>
+                                        <td>{{ $withdraw->status_text }}</td>
+                                        <td></td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             @endif
             @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money || json_decode($wallet->epargne->plan->info_versement)->depot_type->card || json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
