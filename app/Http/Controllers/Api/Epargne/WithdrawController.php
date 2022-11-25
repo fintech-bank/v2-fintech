@@ -6,6 +6,7 @@ use App\Helper\CustomerTransactionHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerEpargne;
+use App\Notifications\Customer\NewWithdrawNotification;
 use App\Notifications\Customer\SendCodeSignApiNotification;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,8 @@ class WithdrawController extends ApiController
             $withdraw->update([
                 'customer_transaction_id' => $transaction->id,
             ]);
+
+            $epargne->customer->info->notify(new NewWithdrawNotification($epargne->customer, $withdraw));
 
             return $this->sendSuccess();
         } else {
