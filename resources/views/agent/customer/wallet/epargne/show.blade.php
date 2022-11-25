@@ -166,7 +166,7 @@
                 <div class="separator border-gray-300 my-5"></div>
                 <div class="w-50" data-kt-search-element="suggestions">
 
-                    @foreach($wallet->transactions as $transaction)
+                    @foreach($wallet->transactions()->where('confirmed', true)->orderBy('confirmed_at', 'desc')->get() as $transaction)
                         <div class="mb-5">
                             <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0" data-bs-toggle="collapse" href="#{{ $transaction->type }}_{{ $transaction->id }}">
                                 <div class="d-flex flex-row align-items-center text-black">
