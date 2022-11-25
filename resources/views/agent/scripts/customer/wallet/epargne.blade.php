@@ -14,10 +14,12 @@
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
         modalNewTransfer: document.querySelector('#newTransfer'),
+        modalNewWithdraw: document.querySelector('#addRetrait'),
     }
     let forms = {
         formUpdateStateAccount: document.querySelector("#formUpdateStateAccount"),
         formNewTransfer: document.querySelector('#formNewTransfer'),
+        formNewWithdraw: document.querySelector('#formNewWithdraw'),
     }
     let dataTable = {}
     let block = {
@@ -26,6 +28,10 @@
             overlayClass: "bg-gray-600 bg-opacity-25",
         }),
         blockNewTransfer: new KTBlockUI(modals.modalNewTransfer.querySelector('.modal-body'), {
+            message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Chargement...</div>',
+            overlayClass: "bg-gray-600 bg-opacity-25",
+        }),
+        blockNewWithdraw: new KTBlockUI(modals.modalNewWithdraw.querySelector('.modal-body'), {
             message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Chargement...</div>',
             overlayClass: "bg-gray-600 bg-opacity-25",
         }),
@@ -299,6 +305,29 @@
                         window.location.reload()
                     }, 1200)
                 }
+            }
+        })
+    })
+    $(forms.formNewWithdraw).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formNewWithdraw)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+        block.blockNewTransfer.block()
+
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: data,
+            success: data => {
+                block.blockNewTransfer.release()
+                block.blockNewTransfer.destroy()
+                btn.removeAttr('data-kt-indicator')
+
+
             }
         })
     })

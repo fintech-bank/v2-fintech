@@ -68,6 +68,23 @@ class VerifyController extends ApiController
         }
     }
 
+    public function other(Request $request)
+    {
+        $email = base64_decode($request->get('token'));
+        $user = User::where('email', $email)->first();
+
+        if(isset($user)) {
+            return view('front.verify.other', [
+                'customer' => $user->customer,
+                'action' => $request->get('action')
+            ]);
+        } else {
+            return redirect()->route('verify-error')
+                ->with('sector', 'other')
+                ->with('action', $request->get('action'));
+        }
+    }
+
     public function success(Request $request)
     {
         $sector = $request->get('sector');

@@ -29,6 +29,7 @@ Route::prefix('verify')->group(function () {
     Route::get('/verify-identity', [\App\Http\Controllers\VerifyController::class, 'identity'])->name('verify-identity');
     Route::get('/verify-address', [\App\Http\Controllers\VerifyController::class, 'address'])->name('verify-address');
     Route::get('/verify-income', [\App\Http\Controllers\VerifyController::class, 'income'])->name('verify-income');
+    Route::get('/verify-other', [\App\Http\Controllers\VerifyController::class, 'other'])->name('verify-other');
 
     Route::get('/verify-success', [\App\Http\Controllers\VerifyController::class, 'success'])->name('verify-success');
     Route::get('/verify-error', [\App\Http\Controllers\VerifyController::class, 'error'])->name('verify-error');
