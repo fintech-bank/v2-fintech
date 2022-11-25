@@ -18,7 +18,7 @@ class WithdrawController extends ApiController
         $code = random_numeric(6);
 
         if($epargne->wallet->solde_remaining < $request->get('amount')) {
-            $withdraw = $epargne->wallet->withdraws->create([
+            $withdraw = $epargne->wallet->withdraws()->create([
                 'reference' => generateReference(),
                 'amount' => $request->get('amount'),
                 'status' => 'terminated',
