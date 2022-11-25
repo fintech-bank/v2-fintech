@@ -235,7 +235,7 @@
                     <div class="col-md-12">
                         <div class="card shadow-sm">
                             <div class="card-body">
-                                <div class="fw-bolder fs-1">Information sur le {{ $wallet->name_account_generic }}</div>
+                                <div class="fw-bolder fs-1">Information sur le {{ $wallet->name_account_generic }} ({{ $wallet->epargne->plan->name }})</div>
                                 <div class="separator separator-dashed my-5"></div>
                                 <div class="row align-items-center">
                                     <div class="col-md-2 col-sm-4">
@@ -525,6 +525,65 @@
                             <input type="hidden" name="customer_wallet_id" value="{{ $wallet->id }}">
                             <input type="hidden" name="customer_beneficiaire_id" value="{{ $wallet->customer->id }}">
                             <input type="hidden" name="type_wallet" value="epargne">
+                            <input type="hidden" name="type_transfer" value="standard">
+
+                            <x-form.input
+                                name="amount"
+                                label="Montant à envoyer"
+                                :value="json_decode($wallet->epargne->plan->info_retrait)->amount"
+                                required="true" />
+
+                            <div class="mb-10">
+                                <label for="" class="form-label required">Type de virement</label>
+                                <select name="type" class="form-control selectpicker" required onchange="selectTypeTransfer(this)">
+                                    <option value="immediat">Immédiat</option>
+                                    <option value="differed">Différé</option>
+                                    <option value="permanent">Permanent</option>
+                                </select>
+                            </div>
+                            <div id="immediat">
+                                <x-form.input-date
+                                    name="transfer_date"
+                                    label="Date de transfer"
+                                    :value="now()->hour >= 16 ? now()->addDay()->format('Y-m-d H:i') : now()->format('Y-m-d H:i')" />
+                            </div>
+
+                            <div id="permanent">
+                                <x-form.input-date
+                                    name="recurring_start"
+                                    label="Date de début" />
+                                <x-form.input-date
+                                    name="recurring_start"
+                                    label="Date de fin" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <x-form.button />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" id="newTransferOrga">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-bank">
+                        <h3 class="modal-title text-white">Nouveau virement vers {{ $wallet->epargne->payment->name_account_generic }}</h3>
+
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-solid fa-xmark fs-1"></i>
+                        </div>
+                        <!--end::Close-->
+                    </div>
+
+                    <form id="formNewTransfer" action="/api/epargne/{{ $wallet->epargne->reference }}/transfer" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <input type="hidden" name="customer_wallet_id" value="{{ $wallet->id }}">
+                            <input type="hidden" name="customer_beneficiaire_id" value="{{ $wallet->customer->id }}">
+                            <input type="hidden" name="type_wallet" value="epargne">
+                            <input type="hidden" name="type_transfer" value="standard">
 
                             <x-form.input
                                 name="amount"

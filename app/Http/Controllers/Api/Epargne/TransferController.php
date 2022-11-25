@@ -16,57 +16,59 @@ class TransferController extends ApiController
     {
         $epargne = CustomerEpargne::where('reference', $reference)->first();
 
-        if (CustomerEpargneTrait::verifyInfoTransfer($epargne, $request)) {
-            $transfer = CustomerTransfer::create([
-                'uuid' => \Str::uuid(),
-                'amount' => $request->get('amount'),
-                'reference' => generateReference(),
-                'reason' => 'Virement vers '.$epargne->payment->name_account_generic,
-                'type' => $request->get('type'),
-                'transfer_date' => $request->get('type') == 'immediat' || $request->get('type') == 'differed' ? $request->get('transfer_date') : null,
-                'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
-                'recurring_end' => $request->get('type') == 'permanent' ? $request->get('recurring_end') : null,
-                'customer_wallet_id' => $request->get('customer_wallet_id'),
-                'status' => 'in_transit'
-            ]);
+        if($request->get('type_transfer') == 'standard') {
+            if (CustomerEpargneTrait::verifyInfoTransfer($epargne, $request)) {
+                $transfer = CustomerTransfer::create([
+                    'uuid' => \Str::uuid(),
+                    'amount' => $request->get('amount'),
+                    'reference' => generateReference(),
+                    'reason' => 'Virement vers '.$epargne->payment->name_account_generic,
+                    'type' => $request->get('type'),
+                    'transfer_date' => $request->get('type') == 'immediat' || $request->get('type') == 'differed' ? $request->get('transfer_date') : null,
+                    'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
+                    'recurring_end' => $request->get('type') == 'permanent' ? $request->get('recurring_end') : null,
+                    'customer_wallet_id' => $request->get('customer_wallet_id'),
+                    'status' => 'in_transit'
+                ]);
 
-            $transaction_ep = CustomerTransactionHelper::createDebit(
-                $epargne->wallet->id,
-                'virement',
-                'Virement ' . $epargne->wallet->name_account_generic,
-                'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account,
-                $transfer->amount,
-            );
+                $transaction_ep = CustomerTransactionHelper::createDebit(
+                    $epargne->wallet->id,
+                    'virement',
+                    'Virement ' . $epargne->wallet->name_account_generic,
+                    'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account,
+                    $transfer->amount,
+                );
 
-            CustomerTransactionHelper::createCredit(
-                $epargne->payment->id,
-                'virement',
-                'Virement ' . $epargne->wallet->name_account_generic,
-                'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account,
-                $transfer->amount,
-            );
+                CustomerTransactionHelper::createCredit(
+                    $epargne->payment->id,
+                    'virement',
+                    'Virement ' . $epargne->wallet->name_account_generic,
+                    'REFERENCE ' . $transfer->reference . ' | ' . $epargne->plan->name . ' ~ ' . $epargne->wallet->number_account,
+                    $transfer->amount,
+                );
 
-            $transfer->update([
-                'transaction_id' => $transaction_ep->id
-            ]);
+                $transfer->update([
+                    'transaction_id' => $transaction_ep->id
+                ]);
 
-            return $this->sendSuccess(null, [$transfer]);
-        } else {
-            $transfer = CustomerTransfer::create([
-                'uuid' => \Str::uuid(),
-                'amount' => $request->get('amount'),
-                'reference' => generateReference(),
-                'reason' => 'Virement vers '.$epargne->payment->name_account_generic,
-                'type' => $request->get('type'),
-                'transfer_date' => $request->get('type') == 'immediat' || $request->get('type') == 'differed' ? $request->get('transfer_date') : null,
-                'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
-                'recurring_end' => $request->get('type') == 'permanent' ? $request->get('recurring_end') : null,
-                'customer_wallet_id' => $request->get('customer_wallet_id'),
-                'customer_beneficiaire_id' => $request->get('customer_beneficiaire_id'),
-                'status' => 'pending'
-            ]);
+                return $this->sendSuccess(null, [$transfer]);
+            } else {
+                $transfer = CustomerTransfer::create([
+                    'uuid' => \Str::uuid(),
+                    'amount' => $request->get('amount'),
+                    'reference' => generateReference(),
+                    'reason' => 'Virement vers '.$epargne->payment->name_account_generic,
+                    'type' => $request->get('type'),
+                    'transfer_date' => $request->get('type') == 'immediat' || $request->get('type') == 'differed' ? $request->get('transfer_date') : null,
+                    'recurring_start' => $request->get('type') == 'permanent' ? $request->get('recurring_start') : null,
+                    'recurring_end' => $request->get('type') == 'permanent' ? $request->get('recurring_end') : null,
+                    'customer_wallet_id' => $request->get('customer_wallet_id'),
+                    'customer_beneficiaire_id' => $request->get('customer_beneficiaire_id'),
+                    'status' => 'pending'
+                ]);
 
-            return $this->sendWarning("Certaines vérification sont invalide mais le virement à été enregistré", [$transfer]);
+                return $this->sendWarning("Certaines vérification sont invalide mais le virement à été enregistré", [$transfer]);
+            }
         }
     }
 
