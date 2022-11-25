@@ -725,6 +725,39 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" tabindex="-1" id="addDepot">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-bank">
+                        <h3 class="modal-title text-white">Nouveau retrait</h3>
+
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-solid fa-xmark fs-1"></i>
+                        </div>
+                        <!--end::Close-->
+                    </div>
+
+                    <form id="formNewWithdraw" action="/api/epargne/{{ $wallet->epargne->reference }}/withdraw" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="row">
+                                <x-form.input
+                                    name="amount"
+                                    class="form-control-transparent"
+                                    label="Montant du retrait"
+                                    text="Montant limité à votre solde de: {{ $wallet->solde_remaining }} €"
+                                    required="true" />
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <x-form.button />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
