@@ -525,94 +525,73 @@
                             <input type="hidden" name="customer_wallet_id" value="{{ $wallet->id }}">
                             <input type="hidden" name="customer_beneficiaire_id" value="{{ $wallet->customer->id }}">
                             <input type="hidden" name="type_wallet" value="epargne">
-                            <input type="hidden" name="type_transfer" value="standard">
 
+                            <div class="mb-10">
+                                <label for="" class="form-label required">Destinataire du virement</label>
+                                <select name="type_transfer" class="form-control selectpicker" required onchange="selectDestTransfer(this)">
+                                    <option value="courant">Compte Courant</option>
+                                    @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type->sepa_orga)
+                                    <option value="orga">Organisme Public</option>
+                                    @endif
+                                    @if(json_decode($wallet->epargne->plan->info_retrait)->retrait_type->sepa_assoc)
+                                    <option value="assoc">Association</option>
+                                    @endif
+                                </select>
+                            </div>
                             <x-form.input
                                 name="amount"
                                 label="Montant à envoyer"
                                 :value="json_decode($wallet->epargne->plan->info_retrait)->amount"
                                 required="true" />
 
-                            <div class="mb-10">
-                                <label for="" class="form-label required">Type de virement</label>
-                                <select name="type" class="form-control selectpicker" required onchange="selectTypeTransfer(this)">
-                                    <option value="immediat">Immédiat</option>
-                                    <option value="differed">Différé</option>
-                                    <option value="permanent">Permanent</option>
-                                </select>
+                            <div id="courant">
+                                <div class="mb-10">
+                                    <label for="" class="form-label required">Type de virement</label>
+                                    <select name="type" class="form-control selectpicker" required onchange="selectTypeTransfer(this)">
+                                        <option value="immediat">Immédiat</option>
+                                        <option value="differed">Différé</option>
+                                        <option value="permanent">Permanent</option>
+                                    </select>
+                                </div>
+                                <div id="immediat">
+                                    <x-form.input-date
+                                        name="transfer_date"
+                                        label="Date de transfer"
+                                        :value="now()->hour >= 16 ? now()->addDay()->format('Y-m-d H:i') : now()->format('Y-m-d H:i')" />
+                                </div>
+                                <div id="permanent">
+                                    <x-form.input-date
+                                        name="recurring_start"
+                                        label="Date de début" />
+                                    <x-form.input-date
+                                        name="recurring_start"
+                                        label="Date de fin" />
+                                </div>
                             </div>
-                            <div id="immediat">
-                                <x-form.input-date
-                                    name="transfer_date"
-                                    label="Date de transfer"
-                                    :value="now()->hour >= 16 ? now()->addDay()->format('Y-m-d H:i') : now()->format('Y-m-d H:i')" />
+                            <div id="orga">
+                                <x-form.input
+                                    name="name_organisme"
+                                    label="Nom de l'organisme publique" />
+
+                                <x-form.input
+                                    name="iban_organisme"
+                                    label="IBAN de l'organisme" />
                             </div>
+                            <div id="assoc">
+                                <x-base.alert
+                                    type="solid"
+                                    color="primary"
+                                    icon="info-circle"
+                                    title="Information"
+                                    content="Les virements vers une association est soumise au conditions des dons effectifs en réduction d'impôt" />
 
-                            <div id="permanent">
-                                <x-form.input-date
-                                    name="recurring_start"
-                                    label="Date de début" />
-                                <x-form.input-date
-                                    name="recurring_start"
-                                    label="Date de fin" />
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <x-form.button />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" tabindex="-1" id="newTransferOrga">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header bg-bank">
-                        <h3 class="modal-title text-white">Nouveau virement vers {{ $wallet->epargne->payment->name_account_generic }}</h3>
+                                <x-form.input
+                                    name="name_assoc"
+                                    label="Nom de l'association" />
 
-                        <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                            <i class="fa-solid fa-xmark fs-1"></i>
-                        </div>
-                        <!--end::Close-->
-                    </div>
-
-                    <form id="formNewTransfer" action="/api/epargne/{{ $wallet->epargne->reference }}/transfer" method="post">
-                        @csrf
-                        <div class="modal-body">
-                            <input type="hidden" name="customer_wallet_id" value="{{ $wallet->id }}">
-                            <input type="hidden" name="customer_beneficiaire_id" value="{{ $wallet->customer->id }}">
-                            <input type="hidden" name="type_wallet" value="epargne">
-                            <input type="hidden" name="type_transfer" value="standard">
-
-                            <x-form.input
-                                name="amount"
-                                label="Montant à envoyer"
-                                :value="json_decode($wallet->epargne->plan->info_retrait)->amount"
-                                required="true" />
-
-                            <div class="mb-10">
-                                <label for="" class="form-label required">Type de virement</label>
-                                <select name="type" class="form-control selectpicker" required onchange="selectTypeTransfer(this)">
-                                    <option value="immediat">Immédiat</option>
-                                    <option value="differed">Différé</option>
-                                    <option value="permanent">Permanent</option>
-                                </select>
-                            </div>
-                            <div id="immediat">
-                                <x-form.input-date
-                                    name="transfer_date"
-                                    label="Date de transfer"
-                                    :value="now()->hour >= 16 ? now()->addDay()->format('Y-m-d H:i') : now()->format('Y-m-d H:i')" />
-                            </div>
-
-                            <div id="permanent">
-                                <x-form.input-date
-                                    name="recurring_start"
-                                    label="Date de début" />
-                                <x-form.input-date
-                                    name="recurring_start"
-                                    label="Date de fin" />
+                                <x-form.input
+                                    name="iban_assoc"
+                                    label="IBAN de l'association" />
                             </div>
                         </div>
                         <div class="modal-footer">
