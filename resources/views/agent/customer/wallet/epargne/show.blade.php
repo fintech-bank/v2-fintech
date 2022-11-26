@@ -789,10 +789,31 @@
                         @csrf
                         <div class="modal-body">
                             <div class="row">
-                                <x-form.input name="amount" class="form-control-transparent" label="Montant du retrait"
-                                    text="Montant limité à votre solde de: {{ $wallet->solde_remaining }} €"
-                                    required="true" />
-
+                                <ul class="nav nav-tabs nav-pills flex-row border-0 flex-md-column me-5 mb-3 mb-md-0 fs-6 min-w-lg-200px">
+                                    @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
+                                    <li class="nav-item w-100 me-0 mb-md-2">
+                                        <a class="nav-link w-100 active btn btn-flex btn-active-light-success" data-bs-toggle="tab" href="#money">
+                                            <i class="fa-solid fs-2 fa-money-bill-transfer"></i>
+                                            <span class="d-flex flex-column align-items-start">
+                                                <span class="fs-4 fw-bold">Espèces</span>
+                                                <span class="fs-7">Dépot de billet</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    @endif
+                                    @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
+                                    <li class="nav-item w-100 me-0 mb-md-2">
+                                        <a class="nav-link w-100 btn btn-flex btn-active-light-info" data-bs-toggle="tab" href="#check">
+                                            <span class="svg-icon svg-icon-2"><svg>...</svg></span>
+                                            <i class="fa-solid fs-2 fa-money-check-dollar"></i>
+                                            <span class="d-flex flex-column align-items-start">
+                                                <span class="fs-4 fw-bold">Chèque</span>
+                                                <span class="fs-7">Dépot de chèque</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    @endif
+                                </ul>
                             </div>
                         </div>
                         <div class="modal-footer">
