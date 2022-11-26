@@ -818,15 +818,63 @@
                                 </div>
                                 <div class="col-md-8 col-sm-12">
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel">
-                                            ...
+                                        @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
+                                        <div class="tab-pane fade show active" id="money" role="tabpanel">
+                                            <input type="hidden" name="type_deposit" value="money">
+
+                                            <x-form.input
+                                                name="amount"
+                                                label="Montant à déposé"
+                                                required="true" />
                                         </div>
-                                        <div class="tab-pane fade" id="kt_tab_pane_2" role="tabpanel">
-                                            ...
+                                        @endif
+                                        @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
+                                        <div class="tab-pane fade" id="check" role="tabpanel">
+                                            <input type="hidden" name="type_deposit" value="money">
+
+                                            <x-form.input
+                                                name="amount"
+                                                label="Montant à déposé"
+                                                required="true" />
+
+                                            <table class="table table-bordered table-striped table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date de dépot</th>
+                                                        <th>Numéro</th>
+                                                        <th>Montant</th>
+                                                        <th>Nom du chèque</th>
+                                                        <th>Banque</th>
+                                                        <th>Vérifié ?</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="number[]" class="form-control form-control-sm">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="tab-pane fade" id="kt_tab_pane_3" role="tabpanel">
-                                            ...
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
