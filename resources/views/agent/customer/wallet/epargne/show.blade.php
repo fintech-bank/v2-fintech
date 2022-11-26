@@ -788,327 +788,296 @@
                         method="post">
                         @csrf
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-12 mb-5">
-                                    <x-form.radio
-                                        name="type_deposit"
-                                        value="check"
-                                        for="type_deposit"
-                                        label="Dépot de chèque" />
+                            @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
+                                <x-form.radio
+                                    name="type_deposit"
+                                    value="money"
+                                    for="type_deposit"
+                                    label="Dépot d'espèce" />
+                            @endif
 
-                                    <x-form.radio
-                                        name="type_deposit"
-                                        value="money"
-                                        for="type_deposit"
-                                        label="Dépot de chèque" />
-                                    <ul class="nav nav-tabs nav-pills flex-row border-0 flex-md-column me-5 mb-3 mb-md-0 fs-6 min-w-lg-200px">
-                                        @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
-                                            <li class="nav-item w-100 me-0 mb-md-2">
-                                                <a class="nav-link w-100 active btn btn-flex btn-active-light-success" data-bs-toggle="tab" href="#money">
-                                                    <i class="fa-solid fs-2 fa-money-bill-transfer"></i>
-                                                    <span class="d-flex flex-column align-items-start">
-                                                <span class="fs-4 fw-bold">Espèces</span>
-                                                <span class="fs-7">Dépot de billet</span>
-                                            </span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
-                                            <li class="nav-item w-100 me-0 mb-md-2">
-                                                <a class="nav-link w-100 btn btn-flex btn-active-light-info" data-bs-toggle="tab" href="#check">
-                                                    <span class="svg-icon svg-icon-2"><svg>...</svg></span>
-                                                    <i class="fa-solid fs-2 fa-money-check-dollar"></i>
-                                                    <span class="d-flex flex-column align-items-start">
-                                                <span class="fs-4 fw-bold">Chèque</span>
-                                                <span class="fs-7">Dépot de chèque</span>
-                                            </span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                    </ul>
+                            @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
+                                <x-form.radio
+                                    name="type_deposit"
+                                    value="check"
+                                    for="type_deposit"
+                                    label="Dépot de chèque" />
+                            @endif
+
+                            @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
+                                <div id="money_deposit">
+                                    <x-form.input
+                                        name="amount"
+                                        label="Montant à déposé"
+                                        required="true" />
                                 </div>
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="tab-content" id="myTabContent">
-                                        @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
-                                        <div class="tab-pane fade show active" id="money" role="tabpanel">
-                                            <input type="hidden" name="type_deposit" value="money">
+                            @endif
+                            @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
+                                <div id="check_deposit">
+                                    <x-form.input
+                                        name="amount"
+                                        label="Montant à déposé"
+                                        required="true" />
 
-                                            <x-form.input
-                                                name="amount"
-                                                label="Montant à déposé"
-                                                required="true" />
-                                        </div>
-                                        @endif
-                                        @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
-                                        <div class="tab-pane fade" id="check" role="tabpanel">
-                                            <input type="hidden" name="type_deposit" value="money">
-
-                                            <x-form.input
-                                                name="amount"
-                                                label="Montant à déposé"
-                                                required="true" />
-
-                                            <table class="table table-bordered table-striped table-sm">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Date de dépot</th>
-                                                        <th>Numéro</th>
-                                                        <th>Montant</th>
-                                                        <th>Nom du chèque</th>
-                                                        <th>Banque</th>
-                                                        <th>Vérifié ?</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="number[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="amount[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="name_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        @endif
-                                    </div>
+                                    <table class="table table-bordered table-striped table-sm">
+                                        <thead>
+                                        <tr>
+                                            <th>Date de dépot</th>
+                                            <th>Numéro</th>
+                                            <th>Montant</th>
+                                            <th>Nom du chèque</th>
+                                            <th>Banque</th>
+                                            <th>Vérifié ?</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="number[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="amount[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="text" name="bank_deposit[]" class="form-control form-control-sm">
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" name="verified[]" value="1" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </div>
+                            @endif
+
                         </div>
                         <div class="modal-footer">
                             <x-form.button />
