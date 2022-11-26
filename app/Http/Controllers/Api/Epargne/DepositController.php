@@ -73,11 +73,11 @@ class DepositController extends ApiController
 
         foreach ((object) $lists as $list) {
             $deposit->lists()->create([
-                'number' => $list->number,
-                'amount' => $list->amount,
-                'name_deposit' => $list->name_deposit,
-                'bank_deposit' => $list->bank_deposit,
-                'verified' => $list->verified,
+                'number' => $list['number'],
+                'amount' => $list['amount'],
+                'name_deposit' => $list['name_deposit'],
+                'bank_deposit' => $list['bank_deposit'],
+                'verified' => $list['verified'],
                 'customer_check_deposit_id' => $deposit->id,
 
             ]);
