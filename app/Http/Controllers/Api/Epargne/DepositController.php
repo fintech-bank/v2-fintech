@@ -34,7 +34,7 @@ class DepositController extends ApiController
         ]);
 
         $transaction = CustomerTransactionHelper::createCredit(
-            $epargne->wallet_id,
+            $epargne->wallet->id,
             'depot',
             "Dépot d'espèce en Agence",
             "Dépot {$deposit->reference} | {$deposit->created_at->format('d/m H:i')}",
@@ -83,7 +83,7 @@ class DepositController extends ApiController
         }
 
         $transaction = CustomerTransactionHelper::createCredit(
-            $epargne->wallet_id,
+            $epargne->wallet->id,
             'depot',
             "Dépot de {$lists->count()} chèques en Agence",
             "Dépot {$deposit->reference} | {$deposit->created_at->format('d/m H:i')}",
