@@ -835,7 +835,7 @@
                                         <tbody>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -857,7 +857,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -879,7 +879,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -901,7 +901,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -923,7 +923,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -945,7 +945,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -967,7 +967,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -989,7 +989,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -1011,7 +1011,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -1033,7 +1033,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
@@ -1055,7 +1055,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" name="date_deposit" class="form-control form-control-sm datepick">
+                                                <input type="text" name="date_deposit[]" class="form-control form-control-sm datepick">
                                             </td>
                                             <td>
                                                 <input type="text" name="number[]" class="form-control form-control-sm">
