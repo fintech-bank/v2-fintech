@@ -71,7 +71,7 @@ class DepositController extends ApiController
             'customer_wallet_id' => $epargne->wallet->id,
         ]);
 
-        foreach ($lists as $list) {
+        foreach ((object) $lists as $list) {
             $deposit->lists()->create([
                 'number' => $list->number,
                 'amount' => $list->amount,
