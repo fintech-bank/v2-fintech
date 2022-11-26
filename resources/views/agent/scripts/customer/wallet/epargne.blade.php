@@ -49,6 +49,8 @@
     $("#courant").fadeIn()
     $("#orga").fadeOut()
     $("#assoc").fadeOut()
+    $("#money_deposit").fadeOut()
+    $("#check_deposit").fadeOut()
 
     let selectTypeTransfer = (item) => {
         console.log(item.value)
@@ -85,6 +87,14 @@
     forms.formNewDeposit.querySelectorAll('[name="type_deposit"]').forEach(input => {
         input.addEventListener('click', e => {
             console.log(e.target.value)
+            if(e.target.value === 'money') {
+                $("#money_deposit").fadeIn()
+                $("#check_deposit").fadeOut()
+            } else {
+                $("#money_deposit").fadeOut()
+                $("#check_deposit").fadeIn()
+            }
+
         })
     })
 
