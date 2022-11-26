@@ -811,7 +811,7 @@
                             @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
                                 <div id="money_deposit">
                                     <x-form.input
-                                        name="amount"
+                                        name="amount_money"
                                         label="Montant à déposé"
                                         required="true" />
                                 </div>
@@ -819,7 +819,7 @@
                             @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
                                 <div id="check_deposit">
                                     <x-form.input
-                                        name="amount"
+                                        name="amount_check"
                                         label="Montant à déposé"
                                         required="true" />
 
