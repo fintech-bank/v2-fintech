@@ -788,23 +788,25 @@
                         method="post">
                         @csrf
                         <div class="modal-body">
-                            @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
-                                <div class="mb-3">
+                            <div class="mb-10">
+                                @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
+                                    <div class="mb-3">
+                                        <x-form.radio
+                                            name="type_deposit"
+                                            value="money"
+                                            for="money"
+                                            label="Dépot d'espèce" />
+                                    </div>
+                                @endif
+
+                                @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
                                     <x-form.radio
                                         name="type_deposit"
-                                        value="money"
-                                        for="money"
-                                        label="Dépot d'espèce" />
-                                </div>
-                            @endif
-
-                            @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
-                                <x-form.radio
-                                    name="type_deposit"
-                                    value="check"
-                                    for="check"
-                                    label="Dépot de chèque" />
-                            @endif
+                                        value="check"
+                                        for="check"
+                                        label="Dépot de chèque" />
+                                @endif
+                            </div>
 
                             @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
                                 <div id="money_deposit">
