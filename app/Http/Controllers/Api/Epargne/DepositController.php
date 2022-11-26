@@ -52,13 +52,15 @@ class DepositController extends ApiController
         $lists = collect();
 
         for ($i=0; $i <= 10; $i++) {
-            $lists->push([
-                'number' => $request->get('number')[$i],
-                'amount' => $request->get('amount')[$i],
-                'name_deposit' => $request->get('name_deposit')[$i],
-                'bank_deposit' => $request->get('bank_deposit')[$i],
-                'verified' => $request->has('verified'),
-            ]);
+            if($request->get('number')[$i] != null) {
+                $lists->push([
+                    'number' => $request->get('number')[$i],
+                    'amount' => $request->get('amount')[$i],
+                    'name_deposit' => $request->get('name_deposit')[$i],
+                    'bank_deposit' => $request->get('bank_deposit')[$i],
+                    'verified' => $request->has('verified'),
+                ]);
+            }
         }
 
         return $lists;
