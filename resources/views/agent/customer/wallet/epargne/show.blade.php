@@ -793,7 +793,7 @@
                                     <x-form.radio
                                         name="type_deposit"
                                         value="money"
-                                        for="type_deposit"
+                                        for="money"
                                         label="Dépot d'espèce" />
                                 </div>
                             @endif
@@ -802,7 +802,7 @@
                                 <x-form.radio
                                     name="type_deposit"
                                     value="check"
-                                    for="type_deposit"
+                                    for="check"
                                     label="Dépot de chèque" />
                             @endif
 
