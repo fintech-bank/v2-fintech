@@ -790,6 +790,17 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 mb-5">
+                                    <x-form.radio
+                                        name="type_deposit"
+                                        value="check"
+                                        for="type_deposit"
+                                        label="Dépot de chèque" />
+
+                                    <x-form.radio
+                                        name="type_deposit"
+                                        value="money"
+                                        for="type_deposit"
+                                        label="Dépot de chèque" />
                                     <ul class="nav nav-tabs nav-pills flex-row border-0 flex-md-column me-5 mb-3 mb-md-0 fs-6 min-w-lg-200px">
                                         @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
                                             <li class="nav-item w-100 me-0 mb-md-2">
