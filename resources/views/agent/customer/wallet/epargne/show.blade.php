@@ -429,7 +429,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Dépot d'espèce</h3>
                                 <div class="card-toolbar">
-                                    <button type="button" class="btn btn-sm btn-light">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#addDepot" class="btn btn-sm btn-light">
                                         Nouveau dépot
                                     </button>
                                 </div>
@@ -729,7 +729,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-bank">
-                        <h3 class="modal-title text-white">Nouveau retrait</h3>
+                        <h3 class="modal-title text-white">Nouveau depot d'espèce</h3>
 
                         <!--begin::Close-->
                         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
