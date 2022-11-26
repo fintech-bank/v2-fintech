@@ -784,7 +784,7 @@
                         <!--end::Close-->
                     </div>
 
-                    <form id="formNewWithdraw" action="/api/epargne/{{ $wallet->epargne->reference }}/deposit"
+                    <form id="formNewDeposit" action="/api/epargne/{{ $wallet->epargne->reference }}/deposit"
                         method="post">
                         @csrf
                         <div class="modal-body">

@@ -15,11 +15,13 @@
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
         modalNewTransfer: document.querySelector('#newTransfer'),
         modalNewWithdraw: document.querySelector('#addRetrait'),
+        modalNewDeposit: document.querySelector('#addDepot'),
     }
     let forms = {
         formUpdateStateAccount: document.querySelector("#formUpdateStateAccount"),
         formNewTransfer: document.querySelector('#formNewTransfer'),
         formNewWithdraw: document.querySelector('#formNewWithdraw'),
+        formNewDeposit: document.querySelector('#formNewDeposit'),
     }
     let dataTable = {}
     let block = {
@@ -32,6 +34,10 @@
             overlayClass: "bg-gray-600 bg-opacity-25",
         }),
         blockNewWithdraw: new KTBlockUI(modals.modalNewWithdraw.querySelector('.modal-body'), {
+            message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Chargement...</div>',
+            overlayClass: "bg-gray-600 bg-opacity-25",
+        }),
+        blockNewDeposit: new KTBlockUI(modals.modalNewDeposit.querySelector('.modal-body'), {
             message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Chargement...</div>',
             overlayClass: "bg-gray-600 bg-opacity-25",
         }),
@@ -75,6 +81,10 @@
                 break;
         }
     }
+
+    forms.formNewDeposit.querySelectorAll('[name="type_deposit"]').forEach(input => {
+        console.log(input.value)
+    })
 
     if (elements.btnAcceptTransaction) {
         elements.btnAcceptTransaction.forEach(btn => {
