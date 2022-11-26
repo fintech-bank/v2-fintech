@@ -365,6 +365,42 @@
             }
         })
     })
+    $(forms.formNewDeposit).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formNewDeposit)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+        block.blockNewDeposit.block()
+
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: data,
+            success: data => {
+                block.blockNewDeposit.release()
+                block.blockNewDeposit.destroy()
+                btn.removeAttr('data-kt-indicator')
+                console.log(data)
+
+                /*if(data.state === 'warning') {
+                    toastr.warning(`${data.message()}`, `Création d'un dépot`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                } else {
+                    toastr.success(`Le dépot à été créer avec succès`, `Création d'un dépot`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }*/
+            }
+        })
+    })
 
     KTDrawer.createInstances()
 </script>

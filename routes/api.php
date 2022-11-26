@@ -223,6 +223,11 @@ Route::prefix('epargne')->group(function () {
         Route::post('/', [\App\Http\Controllers\Api\Epargne\WithdrawController::class, 'store']);
         Route::put('{withdraw_reference}', [\App\Http\Controllers\Api\Epargne\WithdrawController::class, 'update']);
     });
+
+    Route::prefix('{reference}/deposit')->group(function () {
+        Route::post('/', [\App\Http\Controllers\Api\Epargne\DepositController::class, 'store']);
+        Route::put('{deposit_reference}', [\App\Http\Controllers\Api\Epargne\DepositController::class, 'update']);
+    });
 });
 
 Route::prefix('document')->group(function () {
