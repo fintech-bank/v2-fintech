@@ -68,7 +68,7 @@ class DepositController extends ApiController
             'reference' => generateReference(),
             'amount' => $request->get('amount_check'),
             'state' => 'terminated',
-            'customer_wallet_id' => $epargne->wallet_id,
+            'customer_wallet_id' => $epargne->wallet->id,
         ]);
 
         foreach ($lists as $list) {
@@ -78,7 +78,8 @@ class DepositController extends ApiController
                 'name_deposit' => $list->name_deposit,
                 'bank_deposit' => $list->bank_deposit,
                 'verified' => $list->verified,
-                'customer_check_deposit_id' => $deposit->id
+                'customer_check_deposit_id' => $deposit->id,
+
             ]);
         }
 
