@@ -57,6 +57,7 @@ class DepositController extends ApiController
                 $lists->push([
                     'number' => $request->get('number')[$i],
                     'amount' => $request->get('amount')[$i],
+                    'date_deposit' => $request->get('date_deposit')[$i],
                     'name_deposit' => $request->get('name_deposit')[$i],
                     'bank_deposit' => $request->get('bank_deposit')[$i],
                     'verified' => $request->has('verified'),
@@ -75,6 +76,7 @@ class DepositController extends ApiController
             $deposit->lists()->create([
                 'number' => $list['number'],
                 'amount' => $list['amount'],
+                'date_deposit' => $list['date_deposit'],
                 'name_deposit' => $list['name_deposit'],
                 'bank_deposit' => $list['bank_deposit'],
                 'verified' => $list['verified'],
