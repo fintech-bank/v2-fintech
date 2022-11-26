@@ -83,7 +83,10 @@
     }
 
     forms.formNewDeposit.querySelectorAll('[name="type_deposit"]').forEach(input => {
-        console.log(input.value)
+        input.addEventListener('click', e => {
+            e.preventDefault()
+            console.log(e.target.value)
+        })
     })
 
     if (elements.btnAcceptTransaction) {
