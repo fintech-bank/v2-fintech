@@ -57,7 +57,7 @@ class DepositController extends ApiController
                 'amount' => $request->get('amount')[$i],
                 'name_deposit' => $request->get('name_deposit')[$i],
                 'bank_deposit' => $request->get('bank_deposit')[$i],
-                'verified' => $request->has('verified')[$i],
+                'verified' => $request->has('verified'),
             ]);
         }
 
