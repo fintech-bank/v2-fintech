@@ -789,11 +789,13 @@
                         @csrf
                         <div class="modal-body">
                             @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->money)
-                                <x-form.radio
-                                    name="type_deposit"
-                                    value="money"
-                                    for="type_deposit"
-                                    label="Dépot d'espèce" />
+                                <div class="mb-3">
+                                    <x-form.radio
+                                        name="type_deposit"
+                                        value="money"
+                                        for="type_deposit"
+                                        label="Dépot d'espèce" />
+                                </div>
                             @endif
 
                             @if(json_decode($wallet->epargne->plan->info_versement)->depot_type->check)
