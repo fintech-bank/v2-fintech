@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Epargne;
 use App\Helper\CustomerTransactionHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
+use App\Models\Customer\CustomerCheckDeposit;
 use App\Models\Customer\CustomerEpargne;
 use App\Models\Customer\CustomerMoneyDeposit;
 use Illuminate\Http\Request;
@@ -63,6 +64,36 @@ class DepositController extends ApiController
             }
         }
 
-        return $lists;
+        $deposit = CustomerCheckDeposit::create([
+            'reference' => generateReference(),
+            'amount' => $request->get('amount_check'),
+            'state' => 'terminated',
+            'customer_wallet_id' => $epargne->wallet_id,
+        ]);
+
+        foreach ($lists as $list) {
+            $deposit->lists()->create([
+                'number' => $list->number,
+                'amount' => $list->amount,
+                'name_deposit' => $list->name_deposit,
+                'bank_deposit' => $list->bank_deposit,
+                'verified' => $list->verified,
+                'customer_check_deposit_id' => $deposit->id
+            ]);
+        }
+
+        $transaction = CustomerTransactionHelper::createCredit(
+            $epargne->wallet_id,
+            'depot',
+            "Dépot de {$lists->count()} chèques en Agence",
+            "Dépot {$deposit->reference} | {$deposit->created_at->format('d/m H:i')}",
+            $deposit->amount,
+            true,
+            now()
+        );
+
+        $deposit->update(['customer_transaction_id' => $transaction->id]);
+
+        return $this->sendSuccess(null, [$deposit]);
     }
 }
