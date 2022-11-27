@@ -35,6 +35,7 @@ class SystemSepaCommand extends Command
     {
         match ($this->argument('action')) {
             "processedSepa" => $this->processedSepa(),
+            "processedTransaction" => $this->processedTransaction()
         };
 
         return Command::SUCCESS;
@@ -44,16 +45,43 @@ class SystemSepaCommand extends Command
     {
         $api = new Sepa();
         $sepas = CustomerSepa::where('status', 'waiting')->get();
+        $i_accept = 0;
+        $i_return = 0;
 
         foreach ($sepas as $sepa) {
             if($sepa->processed_time == now()->startOfDay()) {
                 if($api->acceptSepa() == 1) {
                     $sepa->setAccepted();
+                    $i_accept++;
                 } else {
                     $sepa->setReturned();
+                    $i_return++;
                 }
             }
         }
+
+        $this->slack->send("Prélèvement bancaire", json_encode([strip_tags("Nombre de prélèvement accepté: ").$i_accept]));
+        $this->slack->send("Prélèvement bancaire", json_encode([strip_tags("Nombre de prélèvement retourné: ").$i_return]));
+    }
+    private function processedTransaction()
+    {
+        $sepas = CustomerSepa::where('status', 'waiting')->get();
+        $i = 0;
+
+        foreach ($sepas as $sepa) {
+            if($sepa->processed_time->subDay() == now()->startOfDay()) {
+                CustomerTransactionHelper::createDebit(
+                    $sepa->wallet->id,
+                    'sepa',
+                    "PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor}",
+                    "Motif: PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor} | REF: {$sepa->number_mandate}",
+                    $sepa->amount,
+                );
+                $i++;
+            }
+        }
+
+        $this->slack->send("Création des transactions pour Prélèvement bancaire", json_encode([strip_tags("Nombre de transaction mise a jours: ").$i]));
     }
 
 }
