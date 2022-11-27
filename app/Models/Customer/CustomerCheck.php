@@ -38,8 +38,46 @@ class CustomerCheck extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['status_label'];
+
     public function wallet()
     {
         return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
+    }
+
+    public function getStatus($format = '')
+    {
+        if ($format == 'text') {
+            return match($this->status) {
+                "checkout" => "Commande effectué",
+                "manufacture" => "Création en cours...",
+                "ship" => "Envoie en cours",
+                "outstanding" => "Utilisation en cours",
+                "finish" => "Terminé",
+                "destroy" => "Détruit"
+            };
+        } elseif ($format == 'color') {
+            return match($this->status) {
+                "checkout" => "primary",
+                "manufacture", "outstanding" => "info",
+                "ship" => "warning",
+                "finish" => "success",
+                "destroy" => "danger"
+            };
+        } else {
+            return match($this->status) {
+                "checkout" => "fa-shopping-bag",
+                "manufacture" => "fa-cogs",
+                "ship" => "fa-truck-fast",
+                "outstanding" => "fa-spinner fa-spin-pulse",
+                "finish" => "fa-check-circle",
+                "destroy" => "fa-circle-xmark"
+            };
+        }
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid {$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</span>";
     }
 }

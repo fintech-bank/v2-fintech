@@ -887,7 +887,38 @@
         </div>
         @if($wallet->customer->setting->check)
             <div class="tab-pane fade" id="checks" role="tabpanel">
-                ...
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des chéquiers</h3>
+                        <div class="card-toolbar">
+                            <button type="button" class="btn btn-sm btn-light">
+                                Commander un nouveau chéquier
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table border table-striped gx-5 gy-5" id="liste_checks">
+                            <thead>
+                                <tr>
+                                    <th>Date de la commande</th>
+                                    <th>Référence</th>
+                                    <th>Tranche</th>
+                                    <th>Etat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($wallet->checks as $check)
+                                    <tr>
+                                        <td>{{ $check->created_at->format("d/m/Y") }}</td>
+                                        <td>{{ $check->reference }}</td>
+                                        <td>{{ $check->tranche_start }} - {{ $check->tranche_end }}</td>
+                                        <td>{!! $check->status_label !!}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         @endif
     </div>
