@@ -132,7 +132,7 @@ class LoanController extends ApiController
         if($credit->plan->avantage->report_echeance) {
             if($credit->nb_report_echeance <= $credit->plan->condition->report_echeance_max) {
                 $credit->update([
-                    'nb_echeance_max' => $credit->nb_echeance_max++,
+                    'nb_report_echeance' => $credit->nb_report_echeance++,
                     'first_payment_at' => $credit->first_payment_at->addMonth()
                 ]);
 
