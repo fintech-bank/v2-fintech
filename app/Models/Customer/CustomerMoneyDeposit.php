@@ -48,6 +48,8 @@ class CustomerMoneyDeposit extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['decoded_code', 'labeled_status', 'amount_format'];
+
     public function wallet()
     {
         return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
@@ -68,14 +70,33 @@ class CustomerMoneyDeposit extends Model
         return base64_decode($this->code);
     }
 
-    public function getLabeledStatusAttribute()
+    public function getStatus($format = '')
     {
-        return CustomerWithdrawHelper::getStatusWithdraw($this->status, true);
+        if($format == 'text') {
+            return match ($this->status) {
+                "pending" => "En attente",
+                "accepted" => "Accepté",
+                "rejected" => "Rejeté",
+                default => "Terminé"
+            };
+        } elseif ($format == 'color') {
+            return match ($this->status) {
+                "pending" => "warning",
+                "rejected" => "danger",
+                default => "success"
+            };
+        } else {
+            return match ($this->status) {
+                "pending" => "fa-spinner fa-spin-pulse",
+                "rejected" => "fa-xmark-circle",
+                default => "fa-check-circle"
+            };
+        }
     }
 
-    public function getCustomerNameAttribute()
+    public function getLabeledStatusAttribute()
     {
-        return CustomerHelper::getName($this->wallet->customer);
+        return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid {$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</span>";
     }
 
     public function getAmountFormatAttribute()
