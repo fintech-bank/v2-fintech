@@ -82,7 +82,7 @@ class SystemSepaCommand extends Command
                     'sepa',
                     "PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor}",
                     "Motif: PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor} | REF: {$sepa->number_mandate}",
-                    $sepa->amount,
+                    \Str::replace('-', '', $sepa->amount),
                 );
 
                 $sepa->update(['transaction_id' => $transaction->id]);
