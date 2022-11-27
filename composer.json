@@ -19,6 +19,7 @@
         "barryvdh/laravel-snappy": "^1.0",
         "creativeorange/gravatar": "^1.0",
         "darkaonline/l5-swagger": "^8.4",
+        "dcblogdev/laravel-sent-emails": "^2.0",
         "do-inc/laravel-persona-kyc": "^0.10.22",
         "fruitcake/laravel-cors": "^3.0",
         "globalcitizen/php-iban": "^4.1",
