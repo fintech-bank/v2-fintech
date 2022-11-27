@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Schedules\SystemAdminSchedule;
+use App\Console\Schedules\SystemCreditSchedule;
 use App\Console\Schedules\SystemCustomerSchedule;
 use App\Console\Schedules\SystemEpargneSchedule;
 use Illuminate\Console\Scheduling\Schedule;
@@ -21,11 +22,8 @@ class Kernel extends ConsoleKernel
         SystemEpargneSchedule::boot($schedule);
         SystemAdminSchedule::boot($schedule);
         SystemCustomerSchedule::boot($schedule);
+        SystemCreditSchedule::boot($schedule);
 
-
-        $schedule->command('system:agent verifRequestLoanOpen')
-            ->everySixHours()
-            ->description("Vérification des pret ouvert et les met en étude [log]");
 
         $schedule->command('system:agent chargeLoanAccepted')
             ->dailyAt('08:00:00')
@@ -40,18 +38,10 @@ class Kernel extends ConsoleKernel
             ->description("Execution des transactions entrente [log]");
 
 
-
         $schedule->command('system:agent executeVirement')
             ->everySixHours()
             ->description("Exécution des virements bancaires [log]");
 
-        $schedule->command('system:agent executeCalcProfitEpargne')
-            ->daily()
-            ->description("Calcul des profits des comptes épargnes");
-
-        $schedule->command('system:agent virProfitEpargne')
-            ->daily()
-            ->description("Virement des intêret des comptes épargnes");
 
         $schedule->command('system:agent prlvCreditMensuality')
             ->daily()
