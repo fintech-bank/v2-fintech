@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Helper\CustomerTransactionHelper;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerWallet;
 use App\Services\SlackNotifier;
@@ -45,6 +46,8 @@ class SystemEpargneCommand extends Command
         }
         match ($this->argument('action')) {
             "activeWallet" => $this->activeWallet(),
+            "executeCalcProfitEpargne" => $this->executeCalcProfitEpargne(),
+            "virProfitEpargne" => $this->virProfitEpargne()
         };
 
         return Command::SUCCESS;
@@ -73,5 +76,49 @@ class SystemEpargneCommand extends Command
         }
 
         $this->slack->send("Activation des comptes d'épargne", json_encode([strip_tags("Nombre de compte mise a jours: ") . $i]));
+    }
+
+    private function executeCalcProfitEpargne()
+    {
+        $wallets = CustomerWallet::where('status', 'active')->where('type', 'epargne')->get();
+        $i = 0;
+
+        foreach ($wallets as $wallet) {
+            if($wallet->epargne->next_prlv->startOfDay() == $wallet->epargne->next_prlv->startOfDay()) {
+                $wallet->epargne->profit = $wallet->epargne->calcProfit($wallet->epargne->profit, $wallet->balance_actual, $wallet->epargne->plan->profit_percent);
+                $wallet->epargne->save();
+                $i++;
+            }
+        }
+
+        $this->slack->send("Calcul des profits des comptes épargnes", json_encode([strip_tags("Nombre de compte mise à jours: ").$i]));
+    }
+
+    private function virProfitEpargne()
+    {
+        $wallets = CustomerWallet::where('status', 'active')->where('type', 'epargne')->get();
+        $i = 0;
+
+        foreach ($wallets as $wallet) {
+            if($wallet->epargne->start->startOfDay() == $wallet->epargne->start->startOfDay()) {
+                CustomerTransactionHelper::createCredit(
+                    $wallet->id,
+                    'virement',
+                    'Intêret sur compte',
+                    'Intêret courue sur la période du '.$wallet->epargne->start->format("d/m/Y")." au ".now()->format('d/m/Y'),
+                    $wallet->epargne->profit,
+                    true,
+                    now()
+                );
+
+                $wallet->epargne->update([
+                    'profit' => 0
+                ]);
+
+                $i++;
+            }
+        }
+
+        $this->slack->send("Virement des intêret des comptes épargnes", json_encode([strip_tags("Nombre de compte mise a jours: ").$i]));
     }
 }

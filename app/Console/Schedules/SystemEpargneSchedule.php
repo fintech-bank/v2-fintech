@@ -9,6 +9,15 @@ class SystemEpargneSchedule
     public static function boot(Schedule $schedule)
     {
         $schedule->command('epargne activeWallet')
-            ->hourly();
+            ->hourly()
+            ->days([2,6]);
+
+        $schedule->command('epargne executeCalcProfitEpargne')
+            ->twiceDailyAt(8,17)
+            ->days([2,6]);
+
+        $schedule->command('epargne virProfitEpargne')
+            ->twiceDailyAt(8,17)
+            ->days([2,6]);
     }
 }
