@@ -904,6 +904,7 @@
                                     <th>Référence</th>
                                     <th>Tranche</th>
                                     <th>Etat</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -913,6 +914,11 @@
                                         <td>{{ $check->reference }}</td>
                                         <td>{{ $check->tranche_start }} - {{ $check->tranche_end }}</td>
                                         <td>{!! $check->status_label !!}</td>
+                                        <td>
+                                            @if($check->status == 'ship')
+                                                <button class="btn btn-sm btn-bank btn-icon" data-bs-toggle="tooltip" title="Prise en charge par le client"><i class="fa-solid fa-money-check-dollar text-white"></i> </button>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
