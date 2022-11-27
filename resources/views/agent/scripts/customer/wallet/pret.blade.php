@@ -15,6 +15,7 @@
         formAddClaim: document.querySelector("#formAddClaim"),
         formUpPrlvDay: document.querySelector("#formUpPrlvDay"),
         formEcheanceReport: document.querySelector("#formEcheanceReport"),
+        formCptLoanPayment: document.querySelector("#formCptLoanPayment"),
     }
     let dataTable = {
         datatableTransaction: $(tables.tableTransaction).DataTable({
@@ -223,6 +224,41 @@
                 } else {
                     btn.removeAttr('data-kt-indicator')
                     toastr.success(`Le prochain prélèvement à été reporté`, `Mise à jour du crédit`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
+            },
+            error: () => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+            }
+        })
+    })
+    $(forms.formCptLoanPayment).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formCptLoanPayment)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data,
+            success: () => {
+                if(data.state === 'warning') {
+                    btn.removeAttr('data-kt-indicator')
+                    toastr.warning(`${data.message}`, `Mise à jour du crédit`)
+                } else if(data.state === 'danger') {
+                    btn.removeAttr('data-kt-indicator')
+                    toastr.error(`${data.message}`, `Mise à jour du crédit`)
+                } else {
+                    btn.removeAttr('data-kt-indicator')
+                    toastr.success(`Le compte de prélèvement à été mise à jour`, `Mise à jour du crédit`)
 
                     setTimeout(() => {
                         window.location.reload()
