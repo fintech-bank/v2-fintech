@@ -541,7 +541,7 @@
                                                 <td>{{ $withdraw->reference }}</td>
                                                 <td>{{ $withdraw->amount_format }}</td>
                                                 <td>{{ $withdraw->lists->count() }}</td>
-                                                <td>{{ $withdraw->status_text }}</td>
+                                                <td>{{ $withdraw->labeled_status }}</td>
                                                 <td></td>
                                             </tr>
                                         @endforeach
