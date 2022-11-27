@@ -12,5 +12,10 @@ class SystemSepaSchedule
             ->everySixHours()
             ->days([2,6]);
 
+        $schedule->command('sepa processedTransaction')
+            ->daily()
+            ->twiceDailyAt(8,17)
+            ->days([2,6]);
+
     }
 }
