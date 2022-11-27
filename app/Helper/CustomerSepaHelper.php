@@ -49,12 +49,12 @@ class CustomerSepaHelper
     {
         return CustomerSepa::create([
             'uuid' => Str::uuid(),
-            'creditor' => "FINTECH ASSURANCE",
+            'creditor' => $designation,
             'number_mandate' => self::generateMandate(),
             'amount' => $amount,
             'status' => 'waiting',
             'customer_wallet_id' => $wallet->id,
-            'processed_time' => now()->addDay()->startOfDay()
+            'processed_time' => $date_prlv
         ]);
     }
 }
