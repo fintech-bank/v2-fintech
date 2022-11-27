@@ -1035,7 +1035,7 @@
                         <div id="interne">
                             <div class="mb-10">
                                 <label for="customer_beneficiaire_id" class="form-label required">Compte à approvisionner</label>
-                                <select class="form-control form-control-solid selectpicker" id="customer_beneficiaire_id" name="customer_beneficiaire_id" title="Selectrionner un bénéficiaire">
+                                <select class="form-control form-control-solid" id="customer_beneficiaire_id" name="customer_beneficiaire_id" title="Selectrionner un bénéficiaire">
                                     <option></option>
                                     @if($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->where('id', '!=', $wallet->id)->count() != 0)
                                         <optgroup label="Compte Individuel">
