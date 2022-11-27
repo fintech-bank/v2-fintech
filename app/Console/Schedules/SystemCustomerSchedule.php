@@ -8,11 +8,11 @@ class SystemCustomerSchedule
 {
     public static function boot(Schedule $schedule)
     {
-        $schedule->command('system:agent updateCotation')
+        $schedule->command('customer updateCotation')
             ->daily()
             ->description("Mise à jour des cotation client [log]");
 
-        $schedule->command('system:agent executeActiveAccount')
+        $schedule->command('customer executeActiveAccount')
             ->everySixHours()
             ->description("Passage des compte accepté à terminer [log]'");
     }
