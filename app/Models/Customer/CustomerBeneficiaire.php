@@ -52,6 +52,7 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerBeneficiaire
  * @property-read mixed $iban_format
+ * @property-read mixed $beneficiaire_select_format
  */
 class CustomerBeneficiaire extends Model
 {
