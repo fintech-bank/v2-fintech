@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerCheck;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\NewCheckoutCheckNotification;
+use App\Notifications\Customer\UpdateCheckoutCheckNotification;
 use Illuminate\Http\Request;
 
 class CheckController extends ApiController
@@ -47,6 +48,7 @@ class CheckController extends ApiController
             'status' => 'outstanding'
         ]);
 
+        $check->wallet->customer->info->notify(new UpdateCheckoutCheckNotification($check->wallet->customer, $check));
         return $this->sendSuccess();
     }
 }
