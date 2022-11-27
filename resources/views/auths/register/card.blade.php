@@ -61,17 +61,17 @@ License: For each use you must have a valid license purchased only from above li
                                 @foreach(\App\Models\Core\CreditCardSupport::where('type_customer', 'part')->get() as $type)
                                     @if(session('package.name') != 'Cristal')
                                         <div class="col">
-                                            <input type="radio" class="btn-check" name="support" value="classic" checked="checked"  id="kt_radio_buttons_2_option_1" onchange="choiceCard()" />
-                                            <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_1">
+                                            <input type="radio" class="btn-check" name="support" value="{{ $type->slug }}" checked="checked"  id="{{ $type->slug }}" onchange="choiceCard()" />
+                                            <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="{{ $type->slug }}">
                                                 <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
                                                 <div class="symbol symbol-50px symbol-2by3 me-5">
-                                                    <img src="/storage/card/classic.png" alt=""/>
+                                                    <img src="/storage/card/{{ $type->slug }}.png" alt=""/>
                                                 </div>
                                                 <!--end::Svg Icon-->
 
                                                 <span class="d-block fw-semibold text-start">
-                                        <span class="text-dark fw-bold d-block fs-3">Visa Classic</span>
-                                    </span>
+                                                    <span class="text-dark fw-bold d-block fs-3">{{ $type->name }}</span>
+                                                </span>
                                             </label>
                                             <!--end::Option-->
                                         </div>
