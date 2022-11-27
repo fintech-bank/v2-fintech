@@ -2,7 +2,6 @@
 
 @section("content")
     <div class="d-flex flex-row w-100 min-h-350px min-h-lg-500px bgi-no-repeat bgi-size-contain bgi-position-x-center bgi-position-y-bottom landing-dark-bg" style="background-image: url('/assets/media/svg/illustrations/landing.svg')">
-        <img src="https://particuliers.societegenerale.fr/static/Particuliers/assets/img/campagnes/2022/09/credit-expresso/pause_780x580-x1.webp" alt="" class="img-fluid h-100">
         <div class="d-flex flex-column ">
             <div class="d-flex flex-row p-20 align-items-center">
                 <div class="badge badge-lg badge-info me-10">Crédit Facelia</div>
@@ -19,5 +18,6 @@
                 <a href="" class="btn btn-circle btn-lg btn-light w-300px text-bank fw-bolder">En savoir plus</a>
             </div>
         </div>
+        <img src="https://particuliers.societegenerale.fr/static/Particuliers/assets/img/campagnes/2022/11/black-friday/black-friday-D.webp" alt="" class="img-fluid h-100">
     </div>
 @endsection
