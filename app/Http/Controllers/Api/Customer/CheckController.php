@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Customer;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
+use App\Models\Customer\CustomerCheck;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\NewCheckoutCheckNotification;
 use Illuminate\Http\Request;
@@ -29,5 +30,23 @@ class CheckController extends ApiController
         } else {
             return $this->sendDanger("Vous êtes actuellement enregistré dans le fichier des incident de chèque", null, 203);
         }
+    }
+
+    public function update($customer_id, $number_account, $check_id, Request $request)
+    {
+        $check = CustomerCheck::find($check_id);
+
+        return match ($request->get('action')) {
+            "with" => $this->customerWithCheck($check)
+        };
+    }
+
+    private function customerWithCheck(CustomerCheck $check)
+    {
+        $check->update([
+            'status' => 'outstanding'
+        ]);
+
+        return $this->sendSuccess();
     }
 }

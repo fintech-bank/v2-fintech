@@ -7,6 +7,7 @@
         tableBeneficiaire: document.querySelector("#liste_beneficiaires"),
         tableSepa: document.querySelector("#liste_sepas"),
         tableCard: document.querySelector("#liste_card"),
+        tableCheck: document.querySelector("#liste_checks"),
     }
     let elements = {
         btnAcceptTransaction: document.querySelectorAll('.btnAcceptTransaction'),
@@ -38,7 +39,8 @@
         inputTypeVirement: document.querySelector('[name="type_virement"]'),
         inputInterne: document.querySelector('#interne'),
         inputExterne: document.querySelector('#externe'),
-        btnCheckoutCheck: document.querySelector('.btnCheckoutCheck')
+        btnCheckoutCheck: document.querySelector('.btnCheckoutCheck'),
+        btnWithCustomer: document.querySelectorAll('.btnWithCustomer')
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -89,6 +91,11 @@
             order: [],
             pageLength: 10,
         }),
+        datatableCheck: $(tables.tableCheck).DataTable({
+            info: !1,
+            order: [],
+            pageLength: 10,
+        }),
     }
     let block = {
         blockTableComing: messageBlock(tables.tableComing.querySelector("tbody")),
@@ -96,6 +103,7 @@
         blockTableTransfer: messageBlock(tables.tableTransfer.querySelector("tbody")),
         blockTableBeneficiaire: messageBlock(tables.tableBeneficiaire.querySelector("tbody")),
         blockTableSepa: messageBlock(tables.tableSepa.querySelector("tbody")),
+        blockTableCheck: messageBlock(tables.tableCheck.querySelector("tbody")),
     }
     let plugins = {
         flatTransactionDate: $(elements.transactionDate).flatpickr({
@@ -800,6 +808,48 @@
                                     block.blockTableSepa.release()
                                     block.blockTableSepa.destroy()
                                     toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+                                }
+                            }
+                        })
+                    }
+                })
+            })
+        })
+    }
+    if(elements.btnWithCustomer) {
+        elements.btnWithCustomer.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                block.blockTableCheck.block()
+
+                Swal.fire({
+                    title: "Le client est-il venu cherchez le chéquier ?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#004486',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Oui',
+                    cancelButtonText: 'Non'
+                }).then(result => {
+                    if(result.isConfirmed) {
+                        $.ajax({
+                            url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/check/'+e.target.dataset.check,
+                            method: 'PUT',
+                            data: {"action": "with"},
+                            statusCode: {
+                                200: () => {
+                                    block.blockTableCheck.release()
+                                    block.blockTableCheck.destroy()
+                                    toastr.success(`Les informations de chèque ont été mise à jour.`, `Chéquier bancaire`)
+
+                                    setTimeout(() => {
+                                        window.location.reload()
+                                    }, 1200)
+                                },
+                                500: () => {
+                                    block.blockTableCheck.release()
+                                    block.blockTableCheck.destroy()
+                                    toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Chéquier Bancaire`)
                                 }
                             }
                         })
