@@ -84,13 +84,36 @@ class CustomerWithdraw extends Model
         return base64_decode($this->code);
     }
 
+    public function getStatus($format = '')
+    {
+        if($format == 'text') {
+            return match ($this->status) {
+                "pending" => "En attente",
+                "accepted" => "Accepté",
+                "rejected" => "Rejeté",
+                default => "Terminé"
+            };
+        } elseif ($format == "color") {
+            return match ($this->status) {
+                "pending" => "warning",
+                "rejected" => "danger",
+                default => "success"
+            };
+        } else {
+            return match ($this->status) {
+                "pending" => "fa-spinner fa-spin-pulse",
+                "rejected" => "fa-xmark-circle",
+                default => "fa-check-circle"
+            };
+        }
+    }
 
     /**
      * @throws \Exception
      */
     public function getLabeledStatusAttribute()
     {
-        return CustomerWithdrawHelper::getStatusWithdraw($this->status, true);
+        return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid {$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</span>";
     }
 
     public function getStatusTextAttribute()

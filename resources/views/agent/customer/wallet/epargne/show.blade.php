@@ -499,7 +499,6 @@
                                             <th>Lieu de dépot</th>
                                             <th>Montant</th>
                                             <th>Etat</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -509,7 +508,6 @@
                                                 <td>{{ $withdraw->dab->name }}</td>
                                                 <td>{{ $withdraw->amount_format }}</td>
                                                 <td>{!! $withdraw->labeled_status !!}</td>
-                                                <td></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -535,7 +533,6 @@
                                             <th>Montant</th>
                                             <th>Nb de chèque</th>
                                             <th>Etat</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
