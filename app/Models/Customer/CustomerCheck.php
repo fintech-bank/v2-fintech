@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerCheck whereUpdatedAt($value)
  * @mixin \Eloquent
  * @mixin IdeHelperCustomerCheck
+ * @property-read mixed $status_label
  */
 class CustomerCheck extends Model
 {

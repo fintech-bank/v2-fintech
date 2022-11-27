@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Helper\CustomerTransactionHelper;
+use App\Notifications\Customer\ReturnSepaNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,6 +48,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $updated_at_format
  * @property-read \App\Models\Customer\CustomerCreditor|null $creditors
  * @property-read \App\Models\Customer\CustomerLoanAmortissement|null $amort
+ * @property-read \App\Models\Customer\CustomerTransaction|null $transaction
  */
 class CustomerSepa extends Model
 {
@@ -76,6 +78,11 @@ class CustomerSepa extends Model
     public function amort()
     {
         return $this->hasOne(CustomerLoanAmortissement::class);
+    }
+
+    public function transaction()
+    {
+        return $this->belongsTo(CustomerTransaction::class, 'transaction_id');
     }
 
     public function getAmountFormatAttribute()
@@ -158,6 +165,20 @@ class CustomerSepa extends Model
         ]);
         $search = $collect->where('key', $reason)->first();
         return $search['reason'];
+    }
+
+    public function setAccepted()
+    {
+        $this->update(['status' => 'processed']);
+        CustomerTransactionHelper::updated($this->transaction);
+    }
+
+    public function setReturned()
+    {
+        $this->update(['status' => 'return']);
+        CustomerTransactionHelper::deleteTransaction($this->transaction);
+
+        $this->wallet->customer->info->notify(new ReturnSepaNotification($this->wallet->customer, $this));
     }
 
     public static function rejected($callback)

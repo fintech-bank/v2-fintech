@@ -7,6 +7,7 @@ use App\Console\Schedules\SystemCheckSchedule;
 use App\Console\Schedules\SystemCreditSchedule;
 use App\Console\Schedules\SystemCustomerSchedule;
 use App\Console\Schedules\SystemEpargneSchedule;
+use App\Console\Schedules\SystemSepaSchedule;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -25,10 +26,7 @@ class Kernel extends ConsoleKernel
         SystemCustomerSchedule::boot($schedule);
         SystemCreditSchedule::boot($schedule);
         SystemCheckSchedule::boot($schedule);
-
-        $schedule->command('system:agent executeSepaOrders')
-            ->everySixHours()
-            ->description("Execution des prélèvements bancaires [log]");
+        SystemSepaSchedule::boot($schedule);
 
         $schedule->command('system:agent executeTransactionComing')
             ->everySixHours()
@@ -39,10 +37,6 @@ class Kernel extends ConsoleKernel
             ->everySixHours()
             ->description("Exécution des virements bancaires [log]");
 
-
-        $schedule->command('system:agent prlvCreditMensuality')
-            ->daily()
-            ->description("Prélèvement mensuel des mensualités de crédit");
 
         // Life
         $schedule->command("life generateCustomers")

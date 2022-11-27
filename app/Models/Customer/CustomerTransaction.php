@@ -61,6 +61,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $is_opposit
  * @method static Builder|CustomerTransaction isDiffered()
  * @property-read mixed $type_color
+ * @property-read \App\Models\Customer\CustomerSepa|null $sepa
  */
 class CustomerTransaction extends Model
 {
@@ -104,6 +105,11 @@ class CustomerTransaction extends Model
     public function opposit()
     {
         return $this->hasOne(CustomerPaymentOpposit::class);
+    }
+
+    public function sepa()
+    {
+        return $this->hasOne(CustomerSepa::class);
     }
 
     public function scopeIsDiffered(Builder $query)
