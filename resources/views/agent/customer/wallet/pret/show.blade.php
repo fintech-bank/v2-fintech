@@ -564,7 +564,18 @@
                                     </table>
                                 </div>
                                 <div class="tab-pane fade" id="cpt_loan" role="tabpanel">
-                                    ...
+                                    <form action="/api/loan/{{ $wallet->loan->reference }}" id="formCptLoanPayment" method="post">
+                                        <input type="hidden" name="action" value="up_cpt_loan">
+                                        <div class="mb-10">
+                                            <label for="" class="form-label">Compte de prélèvement</label>
+                                            <select name="cpt_loan" id="" class="form-control selectpicker">
+                                                @foreach($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $wallet)
+                                                    <option value="{{ $wallet->id }}" @if($wallet->id == $wallet->loan->wallet_payment_id) selected @endif data-content="<span class='badge badge-primary'>{{ $wallet->type_text }}</span> - {{ $wallet->name_account_generic }}"></option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                    </form>
                                 </div>
                                 <div class="tab-pane fade" id="remb" role="tabpanel">
                                     ...

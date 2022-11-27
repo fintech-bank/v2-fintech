@@ -59,8 +59,8 @@ class LoanController extends ApiController
             "up_prlv_date" => $this->prlv_day($credit, $request->get('prlv_day')),
             "accept" => $this->acceptCredit($credit),
             "reject" => $this->rejectCredit($credit),
-            'report_echeance' => $this->report_echeance($credit)
-
+            'report_echeance' => $this->report_echeance($credit),
+            'up_cpt_loan' => $this->cpt_loan($credit, $request),
         };
     }
 
@@ -145,5 +145,12 @@ class LoanController extends ApiController
         } else {
             return $this->sendDanger("Ce crédit ne peut pas faire l'objet d'un report d'échéance");
         }
+    }
+
+    private function cpt_loan(CustomerPret|null $credit, Request $request)
+    {
+        $credit->update([
+            'wallet_payment_id' => $request->get('cpt_loan')
+        ]);
     }
 }
