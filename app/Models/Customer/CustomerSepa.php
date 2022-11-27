@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Helper\CustomerTransactionHelper;
+use App\Notifications\Customer\RejectSepaNotification;
 use App\Notifications\Customer\ReturnSepaNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -179,6 +180,14 @@ class CustomerSepa extends Model
         CustomerTransactionHelper::deleteTransaction($this->transaction);
 
         $this->wallet->customer->info->notify(new ReturnSepaNotification($this->wallet->customer, $this));
+    }
+
+    public function setRejected()
+    {
+        $this->update(['status' => 'rejected']);
+        CustomerTransactionHelper::deleteTransaction($this->transaction);
+        self::rejected($this);
+        $this->wallet->customer->info->notify(new RejectSepaNotification($this->wallet->customer, $this));
     }
 
     public static function rejected($callback)

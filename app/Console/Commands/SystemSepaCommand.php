@@ -47,12 +47,18 @@ class SystemSepaCommand extends Command
         $sepas = CustomerSepa::where('status', 'waiting')->get();
         $i_accept = 0;
         $i_return = 0;
+        $i_reject = 0;
 
         foreach ($sepas as $sepa) {
             if($sepa->processed_time == now()->startOfDay()) {
                 if($api->acceptSepa() == 1) {
-                    $sepa->setAccepted();
-                    $i_accept++;
+                    if($sepa->wallet->solde_remaining <= 0) {
+                        $sepa->setRejected();
+                        $i_reject++;
+                    } else {
+                        $sepa->setAccepted();
+                        $i_accept++;
+                    }
                 } else {
                     $sepa->setReturned();
                     $i_return++;
@@ -62,6 +68,7 @@ class SystemSepaCommand extends Command
 
         $this->slack->send("Prélèvement bancaire", json_encode([strip_tags("Nombre de prélèvement accepté: ").$i_accept]));
         $this->slack->send("Prélèvement bancaire", json_encode([strip_tags("Nombre de prélèvement retourné: ").$i_return]));
+        $this->slack->send("Prélèvement bancaire", json_encode([strip_tags("Nombre de prélèvement rejeté: ").$i_reject]));
     }
     private function processedTransaction()
     {
