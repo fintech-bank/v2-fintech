@@ -206,7 +206,7 @@ class CustomerController extends Controller
 
             $sepa = CustomerSepaHelper::createPrlv(
                 $credit->mensuality,
-                $credit->payment->id,
+                $credit->payment,
                 $credit->wallet->name_account_generic. " - Echéance {$amort->date_prlv->locale('fr')->monthName}",
                 $amort->date_prlv,
             );
