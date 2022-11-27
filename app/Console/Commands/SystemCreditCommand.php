@@ -10,6 +10,7 @@ use App\Notifications\Customer\CheckoutPayNotification;
 use App\Notifications\Customer\RejectSepaNotification;
 use App\Notifications\Customer\VerifRequestLoanNotification;
 use App\Services\Fintech\Payment\Sepa;
+use App\Services\SlackNotifier;
 use App\Services\Stripe;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -19,6 +20,13 @@ class SystemCreditCommand extends Command
     protected $signature = 'credit {action}';
 
     protected $description = 'Command description';
+    private SlackNotifier $slack;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->slack = new SlackNotifier('#fintech-site');
+    }
 
     public function handle()
     {
