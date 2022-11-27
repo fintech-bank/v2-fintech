@@ -53,7 +53,8 @@ class CustomerSepaHelper
             'number_mandate' => self::generateMandate(),
             'amount' => $amount,
             'status' => 'waiting',
-            'customer_wallet_id' => $wallet->id
+            'customer_wallet_id' => $wallet->id,
+            'processed_time' => now()->addDay()->startOfDay()
         ]);
     }
 }
