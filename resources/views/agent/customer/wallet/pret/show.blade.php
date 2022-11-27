@@ -569,8 +569,8 @@
                                         <div class="mb-10">
                                             <label for="" class="form-label">Compte de prélèvement</label>
                                             <select name="cpt_loan" id="" class="form-control selectpicker">
-                                                @foreach($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $wallet)
-                                                    <option value="{{ $wallet->id }}" @if($wallet->id == $wallet->loan->wallet_payment_id) selected @endif data-content="<span class='badge badge-primary'>{{ $wallet->type_text }}</span> - {{ $wallet->name_account_generic }}"></option>
+                                                @foreach($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->get() as $compte)
+                                                    <option value="{{ $compte->id }}" @if($compte->id == $wallet->loan->wallet_payment_id) selected @endif data-content="<span class='badge badge-primary'>{{ $compte->type_text }}</span> - {{ $compte->name_account_generic }}"></option>
                                                 @endforeach
                                             </select>
                                         </div>
