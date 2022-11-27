@@ -86,4 +86,22 @@ class CustomerBeneficiaire extends Model
         return \Str::replace("\r\n", " ", chunk_split($this->iban, 4));
     }
 
+    public function getBeneficiaireSelectFormatAttribute()
+    {
+        ob_start();
+        ?>
+        <div class="d-flex flex-row">
+            <div class="symbol symbol-50px me-3">
+                <img src="<?= $this->bank->logo ?>" alt=""/>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="fw-bolder"><?= $this->full_name ?></div>
+                <div class="text-muted">IBAN: <?= $this->iban_format; ?></div>
+                <div class="text-muted">BIC: <?= $this->bic; ?></div>
+            </div>
+        </div>
+        <?php
+        return ob_get_clean();
+    }
+
 }

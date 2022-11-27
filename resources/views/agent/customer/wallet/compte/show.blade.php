@@ -1025,6 +1025,27 @@
                     <div class="modal-body">
                         <div class="mb-10">
                             <label for="customer_beneficiaire_id" class="form-label required">Bénéficiaire</label>
+                            <select class="form-control form-control-solid selectpicker" id="customer_beneficiaire_id" name="customer_beneficiaire_id" title="Selectrionner un bénéficiaire">
+                                @if($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->where('id', '!=', $wallet->id)->count() != 0)
+                                    <optgroup label="Compte Individuel">
+                                        @foreach($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->where('id', '!=', $wallet->id)->get() as $compte)
+                                            <option value="{{ $compte->id }}" data-content="{{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}"></option>
+                                        @endforeach
+                                    </optgroup>
+                                @endif
+                                @if($wallet->customer->wallets()->where('type', 'epargne')->where('status', 'active')->count() != 0)
+                                    <optgroup label="Compte Epargne">
+                                        @foreach($wallet->customer->wallets()->where('type', 'epargne')->where('status', 'active')->get() as $compte)
+                                            <option value="{{ $compte->id }}" data-content="{{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}"></option>
+                                        @endforeach
+                                    </optgroup>
+                                @endif
+                                <optgroup label="Bénéficiaire">
+                                    @foreach($wallet->customer->beneficiaires as $beneficiaire)
+                                        <option value=""></option>
+                                    @endforeach
+                                </optgroup>
+                            </select>
                             <select class="form-select form-select-solid" id="customer_beneficiaire_id" name="customer_beneficiaire_id" data-control="select2" data-dropdown-parent="#add_virement" data-placeholder="Bénéficiaire" data-allow-clear="true">
                                 <option></option>
                                 @foreach($wallet->customer->beneficiaires as $beneficiaire)
