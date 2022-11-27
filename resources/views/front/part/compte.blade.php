@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="d-flex flex-row w-100 min-h-350px min-h-lg-500px bgi-no-repeat bgi-size-contain bgi-position-x-center bgi-position-y-bottom landing-dark-bg" style="background-image: url('/assets/media/svg/illustrations/landing.svg')">
-        <div class="d-flex flex-column ">
+        <div class="d-flex flex-column w-75">
             <div class="d-flex flex-row p-20 align-items-center">
                 <div class="badge badge-lg badge-info me-10">Crédit Facelia</div>
                 <div class="text-info uppercase ">Vos avantages</div>
