@@ -891,7 +891,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Liste des chéquiers</h3>
                         <div class="card-toolbar">
-                            <button type="button" class="btn btn-sm btn-light">
+                            <button type="button" class="btn btn-sm btn-light btnCheckoutCheck">
                                 Commander un nouveau chéquier
                             </button>
                         </div>

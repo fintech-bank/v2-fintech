@@ -177,6 +177,12 @@ Route::prefix('customer')->group(function () {
         Route::prefix('{number_account}/pret')->group(function () {
             Route::put('{pret_reference}', [\App\Http\Controllers\Api\Customer\PretController::class, 'update']);
         });
+        Route::prefix('{number_account}/check')->group(function () {
+            Route::post('/', [\App\Http\Controllers\Api\Customer\CheckController::class, 'store']);
+            Route::put('{check_reference}', [\App\Http\Controllers\Api\Customer\CheckController::class, 'update']);
+        });
+
+
     });
 
     Route::prefix('{customer_id}/beneficiaire')->group(function () {

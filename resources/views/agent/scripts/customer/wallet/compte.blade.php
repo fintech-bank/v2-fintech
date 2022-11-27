@@ -38,6 +38,7 @@
         inputTypeVirement: document.querySelector('[name="type_virement"]'),
         inputInterne: document.querySelector('#interne'),
         inputExterne: document.querySelector('#externe'),
+        btnCheckoutCheck: document.querySelector('.btnCheckoutCheck')
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -804,6 +805,40 @@
                         })
                     }
                 })
+            })
+        })
+    }
+    if(elements.btnCheckoutCheck) {
+        elements.btnCheckoutCheck.addEventListener('click', e => {
+            e.preventDefault()
+
+            Swal.fire({
+                title: "Voulez-vous commander un chéquier pour le compte {{ $wallet->number_account }} ?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#004486',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oui',
+                cancelButtonText: 'Non'
+            }).then(result => {
+                if(result.isConfirmed) {
+                    $.ajax({
+                        url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/check',
+                        method: 'POST',
+                        statusCode: {
+                            200: () => {
+                                toastr.success(`La demande de chéquier à bien été prise en compte.`, `Chéquier bancaire`)
+
+                                setTimeout(() => {
+                                    window.location.reload()
+                                }, 1200)
+                            },
+                            500: () => {
+                                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+                            }
+                        }
+                    })
+                }
             })
         })
     }
