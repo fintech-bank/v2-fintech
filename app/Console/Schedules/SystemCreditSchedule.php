@@ -12,5 +12,9 @@ class SystemCreditSchedule
             ->everySixHours()
             ->twiceDailyAt(8,17)
             ->days([2,6]);
+
+        $schedule->command("credit chargeLoanAccepted")
+            ->dailyAt("08:00:00")
+            ->days([2,6]);
     }
 }

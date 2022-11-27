@@ -65,7 +65,6 @@ class SystemAgentCommand extends Command
         }
         match ($this->argument('action')) {
             "calendarAlert" => $this->calendarAlert(),
-            "chargeLoanAccepted" => $this->chargeLoanAccepted(),
             "executeSepaOrders" => $this->executeSepaOrders(),
             "executeTransactionComing" => $this->executeTransactionComing(),
             "executeVirement" => $this->executeVirement(),
@@ -89,60 +88,6 @@ class SystemAgentCommand extends Command
         }
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
-    }
-
-    private function chargeLoanAccepted()
-    {
-        $stripe = new Stripe();
-        $prets = CustomerPret::where('status', 'accepted')->get();
-        $arr = [];
-
-        foreach ($prets as $pret) {
-            if ($pret->confirmed_at->addDays(1)->startOfDay() == now()->startOfDay()) {
-
-                CustomerTransactionHelper::createDebit(
-                    $pret->wallet->id,
-                    'autre',
-                    $pret->wallet->name_account_generic,
-                    $pret->wallet->name_account_generic." - Libération du crédit",
-                    $pret->amount_loan,
-                    true,
-                    now(),
-                );
-
-                CustomerTransactionHelper::createCredit(
-                    $pret->payment->id,
-                    'autre',
-                    $pret->wallet->name_account_generic,
-                    $pret->wallet->name_account_generic." - Libération du crédit",
-                    $pret->amount_loan,
-                    true,
-                    now(),
-                );
-
-                $pret->update([
-                    'status' => 'progress',
-                    'first_payment_at' => Carbon::create(now()->year, now()->addMonth()->month, $pret->prlv_day),
-                ]);
-
-                $pret->wallet->update([
-                    'status' => 'active'
-                ]);
-
-                $pret->customer->info->notify(new ChargeLoanAcceptedNotification($pret->customer, $pret));
-                $arr[] = [
-                    $pret->customer->info->full_name,
-                    $pret->plan->name,
-                    $pret->reference,
-                    eur($pret->amount_loan),
-                    $pret->status
-                ];
-            }
-        }
-
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
-        $this->output->table(['Client', "Type de Pret", 'Référence', 'Montant', 'Etat'], $arr);
-        $this->slack->send("Libération du montant des pret bancaire", json_encode($arr));
     }
 
     private function executeSepaOrders()

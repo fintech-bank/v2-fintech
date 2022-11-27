@@ -25,10 +25,6 @@ class Kernel extends ConsoleKernel
         SystemCreditSchedule::boot($schedule);
 
 
-        $schedule->command('system:agent chargeLoanAccepted')
-            ->dailyAt('08:00:00')
-            ->description("Libération du montant du pret bancaire [log]");
-
         $schedule->command('system:agent executeSepaOrders')
             ->everySixHours()
             ->description("Execution des prélèvements bancaires [log]");
