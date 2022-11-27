@@ -916,7 +916,7 @@
                                         <td>{!! $check->status_label !!}</td>
                                         <td>
                                             @if($check->status == 'ship')
-                                                <button class="btn btn-sm btn-bank btn-icon" data-bs-toggle="tooltip" title="Prise en charge par le client"><i class="fa-solid fa-money-check-dollar text-white"></i> </button>
+                                                <button class="btn btn-sm btn-bank btn-icon btnWithCustomer" data-check="{{ $check->id }}" data-bs-toggle="tooltip" title="Prise en charge par le client"><i class="fa-solid fa-money-check-dollar text-white"></i> </button>
                                             @endif
                                         </td>
                                     </tr>
