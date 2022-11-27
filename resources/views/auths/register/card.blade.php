@@ -58,53 +58,25 @@ License: For each use you must have a valid license purchased only from above li
                         </div>
 
                             <div class="row">
-                                <div class="col">
-                                    <input type="radio" class="btn-check" name="support" value="classic" checked="checked"  id="kt_radio_buttons_2_option_1" onchange="choiceCard()" />
-                                    <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_1">
-                                        <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
-                                        <div class="symbol symbol-50px symbol-2by3 me-5">
-                                            <img src="/storage/card/classic.png" alt=""/>
-                                        </div>
-                                        <!--end::Svg Icon-->
+                                @foreach(\App\Models\Core\CreditCardSupport::where('type_customer', 'part')->get() as $type)
+                                    @if(session('package.name') != 'Cristal')
+                                        <div class="col">
+                                            <input type="radio" class="btn-check" name="support" value="classic" checked="checked"  id="kt_radio_buttons_2_option_1" onchange="choiceCard()" />
+                                            <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_1">
+                                                <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
+                                                <div class="symbol symbol-50px symbol-2by3 me-5">
+                                                    <img src="/storage/card/classic.png" alt=""/>
+                                                </div>
+                                                <!--end::Svg Icon-->
 
-                                        <span class="d-block fw-semibold text-start">
+                                                <span class="d-block fw-semibold text-start">
                                         <span class="text-dark fw-bold d-block fs-3">Visa Classic</span>
                                     </span>
-                                    </label>
-                                    <!--end::Option-->
-                                </div>
-                                @if(session('package.name') != 'Cristal')
-                                    <div class="col">
-                                        <input type="radio" class="btn-check" name="support" value="premium"  id="kt_radio_buttons_2_option_2" onchange="choiceCard()" />
-                                        <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_2">
-                                            <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
-                                            <div class="symbol symbol-50px symbol-2by3 me-5">
-                                                <img src="/storage/card/premium.png" alt=""/>
-                                            </div>
-                                            <!--end::Svg Icon-->
-
-                                            <span class="d-block fw-semibold text-start">
-                                        <span class="text-dark fw-bold d-block fs-3">Visa Premium</span>
-                                    </span>
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                    <div class="col">
-                                        <input type="radio" class="btn-check" name="support" value="infinite" id="kt_radio_buttons_2_option_3" onchange="choiceCard()" />
-                                        <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_3">
-                                            <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
-                                            <div class="symbol symbol-50px symbol-2by3 me-5">
-                                                <img src="/storage/card/infinite.png" alt=""/>
-                                            </div>
-                                            <!--end::Svg Icon-->
-
-                                            <span class="d-block fw-semibold text-start">
-                                        <span class="text-dark fw-bold d-block fs-3">Visa Infinite</span>
-                                    </span>
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                @endif
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="mb-10 d-none" id="typeDebit">
                                 <label for="debit" class="form-label">Type de débit</label>
