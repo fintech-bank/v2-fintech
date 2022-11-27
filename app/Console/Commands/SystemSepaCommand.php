@@ -77,13 +77,15 @@ class SystemSepaCommand extends Command
 
         foreach ($sepas as $sepa) {
             if($sepa->processed_time->subDay() == now()->startOfDay()) {
-                CustomerTransactionHelper::createDebit(
+                $transaction = CustomerTransactionHelper::createDebit(
                     $sepa->wallet->id,
                     'sepa',
                     "PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor}",
                     "Motif: PRLV SEPA {$sepa->number_mandate} DE: {$sepa->creditor} | REF: {$sepa->number_mandate}",
                     $sepa->amount,
                 );
+
+                $sepa->update(['transaction_id' => $transaction->id]);
                 $i++;
             }
         }
