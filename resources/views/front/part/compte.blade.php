@@ -9,7 +9,6 @@
             </div>
             <div class="fs-2tx fw-bolder text-white uppercase px-20 underline mb-20">OFFRES SURPRISES JUSQU’À 160 € OFFERTS</div>
             <div class="d-flex flex-row justify-content-start align-items-center px-20">
-                <i class="fa-regular fa-circle-pause text-white fa-5x me-10"></i>
                 <p class="text-white fs-2x l-1-5">
                     <strong>On vous offre 80 € pour l’ouverture de votre compte et 80€ supplémentaires</strong> en cas de mobilité bancaire avec notre service Bienvenue.<br>
                     <strong>Vous n’avez pas encore de carte chez nous ?</strong> La première année est gratuite*.
