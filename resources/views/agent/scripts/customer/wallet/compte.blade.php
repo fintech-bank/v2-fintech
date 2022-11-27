@@ -273,7 +273,7 @@
         })
     }
     let selectTypeVirement = (item) => {
-        if(item.value == 'interne') {
+        if(item.value === 'interne') {
             $(elements.inputInterne).fadeIn()
             $(elements.inputExterne).fadeOut()
         } else {

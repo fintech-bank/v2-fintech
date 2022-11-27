@@ -15,6 +15,7 @@ class TransferController extends Controller
 {
     public function store($customer_id, $number_account, Request $request)
     {
+        dd($request->all());
         $request->validate([
             'customer_beneficiaire_id' => "required",
             'amount' => "required|numeric",
