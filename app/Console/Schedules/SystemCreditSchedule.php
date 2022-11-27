@@ -10,7 +10,7 @@ class SystemCreditSchedule
     {
         $schedule->command("credit verifRequestLoanOpen")
             ->everySixHours()
-            ->twiceDailyAt([8,17])
+            ->twiceDailyAt(8,17)
             ->days([2,6]);
     }
 }
