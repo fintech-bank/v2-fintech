@@ -574,7 +574,9 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
+                                        <div class="text-end">
+                                            <x-form.button />
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="tab-pane fade" id="remb" role="tabpanel">
