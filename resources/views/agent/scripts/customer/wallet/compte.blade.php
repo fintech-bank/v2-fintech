@@ -834,7 +834,7 @@
                                 }, 1200)
                             },
                             203: () => {
-                                toastr.success(`La demande de chéquier à bien été prise en compte.`, `Chéquier bancaire`)
+                                toastr.error(`${data.message}`, `Chéquier bancaire`)
 
                                 setTimeout(() => {
                                     window.location.reload()
