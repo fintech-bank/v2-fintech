@@ -1025,37 +1025,13 @@
                     <div class="modal-body">
 
                         <div class="mb-10">
-                            <label for="type_virement" class="form-label required">Bénéficiaire</label>
-                            <select class="form-control form-control-solid selectpicker" id="type_virement" name="type_virement" title="Selectrionner un bénéficiaire">
+                            <label for="type_virement" class="form-label required">Type de bénéficiaire</label>
+                            <select class="form-control form-control-solid selectpicker" id="type_virement" name="type_virement" title="Selectrionner un bénéficiaire" onchange="selectTypeVirement(this)">
                                 <option value="interne">Virement Interne</option>
                                 <option value="externe">Virement Externe</option>
                             </select>
                         </div>
 
-                        <div class="mb-10">
-                            <label for="customer_beneficiaire_id" class="form-label required">Bénéficiaire</label>
-                            <select class="form-control form-control-solid selectpicker" id="customer_beneficiaire_id" name="customer_beneficiaire_id" title="Selectrionner un bénéficiaire">
-                                @if($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->where('id', '!=', $wallet->id)->count() != 0)
-                                    <optgroup label="Compte Individuel">
-                                        @foreach($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->where('id', '!=', $wallet->id)->get() as $compte)
-                                            <option value="{{ $compte->id }}" data-content="{{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}"></option>
-                                        @endforeach
-                                    </optgroup>
-                                @endif
-                                @if($wallet->customer->wallets()->where('type', 'epargne')->where('status', 'active')->count() != 0)
-                                    <optgroup label="Compte Epargne">
-                                        @foreach($wallet->customer->wallets()->where('type', 'epargne')->where('status', 'active')->get() as $compte)
-                                            <option value="{{ $compte->id }}" data-content="{{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}"></option>
-                                        @endforeach
-                                    </optgroup>
-                                @endif
-                                <optgroup label="Bénéficiaire">
-                                    @foreach($wallet->customer->beneficiaires as $beneficiaire)
-                                        <option value="{{ $beneficiaire->id }}" data-content="{!! $beneficiaire->beneficiaire_select_format !!}"></option>
-                                    @endforeach
-                                </optgroup>
-                            </select>
-                        </div>
                         <div id="interne">
                             <div class="mb-10">
                                 <label for="customer_beneficiaire_id" class="form-label required">Compte à approvisionner</label>

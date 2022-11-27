@@ -35,6 +35,9 @@
         corporateField: document.querySelector("#add_beneficiaire").querySelector('#corporateField'),
         cardStatus: document.querySelector('[data-kt-card-filter="status"]'),
         cardType: document.querySelector('[data-kt-card-filter="type"]'),
+        inputTypeVirement: document.querySelector('[name="type_virement"]'),
+        inputInterne: document.querySelector('#interne'),
+        inputExterne: document.querySelector('#externe'),
     }
     let modals = {
         modalUpdateStateAccount: document.querySelector("#updateStateAccount"),
@@ -106,6 +109,9 @@
         drawerShowTransfer: KTDrawer.getInstance(elements.showTransfer),
         drawerShowSepa: KTDrawer.getInstance(elements.showSepa),
     }
+
+    $(elements.inputInterne).fadeOut()
+    $(elements.inputExterne).fadeOut()
 
     let initChartSummary = () => {
         $.ajax({
@@ -265,6 +271,15 @@
                 }
             })
         })
+    }
+    let selectTypeVirement = (item) => {
+        if(item.value == 'interne') {
+            $(elements.inputInterne).fadeIn()
+            $(elements.inputExterne).fadeOut()
+        } else {
+            $(elements.inputInterne).fadeOut()
+            $(elements.inputExterne).fadeIn()
+        }
     }
     let optionFormatBank = (item) => {
         if ( !item.id ) {
