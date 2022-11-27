@@ -885,6 +885,11 @@
                 </div>
             </div>
         </div>
+        @if($wallet->customer->setting->check)
+            <div class="tab-pane fade" id="checks" role="tabpanel">
+                ...
+            </div>
+        @endif
     </div>
     <div class="modal fade" tabindex="-1" id="showRib">
         <div class="modal-dialog ">
