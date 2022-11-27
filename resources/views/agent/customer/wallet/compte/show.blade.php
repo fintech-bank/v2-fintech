@@ -1025,7 +1025,7 @@
                     <div class="modal-body">
                         <div class="mb-10">
                             <label for="customer_beneficiaire_id" class="form-label required">Bénéficiaire</label>
-                            <select class="form-control form-control-solid selectpicker" id="customer_beneficiaire_id" name="customer_beneficiaire_id" title="Selectrionner un bénéficiaire">
+                            <select class="form-control form-control-solid selectpicker" id="customer_beneficiaire_id" name="customer_beneficiaire_id" data-header="Selectrionner un bénéficiaire">
                                 @if($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->where('id', '!=', $wallet->id)->count() != 0)
                                     <optgroup label="Compte Individuel">
                                         @foreach($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->where('id', '!=', $wallet->id)->get() as $compte)
