@@ -58,7 +58,7 @@ class CustomerBeneficiaire extends Model
     use HasFactory, BeneficiaireTrait;
 
     protected $guarded = [];
-    protected $appends = ['iban_format', 'full_name'];
+    protected $appends = ['iban_format', 'full_name', 'beneficiaire_select_format'];
     public $timestamps = false;
 
     public function getFullNameAttribute()

@@ -1042,7 +1042,7 @@
                                 @endif
                                 <optgroup label="Bénéficiaire">
                                     @foreach($wallet->customer->beneficiaires as $beneficiaire)
-                                        <option value=""></option>
+                                        <option value="{{ $beneficiaire->id }}" data-content="{!! $beneficiaire->beneficiaire_select_format !!}"></option>
                                     @endforeach
                                 </optgroup>
                             </select>
