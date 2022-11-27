@@ -508,7 +508,7 @@
                                                 <td>{{ $withdraw->reference }}</td>
                                                 <td>{{ $withdraw->dab->name }}</td>
                                                 <td>{{ $withdraw->amount_format }}</td>
-                                                <td>{{ $withdraw->labeled_status }}</td>
+                                                <td>{!! $withdraw->labeled_status !!}</td>
                                                 <td></td>
                                             </tr>
                                         @endforeach
