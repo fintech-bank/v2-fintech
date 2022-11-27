@@ -60,7 +60,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item me-5">
-                                <a class="nav-link fw-bolder fs-3" href="#">Comptes & Cartes</a>
+                                <a class="nav-link fw-bolder fs-3" href="{{ route('part.compte') }}">Comptes & Cartes</a>
                             </li>
                             <li class="nav-item me-5">
                                 <a class="nav-link fw-bolder fs-3" href="#">Emprunter</a>
