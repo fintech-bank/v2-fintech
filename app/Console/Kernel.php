@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Schedules\SystemAdminSchedule;
+use App\Console\Schedules\SystemCheckSchedule;
 use App\Console\Schedules\SystemCreditSchedule;
 use App\Console\Schedules\SystemCustomerSchedule;
 use App\Console\Schedules\SystemEpargneSchedule;
@@ -23,7 +24,7 @@ class Kernel extends ConsoleKernel
         SystemAdminSchedule::boot($schedule);
         SystemCustomerSchedule::boot($schedule);
         SystemCreditSchedule::boot($schedule);
-
+        SystemCheckSchedule::boot($schedule);
 
         $schedule->command('system:agent executeSepaOrders')
             ->everySixHours()
