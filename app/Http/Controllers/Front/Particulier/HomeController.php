@@ -11,4 +11,9 @@ class HomeController extends Controller
     {
         return view('front.part.home');
     }
+
+    public function compte()
+    {
+        return view('front.part.compte');
+    }
 }
