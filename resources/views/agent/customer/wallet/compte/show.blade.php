@@ -1040,14 +1040,18 @@
                                     @if($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->where('id', '!=', $wallet->id)->count() != 0)
                                         <optgroup label="Compte Individuel">
                                             @foreach($wallet->customer->wallets()->where('type', 'compte')->where('status', 'active')->where('id', '!=', $wallet->id)->get() as $compte)
-                                                <option value="{{ $compte->id }}" data-content="{{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}"></option>
+                                                <option value="{{ $compte->id }}" data-content="{{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}">
+                                                    {{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}
+                                                </option>
                                             @endforeach
                                         </optgroup>
                                     @endif
                                     @if($wallet->customer->wallets()->where('type', 'epargne')->where('status', 'active')->count() != 0)
                                         <optgroup label="Compte Epargne">
                                             @foreach($wallet->customer->wallets()->where('type', 'epargne')->where('status', 'active')->get() as $compte)
-                                                <option value="{{ $compte->id }}" data-content="{{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}"></option>
+                                                <option value="{{ $compte->id }}" data-content="{{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}">
+                                                    {{ $compte->name_account_generic }} {!! $compte->solde_remaining <= 0 ? "<span class='badge badge-danger'>".eur($compte->solde_remaining)."</span>" : "<span class='badge badge-success'>".eur($compte->solde_remaining)."</span>" !!}
+                                                </option>
                                             @endforeach
                                         </optgroup>
                                     @endif
