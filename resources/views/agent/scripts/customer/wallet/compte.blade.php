@@ -833,6 +833,13 @@
                                     window.location.reload()
                                 }, 1200)
                             },
+                            203: () => {
+                                toastr.success(`La demande de chéquier à bien été prise en compte.`, `Chéquier bancaire`)
+
+                                setTimeout(() => {
+                                    window.location.reload()
+                                }, 1200)
+                            },
                             500: () => {
                                 toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                             }
