@@ -3,7 +3,7 @@
     <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
-        <a href="{{ route('agent.dashboard') }}">
+        <a href="{{ route('customer.dashboard') }}">
             <img alt="Logo" src="/storage/logo/logo_long_white.png" class="h-50px app-sidebar-logo-default" />
             <img alt="Logo" src="/storage/logo/logo_carre_white.png" class="h-30px app-sidebar-logo-minimize" />
         </a>
@@ -31,7 +31,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('agent.dashboard') }}">
+                    <a class="menu-link" href="{{ route('customer.dashboard') }}">
 						<span class="menu-icon">
 							<!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                             <i class="fa-solid fa-laptop fa-2x"></i>
@@ -45,13 +45,13 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('agent.customer.index') }}">
+                    <a class="menu-link" href="{{ route('customer.compte') }}">
 						<span class="menu-icon">
 							<!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                             <i class="fa-solid fa-users fa-2x"></i>
                             <!--end::Svg Icon-->
 						</span>
-                        <span class="menu-title">Client</span>
+                        <span class="menu-title">Comptes & Cartes</span>
                     </a>
                     <!--end:Menu link-->
                 </div>
@@ -65,7 +65,7 @@
                             <i class="fa-solid fa-receipt fa-2x"></i>
                             <!--end::Svg Icon-->
 						</span>
-                        <span class="menu-title">Pret Bancaire</span>
+                        <span class="menu-title">Emprunter</span>
                     </a>
                     <!--end:Menu link-->
                 </div>
@@ -79,7 +79,7 @@
                             <i class="fa-solid fa-money-bill-transfer fa-2x"></i>
                             <!--end::Svg Icon-->
 						</span>
-                        <span class="menu-title">Retrait & Dépot</span>
+                        <span class="menu-title">Epargner</span>
                     </a>
                     <!--end:Menu link-->
                 </div>
@@ -93,35 +93,7 @@
                             <i class="fa-solid fa-user-injured fa-2x"></i>
                             <!--end::Svg Icon-->
 						</span>
-                        <span class="menu-title">Assurance</span>
-                    </a>
-                    <!--end:Menu link-->
-                </div>
-                <!--end:Menu item-->
-                <!--begin:Menu item-->
-                <div class="menu-item">
-                    <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('agent.dashboard') }}">
-						<span class="menu-icon">
-							<!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
-                            <i class="fa-solid fa-arrow-right-arrow-left fa-2x"></i>
-                            <!--end::Svg Icon-->
-						</span>
-                        <span class="menu-title">Transactions</span>
-                    </a>
-                    <!--end:Menu link-->
-                </div>
-                <!--end:Menu item-->
-                <!--begin:Menu item-->
-                <div class="menu-item">
-                    <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('agent.dashboard') }}">
-						<span class="menu-icon">
-							<!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
-                            <i class="fa-solid fa-ban fa-2x"></i>
-                            <!--end::Svg Icon-->
-						</span>
-                        <span class="menu-title">Oppositions</span>
+                        <span class="menu-title">Assurer</span>
                     </a>
                     <!--end:Menu link-->
                 </div>
