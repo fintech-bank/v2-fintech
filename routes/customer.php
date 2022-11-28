@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('customer')->middleware(['auth', 'customer'])->group(function () {
-    Route::get('/', [\App\Http\Controllers\Agent\HomeController::class, 'index'])->name('customer.dashboard');
+    Route::get('/', [\App\Http\Controllers\Customer\HomeController::class])->name('customer.dashboard');
 
     Route::prefix('account')->group(function () {
         Route::prefix('notify')->group(function () {
