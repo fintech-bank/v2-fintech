@@ -30,6 +30,10 @@
                                 <strong>Opération à venir</strong>
                                 <div data-content="show_solde" class="">0,00 €</div>
                             </div>
+                            <div class="d-flex flex-row justify-content-between showSolde">
+                                <strong>Dernière opération</strong>
+                                <div data-content="show_solde" class="">0,00 €</div>
+                            </div>
                         </div>
                     </div>
                 </div>
