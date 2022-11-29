@@ -34,6 +34,7 @@
                             show: false
                         },
                         value: {
+                            show: false,
                             offsetY: -2,
                             fontSize: '22px'
                         }
