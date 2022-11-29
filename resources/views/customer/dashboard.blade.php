@@ -21,19 +21,23 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <div id="chart_gauge" class="mb-10 h-auto"></div>
-                            <div class="d-flex flex-row justify-content-between showSolde">
-                                <strong>Solde de votre compte</strong>
-                                <div data-content="show_solde" class="">1 250,00 €</div>
-                            </div>
-                            <div class="d-flex flex-row justify-content-between showSolde">
-                                <strong>Opération à venir</strong>
-                                <div data-content="show_solde" class="">0,00 €</div>
-                            </div>
-                            <div class="d-flex flex-row justify-content-between showSolde">
-                                <strong>Dernière opération</strong>
-                                <div data-content="show_solde" class="">0,00 €</div>
-                            </div>
+                            @if($customer->setting->gauge)
+                                <div id="chart_gauge" class="mb-10 h-auto"></div>
+                                <div class="d-flex flex-row justify-content-between showSolde">
+                                    <strong>Solde de votre compte</strong>
+                                    <div data-content="show_solde" class="">1 250,00 €</div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between showSolde">
+                                    <strong>Opération à venir</strong>
+                                    <div data-content="show_solde" class="">0,00 €</div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between showSolde">
+                                    <strong>Dernière opération</strong>
+                                    <div data-content="show_solde" class="">0,00 €</div>
+                                </div>
+                            @else
+                                <button class="w-100 btn btn-light-primary">Paramétrer la gauge</button>
+                            @endif
                         </div>
                     </div>
                 </div>
