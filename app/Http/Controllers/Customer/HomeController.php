@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         return view('customer.dashboard', [
             'customer' => Customer::find(auth()->user()->customers->id),
-            'gauge' => $chart->build()
+            'chart' => $chart->build()
         ]);
     }
 }
