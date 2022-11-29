@@ -41,7 +41,7 @@
                                                     {{ $wallet->type_text }}
                                                 </div>
                                             </div>
-                                            <span class="text-{{ $wallet->solde_remaining >= 0 ? 'success' : 'danger' }} text-end">{{ $wallet->solde_remaining >= 0 ? "+ ".eur($wallet->solde_remaining) : -eur($wallet->solde_remaining) }}</span>
+                                            <span class="text-{{ $wallet->solde_remaining >= 0 ? 'success' : 'danger' }} flex-end">{{ $wallet->solde_remaining >= 0 ? "+ ".eur($wallet->solde_remaining) : -eur($wallet->solde_remaining) }}</span>
                                         </a>
                                     @elseif($wallet->type == 'epargne')
                                         <div class="d-flex flex-row">
