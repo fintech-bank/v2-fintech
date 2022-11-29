@@ -53,6 +53,9 @@
                 lineCap: "round",
             },
             labels: ['Average Results'],
+            tooltip: {
+                enable: true
+            }
         })
         chart.render()
     }
