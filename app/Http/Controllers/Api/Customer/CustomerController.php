@@ -257,6 +257,23 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function updateGauge($customer_id, Request $request)
+    {
+        $setting = Customer::find($customer_id)->setting;
+
+        $setting->update([
+            'gauge' => $request->has('gauge'),
+            'gauge_show_solde' => $request->has('gauge_show_solde'),
+            'gauge_show_op_waiting' => $request->has('gauge_show_op_waiting'),
+            'gauge_show_last_op' => $request->has('gauge_show_last_op'),
+            'gauge_start' => $request->has('gauge_start'),
+            'gauge_end' => $request->has('gauge_end'),
+            'customer_wallet_id' => $request->has('customer_wallet_id'),
+        ]);
+
+        return response()->json();
+    }
+
     private function subscribeAlerta()
     {
         session()->put('subscribe.alerta', true);

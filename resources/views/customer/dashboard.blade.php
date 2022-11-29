@@ -36,7 +36,7 @@
                                     <div data-content="show_solde" class="">0,00 €</div>
                                 </div>
                             @else
-                                <button class="w-100 btn btn-light-primary text-white">Paramétrer la gauge</button>
+                                <button class="w-100 btn btn-light-primary text-white" data-bs-toggle="modal" data-bs-target="#configGauge">Paramétrer la gauge</button>
                             @endif
                         </div>
                     </div>
@@ -135,6 +135,31 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="configGauge">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white"></h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formUpdateGauge" action="/api/customer/{{ $customer->id }}/gauge" method="post">
+                    @csrf
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <x-form.button />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
