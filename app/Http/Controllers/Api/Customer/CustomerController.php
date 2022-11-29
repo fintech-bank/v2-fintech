@@ -244,7 +244,12 @@ class CustomerController extends Controller
 
         $percent = $solde / $end * 100;
 
-        dd($start, $end, $solde, $percent);
+        return response()->json([
+            'start' => $start,
+            'end' => $end,
+            'solde' => $solde,
+            'percent' => $percent
+        ]);
     }
 
     private function subscribeAlerta()
