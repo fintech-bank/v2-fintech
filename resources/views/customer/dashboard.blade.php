@@ -155,7 +155,7 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-10">
-                            <div class="d-flex flex-stack w-lg-50">
+                            <div class="d-flex flex-stack rounded border bg-gray-100">
                                 <!--begin::Label-->
                                 <div class="me-5">
                                     <label class="fs-6 fw-semibold form-label">Activer la gauge d'alerte</label>
