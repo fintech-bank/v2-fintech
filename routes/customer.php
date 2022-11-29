@@ -18,8 +18,8 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
 
     Route::prefix('account')->name('account.')->group(function () {
         Route::prefix('notify')->name('notify.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Agent\Account\NotifyController::class, 'index'])->name('index');
-            Route::get('/{notify_id}', [\App\Http\Controllers\Agent\Account\NotifyController::class, 'show'])->name('show');
+            Route::get('/', [\App\Http\Controllers\Customer\Account\NotifyController::class, 'index'])->name('index');
+            Route::get('/{notify_id}', [\App\Http\Controllers\Customer\Account\NotifyController::class, 'show'])->name('show');
         });
 
         Route::prefix('mailbox')->name('mailbox.')->group(function () {

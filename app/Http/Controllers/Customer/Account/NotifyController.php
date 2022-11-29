@@ -8,6 +8,8 @@ class NotifyController extends Controller
 {
     public function index()
     {
-
+        return view('customer.account.notify.index', [
+            'notifications' => auth()->user()->notifications
+        ]);
     }
 }
