@@ -198,7 +198,8 @@
                                 <x-form.input
                                     name="gauge_start"
                                     label="Début" />
-
+                            </div>
+                            <div class="col-md-6 col-sm-12">
                                 <x-form.input
                                     name="gauge_end"
                                     label="Fin" />
