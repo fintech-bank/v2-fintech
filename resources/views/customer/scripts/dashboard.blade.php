@@ -16,7 +16,7 @@
             series: [data],
             chart: {
                 type: 'radialBar',
-                offsetY: -20,
+                offsetY: 0,
                 sparkline: {
                     enabled: true
                 }
