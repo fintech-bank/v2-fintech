@@ -173,6 +173,37 @@
                                 <!--end::Switch-->
                             </div>
                         </div>
+                        <div class="mb-10">
+                            <div class="form-check form-switch form-check-custom form-check-solid mb-5">
+                                <input class="form-check-input" type="checkbox" name="gauge_show_solde" value="1" id="flexSwitchDefault"/>
+                                <label class="form-check-label" for="flexSwitchDefault">
+                                    Solde du compte
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid mb-5">
+                                <input class="form-check-input" type="checkbox" name="gauge_show_op_waiting" value="1" id="flexSwitchDefault"/>
+                                <label class="form-check-label" for="flexSwitchDefault">
+                                    Opération en traitement
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid mb-5">
+                                <input class="form-check-input" type="checkbox" name="gauge_show_last_op" value="1" id="flexSwitchDefault"/>
+                                <label class="form-check-label" for="flexSwitchDefault">
+                                    Dernière Opérations comptabilisés
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <x-form.input
+                                    name="gauge_start"
+                                    label="Début" />
+
+                                <x-form.input
+                                    name="gauge_end"
+                                    label="Fin" />
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <x-form.button />
