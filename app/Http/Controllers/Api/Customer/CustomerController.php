@@ -241,6 +241,9 @@ class CustomerController extends Controller
         $start = $setting->gauge_start;
         $end = $setting->gauge_end;
         $solde = $setting->wallet->solde_remaining;
+        if($end < $solde) {
+            $end = $solde * 10;
+        }
 
         $percent = $solde / $end * 100;
 
