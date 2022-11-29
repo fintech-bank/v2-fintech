@@ -59,21 +59,10 @@ class SystemSeedCommand extends Command
      */
     public function handle()
     {
-        $stripe = new Stripe();
         if ($this->option('base')) {
             $this->call('migrate:fresh', ['--force']);
             \Storage::disk('gdd')->deleteDirectory('gdd/');
             \Storage::disk('gdd')->deleteDirectory('reseller/');
-
-            $customers = $stripe->client->customers->all();
-            foreach ($customers as $customer) {
-                $stripe->client->customers->delete($customer->id);
-            }
-
-            $subscriptions = $stripe->client->subscriptions->all();
-            foreach ($subscriptions as $subscription) {
-                $stripe->client->subscriptions->cancel($subscription->id);
-            }
         }
 
         $this->info('Seeding: Liste des agences');

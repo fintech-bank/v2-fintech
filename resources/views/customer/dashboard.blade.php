@@ -21,7 +21,7 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            {!! $chart->container() !!}
+                            <div id="chart_gauge" class="mb-10 h-auto"></div>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,5 @@
 @endsection
 
 @section("script")
-    <script src="{{ $chart->cdn() }}"></script>
-    {{ $chart->script() }}
     @include("customer.scripts.dashboard")
 @endsection

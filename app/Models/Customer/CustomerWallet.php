@@ -99,6 +99,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toCredit()
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toEpargne()
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerWallet toPending()
+ * @property-read \App\Models\Customer\CustomerSetting|null $setting
  */
 class CustomerWallet extends Model
 {

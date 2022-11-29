@@ -237,10 +237,6 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($customer_id);
         $setting = $customer->setting;
-
-        return response()->json([
-
-        ]);
     }
 
     private function subscribeAlerta()

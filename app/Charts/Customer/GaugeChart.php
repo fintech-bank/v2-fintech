@@ -16,18 +16,9 @@ class GaugeChart
     public function build(): \ArielMejiaDev\LarapexCharts\DonutChart
     {
         return $this->chart->donutChart()
-            ->setTitle('Top 3 scorers of the team.')
-            ->setSubtitle('Season 2021.')
-            ->setOptions([
-                'plotOptions' => [
-                    'pie' => [
-                        'startAngle' => "-90",
-                        'endAngle' => "90",
-                        'offsetY' => 10
-                    ]
-                ]
-            ])
+            ->setTitle('')
+            ->setSubtitle('')
             ->addData([20])
-            ->setLabels(['Player 7']);
+            ->setLabels(['']);
     }
 }

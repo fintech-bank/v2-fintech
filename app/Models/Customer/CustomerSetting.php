@@ -35,6 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereAlerta($value)
  * @property int $card_code
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereCardCode($value)
+ * @property-read \App\Models\Customer\CustomerWallet $wallet
  */
 class CustomerSetting extends Model
 {
