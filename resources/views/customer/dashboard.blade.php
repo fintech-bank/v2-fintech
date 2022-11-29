@@ -34,7 +34,7 @@
                                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row align-items-center text-black">
                                             <div class="d-flex flex-row">
                                                 <div class="symbol symbol-50px me-3">
-                                                    <div class="symbol-label fs-2 fw-semibold bg-light-success text-inverse-success"><i class="fa-solid fa-wallet text-white"></i> </div>
+                                                    <div class="symbol-label fs-2 fw-semibold bg-light-success text-inverse-success"><i class="fa-solid fa-wallet text-success"></i> </div>
                                                 </div>
                                                 <div class="d-flex flex-column">
                                                     <strong>{{ $wallet->name_account_generic }}</strong>
@@ -47,7 +47,7 @@
                                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row align-items-center text-black">
                                             <div class="d-flex flex-row">
                                                 <div class="symbol symbol-50px me-3">
-                                                    <div class="symbol-label fs-2 fw-semibold bg-light-info text-inverse-success"><i class="fa-solid fa-coins text-white"></i> </div>
+                                                    <div class="symbol-label fs-2 fw-semibold bg-light-info text-inverse-success"><i class="fa-solid fa-coins text-info"></i> </div>
                                                 </div>
                                                 <div class="d-flex flex-column">
                                                     <strong>{{ $wallet->name_account_generic }}</strong>
@@ -60,7 +60,7 @@
                                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row align-items-center text-black">
                                             <div class="d-flex flex-row">
                                                 <div class="symbol symbol-50px me-3">
-                                                    <div class="symbol-label fs-2 fw-semibold bg-light-primary text-inverse-success"><i class="fa-solid fa-file-contract text-white"></i> </div>
+                                                    <div class="symbol-label fs-2 fw-semibold bg-light-primary text-inverse-success"><i class="fa-solid fa-file-contract text-primary"></i> </div>
                                                 </div>
                                                 <div class="d-flex flex-column">
                                                     <strong>{{ $wallet->name_account_generic }}</strong>
