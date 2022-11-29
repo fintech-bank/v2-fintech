@@ -266,9 +266,9 @@ class CustomerController extends Controller
             'gauge_show_solde' => $request->has('gauge_show_solde'),
             'gauge_show_op_waiting' => $request->has('gauge_show_op_waiting'),
             'gauge_show_last_op' => $request->has('gauge_show_last_op'),
-            'gauge_start' => $request->has('gauge_start'),
-            'gauge_end' => $request->has('gauge_end'),
-            'customer_wallet_id' => $request->has('customer_wallet_id'),
+            'gauge_start' => $request->get('gauge_start'),
+            'gauge_end' => $request->get('gauge_end'),
+            'customer_wallet_id' => $request->get('customer_wallet_id'),
         ]);
 
         return response()->json();
