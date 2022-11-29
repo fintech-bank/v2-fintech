@@ -80,37 +80,37 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                    <a href="{{ route('customer.account.profil.index') }}" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
                                         <i class="fa-solid fa-cogs fs-2tx"></i>
                                         <span class="fw-semibold">Paramétrer mes comptes</span>
                                     </a>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                    <a href="{{ route('customer.account.documents.index') }}" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
                                         <i class="fa-solid fa-file fs-2tx"></i>
                                         <span class="fw-semibold">Mes documents</span>
                                     </a>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                    <a href="{{ route('customer.account.documents.externe.index') }}" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
                                         <i class="fa-solid fa-folder-tree fs-2tx"></i>
                                         <span class="fw-semibold">Consulter mes documents externe</span>
                                     </a>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                    <a href="{{ route('customer.account.profil.cashback.index') }}" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
                                         <i class="fa-solid fa-piggy-bank fs-2tx"></i>
                                         <span class="fw-semibold">Cashback</span>
                                     </a>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                    <a href="{{ route('customer.account.agenda.index') }}" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
                                         <i class="fa-solid fa-calendar-day fs-2tx"></i>
                                         <span class="fw-semibold">Mes rendez-vous</span>
                                     </a>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                    <a href="{{ route('customer.contact.index') }}" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
                                         <i class="fa-solid fa-exclamation fs-2tx"></i>
                                         <span class="fw-semibold">Services d'urgence</span>
                                     </a>

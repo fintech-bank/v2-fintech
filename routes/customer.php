@@ -36,8 +36,16 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
             Route::get("message/{id}/send", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'send'])->name('send');
         });
 
+        Route::prefix('agenda')->name('agenda.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Account\AgendaController::class, 'index'])->name('index');
+        });
+
         Route::prefix('documents')->name('documents.')->group(function () {
             Route::get("/", [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'index'])->name('index');
+
+            Route::prefix('externe')->name('externe.')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Customer\Profil\Documents\DocumentExterneController::class, 'index'])->name('index');
+            });
 
             Route::prefix('request')->name('request.')->group(function () {
                 Route::get('/', [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'show'])->name('index');
@@ -120,5 +128,8 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
         Route::prefix('immo')->group(function () {
             Route::get('/', [\App\Http\Controllers\Customer\Pret\PretImmoController::class, 'index'])->name('customer.pret.immo');
         });
+    });
+    Route::prefix('contact')->name('contact.')->group(function () {
+        Route::get('/', \App\Http\Controllers\Customer\Contact\ContactController::class)->name('index');
     });
 });
