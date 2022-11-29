@@ -23,11 +23,23 @@ return new class extends Migration
             $table->boolean('check')->default(false);
             $table->boolean('alerta')->default(false);
             $table->boolean('card_code')->default(false);
+            $table->boolean('gauge')->default(false);
+            $table->boolean('gauge_show_solde')->default(false);
+            $table->boolean('gauge_show_op_waiting')->default(false)->comment("Opération en traitement");
+            $table->boolean('gauge_show_last_op')->default(false);
+            $table->integer('gauge_start')->default(0);
+            $table->integer('gauge_end')->default(0);
 
             $table->foreignId('customer_id')
                             ->constrained()
                             ->cascadeOnUpdate()
                             ->cascadeOnDelete();
+
+            $table->foreignId('customer_wallet_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 

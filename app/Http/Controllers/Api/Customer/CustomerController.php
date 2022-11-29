@@ -233,6 +233,16 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function gauge($customer_id)
+    {
+        $customer = Customer::find($customer_id);
+        $setting = $customer->setting;
+
+        return response()->json([
+
+        ]);
+    }
+
     private function subscribeAlerta()
     {
         session()->put('subscribe.alerta', true);

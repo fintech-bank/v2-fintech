@@ -48,4 +48,9 @@ class CustomerSetting extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function wallet()
+    {
+        return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
+    }
 }

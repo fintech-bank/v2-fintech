@@ -234,6 +234,11 @@ class CustomerWallet extends Model
         return $this->hasMany(CustomerInsurance::class);
     }
 
+    public function setting()
+    {
+        return $this->hasOne(CustomerSetting::class);
+    }
+
     public static function toSelect($query, $format = false)
     {
         $datas = collect();
