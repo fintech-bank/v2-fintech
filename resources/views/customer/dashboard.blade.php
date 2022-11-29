@@ -31,7 +31,7 @@
                             <div class="d-flex flex-row justify-content-between align-items-center p-5 rounded shadow-lg">
                                 @foreach($customer->wallets()->where('status', 'active')->get() as $wallet)
                                     @if($wallet->type == 'compte')
-                                        <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row justify-content-between align-items-center text-black">
+                                        <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row align-items-center text-black">
                                             <div class="d-flex flex-row">
                                                 <div class="symbol symbol-50px me-3">
                                                     <div class="symbol-label fs-2 fw-semibold bg-success text-inverse-success"><i class="fa-solid fa-wallet text-white"></i> </div>
@@ -41,7 +41,7 @@
                                                     {{ $wallet->type_text }}
                                                 </div>
                                             </div>
-                                            <span class="text-{{ $wallet->solde_remaining >= 0 ? 'success' : 'danger' }} flex-end">{{ $wallet->solde_remaining >= 0 ? "+ ".eur($wallet->solde_remaining) : -eur($wallet->solde_remaining) }}</span>
+                                            <span class="text-{{ $wallet->solde_remaining >= 0 ? 'success' : 'danger' }} d-flex flex-end">{{ $wallet->solde_remaining >= 0 ? "+ ".eur($wallet->solde_remaining) : -eur($wallet->solde_remaining) }}</span>
                                         </a>
                                     @elseif($wallet->type == 'epargne')
                                         <div class="d-flex flex-row">
