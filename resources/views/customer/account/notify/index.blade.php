@@ -14,7 +14,7 @@
 
 @section("content")
     <div id="app" class="rounded">
-        <div class="card shadow-sm">
+        <div class="card shadow-sm rounded-lg">
             <div class="card-body bg-gray-300">
                 @foreach($notifications as $notification)
                     {{$notification}}
