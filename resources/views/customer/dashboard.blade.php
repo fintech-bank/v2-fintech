@@ -22,6 +22,10 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <div id="chart_gauge" class="mb-10 h-auto"></div>
+                            <div class="d-flex flex-row justify-content-between showSolde">
+                                <strong>Solde de votre compte</strong>
+                                <div data-content="show_solde" class="">1 250,00 €</div>
+                            </div>
                         </div>
                     </div>
                 </div>
