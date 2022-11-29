@@ -237,6 +237,14 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($customer_id);
         $setting = $customer->setting;
+
+        $start = $setting->gauge_start;
+        $end = $setting->gauge_end;
+        $solde = $setting->wallet->solde_remaining;
+
+        $percent = $solde / $end * 100;
+
+        dd($start, $end, $solde, $percent);
     }
 
     private function subscribeAlerta()

@@ -36,6 +36,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $card_code
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereCardCode($value)
  * @property-read \App\Models\Customer\CustomerWallet $wallet
+ * @property int $gauge
+ * @property int $gauge_show_solde
+ * @property int $gauge_show_op_waiting Opération en traitement
+ * @property int $gauge_show_last_op
+ * @property int $gauge_start
+ * @property int $gauge_end
+ * @property int|null $customer_wallet_id
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereCustomerWalletId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereGauge($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereGaugeEnd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereGaugeShowLastOp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereGaugeShowOpWaiting($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereGaugeShowSolde($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereGaugeStart($value)
  */
 class CustomerSetting extends Model
 {
