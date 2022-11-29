@@ -33,11 +33,11 @@
     <!--begin::Page-->
     <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
         <!--begin::Header-->
-        @include("agent.layouts.includes.header")
+        @include("customer.layouts.includes.header")
         <!--end::Header-->
         <!--begin::Wrapper-->
         <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper" data-user="{{ auth()->user()->id }}">
-            @include("agent.layouts.includes.aside")
+            @include("customer.layouts.includes.aside")
             <!--begin::Main-->
             <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                 <!--begin::Content wrapper-->
@@ -57,7 +57,7 @@
                     <div id="kt_app_content" class="app-content flex-column-fluid">
                         <!--begin::Content container-->
                         <div id="kt_app_content_container" class="app-container container-fluid">
-                            @include("agent.layouts.includes.alert")
+                            @include("customer.layouts.includes.alert")
                             @yield("content")
                         </div>
                         <!--end::Content container-->
@@ -65,7 +65,7 @@
                     <!--end::Content-->
                 </div>
                 <!--end::Content wrapper-->
-                @include('agent.layouts.includes.footer')
+                @include('customer.layouts.includes.footer')
             </div>
             <!--end:::Main-->
         </div>
