@@ -61,6 +61,9 @@
             fill: {
                 colors: [data > 0 && data <= 25 ? danger : (data >= 26 && data <= 33 ? warn : success)],
             },
+            stroke: {
+                lineCap: "round",
+            },
             labels: ['Average Results'],
         })
         chart.render()
