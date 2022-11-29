@@ -16,7 +16,7 @@
     <div id="app" class="rounded">
         <div class="card shadow-sm">
             <div class="card-body bg-gray-300">
-                @foreach($notifications->orderBy('created_at', 'desc')->get() as $notification)
+                @foreach($notifications as $notification)
                     {{$notification}}
                 @endforeach
             </div>
