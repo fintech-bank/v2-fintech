@@ -36,7 +36,7 @@
                                     <div data-content="show_solde" class="">0,00 €</div>
                                 </div>
                             @else
-                                <button class="w-100 btn btn-light-primary">Paramétrer la gauge</button>
+                                <button class="w-100 btn btn-light-primary text-white">Paramétrer la gauge</button>
                             @endif
                         </div>
                     </div>
