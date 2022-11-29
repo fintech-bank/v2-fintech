@@ -34,12 +34,6 @@ return new class extends Migration
                             ->constrained()
                             ->cascadeOnUpdate()
                             ->cascadeOnDelete();
-
-            $table->foreignId('customer_wallet_id')
-                ->nullable()
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
         });
     }
 

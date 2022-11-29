@@ -37,6 +37,14 @@ return new class extends Migration
                             ->cascadeOnUpdate()
                             ->cascadeOnDelete();
         });
+
+        Schema::table('customer_settings', function (Blueprint $table) {
+            $table->foreignId('customer_wallet_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+        });
     }
 
     /**
