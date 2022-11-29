@@ -45,7 +45,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('customer.compte') }}">
+                    <a class="menu-link" href="{{ route('customer.compte.index') }}">
 						<span class="menu-icon">
 							<!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                             <i class="fa-solid fa-users fa-2x"></i>
