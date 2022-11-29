@@ -142,7 +142,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header bg-bank">
-                    <h3 class="modal-title text-white"></h3>
+                    <h3 class="modal-title text-white">Configurer la gauge de solde</h3>
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
