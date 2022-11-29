@@ -55,7 +55,7 @@
                 }
             },
             fill: {
-                colors: [data > 0 && data <= 25 ? success : (data >= 26 && data <= 33 ? warn : danger)],
+                colors: [data > 0 && data <= 25 ? danger : (data >= 26 && data <= 33 ? warn : success)],
             },
             labels: ['Average Results'],
         })
