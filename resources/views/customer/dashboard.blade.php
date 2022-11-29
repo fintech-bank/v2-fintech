@@ -204,6 +204,10 @@
                                     label="Fin" />
                             </div>
                         </div>
+                        <x-form.select
+                            name="customer_wallet_id"
+                            :datas="\App\Models\Customer\CustomerWallet::toSelect(\App\Models\Customer\CustomerWallet::where('type', '!=', 'pret')->get())"
+                            label="Votre compte favori" />
                     </div>
                     <div class="modal-footer">
                         <x-form.button />
