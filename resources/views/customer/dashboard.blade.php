@@ -40,7 +40,7 @@
                                                 {{ $wallet->type_text }}
                                             </div>
                                         </div>
-                                        {{ $wallet->solde_remaining }}
+                                        {{ eur($wallet->solde_remaining >= 0 ? $wallet->solde_remaining : -$wallet->solde_remaining) }}
                                     @elseif($wallet->type == 'epargne')
 
                                     @else
