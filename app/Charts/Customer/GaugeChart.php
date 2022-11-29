@@ -18,8 +18,16 @@ class GaugeChart
         return $this->chart->donutChart()
             ->setTitle('Top 3 scorers of the team.')
             ->setSubtitle('Season 2021.')
-            ->setOptions()
-            ->addData([20, 24, 30])
-            ->setLabels(['Player 7', 'Player 10', 'Player 9']);
+            ->setOptions([
+                'plotOptions' => [
+                    'pie' => [
+                        'startAngle' => "-90",
+                        'endAngle' => "90",
+                        'offsetY' => 10
+                    ]
+                ]
+            ])
+            ->addData([20])
+            ->setLabels(['Player 7']);
     }
 }
