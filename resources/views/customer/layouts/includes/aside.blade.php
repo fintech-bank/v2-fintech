@@ -43,7 +43,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div class="menu-item">
+                <div class="menu-item {{  route_is('customer.compte.') }}">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('customer.compte.index') }}">
 						<span class="menu-icon">
