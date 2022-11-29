@@ -97,7 +97,7 @@
                         <!--end::Items-->
                         <!--begin::View more-->
                         <div class="py-3 text-center border-top">
-                            <a href="{{ route('agent.account.notify.index') }}" class="btn btn-color-gray-600 btn-active-color-primary">Mes notifications
+                            <a href="{{ route('customer.account.notify.index') }}" class="btn btn-color-gray-600 btn-active-color-primary">Mes notifications
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                 <span class="svg-icon svg-icon-5">
 									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
