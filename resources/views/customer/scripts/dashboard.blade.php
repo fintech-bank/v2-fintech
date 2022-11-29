@@ -29,19 +29,6 @@
                         margin: 15,
                         size: '70%'
                     },
-                    track: {
-                        background: "#3f3f3f",
-                        strokeWidth: '10%',
-                        margin: 5, // margin is in pixels
-                        dropShadow: {
-                            enabled: true,
-                            top: 2,
-                            left: 0,
-                            color: '#999',
-                            opacity: 1,
-                            blur: 2
-                        }
-                    },
                     dataLabels: {
                         name: {
                             show: false
