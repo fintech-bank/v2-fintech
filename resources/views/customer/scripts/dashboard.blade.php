@@ -12,7 +12,7 @@
         let success = "#00b518"
         let warn = "#b53f00"
         let danger = "#b50000"
-        let chart = new ApexCharts(elements.chartEndet, {
+        let chart = new ApexCharts(elements.chart_gauge, {
             series: [data],
             chart: {
                 type: 'radialBar',
