@@ -1,4 +1,4 @@
-@extends("agent.layouts.app")
+@extends("customer.layouts.app")
 
 @section("css")
 
@@ -14,5 +14,5 @@
 @endsection
 
 @section("script")
-    @include("agent.scripts.dashboard")
+    @include("customer.scripts.dashboard")
 @endsection
