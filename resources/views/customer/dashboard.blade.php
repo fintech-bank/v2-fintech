@@ -31,7 +31,7 @@
                             <div class="d-flex flex-row justify-content-between align-items-center p-5 rounded shadow-lg">
                                 @foreach($customer->wallets()->where('status', 'active')->get() as $wallet)
                                     @if($wallet->type == 'compte')
-                                        <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}">
+                                        <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row">
                                             <div class="d-flex flex-row">
                                                 <div class="symbol symbol-50px me-3">
                                                     <div class="symbol-label fs-2 fw-semibold bg-success text-inverse-success"><i class="fa-solid fa-wallet text-white"></i> </div>
