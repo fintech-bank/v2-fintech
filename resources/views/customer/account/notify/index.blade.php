@@ -13,9 +13,9 @@
 @endsection
 
 @section("content")
-    <div id="app" class="rounded">
+    <div id="app" class="rounded container">
         <div class="card shadow-sm rounded-lg">
-            <div class="card-body bg-gray-300">
+            <div class="card-body bg-gray-300 rounded-lg">
                 @foreach($notifications as $notification)
                     {{$notification}}
                 @endforeach
