@@ -27,7 +27,7 @@
                     endAngle: 90,
                     track: {
                         background: "#3f3f3f",
-                        strokeWidth: '97%',
+                        strokeWidth: '10%',
                         margin: 5, // margin is in pixels
                         dropShadow: {
                             enabled: true,
