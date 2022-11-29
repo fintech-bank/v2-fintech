@@ -14,7 +14,13 @@
 
 @section("content")
     <div id="app" class="rounded">
-
+        <div class="card shadow-sm">
+            <div class="card-body bg-gray-300">
+                @foreach($notifications->orderBy('created_at', 'desc')->get() as $notification)
+                    {{$notification}}
+                @endforeach
+            </div>
+        </div>
     </div>
 @endsection
 
