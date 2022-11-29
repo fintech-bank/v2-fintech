@@ -85,6 +85,18 @@
                                         <span class="fw-semibold">Paramétrer mes comptes</span>
                                     </a>
                                 </div>
+                                <div class="col-md-4">
+                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                        <i class="fa-solid fa-file fs-2tx"></i>
+                                        <span class="fw-semibold">Mes documents</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                        <i class="fa-solid fa-folder-tree fs-2tx"></i>
+                                        <span class="fw-semibold">Consulter mes documents externe</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
