@@ -10,7 +10,7 @@
 @section("content")
     <div id="app" class="rounded">
         <div class="d-flex flex-row justify-content-between align-items-center bg-light-primary rounded m-0 p-5">
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column text-white">
                 <strong>Les offres du moment</strong>
                 <div class="text-muted">Découvez vos avantages</div>
             </div>
