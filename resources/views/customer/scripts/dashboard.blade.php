@@ -16,7 +16,7 @@
             series: [data],
             chart: {
                 type: 'radialBar',
-                offsetY: 0,
+                offsetY: -20,
                 sparkline: {
                     enabled: true
                 }
@@ -25,6 +25,10 @@
                 radialBar: {
                     startAngle: -90,
                     endAngle: 90,
+                    hollow: {
+                        margin: 15,
+                        size: '70%'
+                    },
                     track: {
                         background: "#3f3f3f",
                         strokeWidth: '10%',
