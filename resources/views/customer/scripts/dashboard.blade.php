@@ -3,10 +3,16 @@
     let elements = {
         chart_gauge: document.querySelector('#chart_gauge'),
     }
-    let modals = {}
-    let forms = {}
+    let modals = {
+        modalConfigGauge: document.querySelector("#configGauge"),
+    }
+    let forms = {
+        formConfigGauge: document.querySelector("#formUpdateGauge")
+    }
     let dataTable = {}
-    let block = {}
+    let block = {
+        blockModalConfigGauge: new KTBlockUI(modals.modalConfigGauge.querySelector('.modal-body'))
+    }
 
     let chartEnd = (data) => {
         let success = "#00b518"
@@ -66,5 +72,29 @@
             console.log(data)
             chartEnd(data.percent)
         }
+    })
+
+    $(forms.formConfigGauge).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formConfigGauge)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+        block.blockModalConfigGauge.block()
+
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data: data,
+            success: () => {
+                toastr.success(`La gauge d'affichage du solde à été paramétré`, `Gauge`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
+        })
     })
 </script>
