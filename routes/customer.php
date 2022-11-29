@@ -13,105 +13,103 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('customer')->middleware(['auth', 'customer'])->group(function () {
-    Route::get('/', \App\Http\Controllers\Customer\HomeController::class)->name('customer.dashboard');
+Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->group(function () {
+    Route::get('/', \App\Http\Controllers\Customer\HomeController::class)->name('dashboard');
 
-    Route::prefix('account')->group(function () {
-        Route::prefix('notify')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Agent\Account\NotifyController::class, 'index'])->name('customer.account.notify.index');
-            Route::get('/{notify_id}', [\App\Http\Controllers\Agent\Account\NotifyController::class, 'show'])->name('customer.account.notify.show');
+    Route::prefix('account')->name('account.')->group(function () {
+        Route::prefix('notify')->name('notify.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Agent\Account\NotifyController::class, 'index'])->name('index');
+            Route::get('/{notify_id}', [\App\Http\Controllers\Agent\Account\NotifyController::class, 'show'])->name('show');
         });
 
-        Route::prefix('mailbox')->group(function () {
-            Route::get("{folder?}", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'index'])->name('customer.account.mailbox.index');
-            Route::get("create", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'create'])->name('customer.account.mailbox.create');
-            Route::post("create", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'store'])->name('customer.account.mailbox.store');
-            Route::get("message/{id}", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'show'])->name('customer.account.mailbox.show');
-            Route::put("toggle-important", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'toggleImportant'])->name('customer.account.mailbox.toggleImportant');
-            Route::delete("/", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'trash'])->name('customer.account.mailbox.trash');
-            Route::get("message/{id}/reply", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'getReply'])->name('customer.account.mailbox.getReply');
-            Route::post("message/{id}/reply", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'postReply'])->name('customer.account.mailbox.postReply');
-            Route::get("message/{id}/forward", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'getForward'])->name('customer.account.mailbox.getForward');
-            Route::post("message/{id}/forward", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'postForward'])->name('customer.account.mailbox.postForward');
-            Route::get("message/{id}/send", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'send'])->name('customer.account.mailbox.send');
+        Route::prefix('mailbox')->name('mailbox.')->group(function () {
+            Route::get("{folder?}", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'index'])->name('index');
+            Route::get("create", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'create'])->name('create');
+            Route::post("create", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'store'])->name('store');
+            Route::get("message/{id}", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'show'])->name('show');
+            Route::put("toggle-important", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'toggleImportant'])->name('toggleImportant');
+            Route::delete("/", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'trash'])->name('trash');
+            Route::get("message/{id}/reply", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'getReply'])->name('getReply');
+            Route::post("message/{id}/reply", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'postReply'])->name('postReply');
+            Route::get("message/{id}/forward", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'getForward'])->name('getForward');
+            Route::post("message/{id}/forward", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'postForward'])->name('postForward');
+            Route::get("message/{id}/send", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'send'])->name('send');
         });
 
-        Route::prefix('documents')->group(function () {
-            Route::get("/", [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'index'])->name('customer.account.documents.index');
+        Route::prefix('documents')->name('documents.')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'index'])->name('index');
 
-            Route::prefix('request')->group(function () {
-                Route::get('/', [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'show'])->name('customer.document.request');
-                Route::get('{reference}', [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'showRequest'])->name('customer.document.request.show');
+            Route::prefix('request')->name('request.')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'show'])->name('index');
+                Route::get('{reference}', [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'showRequest'])->name('show');
             });
         });
 
-        Route::prefix('profil')->group(function () {
-            Route::get("/", [\App\Http\Controllers\Agent\Account\ProfilController::class, 'index'])->name('customer.account.profil.index');
+        Route::prefix('profil')->name('profil.')->group(function () {
+            Route::get("/", [\App\Http\Controllers\Agent\Account\ProfilController::class, 'index'])->name('index');
 
-            Route::prefix('security')->group(function () {
-                Route::get('/', \App\Http\Controllers\Customer\Profil\Security\SecurityController::class)->name('customer.profil.security');
-                Route::prefix('phone')->group(function () {
-                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\PhoneController::class)->name('customer.profil.security.phone');
+            Route::prefix('security')->name('security.')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\Security\SecurityController::class)->name('index');
+                Route::prefix('phone')->name('phone.')->group(function () {
+                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\PhoneController::class)->name('index');
                 });
-                Route::prefix('authy')->group(function () {
-                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\AuthyController::class)->name('customer.profil.security.authy');
+                Route::prefix('authy')->name('authy.')->group(function () {
+                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\AuthyController::class)->name('index');
                 });
-                Route::prefix('password')->group(function () {
-                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\PasswordController::class)->name('customer.profil.security.password');
+                Route::prefix('password')->name("password.")->group(function () {
+                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\PasswordController::class)->name('index');
                 });
             });
 
-            Route::prefix('identity')->group(function () {
-                Route::get('/', \App\Http\Controllers\Customer\Profil\Identity\IdentityController::class)->name('customer.profil.identity');
+            Route::prefix('identity')->name('identity.')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\Identity\IdentityController::class)->name('index');
             });
 
-            Route::prefix('contact')->group(function () {
-                Route::get('/', \App\Http\Controllers\Customer\Profil\Contact\ContactController::class)->name('customer.profil.contact');
+            Route::prefix('contact')->name("contact.")->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\Contact\ContactController::class)->name('index');
             });
 
-            Route::prefix('cashback')->group(function () {
-                Route::get('/', \App\Http\Controllers\Customer\Profil\CashbackController::class)->name('customer.profil.cashback');
+            Route::prefix('cashback')->name('cashback.')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\CashbackController::class)->name('index');
             });
 
-            Route::prefix('sponsorship')->group(function () {
-                Route::get('/', \App\Http\Controllers\Customer\Profil\SponsorshipController::class)->name('customer.profil.sponsorship');
+            Route::prefix('sponsorship')->name('sponsorship.')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\SponsorshipController::class)->name('index');
             });
 
-            Route::prefix('mobility')->group(function () {
-                Route::get('/', [\App\Http\Controllers\Customer\Profil\MobilityController::class, 'index'])->name('customer.profil.mobility');
+            Route::prefix('mobility')->name('mobility.')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Customer\Profil\MobilityController::class, 'index'])->name('index');
             });
 
-            Route::prefix('paystar')->group(function () {
-                Route::get('/', \App\Http\Controllers\Customer\Profil\PaystarController::class)->name('customer.profil.paystar');
+            Route::prefix('paystar')->name('paystar.')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\PaystarController::class)->name('index');
             });
         });
     });
+    Route::prefix('compte')->name('compte.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'index'])->name('index');
+        Route::get('{wallet_uuid}', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'wallet'])->name('wallet');
 
-    Route::prefix('compte')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'index'])->name('customer.compte');
-        Route::get('{wallet_uuid}', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'show'])->name('customer.compte.wallet');
-
-        Route::prefix('card')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\CardController::class, 'index'])->name('customer.card');
+        Route::prefix('card')->name('card.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Compte\CardController::class, 'index'])->name('index');
         });
 
-        Route::prefix('transfer')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\TransferController::class, 'index'])->name('customer.transfer');
+        Route::prefix('transfer')->name('transfer.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Compte\TransferController::class, 'index'])->name('index');
         });
 
-        Route::prefix('sepa')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\SepaController::class, 'index'])->name('customer.sepa');
+        Route::prefix('sepa')->name('sepa.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Compte\SepaController::class, 'index'])->name('index');
         });
 
-        Route::prefix('budgets')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\BudgetsController::class, 'index'])->name('customer.budget');
+        Route::prefix('budgets')->name('budgets.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Compte\BudgetsController::class, 'index'])->name('index');
         });
 
-        Route::prefix('offers')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\OffersController::class, 'index'])->name('customer.offers');
+        Route::prefix('offers')->name('offers.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Compte\OffersController::class, 'index'])->name('index');
         });
     });
-
     Route::prefix('pret')->group(function () {
         Route::get('/', \App\Http\Controllers\Customer\Pret\PretController::class)->name('customer.pret');
 
@@ -123,6 +121,4 @@ Route::prefix('customer')->middleware(['auth', 'customer'])->group(function () {
             Route::get('/', [\App\Http\Controllers\Customer\Pret\PretImmoController::class, 'index'])->name('customer.pret.immo');
         });
     });
-
-
 });
