@@ -97,6 +97,24 @@
                                         <span class="fw-semibold">Consulter mes documents externe</span>
                                     </a>
                                 </div>
+                                <div class="col-md-4">
+                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                        <i class="fa-solid fa-piggy-bank fs-2tx"></i>
+                                        <span class="fw-semibold">Cashback</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                        <i class="fa-solid fa-calendar-day fs-2tx"></i>
+                                        <span class="fw-semibold">Mes rendez-vous</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="#" class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
+                                        <i class="fa-solid fa-exclamation fs-2tx"></i>
+                                        <span class="fw-semibold">Services d'urgence</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
