@@ -38,7 +38,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerRequest extends Model
 {
     protected $guarded = [];
-    protected $appends = ['model_data'];
+    protected $appends = ['model_data', 'status_label'];
 
     public function customer()
     {
@@ -48,6 +48,36 @@ class CustomerRequest extends Model
     public function documents()
     {
         return $this->hasMany(CustomerRequestDocument::class);
+    }
+
+    public function getStatus($format = '')
+    {
+        if ($format == 'text') {
+            return match ($this->status) {
+                "waiting" => "En attente",
+                "progress" => "Traitement en cours...",
+                "terminated" => "Traité",
+                default => "Expiré"
+            };
+        } elseif ($format == 'color') {
+            return match ($this->status) {
+                "waiting", "progress" => "warning",
+                "terminated" => "success",
+                default => "danger"
+            };
+        } else {
+            return match ($this->status) {
+                "waiting" => "fa-hand",
+                "progress" => "fa-spinner fa-spin-pulse",
+                "terminated" => "fa-check-circle",
+                default => "fa-clock"
+            };
+        }
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid {$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</span>";
     }
 
     public function getModelDataAttribute()

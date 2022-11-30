@@ -30,7 +30,7 @@
             @foreach($requests->where('status', 'waiting')->get() as $request)
                 <a href="{{ route('customer.account.documents.request.show', $request->reference) }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom text-black" target="_blank">
                     <div class="d-flex flex-row align-items-center">
-                        <div class="p-0 w-8px bg-primary h-75px rounded-start me-5">&nbsp;</div>
+                        <div class="p-0 w-8px bg-{{ $request->getStatus('color') }} h-75px rounded-start me-5">&nbsp;</div>
                         <div class="d-flex flex-column">
                             <span class="fs-2 fw-bold">{{ $request->sujet }}</span>
                             <div class="text-muted fs-6">{{ $request->updated_at->format('d/m/Y') }}</div>
