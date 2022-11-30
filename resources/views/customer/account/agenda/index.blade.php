@@ -278,7 +278,7 @@
                                             size-text="fs-1" class="w-auto mb-10"/>
                                     </div>
 
-                                    <x-form.input-date
+                                    <x-form.input-date-time
                                         name="start_at"
                                         label="Choisisser le créneau de votre rendez-vous" />
 
