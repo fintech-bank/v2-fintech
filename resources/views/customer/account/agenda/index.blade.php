@@ -23,7 +23,7 @@
                     <div class="p-0 w-8px bg-bank h-75px rounded-start me-5">&nbsp;</div>
                     <div class="d-flex flex-column">
                         <span class="fs-2 fw-bold">M. MOCKELYN Maxime</span>
-                        <div class="fs-5">{{ formatDateFrench(\Carbon\Carbon::createFromTimestamp(strtotime("2022-12-01 10:00:00")), true) }} {{ \Carbon\Carbon::createFromTimestamp(strtotime("2022-12-01 10:00:00"))->shortAbsoluteDiffForHumans(\Carbon\Carbon::createFromTimestamp(strtotime("2022-12-01 11:00:00"))) }}</div>
+                        <div class="fs-5">{{ formatDateFrench(\Carbon\Carbon::createFromTimestamp(strtotime("2022-12-01 10:00:00")), true) }} ({{ \Carbon\Carbon::createFromTimestamp(strtotime("2022-12-01 10:00:00"))->longAbsoluteDiffForHumans(\Carbon\Carbon::createFromTimestamp(strtotime("2022-12-01 11:00:00"))) }})</div>
                         <div class="fs-5 text-muted">Par téléphone</div>
                     </div>
                 </div>
