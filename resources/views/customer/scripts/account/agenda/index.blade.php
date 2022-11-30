@@ -2,8 +2,10 @@
     let tables = {}
     let elements = {
         stepperElement: document.querySelector("#stepper_rdv"),
-        inputSubreason: document.querySelector("#inputSubreason"),
-        inputReason: document.querySelector('[name="reason"]')
+        divSubreason: document.querySelector("#divSubreason"),
+        inputReason: document.querySelector('[name="reason"]'),
+        divQuestion: document.querySelector("#divQuestion"),
+        inputSubreason: document.querySelector('[name="subreason"]')
     }
     let modals = {}
     let forms = {}
@@ -16,14 +18,23 @@
             method: 'POST',
             data: {"reason_id": item.value},
             success: data => {
-                elements.inputSubreason.innerHTML = data
+                elements.divSubreason.innerHTML = data
             }
         })
+    }
+
+    let showQuestion = (item) => {
+        elements.divQuestion.classList.remove('d-none')
     }
 
     elements.inputReason.addEventListener('change', e => {
         e.preventDefault()
         showSubreason(e.target)
+    })
+
+    elements.inputSubreason.addEventListener('change', e => {
+        e.preventDefault()
+        showQuestion(e.target)
     })
 
     let stepperRdv = new KTStepper(elements.stepperElement)

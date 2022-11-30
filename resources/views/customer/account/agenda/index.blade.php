@@ -230,7 +230,12 @@
                                         label="Votre besoin concerne"
                                         :datas="\App\Models\Core\Event::getDataReason()" />
 
-                                    <div id="inputSubreason"></div>
+                                    <div id="divSubreason"></div>
+                                    <div id="divQuestion" class="d-none">
+                                        <x-form.textarea
+                                            name="question"
+                                            label="Sur quoi va porter ce rendez-vous ?" />
+                                    </div>
                                 </div>
                             </div>
                             <!--end::Group-->
