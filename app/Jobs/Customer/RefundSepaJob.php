@@ -58,6 +58,6 @@ class RefundSepaJob implements ShouldQueue
             now()
         );
 
-        $this->sepa->wallet->customer->info->notify(new RefundSepaNotification($this->sepa->wallet->customer, $this->sepa));
+        $this->sepa->wallet->customer->info->notify(new RefundSepaNotification($this->sepa->wallet->customer, $this->sepa, "Comptes & Moyens de paiement"));
     }
 }

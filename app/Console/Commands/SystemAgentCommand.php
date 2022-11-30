@@ -258,7 +258,7 @@ class SystemAgentCommand extends Command
                     'status' => 'failed'
                 ]);
 
-                $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Rejet de la banque distante"));
+                $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Rejet de la banque distante", "Comptes & Moyens de paiement"));
             }
         } else {
             CustomerTransactionHelper::createDebit(
@@ -288,7 +288,7 @@ class SystemAgentCommand extends Command
                 now()
             );
 
-            $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Solde Insuffisant"));
+            $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Solde Insuffisant", "Comptes & Moyens de paiement"));
         }
     }
 
@@ -316,7 +316,7 @@ class SystemAgentCommand extends Command
                     $transfer->update([
                         'status' => 'failed'
                     ]);
-                    $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Rejet de la banque distante"));
+                    $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Rejet de la banque distante", "Comptes & Moyens de paiement"));
                 }
             }
         } else {
@@ -336,7 +336,7 @@ class SystemAgentCommand extends Command
                 now()
             );
 
-            $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Solde Insuffisant"));
+            $transfer->wallet->customer->info->notify(new RejectedTransferNotification($transfer->wallet->customer, $transfer, "Solde Insuffisant", "Comptes & Moyens de paiement"));
         }
     }
 }

@@ -19,37 +19,43 @@ class RefundSepaNotification extends Notification
     public string $message;
     public Customer $customer;
     private CustomerSepa $sepa;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerSepa $sepa
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerSepa $sepa)
+    public function __construct(Customer $customer, CustomerSepa $sepa, string $category)
     {
         $this->customer = $customer;
         $this->sepa = $sepa;
         $this->title = "Remboursement d'un prélèvement bancaire";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
     {
-        $message = "Le prélèvement bancaire <strong>{$this->sepa->number_mandate}</strong> d'un montant de <strong>{$this->sepa->amount_format}</strong> à fait l'objet d'un remboursement.";
-        return $message;
+        ob_start();
+        ?>
+        <p>Le prélèvement bancaire <strong><?= $this->sepa->number_mandate ?></strong> d'un montant de <strong><?= $this->sepa->amount_format ?></strong> à fait l'objet d'un remboursement.</p>
+        <?php
+        return ob_get_clean();
     }
 
     private function choiceChannel()
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -82,6 +88,8 @@ class RefundSepaNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->sepa]
         ];
     }
 }

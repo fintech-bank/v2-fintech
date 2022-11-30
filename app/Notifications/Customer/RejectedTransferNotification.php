@@ -21,45 +21,51 @@ class RejectedTransferNotification extends Notification
     public Customer $customer;
     public CustomerTransfer $transfer;
     public string $reason;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerTransfer $transfer
      * @param string $reason
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerTransfer $transfer, string $reason)
+    public function __construct(Customer $customer, CustomerTransfer $transfer, string $reason, string $category)
     {
-        $this->title = "Rejet de virement bancaire";
-        $this->message = $this->getMessage();
-        $this->link = "";
         $this->customer = $customer;
         $this->transfer = $transfer;
         $this->reason = $reason;
+        $this->category = $category;
+        $this->title = "Rejet de virement bancaire";
+        $this->message = $this->getMessage();
+        $this->link = "";
     }
 
     private function getMessage()
     {
-        $message = "Le virement bancaire <strong>".$this->transfer->reference."</strong> à été rejeté.<br>";
-        $message .= "La raison est la suivante: <span class='text-danger'>".$this->reason."</span>";
-        return $message;
+        ob_start();
+        ?>
+        <p>Le virement bancaire <strong><?= $this->transfer->reference ?></strong> à été rejeté</p>
+        <p>La raison est la suivante: <span class="text-danger"><?= $this->reason ?></span>.</p>
+        <?php
+        return ob_get_clean();
     }
 
     private function choiceChannel()
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
 
             if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
@@ -95,6 +101,8 @@ class RejectedTransferNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->transfer, $this->reason]
         ];
     }
 
