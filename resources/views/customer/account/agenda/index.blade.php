@@ -269,6 +269,20 @@
                                     </div>
 
                                 </div>
+                                <div class="flex-column " data-kt-stepper-element="content">
+                                    <div class="d-flex flex-center">
+                                        <x-base.underline
+                                            title="Choisissez votre créneau"
+                                            color="bank"
+                                            size="2"
+                                            size-text="fs-1" class="w-auto mb-10"/>
+                                    </div>
+
+                                    <x-form.input-date
+                                        name="start_at"
+                                        label="Choisisser le créneau de votre rendez-vous" />
+
+                                </div>
                             </div>
                             <!--end::Group-->
 
