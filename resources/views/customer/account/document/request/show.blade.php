@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="card-body">
-
+                {!! $request->commentaire !!}
             </div>
         </div>
     </div>
