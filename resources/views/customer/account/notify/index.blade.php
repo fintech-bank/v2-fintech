@@ -17,7 +17,7 @@
         <div class="card shadow-sm rounded">
             <div class="card-body bg-gray-300 rounded">
                 @foreach($notifications as $notification)
-                    <div class="card shadow-sm mb-10">
+                    <a href="" class="card shadow-sm mb-10 text-black">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fa-solid {{ $notification->data['icon'] }} me-5"></i> {{ $notification->data['category'] }}</h3>
                             <div class="card-toolbar text-muted">
@@ -25,9 +25,12 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="text-muted fs-1">{{ $notification->data['title'] }}</div>
+                            <div class="d-flex flex-row justify-content-between">
+                                <div class="text-muted fs-1">{{ $notification->data['title'] }}</div>
+
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>
