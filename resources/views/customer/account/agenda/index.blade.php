@@ -227,7 +227,7 @@
                                     </div>
                                     <div class="m-0" id="inputReason">
                                         @foreach(\App\Models\Core\Event::getDataReason() as $reason)
-                                            <div class="">
+                                            <div class="d-flex flex-row justify-content-between">
                                                 <input type="radio" class="btn-check" name="reason" value="{{ $reason['name'] }}" checked="checked"  id="{{ Str::slug($reason['name']) }}"/>
                                                 <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="{{ Str::slug($reason['name']) }}">
                                                     <span class="d-block fw-semibold text-start">
