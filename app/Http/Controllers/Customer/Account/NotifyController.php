@@ -10,7 +10,7 @@ class NotifyController extends Controller
 {
     public function index()
     {
-        dd(Customer::find(auth()->user()->customers->id)->info->notifications);
+        //dd(Customer::find(auth()->user()->customers->id)->info->notifications);
         return view('customer.account.notify.index', [
             'notifications' => Customer::find(auth()->user()->customers->id)->info->notifications
         ]);
