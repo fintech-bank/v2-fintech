@@ -113,12 +113,12 @@ class Event extends Model
     {
         $ar = collect();
 
-        $ar->push(['id' => 0, "name" => "Gérer vos comptes & moyens de paiement"]);
-        $ar->push(['id' => 1, "name" => "Ouvrir un compte"]);
-        $ar->push(['id' => 2, "name" => "Epargner ou placer"]);
-        $ar->push(['id' => 3, "name" => "Emprunter ou gérer vos crédits"]);
-        $ar->push(['id' => 4, "name" => "Etre assuré ou protégé"]);
-        $ar->push(['id' => 5, "name" => "Autre"]);
+        $ar->push(['id' => 0, "value" => "Gérer vos comptes & moyens de paiement"]);
+        $ar->push(['id' => 1, "value" => "Ouvrir un compte"]);
+        $ar->push(['id' => 2, "value" => "Epargner ou placer"]);
+        $ar->push(['id' => 3, "value" => "Emprunter ou gérer vos crédits"]);
+        $ar->push(['id' => 4, "value" => "Etre assuré ou protégé"]);
+        $ar->push(['id' => 5, "value" => "Autre"]);
 
         return $ar->toArray();
     }
