@@ -29,7 +29,7 @@
                 <div class="p-0 w-8px bg-primary h-75px rounded-start me-5">&nbsp;</div>
                 <span class="fs-2 fw-bold">Relevé de compte</span>
             </div>
-            <a href="" class="btn btn-link btn-icon"><i class="fa-solid fa-download"></i> </a>
+            <a href="" class="btn btn-link btn-icon"><i class="fa-solid fa-download fs-2"></i> </a>
         </div>
     </div>
 @endsection
