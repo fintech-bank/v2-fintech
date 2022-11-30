@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="d-flex flex-center w-100">
-            <a href="{{ route('powens.webview') }}" class="btn btn-outline-primary">Nouveau connecteur</a>
+            <a href="{{ route('powens.webview') }}" class="btn btn-outline btn-outline-primary">Nouveau connecteur</a>
         </div>
     </div>
 @endsection
