@@ -1,4 +1,4 @@
-@extends("agent.layouts.app")
+@extends("customer.layouts.app")
 
 @section("css")
 
