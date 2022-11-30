@@ -20,7 +20,7 @@
                     <a href="{{ route('customer.account.documents.category', $category->id) }}" class="btn btn-lg {{ Route::is('customer.account.documents.category') ? 'btn-primary' : 'btn-secondary' }}">{{ $category->name }}</a>
                 @endforeach
                 <a href="{{ route('customer.account.documents.externe.index') }}" class="btn btn-lg {{ Route::is('customer.account.documents.externe.index') ? 'btn-primary' : 'btn-secondary' }}">Autres Documents</a>
-                <a href="{{ route('customer.account.documents.request.index') }}" class="btn btn-lg {{ Route::is('customer.account.documents.request.index') ? 'btn-primary' : 'btn-secondary' }}">Mes Requêtes</a>
+                <a href="{{ route('customer.account.documents.request.index') }}" class="btn btn-lg {{ Route::has(['customer.account.documents.request.index', 'customer.account.documents.request.show']) ? 'btn-primary' : 'btn-secondary' }}">Mes Requêtes</a>
             </div>
         </div>
 
