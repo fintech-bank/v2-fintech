@@ -280,5 +280,5 @@
 @endsection
 
 @section("script")
-    @include("agent.scripts.account.mailbox.index")
+    @include("customer.scripts.account.mailbox.index")
 @endsection
