@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="d-flex flex-row justify-content-between align-items-center shadow rounded border border-2">
+        <div class="d-flex flex-row justify-content-between align-items-center shadow rounded border-2">
             <span>Relevé de compte</span>
             <a href="" class="btn btn-link btn-icon"><i class="fa-solid fa-download"></i> </a>
         </div>
