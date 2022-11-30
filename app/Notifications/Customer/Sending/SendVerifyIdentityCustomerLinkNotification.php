@@ -18,14 +18,16 @@ class SendVerifyIdentityCustomerLinkNotification extends Notification
     public string $message;
     public string $messagePhone;
     public Customer $customer;
+    public string $category;
 
-    public function __construct(Customer $customer)
+    public function __construct(Customer $customer, string $category)
     {
         $this->customer = $customer;
         $this->title = "Vérifier votre identité";
         $this->message = $this->getMessage();
         $this->messagePhone = $this->getMessagePhone();
         $this->link = route('verify-identity', ["token" => encrypt($customer->user->email)]);
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -54,22 +56,22 @@ class SendVerifyIdentityCustomerLinkNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
 
             if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -105,6 +107,8 @@ class SendVerifyIdentityCustomerLinkNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer]
         ];
     }
 

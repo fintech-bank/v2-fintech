@@ -81,7 +81,7 @@ class SystemAgentCommand extends Command
             if ($event->start_at->subMinutes(15)->format('d/m/Y H:i') == now()->format('d/m/Y H:i')) {
                 $event->user->notify(new CalendarAlert($event));
                 foreach ($event->attendees as $attendee) {
-                    $attendee->user->notify(new \App\Notifications\Customer\CalendarAlert($event));
+                    $attendee->user->notify(new \App\Notifications\Customer\CalendarAlertP($event));
                 }
             }
         }

@@ -192,15 +192,15 @@ class CustomerController extends Controller
         $customer = Customer::find($customer_id);
         switch ($request->get('verify')) {
             case 'identity':
-                $customer->info->notify(new SendVerifyIdentityCustomerLinkNotification($customer));
+                $customer->info->notify(new SendVerifyIdentityCustomerLinkNotification($customer, "Sécurité"));
                 break;
 
             case 'address':
-                $customer->info->notify(new SendVerifyAddressCustomerLinkNotification($customer));
+                $customer->info->notify(new SendVerifyAddressCustomerLinkNotification($customer, "Sécurité"));
                 break;
 
             case 'income':
-                $customer->info->notify(new SendVerifyIncomeCustomerLinkNotification($customer));
+                $customer->info->notify(new SendVerifyIncomeCustomerLinkNotification($customer, "Sécurité"));
                 break;
 
             case 'cni':

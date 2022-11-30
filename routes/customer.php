@@ -38,6 +38,7 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
 
         Route::prefix('agenda')->name('agenda.')->group(function () {
             Route::get('/', [\App\Http\Controllers\Customer\Account\AgendaController::class, 'index'])->name('index');
+            Route::get('{id}', [\App\Http\Controllers\Customer\Account\AgendaController::class, 'show'])->name('show');
         });
 
         Route::prefix('documents')->name('documents.')->group(function () {

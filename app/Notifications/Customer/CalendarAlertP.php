@@ -14,7 +14,7 @@ use NotificationChannels\Fcm\Resources\AndroidNotification;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
 
-class CalendarAlert extends Notification
+class CalendarAlertP extends Notification
 {
     use Queueable;
 
