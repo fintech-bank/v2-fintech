@@ -235,3 +235,11 @@ if(document.querySelectorAll('.datepick')) {
         $(element).flatpickr()
     })
 }
+if(document.querySelectorAll('.datetime')) {
+    document.querySelectorAll('.datetime').forEach(element => {
+        $(element).flatpickr({
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        })
+    })
+}
