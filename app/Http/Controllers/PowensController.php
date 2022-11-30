@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerConnector;
+use App\Services\Powens\Powens;
 use Illuminate\Http\Request;
 
 class PowensController extends Controller
@@ -13,6 +16,11 @@ class PowensController extends Controller
 
     public function success(Request $request)
     {
-        dd($request->all());
+        $powens = new Powens();
+        dd($powens->getClientAccessToken($request->get('code')));
+        $connector = Customer::find(auth()->user()->customers->id)->connector()->create([
+            'connection_id' => $request->get('connection_id'),
+            'auth_code' => $request->get('code')
+        ]);
     }
 }

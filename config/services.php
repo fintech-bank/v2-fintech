@@ -65,6 +65,12 @@ return [
 
     'mapbox' => [
         'api_key' => env('MAPBOX_TOKEN')
-    ]
+    ],
+
+    'powens' => [
+        'client_id' => env('POWENS_CLIENT_ID'),
+        'client_secret' => env('POWENS_CLIENT_SECRET'),
+        'redirect_uri' => env('POWENS_REDIRECT_URI'),
+    ],
 
 ];

@@ -44,6 +44,7 @@ use Illuminate\Support\Str;
  * @mixin \Eloquent
  * @mixin IdeHelperAgency
  * @property-read mixed $online_label
+ * @property-read mixed $address_line
  */
 class Agency extends Model
 {

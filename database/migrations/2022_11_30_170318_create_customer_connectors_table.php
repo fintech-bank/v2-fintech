@@ -9,8 +9,9 @@ return new class extends Migration {
     {
         Schema::create('customer_connectors', function (Blueprint $table) {
             $table->id();
+            $table->integer('connection_id');
             $table->string('auth_code');
-            $table->string('auth_token');
+            $table->string('auth_token')->nullable();
 
             $table->timestamps();
 

@@ -83,6 +83,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $stripe_customer_id
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereStripeCustomerId($value)
  * @property-read mixed $customer_card
+ * @property-read \App\Models\Customer\CustomerConnector|null $connector
  */
 class Customer extends Model
 {
@@ -196,6 +197,11 @@ class Customer extends Model
     public function requests()
     {
         return $this->hasMany(CustomerRequest::class);
+    }
+
+    public function connector()
+    {
+        return $this->hasOne(CustomerConnector::class);
     }
 
     public function getStatusTextAttribute()
