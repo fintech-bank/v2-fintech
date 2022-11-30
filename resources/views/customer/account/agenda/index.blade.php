@@ -202,21 +202,20 @@
                                             color="bank"
                                             size="2"
                                             size-text="fs-1" class="w-auto mb-10"/>
-
-                                        @foreach(\App\Models\User::where('agent', 1)->where('agency_id', auth()->user()->customers->agency->id)->get() as $agent)
-                                            <div class="mb-2">
-                                                <!--begin::Option-->
-                                                <input type="radio" class="btn-check" name="agent_id" value="{{ $agent->id }}"  id="agent_{{ $agent->id }}"/>
-                                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="agent_{{ $agent->id }}">
+                                    </div>
+                                    @foreach(\App\Models\User::where('agent', 1)->where('agency_id', auth()->user()->customers->agency->id)->get() as $agent)
+                                        <div class="mb-2">
+                                            <!--begin::Option-->
+                                            <input type="radio" class="btn-check" name="agent_id" value="{{ $agent->id }}"  id="agent_{{ $agent->id }}"/>
+                                            <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="agent_{{ $agent->id }}">
                                                     <span class="d-block fw-semibold text-start">
                                                         <span class="text-dark fw-bold d-block fs-3">{{ $agent->name }}</span>
                                                         <span class="text-muted fw-semibold fs-6">Conseiller de clientèle</span>
                                                     </span>
-                                                </label>
-                                                <!--end::Option-->
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <!--end::Group-->
