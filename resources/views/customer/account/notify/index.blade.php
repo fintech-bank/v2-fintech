@@ -19,7 +19,7 @@
                 @foreach($notifications as $notification)
                     <div class="card shadow-sm">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fa-solid {{ $notification->data->icon }} me-5"></i> </h3>
+                            <h3 class="card-title"><i class="fa-solid {{ $notification->data['icon'] }} me-5"></i> </h3>
                             <div class="card-toolbar">
                                 <!--<button type="button" class="btn btn-sm btn-light">
                                     Action
