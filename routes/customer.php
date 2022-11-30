@@ -42,15 +42,15 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
         });
 
         Route::prefix('documents')->name('documents.')->group(function () {
-            Route::get("/", [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'index'])->name('index');
+            Route::get("/", [\App\Http\Controllers\Customer\Account\Document\DocumentController::class, 'index'])->name('index');
 
             Route::prefix('externe')->name('externe.')->group(function () {
-                Route::get('/', [\App\Http\Controllers\Customer\Profil\Documents\DocumentExterneController::class, 'index'])->name('index');
+                Route::get('/', [\App\Http\Controllers\Customer\Account\Document\DocumentExterneController::class, 'index'])->name('index');
             });
 
             Route::prefix('request')->name('request.')->group(function () {
-                Route::get('/', [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'show'])->name('index');
-                Route::get('{reference}', [\App\Http\Controllers\Agent\Account\DocumentsController::class, 'showRequest'])->name('show');
+                Route::get('/', [\App\Http\Controllers\Customer\Account\Document\DocumentRequestController::class, 'index'])->name('index');
+                Route::get('{reference}', [\App\Http\Controllers\Customer\Account\Document\DocumentRequestController::class, 'show'])->name('show');
             });
         });
 

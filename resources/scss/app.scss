@@ -344,3 +344,79 @@
     background: var(--kt-success);
     background: linear-gradient(0deg, var(--kt-success) 0%, var(--kt-success-light) 100%);
 }
+
+.level-all {
+    background-color: #ffffff;
+}
+
+.level-notice {
+    background-color: #66bb6a;
+}
+
+.level-emergency {
+    background-color: #B71C1C;
+}
+
+.level-alert {
+    background-color: #E53935;
+}
+
+.level-critical {
+    background-color: #EF5350;
+}
+
+.level-error {
+    background-color: #E91E63;
+}
+
+.level-warning {
+    background-color: #EF6C00;
+}
+
+.level-info {
+    background-color: #5C6BC0;
+}
+
+.level-debug {
+    background-color: #BDBDBD;
+}
+
+.level-all-light {
+    background-color: rgba(236, 236, 236, 0.5);
+}
+
+.level-notice-light {
+    background-color: rgba(102, 187, 106, 0.5);
+}
+
+.level-emergency-light {
+    background-color: rgba(183, 28, 28, 0.5);
+}
+
+.level-alert-light {
+    background-color: rgba(229, 57, 53, 0.5);
+}
+
+.level-critical-light {
+    background-color: rgba(239, 83, 80, 0.5);
+}
+
+.level-error-light {
+    background-color: rgba(233, 30, 99, 0.5);
+}
+
+.level-warning-light {
+    background-color: rgba(239, 108, 0, 0.5);
+}
+
+.level-info-light {
+    background-color: rgba(92, 107, 192, 0.5);
+}
+
+.level-debug-light {
+    background-color: rgba(189, 189, 189, 0.5);
+}
+
+.hover-zoom:hover {
+    transform: scale(1.5);
+}
