@@ -14,7 +14,7 @@
 
 @section("content")
     <div id="app" class="rounded container">
-        <div class="d-flex flex-center w-100">
+        <div class="d-flex flex-center w-100 mb-20">
             <div class="btn-group btn-group-lg">
                 @foreach(\App\Models\Core\DocumentCategory::with('documents')->get() as $category)
                     <a href="{{ route('customer.account.documents.category', $category->id) }}" class="btn btn-lg {{ Route::is('customer.account.documents.category') && $category->id == $cat->id ? 'btn-primary' : 'btn-secondary' }}">{{ $category->name }}</a>
@@ -22,6 +22,11 @@
                 <a href="{{ route('customer.account.documents.externe.index') }}" class="btn btn-lg {{ Route::is('customer.account.documents.externe.index') ? 'btn-primary' : 'btn-secondary' }}">Autres Documents</a>
                 <a href="{{ route('customer.account.documents.request.index') }}" class="btn btn-lg {{ Route::is('customer.account.documents.request.index') ? 'btn-primary' : 'btn-secondary' }}">Mes Requêtes</a>
             </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between align-items-center shadow rounded border border-left-2 border-left-primary">
+            <span>Relevé de compte</span>
+            <a href="" class="btn btn-link btn-icon"><i class="fa-solid fa-download"></i> </a>
         </div>
     </div>
 @endsection
