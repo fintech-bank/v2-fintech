@@ -5,11 +5,6 @@
 @endsection
 
 @section('toolbar')
-    <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-        <!--begin::Title-->
-        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Mes rendez-vous</h1>
-        <!--end::Title-->
-    </div>
 @endsection
 
 @section("content")
@@ -21,6 +16,18 @@
                 size="4"
                 size-text="fs-2x"
                 class="w-auto my-5"/>
+        </div>
+        <div class="d-flex flex-center w-100 bg-gray-300 rounded">
+            @foreach($events as $event)
+                <div class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom text-black">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="p-0 w-8px bg-bank h-75px rounded-start me-5">&nbsp;</div>
+                        <div class="d-flex flex-column">
+                            <span class="fs-2 fw-bold">{{ $event->reason }}</span>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection

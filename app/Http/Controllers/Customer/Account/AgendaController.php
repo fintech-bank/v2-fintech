@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Customer\Account;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer\Customer;
+
 
 class AgendaController extends Controller
 {
     public function index()
     {
-        return view('customer.account.agenda.index');
+        return view('customer.account.agenda.index', [
+            'events' => Customer::find(auth()->user()->customers->id)->user->events
+        ]);
     }
 }
