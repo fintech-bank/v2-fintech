@@ -27,7 +27,7 @@
                 </div>
                 <div class="card-footer text-center">
                     @if($notification->data['link'] != null)
-                        <a href="{{ $notification->data['link'] }}" class="btn btn-primary">Voir le detail</a>
+                        <a href="{{ $notification->data['link'] }}" class="btn btn-outline btn-outline-primary">Voir le detail</a>
                     @endif
                 </div>
             </div>
