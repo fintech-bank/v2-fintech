@@ -23,7 +23,18 @@
                 <a href="{{ route('customer.account.documents.request.index') }}" class="btn btn-lg {{ Route::has(['customer.account.documents.request.index', 'customer.account.documents.request.show']) ? 'btn-primary' : 'btn-secondary' }}">Mes Requêtes</a>
             </div>
         </div>
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h3 class="card-title">{{ $request->reference }} - {{ $request->sujet }}</h3>
+                <div class="card-toolbar">
+                    {!! $request->status_label !!}<br>
+                    {{ $request->updated_at->format("d/m/Y") }}
+                </div>
+            </div>
+            <div class="card-body">
 
+            </div>
+        </div>
     </div>
 @endsection
 
