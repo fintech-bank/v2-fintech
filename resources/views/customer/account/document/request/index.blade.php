@@ -44,6 +44,8 @@
                 </a>
             @endforeach
 
+            <div class="separator my-10"></div>
+
             <x-base.underline
                 title="Mes demandes en traitement" />
 
