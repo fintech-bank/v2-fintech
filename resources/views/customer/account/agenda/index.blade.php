@@ -18,8 +18,8 @@
                 class="w-auto my-5"/>
         </div>
         <div class="d-flex flex-center w-50 bg-gray-300 rounded p-5 mx-auto">
-            <a href="" class="d-flex flex-row justify-content-between bg-white align-items-center shadow rounded h-75px mb-10 hover-zoom text-black w-100 p-5">
-                <div class="d-flex flex-row align-items-center">
+            <a href="" class="d-flex flex-row justify-content-between bg-white align-items-center shadow rounded h-75px mb-10 hover-zoom text-black w-100">
+                <div class="d-flex flex-row align-items-center py-5">
                     <div class="p-0 w-8px bg-bank h-75px rounded-start me-5">&nbsp;</div>
                     <div class="d-flex flex-column">
                         <span class="fs-2 fw-bold">M. MOCKELYN Maxime</span>
