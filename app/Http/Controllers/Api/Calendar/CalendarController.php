@@ -71,7 +71,7 @@ class CalendarController extends Controller
         ?>
         <div class="mb-10">
             <label for="subreason_id" class="form-label">Et plus particulierement</label>
-            <select class="form-control form-control-solid" name="subreason">
+            <select class="form-control form-control-solid" name="subreason" onchange="showQuestion(this)">
                 <option value=""></option>
                 <?php foreach ($subreasons as $subreason): ?>
                     <option value="<?= $subreason['name'] ?>"><?= $subreason['name'] ?></option>

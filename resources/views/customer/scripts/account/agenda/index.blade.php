@@ -32,11 +32,6 @@
         showSubreason(e.target)
     })
 
-    elements.inputSubreason.addEventListener('change', e => {
-        e.preventDefault()
-        showQuestion(e.target)
-    })
-
     let stepperRdv = new KTStepper(elements.stepperElement)
 
     stepperRdv.on("kt.stepper.next", function (stepper) {
