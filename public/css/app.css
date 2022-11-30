@@ -412,6 +412,10 @@
   background-color: rgba(189, 189, 189, 0.5);
 }
 
+.hover-zoom {
+    transition: .5s;
+}
+
 .hover-zoom:hover {
-    transform: scale(1.5);
+    transform: scale(1.05);
 }
