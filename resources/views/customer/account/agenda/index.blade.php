@@ -56,7 +56,7 @@
 
                 <div class="modal-body">
                     <!--begin::Stepper-->
-                    <div class="stepper stepper-pills" id="kt_stepper_example_basic">
+                    <div class="stepper stepper-pills" id="stepper_rdv">
                         <!--begin::Nav-->
                         <div class="stepper-nav flex-center flex-wrap mb-10">
                             <!--begin::Step 1-->
