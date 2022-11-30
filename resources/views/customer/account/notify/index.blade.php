@@ -20,7 +20,7 @@
                     <div class="card shadow-sm mb-10">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fa-solid {{ $notification->data['icon'] }} me-5"></i> {{ $notification->data['category'] }}</h3>
-                            <div class="card-toolbar">
+                            <div class="card-toolbar text-muted">
                                 {{ \Carbon\Carbon::createFromTimestamp(strtotime($notification->data['time']))->format("d/m/Y") }}
                             </div>
                         </div>
