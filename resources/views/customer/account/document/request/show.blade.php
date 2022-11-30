@@ -27,8 +27,10 @@
             <div class="card-header">
                 <h3 class="card-title">{{ $request->reference }} - {{ $request->sujet }}</h3>
                 <div class="card-toolbar">
-                    {!! $request->status_label !!}<br>
-                    {{ $request->updated_at->format("d/m/Y") }}
+                    <div class="d-flex flex-column">
+                        {!! $request->status_label !!}
+                        {{ $request->updated_at->format("d/m/Y") }}
+                    </div>
                 </div>
             </div>
             <div class="card-body">
