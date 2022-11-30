@@ -28,6 +28,7 @@ use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\GeoPortailLook;
 use App\Services\Mapbox;
+use App\Services\Powens\Client;
 use App\Services\PushbulletApi;
 use App\Services\SlackNotifier;
 use App\Services\Twilio\Lookup;
@@ -104,14 +105,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $customer = Customer::find(1);
-        $document = new DocumentFile();
-        $map = new Mapbox();
-        $wallet = $customer->wallets()->first();
-        $insurance = $customer->insurances()->first();
-        $pret = $customer->prets()->first();
-        $call = \App\Models\Core\LoanPlan::where('type_pret', $customer->info->type)->get();
+        $powens = new Client();
 
-        return $document->generatePDF('wallet.relever_mensuel', $customer, null, ["wallet" => $wallet], false, false, null, true, 'simple');
+        dd($powens->list());
     }
 }
