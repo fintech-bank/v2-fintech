@@ -25,7 +25,10 @@
         </div>
         <div class="mb-10">
             <x-base.underline
-                title="Mes demandes en attente" />
+                title="Mes demandes en attente"
+                class="w-100 my-5 "
+                size="4"
+                size-text="fs-1" />
 
             @foreach($requests->where('status', 'waiting')->get() as $request)
                 <a href="{{ route('customer.account.documents.request.show', $request->reference) }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom text-black" target="_blank">
