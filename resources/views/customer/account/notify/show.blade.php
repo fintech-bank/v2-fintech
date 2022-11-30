@@ -24,6 +24,9 @@
                 </div>
                 <div class="card-body">
                     {!! $notification->data['text'] !!}
+                    @if($notification->data['link'] != null)
+                        <a href="{{ $notification->data['link'] }}" class="btn btn-primary">Voir le detail</a>
+                    @endif
                 </div>
             </div>
         </div>
