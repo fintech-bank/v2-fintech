@@ -30,7 +30,7 @@
                     <div class="p-0 w-8px bg-primary h-75px rounded-start me-5">&nbsp;</div>
                     <span class="fs-2 fw-bold">{{ $document->name }}</span>
                 </div>
-                <i class="fa-solid fa-download fs-2"></i>
+                <i class="fa-solid fa-download fs-2 ms-5"></i>
             </a>
         @endforeach
     </div>
