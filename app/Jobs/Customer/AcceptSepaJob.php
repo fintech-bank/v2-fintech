@@ -57,6 +57,6 @@ class AcceptSepaJob implements ShouldQueue
             'transaction_id' => $transaction->id
         ]);
 
-        $this->sepa->wallet->customer->info->notify(new NewPrlvPresented($this->sepa));
+        $this->sepa->wallet->customer->info->notify(new NewPrlvPresented($this->sepa, "Comptes & Moyens de paiement"));
     }
 }

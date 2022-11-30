@@ -20,13 +20,15 @@ class NewPretNotification extends Notification
     public Customer $customer;
     public CustomerPret $pret;
     public array $documents;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerPret $pret
      * @param array $documents
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerPret $pret, array $documents)
+    public function __construct(Customer $customer, CustomerPret $pret, array $documents, string $category)
     {
         $this->customer = $customer;
         $this->pret = $pret;
@@ -34,6 +36,7 @@ class NewPretNotification extends Notification
         $this->title = "Votre souscription au ".$pret->plan->name;
         $this->message = $this->getMessage();
         $this->link = route('customer.pret.perso');
+        $this->category = $category;
     }
 
     private function getMessage(): bool|string
@@ -98,13 +101,13 @@ class NewPretNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -149,6 +152,8 @@ class NewPretNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->pret]
         ];
     }
 }

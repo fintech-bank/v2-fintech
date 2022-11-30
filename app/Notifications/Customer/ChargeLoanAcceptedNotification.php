@@ -20,18 +20,20 @@ class ChargeLoanAcceptedNotification extends Notification
     public string $message;
     public CustomerPret $pret;
     public Customer $customer;
+    public string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerPret $pret
      */
-    public function __construct(Customer $customer, CustomerPret $pret)
+    public function __construct(Customer $customer, CustomerPret $pret, string $category)
     {
         $this->customer = $customer;
         $this->pret = $pret;
         $this->title = "Information sur votre pret personnel N°".$this->pret->reference;
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -55,22 +57,22 @@ class ChargeLoanAcceptedNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
 
             if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -97,12 +99,14 @@ class ChargeLoanAcceptedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            "icon" => "",
-            "color" => "",
+            "icon" => "fa-coins",
+            "color" => "success",
             "title" => $this->title,
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->pret]
         ];
     }
 

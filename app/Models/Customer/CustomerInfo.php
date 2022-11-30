@@ -6,6 +6,7 @@ use App\Services\Twilio\Lookup;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 /**
  * App\Models\Customer\CustomerInfo
@@ -209,5 +210,31 @@ class CustomerInfo extends Model
     public function getLineAddressAttribute()
     {
         return $this->address.', '.$this->postal.' '.$this->city;
+    }
+
+    /**
+     * @param $format // normal/obscure
+     * @return string|null
+     */
+    public function getPhoneNumber($format = null): ?string
+    {
+        return match ($format) {
+            "normal" => \Str::replace('+33', '0', $this->phone),
+            "obscure" => \Str::mask(Str::replace('+33', '0', $this->phone), 'X', 0, 8),
+            default => $this->phone
+        };
+    }
+
+    /**
+     * @param $format // normal/obscure
+     * @return string|null
+     */
+    public function getMobileNumber($format = null): ?string
+    {
+        return match ($format) {
+            "normal" => \Str::replace('+33', '0', $this->mobile),
+            "obscure" => \Str::mask(Str::replace('+33', '0', $this->mobile), 'X', 0, 8),
+            default => $this->mobile
+        };
     }
 }

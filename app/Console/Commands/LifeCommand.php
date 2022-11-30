@@ -645,7 +645,7 @@ class LifeCommand extends Command
                         }
 
                         try {
-                            $customer->user->notify(new NewPrlvPresented($sepa));
+                            $customer->user->notify(new NewPrlvPresented($sepa, "Comptes & Moyens de paiement"));
                         } catch (Exception $exception) {
                             LogHelper::notify('critical', $exception);
                         }
@@ -690,7 +690,7 @@ class LifeCommand extends Command
                 ]
             );
 
-            $wallet->customer->user->notify(new MensualReleverNotification($file->append('url_folder')));
+            $wallet->customer->user->notify(new MensualReleverNotification($wallet->customer, $file->append('url_folder'), 'Comptes & Moyens de paiement'));
             $i++;
         }
 

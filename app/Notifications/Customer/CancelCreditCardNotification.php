@@ -20,12 +20,13 @@ class CancelCreditCardNotification extends Notification
     public string $messagePhone;
     public Customer $customer;
     private CustomerCreditCard $card;
+    public string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerCreditCard $card
      */
-    public function __construct(Customer $customer, CustomerCreditCard $card)
+    public function __construct(Customer $customer, CustomerCreditCard $card, string $category)
     {
         $this->customer = $customer;
         $this->card = $card;
@@ -33,6 +34,7 @@ class CancelCreditCardNotification extends Notification
         $this->message = $this->getMessage();
         $this->messagePhone = $this->getMessagePhone();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -58,22 +60,22 @@ class CancelCreditCardNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
 
             if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -106,6 +108,8 @@ class CancelCreditCardNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->card]
         ];
     }
 

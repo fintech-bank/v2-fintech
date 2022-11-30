@@ -20,13 +20,15 @@ class NewContractInsuranceNotification extends Notification
     public Customer $customer;
     public CustomerInsurance $contract;
     public array $documents;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerInsurance $contract
      * @param array $documents
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerInsurance $contract, array $documents)
+    public function __construct(Customer $customer, CustomerInsurance $contract, array $documents, string $category)
     {
         $this->customer = $customer;
         $this->contract = $contract;
@@ -34,6 +36,7 @@ class NewContractInsuranceNotification extends Notification
         $this->title = "Votre contrat d'assurance: ".$this->contract->package->name;
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -63,13 +66,13 @@ class NewContractInsuranceNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -111,6 +114,8 @@ class NewContractInsuranceNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->contract]
         ];
     }
 }

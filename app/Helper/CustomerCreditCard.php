@@ -56,7 +56,7 @@ class CustomerCreditCard
 
             // Notification Code Carte Bleu
             $customer->info->notify(new SendCreditCardCodeNotification($customer, base64_decode($card->code), $card));
-            $customer->info->notify(new NewCreditCardNotificationNotification($customer, $card));
+            $customer->info->notify(new NewCreditCardNotificationNotification($customer, $card, "Comptes & Moyens de paiement"));
 
         } else {
             $card = $wallet->cards()->create([
@@ -85,7 +85,7 @@ class CustomerCreditCard
                 ['card' => $card],
             );
 
-            $customer->info->notify(new NewCreditCardNotificationNotification($customer, $card));
+            $customer->info->notify(new NewCreditCardNotificationNotification($customer, $card, "Comptes & Moyens de paiement"));
         }
 
         return $card;

@@ -41,7 +41,9 @@ class WithdrawController extends ApiController
                 'customer_transaction_id' => $transaction->id,
             ]);
 
-            $epargne->customer->info->notify(new NewWithdrawNotification($epargne->customer, $withdraw));
+            if($withdraw->amount >= 500) {
+                $epargne->customer->info->notify(new NewWithdrawNotification($epargne->customer, $withdraw, "Comptes & Moyens de paiement"));
+            }
 
             return $this->sendSuccess();
         } else {

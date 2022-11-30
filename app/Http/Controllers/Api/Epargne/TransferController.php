@@ -241,7 +241,7 @@ class TransferController extends ApiController
         $docs = [];
         $docs[] = ['url' => $doc_formulaire_don->url_folder];
 
-        $epargne->customer->info->notify(new NewTransferAssocDonNotification($epargne->customer, $transfer, $association, $docs));
+        $epargne->customer->info->notify(new NewTransferAssocDonNotification($epargne->customer, $transfer, $association, $docs, "Epargne"));
         \Notification::route('mail', $association['email'])
             ->notify(new NotifyTransferAssocNotification($epargne->customer, $transfer, $association, $docs));
 

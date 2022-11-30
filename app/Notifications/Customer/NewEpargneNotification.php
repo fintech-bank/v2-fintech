@@ -19,18 +19,21 @@ class NewEpargneNotification extends Notification
     public string $message;
     public Customer $customer;
     public CustomerWallet $wallet;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerWallet $wallet
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerWallet $wallet)
+    public function __construct(Customer $customer, CustomerWallet $wallet, string $category)
     {
         $this->customer = $customer;
         $this->wallet = $wallet;
         $this->title = "Votre nouveau compte épargne";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -44,13 +47,13 @@ class NewEpargneNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -82,6 +85,8 @@ class NewEpargneNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->wallet]
         ];
     }
 }

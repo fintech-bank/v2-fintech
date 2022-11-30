@@ -33,7 +33,7 @@ class BeneficiaireController extends Controller
             'bank_id' => $request->get('bank_id')
         ]);
 
-        $beneficiaire->customer->info->notify(new NewBeneficiaireNotification($beneficiaire->customer));
+        $beneficiaire->customer->info->notify(new NewBeneficiaireNotification($beneficiaire->customer, $beneficiaire, "Sécurité"));
 
         return response()->json();
     }

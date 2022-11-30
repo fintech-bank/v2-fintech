@@ -19,18 +19,21 @@ class NewCreditCardNotificationNotification extends Notification
     public string $title;
     public string $link;
     public string $message;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerCreditCard $card
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerCreditCard $card)
+    public function __construct(Customer $customer, CustomerCreditCard $card, string $category)
     {
         $this->customer = $customer;
         $this->card = $card;
         $this->title = "Nouvelle Carte Bancaire disponible en agence";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -65,13 +68,13 @@ class NewCreditCardNotificationNotification extends Notification
     {
         if (config("app.env") == "local") {
             if ($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if ($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -103,6 +106,8 @@ class NewCreditCardNotificationNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->card]
         ];
     }
 }

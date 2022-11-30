@@ -149,7 +149,7 @@ class CustomerWalletController extends Controller
             );
         }
 
-        $wallet->customer->info->notify(new NewCautionNotification($wallet->customer, $caution));
+        $wallet->customer->info->notify(new NewCautionNotification($wallet->customer, $caution, "Prêt"));
 
         return redirect()->route('agent.customer.wallet.show', $wallet->number_account)->with('success', "Le cautionnaire à été ajouté avec succès");
     }

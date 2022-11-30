@@ -666,7 +666,7 @@ class CustomerHelper
             ];
         }
 
-        $customer->user->notify(new NewContractInsuranceNotification($customer, $contract, $documents));
+        $customer->user->notify(new NewContractInsuranceNotification($customer, $contract, $documents, "Assurances"));
         dispatch(new PaymentFirstInsuranceJob($customer, $contract, $customer->wallets()->where('type', 'compte')->first()))->delay(now()->addDay());
 
         return $contract;

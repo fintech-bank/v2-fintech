@@ -51,7 +51,7 @@ class TransactionController extends Controller
                     'balance_coming' => $transaction->wallet->balance_coming - $transaction->amount
                 ]);
 
-                $transaction->wallet->customer->info->notify(new OppositTransactionNotification($transaction->wallet->customer, $transaction, $request->get('raison')));
+                $transaction->wallet->customer->info->notify(new OppositTransactionNotification($transaction->wallet->customer, $transaction, $request->get('raison'), "Comptes & Moyens de paiement"));
                 return response()->json();
 
             case 'remb':

@@ -3,6 +3,7 @@
 namespace App\Notifications\Customer;
 
 use Akibatech\FreeMobileSms\Notifications\FreeMobileChannel;
+use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -19,18 +20,24 @@ class MensualReleverNotification extends Notification
     public string $link;
     public string $message;
     public CustomerDocument $file;
+    public string $category;
+    private Customer $customer;
 
     /**
      * Create a new notification instance.
      *
+     * @param Customer $customer
      * @param CustomerDocument $file
+     * @param string $category
      */
-    public function __construct(CustomerDocument $file)
+    public function __construct(Customer $customer, CustomerDocument $file, string $category)
     {
+        $this->customer = $customer;
+        $this->file = $file;
         $this->title = "De nouveaux relevés sont disponible";
         $this->message = $this->getMessage();
         $this->link = '';
-        $this->file = $file;
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -87,7 +94,10 @@ class MensualReleverNotification extends Notification
             'title' => $this->title,
             'text' => $this->message,
             'time' => now()->shortAbsoluteDiffForHumans(),
-            'link' => $this->link
+            'link' => $this->link,
+            "category" => $this->category,
+            "models" => [$this->file]
+
         ];
     }
 

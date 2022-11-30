@@ -20,19 +20,22 @@ class NewPrlvPresented extends Notification
     public string $title;
     public string $link;
     public string $message;
+    private string $category;
 
     /**
      * Create a new notification instance.
      *
      * @param CustomerSepa $sepa
+     * @param string $category
      */
-    public function __construct(CustomerSepa $sepa)
+    public function __construct(CustomerSepa $sepa, string $category)
     {
         //
         $this->sepa = $sepa;
         $this->title = "Un nouveau prélèvement est arrivé sur votre compte";
         $this->message = $this->getMessage();
         $this->link = "/customer/prlv/".$this->sepa->uuid;
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -92,7 +95,9 @@ class NewPrlvPresented extends Notification
             'title' => $this->title,
             'text' => $this->message,
             'time' => now()->shortAbsoluteDiffForHumans(),
-            'link' => $this->link
+            'link' => $this->link,
+            "category" => $this->category,
+            "models" => [$this->sepa]
         ];
     }
 
@@ -117,22 +122,22 @@ class NewPrlvPresented extends Notification
     {
         if (config('app.env') == 'local') {
             if($this->sepa->wallet->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->sepa->wallet->customer->setting->notif_mail) {
-                return 'mail';
+                return ['mail', 'database'];
             }
 
             return 'database';
         } else {
 
             if($this->sepa->wallet->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->sepa->wallet->customer->setting->notif_mail) {
-                return 'mail';
+                return ['mail', "database"];
             }
 
             return 'database';

@@ -199,7 +199,7 @@ class CustomerLoanHelper
                 ];
             }
 
-            $customer->info->notify(new NewPretNotification($customer, $loan, $docs));
+            $customer->info->notify(new NewPretNotification($customer, $loan, $docs, "Prêt"));
 
             return [
                 "loan" => $loan,

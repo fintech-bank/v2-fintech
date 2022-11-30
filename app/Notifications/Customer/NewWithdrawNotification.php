@@ -19,18 +19,21 @@ class NewWithdrawNotification extends Notification
     public string $message;
     public Customer $customer;
     private CustomerWithdraw $withdraw;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerWithdraw $withdraw
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerWithdraw $withdraw)
+    public function __construct(Customer $customer, CustomerWithdraw $withdraw, string $category)
     {
         $this->customer = $customer;
         $this->withdraw = $withdraw;
-        $this->title = "Comptes & Moyens de Paiements";
+        $this->title = "Un retrait récent mérite votre attention";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -80,6 +83,8 @@ class NewWithdrawNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->withdraw]
         ];
     }
 }

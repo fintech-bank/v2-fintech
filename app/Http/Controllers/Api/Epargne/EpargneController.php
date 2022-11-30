@@ -152,7 +152,7 @@ class EpargneController extends ApiController
                 return $this->sendError($exception);
             }
 
-            $customer->info->notify(new NewEpargneNotification($customer, $wallet));
+            $customer->info->notify(new NewEpargneNotification($customer, $wallet, "Epargne"));
 
             return $this->sendSuccess(null, ["epargne" => $epargne]);
         } else {

@@ -50,7 +50,7 @@ class Agency extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['online_label'];
+    protected $appends = ['online_label', 'address_line'];
 
     public $timestamps = false;
 
@@ -80,6 +80,11 @@ class Agency extends Model
     public function getCountryAttribute($value)
     {
         return CountryHelper::getCountryName(\Str::upper(\Str::limit($value, 2, '')));
+    }
+
+    public function getAddressLineAttribute()
+    {
+        return $this->address.", ".$this->postal." ".$this->city;
     }
 
     public function setCountryAttribute($value)

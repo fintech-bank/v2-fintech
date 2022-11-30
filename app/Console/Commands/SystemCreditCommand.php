@@ -115,7 +115,7 @@ class SystemCreditCommand extends Command
                     'status' => 'active'
                 ]);
 
-                $pret->customer->info->notify(new ChargeLoanAcceptedNotification($pret->customer, $pret));
+                $pret->customer->info->notify(new ChargeLoanAcceptedNotification($pret->customer, $pret, "Prêt"));
                 $arr[] = [
                     $pret->customer->info->full_name,
                     $pret->plan->name,

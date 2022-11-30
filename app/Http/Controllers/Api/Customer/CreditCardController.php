@@ -282,7 +282,7 @@ class CreditCardController extends ApiController
                         ];
                     }
 
-                    $card->wallet->customer->info->notify(new NewPretNotification($card->wallet->customer, $pret, $docs));
+                    $card->wallet->customer->info->notify(new NewPretNotification($card->wallet->customer, $pret, $docs, "Prêt"));
 
                     $card->update([
                         'facelia' => 1
@@ -306,7 +306,7 @@ class CreditCardController extends ApiController
             'status' => 'canceled'
         ]);
 
-        $card->wallet->customer->info->notify(new CancelCreditCardNotification($card->wallet->customer, $card));
+        $card->wallet->customer->info->notify(new CancelCreditCardNotification($card->wallet->customer, $card, 'Comptes & Moyens de paiement'));
 
         return $this->sendSuccess();
 

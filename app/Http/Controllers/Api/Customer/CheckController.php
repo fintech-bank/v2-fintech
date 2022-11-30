@@ -25,7 +25,7 @@ class CheckController extends ApiController
                 'customer_wallet_id' => $wallet->id
             ]);
 
-            $wallet->customer->info->notify(new NewCheckoutCheckNotification($wallet->customer, $check));
+            $wallet->customer->info->notify(new NewCheckoutCheckNotification($wallet->customer, $check, "Comptes & Moyens de paiement"));
 
             return $this->sendSuccess();
         } else {

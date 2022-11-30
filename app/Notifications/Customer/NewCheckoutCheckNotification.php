@@ -20,12 +20,14 @@ class NewCheckoutCheckNotification extends Notification
     public string $messagePhone;
     public Customer $customer;
     private CustomerCheck $check;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerCheck $check
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerCheck $check)
+    public function __construct(Customer $customer, CustomerCheck $check, string $category)
     {
         $this->customer = $customer;
         $this->check = $check;
@@ -33,6 +35,7 @@ class NewCheckoutCheckNotification extends Notification
         $this->message = $this->getMessage();
         $this->messagePhone = $this->getMessagePhone();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -58,22 +61,22 @@ class NewCheckoutCheckNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
 
             if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -106,6 +109,8 @@ class NewCheckoutCheckNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->check]
         ];
     }
 

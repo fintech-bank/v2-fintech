@@ -21,14 +21,16 @@ class NewTransferAssocDonNotification extends Notification
     public CustomerTransfer $transfer;
     private array $association;
     private array $docs;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerTransfer $transfer
      * @param array $association
      * @param array $docs
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerTransfer $transfer, array $association,array $docs)
+    public function __construct(Customer $customer, CustomerTransfer $transfer, array $association,array $docs, string $category)
     {
         $this->customer = $customer;
         $this->transfer = $transfer;
@@ -37,6 +39,7 @@ class NewTransferAssocDonNotification extends Notification
         $this->title = "Nouveau dons à une association";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -53,13 +56,13 @@ class NewTransferAssocDonNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -96,6 +99,8 @@ class NewTransferAssocDonNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->transfer, $this->association]
         ];
     }
 }

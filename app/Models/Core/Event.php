@@ -40,6 +40,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $attendees_count
  * @property-read mixed $type_cl
  * @property-read mixed $type_color
+ * @property string $reason
+ * @property string $subreason
+ * @property string|null $question
+ * @property string $canal
+ * @property int $agent_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereAgentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereCanal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereQuestion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereReason($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereSubreason($value)
+ * @property-read User $agent
  */
 class Event extends Model
 {
@@ -58,6 +69,11 @@ class Event extends Model
         return $this->hasMany(EventAttendee::class);
     }
 
+    public function agent()
+    {
+        return $this->belongsTo(User::class, 'agent_id');
+    }
+
     public function getTypeColorAttribute()
     {
         switch ($this->type) {
@@ -73,6 +89,23 @@ class Event extends Model
             case 'customer': return 'success';
             case 'internal': return 'danger';
             case 'external': return 'info';
+        }
+    }
+
+    public function getCanal($format = '')
+    {
+        if($format == 'text') {
+            return match($this->canal) {
+                "agency" => "En agence",
+                "phone" => "Par téléphone",
+                default => "Par un autre moyen"
+            };
+        } else {
+            return match($this->canal) {
+                "agency" => "fa-building",
+                "phone" => "fa-phone",
+                default => "fa-ellipsis"
+            };
         }
     }
 }

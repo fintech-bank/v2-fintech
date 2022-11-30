@@ -19,18 +19,20 @@ class NewCautionNotification extends Notification
     public string $message;
     public Customer $customer;
     private CustomerPretCaution $caution;
+    public string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerPretCaution $caution
      */
-    public function __construct(Customer $customer, CustomerPretCaution $caution)
+    public function __construct(Customer $customer, CustomerPretCaution $caution, string $category)
     {
         $this->customer = $customer;
         $this->caution = $caution;
         $this->title = "Cautionnement du ".$this->caution->loan->wallet->name_account_generic;
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -73,13 +75,13 @@ class NewCautionNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -112,6 +114,8 @@ class NewCautionNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->caution]
         ];
     }
 }

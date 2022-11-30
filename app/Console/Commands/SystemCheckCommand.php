@@ -2,19 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Helper\CustomerTransactionHelper;
 use App\Models\Customer\CustomerCheck;
-use App\Models\Customer\CustomerDocument;
-use App\Models\Customer\CustomerPret;
-use App\Notifications\Customer\ChargeLoanAcceptedNotification;
-use App\Notifications\Customer\CheckoutPayNotification;
-use App\Notifications\Customer\RejectSepaNotification;
 use App\Notifications\Customer\UpdateCheckoutCheckNotification;
-use App\Notifications\Customer\VerifRequestLoanNotification;
-use App\Services\Fintech\Payment\Sepa;
 use App\Services\SlackNotifier;
-use App\Services\Stripe;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class SystemCheckCommand extends Command
