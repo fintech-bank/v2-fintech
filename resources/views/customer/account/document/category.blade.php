@@ -26,7 +26,7 @@
 
         <div class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px">
             <div class="">
-                <div class="p-0 w-8px bg-primary h-75px rounded-start">&nbsp;</div>
+                <div class="p-0 w-8px bg-primary h-75px rounded-start me-5">&nbsp;</div>
                 <span>Relevé de compte</span>
             </div>
             <a href="" class="btn btn-link btn-icon"><i class="fa-solid fa-download"></i> </a>
