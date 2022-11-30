@@ -19,7 +19,8 @@
                 title="<i class='fa-solid fa-calendar fs-2x text-bank me-4'></i> Mes rendez-vous"
                 color="bank"
                 size="4"
-                size-text="fs-2x" />
+                size-text="fs-2x"
+                class="w-auto my-5"/>
         </div>
     </div>
 @endsection
