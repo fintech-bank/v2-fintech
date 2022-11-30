@@ -120,13 +120,11 @@
 
             <div class="separator border-gray-300 my-10"></div>
 
-            <div class="separator border-gray-300 my-10"></div>
-
             <x-base.underline
                 class="w-100 my-5 "
                 size="4"
                 size-text="fs-1"
-                color="success"
+                color="danger"
                 title="Mes demandes expirés au cours des 30 derniers jours" />
 
             @if($requests->where('status', 'expired')->count() != 0)
