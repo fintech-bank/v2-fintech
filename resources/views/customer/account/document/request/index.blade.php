@@ -31,7 +31,7 @@
                 size-text="fs-1"
                 color="warning" />
 
-            @if($requests->where('status', 'progress')->count() != 0)
+            @if($requests->where('status', 'waiting')->count() != 0)
                 @foreach($requests->where('status', 'waiting')->get() as $request)
                     <a href="{{ route('customer.account.documents.request.show', $request->reference) }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom text-black" target="_blank">
                         <div class="d-flex flex-row align-items-center">
