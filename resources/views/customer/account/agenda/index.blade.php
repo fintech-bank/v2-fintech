@@ -229,7 +229,7 @@
                                         @foreach(\App\Models\Core\Event::getDataReason() as $reason)
                                             <div class="">
                                                 <input type="radio" class="btn-check" name="reason" value="{{ $reason['name'] }}" checked="checked"  id="{{ Str::slug($reason['name']) }}"/>
-                                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_1">
+                                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="{{ Str::slug($reason['name']) }}">
                                                     <span class="d-block fw-semibold text-start">
                                                         <span class="text-dark fw-bold d-block fs-3">{{ $reason['name'] }}</span>
                                                     </span>
