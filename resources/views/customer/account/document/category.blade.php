@@ -25,11 +25,13 @@
         </div>
 
         @foreach($documents as $document)
-            <a href="{{ $document->url_folder }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom">
+            <a href="{{ $document->url_folder }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom" target="_blank">
                 <div class="d-flex flex-row align-items-center">
                     <div class="p-0 w-8px bg-primary h-75px rounded-start me-5">&nbsp;</div>
-                    <span class="fs-2 fw-bold">{{ $document->name }}</span>
-                    <div class="text-muted fs-6">{{ $document->updated_at->format('d/m/Y') }}</div>
+                    <div class="d-flex flex-column">
+                        <span class="fs-2 fw-bold">{{ $document->name }}</span>
+                        <div class="text-muted fs-6">{{ $document->updated_at->format('d/m/Y') }}</div>
+                    </div>
                 </div>
                 <i class="fa-solid fa-download fs-2 me-5"></i>
             </a>
