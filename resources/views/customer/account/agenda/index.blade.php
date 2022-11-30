@@ -73,12 +73,8 @@
                                     <!--begin::Label-->
                                     <div class="stepper-label">
                                         <h3 class="stepper-title">
-                                            Step 1
+                                            Votre conseiller
                                         </h3>
-
-                                        <div class="stepper-desc">
-                                            Description
-                                        </div>
                                     </div>
                                     <!--end::Label-->
                                 </div>
@@ -104,12 +100,8 @@
                                     <!--begin::Label-->
                                     <div class="stepper-label">
                                         <h3 class="stepper-title">
-                                            Step 2
+                                            Votre motif
                                         </h3>
-
-                                        <div class="stepper-desc">
-                                            Description
-                                        </div>
                                     </div>
                                     <!--end::Label-->
                                 </div>
@@ -135,12 +127,8 @@
                                     <!--begin::Label-->
                                     <div class="stepper-label">
                                         <h3 class="stepper-title">
-                                            Step 3
+                                            Type de RDV
                                         </h3>
-
-                                        <div class="stepper-desc">
-                                            Description
-                                        </div>
                                     </div>
                                     <!--end::Label-->
                                 </div>
@@ -166,12 +154,8 @@
                                     <!--begin::Label-->
                                     <div class="stepper-label">
                                         <h3 class="stepper-title">
-                                            Step 4
+                                            Votre disponibilité
                                         </h3>
-
-                                        <div class="stepper-desc">
-                                            Description
-                                        </div>
                                     </div>
                                     <!--end::Label-->
                                 </div>
@@ -182,6 +166,30 @@
                                 <!--end::Line-->
                             </div>
                             <!--end::Step 4-->
+                            <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
+                                <!--begin::Wrapper-->
+                                <div class="stepper-wrapper d-flex align-items-center">
+                                    <!--begin::Icon-->
+                                    <div class="stepper-icon w-40px h-40px">
+                                        <i class="stepper-check fas fa-check"></i>
+                                        <span class="stepper-number">5</span>
+                                    </div>
+                                    <!--begin::Icon-->
+
+                                    <!--begin::Label-->
+                                    <div class="stepper-label">
+                                        <h3 class="stepper-title">
+                                            Confirmation
+                                        </h3>
+                                    </div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Wrapper-->
+
+                                <!--begin::Line-->
+                                <div class="stepper-line h-40px"></div>
+                                <!--end::Line-->
+                            </div>
                         </div>
                         <!--end::Nav-->
 
@@ -374,12 +382,12 @@
                                 <!--begin::Wrapper-->
                                 <div>
                                     <button type="button" class="btn btn-primary" data-kt-stepper-action="submit">
-                    <span class="indicator-label">
-                        Submit
-                    </span>
+                                        <span class="indicator-label">
+                                            Submit
+                                        </span>
                                         <span class="indicator-progress">
-                        Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                    </span>
+                                            Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                        </span>
                                     </button>
 
                                     <button type="button" class="btn btn-primary" data-kt-stepper-action="next">
