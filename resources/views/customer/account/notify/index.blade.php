@@ -21,9 +21,7 @@
                         <div class="card-header">
                             <h3 class="card-title"><i class="fa-solid {{ $notification->data['icon'] }} me-5"></i> {{ $notification->data['category'] }}</h3>
                             <div class="card-toolbar">
-                                <!--<button type="button" class="btn btn-sm btn-light">
-                                    Action
-                                </button>-->
+                                {{ $notification->data['time']->format("d/m/Y") }}
                             </div>
                         </div>
                         <div class="card-body">
