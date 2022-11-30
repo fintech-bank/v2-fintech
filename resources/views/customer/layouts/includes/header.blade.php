@@ -61,13 +61,13 @@
                         <div class="d-flex flex-column bgi-no-repeat rounded-top" style="background-image:url('/assets/media/misc/menu-header-bg.jpg')">
                             <!--begin::Title-->
                             <h3 class="text-white fw-semibold px-9 mt-10 mb-6">Notifications
-                                <span class="fs-8 opacity-75 ps-3">{{ auth()->user()->unreadNotifications()->count() }} Notifications non-lu</span></h3>
+                                <span class="fs-8 opacity-75 ps-3">{{ auth()->user()->customers->info->unreadNotifications()->count() }} Notifications non-lu</span></h3>
                             <!--end::Title-->
                         </div>
                         <!--end::Heading-->
                         <!--begin::Items-->
                         <div class="scroll-y mh-325px my-5 px-8">
-                        @foreach(auth()->user()->unreadNotifications as $notify)
+                        @foreach(auth()->user()->customers->info->unreadNotifications as $notify)
                             <!--begin::Item-->
                                 <div class="d-flex flex-stack py-4">
                                     <!--begin::Section-->
