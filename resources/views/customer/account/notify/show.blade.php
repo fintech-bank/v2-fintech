@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-
+                    {!! $notification->data['text'] !!}
                 </div>
             </div>
         </div>
