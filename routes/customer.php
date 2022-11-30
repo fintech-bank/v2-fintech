@@ -23,17 +23,17 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
         });
 
         Route::prefix('mailbox')->name('mailbox.')->group(function () {
-            Route::get("{folder?}", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'index'])->name('index');
-            Route::get("create", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'create'])->name('create');
-            Route::post("create", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'store'])->name('store');
-            Route::get("message/{id}", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'show'])->name('show');
-            Route::put("toggle-important", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'toggleImportant'])->name('toggleImportant');
-            Route::delete("/", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'trash'])->name('trash');
-            Route::get("message/{id}/reply", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'getReply'])->name('getReply');
-            Route::post("message/{id}/reply", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'postReply'])->name('postReply');
-            Route::get("message/{id}/forward", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'getForward'])->name('getForward');
-            Route::post("message/{id}/forward", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'postForward'])->name('postForward');
-            Route::get("message/{id}/send", [\App\Http\Controllers\Agent\Account\MailboxController::class, 'send'])->name('send');
+            Route::get("{folder?}", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'index'])->name('index');
+            Route::get("create", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'create'])->name('create');
+            Route::post("create", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'store'])->name('store');
+            Route::get("message/{id}", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'show'])->name('show');
+            Route::put("toggle-important", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'toggleImportant'])->name('toggleImportant');
+            Route::delete("/", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'trash'])->name('trash');
+            Route::get("message/{id}/reply", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'getReply'])->name('getReply');
+            Route::post("message/{id}/reply", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'postReply'])->name('postReply');
+            Route::get("message/{id}/forward", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'getForward'])->name('getForward');
+            Route::post("message/{id}/forward", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'postForward'])->name('postForward');
+            Route::get("message/{id}/send", [\App\Http\Controllers\Customer\Account\MailboxController::class, 'send'])->name('send');
         });
 
         Route::prefix('agenda')->name('agenda.')->group(function () {
