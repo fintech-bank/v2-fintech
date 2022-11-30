@@ -31,7 +31,7 @@
                 size-text="fs-1"
                 color="warning" />
 
-            @if($request->where('status', 'progress')->count() != 0)
+            @if($requests->where('status', 'progress')->count() != 0)
                 @foreach($requests->where('status', 'waiting')->get() as $request)
                     <a href="{{ route('customer.account.documents.request.show', $request->reference) }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom text-black" target="_blank">
                         <div class="d-flex flex-row align-items-center">
@@ -63,7 +63,7 @@
                 color="warning"
                 title="Mes demandes en traitement" />
 
-            @if($request->where('status', 'progress')->count() != 0)
+            @if($requests->where('status', 'progress')->count() != 0)
                 @foreach($requests->where('status', 'progress')->get() as $request)
                     <a href="{{ route('customer.account.documents.request.show', $request->reference) }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom text-black" target="_blank">
                         <div class="d-flex flex-row align-items-center">
@@ -95,7 +95,7 @@
                 color="success"
                 title="Mes demandes traités" />
 
-            @if($request->where('status', 'terminated')->count() != 0)
+            @if($requests->where('status', 'terminated')->count() != 0)
                 @foreach($requests->where('status', 'terminated')->get() as $request)
                     <a href="{{ route('customer.account.documents.request.show', $request->reference) }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom text-black" target="_blank">
                         <div class="d-flex flex-row align-items-center">
