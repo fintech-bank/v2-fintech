@@ -74,7 +74,7 @@ class LoanController extends ApiController
                     'first_payment_at' => Carbon::create($credit->first_payment_at->year, $credit->first_payment_at->month, $prlv_day)
                 ]);
 
-                $credit->customer->info->notify(new ChangePrlvDayNotification($credit->customer, $credit));
+                $credit->customer->info->notify(new ChangePrlvDayNotification($credit->customer, $credit, "Prêt"));
 
                 return $this->sendSuccess();
             } else {

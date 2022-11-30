@@ -19,18 +19,20 @@ class ChangePrlvDayNotification extends Notification
     public string $message;
     public Customer $customer;
     private CustomerPret $credit;
+    public string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerPret $credit
      */
-    public function __construct(Customer $customer, CustomerPret $credit)
+    public function __construct(Customer $customer, CustomerPret $credit, string $category)
     {
         $this->customer = $customer;
         $this->credit = $credit;
         $this->title = "Information sur le {$this->credit->wallet->name_account_generic}";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -49,13 +51,13 @@ class ChangePrlvDayNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -88,6 +90,8 @@ class ChangePrlvDayNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->credit]
         ];
     }
 }
