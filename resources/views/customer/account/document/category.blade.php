@@ -25,7 +25,7 @@
         </div>
 
         @foreach($documents as $document)
-            <a href="{{ $document->url_folder }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom" target="_blank">
+            <a href="{{ $document->url_folder }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom text-black" target="_blank">
                 <div class="d-flex flex-row align-items-center">
                     <div class="p-0 w-8px bg-primary h-75px rounded-start me-5">&nbsp;</div>
                     <div class="d-flex flex-column">
