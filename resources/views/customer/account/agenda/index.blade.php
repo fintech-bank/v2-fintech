@@ -37,7 +37,9 @@
                 @endforeach
             @endif
         </div>
-        <button class="btn btn-lg btn-circle btn-bank">Prendre un rendez-vous</button>
+        <div class="d-flex flex-center w-50 p-5 mx-auto">
+            <button class="btn btn-lg btn-circle btn-bank">Prendre un rendez-vous</button>
+        </div>
     </div>
 @endsection
 
