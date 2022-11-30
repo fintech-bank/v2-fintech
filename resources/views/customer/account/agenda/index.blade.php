@@ -246,7 +246,7 @@
                                             size-text="fs-1" class="w-auto mb-10"/>
                                     </div>
                                     <div class="d-flex flex-row justify-content-around">
-                                        <label class="d-flex flex-center w-25 rounded border">
+                                        <label class="d-flex flex-column w-200px rounded border">
                                             <i class="fa-solid fa-building fs-2x"></i>
                                             <span class="">En agence</span>
                                             <span class="fs-6">Durée estimée : 1h00</span>
@@ -254,7 +254,7 @@
                                                 <input class="form-check-input" type="radio"  name="canal" value="agency"/>
                                             </span>
                                         </label>
-                                        <label class="d-flex flex-center w-25 rounded border">
+                                        <label class="d-flex flex-column w-200px rounded border">
                                             <i class="fa-solid fa-building fs-2x"></i>
                                             <span class="">Par téléphone</span>
                                             <span class="fs-6">Durée estimée : 0h30</span>
