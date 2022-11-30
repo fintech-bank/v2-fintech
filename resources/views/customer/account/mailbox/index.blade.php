@@ -7,16 +7,6 @@
 @section('toolbar')
     <div class="page-title d-flex justify-content-center flex-column me-5">
         <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Mes courriers</h1>
-        <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 pt-1">
-            <li class="breadcrumb-item text-muted">
-                <a href="{{ route('agent.dashboard') }}"
-                   class="text-muted text-hover-primary">Agence</a>
-            </li>
-            <li class="breadcrumb-item">
-                <span class="bullet bg-gray-200 w-5px h-2px"></span>
-            </li>
-            <li class="breadcrumb-item text-dark">Mes courriers</li>
-        </ul>
     </div>
     <!--<div class="d-flex align-items-center gap-2 gap-lg-3">
         <a href="#" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Rollover</a>
@@ -34,7 +24,7 @@
                 <!--begin::Aside content-->
                 <div class="card-body">
                     <!--begin::Button-->
-                    <a href="{{ route('agent.account.mailbox.create') }}" class="btn btn-primary fw-bold w-100 mb-8">Nouveau message</a>
+                    <a href="{{ route('customer.account.mailbox.create') }}" class="btn btn-primary fw-bold w-100 mb-8">Nouveau message</a>
                     <!--end::Button-->
                     <!--begin::Menu-->
                     <div class="menu menu-column menu-rounded menu-state-bg menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary mb-10">
@@ -42,7 +32,7 @@
                         @foreach($folders as $folder)
                         <div class="menu-item mb-3">
                             <!--begin::Inbox-->
-                            <a href="{{ route('agent.account.mailbox.index', [$folder->title]) }}" class="menu-link {{ Request::segment(4) == '' && $folder->title == 'Inbox' ? 'active' : (Request::segment(4) == $folder->title ? 'active' : '') }}">
+                            <a href="{{ route('customer.account.mailbox.index', [$folder->title]) }}" class="menu-link {{ Request::segment(4) == '' && $folder->title == 'Inbox' ? 'active' : (Request::segment(4) == $folder->title ? 'active' : '') }}">
 								<span class="menu-icon">
                                     <i class="fa-solid fa-{{ $folder->icon }} fa-2x me-3"></i>
 								</span>
@@ -249,7 +239,7 @@
                                 <td>
                                     <div class="text-dark mb-1">
                                         <!--begin::Heading-->
-                                        <a href="{{ route('agent.account.mailbox.show', $message->id) }}" class="text-dark">
+                                        <a href="{{ route('customer.account.mailbox.show', $message->id) }}" class="text-dark">
                                             <span class="fw-bold">{{ $message->subject }}</span>
                                             <span class="fw-bold d-none d-md-inine">-</span>
                                             <span class="d-none d-md-inine text-muted">{{ \Illuminate\Support\Str::limit($message->body, 50, '...') }}</span>
