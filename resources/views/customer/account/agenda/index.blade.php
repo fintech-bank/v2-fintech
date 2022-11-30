@@ -228,7 +228,7 @@
                                     <div class="m-0" id="inputReason">
                                         @foreach(\App\Models\Core\Event::getDataReason() as $reason)
                                             <div class="">
-                                                <input type="radio" class="btn-check" name="reason" value="{{ $reason->name }}" checked="checked"  id="{{ Str::slug($reason->name) }}"/>
+                                                <input type="radio" class="btn-check" name="reason" value="{{ $reason['name'] }}" checked="checked"  id="{{ Str::slug($reason['name']) }}"/>
                                             </div>
                                         @endforeach
 
