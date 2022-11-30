@@ -66,6 +66,7 @@
         chart.render()
     }
 
+    @if($customer->setting->gauge)
     $.ajax({
         url: '/api/customer/{{ $customer->id }}/gauge',
         success: data => {
@@ -73,6 +74,7 @@
             chartEnd(data.percent)
         }
     })
+    @endif
 
     $(forms.formConfigGauge).on('submit', e => {
         e.preventDefault()
