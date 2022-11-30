@@ -37,7 +37,8 @@
                         </div>
                     </div>
                     <span class="d-flex flex-row">
-                        <span>{{ $request->model_data }}</span>
+                        <span class="ms-auto">{{ $request->model_data }}</span>
+                        <span class="vr"></span>
                         <i class="fa-solid fa-arrow-right-long fs-2 me-5"></i>
                     </span>
                 </a>
