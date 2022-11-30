@@ -19,18 +19,21 @@ class SendRequestNotification extends Notification
     public string $message;
     public Customer $customer;
     public CustomerRequest $request;
+    public string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerRequest $request
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerRequest $request)
+    public function __construct(Customer $customer, CustomerRequest $request, string $category)
     {
         $this->customer = $customer;
         $this->request = $request;
         $this->title = "Nouvelle requête ouverte dans votre espace";
         $this->message = $this->getMessage();
         $this->link = route('customer.account.documents.request.show', $request->reference);
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -95,6 +98,8 @@ class SendRequestNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->request]
         ];
     }
 }

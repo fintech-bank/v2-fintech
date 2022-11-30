@@ -191,7 +191,7 @@ class CustomerLoanHelper
                 "link_id" => $loan->id,
                 "customer_id" => $customer->id
             ]);
-            $customer->info->notify(new SendRequestNotification($customer, $request));
+            $customer->info->notify(new SendRequestNotification($customer, $request, 'Prêt'));
 
             foreach ($documents as $document) {
                 $docs[] = [

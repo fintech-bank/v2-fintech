@@ -27,7 +27,7 @@ class RequestHelper
             'customer_id' => $customer->id
         ]);
 
-        $customer->info->notify(new SendRequestNotification($customer, $request));
+        $customer->info->notify(new SendRequestNotification($customer, $request, "Signature Electronique"));
 
         return $request;
     }

@@ -89,7 +89,7 @@ class CustomerWalletHelper
                 "link_id" => $wallet->id,
                 "customer_id" => $customer->id
             ]);
-            $customer->info->notify(new SendRequestNotification($customer, $request));
+            $customer->info->notify(new SendRequestNotification($customer, $request, 'Comptes & Moyens de paiement'));
             //Notification de création de compte
             $customer->info->notify(new NewWalletNotification($customer, $wallet));
         }

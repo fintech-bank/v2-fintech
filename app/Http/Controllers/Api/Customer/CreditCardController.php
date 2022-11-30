@@ -274,7 +274,7 @@ class CreditCardController extends ApiController
                         "link_id" => $pret->id,
                         "customer_id" => $card->wallet->customer->id
                     ]);
-                    $card->wallet->customer->info->notify(new SendRequestNotification($card->wallet->customer, $request));
+                    $card->wallet->customer->info->notify(new SendRequestNotification($card->wallet->customer, $request, "Comptes & Moyens de paiement"));
 
                     foreach ($documents as $document) {
                         $docs[] = [
@@ -324,7 +324,7 @@ class CreditCardController extends ApiController
             "customer_id" => $card->wallet->customer->id,
         ]);
 
-        $card->wallet->customer->info->notify(new SendRequestNotification($card->wallet->customer, $requete));
+        $card->wallet->customer->info->notify(new SendRequestNotification($card->wallet->customer, $requete, "Comptes & Moyens de paiement"));
 
         return response()->json();
     }

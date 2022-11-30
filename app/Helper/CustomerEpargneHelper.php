@@ -120,7 +120,7 @@ class CustomerEpargneHelper
             "customer_id" => $customer->id
         ]);
 
-        $customer->info->notify(new SendRequestNotification($customer, $request));
+        $customer->info->notify(new SendRequestNotification($customer, $request, 'Comptes & Moyens de paiement'));
         $customer->info->notify(new NewEpargneNotification($customer, $wallet));
 
         return $epargne;

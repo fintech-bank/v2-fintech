@@ -43,7 +43,7 @@ class SubscribeController extends Controller
             "customer_id" => $wallet->customer->id
         ]);
 
-        $wallet->customer->info->notify(new SendRequestNotification($wallet->customer, $req));
+        $wallet->customer->info->notify(new SendRequestNotification($wallet->customer, $req, "Comptes & Moyens de paiement"));
 
         return response()->json();
     }

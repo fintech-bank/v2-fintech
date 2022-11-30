@@ -126,7 +126,7 @@ class EpargneController extends ApiController
                 "customer_id" => $customer->id
             ]);
 
-            $customer->info->notify(new SendRequestNotification($customer, $req));
+            $customer->info->notify(new SendRequestNotification($customer, $req, "Epargne"));
 
             try {
                 CustomerTransactionHelper::createDebit(
