@@ -25,11 +25,11 @@
                 <div class="card-body">
                     {!! $notification->data['text'] !!}
                 </div>
+                @if($notification->data['link'] != null)
                 <div class="card-footer text-center">
-                    @if($notification->data['link'] != null)
                         <a href="{{ $notification->data['link'] }}" class="btn btn-outline btn-outline-primary">Voir le detail</a>
-                    @endif
                 </div>
+                @endif
             </div>
         </div>
     </div>
