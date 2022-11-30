@@ -240,6 +240,8 @@ if(document.querySelectorAll('.datetime')) {
         $(element).flatpickr({
             enableTime: true,
             dateFormat: "Y-m-d H:i",
+            time_24hr: true,
+            minuteIncrement: 30
         })
     })
 }
