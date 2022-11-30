@@ -14,7 +14,7 @@
 
 @section("content")
     <div id="app" class="rounded container">
-        <div class="d-flex flex-center w-50">
+        <div class="d-flex flex-center w-100">
             <div class="btn-group btn-group-lg">
                 <button class="btn btn-lg btn-primary">Demandes & contrats</button>
                 <button class="btn btn-lg btn-secondary">Relevés</button>
