@@ -17,7 +17,7 @@
         <div class="card shadow-sm rounded">
             <div class="card-body bg-gray-300 rounded">
                 @foreach($notifications as $notification)
-                    <a href="{{ route('customer.account.notify.show', $notification->id) }}" class="card {{ $notification->read_at == null ? 'shadow-lg' : 'shadow-sm' }} mb-10 text-black">
+                    <a href="{{ route('customer.account.notify.show', $notification->id) }}" class="card {{ $notification->read_at == null ? 'shadow-lg border border-2' : 'shadow-sm' }} mb-10 text-black">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fa-solid {{ $notification->data['icon'] }} me-5"></i> {{ $notification->data['category'] }}</h3>
                             <div class="card-toolbar text-muted">
