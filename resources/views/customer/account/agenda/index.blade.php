@@ -36,8 +36,8 @@
                     </a>
                 @endforeach
             @endif
-            <button class="btn btn-lg btn-circle btn-bank">Prendre un rendez-vous</button>
         </div>
+        <button class="btn btn-lg btn-circle btn-bank">Prendre un rendez-vous</button>
     </div>
 @endsection
 
