@@ -16,7 +16,7 @@
     <div id="app" class="rounded container">
         <div class="d-flex flex-center w-100">
             <x-base.underline
-                title="test" />
+                title="<i class='fa-solid fa-calendar fs-2'></i>" />
         </div>
     </div>
 @endsection
