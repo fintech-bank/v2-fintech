@@ -25,7 +25,7 @@
         </div>
 
         @foreach($documents as $document)
-            <a href="" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom">
+            <a href="" class="btn-flex d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom">
                 <div class="d-flex flex-row align-items-center">
                     <div class="p-0 w-8px bg-primary h-75px rounded-start me-5">&nbsp;</div>
                     <span class="fs-2 fw-bold">{{ $document->name }}</span>
