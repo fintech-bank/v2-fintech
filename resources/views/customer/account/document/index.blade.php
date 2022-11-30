@@ -16,9 +16,9 @@
     <div id="app" class="rounded container">
         <div class="d-flex flex-center w-100">
             <div class="btn-group btn-group-lg">
-                <button class="btn btn-lg btn-primary">Demandes & contrats</button>
-                <button class="btn btn-lg btn-secondary">Relevés</button>
-                <button class="btn btn-lg btn-secondary">Autres documents</button>
+                @foreach(\App\Models\Core\DocumentCategory::with('documents')->get() as $category)
+                    <a href="{{ route('customer.account.documents.category', $category->id) }}" class="btn btn-lg {{ Route::is('customer.account.documents.category') ? 'btn-primary' : 'btn-secondary' }}">{{ $category->name }}</a>
+                @endforeach
             </div>
         </div>
     </div>
