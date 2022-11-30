@@ -28,7 +28,7 @@
             <div class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10">
                 <div class="d-flex flex-row align-items-center">
                     <div class="p-0 w-8px bg-primary h-75px rounded-start me-5">&nbsp;</div>
-                    <span class="fs-2 fw-bold">Relevé de compte</span>
+                    <span class="fs-2 fw-bold">{{ $document->name }}</span>
                 </div>
                 <a href="" class="btn btn-link btn-icon"><i class="fa-solid fa-download fs-2"></i> </a>
             </div>
