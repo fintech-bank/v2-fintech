@@ -108,4 +108,55 @@ class Event extends Model
             };
         }
     }
+
+    public static function getDataReason()
+    {
+        $ar = collect();
+
+        $ar->push(['id' => 0, "name" => "Gérer vos comptes & moyens de paiement"]);
+        $ar->push(['id' => 1, "name" => "Ouvrir un compte"]);
+        $ar->push(['id' => 2, "name" => "Epargner ou placer"]);
+        $ar->push(['id' => 3, "name" => "Emprunter ou gérer vos crédits"]);
+        $ar->push(['id' => 4, "name" => "Etre assuré ou protégé"]);
+        $ar->push(['id' => 5, "name" => "Autre"]);
+
+        return $ar->toArray();
+    }
+
+    public static function getDataSubreason()
+    {
+        $ar = collect();
+
+        $ar->push(['id' => 0, "reason_id" => 0, "name" => "Gérer vos moyens de paiement"]);
+        $ar->push(['id' => 1, "reason_id" => 0, "name" => "Avoir des informations sur un découvert"]);
+        $ar->push(['id' => 2, "reason_id" => 0, "name" => "Transférer un compte"]);
+        $ar->push(['id' => 3, "reason_id" => 0, "name" => "Autre"]);
+
+        $ar->push(['id' => 4, "reason_id" => 1, "name" => "Ouvrir un compte supplémentaire"]);
+        $ar->push(['id' => 5, "reason_id" => 1, "name" => "Ouvrir un compte/livret pour un mineur"]);
+        $ar->push(['id' => 6, "reason_id" => 1, "name" => "Ouvrir un compte professionnel"]);
+        $ar->push(['id' => 7, "reason_id" => 1, "name" => "Autre"]);
+
+        $ar->push(['id' => 8, "reason_id" => 2, "name" => "Découvrir nos solutions d'épargne et de placement"]);
+        $ar->push(['id' => 9, "reason_id" => 2, "name" => "Obtenir un conseil personnalisé pour votre épargne ou vos placements"]);
+        $ar->push(['id' => 10, "reason_id" => 2, "name" => "Autre"]);
+
+        $ar->push(['id' => 11, "reason_id" => 3, "name" => "Financer un véhicule, un voyage, des travaux."]);
+        $ar->push(['id' => 12, "reason_id" => 3, "name" => "Financer des études"]);
+        $ar->push(['id' => 13, "reason_id" => 3, "name" => "Echanger sur votre futur projet immobilier"]);
+        $ar->push(['id' => 14, "reason_id" => 3, "name" => "Constituer votre dossier de crédit immobilier"]);
+        $ar->push(['id' => 15, "reason_id" => 3, "name" => "Autre"]);
+        $ar->push(['id' => 16, "reason_id" => 3, "name" => "Suivre ma demande de financement immobilier"]);
+        $ar->push(['id' => 17, "reason_id" => 3, "name" => "Gérer mon crédit"]);
+
+        $ar->push(['id' => 18, "reason_id" => 4, "name" => "Assurer un véhicule"]);
+        $ar->push(['id' => 19, "reason_id" => 4, "name" => "Obtenir de l'information sur l'assurance 2 roue"]);
+        $ar->push(['id' => 20, "reason_id" => 4, "name" => "Assurer un 2 roues"]);
+        $ar->push(['id' => 21, "reason_id" => 4, "name" => "Assurer une habitation"]);
+        $ar->push(['id' => 22, "reason_id" => 4, "name" => "Découvrir nos solutions d'assurance et de protection"]);
+        $ar->push(['id' => 23, "reason_id" => 4, "name" => "Obtenir un conseil personnalisé pour vous protéger ou protéger vos proches"]);
+        $ar->push(['id' => 24, "reason_id" => 4, "name" => "Autre"]);
+
+        return $ar->toArray();
+    }
 }

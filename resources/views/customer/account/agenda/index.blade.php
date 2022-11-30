@@ -217,6 +217,23 @@
                                         </div>
                                     @endforeach
                                 </div>
+                                <div class="flex-column " data-kt-stepper-element="content">
+                                    <div class="d-flex flex-center">
+                                        <x-base.underline
+                                            title="Votre besoin concerne"
+                                            color="bank"
+                                            size="2"
+                                            size-text="fs-1" class="w-auto mb-10"/>
+                                    </div>
+                                    <div class="m-0" id="inputReason">
+                                        @foreach(\App\Models\Core\Event::getDataReason() as $reason)
+                                            <div class="">
+                                                <input type="radio" class="btn-check" name="reason" value="{{ $reason->name }}" checked="checked"  id="{{ Str::slug($reason->name) }}"/>
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
                             </div>
                             <!--end::Group-->
 
