@@ -254,12 +254,14 @@
                                                 <input class="form-check-input" type="radio"  name="canal" value="agency"/>
                                             </span>
                                         </label>
-                                        <label class="d-flex flex-column w-200px rounded border">
+                                        <label class="d-flex flex-column w-200px rounded border p-5 text-center">
                                             <i class="fa-solid fa-building fs-2x"></i>
                                             <span class="">Par téléphone</span>
                                             <span class="fs-6">Durée estimée : 0h30</span>
-                                            <span class="form-check form-check-custom form-check-solid">
+                                            <span class="d-flex flex-center">
+                                                <span class="form-check form-check-custom form-check-solid">
                                                 <input class="form-check-input" type="radio"  name="canal" value="phone"/>
+                                            </span>
                                             </span>
                                         </label>
                                     </div>
