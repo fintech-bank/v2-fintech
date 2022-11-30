@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerRequest extends Model
 {
     protected $guarded = [];
+    protected $appends = ['model_data'];
 
     public function customer()
     {
@@ -47,5 +48,11 @@ class CustomerRequest extends Model
     public function documents()
     {
         return $this->hasMany(CustomerRequestDocument::class);
+    }
+
+    public function getModelDataAttribute()
+    {
+        $class = new $this->link_model;
+        return $class.find($this->link_id);
     }
 }

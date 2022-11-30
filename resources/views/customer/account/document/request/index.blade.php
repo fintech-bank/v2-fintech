@@ -36,7 +36,10 @@
                             <div class="text-muted fs-6">{{ $request->updated_at->format('d/m/Y') }}</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-right-long fs-2 me-5"></i>
+                    <span class="d-flex flex-row">
+                        <span>{{ $request->model_data->id }}</span>
+                        <i class="fa-solid fa-arrow-right-long fs-2 me-5"></i>
+                    </span>
                 </a>
             @endforeach
         </div>
