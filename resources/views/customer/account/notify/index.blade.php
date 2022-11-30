@@ -27,7 +27,7 @@
                         <div class="card-body">
                             <div class="d-flex flex-row justify-content-between">
                                 <div class="text-muted fs-1">{{ $notification->data['title'] }}</div>
-                                <div class="text-active-primary"><i class="fa-solid fa-arrow-right-long"></i> </div>
+                                <div class="text-active-primary"><i class="fa-solid fa-arrow-right-long text-active-primary"></i> </div>
                             </div>
                         </div>
                     </a>
