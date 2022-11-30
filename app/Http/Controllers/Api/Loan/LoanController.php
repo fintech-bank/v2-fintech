@@ -136,7 +136,7 @@ class LoanController extends ApiController
                     'first_payment_at' => $credit->first_payment_at->addMonth()
                 ]);
 
-                $credit->wallet->customer->info->notify(new ReportEcheanceNotification($credit->wallet->customer, $credit));
+                $credit->wallet->customer->info->notify(new ReportEcheanceNotification($credit->wallet->customer, $credit, "Prêt"));
 
                 return $this->sendSuccess();
             } else {
