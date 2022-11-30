@@ -43,7 +43,7 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
 
         Route::prefix('documents')->name('documents.')->group(function () {
             Route::get("/", [\App\Http\Controllers\Customer\Account\Document\DocumentController::class, 'index'])->name('index');
-            Route::get("{category_id}", [\App\Http\Controllers\Customer\Account\Document\DocumentController::class, 'category'])->name('category');
+            Route::get("category/{category_id}", [\App\Http\Controllers\Customer\Account\Document\DocumentController::class, 'category'])->name('category');
 
             Route::prefix('externe')->name('externe.')->group(function () {
                 Route::get('/', [\App\Http\Controllers\Customer\Account\Document\DocumentExterneController::class, 'index'])->name('index');
