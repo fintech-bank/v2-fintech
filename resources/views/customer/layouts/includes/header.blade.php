@@ -135,7 +135,7 @@
                 <!--begin::Notifications-->
                 <div class="app-navbar-item ms-1 ms-lg-3">
                     <!--begin::Menu- wrapper-->
-                    <a href="{{ route('agent.account.agenda.index') }}" class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-45px h-45px w-md-50px h-md-50px">
+                    <a href="{{ route('customer.account.agenda.index') }}" class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-45px h-45px w-md-50px h-md-50px">
                         <i class="fa-regular fa-calendar"></i>
                     </a>
                     <!--end::Menu wrapper-->
