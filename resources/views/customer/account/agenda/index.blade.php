@@ -193,179 +193,31 @@
                         </div>
                         <!--end::Nav-->
 
-                        <!--begin::Form-->
-                        <form class="form w-lg-500px mx-auto" novalidate="novalidate" id="kt_stepper_example_basic_form">
-                            <!--begin::Group-->
+                        <form class="form w-lg-500px mx-auto" action="/api/calendar" novalidate="novalidate" id="kt_stepper_example_basic_form" method="post">
                             <div class="mb-5">
-                                <!--begin::Step 1-->
                                 <div class="flex-column current" data-kt-stepper-element="content">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label">Example Label 1</label>
-                                        <!--end::Label-->
+                                    <div class="d-flex flex-center">
+                                        <x-base.underline
+                                            title="Vous souhaitez échanger avec"
+                                            color="bank"
+                                            size="2"
+                                            size-text="fs-1" class="w-auto mb-10"/>
 
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="input1" placeholder="" value=""/>
-                                        <!--end::Input-->
+                                        @foreach(\App\Models\User::where('agent', 1)->where('agency_id', auth()->user()->customers->agency->id)->get() as $agent)
+                                            <div class="mb-2">
+                                                <!--begin::Option-->
+                                                <input type="radio" class="btn-check" name="agent_id" value="{{ $agent->id }}"  id="agent_{{ $agent->id }}"/>
+                                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="agent_{{ $agent->id }}">
+                                                    <span class="d-block fw-semibold text-start">
+                                                        <span class="text-dark fw-bold d-block fs-3">{{ $agent->name }}</span>
+                                                        <span class="text-muted fw-semibold fs-6">Conseiller de clientèle</span>
+                                                    </span>
+                                                </label>
+                                                <!--end::Option-->
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <!--end::Input group-->
-
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label">Example Label 2</label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="input2" placeholder="" value=""/>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label">Example Label 3</label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Switch-->
-                                        <label class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" checked="checked" value="1"/>
-                                            <span class="form-check-label">
-                            Switch
-                        </span>
-                                        </label>
-                                        <!--end::Switch-->
-                                    </div>
-                                    <!--end::Input group-->
                                 </div>
-                                <!--begin::Step 1-->
-
-                                <!--begin::Step 1-->
-                                <div class="flex-column" data-kt-stepper-element="content">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label">Example Label 1</label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="input1" placeholder="" value=""/>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label">Example Label 2</label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <textarea class="form-control form-control-solid" rows="3" name="input2" placeholder=""></textarea>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label">Example Label 3</label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <label class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input" checked="checked" type="checkbox" value="1"/>
-                                            <span class="form-check-label">
-                            Checkbox
-                        </span>
-                                        </label>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                </div>
-                                <!--begin::Step 1-->
-
-                                <!--begin::Step 1-->
-                                <div class="flex-column" data-kt-stepper-element="content">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label d-flex align-items-center">
-                                            <span class="required">Input 1</span>
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Example tooltip"></i>
-                                        </label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="input1" placeholder="" value=""/>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label">
-                                            Input 2
-                                        </label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="input2" placeholder="" value=""/>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                </div>
-                                <!--begin::Step 1-->
-
-                                <!--begin::Step 1-->
-                                <div class="flex-column" data-kt-stepper-element="content">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label d-flex align-items-center">
-                                            <span class="required">Input 1</span>
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Example tooltip"></i>
-                                        </label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="input1" placeholder="" value=""/>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label">
-                                            Input 2
-                                        </label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="input2" placeholder="" value=""/>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-10">
-                                        <!--begin::Label-->
-                                        <label class="form-label">
-                                            Input 3
-                                        </label>
-                                        <!--end::Label-->
-
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="input3" placeholder="" value=""/>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                </div>
-                                <!--begin::Step 1-->
                             </div>
                             <!--end::Group-->
 
@@ -391,7 +243,7 @@
                                     </button>
 
                                     <button type="button" class="btn btn-primary" data-kt-stepper-action="next">
-                                        Continue
+                                        Suivant
                                     </button>
                                 </div>
                                 <!--end::Wrapper-->

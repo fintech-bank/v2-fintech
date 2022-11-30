@@ -124,6 +124,7 @@ Route::prefix('stat')->group(function () {
 });
 
 Route::prefix('calendar')->group(function () {
+    Route::post('/', [\App\Http\Controllers\Api\Calendar\CalendarController::class, 'store']);
     Route::post("list", [\App\Http\Controllers\Api\Calendar\CalendarController::class, 'list']);
     Route::delete('{id}', [\App\Http\Controllers\Api\Calendar\CalendarController::class, 'delete']);
 });
