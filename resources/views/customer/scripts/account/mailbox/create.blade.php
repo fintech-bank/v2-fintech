@@ -118,7 +118,7 @@
 
     $.ajax({
         url: '/api/user/list',
-        data: {'action': 'suggest', 'user_id': {{ auth()->user()->id }}},
+        data: {'action': 'customers', 'user_id': {{ auth()->user()->id }}},
         success: data => {
             let tags = new Tagify(elements.tagify, {
                 tagTextProp: 'name', // very important since a custom template is used with this property as text. allows typing a "value" or a "name" to match input with whitelist
