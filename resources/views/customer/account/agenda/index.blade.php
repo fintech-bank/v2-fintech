@@ -23,7 +23,7 @@
                     <div class="p-0 w-8px bg-bank h-75px rounded-start me-5">&nbsp;</div>
                     <div class="d-flex flex-column">
                         <span class="fs-2 fw-bold">M. MOCKELYN Maxime</span>
-                        <div class="fs-4">{{ formatDateFrench("2022-12-01 10:00:00", true) }}</div>
+                        <div class="fs-4">{{ formatDateFrench(\Carbon\Carbon::createFromTimestamp(strtotime("2022-12-01 10:00:00")), true) }}</div>
                     </div>
                 </div>
             </div>
