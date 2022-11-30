@@ -19,6 +19,8 @@
                 @foreach(\App\Models\Core\DocumentCategory::with('documents')->get() as $category)
                     <a href="{{ route('customer.account.documents.category', $category->id) }}" class="btn btn-lg {{ Route::is('customer.account.documents.category') ? 'btn-primary' : 'btn-secondary' }}">{{ $category->name }}</a>
                 @endforeach
+                <a href="" class="btn btn-lg {{ Route::is('customer.account.documents.externe.index') ? 'btn-primary' : 'btn-secondary' }}">Autres Documents</a>
+                <a href="" class="btn btn-lg {{ Route::is('customer.account.documents.request.index') ? 'btn-primary' : 'btn-secondary' }}">Mes Requêtes</a>
             </div>
         </div>
     </div>
