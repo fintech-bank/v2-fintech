@@ -25,6 +25,20 @@ class UserController extends Controller
             }
 
             return response()->json($ar);
+        } elseif($request->get('action') == 'customers') {
+            $users = User::where('agent', 1)->get();
+            $ar = [];
+
+            foreach ($users as $user) {
+                $ar[] = [
+                    'value' => $user->id,
+                    'name' => $user->name,
+                    'avatar' => $user->avatar_symbol,
+                    'email' => $user->email
+                ];
+            }
+
+            return response()->json($ar);
         }
     }
     public function info($userId)
