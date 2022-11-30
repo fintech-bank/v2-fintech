@@ -225,20 +225,10 @@
                                             size="2"
                                             size-text="fs-1" class="w-auto mb-10"/>
                                     </div>
-                                    <div class="m-0" id="inputReason">
-                                        @foreach(\App\Models\Core\Event::getDataReason() as $reason)
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <input type="radio" class="btn-check" name="reason" value="{{ $reason['name'] }}" checked="checked"  id="{{ Str::slug($reason['name']) }}"/>
-                                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5 w-100" for="{{ Str::slug($reason['name']) }}">
-                                                    <span class="d-block fw-semibold text-start">
-                                                        <span class="text-dark fw-bold d-block fs-3">{{ $reason['name'] }}</span>
-                                                    </span>
-                                                    <i class="fa-solid fa-chevron-right fs-4x ms-4"></i>
-                                                </label>
-                                            </div>
-                                        @endforeach
-
-                                    </div>
+                                    <x-form.select
+                                        name="reason"
+                                        label="Votre besoin concerne"
+                                        :datas="\App\Models\Core\Event::getDataReason()" />
                                 </div>
                             </div>
                             <!--end::Group-->
