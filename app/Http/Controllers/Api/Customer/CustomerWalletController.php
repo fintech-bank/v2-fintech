@@ -95,6 +95,6 @@ class CustomerWalletController extends Controller
             'status' => $request->get('status')
         ]);
 
-        $wallet->customer->info->notify(new UpdateStatusWalletNotification($wallet->customer, $wallet, $wallet->status));
+        $wallet->customer->info->notify(new UpdateStatusWalletNotification($wallet->customer, $wallet, "Comptes & Moyens de paiement"));
     }
 }

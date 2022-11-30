@@ -52,22 +52,22 @@ class $CLASS_NAME$ extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
 
             if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";

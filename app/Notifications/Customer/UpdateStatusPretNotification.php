@@ -19,14 +19,21 @@ class UpdateStatusPretNotification extends Notification
     public string $message;
     public Customer $customer;
     private CustomerPret $pret;
+    private string $category;
 
-    public function __construct(Customer $customer, CustomerPret $pret)
+    /**
+     * @param Customer $customer
+     * @param CustomerPret $pret
+     * @param string $category
+     */
+    public function __construct(Customer $customer, CustomerPret $pret, string $category)
     {
         $this->customer = $customer;
         $this->pret = $pret;
         $this->title = "Votre {$pret->plan->name} N° {$pret->reference}";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -57,13 +64,13 @@ class UpdateStatusPretNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -96,6 +103,8 @@ class UpdateStatusPretNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->pret]
         ];
     }
 }

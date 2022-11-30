@@ -1,4 +1,4 @@
-@extends("emails.layouts.template")
+@extends("emails.layouts.template_reseller")
 
 @section("content")
     <div class="d-flex flex-column bg-gray-400 p-5 ms-20 me-20 mt-20 mb-5 w-600px rounded">

@@ -16,13 +16,19 @@ class VerifRequestLoanNotification extends Notification
     public string $title;
     public string $link;
     public string $message;
+    private string $category;
 
-    public function __construct(CustomerPret $pret)
+    /**
+     * @param CustomerPret $pret
+     * @param string $category
+     */
+    public function __construct(CustomerPret $pret, string $category)
     {
         $this->pret = $pret;
         $this->title = "Votre demande de pret bancaire";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -62,6 +68,8 @@ class VerifRequestLoanNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->pret->customer, $this->pret]
         ];
     }
 
@@ -85,22 +93,22 @@ class VerifRequestLoanNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->pret->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->pret->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
 
             if($this->pret->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->pret->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";

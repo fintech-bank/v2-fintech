@@ -19,18 +19,21 @@ class UpdateCheckoutCheckNotification extends Notification
     public string $message;
     public Customer $customer;
     private CustomerCheck $check;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerCheck $check
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerCheck $check)
+    public function __construct(Customer $customer, CustomerCheck $check, string $category)
     {
         $this->customer = $customer;
         $this->check = $check;
         $this->title = "Information sur votre chéquier N°{$this->check->reference}";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -72,13 +75,13 @@ class UpdateCheckoutCheckNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -111,6 +114,8 @@ class UpdateCheckoutCheckNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->check]
         ];
     }
 }

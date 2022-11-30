@@ -20,6 +20,7 @@ use App\Notifications\Customer\LogNotification;
 use App\Notifications\Customer\NewContractInsuranceNotification;
 use App\Notifications\Customer\NewPretNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
+use App\Notifications\Customer\UpdateStatusAccountNotificationP;
 use App\Scope\CalcLoanInsuranceTrait;
 use App\Scope\CalcLoanTrait;
 use App\Services\Stripe;
@@ -317,7 +318,7 @@ class CustomerController extends Controller
                 'status_open_account' => $request->get('status_open_account')
             ]);
 
-            $customer->user->notify(new UpdateStatusAccountNotification($customer, $customer->status_text));
+            $customer->user->notify(new UpdateStatusAccountNotification($customer, "Comptes & Moyens de paiement"));
 
         }catch (\Exception $exception) {
             LogHelper::notify('critical', $exception->getMessage());

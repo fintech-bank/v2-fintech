@@ -19,18 +19,21 @@ class RejectSepaNotification extends Notification
     public string $message;
     public Customer $customer;
     public CustomerSepa $sepa;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerSepa $sepa
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerSepa $sepa)
+    public function __construct(Customer $customer, CustomerSepa $sepa, string $category)
     {
         $this->customer = $customer;
         $this->sepa = $sepa;
         $this->title = "Rejet d'un prélèvement bancaire";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -43,13 +46,13 @@ class RejectSepaNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -76,12 +79,14 @@ class RejectSepaNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            "icon" => "ban",
+            "icon" => "fa-ban",
             "color" => "danger",
             "title" => $this->title,
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->sepa]
         ];
     }
 }

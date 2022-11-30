@@ -55,7 +55,7 @@ class ShipTpeNotificationP extends Notification
      */
     public function toMail($notifiable)
     {
-        $message = (new MailMessage())->view('emails.reseller.ship', [
+        $message = (new MailMessage())->view('emails.reseller.ship_tpe', [
             'reseller' => $this->reseller,
             'shipping' => $this->shipping
         ]);

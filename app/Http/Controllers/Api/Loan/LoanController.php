@@ -95,7 +95,7 @@ class LoanController extends ApiController
                         'confirmed_at' => now()
                     ]);
 
-                    $credit->customer->info->notify(new UpdateStatusPretNotification($credit->customer, $credit));
+                    $credit->customer->info->notify(new UpdateStatusPretNotification($credit->customer, $credit, "Prêt"));
 
                     return $this->sendSuccess();
                 } else {
@@ -107,7 +107,7 @@ class LoanController extends ApiController
                     'confirmed_at' => now()
                 ]);
 
-                $credit->customer->info->notify(new UpdateStatusPretNotification($credit->customer, $credit));
+                $credit->customer->info->notify(new UpdateStatusPretNotification($credit->customer, $credit, "Prêt"));
 
                 return $this->sendSuccess();
             }
@@ -122,7 +122,7 @@ class LoanController extends ApiController
             'status' => 'refused'
         ]);
 
-        $credit->customer->info->notify(new UpdateStatusPretNotification($credit->customer, $credit));
+        $credit->customer->info->notify(new UpdateStatusPretNotification($credit->customer, $credit, "Prêt"));
 
         return $this->sendSuccess();
     }

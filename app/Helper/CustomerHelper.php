@@ -464,7 +464,7 @@ class CustomerHelper
             ];
         }
 
-        $user->notify(new \App\Notifications\Customer\WelcomeNotification($customer, $documents));
+        $user->notify(new \App\Notifications\Customer\WelcomeNotification($customer, $documents, "Bienvenue"));
 
         $this->setOptions($session, $customer, $wallet, $card, $setting);
 

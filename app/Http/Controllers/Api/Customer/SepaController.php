@@ -68,7 +68,7 @@ class SepaController extends Controller
             now()
         );
 
-        $sepa->wallet->customer->info->notify(new RejectSepaNotification($sepa->wallet->customer, $sepa));
+        $sepa->wallet->customer->info->notify(new RejectSepaNotification($sepa->wallet->customer, $sepa, "Comptes & Moyens de paiement"));
 
         return response()->json();
     }

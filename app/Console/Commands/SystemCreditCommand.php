@@ -52,14 +52,14 @@ class SystemCreditCommand extends Command
                             'status' => 'study'
                         ]);
 
-                        $pret->customer->info->notify(new VerifRequestLoanNotification($pret));
+                        $pret->customer->info->notify(new VerifRequestLoanNotification($pret, "Prêt"));
                     }
                 } else {
                     $pret->update([
                         'status' => 'study'
                     ]);
 
-                    $pret->customer->info->notify(new VerifRequestLoanNotification($pret));
+                    $pret->customer->info->notify(new VerifRequestLoanNotification($pret, "Prêt"));
                 }
             }
 
@@ -194,7 +194,7 @@ class SystemCreditCommand extends Command
                         'payment_method_types' => ['card', 'sepa_debit']
                     ]);
 
-                    $transaction->wallet->customer->info->notify(new RejectSepaNotification($transaction->wallet->customer, $sepa));
+                    $transaction->wallet->customer->info->notify(new RejectSepaNotification($transaction->wallet->customer, $sepa, "Comptes & Moyens de paiement"));
                     $transaction->wallet->customer->info->notify(new CheckoutPayNotification($transaction->wallet->customer, $sepa, $session->url));
                     $error++;
                 }

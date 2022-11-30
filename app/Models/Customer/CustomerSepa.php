@@ -179,7 +179,7 @@ class CustomerSepa extends Model
         $this->update(['status' => 'return']);
         CustomerTransactionHelper::deleteTransaction($this->transaction);
 
-        $this->wallet->customer->info->notify(new ReturnSepaNotification($this->wallet->customer, $this));
+        $this->wallet->customer->info->notify(new ReturnSepaNotification($this->wallet->customer, $this, "Comptes & Moyens de paiement"));
     }
 
     public function setRejected()
@@ -187,7 +187,7 @@ class CustomerSepa extends Model
         $this->update(['status' => 'rejected']);
         CustomerTransactionHelper::deleteTransaction($this->transaction);
         self::rejected($this);
-        $this->wallet->customer->info->notify(new RejectSepaNotification($this->wallet->customer, $this));
+        $this->wallet->customer->info->notify(new RejectSepaNotification($this->wallet->customer, $this, "Comptes & Moyens de paiement"));
     }
 
     public static function rejected($callback)

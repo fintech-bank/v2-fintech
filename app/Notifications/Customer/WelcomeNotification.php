@@ -18,18 +18,21 @@ class WelcomeNotification extends Notification
     public string $message;
     public Customer $customer;
     public array $documents;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param array $documents
+     * @param string $category
      */
-    public function __construct(Customer $customer, array $documents)
+    public function __construct(Customer $customer, array $documents, string $category)
     {
         $this->customer = $customer;
         $this->documents = $documents;
-        $this->title = "";
+        $this->title = "Bienvenue chez ".config('app.name');
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -56,13 +59,13 @@ class WelcomeNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -77,7 +80,7 @@ class WelcomeNotification extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage);
-        $message->subject("Bienvenue chez ".config('app.name'));
+        $message->subject($this->title);
         $message->introLines = [
             'NOUS AVONS HÂTE DE VOUS COMPTER PARMI NOUS'
         ];
@@ -102,6 +105,8 @@ class WelcomeNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer]
         ];
     }
 }

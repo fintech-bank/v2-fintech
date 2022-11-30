@@ -40,7 +40,7 @@ class SystemCheckCommand extends Command
             if($check->updated_at->startOfDay() == now()->startOfDay()) {
                 $check->update(['status' => 'manufacture', 'updated_at' => now()]);
 
-                $check->wallet->customer->info->notify(new UpdateCheckoutCheckNotification($check->wallet->customer, $check));
+                $check->wallet->customer->info->notify(new UpdateCheckoutCheckNotification($check->wallet->customer, $check, "Comptes & Moyens de paiement"));
                 $i++;
             }
         }
@@ -57,7 +57,7 @@ class SystemCheckCommand extends Command
             if($check->updated_at->addDay()->startOfDay() == now()->startOfDay()) {
                 $check->update(['status' => 'ship', 'updated_at' => now()]);
 
-                $check->wallet->customer->info->notify(new UpdateCheckoutCheckNotification($check->wallet->customer, $check));
+                $check->wallet->customer->info->notify(new UpdateCheckoutCheckNotification($check->wallet->customer, $check, "Comptes & Moyens de paiement"));
             }
         }
 
@@ -73,7 +73,7 @@ class SystemCheckCommand extends Command
             if($check->updated_at->addDays(2)->startOfDay() == now()->startOfDay()) {
                 $check->update(['status' => 'outstanding', 'updated_at' => now()]);
 
-                $check->wallet->customer->info->notify(new UpdateCheckoutCheckNotification($check->wallet->customer, $check));
+                $check->wallet->customer->info->notify(new UpdateCheckoutCheckNotification($check->wallet->customer, $check, "Comptes & Moyens de paiement"));
             }
         }
 

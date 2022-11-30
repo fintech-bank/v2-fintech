@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Customer\Customer;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
+use App\Notifications\Customer\UpdateStatusAccountNotificationP;
 use App\Services\CotationClient;
 use App\Services\SlackNotifier;
 use Illuminate\Console\Command;
@@ -77,7 +78,7 @@ class SystemCustomerCommand extends Command
                 'status_open_account' => 'terminated'
             ]);
 
-            $account->info->notify(new UpdateStatusAccountNotification($account, $account->status_open_account));
+            $account->info->notify(new UpdateStatusAccountNotification($account, "Comptes & Moyens de paiement"));
 
             $arr[] = [
                 $account->info->full_name,

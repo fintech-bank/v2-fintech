@@ -61,7 +61,7 @@ class PretController extends ApiController
             'status' => $state
         ]);
 
-        $pret->customer->info->notify(new UpdateStatusPretNotification($pret->customer, $pret));
+        $pret->customer->info->notify(new UpdateStatusPretNotification($pret->customer, $pret, "Prêt"));
 
         return $this->sendSuccess();
     }

@@ -20,18 +20,21 @@ class ShipTpeNotification extends Notification
     public string $message;
     private Reseller $reseller;
     private Shipping $shipping;
+    private string $category;
 
     /**
      * @param Reseller $reseller
      * @param Shipping $shipping
+     * @param string $category
      */
-    public function __construct(Reseller $reseller, Shipping $shipping)
+    public function __construct(Reseller $reseller, Shipping $shipping, string $category)
     {
         $this->reseller = $reseller;
         $this->shipping = $shipping;
         $this->title = "Notification d'envoie FINTECH, numéro de suivi ".$this->shipping->number_ship;
         $this->message = $this->getMessage();
         $this->link = "https://tracker.fintech.ovh/ship?suivi=".$this->shipping->number_ship;
+        $this->category = $category;
     }
 
     private function getMessage()
@@ -73,19 +76,7 @@ class ShipTpeNotification extends Notification
 
     private function choiceChannel()
     {
-        if (config("app.env") == "local") {
-            if($this->customer->setting->notif_mail) {
-                return "mail";
-            }
-
-            return "database";
-        } else {
-            if($this->customer->setting->notif_mail) {
-                return "mail";
-            }
-
-            return "database";
-        }
+        return ["mail", "database"];
     }
 
     public function via($notifiable)
@@ -99,7 +90,7 @@ class ShipTpeNotification extends Notification
         $message->subject($this->title);
         $message->view("emails.reseller.ship_tpe", [
             "content" => $this->message,
-            "customer" => $this->customer
+            "reseller" => $this->reseller
         ]);
 
         return $message;
@@ -108,12 +99,14 @@ class ShipTpeNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            "icon" => "",
-            "color" => "",
+            "icon" => "fa-truck-fast",
+            "color" => "primary",
             "title" => $this->title,
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->reseller, $this->shipping]
         ];
     }
 }

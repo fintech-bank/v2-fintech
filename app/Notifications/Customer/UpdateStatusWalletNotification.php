@@ -20,64 +20,54 @@ class UpdateStatusWalletNotification extends Notification
     public string $message;
     public Customer $customer;
     public CustomerWallet $wallet;
-    public string $status;
+    private string $category;
 
     /**
      * @param Customer $customer
      * @param CustomerWallet $wallet
-     * @param string $status
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerWallet $wallet, string $status)
+    public function __construct(Customer $customer, CustomerWallet $wallet, string $category)
     {
         $this->customer = $customer;
         $this->wallet = $wallet;
-        $this->status = $status;
         $this->title = "Information sur votre compte bancaire";
         $this->message = $this->getMessage();
         $this->link = "";
 
+        $this->category = $category;
     }
 
     public function getMessage()
     {
-        $message = "Votre compte N°".$this->wallet->number_account." est maintenant <span class='fw-bolder text-'".$this->wallet->status_color."'>".$this->wallet->status_text."</span>";
-        switch ($this->wallet->status) {
-            case 'pending':
-                $message .= "<p>Votre compte est actuellement en train d'être ouvert par notre service financier.</p>";
-                break;
-            case 'active':
-                $message .= "<p>Vous pouvez dorénavant utiliser votre compte bancaire, comme il vous plaira.<br>Si vous avez des questions relatives à ce compte, n'hésitez pas à contacter votre conseiller clientele.</p>";
-                break;
-            case 'suspended':
-                $message .= "<p>Votre compte est actuellement bloqué par nos services.<br>Pour plus de renseignement, contacter votre conseiller clientele.</p>";
-                break;
-            case 'closed':
-                $message .= "<p>Votre compte a été clôturé par nos services.</p>";
-                break;
-        }
-        return $message;
+        return match($this->wallet->status) {
+            "pending" => $this->onPending(),
+            "active" => $this->onActive(),
+            "suspended" => $this->onSuspended(),
+            "closed" => $this->onClosed()
+        };
     }
 
     private function choiceChannel()
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
 
             if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -109,6 +99,8 @@ class UpdateStatusWalletNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->wallet]
         ];
     }
 
@@ -127,5 +119,42 @@ class UpdateStatusWalletNotification extends Notification
 
         return $message;
     }
+
+    private function onPending()
+    {
+        ob_start();
+        ?>
+        <p>Votre compte <strong><?= $this->wallet->number_account ?></strong> est maintenant <span class="fw-bolder text-<?= $this->wallet->status_color ?>"><?= $this->wallet->status_text ?></span> </p>
+        <p>Votre compte est actuellement en train d'être ouvert par notre service financier.</p>
+        <?php
+        return ob_get_clean();
+    }
+    private function onActive()
+    {
+        ob_start();
+        ?>
+        <p>Votre compte <strong><?= $this->wallet->number_account ?></strong> est maintenant <span class="fw-bolder text-<?= $this->wallet->status_color ?>"><?= $this->wallet->status_text ?></span> </p>
+        <p>Vous pouvez dorénavant utiliser votre compte bancaire, comme il vous plaira.<br>Si vous avez des questions relatives à ce compte, n'hésitez pas à contacter votre conseiller clientele.</p>
+        <?php
+        return ob_get_clean();
+    }
+    private function onSuspended()
+    {
+        ob_start();
+        ?>
+        <p>Votre compte <strong><?= $this->wallet->number_account ?></strong> est maintenant <span class="fw-bolder text-<?= $this->wallet->status_color ?>"><?= $this->wallet->status_text ?></span> </p>
+        <p>Votre compte est actuellement bloqué par nos services.<br>Pour plus de renseignement, contacter votre conseiller clientele.</p>
+        <?php
+        return ob_get_clean();
+    }
+    private function onClosed()
+    {
+        ob_start();
+        ?>
+        <p>Votre compte <strong><?= $this->wallet->number_account ?></strong> est maintenant <span class="fw-bolder text-<?= $this->wallet->status_color ?>"><?= $this->wallet->status_text ?></span> </p>
+        <p>Votre compte a été clôturé par nos services.</p>
+        <?php
+        return ob_get_clean();
+    }
 }
-?>
+

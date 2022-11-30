@@ -38,7 +38,7 @@ class TransactionController extends Controller
                 ]);
 
                 $transaction->delete();
-                $transaction->wallet->customer->info->notify(new RejectTransactionNotification($transaction->wallet->customer, $transaction, $request->get('raison')));
+                $transaction->wallet->customer->info->notify(new RejectTransactionNotification($transaction->wallet->customer, $transaction, $request->get('raison'), "Comptes & Moyens de paiement"));
 
                 return response()->json();
 

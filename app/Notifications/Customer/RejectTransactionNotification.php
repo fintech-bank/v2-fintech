@@ -19,14 +19,16 @@ class RejectTransactionNotification extends Notification
     public string $title;
     public string $link;
     public string $message;
+    private string $category;
 
 
     /**
      * @param Customer $customer
      * @param CustomerTransaction $transaction
      * @param string $raison
+     * @param string $category
      */
-    public function __construct(Customer $customer, CustomerTransaction $transaction, string $raison)
+    public function __construct(Customer $customer, CustomerTransaction $transaction, string $raison, string $category)
     {
         $this->customer = $customer;
         $this->transaction = $transaction;
@@ -34,12 +36,13 @@ class RejectTransactionNotification extends Notification
         $this->title = "Rejet d'une transaction par la banque";
         $this->message = $this->getMessage();
         $this->link = "";
+        $this->category = $category;
     }
 
     private function getMessage()
     {
         $message = "<p>Une transaction d'un montant de {$this->transaction->amount_format} à été rejeté par notre servbice financier en date du {$this->transaction->updated_at->format('d/m/Y')}.</p>";
-        $message .= "<p>Malheureusement, ce rejet entraine des frais supplémentaire.</p>";
+        $message .= "<p>Malheureusement, ce rejet entraine des frais supplémentaires.</p>";
         $message .= "<p>La raison évoquer pour ce rejet est : {$this->raison}</p>";
         $message .= "<br>";
         $message .= "<p>Pour éviter d'autres frais, mettez de l'argent sur votre compte au plus vite.</p>";
@@ -50,22 +53,22 @@ class RejectTransactionNotification extends Notification
     {
         if (config("app.env") == "local") {
             if($this->customer->setting->notif_sms) {
-                return [FreeMobileChannel::class];
+                return [FreeMobileChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
         } else {
 
             if($this->customer->setting->notif_sms) {
-                return [TwilioChannel::class];
+                return [TwilioChannel::class, "database"];
             }
 
             if($this->customer->setting->notif_mail) {
-                return "mail";
+                return ["mail", "database"];
             }
 
             return "database";
@@ -101,6 +104,8 @@ class RejectTransactionNotification extends Notification
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
+            "category" => $this->category,
+            "models" => [$this->customer, $this->transaction, $this->raison]
         ];
     }
 
