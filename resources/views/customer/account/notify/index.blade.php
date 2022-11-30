@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-
+                            <div class="text-muted fs-1">{{ $notification->data['title'] }}</div>
                         </div>
                     </div>
                 @endforeach
