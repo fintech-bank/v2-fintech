@@ -6,6 +6,6 @@ class Client extends Powens
 {
     public function list()
     {
-        return \Http::get($this->endpoint."users")->object();
+        return \Http::withToken($this->auth_token)->get($this->endpoint."users")->object();
     }
 }
