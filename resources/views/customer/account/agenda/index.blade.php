@@ -247,8 +247,8 @@
                                     </div>
                                     <div class="d-flex flex-row justify-content-around">
                                         <label class="d-flex flex-column w-200px rounded border p-5 text-center">
-                                            <i class="fa-solid fa-building fs-2x"></i>
-                                            <span class="">En agence</span>
+                                            <i class="fa-solid fa-building fs-2tx"></i>
+                                            <span class="fs-3">En agence</span>
                                             <span class="fs-6">Durée estimée : 1h00</span>
                                             <span class="d-flex flex-center">
                                                 <span class="form-check form-check-custom form-check-solid">
@@ -257,8 +257,8 @@
                                             </span>
                                         </label>
                                         <label class="d-flex flex-column w-200px rounded border p-5 text-center">
-                                            <i class="fa-solid fa-building fs-2x"></i>
-                                            <span class="">Par téléphone</span>
+                                            <i class="fa-solid fa-phone fs-2tx"></i>
+                                            <span class="fs-3">Par téléphone</span>
                                             <span class="fs-6">Durée estimée : 0h30</span>
                                             <span class="d-flex flex-center">
                                                 <span class="form-check form-check-custom form-check-solid">
