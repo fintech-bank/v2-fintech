@@ -1,12 +1,30 @@
 <script type="text/javascript">
     let tables = {}
     let elements = {
-        stepperElement: document.querySelector("#stepper_rdv")
+        stepperElement: document.querySelector("#stepper_rdv"),
+        inputSubreason: document.querySelector("#inputSubreason"),
+        inputReason: document.querySelector('[name="reason"]')
     }
     let modals = {}
     let forms = {}
     let dataTable = {}
     let block = {}
+
+    let showSubreason = (item) => {
+        $.ajax({
+            url: '/api/calendar/subreason',
+            method: 'POST',
+            data: {"reason_id": item.value},
+            success: data => {
+                elements.inputSubreason.innerHTML = data
+            }
+        })
+    }
+
+    elements.inputReason.addEventListener('change', e => {
+        e.preventDefault()
+        showSubreason(e.target)
+    })
 
     let stepperRdv = new KTStepper(elements.stepperElement)
 

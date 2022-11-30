@@ -63,4 +63,22 @@ class CalendarController extends Controller
 
         return response()->json($arr);
     }
+
+    public function subreason(Request $request)
+    {
+        $subreasons = Event::getDataSubreason()->where('reason_id', $request->get('reason_id'));
+        ob_start();
+        ?>
+        <div class="mb-10">
+            <label for="subreason_id" class="form-label">Et plus particulierement</label>
+            <select class="form-control form-control-solid selectpicker" name="subreason">
+                <option value=""></option>
+                <?php foreach ($subreasons as $subreason): ?>
+                    <option value="<?= $subreason['name'] ?>"><?= $subreason['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <?php
+        return response()->json(ob_get_clean());
+    }
 }

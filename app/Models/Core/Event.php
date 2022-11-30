@@ -157,6 +157,6 @@ class Event extends Model
         $ar->push(['id' => 23, "reason_id" => 4, "name" => "Obtenir un conseil personnalisé pour vous protéger ou protéger vos proches"]);
         $ar->push(['id' => 24, "reason_id" => 4, "name" => "Autre"]);
 
-        return $ar->toArray();
+        return $ar;
     }
 }

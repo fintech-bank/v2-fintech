@@ -229,6 +229,8 @@
                                         name="reason"
                                         label="Votre besoin concerne"
                                         :datas="\App\Models\Core\Event::getDataReason()" />
+
+                                    <div id="inputSubreason"></div>
                                 </div>
                             </div>
                             <!--end::Group-->
