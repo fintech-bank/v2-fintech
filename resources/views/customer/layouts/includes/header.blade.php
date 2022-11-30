@@ -74,15 +74,15 @@
                                     <div class="d-flex align-items-center">
                                         <!--begin::Symbol-->
                                         <div class="symbol symbol-35px me-4">
-										<span class="symbol-label bg-light-primary">
-                                            <i class="fa-solid fa-{{ $notify['data']['icon'] }} text-{{ $notify['data']['color'] }} fa-2x"></i>
+										<span class="symbol-label bg-light-{{ $notify['data']['color'] }}">
+                                            <i class="fa-solid {{ $notify['data']['icon'] }} text-{{ $notify['data']['color'] }} fa-2x"></i>
 										</span>
                                         </div>
                                         <!--end::Symbol-->
                                         <!--begin::Title-->
                                         <div class="mb-0 me-2">
                                             <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-bold">{{ $notify['data']['title'] }}</a>
-                                            <div class="text-gray-400 fs-7">{{ $notify['data']['text'] ? \Illuminate\Support\Str::limit($notify['data']['text'], 50, '...') : '' }}</div>
+                                            <div class="text-gray-400 fs-7">{!! $notify['data']['text'] ? \Illuminate\Support\Str::limit($notify['data']['text'], 50, '...') : '' !!}</div>
                                         </div>
                                         <!--end::Title-->
                                     </div>
