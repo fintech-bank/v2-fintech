@@ -250,8 +250,10 @@
                                             <i class="fa-solid fa-building fs-2x"></i>
                                             <span class="">En agence</span>
                                             <span class="fs-6">Durée estimée : 1h00</span>
-                                            <span class="form-check form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="radio"  name="canal" value="agency"/>
+                                            <span class="d-flex flex-center">
+                                                <span class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="radio"  name="canal" value="phone"/>
+                                                </span>
                                             </span>
                                         </label>
                                         <label class="d-flex flex-column w-200px rounded border p-5 text-center">
@@ -260,8 +262,8 @@
                                             <span class="fs-6">Durée estimée : 0h30</span>
                                             <span class="d-flex flex-center">
                                                 <span class="form-check form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="radio"  name="canal" value="phone"/>
-                                            </span>
+                                                    <input class="form-check-input" type="radio"  name="canal" value="phone"/>
+                                                </span>
                                             </span>
                                         </label>
                                     </div>
