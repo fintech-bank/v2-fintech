@@ -40,6 +40,11 @@ Route::prefix('stripe')->group(function () {
     Route::get('/success', [\App\Http\Controllers\StripeController::class, 'success'])->name('stripe.success');
 });
 
+Route::prefix('powens')->group(function () {
+    Route::get('webview', [\App\Http\Controllers\PowensController::class, 'webview'])->name('powens.webview');
+    Route::get('webview/success', [\App\Http\Controllers\PowensController::class, 'success'])->name('powens.success');
+});
+
 Auth::routes();
 Route::mailweb();
 
