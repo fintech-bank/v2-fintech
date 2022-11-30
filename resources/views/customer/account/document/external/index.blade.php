@@ -22,8 +22,8 @@
                 <a href="{{ route('customer.account.documents.externe.index') }}" class="btn btn-lg {{ Route::is('customer.account.documents.externe.index') ? 'btn-primary' : 'btn-secondary' }}">Autres Documents</a>
                 <a href="{{ route('customer.account.documents.request.index') }}" class="btn btn-lg {{ Route::is('customer.account.documents.request.index') ? 'btn-primary' : 'btn-secondary' }}">Mes Requêtes</a>
             </div>
-            <a href="{{ route('powens.webview') }}" class="btn btn-outline-primary">Nouveau connecteur</a>
         </div>
+        <a href="{{ route('powens.webview') }}" class="btn btn-outline-primary">Nouveau connecteur</a>
     </div>
 @endsection
 
