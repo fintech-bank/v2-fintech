@@ -28,7 +28,8 @@
                 title="Mes demandes en attente"
                 class="w-100 my-5 "
                 size="4"
-                size-text="fs-1" />
+                size-text="fs-1"
+                color="warning" />
 
             @foreach($requests->where('status', 'waiting')->get() as $request)
                 <a href="{{ route('customer.account.documents.request.show', $request->reference) }}" class="d-flex flex-row justify-content-between align-items-center shadow rounded h-75px mb-10 hover-zoom text-black" target="_blank">
@@ -50,6 +51,10 @@
             <div class="separator border-gray-300 my-10"></div>
 
             <x-base.underline
+                class="w-100 my-5 "
+                size="4"
+                size-text="fs-1"
+                color="warning"
                 title="Mes demandes en traitement" />
 
             @foreach($requests->where('status', 'progress')->get() as $request)
