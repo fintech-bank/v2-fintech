@@ -8,7 +8,7 @@
 
 @section("content")
     <div id="app">
-        <div class="row align-items-center">
+        <div class="row">
             <div class="col-md-3 col-sm-12 mb-5">
                 <div class="card shadow-sm mb-10">
                     <div class="card-header">
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-12 mb-5">
+            <div class="col-md-3 col-sm-12 mb-5 align-items-center">
                 <div class="card shadow-sm">
                     <div class="card-body text-center">
                         <div class="fs-6">Votre rendez-vous est dans:</div>
