@@ -225,7 +225,7 @@
     $.ajax({
         url: '/api/calendar/list',
         method: 'POST',
-        data: {'user_id': {{ auth()->user()->id }}},
+        data: {'user_id': {{ auth()->user()->agents->id }}},
         success: data => {
             let calendar = new FullCalendar.Calendar(elements.calendarApp, {
                 headerToolbar: {

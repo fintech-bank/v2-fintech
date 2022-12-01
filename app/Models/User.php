@@ -195,7 +195,7 @@ class User extends Authenticatable
         return $this->hasMany(TicketConversation::class);
     }
 
-    public function agent()
+    public function agents()
     {
         return $this->hasOne(Agent::class);
     }
