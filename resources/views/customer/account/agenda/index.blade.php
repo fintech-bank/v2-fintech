@@ -300,6 +300,8 @@
 
                                     <div id="date_rdv" class="booking-datetime"></div>
                                     <input type="hidden" name="start_at" value="">
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                    <input type="hidden" name="type" value="customer">
 
                                 </div>
                             </div>

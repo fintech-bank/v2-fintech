@@ -5,7 +5,7 @@
     <select id="{{ $name }}" class="form-control selectpicker" name="{{ $name }}" data-live-search="true" data-header="{{ isset($placeholder) ?? $label }}" {{ $required !== false ? 'required' : "" }}>
         <option value=""></option>
         @foreach($datas as $data)
-            <option value="{{ $data['id'] }}" @if(isset($value) && $data['id'] == $value) selected="selected" @endif data-content="{!! $data['value'] !!}">{{ $data['value'] }}</option>
+            <option value="{{ is_integer($data['id']) ?? $data['value'] }}" @if(isset($value) && $data['id'] == $value) selected="selected" @endif data-content="{!! $data['value'] !!}">{{ $data['value'] }}</option>
         @endforeach
     </select>
 </div>

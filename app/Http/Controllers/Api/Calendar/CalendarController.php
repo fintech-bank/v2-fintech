@@ -66,6 +66,27 @@ class CalendarController extends Controller
         return response()->json($arr);
     }
 
+    public function store(Request $request)
+    {
+        $agent = Agent::find($request->get('agent_id'));
+        $start_at = Carbon::createFromTimestamp(strtotime($request->get('start_at')));
+        $event = Event::create([
+            'type' => $request->get('type'),
+            'reason' => $request->get('reason'),
+            'subreason' => $request->get('subreason'),
+            'question' => $request->get('question'),
+            'canal' => $request->get('canal'),
+            'lieu' => $request->get('canal') == 'agency' ? $agent->agency->name : '',
+            'start_at' => $start_at,
+            'end_at' => $request->get('canal') == 'phone' ? $start_at->addMinutes(30) : $start_at->addHour(),
+            'allDay' => false,
+            'agent_id' => $agent->id,
+            'user_id' => $request->get('user_id')
+        ]);
+
+
+    }
+
     public function subreason(Request $request)
     {
         $subreasons = Event::getDataSubreason()->where('reason_id', $request->get('reason_id'));
