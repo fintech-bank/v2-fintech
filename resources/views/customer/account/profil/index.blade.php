@@ -27,7 +27,7 @@
                     </div>
                     <p>Gérez vos moyens de sécurité : code secret, numéro de téléphone sécurité et Pass Sécurité</p>
                     <div class="text-end">
-                        <a href="" class="btn btn-link btn-active-primary"><i class="fa-solid fa-arrow-right-long"></i> </a>
+                        <a href="" class="btn btn-link text-active-primary"><i class="fa-solid fa-arrow-right-long fs-1"></i> </a>
                     </div>
                 </div>
             </div>
