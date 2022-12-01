@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex flex-row align-items-center">
-                            <div class="symbol symbol-50px symbol-circle">
+                            <div class="symbol symbol-50px symbol-circle me-5">
                                 {!! $event->agent->user->avatar_symbol !!}
                             </div>
                             <div class="d-flex flex-column">
