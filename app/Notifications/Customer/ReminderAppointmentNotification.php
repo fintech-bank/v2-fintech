@@ -49,12 +49,6 @@ class ReminderAppointmentNotification extends Notification
         <p>Nous vous rappelons que vous avez un rendez-vous par téléphone le <strong><?= formatDateFrench($this->event->start_at) ?></strong> avec <strong><?= $this->event->agent->full_name ?></strong>.</p>
         <?php endif; ?>
         <p>N'oubliez pas de vous munir des documents nécessaires.</p>
-        <div class="alert alert-dismissible bg-light-primary border border-primary d-flex flex-column flex-sm-row w-100 p-5 mb-10">
-            <i class="fa-solid fa-info-circle fs-2hx text-primary me-4 mb-5 mb-sm-0"></i>
-            <div class="d-flex flex-column pe-0 pe-sm-10">
-                <span>En cas d'indisponibilité ou pour plus d'informations, nous vous invitons à contacter votre conseiller.</span>
-            </div>
-        </div>
         <?php
         return ob_get_clean();
     }
