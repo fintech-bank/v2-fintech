@@ -19,6 +19,10 @@
                             <div class="symbol symbol-50px symbol-circle">
                                 {!! $event->agent->user->avatar_symbol !!}
                             </div>
+                            <div class="d-flex flex-column align-items-center">
+                                <strong>{{ $event->agent->full_name }}</strong>
+                                <div class="text-muted"><i>{{ $event->agent->poste }}</i></div>
+                            </div>
                         </div>
                     </div>
                 </div>
