@@ -22,8 +22,8 @@
             <div class="col-md-6 col-sm-12 mb-5">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <div class="fw-bolder fs-1">Numéro de téléphone de sécurité</div>
-                        <div class="d-flex flex-row border border-gray-300 p-8 align-items-center">
+                        <div class="fw-bolder fs-1 mb-3">Numéro de téléphone de sécurité</div>
+                        <div class="d-flex flex-row border border-gray-300 p-8 align-items-center mb-5">
                             @if($customer->info->mobileVerified)
                                 <i class="fa-regular fa-check-circle text-success fs-2tx me-5"></i>
                                 <div class="d-flex flex-column">
