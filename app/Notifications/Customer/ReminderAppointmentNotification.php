@@ -42,7 +42,7 @@ class ReminderAppointmentNotification extends Notification
     {
         ob_start();
         ?>
-        <div class="fw-bolder">Rappel de votre rendez-vous</div>
+        <p class="fw-bolder">Rappel de votre rendez-vous</p>
         <?php if($this->event->canal == 'agency'): ?>
         <p>Nous vous rappelons que vous avez un rendez-vous en agence le <strong><?= formatDateFrench($this->event->start_at) ?></strong> avec <strong><?= $this->event->agent->full_name ?></strong>.</p>
         <?php else: ?>

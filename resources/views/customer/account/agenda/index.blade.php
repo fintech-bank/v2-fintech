@@ -43,7 +43,7 @@
                 </div>
             @else
                 @foreach($events as $event)
-                    <a href="{{ route('customer.account.agenda.show', $event->id) }}" class="d-flex flex-row justify-content-between bg-white align-items-center shadow rounded h-75px mb-10 hover-zoom text-black w-100">
+                    <a href="{{ route('customer.account.agenda.show', $event->id) }}" class="d-flex flex-column justify-content-between bg-white align-items-center shadow rounded h-75px mb-10 hover-zoom text-black w-100">
                         <div class="d-flex flex-row align-items-center">
                             <div class="p-0 w-8px bg-bank h-75px rounded-start me-5">&nbsp;</div>
                             <div class="d-flex flex-column">
