@@ -108,11 +108,11 @@
                         <div class="card-title">
                             <!--begin::User-->
                             <div class="d-flex justify-content-center flex-column me-3">
-                                <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">{{ $event->agent->full_name }}</a>
+                                <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">{{ $event->agent->full_name }} <i>{{ $event->agent->poste }}</i></a>
                                 <!--begin::Info-->
                                 <div class="mb-0 lh-1">
                                     <span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
-                                    <span class="fs-7 fw-semibold text-muted">{{ $event->agent->poste }}</span>
+                                    <span class="fs-7 fw-semibold text-muted">Disponible</span>
                                 </div>
                                 <!--end::Info-->
                             </div>
