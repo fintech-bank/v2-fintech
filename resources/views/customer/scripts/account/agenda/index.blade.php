@@ -134,6 +134,8 @@
                 btn.removeClass('btn-primary')
                 btn.addClass('btn-danger')
                 btn.find('.indicator-label').html('<i class="fa-solid fa-exclamation-triangle text-white me-2"></i> Erreur')
+
+                console.log(err)
             }
         })
     })

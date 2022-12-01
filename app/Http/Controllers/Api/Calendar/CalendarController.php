@@ -75,7 +75,7 @@ class CalendarController extends Controller
         $event = Event::create([
             'type' => $request->get('type'),
             'reason' => $reason['value'],
-            'subreason' => $request->get('subreason_id'),
+            'subreason' => $request->get('subreason'),
             'question' => $request->get('question'),
             'canal' => $request->get('canal'),
             'lieu' => $request->get('canal') == 'agency' ? $agent->agency->name : '',
