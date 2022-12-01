@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Calendar;
 
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Agent;
 use App\Models\Core\Event;
@@ -10,7 +11,7 @@ use App\Notifications\Customer\NewAppointmentNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class CalendarController extends Controller
+class CalendarController extends ApiController
 {
     /**
      * @OA\POST(
@@ -72,6 +73,11 @@ class CalendarController extends Controller
         $agent = Agent::find($request->get('agent_id'));
         $start_at = Carbon::createFromTimestamp(strtotime($request->get('start_at')));
         $reason = Event::getDataReason()->where('id', $request->get('reason_id'))->first();
+
+        if($agent->events()->where('start_at', $start_at)->count() != 0) {
+            return $this->sendWarning("Votre agent est déjà en rendez-vous à la date du ".formatDateFrench($start_at, true));
+        }
+
         $event = Event::create([
             'type' => $request->get('type'),
             'reason' => $reason['value'],

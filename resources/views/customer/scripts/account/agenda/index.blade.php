@@ -123,11 +123,19 @@
             data: data,
             success: data => {
                 btn.removeAttr('data-kt-indicator')
-                toastr.success(`Votre demande de rendez-vous à bien été enregistré`, `Mes Rendez-vous`)
+                if(data.state === 'warning') {
+                    toastr.warning(`${data.message}`, `Mes Rendez-vous`)
+                    btn.removeAttr('data-kt-indicator')
+                    btn.removeClass('btn-primary')
+                    btn.addClass('btn-warning')
+                    btn.find('.indicator-label').html('<i class="fa-solid fa-exclamation-triangle text-white me-2 fs-2"></i> Attention')
+                } else {
+                    toastr.success(`Votre demande de rendez-vous à bien été enregistré`, `Mes Rendez-vous`)
 
-                setTimeout(() => {
-                    window.location.reload()
-                }, 1200)
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
             },
             error: err => {
                 btn.removeAttr('data-kt-indicator')
