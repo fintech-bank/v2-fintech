@@ -250,7 +250,7 @@
                                         <select class="form-control form-control-solid selectpicker" name="reason_id" onchange="showSubreason(this)">
                                             <option value=""></option>
                                             <?php foreach (\App\Models\Core\Event::getDataReason() as $reason): ?>
-                                                <option value="<?= $reason['value'] ?>"><?= $reason['value'] ?></option>
+                                                <option value="<?= $reason['id'] ?>"><?= $reason['value'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
