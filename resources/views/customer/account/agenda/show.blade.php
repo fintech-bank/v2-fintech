@@ -52,7 +52,7 @@
                         <h3 class="card-title">Information sur votre rendez-vous</h3>
                         <div class="card-toolbar">
                             <button type="button" class="btn btn-sm btn-danger">
-                                <i class="fa-solid fa-ban text-white me-2"></i> Annuler mon rendez-vous
+                                <i class="fa-solid fa-ban text-white me-2"></i> Annuler
                             </button>
                         </div>
                     </div>
