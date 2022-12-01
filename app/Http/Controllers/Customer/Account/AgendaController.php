@@ -19,5 +19,9 @@ class AgendaController extends Controller
     public function show($agenda_id)
     {
         $event = Event::find($agenda_id);
+
+        return view('customer.account.agenda.show', [
+            'event' => $event
+        ]);
     }
 }
