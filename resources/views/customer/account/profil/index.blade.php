@@ -16,9 +16,9 @@
     <div id="app" class="rounded container">
         <div class="text-center fw-bolder fs-2hx mb-5">Mes Données Personnelles</div>
         <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <a href="" class="bg-white shadow-lg p-10 rounded text-black">
-                    <div class="d-flex flex-row justify-content-between mb-5 align-items-center">
+            <a href="" class="col-md-4 col-sm-12">
+                <div class="bg-white shadow-lg p-10 rounded">
+                    <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
                         <div class="fs-1 fw-bold">Sécurité</div>
                         <div>
                             <i class="fa-solid fa-desktop text-black fs-2x me-2"></i>
@@ -27,10 +27,10 @@
                     </div>
                     <p>Gérez vos moyens de sécurité : code secret, numéro de téléphone sécurité et Pass Sécurité</p>
                     <div class="text-end">
-                        <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        <a href="" class="btn btn-link"><i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i> </a>
                     </div>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
     </div>
 @endsection
