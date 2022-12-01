@@ -94,7 +94,11 @@ class CalendarController extends ApiController
             'user_id' => $request->get('user_id')
         ]);
 
-        $event->user->customers->info->notify(new NewAppointmentNotification($event->user->customers, $event, 'Contact avec ma banque'));
+        $event->messages()->create([
+            'message' => "Afin de préparer au mieux notre rendez-vous, n'hésitez pas à me contacter par l'intermédiaire de ce Chat",
+            'event_id' => $event->id,
+            'agent_id' => $event->agent_id
+        ]);
 
         return response()->json();
 

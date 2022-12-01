@@ -3,6 +3,8 @@
 namespace App\Models\Core;
 
 use App\Models\User;
+use App\Notifications\Agent\NewEventNotification;
+use App\Notifications\Customer\NewAppointmentNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -114,6 +116,16 @@ class Event extends Model
                 default => "fa-ellipsis"
             };
         }
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function (Event $event) {
+            $event->agent->user->notify(new NewEventNotification($event));
+            $event->user->customers->info->notify(new NewAppointmentNotification($event->user->customers, $event, 'Contact avec ma banque'));
+        });
     }
 
     public static function  getDataReason()
