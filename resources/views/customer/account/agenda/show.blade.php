@@ -133,7 +133,34 @@
                     <div class="card-body" id="kt_chat_messenger_body">
                         <!--begin::Messages-->
                         <div class="scroll-y me-n5 pe-5 h-300px h-lg-auto" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_app_header, #kt_app_toolbar, #kt_toolbar, #kt_footer, #kt_app_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer" data-kt-scroll-wrappers="#kt_content, #kt_app_content, #kt_chat_messenger_body" data-kt-scroll-offset="5px" style="max-height: 372px;">
-
+                            @foreach($event->messages as $message)
+                                <div class="d-flex {{ $message->agent_id != null ? 'justify-content-start' : 'justify-content-end' }} mb-10">
+                                    <!--begin::Wrapper-->
+                                    <div class="d-flex flex-column {{ $message->agent_id != null ? 'align-items-start' : 'align-items-end' }}">
+                                        <!--begin::User-->
+                                        <div class="d-flex align-items-center mb-2">
+                                            <!--begin::Avatar-->
+                                            <div class="symbol symbol-35px symbol-circle">
+                                                {!! $message->agent_id != null ? $message->agent->user->avatar_symbol : $message->user->avatar_symbol !!}
+                                            </div>
+                                            <!--end::Avatar-->
+                                            <!--begin::Details-->
+                                            <div class="ms-3">
+                                                <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">{{ $message->agent_id != null ? $message->agent->full_name : "Vous" }}</a>
+                                                <span class="text-muted fs-7 mb-1">{{ $message->created_at->shortAbsoluteDiffForHumans() }}</span>
+                                            </div>
+                                            <!--end::Details-->
+                                        </div>
+                                        <!--end::User-->
+                                        <!--begin::Text-->
+                                        <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start" data-kt-element="message-text">
+                                            {{ $message->message }}
+                                        </div>
+                                        <!--end::Text-->
+                                    </div>
+                                    <!--end::Wrapper-->
+                                </div>
+                            @endforeach
                             <!--begin::Message(in)-->
                             <div class="d-flex justify-content-start mb-10">
                                 <!--begin::Wrapper-->

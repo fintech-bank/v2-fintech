@@ -18,11 +18,13 @@ return new class extends Migration {
                 ->cascadeOnDelete();
 
             $table->foreignId('user_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
             $table->foreignId('agent_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
