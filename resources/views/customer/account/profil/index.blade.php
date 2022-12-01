@@ -21,8 +21,8 @@
                     <div class="d-flex flex-row justify-content-between mb-3">
                         <div class="fs-1 fw-bold">Sécurité</div>
                         <div>
-                            <i class="fa-solid fa-desktop text-black fs-2 me-2"></i>
-                            <i class="fa-solid fa-mobile text-muted fs-2 me-2"></i>
+                            <i class="fa-solid fa-desktop text-black fs-2x me-2"></i>
+                            <i class="fa-solid fa-mobile text-muted fs-2x me-2"></i>
                         </div>
                     </div>
                 </div>
