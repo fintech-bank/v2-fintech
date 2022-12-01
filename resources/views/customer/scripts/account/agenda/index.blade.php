@@ -80,6 +80,7 @@
             width: null,
             returnFormat: 'iso8601',
             onChange: (event, inst) => {
+                console.log(event)
                 getDisponibility(item.value, event.firstDay, function callback(bookings) {
                     inst.setOptions({
                         labels: bookings.labels,     // More info about labels: https://docs.mobiscroll.com/5-20-0/calendar#opt-labels
