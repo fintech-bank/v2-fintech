@@ -101,7 +101,7 @@ class CalendarController extends Controller
             }
 
             $calendars->push([
-                'd' => $start,
+                'd' => $start->toJSON(),
                 'nr' => $i,
                 "invalid" => $invalid->toArray()
             ]);
