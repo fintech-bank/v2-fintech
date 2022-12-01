@@ -3,6 +3,8 @@
 namespace App\Models\Core;
 
 use App\Models\User;
+use App\Notifications\Agent\EventUpdateNotification;
+use App\Notifications\Customer\CalendarUpdateNotification;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -47,5 +49,18 @@ class EventMessage extends Model
     public function agent()
     {
         return $this->belongsTo(Agent::class, 'agent_id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function (EventMessage $message) {
+            if($message->agent_id != null) {
+                $message->user->customers->info->notify(new CalendarUpdateNotification($message->event->user->customers, $message->event, 'Contact avec votre banque'));
+            } else {
+                $message->agent->user->notify(new EventUpdateNotification($message->event->user->customers, $message, $message->event));
+            }
+        });
     }
 }
