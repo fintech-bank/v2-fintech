@@ -83,7 +83,12 @@
                                 <div class="fw-bolder">Canal de contact</div>
                             </div>
                             <div class="col">
-                                <i class="fa-solid {{ $event->getCanal('icon') }} text-black me-2"></i> {{ $event->getCanal('text') }}
+                                @if($event->canal == 'phone')
+                                    <i class="fa-solid {{ $event->getCanal('icon') }} text-black me-2"></i> {{ $event->getCanal('text') }}
+                                @else
+                                    <i class="fa-solid {{ $event->getCanal('icon') }} text-black me-2"></i> {{ $event->getCanal('text') }}
+                                    {{ $event->agent->agency->address_line }}
+                                @endif
                             </div>
                         </div>
                     </div>
