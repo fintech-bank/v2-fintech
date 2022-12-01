@@ -89,7 +89,7 @@ class CalendarController extends Controller
 
     public function subreason(Request $request)
     {
-        $subreasons = Event::getDataSubreason()->where('name', $request->get('reason_id'));
+        $subreasons = Event::getDataSubreason()->where('name', 'LIKE', '%'.$request->get('reason_id').'%');
         ob_start();
         ?>
         <div class="mb-10">
