@@ -31,7 +31,7 @@
         stepMinute: 30,
         width: null,
         onPageLoading: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
-            console.log(event)
+            console.log(event.firstDay.getMonth())
             /*getDatetimes(event.firstDay, function callback(bookings) {
                 inst.setOptions({
                     labels: bookings.labels,     // More info about labels: https://docs.mobiscroll.com/5-20-0/calendar#opt-labels
