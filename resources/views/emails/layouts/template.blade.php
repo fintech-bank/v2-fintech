@@ -424,11 +424,7 @@
                                                                     style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;margin-bottom:11px;color:#333333;font-size:16px">
                                                                     <strong>Bonjour {{ $customer->info->full_name }},</strong></p></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>
-                                                                @yield("content")
-                                                            </td>
-                                                        </tr>
+                                                        @yield("content")
                                                         @isset($actionText)
                                                             <tr>
                                                                 <td align="center" style="padding:0;Margin:0"><!--[if mso]>
