@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Helper\CustomerHelper;
 use App\Helper\UserHelper;
+use App\Models\Core\Agent;
 use App\Models\Core\DocumentCategory;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
@@ -48,6 +49,13 @@ class UserSeeder extends Seeder
             'customer' => false,
             'identifiant' => UserHelper::generateID(),
             'agency_id' => 2,
+        ]);
+
+        Agent::create([
+            'civility' => "M",
+            "firstname" => "John",
+            "lastname" => "Doe",
+            "user_id" => 2
         ]);
 
         $user = User::create([

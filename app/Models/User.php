@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Helper\CustomerHelper;
 use App\Models\Core\Agency;
+use App\Models\Core\Agent;
 use App\Models\Core\DocumentCategory;
 use App\Models\Core\Event;
 use App\Models\Core\EventAttendee;
@@ -191,6 +192,11 @@ class User extends Authenticatable
     public function ticket()
     {
         return $this->hasMany(TicketConversation::class);
+    }
+
+    public function agent()
+    {
+        return $this->hasOne(Agent::class);
     }
 
     public function agency()

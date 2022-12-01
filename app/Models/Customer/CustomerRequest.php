@@ -34,6 +34,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerRequest whereLinkId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerRequest whereLinkModel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerRequest whereReference($value)
+ * @property-read mixed $model_data
+ * @property-read mixed $status_label
  */
 class CustomerRequest extends Model
 {
