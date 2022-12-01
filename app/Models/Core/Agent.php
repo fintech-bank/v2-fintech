@@ -29,6 +29,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Agent whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Agent whereUserId($value)
  * @mixin \Eloquent
+ * @property int $agency_id
+ * @property-read \App\Models\Core\Agency $agency
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent whereAgencyId($value)
  */
 class Agent extends Model
 {

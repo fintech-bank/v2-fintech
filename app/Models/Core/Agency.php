@@ -45,6 +45,8 @@ use Illuminate\Support\Str;
  * @mixin IdeHelperAgency
  * @property-read mixed $online_label
  * @property-read mixed $address_line
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Core\Agent[] $agents
+ * @property-read int|null $agents_count
  */
 class Agency extends Model
 {
