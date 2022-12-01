@@ -3,7 +3,7 @@
     let elements = {
         stepperElement: document.querySelector("#stepper_rdv"),
         divSubreason: document.querySelector("#divSubreason"),
-        inputReason: document.querySelector('[name="reason"]'),
+        inputReason: document.querySelector('[name="reason_id"]'),
         divQuestion: document.querySelector("#divQuestion"),
         inputSubreason: document.querySelector('[name="subreason"]')
     }
