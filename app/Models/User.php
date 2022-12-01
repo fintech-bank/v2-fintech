@@ -8,6 +8,7 @@ use App\Models\Core\Agent;
 use App\Models\Core\DocumentCategory;
 use App\Models\Core\Event;
 use App\Models\Core\EventAttendee;
+use App\Models\Core\EventMessage;
 use App\Models\Core\LogBanque;
 use App\Models\Core\Package;
 use App\Models\Core\TicketConversation;
@@ -161,7 +162,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['avatar_symbol', 'email_verified', 'user_group_label', 'alert_same_default_password'];
+    protected $appends = ['avatar_symbol', 'email_verified', 'user_group_label', 'alert_same_default_password', 'is_online'];
 
     public function routeNotificationForPushbullet()
     {
@@ -351,6 +352,15 @@ class User extends Authenticatable
             </div>
             <?php
             return ob_get_clean();
+        }
+    }
+
+    public function getIsOnlineAttribute()
+    {
+        if(\Cache::get('user-is-online-'.$this->id)) {
+            return true;
+        } else {
+            return false;
         }
     }
 

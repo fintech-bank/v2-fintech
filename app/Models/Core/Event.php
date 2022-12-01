@@ -51,6 +51,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereReason($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereSubreason($value)
  * @property-read User $agent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Core\EventMessage[] $messages
+ * @property-read int|null $messages_count
  */
 class Event extends Model
 {
@@ -72,6 +74,11 @@ class Event extends Model
     public function agent()
     {
         return $this->belongsTo(Agent::class, 'agent_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(EventMessage::class);
     }
 
     public function getTypeColorAttribute()

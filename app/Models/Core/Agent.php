@@ -33,6 +33,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Core\Agency $agency
  * @method static \Illuminate\Database\Eloquent\Builder|Agent whereAgencyId($value)
  * @property-read mixed $full_name
+ * @property string $poste
+ * @property string|null $phone
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent wherePoste($value)
  */
 class Agent extends Model
 {
@@ -54,6 +58,7 @@ class Agent extends Model
     {
         return $this->hasMany(Event::class);
     }
+
 
     public function getFullNameAttribute()
     {

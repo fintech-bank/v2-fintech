@@ -110,10 +110,18 @@
                             <div class="d-flex justify-content-center flex-column me-3">
                                 <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">{{ $event->agent->full_name }} <i class="text-muted">{{ $event->agent->poste }}</i></a>
                                 <!--begin::Info-->
-                                <div class="mb-0 lh-1">
-                                    <span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
-                                    <span class="fs-7 fw-semibold text-muted">Disponible</span>
-                                </div>
+                                @if($event->agent->user->is_online)
+                                    <div class="mb-0 lh-1">
+                                        <span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
+                                        <span class="fs-7 fw-semibold text-muted">Disponible</span>
+                                    </div>
+                                @else
+                                    <div class="mb-0 lh-1">
+                                        <span class="badge badge-secondary badge-circle w-10px h-10px me-1"></span>
+                                        <span class="fs-7 fw-semibold text-muted">Indisponible</span>
+                                    </div>
+                                @endif
+
                                 <!--end::Info-->
                             </div>
                             <!--end::User-->
@@ -125,6 +133,7 @@
                     <div class="card-body" id="kt_chat_messenger_body">
                         <!--begin::Messages-->
                         <div class="scroll-y me-n5 pe-5 h-300px h-lg-auto" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_app_header, #kt_app_toolbar, #kt_toolbar, #kt_footer, #kt_app_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer" data-kt-scroll-wrappers="#kt_content, #kt_app_content, #kt_chat_messenger_body" data-kt-scroll-offset="5px" style="max-height: 372px;">
+
                             <!--begin::Message(in)-->
                             <div class="d-flex justify-content-start mb-10">
                                 <!--begin::Wrapper-->
