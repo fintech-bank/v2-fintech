@@ -57,9 +57,9 @@ class EventMessage extends Model
 
         static::created(function (EventMessage $message) {
             if($message->agent_id != null) {
-                $message->user->customers->info->notify(new CalendarUpdateNotification($message->event->user->customers, $message->event, 'Contact avec votre banque'));
+                $message->event->user->customers->info->notify(new CalendarUpdateNotification($message->event->user->customers, $message->event, 'Contact avec votre banque'));
             } else {
-                $message->agent->user->notify(new EventUpdateNotification($message->event->user->customers, $message, $message->event));
+                $message->event->agent->user->notify(new EventUpdateNotification($message->event->user->customers, $message, $message->event));
             }
         });
     }
