@@ -107,10 +107,6 @@ class CalendarController extends Controller
             ]);
         }
 
-        dd($calendars);
-
-        $calendars = $user->events()
-            ->whereBetween('start_at', [$request->get('start'), $request->get('end')])
-            ->get();
+        return response()->json($calendars);
     }
 }
