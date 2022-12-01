@@ -17,7 +17,7 @@
         <!--end::sidebar mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="{{ route('agent.dashboard') }}" class="d-lg-none">
+            <a href="{{ route('customer.dashboard') }}" class="d-lg-none">
                 <img alt="Logo" src="/storage/logo/logo_carre_80.png" class="h-30px" />
             </a>
         </div>
@@ -267,7 +267,7 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="{{ route('admin.account.profil.index') }}" class="menu-link px-5">Mon espace</a>
+                            <a href="{{ route('customer.account.profil.index') }}" class="menu-link px-5">Mon espace</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
