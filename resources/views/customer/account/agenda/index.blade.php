@@ -36,27 +36,29 @@
                 size-text="fs-2x"
                 class="w-auto my-5"/>
         </div>
-        <div class="d-flex flex-center w-50 bg-gray-300 rounded p-5 mx-auto">
-            @if($events->count() == 0)
-                <div class="d-flex flex-center w-100">
-                    <i class="fa-solid fa-exclamation-circle text-warning opacity-15 me-5"></i> Vous n'avez aucun rendez-vous programmé
-                </div>
-            @else
-                <div class="d-flex flex-column">
-                    @foreach($events as $event)
-                        <a href="{{ route('customer.account.agenda.show', $event->id) }}" class="d-flex flex-column justify-content-between bg-white align-items-center shadow rounded h-75px mb-10 hover-zoom text-black w-100">
-                            <div class="d-flex flex-row align-items-center">
-                                <div class="p-0 w-8px bg-bank h-75px rounded-start me-5">&nbsp;</div>
-                                <div class="d-flex flex-column">
-                                    <span class="fs-2 fw-bold">{{ $event->agent->name }}</span>
-                                    <div class="fs-5">{{ formatDateFrench($event->start_at, true) }} ({{ $event->start_at->longAbsoluteDiffForHumans($event->end_at) }})</div>
-                                    <div class="fs-5 text-muted">Par téléphone</div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 flex-center mx-auto bg-gray-300 p-5">
+                @if($events->count() == 0)
+                    <div class="d-flex flex-center w-100">
+                        <i class="fa-solid fa-exclamation-circle text-warning opacity-15 me-5"></i> Vous n'avez aucun rendez-vous programmé
+                    </div>
+                @else
+                    <div class="d-flex flex-column">
+                        @foreach($events as $event)
+                            <a href="{{ route('customer.account.agenda.show', $event->id) }}" class="d-flex flex-column justify-content-between bg-white align-items-center shadow rounded h-75px mb-10 hover-zoom text-black w-100">
+                                <div class="d-flex flex-row align-items-center">
+                                    <div class="p-0 w-8px bg-bank h-75px rounded-start me-5">&nbsp;</div>
+                                    <div class="d-flex flex-column">
+                                        <span class="fs-2 fw-bold">{{ $event->agent->name }}</span>
+                                        <div class="fs-5">{{ formatDateFrench($event->start_at, true) }} ({{ $event->start_at->longAbsoluteDiffForHumans($event->end_at) }})</div>
+                                        <div class="fs-5 text-muted">Par téléphone</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
-            @endif
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
         </div>
         <div class="d-flex flex-center w-50 p-5 mx-auto">
             <button class="btn btn-lg btn-circle btn-bank" data-bs-toggle="modal" data-bs-target="#newEvent">Prendre un rendez-vous</button>
