@@ -43,8 +43,23 @@
         let valid = [];
 
         mobiscroll.util.http.getJson(`/api/calendar/disponibility?agent_id=${agent_id}&start=${min}&end=${max}`, (bookings) => {
-            console.log(bookings)
-        })
+            for (let i = 0; i < bookings.length; ++i) {
+                let booking = bookings[i];
+                let bDate = new Date(booking.d);
+
+                if (booking.nr > 0) {
+                    labels.push({
+                        start: bDate,
+                        title: booking.nr + ' SPOTS',
+                        textColor: '#e1528f'
+                    });
+                    $.merge(invalid, booking.invalid);
+                } else {
+                    invalid.push(bDate);
+                }
+            }
+            callback({ labels: labels, invalid: invalid });
+        }, 'jsonp')
     }
 
     let checkAgentId = (item) => {
