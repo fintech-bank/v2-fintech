@@ -32,11 +32,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $agency_id
  * @property-read \App\Models\Core\Agency $agency
  * @method static \Illuminate\Database\Eloquent\Builder|Agent whereAgencyId($value)
+ * @property-read mixed $full_name
  */
 class Agent extends Model
 {
     protected $guarded = [];
     public $timestamps = false;
+    protected $appends = ['full_name'];
 
     public function user()
     {
@@ -51,5 +53,10 @@ class Agent extends Model
     public function events()
     {
         return $this->hasMany(Event::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->civility.'. '.$this->lastname." ".$this->firstname;
     }
 }

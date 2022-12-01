@@ -249,7 +249,7 @@
                                         <label for="reason_id" class="form-label">Vos besoins concerne</label>
                                         <select class="form-control form-control-solid selectpicker" name="reason_id" onchange="showSubreason(this)">
                                             <option value=""></option>
-                                            <?php foreach (\App\Models\Core\Event::getDataReason() as $reason): ?>
+                                            <?php foreach (\App\Models\Core\Event::getDataReason()->toArray() as $reason): ?>
                                                 <option value="<?= $reason['id'] ?>"><?= $reason['value'] ?></option>
                                             <?php endforeach; ?>
                                         </select>

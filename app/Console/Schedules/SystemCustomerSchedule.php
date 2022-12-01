@@ -15,5 +15,9 @@ class SystemCustomerSchedule
         $schedule->command('customer executeActiveAccount')
             ->everySixHours()
             ->description("Passage des compte accepté à terminer [log]'");
+
+        $schedule->command('customer reminderAppointment')
+            ->dailyAt("08:00")
+            ->description("Rappel des rendez-vous clients");
     }
 }

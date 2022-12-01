@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Core\Agent;
 use App\Models\Core\Event;
 use App\Models\User;
+use App\Notifications\Customer\NewAppointmentNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -70,9 +71,10 @@ class CalendarController extends Controller
     {
         $agent = Agent::find($request->get('agent_id'));
         $start_at = Carbon::createFromTimestamp(strtotime($request->get('start_at')));
+        $reason = Event::getDataReason()->where('id', $request->get('reason_id'))->first();
         $event = Event::create([
             'type' => $request->get('type'),
-            'reason' => $request->get('reason'),
+            'reason' => $reason->value,
             'subreason' => $request->get('subreason'),
             'question' => $request->get('question'),
             'canal' => $request->get('canal'),
@@ -84,6 +86,9 @@ class CalendarController extends Controller
             'user_id' => $request->get('user_id')
         ]);
 
+        $event->user->customers->info->notify(new NewAppointmentNotification($event->user->customers, $event, 'Contact avec ma banque'));
+
+        return response()->json();
 
     }
 

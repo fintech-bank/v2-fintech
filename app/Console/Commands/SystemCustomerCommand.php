@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\Customer\Customer;
+use App\Models\User;
+use App\Notifications\Customer\ReminderAppointmentNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotification;
 use App\Notifications\Customer\UpdateStatusAccountNotificationP;
 use App\Services\CotationClient;
@@ -47,6 +49,7 @@ class SystemCustomerCommand extends Command
         match ($this->argument('action')) {
             "updateCotation" => $this->updateCotation(),
             "executeActiveAccount" => $this->executeActiveAccount(),
+            "reminderAppointment" => $this->reminderAppointment(),
         };
 
         return Command::SUCCESS;
@@ -89,5 +92,22 @@ class SystemCustomerCommand extends Command
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->output->table(['Client', "Etat"], $arr);
         $this->slack->send("Comptes Effectifs", json_encode($arr));
+    }
+
+    private function reminderAppointment()
+    {
+        $users = User::all();
+        $i = 0;
+
+        foreach ($users as $user) {
+            foreach ($user->events()->where('start_at', '>', now())->get() as $event) {
+                if($event->start_at->subDay()->startOfDay() == now()->startOfDay()) {
+                    $event->user->customers->info->notify(new ReminderAppointmentNotification($event->user->customers, $event, 'Contact avec ma banque'));
+                    $i++;
+                }
+            }
+        }
+
+        $this->slack->send("Rappel des rendez-vous clients", json_encode([strip_tags("Nombre de rappel: ").$i]));
     }
 }

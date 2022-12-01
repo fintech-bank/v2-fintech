@@ -120,7 +120,7 @@ class Event extends Model
         $ar->push(['id' => 4, "value" => "Etre assuré ou protégé"]);
         $ar->push(['id' => 5, "value" => "Autre"]);
 
-        return $ar->toArray();
+        return $ar;
     }
 
     public static function getDataSubreason()
