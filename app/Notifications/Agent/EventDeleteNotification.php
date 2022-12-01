@@ -33,7 +33,16 @@ class EventDeleteNotification extends Notification
 
     public function toDatabase($notifiable): array
     {
-        return [];
+        return [
+            "icon" => "fa-calendar-xmark",
+            "color" => "danger",
+            "title" => "Annulation d'un rendez-vous client",
+            "text" => $this->getMessage(),
+            "time" => now(),
+            "link" => '',
+            "category" => "Rendez-vous client",
+            "models" => [$this->event]
+        ];
     }
 
     public function toArray($notifiable): array

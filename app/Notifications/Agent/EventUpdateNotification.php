@@ -47,7 +47,16 @@ class EventUpdateNotification extends Notification
 
     public function toDatabase($notifiable): array
     {
-        return [];
+        return [
+            "icon" => "fa-calendar-check",
+            "color" => "warning",
+            "title" => "Nouvelle informations concernant un rendez-vous",
+            "text" => $this->getMessage(),
+            "time" => now(),
+            "link" => '',
+            "category" => "Rendez-vous client",
+            "models" => [$this->customer, $this->event]
+        ];
     }
 
     public function toArray($notifiable): array

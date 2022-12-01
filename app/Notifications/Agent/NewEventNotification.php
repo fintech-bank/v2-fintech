@@ -40,7 +40,16 @@ class NewEventNotification extends Notification
 
     public function toDatabase($notifiable): array
     {
-        return [];
+        return [
+            "icon" => "fa-calendar-plus",
+            "color" => "info",
+            "title" => "Nouveau rendez-vous clientèle",
+            "text" => $this->getMessage(),
+            "time" => now(),
+            "link" => route('agent.account.agenda.index'),
+            "category" => "Rendez-vous client",
+            "models" => [$this->event]
+        ];
     }
 
     public function toArray($notifiable): array
