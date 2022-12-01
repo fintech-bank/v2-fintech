@@ -17,7 +17,7 @@
         <div class="text-center fw-bolder fs-2hx mb-5">Mes Données Personnelles</div>
         <div class="row">
             <div class="col-md-4 col-sm-12">
-                <a href="" class="text-dark">
+                <a href="{{ route('customer.account.profil.security.index') }}" class="text-dark">
                     <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
                             <div class="fs-1 fw-bold">Sécurité</div>
@@ -27,6 +27,40 @@
                             </div>
                         </div>
                         <p>Gérez vos moyens de sécurité : code secret, numéro de téléphone sécurité et Pass Sécurité</p>
+                        <div class="text-end">
+                            <a href="" class="btn btn-link"><i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i> </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <a href="{{ route('customer.account.profil.identity.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Mon Identité</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-black fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-muted fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Ici, consultez les informations concernant votre identité : civilité / nom / prénom / profession</p>
+                        <div class="text-end">
+                            <a href="" class="btn btn-link"><i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i> </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <a href="{{ route('customer.account.profil.contact.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Mes Coordonnées</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-black fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-muted fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Accédez à vos coordonnées : numéro de téléphone / adresse postale / adresse e-mail</p>
                         <div class="text-end">
                             <a href="" class="btn btn-link"><i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i> </a>
                         </div>
