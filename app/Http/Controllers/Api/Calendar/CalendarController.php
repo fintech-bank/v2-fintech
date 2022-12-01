@@ -87,9 +87,7 @@ class CalendarController extends Controller
     {
         $invalid = collect();
         $user = User::find($request->get('agent_id'));
-        $calendar = $user->events()
-            ->whereBetween('start_at', [Carbon::createFromTimestamp(strtotime($request->get('start'))), Carbon::createFromTimestamp(strtotime($request->get('end')))])
-            ->get();
+        $calendar = $user->events;
 
         dd($calendar);
     }
