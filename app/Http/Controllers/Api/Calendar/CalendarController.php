@@ -86,10 +86,29 @@ class CalendarController extends Controller
 
     public function disponibility(Request $request)
     {
-        $invalid = collect();
+        $calendars = collect();
         $user = Agent::find($request->get('agent_id'));
         $count_day = Carbon::createFromTimestamp(strtotime($request->get('start')))->diffInDays(Carbon::createFromTimestamp(strtotime($request->get('end'))));
-        dd($count_day);
+        for ($i = 0; $i <= $count_day; $i++) {
+            $invalid = collect();
+            $start = Carbon::createFromTimestamp(strtotime($request->get('start')))->addDays($i)->startOfDay();
+            $end = Carbon::createFromTimestamp(strtotime($request->get('start')))->addDays($i)->endOfDay();
+            foreach ($user->events->whereBetween('start_at', [$start, $end])->get() as $event) {
+                $invalid->push([
+                    'start' => $event->start_at,
+                    'end' => $event->end_at
+                ]);
+            }
+
+            $calendars->push([
+                'd' => $start,
+                'nr' => $i,
+                "invalid" => $invalid->toArray()
+            ]);
+        }
+
+        dd($calendars);
+
         $calendars = $user->events()
             ->whereBetween('start_at', [$request->get('start'), $request->get('end')])
             ->get();
