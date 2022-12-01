@@ -18,6 +18,9 @@
         themeVariant: 'light'
     })
 
+    let min = '{{ now()->format('Y-m-dT00:00') }}';
+    let max = '{{ now()->addMonths(6)->format('Y-m-dT00:00') }}';
+
     $("[name='start_at']").mobiscroll.datepicker({
         display: 'inline',
         controls: ['calendar', 'timegrid'],      // More info about controls: https://docs.mobiscroll.com/5-20-0/calendar#opt-controls
