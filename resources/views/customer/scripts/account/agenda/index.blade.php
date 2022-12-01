@@ -43,8 +43,8 @@
     let getDisponibility = (agent_id, day, callback) => {
         let invalid = [];
         let valid = [];
-        console.log(agent_id)
-        console.log(day)
+        console.log("Agent:"+agent_id)
+        console.log("Jours:"+day)
 
         mobiscroll.util.http.getJson(`/api/calendar/disponibility?agent_id=${agent_id}&start=${min}&end=${max}`, (bookings) => {
             console.log(bookings)
