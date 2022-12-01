@@ -60,7 +60,7 @@
             onPageLoading: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
                 console.log(event)
                 console.log(inst)
-                getDisponibility(event.firstDay, function callback(bookings) {
+                getDisponibility(item.value, event.firstDay, function callback(bookings) {
                     inst.setOptions({
                         labels: bookings.labels,     // More info about labels: https://docs.mobiscroll.com/5-20-0/calendar#opt-labels
                         invalid: bookings.invalid    // More info about invalid: https://docs.mobiscroll.com/5-20-0/calendar#opt-invalid
@@ -74,11 +74,6 @@
     elements.inputReason.addEventListener('change', e => {
         e.preventDefault()
         showSubreason(e.target)
-    })
-    document.querySelectorAll('[name="agent_id"]').forEach(checkbox => {
-        if(checkbox.checked === true) {
-            console.log(checkbox.value)
-        }
     })
 
     let stepperRdv = new KTStepper(elements.stepperElement)
