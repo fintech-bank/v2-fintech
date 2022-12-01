@@ -22,6 +22,15 @@ class EventDeleteNotification extends Notification
         return ['database'];
     }
 
+    public function getMessage()
+    {
+        ob_start();
+        ?>
+        <p>Votre rendez-vous avec <strong><?= $this->event->user->customers->info->full_name ?></strong> à été annulée.</p>
+        <?php
+        return ob_get_clean();
+    }
+
     public function toDatabase($notifiable): array
     {
         return [];
@@ -29,6 +38,15 @@ class EventDeleteNotification extends Notification
 
     public function toArray($notifiable): array
     {
-        return [];
+        return [
+            "icon" => "fa-calendar-xmark",
+            "color" => "danger",
+            "title" => "Annulation d'un rendez-vous client",
+            "text" => $this->getMessage(),
+            "time" => now(),
+            "link" => '',
+            "category" => "Rendez-vous client",
+            "models" => [$this->event]
+        ];
     }
 }
