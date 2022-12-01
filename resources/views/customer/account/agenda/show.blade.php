@@ -167,24 +167,16 @@
                     </div>
                     <!--end::Card body-->
                     <!--begin::Card footer-->
-                    <div class="card-footer pt-4" id="kt_chat_messenger_footer" data-dashlane-rid="a924d13f23dd502b" data-form-type="">
+                    <div class="card-footer pt-4" id="kt_chat_messenger_footer">
+                        <input type="hidden" name="provider" value="customer">
+                        <input type="hidden" name="provider_id" value="{{ $event->user->id }}">
                         <!--begin::Input-->
-                        <textarea class="form-control form-control-flush mb-3" rows="1" data-kt-element="input" placeholder="Type a message" data-dashlane-rid="10dc993e7b8789b9" data-form-type=""></textarea>
+                        <textarea class="form-control form-control-flush mb-3" rows="1" data-kt-element="input" placeholder="Taper votre message"></textarea>
                         <!--end::Input-->
                         <!--begin:Toolbar-->
                         <div class="d-flex flex-stack">
-                            <!--begin::Actions-->
-                            <div class="d-flex align-items-center me-2">
-                                <button class="btn btn-sm btn-icon btn-active-light-primary me-1" type="button" data-bs-toggle="tooltip" aria-label="Coming soon" data-bs-original-title="Coming soon" data-kt-initialized="1" data-dashlane-rid="ef3016055d9bcf69" data-dashlane-label="true" data-form-type="">
-                                    <i class="bi bi-paperclip fs-3"></i>
-                                </button>
-                                <button class="btn btn-sm btn-icon btn-active-light-primary me-1" type="button" data-bs-toggle="tooltip" aria-label="Coming soon" data-bs-original-title="Coming soon" data-kt-initialized="1" data-dashlane-rid="e62a89fb1c9b060a" data-dashlane-label="true" data-form-type="">
-                                    <i class="bi bi-upload fs-3"></i>
-                                </button>
-                            </div>
-                            <!--end::Actions-->
                             <!--begin::Send-->
-                            <button class="btn btn-primary" type="button" data-kt-element="send" data-dashlane-rid="cc15ad53c943e58d" data-dashlane-label="true" data-form-type="">Send</button>
+                            <button class="btn btn-primary" type="button" data-kt-element="send">Envoyer</button>
                             <!--end::Send-->
                         </div>
                         <!--end::Toolbar-->
