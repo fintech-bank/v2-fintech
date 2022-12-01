@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Calendar;
 
 use App\Http\Controllers\Controller;
+use App\Models\Core\Agent;
 use App\Models\Core\Event;
 use App\Models\User;
 use Carbon\Carbon;
@@ -86,7 +87,7 @@ class CalendarController extends Controller
     public function disponibility(Request $request)
     {
         $invalid = collect();
-        $user = User::with('events')->find($request->get('agent_id'));
+        $user = Agent::with('events')->find($request->get('agent_id'));
 
         dd($user);
     }
