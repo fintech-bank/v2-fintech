@@ -79,7 +79,7 @@
             returnFormat: 'iso8601',
             onChange: (event, inst) => {
                 console.log(event)
-                $("[name='start_at']").val(event.valueText)
+                $("[name='start_at']").val(event.value)
             },
             onShow: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
                 getDisponibility(item.value, event.firstDay, function callback(bookings) {
