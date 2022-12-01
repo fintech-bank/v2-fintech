@@ -28,7 +28,7 @@
                         </div>
                         <p>Gérez vos moyens de sécurité : code secret, numéro de téléphone sécurité et Pass Sécurité</p>
                         <div class="text-end">
-                            <a href="" class="btn btn-link"><i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i> </a>
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
                         </div>
                     </div>
                 </a>
@@ -45,7 +45,7 @@
                         </div>
                         <p>Ici, consultez les informations concernant votre identité : civilité / nom / prénom / profession</p>
                         <div class="text-end">
-                            <a href="" class="btn btn-link"><i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i> </a>
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
                         </div>
                     </div>
                 </a>
