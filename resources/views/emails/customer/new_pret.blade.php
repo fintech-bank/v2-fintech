@@ -1,7 +1,7 @@
 @extends("emails.layouts.template")
 
 @section("content")
-    <div class="d-flex flex-column bg-gray-400 p-5 ms-20 me-20 mt-20 mb-5 w-600px rounded">
+    <div class="d-flex flex-column bg-gray-400 p-5 ms-20 me-20 mt-20 mb-5 w-400px rounded">
         <!--begin::Alert-->
         <tr>
             <td align="left" style="padding:0;Margin:0">
