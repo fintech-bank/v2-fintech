@@ -122,6 +122,7 @@
             method: 'POST',
             data: data,
             success: data => {
+                btn.removeAttr('data-kt-indicator')
                 toastr.success(`Votre demande de rendez-vous à bien été enregistré`, `Mes Rendez-vous`)
 
                 setTimeout(() => {
