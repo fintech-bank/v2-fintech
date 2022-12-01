@@ -64,6 +64,7 @@
     }
 
     let checkAgentId = (item) => {
+        console.log("Click:"+item.value)
         $("#date_rdv").mobiscroll().datepicker({
             display: 'inline',
             controls: ['calendar', 'timegrid'],      // More info about controls: https://docs.mobiscroll.com/5-20-0/calendar#opt-controls
