@@ -1,7 +1,7 @@
 @extends("customer.layouts.app")
 
 @section("css")
-
+    <link rel="stylesheet" href="/plugins/mobiscroll/css/mobiscroll.jquery.min.css" />
 @endsection
 
 @section('toolbar')
@@ -325,5 +325,6 @@
 @endsection
 
 @section("script")
+    <script type="text/javascript" src="/plugins/mobiscroll/js/mobiscroll.jquery.min.js"></script>
     @include("customer.scripts.account.agenda.index")
 @endsection
