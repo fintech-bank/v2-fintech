@@ -33,10 +33,16 @@ use Illuminate\Database\Eloquent\Model;
 class Agent extends Model
 {
     protected $guarded = [];
+    public $timestamps = false;
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class, 'agency_id');
     }
 
     public function events()

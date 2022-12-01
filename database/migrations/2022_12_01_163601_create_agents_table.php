@@ -12,9 +12,13 @@ return new class extends Migration {
             $table->enum('civility', ['M', 'Mme', 'Mlle']);
             $table->string('firstname');
             $table->string('lastname');
-            $table->timestamps();
 
             $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->foreignId('agency_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();

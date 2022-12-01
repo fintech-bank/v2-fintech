@@ -65,6 +65,11 @@ class Agency extends Model
         return $this->hasMany(User::class);
     }
 
+    public function agents()
+    {
+        return $this->hasMany(Agent::class);
+    }
+
     public static function boot()
     {
         parent::boot();
