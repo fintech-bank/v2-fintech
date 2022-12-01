@@ -67,6 +67,40 @@
                     </div>
                 </a>
             </div>
+            <div class="col-md-4 col-sm-12">
+                <a href="{{ route('customer.account.profil.grpd.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Mes données personnelles</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-black fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-black fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Exprimez vos préférences concernant la gestion de vos données personnelles</p>
+                        <div class="text-end">
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <a href="{{ route('customer.account.profil.secret.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Code secret</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-muted fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-black fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Ici, modifiez votre code secret</p>
+                        <div class="text-end">
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 @endsection
