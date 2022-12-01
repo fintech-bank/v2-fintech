@@ -9,7 +9,7 @@
 @section("content")
     <div id="app">
         <div class="row">
-            <div class="col-md-4 col-sm-12 mb-5">
+            <div class="col-md-3 col-sm-12 mb-5">
                 <div class="card shadow-sm mb-10">
                     <div class="card-header">
                         <h3 class="card-title"><i class="fa-solid fa-user text-black me-2"></i> Agent</h3>
@@ -52,6 +52,14 @@
                     </div>
                     <div class="card-body">
 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 mb-5">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="fs-6">Votre rendez-vous est dans:</div>
+                        {{ $event->start_at->longAbsoluteDiffForHumans() }}
                     </div>
                 </div>
             </div>
