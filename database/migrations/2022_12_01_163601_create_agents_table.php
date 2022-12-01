@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->enum('civility', ['M', 'Mme', 'Mlle']);
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('poste')->default("Conseiller de clientèle");
 
             $table->foreignId('user_id')
                 ->constrained()
