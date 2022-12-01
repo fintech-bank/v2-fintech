@@ -26,9 +26,9 @@
         controls: ['calendar', 'timegrid'],      // More info about controls: https://docs.mobiscroll.com/5-20-0/calendar#opt-controls
         min: min,                                // More info about min: https://docs.mobiscroll.com/5-20-0/calendar#opt-min
         max: max,                                // More info about max: https://docs.mobiscroll.com/5-20-0/calendar#opt-max
-        minTime: '08:00',
-        maxTime: '19:59',
-        stepMinute: 60,
+        minTime: '09:00',
+        maxTime: '18:29',
+        stepMinute: 30,
         width: null,
     });
 
