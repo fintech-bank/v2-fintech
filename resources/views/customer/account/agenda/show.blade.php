@@ -24,7 +24,7 @@
                                 <div class="text-muted"><i>{{ $event->agent->poste }}</i></div>
                             </div>
                         </div>
-                        <div class="separator separator-dotted my-5"></div>
+                        <div class="separator separator-dotted border-gray-200 my-5"></div>
                         <div class="d-flex flex-row align-items-center">
                             <div class="symbol symbol-50px symbol-circle me-5">
                                 <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-phone"></i></div>
