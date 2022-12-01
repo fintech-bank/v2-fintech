@@ -84,7 +84,7 @@
                     });
                 });
             },
-            onSetDate: (event, inst) => {
+            onSet: (event, inst) => {
                 console.log(event)
             }
         });
