@@ -1,4 +1,4 @@
-@extends("customer.layouts.app")
+@extends("agent.layouts.app")
 
 @section("css")
     <link rel="stylesheet" href="/plugins/mobiscroll/css/mobiscroll.jquery.min.css" />
