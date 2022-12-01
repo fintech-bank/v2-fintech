@@ -32,12 +32,12 @@
         width: null,
         onPageLoading: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
             console.log(event.firstDay.getMonth())
-            /*getDatetimes(event.firstDay, function callback(bookings) {
+            getDisponibility(event.firstDay, function callback(bookings) {
                 inst.setOptions({
                     labels: bookings.labels,     // More info about labels: https://docs.mobiscroll.com/5-20-0/calendar#opt-labels
                     invalid: bookings.invalid    // More info about invalid: https://docs.mobiscroll.com/5-20-0/calendar#opt-invalid
                 });
-            });*/
+            });
         }
     });
 
@@ -56,6 +56,14 @@
         elements.divQuestion.classList.remove('d-none')
     }
 
+    let getDisponibility = (day, callback) => {
+        let invalid = [];
+        let valid = [];
+
+        mobiscroll.util.http.getJson(`/api/calendar/disponibility?agent_id=${document.querySelector('[name="agent_id"]').value}&start=${min}&end=${max}`, (bookings) => {
+            console.log(bookings)
+        })
+    }
 
 
     elements.inputReason.addEventListener('change', e => {

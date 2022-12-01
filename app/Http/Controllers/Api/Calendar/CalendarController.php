@@ -81,4 +81,15 @@ class CalendarController extends Controller
         <?php
         return response()->json(ob_get_clean());
     }
+
+    public function disponibility(Request $request)
+    {
+        $invalid = collect();
+        $user = User::find($request->get('agent_id'));
+        $calendar = $user->events()
+            ->whereBetween('start_at', [$request->get('start'), $request->end])
+            ->get();
+
+        dd($calendar);
+    }
 }

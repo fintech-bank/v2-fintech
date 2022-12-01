@@ -129,6 +129,7 @@ Route::prefix('calendar')->group(function () {
     Route::delete('{id}', [\App\Http\Controllers\Api\Calendar\CalendarController::class, 'delete']);
 
     Route::post('subreason', [\App\Http\Controllers\Api\Calendar\CalendarController::class, 'subreason']);
+    Route::get('disponibility', [\App\Http\Controllers\Api\Calendar\CalendarController::class, 'disponibility']);
 });
 
 Route::prefix('webhook')->group(function () {
