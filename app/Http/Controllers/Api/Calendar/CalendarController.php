@@ -73,8 +73,9 @@ class CalendarController extends ApiController
         $agent = Agent::find($request->get('agent_id'));
         $start_at = Carbon::createFromTimestamp(strtotime($request->get('start_at')));
         $reason = Event::getDataReason()->where('id', $request->get('reason_id'))->first();
+        $end_at = $request->get('canal') == 'phone' ? $start_at->addMinutes(30) : $start_at->addHour();
 
-        if($agent->events()->where('start_at', $start_at)->count() != 0) {
+        if($agent->events()->where('start_at', $start_at)->count() != 0 && $agent->events()->where('end_at', $end_at)->count() != 0) {
             return $this->sendWarning("Votre agent est déjà en rendez-vous à la date du ".formatDateFrench($start_at, true));
         }
 
@@ -86,7 +87,7 @@ class CalendarController extends ApiController
             'canal' => $request->get('canal'),
             'lieu' => $request->get('canal') == 'agency' ? $agent->agency->name : '',
             'start_at' => $start_at,
-            'end_at' => $request->get('canal') == 'phone' ? $start_at->addMinutes(30) : $start_at->addHour(),
+            'end_at' => $end_at,
             'allDay' => false,
             'agent_id' => $agent->id,
             'user_id' => $request->get('user_id')
