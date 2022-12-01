@@ -88,9 +88,10 @@ class CalendarController extends Controller
     {
         $invalid = collect();
         $user = Agent::find($request->get('agent_id'));
+        $count_day = Carbon::createFromTimestamp(strtotime($request->get('start')))->diffInDays(Carbon::createFromTimestamp(strtotime($request->get('end'))));
+        dd($count_day);
         $calendars = $user->events()
             ->whereBetween('start_at', [$request->get('start'), $request->get('end')])
             ->get();
-        dd($calendars);
     }
 }
