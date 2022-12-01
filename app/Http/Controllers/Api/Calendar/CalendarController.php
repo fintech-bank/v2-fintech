@@ -95,8 +95,8 @@ class CalendarController extends Controller
             $end = Carbon::createFromTimestamp(strtotime($request->get('start')))->addDays($i)->endOfDay();
             foreach ($user->events()->whereBetween('start_at', [$start, $end])->get() as $event) {
                 $invalid->push([
-                    'start' => $event->start_at,
-                    'end' => $event->end_at
+                    'start' => $event->start_at->toJSON(),
+                    'end' => $event->end_at->toJSON()
                 ]);
             }
 
