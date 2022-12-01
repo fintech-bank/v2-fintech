@@ -79,10 +79,10 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
                 Route::get('/', \App\Http\Controllers\Customer\Profil\Contact\ContactController::class)->name('index');
             });
             Route::prefix('grpd')->name("grpd.")->group(function () {
-                Route::get('/', \App\Http\Controllers\Customer\Profil\Contact\GrpdController::class)->name('index');
+                Route::get('/', [\App\Http\Controllers\Customer\Profil\Contact\GrpdController::class, 'index'])->name('index');
             });
             Route::prefix('secret')->name("secret.")->group(function () {
-                Route::get('/', \App\Http\Controllers\Customer\Profil\Contact\GrpdController::class)->name('index');
+                Route::get('/', [\App\Http\Controllers\Customer\Profil\Contact\GrpdController::class, 'index'])->name('index');
             });
 
             Route::prefix('cashback')->name('cashback.')->group(function () {
