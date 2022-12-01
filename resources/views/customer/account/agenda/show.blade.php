@@ -54,7 +54,7 @@
                             <x-base.button
                                 class="btn-sm btn-danger btnCancelRdv"
                                 text="<i class='fa-solid fa-ban text-white me-2'></i> Annuler"
-                                :datas="[['name' => 'event', 'value' => $event->id]" />
+                                :datas="[['name' => 'event', 'value' => $event->id]]" />
 
                         </div>
                     </div>
