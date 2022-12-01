@@ -56,7 +56,34 @@
                                 <div class="fw-bolder">Votre besoin concerne</div>
                             </div>
                             <div class="col">
-                                <div class="fw-bolder">{{ $event->reason }}</div>
+                                {{ $event->reason }}
+                            </div>
+                        </div>
+                        <div class="separator separator-dashed border-gray-200 my-3"></div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="fw-bolder">Et plus particulièrement</div>
+                            </div>
+                            <div class="col">
+                                {{ $event->subreason }}
+                            </div>
+                        </div>
+                        <div class="separator separator-dashed border-gray-200 my-3"></div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="fw-bolder">Sur quoi va porter ce rendez-vous ?</div>
+                            </div>
+                            <div class="col">
+                                {{ $event->question }}
+                            </div>
+                        </div>
+                        <div class="separator separator-dashed border-gray-200 my-3"></div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="fw-bolder">Canal de contact</div>
+                            </div>
+                            <div class="col">
+                                <i class="fa-solid {{ $event->getCanal('icon') }} text-black me-2"></i> {{ $event->getCanal('text') }}
                             </div>
                         </div>
                     </div>
