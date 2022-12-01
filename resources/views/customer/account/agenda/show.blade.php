@@ -9,7 +9,7 @@
 @section("content")
     <div id="app">
         <div class="row">
-            <div class="col-md-3 col-sm-12 mb-5">
+            <div class="col-md-4 col-sm-12 mb-5">
                 <div class="card shadow-sm mb-10">
                     <div class="card-header">
                         <h3 class="card-title"><i class="fa-solid fa-user text-black me-2"></i> Agent</h3>
@@ -37,6 +37,21 @@
                             </div>
                             <a href="tel:{{ $event->agent->phone }}" class="btn btn-sm btn-success btn-icon"><i class="fa-solid fa-phone"></i></a>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 mb-5">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h3 class="card-title">Information sur votre rendez-vous</h3>
+                        <div class="card-toolbar">
+                            <button type="button" class="btn btn-sm btn-danger">
+                                <i class="fa-solid fa-ban text-white me-2"></i> Annuler mon rendez-vous
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+
                     </div>
                 </div>
             </div>
