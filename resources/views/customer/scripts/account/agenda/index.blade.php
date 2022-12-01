@@ -133,9 +133,10 @@
                 btn.removeAttr('data-kt-indicator')
                 btn.removeClass('btn-primary')
                 btn.addClass('btn-danger')
-                btn.find('.indicator-label').html('<i class="fa-solid fa-exclamation-triangle text-white me-2"></i> Erreur')
+                btn.find('.indicator-label').html('<i class="fa-solid fa-exclamation-triangle text-white me-2 fs-2"></i> Erreur')
 
                 console.log(err)
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
             }
         })
     })
