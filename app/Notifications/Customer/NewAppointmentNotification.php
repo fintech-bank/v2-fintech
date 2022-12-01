@@ -40,7 +40,7 @@ class NewAppointmentNotification extends Notification
     {
         ob_start();
         ?>
-        <div class="fw-bolder">Confirmation de votre rendez-vous</div>
+        <p class="fw-bolder">Confirmation de votre rendez-vous</p>
         <p>Nous vous remercions d'avoir pris contact avec nous. Nous avons le plaisir de vous confirmer votre rendez-vous avec <?= $this->event->agent->full_name ?> pour échanger sur le motif suivant : <strong><?= $this->event->subreason ?></strong>.</p>
         <p>Votre rendez-vous se tiendra:</p>
         <ul>
