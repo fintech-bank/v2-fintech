@@ -149,7 +149,7 @@
                             @csrf
                             <input type="hidden" name="provider" value="customer">
                             <input type="hidden" name="provider_id" value="{{ $event->user->id }}">
-                            <textarea class="form-control form-control-flush mb-3" rows="1" data-kt-element="input" placeholder="Taper votre message"></textarea>
+                            <textarea class="form-control form-control-flush mb-3" rows="1" name="message" data-kt-element="input" placeholder="Taper votre message"></textarea>
                             <div class="d-flex flex-stack">
                                 <x-form.button text="Envoyer" />
                             </div>
