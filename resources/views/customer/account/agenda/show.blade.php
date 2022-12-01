@@ -8,7 +8,7 @@
 
 @section("content")
     <div id="app">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-md-3 col-sm-12 mb-5">
                 <div class="card shadow-sm mb-10">
                     <div class="card-header">
