@@ -5,7 +5,7 @@
         divSubreason: document.querySelector("#divSubreason"),
         inputReason: document.querySelector('[name="reason_id"]'),
         divQuestion: document.querySelector("#divQuestion"),
-        inputSubreason: document.querySelector('[name="subreason"]')
+        inputSubreason: document.querySelector('[name="subreason_id"]')
     }
     let modals = {}
     let forms = {
