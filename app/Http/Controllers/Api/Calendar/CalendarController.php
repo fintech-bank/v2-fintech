@@ -87,7 +87,7 @@ class CalendarController extends Controller
         $invalid = collect();
         $user = User::find($request->get('agent_id'));
         $calendar = $user->events()
-            ->whereBetween('start_at', [$request->get('start'), $request->end])
+            ->whereBetween('start_at', [$request->get('start'), $request->get('end')])
             ->get();
 
         dd($calendar);
