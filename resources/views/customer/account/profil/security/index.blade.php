@@ -25,13 +25,13 @@
                         <div class="fw-bolder fs-1">Numéro de téléphone de sécurité</div>
                         <div class="d-flex flex-row border border-gray-300 p-8 align-items-center">
                             @if($customer->info->mobileVerified)
-                                <i class="fa-solid fa-check-circle text-success fs-2tx me-5"></i>
+                                <i class="fa-regular fa-check-circle text-success fs-2tx me-5"></i>
                                 <div class="d-flex flex-column">
                                     <span>Votre numéro de téléphone de sécurité est le:</span>
                                     <div class="fw-bolder fs-1">{{ $customer->info->getMobileNumber('obscure') }}</div>
                                 </div>
                             @else
-                                <i class="fa-solid fa-xmark-circle text-danger fs-2tx me-5"></i>
+                                <i class="fa-regular fa-xmark-circle text-danger fs-2tx me-5"></i>
                                 <div class="d-flex flex-column">
                                     <span>Votre numéro de téléphone de sécurité est le:</span>
                                     <div class="fw-bolder fs-1">Aucun numéro de téléphone définie</div>
