@@ -38,6 +38,11 @@
                                 </div>
                             @endif
                         </div>
+                        <p>
+                            Vous avez changé de numéro de téléphone ?<br>
+                            Pensez à le modifier.
+                        </p>
+                        <button class="btn btn-circle btn-outline btn-outline-dark">Modifier le téléphone</button>
                     </div>
                 </div>
             </div>
