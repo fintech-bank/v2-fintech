@@ -76,6 +76,9 @@
             maxTime: '18:29',
             stepMinute: 30,
             width: null,
+            onChange: (event, inst) => {
+                console.log(event)
+            },
             onShow: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
                 getDisponibility(item.value, event.firstDay, function callback(bookings) {
                     inst.setOptions({
@@ -83,9 +86,6 @@
                         invalid: bookings.invalid    // More info about invalid: https://docs.mobiscroll.com/5-20-0/calendar#opt-invalid
                     });
                 });
-            },
-            onSet: (event, inst) => {
-                console.log(event)
             }
         });
     }
