@@ -8,6 +8,6 @@ class SecurityController extends Controller
 {
     public function __invoke()
     {
-
+        return view('customer.account.profil.security.index');
     }
 }
