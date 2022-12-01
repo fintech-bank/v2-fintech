@@ -131,6 +131,8 @@ use RTippin\Messenger\Traits\Messageable;
  * @method static Builder|User whereTypeCustomer($value)
  * @property string|null $api_token
  * @method static Builder|User whereApiToken($value)
+ * @property-read Agent|null $agents
+ * @property-read mixed $is_online
  */
 class User extends Authenticatable
 {

@@ -50,6 +50,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereGaugeShowOpWaiting($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereGaugeShowSolde($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereGaugeStart($value)
+ * @property int $securpass
+ * @property string|null $securpass_key
+ * @property string|null $securpass_model
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereSecurpass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereSecurpassKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereSecurpassModel($value)
  */
 class CustomerSetting extends Model
 {

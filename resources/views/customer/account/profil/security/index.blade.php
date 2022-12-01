@@ -46,6 +46,36 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6 col-sm-12 mb-5">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="fw-bolder fs-1 mb-3">Pass Sécurité</div>
+                        <div class="d-flex flex-row border border-gray-300 p-8 align-items-center mb-5">
+                            @if($customer->setting->securpass)
+                                <i class="fa-regular fa-check-circle text-success fs-2tx me-5"></i>
+                                <div class="d-flex flex-column">
+                                    <span>Vous disposez du Pass Sécurité suivant:</span>
+                                    <div class="fw-bolder fs-1">{{ $customer->setting->securpass_model }}</div>
+                                </div>
+                            @else
+                                <i class="fa-regular fa-xmark-circle text-danger fs-2tx me-5"></i>
+                                <div class="d-flex flex-column">
+                                    <span>Vous disposez du Pass Sécurité suivant:</span>
+                                    <div class="fw-bolder fs-1">Aucun Pass Sécurité définie</div>
+                                </div>
+                            @endif
+                        </div>
+                        <p>
+                            En cas de perte ou de vol de votre smartphone, désactivez votre Pass Sécurité.
+                        </p>
+                        @if($customer->setting->securpass)
+                            <button class="btn btn-circle btn-outline btn-outline-danger">Désactiver</button>
+                        @else
+                            <button class="btn btn-circle btn-outline btn-outline-success">Activé</button>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

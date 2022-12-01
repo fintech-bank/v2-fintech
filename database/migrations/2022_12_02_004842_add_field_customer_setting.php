@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up()
+    {
+        Schema::table('customer_settings', function (Blueprint $table) {
+            $table->boolean('securpass')->default(false);
+            $table->string('securpass_key')->nullable();
+            $table->string('securpass_model')->nullable();
+        });
+    }
+
+    public function down()
+    {
+        Schema::table('customer_settings', function (Blueprint $table) {
+            $table->removeColumn('securpass');
+            $table->removeColumn('securpass_key');
+            $table->removeColumn('securpass_model');
+        });
+    }
+};
