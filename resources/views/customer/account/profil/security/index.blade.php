@@ -77,6 +77,13 @@
                 </div>
             </div>
         </div>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="fw-bolder fs-1 mb-3">Code secret</div>
+                <p>Pour maintenir la sécurité de votre accès, nous vous invitons à modifier régulièrement votre code secret de banque à distance.</p>
+                <button class="btn btn-circle btn-outline btn-outline-black">Modifier le code</button>
+            </div>
+        </div>
     </div>
 @endsection
 
