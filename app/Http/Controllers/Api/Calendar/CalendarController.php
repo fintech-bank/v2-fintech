@@ -74,7 +74,7 @@ class CalendarController extends Controller
         $reason = Event::getDataReason()->where('id', $request->get('reason_id'))->first();
         $event = Event::create([
             'type' => $request->get('type'),
-            'reason' => $reason->value,
+            'reason' => $reason['value'],
             'subreason' => $request->get('subreason'),
             'question' => $request->get('question'),
             'canal' => $request->get('canal'),
