@@ -230,7 +230,7 @@
                                             <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="agent_{{ $agent->id }}">
                                                     <span class="d-block fw-semibold text-start">
                                                         <span class="text-dark fw-bold d-block fs-3">{{ $agent->civility }} {{ $agent->lastname }} {{ $agent->firstname }}</span>
-                                                        <span class="text-muted fw-semibold fs-6">Conseiller de clientèle</span>
+                                                        <span class="text-muted fw-semibold fs-6">{{ $agent->poste }}</span>
                                                     </span>
                                             </label>
                                             <!--end::Option-->
