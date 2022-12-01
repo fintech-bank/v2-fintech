@@ -37,7 +37,7 @@
         <!--end::Header-->
         <!--begin::Wrapper-->
         <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper" data-user="{{ auth()->user()->id }}">
-            @include("agent.layouts.includes.aside")
+            @include("customer.layouts.includes.aside")
             <!--begin::Main-->
             <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                 <!--begin::Content wrapper-->
