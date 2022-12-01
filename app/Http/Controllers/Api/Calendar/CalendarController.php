@@ -89,6 +89,6 @@ class CalendarController extends Controller
         $user = User::find($request->get('agent_id'));
         $calendar = $user->events;
 
-        dd($calendar);
+        dd($calendar, $user);
     }
 }
