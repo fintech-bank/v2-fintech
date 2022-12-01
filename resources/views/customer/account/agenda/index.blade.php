@@ -279,7 +279,7 @@
                                             <span class="fs-6">Durée estimée : 1h00</span>
                                             <span class="d-flex flex-center">
                                                 <span class="form-check form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="radio"  name="canal" value="phone"/>
+                                                    <input class="form-check-input" type="radio"  name="canal" value="agency"/>
                                                 </span>
                                             </span>
                                         </label>
