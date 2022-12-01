@@ -115,5 +115,19 @@
         let btn = form.find('[data-kt-stepper-action="submit"]')
 
         console.log(data)
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            success: data => {
+                toastr.success(`Votre demande de rendez-vous à bien été enregistré`, `Mes Rendez-vous`)
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1200)
+            }
+        })
     })
 </script>
