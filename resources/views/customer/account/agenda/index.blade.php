@@ -222,7 +222,7 @@
                                             size="2"
                                             size-text="fs-1" class="w-auto mb-10"/>
                                     </div>
-                                    @foreach(\App\Models\User::where('agent', 1)->where('agency_id', auth()->user()->customers->agency->id)->get() as $agent)
+                                    @foreach(\App\Models\Core\Agent::where('agency_id', auth()->user()->customers->agency->id)->get() as $agent)
                                         <div class="mb-2">
                                             <!--begin::Option-->
                                             <input type="radio" class="btn-check" name="agent_id" value="{{ $agent->id }}"  id="agent_{{ $agent->id }}"/>
