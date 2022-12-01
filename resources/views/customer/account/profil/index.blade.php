@@ -16,7 +16,7 @@
     <div id="app" class="rounded container">
         <div class="text-center fw-bolder fs-2hx mb-5">Mes Données Personnelles</div>
         <div class="row">
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.security.index') }}" class="text-dark">
                     <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
@@ -33,7 +33,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.identity.index') }}" class="text-dark">
                     <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
@@ -50,7 +50,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.contact.index') }}" class="text-dark">
                     <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
@@ -67,7 +67,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.grpd.index') }}" class="text-dark">
                     <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
@@ -84,7 +84,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.secret.index') }}" class="text-dark">
                     <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
