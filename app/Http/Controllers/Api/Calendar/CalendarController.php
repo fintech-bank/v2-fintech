@@ -72,9 +72,8 @@ class CalendarController extends ApiController
     {
         $agent = Agent::find($request->get('agent_id'));
         $start_at = Carbon::createFromTimestamp(strtotime($request->get('start_at')));
-        dd($start_at);
         $reason = Event::getDataReason()->where('id', $request->get('reason_id'))->first();
-        $end_at = $request->get('canal') == 'phone' ? $start_at->addMinutes(30) : $start_at->addHour();
+        $end_at = $request->get('canal') == 'phone' ? Carbon::createFromTimestamp(strtotime($request->get('start_at')))->addMinutes(30) : Carbon::createFromTimestamp(strtotime($request->get('start_at')))->addHour();
 
         dd($request->all(), $start_at, $end_at);
 
