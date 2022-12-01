@@ -86,9 +86,8 @@ class CalendarController extends Controller
     public function disponibility(Request $request)
     {
         $invalid = collect();
-        $user = User::find($request->get('agent_id'));
-        $calendar = $user->events;
+        $user = User::with('events')->find($request->get('agent_id'));
 
-        dd($calendar, $user);
+        dd($user);
     }
 }
