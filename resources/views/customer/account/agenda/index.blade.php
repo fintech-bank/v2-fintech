@@ -212,7 +212,8 @@
                         </div>
                         <!--end::Nav-->
 
-                        <form class="form w-lg-500px mx-auto" action="/api/calendar" novalidate="novalidate" id="kt_stepper_example_basic_form" method="post">
+                        <form class="form w-lg-500px mx-auto" action="/api/calendar" novalidate="novalidate" id="form_rdv" method="post">
+                            @csrf
                             <div class="mb-5">
                                 <div class="flex-column current" data-kt-stepper-element="content">
                                     <div class="d-flex flex-center">
@@ -315,7 +316,7 @@
 
                                 <!--begin::Wrapper-->
                                 <div>
-                                    <button type="button" class="btn btn-primary" data-kt-stepper-action="submit">
+                                    <button type="submit" class="btn btn-primary" data-kt-stepper-action="submit">
                                         <span class="indicator-label">
                                             Submit
                                         </span>

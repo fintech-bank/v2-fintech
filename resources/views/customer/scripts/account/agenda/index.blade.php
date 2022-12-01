@@ -8,7 +8,9 @@
         inputSubreason: document.querySelector('[name="subreason"]')
     }
     let modals = {}
-    let forms = {}
+    let forms = {
+        formRdv: document.querySelector("#form_rdv")
+    }
     let dataTable = {}
     let block = {}
 
@@ -104,4 +106,14 @@
     stepperRdv.on("kt.stepper.previous", function (stepper) {
         stepper.goPrevious(); // go previous step
     });
+
+    $(forms.formRdv).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formRdv)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('[data-kt-stepper-action="submit"]')
+
+        console.log(data)
+    })
 </script>
