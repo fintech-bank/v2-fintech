@@ -70,6 +70,11 @@
         e.preventDefault()
         showSubreason(e.target)
     })
+    document.querySelectorAll('[name="agent_id"]').forEach(checkbox => {
+        if(checkbox.checked === true) {
+            console.log(checkbox.value)
+        }
+    })
 
     let stepperRdv = new KTStepper(elements.stepperElement)
 
