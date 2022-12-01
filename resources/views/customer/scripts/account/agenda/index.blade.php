@@ -21,25 +21,7 @@
     let min = '{{ now() }}';
     let max = '{{ now()->addMonths(6) }}';
 
-    $("#date_rdv").mobiscroll().datepicker({
-        display: 'inline',
-        controls: ['calendar', 'timegrid'],      // More info about controls: https://docs.mobiscroll.com/5-20-0/calendar#opt-controls
-        min: min,                                // More info about min: https://docs.mobiscroll.com/5-20-0/calendar#opt-min
-        max: max,                                // More info about max: https://docs.mobiscroll.com/5-20-0/calendar#opt-max
-        minTime: '09:00',
-        maxTime: '18:29',
-        stepMinute: 30,
-        width: null,
-        onPageLoading: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
-            console.log(event.firstDay.getMonth())
-            getDisponibility(event.firstDay, function callback(bookings) {
-                inst.setOptions({
-                    labels: bookings.labels,     // More info about labels: https://docs.mobiscroll.com/5-20-0/calendar#opt-labels
-                    invalid: bookings.invalid    // More info about invalid: https://docs.mobiscroll.com/5-20-0/calendar#opt-invalid
-                });
-            });
-        }
-    });
+
 
     let showSubreason = (item) => {
         $.ajax({
@@ -56,17 +38,36 @@
         elements.divQuestion.classList.remove('d-none')
     }
 
-    let getDisponibility = (day, callback) => {
+    let getDisponibility = (agent_id, day, callback) => {
         let invalid = [];
         let valid = [];
 
-        mobiscroll.util.http.getJson(`/api/calendar/disponibility?agent_id=${document.querySelector('[name="agent_id"]').value}&start=${min}&end=${max}`, (bookings) => {
+        mobiscroll.util.http.getJson(`/api/calendar/disponibility?agent_id=${agent_id}&start=${min}&end=${max}`, (bookings) => {
             console.log(bookings)
         })
     }
 
     let checkAgentId = (item) => {
-        console.log(item.value)
+        $("#date_rdv").mobiscroll().datepicker({
+            display: 'inline',
+            controls: ['calendar', 'timegrid'],      // More info about controls: https://docs.mobiscroll.com/5-20-0/calendar#opt-controls
+            min: min,                                // More info about min: https://docs.mobiscroll.com/5-20-0/calendar#opt-min
+            max: max,                                // More info about max: https://docs.mobiscroll.com/5-20-0/calendar#opt-max
+            minTime: '09:00',
+            maxTime: '18:29',
+            stepMinute: 30,
+            width: null,
+            onPageLoading: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
+                console.log(event)
+                console.log(inst)
+                getDisponibility(event.firstDay, function callback(bookings) {
+                    inst.setOptions({
+                        labels: bookings.labels,     // More info about labels: https://docs.mobiscroll.com/5-20-0/calendar#opt-labels
+                        invalid: bookings.invalid    // More info about invalid: https://docs.mobiscroll.com/5-20-0/calendar#opt-invalid
+                    });
+                });
+            }
+        });
     }
 
 
