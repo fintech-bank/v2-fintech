@@ -81,7 +81,7 @@ class CalendarController extends ApiController
         $event = Event::create([
             'type' => $request->get('type'),
             'reason' => $reason['value'],
-            'subreason' => $request->get('subreason'),
+            'subreason' => $request->get('subreason_id'),
             'question' => $request->get('question'),
             'canal' => $request->get('canal'),
             'lieu' => $request->get('canal') == 'agency' ? $agent->agency->name : '',
