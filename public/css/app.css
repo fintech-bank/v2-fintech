@@ -419,3 +419,7 @@
 .hover-zoom:hover {
     transform: scale(1.03);
 }
+
+.uppercase {
+    text-transform: uppercase;
+}
