@@ -15,12 +15,21 @@
                         <h3 class="card-title"><i class="fa-solid fa-user text-black me-2"></i> Agent</h3>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex flex-row align-items-center">
+                        <div class="d-flex flex-row align-items-center mb-10">
                             <div class="symbol symbol-50px symbol-circle me-5">
                                 {!! $event->agent->user->avatar_symbol !!}
                             </div>
                             <div class="d-flex flex-column">
                                 <strong>{{ $event->agent->full_name }}</strong>
+                                <div class="text-muted"><i>{{ $event->agent->poste }}</i></div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center">
+                            <div class="symbol symbol-50px symbol-circle me-5">
+                                <div class="symbol-label fs-2 fw-semibold text-success"><i class="fa-solid fa-phone"></i></div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <strong>Contact téléphonique</strong>
                                 <div class="text-muted"><i>{{ $event->agent->poste }}</i></div>
                             </div>
                         </div>

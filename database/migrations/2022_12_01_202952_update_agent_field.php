@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::table('agents', function (Blueprint $table) {
             $table->string('poste')->default("Conseiller de clientèle");
+            $table->string('phone')->nullable();
         });
     }
 
@@ -16,6 +17,7 @@ return new class extends Migration {
     {
         Schema::table('agents', function (Blueprint $table) {
             $table->removeColumn('poste');
+            $table->removeColumn('phone');
         });
     }
 };
