@@ -82,7 +82,7 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
                 Route::get('/', [\App\Http\Controllers\Customer\Profil\Contact\GrpdController::class, 'index'])->name('index');
             });
             Route::prefix('secret')->name("secret.")->group(function () {
-                Route::get('/', [\App\Http\Controllers\Customer\Profil\Contact\GrpdController::class, 'index'])->name('index');
+                Route::get('/', [\App\Http\Controllers\Customer\Profil\Security\SecurityController::class, 'index'])->name('index');
             });
 
             Route::prefix('cashback')->name('cashback.')->group(function () {
@@ -95,6 +95,10 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
 
             Route::prefix('mobility')->name('mobility.')->group(function () {
                 Route::get('/', [\App\Http\Controllers\Customer\Profil\MobilityController::class, 'index'])->name('index');
+            });
+
+            Route::prefix('transfer')->name('transfer.')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Customer\Profil\TransferAgencyController::class, 'index'])->name('index');
             });
 
             Route::prefix('paystar')->name('paystar.')->group(function () {

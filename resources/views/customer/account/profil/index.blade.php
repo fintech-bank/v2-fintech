@@ -15,7 +15,7 @@
 @section("content")
     <div id="app" class="rounded container">
         <div class="text-center fw-bolder fs-2hx mb-5">Mes Données Personnelles</div>
-        <div class="row">
+        <div class="row mb-15">
             <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.security.index') }}" class="text-dark">
                     <div class="bg-white shadow-lg p-10 rounded">
@@ -95,6 +95,111 @@
                             </div>
                         </div>
                         <p>Ici, modifiez votre code secret</p>
+                        <div class="text-end">
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-5">
+                <a href="{{ route('customer.account.profil.secret.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Code secret</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-muted fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-black fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Ici, modifiez votre code secret</p>
+                        <div class="text-end">
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="text-center fw-bolder fs-2hx mb-5">Services & Avantages</div>
+        <div class="row mb-15">
+            <div class="col-md-4 col-sm-12 mb-5">
+                <a href="{{ route('customer.account.profil.cashback.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Cashback</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-muted fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-muted fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Avec le Cashback Société Générale, vos dépenses deviennent des récompenses, à chaque achat chez nos partenaires, en ligne ou en magasin.</p>
+                        <div class="text-end">
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-5">
+                <a href="{{ route('customer.account.profil.sponsorship.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Mon espace parrainage</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-muted fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-muted fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Parrainez vos proches et suivez vos invitations de parrainage.</p>
+                        <div class="text-end">
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-5">
+                <a href="{{ route('customer.account.profil.mobility.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Service Transbank</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-black fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-muted fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Transférez vos virements et prélèvements sur votre compte</p>
+                        <div class="text-end">
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-5">
+                <a href="{{ route('customer.account.profil.transfer.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Transfert d'Agence</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-black fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-muted fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Transférez vos comptes dans une nouvelle agence Société Générale</p>
+                        <div class="text-end">
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-5">
+                <a href="{{ route('customer.account.profil.paystar.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Paystar</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-muted fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-black fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Gérez vos services Paystar</p>
                         <div class="text-end">
                             <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
                         </div>
