@@ -74,7 +74,7 @@
             maxTime: '18:29',
             stepMinute: 30,
             width: null,
-            onPageLoading: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
+            onShow: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
                 getDisponibility(item.value, event.firstDay, function callback(bookings) {
                     inst.setOptions({
                         labels: bookings.labels,     // More info about labels: https://docs.mobiscroll.com/5-20-0/calendar#opt-labels
