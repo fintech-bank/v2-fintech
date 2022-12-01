@@ -51,7 +51,14 @@
                         </div>
                     </div>
                     <div class="card-body">
-
+                        <div class="row">
+                            <div class="col">
+                                <div class="fw-bolder">Votre besoin concerne</div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bolder">{{ $event->reason }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
