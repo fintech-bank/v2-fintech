@@ -69,7 +69,7 @@
             </div>
             <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.grpd.index') }}" class="text-dark">
-                    <div class="bg-white shadow-lg p-10 rounded">
+                    <div class="bg-white shadow-lg p-10 rounded h-250px">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
                             <div class="fs-1 fw-bold w-50">Mes données personnelles</div>
                             <div>
