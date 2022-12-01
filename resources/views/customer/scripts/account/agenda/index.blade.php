@@ -18,8 +18,8 @@
         themeVariant: 'light'
     })
 
-    let min = '{{ now()->format('Y-m-dT00:00') }}';
-    let max = '{{ now()->addMonths(6)->format('Y-m-dT00:00') }}';
+    let min = '{{ now() }}';
+    let max = '{{ now()->addMonths(6) }}';
 
     $("#date_rdv").mobiscroll().datepicker({
         display: 'inline',
