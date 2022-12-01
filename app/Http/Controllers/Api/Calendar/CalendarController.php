@@ -75,7 +75,7 @@ class CalendarController extends ApiController
         $reason = Event::getDataReason()->where('id', $request->get('reason_id'))->first();
         $end_at = $request->get('canal') == 'phone' ? $start_at->addMinutes(30) : $start_at->addHour();
 
-        dd($start_at, $end_at);
+        dd($request->all(), $start_at, $end_at);
 
         if($agent->events()->whereBetween('start_at', [$start_at, $end_at])->orWhereBetween('end_at', [$start_at, $end_at])->count() != 0) {
             return $this->sendWarning("Votre agent est déjà en rendez-vous à la date du ".formatDateFrench($start_at, true));
