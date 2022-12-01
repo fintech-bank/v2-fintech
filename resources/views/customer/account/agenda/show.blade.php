@@ -59,7 +59,7 @@
                 <div class="card shadow-sm">
                     <div class="card-body text-center">
                         <div class="fs-6">Votre rendez-vous est dans:</div>
-                        <div class="fs-2 fw-bolder text-info">{{ $event->start_at->longAbsoluteDiffForHumans() }}</div>
+                        <div class="fs-1 fw-bolder text-info">{{ $event->start_at->longAbsoluteDiffForHumans() }}</div>
                     </div>
                 </div>
             </div>
