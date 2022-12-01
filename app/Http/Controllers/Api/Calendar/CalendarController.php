@@ -49,15 +49,15 @@ class CalendarController extends ApiController
      */
     public function list(Request $request)
     {
-        $events = User::find($request->get('user_id'))->events;
+        $events = User::find($request->get('user_id'))->agent->events;
 
         $arr = [];
 
         foreach ($events as $event) {
             $arr[] = [
                 'id' => $event->id,
-                'title' => $event->title,
-                'description' => $event->description,
+                'title' => $event->reason,
+                'description' => $event->question,
                 'location' => $event->lieu,
                 'start' => $event->start_at,
                 'end' => $event->end_at,
