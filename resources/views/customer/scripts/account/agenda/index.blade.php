@@ -76,7 +76,7 @@
             maxTime: '18:29',
             stepMinute: 30,
             width: null,
-            returnFormat: 'jsdate',
+            returnFormat: 'iso8601',
             onChange: (event, inst) => {
                 console.log(event)
                 $("[name='start_at']").val(event.valueText)
