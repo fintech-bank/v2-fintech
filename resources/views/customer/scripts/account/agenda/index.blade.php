@@ -81,6 +81,9 @@
                         invalid: bookings.invalid    // More info about invalid: https://docs.mobiscroll.com/5-20-0/calendar#opt-invalid
                     });
                 });
+            },
+            onSetDate: (event, inst) => {
+                console.log(event)
             }
         });
     }
