@@ -299,6 +299,7 @@
                                     </div>
 
                                     <div id="date_rdv" class="booking-datetime"></div>
+                                    <input type="hidden" name="start_at" value="">
 
                                 </div>
                             </div>
