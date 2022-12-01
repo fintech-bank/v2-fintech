@@ -65,6 +65,10 @@
         })
     }
 
+    let checkAgentId = (item) => {
+        console.log(item.value)
+    }
+
 
     elements.inputReason.addEventListener('change', e => {
         e.preventDefault()

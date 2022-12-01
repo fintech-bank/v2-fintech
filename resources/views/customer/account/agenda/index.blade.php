@@ -225,7 +225,7 @@
                                     @foreach(\App\Models\Core\Agent::where('agency_id', auth()->user()->customers->agency->id)->get() as $agent)
                                         <div class="mb-2">
                                             <!--begin::Option-->
-                                            <input type="radio" class="btn-check" name="agent_id" value="{{ $agent->id }}"  id="agent_{{ $agent->id }}"/>
+                                            <input type="radio" class="btn-check" name="agent_id" value="{{ $agent->id }}"  id="agent_{{ $agent->id }}" onclick="checkAgentId(this)"/>
                                             <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="agent_{{ $agent->id }}">
                                                     <span class="d-block fw-semibold text-start">
                                                         <span class="text-dark fw-bold d-block fs-3">{{ $agent->civility }} {{ $agent->lastname }} {{ $agent->firstname }}</span>
