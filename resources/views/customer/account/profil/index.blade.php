@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <div class="bg-white shadow-lg p-10 rounded">
-                    <div class="d-flex flex-row justify-content-between mb-3">
+                    <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
                         <div class="fs-1 fw-bold">Sécurité</div>
                         <div>
                             <i class="fa-solid fa-desktop text-black fs-2x me-2"></i>
