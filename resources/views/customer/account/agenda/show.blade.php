@@ -51,9 +51,11 @@
                     <div class="card-header">
                         <h3 class="card-title">Information sur votre rendez-vous</h3>
                         <div class="card-toolbar">
-                            <button type="button" class="btn btn-sm btn-danger">
-                                <i class="fa-solid fa-ban text-white me-2"></i> Annuler
-                            </button>
+                            <x-base.button
+                                class="btn-sm btn-danger btnCancelRdv"
+                                text="<i class='fa-solid fa-ban text-white me-2'></i> Annuler"
+                                :datas="[['name' => 'event', 'value' => $event->id]" />
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -102,14 +104,10 @@
             </div>
             <div class="col-md-5 col-sm-12 mb-5">
                 <div class="card" id="kt_chat_messenger">
-                    <!--begin::Card header-->
                     <div class="card-header" id="kt_chat_messenger_header">
-                        <!--begin::Title-->
                         <div class="card-title">
-                            <!--begin::User-->
                             <div class="d-flex justify-content-center flex-column me-3">
                                 <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">{{ $event->agent->full_name }} <i class="text-muted">{{ $event->agent->poste }}</i></a>
-                                <!--begin::Info-->
                                 @if($event->agent->user->is_online)
                                     <div class="mb-0 lh-1">
                                         <span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
@@ -121,67 +119,42 @@
                                         <span class="fs-7 fw-semibold text-muted">Indisponible</span>
                                     </div>
                                 @endif
-
-                                <!--end::Info-->
                             </div>
-                            <!--end::User-->
                         </div>
-                        <!--end::Title-->
                     </div>
-                    <!--end::Card header-->
-                    <!--begin::Card body-->
                     <div class="card-body" id="kt_chat_messenger_body">
-                        <!--begin::Messages-->
                         <div class="scroll-y me-n5 pe-5 h-300px h-lg-auto" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_app_header, #kt_app_toolbar, #kt_toolbar, #kt_footer, #kt_app_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer" data-kt-scroll-wrappers="#kt_content, #kt_app_content, #kt_chat_messenger_body" data-kt-scroll-offset="5px" style="max-height: 372px;">
                             @foreach($event->messages as $message)
                                 <div class="d-flex {{ $message->agent_id != null ? 'justify-content-start' : 'justify-content-end' }} mb-10">
-                                    <!--begin::Wrapper-->
                                     <div class="d-flex flex-column {{ $message->agent_id != null ? 'align-items-start' : 'align-items-end' }}">
-                                        <!--begin::User-->
                                         <div class="d-flex align-items-center mb-2">
-                                            <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
                                                 {!! $message->agent_id != null ? $message->agent->user->avatar_symbol : $message->user->avatar_symbol !!}
                                             </div>
-                                            <!--end::Avatar-->
-                                            <!--begin::Details-->
                                             <div class="ms-3">
                                                 <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">{{ $message->agent_id != null ? $message->agent->full_name : "Vous" }}</a>
                                                 <span class="text-muted fs-7 mb-1">{{ $message->created_at->shortAbsoluteDiffForHumans() }}</span>
                                             </div>
-                                            <!--end::Details-->
                                         </div>
-                                        <!--end::User-->
-                                        <!--begin::Text-->
                                         <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start" data-kt-element="message-text">
                                             {{ $message->message }}
                                         </div>
-                                        <!--end::Text-->
                                     </div>
-                                    <!--end::Wrapper-->
                                 </div>
                             @endforeach
-
                         </div>
-                        <!--end::Messages-->
                     </div>
-                    <!--end::Card body-->
-                    <!--begin::Card footer-->
                     <div class="card-footer pt-4" id="kt_chat_messenger_footer">
-                        <input type="hidden" name="provider" value="customer">
-                        <input type="hidden" name="provider_id" value="{{ $event->user->id }}">
-                        <!--begin::Input-->
-                        <textarea class="form-control form-control-flush mb-3" rows="1" data-kt-element="input" placeholder="Taper votre message"></textarea>
-                        <!--end::Input-->
-                        <!--begin:Toolbar-->
-                        <div class="d-flex flex-stack">
-                            <!--begin::Send-->
-                            <button class="btn btn-primary" type="button" data-kt-element="send">Envoyer</button>
-                            <!--end::Send-->
-                        </div>
-                        <!--end::Toolbar-->
+                        <form id="formPostEventMessage" action="/api/calendar/{{ $event->id }}/message" method="post">
+                            @csrf
+                            <input type="hidden" name="provider" value="customer">
+                            <input type="hidden" name="provider_id" value="{{ $event->user->id }}">
+                            <textarea class="form-control form-control-flush mb-3" rows="1" data-kt-element="input" placeholder="Taper votre message"></textarea>
+                            <div class="d-flex flex-stack">
+                                <x-form.button text="Envoyer" />
+                            </div>
+                        </form>
                     </div>
-                    <!--end::Card footer-->
                 </div>
             </div>
         </div>

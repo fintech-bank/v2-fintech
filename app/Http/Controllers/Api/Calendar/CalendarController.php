@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Core\Agent;
 use App\Models\Core\Event;
 use App\Models\User;
+use App\Notifications\Agent\EventUpdateNotification;
+use App\Notifications\Customer\CalendarUpdateNotification;
 use App\Notifications\Customer\NewAppointmentNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,7 +20,6 @@ class CalendarController extends ApiController
      *      path="/v1/calendar/list",
      *      operationId="listAllCalendar",
      *      tags={"Tests"},
-
      *      summary="Liste des évènement d'un utilisateur",
      *      description="Retourne la liste des évènement propre à un utilisateur",
      *      @OA\Response(
@@ -75,8 +76,8 @@ class CalendarController extends ApiController
         $reason = Event::getDataReason()->where('id', $request->get('reason_id'))->first();
         $end_at = $request->get('canal') == 'phone' ? Carbon::createFromTimestamp(strtotime($request->get('start_at')))->addMinutes(30) : Carbon::createFromTimestamp(strtotime($request->get('start_at')))->addHour();
 
-        if($agent->events()->whereBetween('start_at', [$start_at, $end_at])->orWhereBetween('end_at', [$start_at, $end_at])->count() != 0) {
-            return $this->sendWarning("Votre agent est déjà en rendez-vous à la date du ".formatDateFrench($start_at, true));
+        if ($agent->events()->whereBetween('start_at', [$start_at, $end_at])->orWhereBetween('end_at', [$start_at, $end_at])->count() != 0) {
+            return $this->sendWarning("Votre agent est déjà en rendez-vous à la date du " . formatDateFrench($start_at, true));
         }
 
         $event = Event::create([
@@ -97,6 +98,25 @@ class CalendarController extends ApiController
 
         return response()->json();
 
+    }
+
+    public function message($event_id, Request $request)
+    {
+        $event = Event::find($event_id);
+        $message = $event->messages()->create([
+            'message' => $request->get('message'),
+            'event_id' => $request->get($event_id)
+        ]);
+
+        if ($request->get('provider') == 'customer') {
+            $message->update(['user_id', $request->get('provider_id')]);
+            $event->agent->user->notify(new EventUpdateNotification($event->user->customers, $message, $event));
+        } else {
+            $message->update(['agent_id', $request->get('provider_id')]);
+            $event->user->customers->info->notify(new CalendarUpdateNotification($event->user->customers, $event, 'Contact avec ma banque'));
+        }
+
+        return response()->json();
     }
 
     public function subreason(Request $request)
