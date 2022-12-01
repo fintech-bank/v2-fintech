@@ -25,6 +25,10 @@
                             <i class="fa-solid fa-mobile text-muted fs-2x me-2"></i>
                         </div>
                     </div>
+                    <p>Gérez vos moyens de sécurité : code secret, numéro de téléphone sécurité et Pass Sécurité</p>
+                    <div class="text-end">
+                        <a href="" class="btn btn-link btn-active-primary"><i class="fa-solid fa-arrow-right-long"></i> </a>
+                    </div>
                 </div>
             </div>
         </div>
