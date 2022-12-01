@@ -57,7 +57,7 @@
                     <div id="kt_app_content" class="app-content flex-column-fluid">
                         <!--begin::Content container-->
                         <div id="kt_app_content_container" class="app-container container-fluid">
-                            @include("agent.layouts.includes.alert")
+                            @include("customer.layouts.includes.alert")
                             @yield("content")
                         </div>
                         <!--end::Content container-->
@@ -65,7 +65,7 @@
                     <!--end::Content-->
                 </div>
                 <!--end::Content wrapper-->
-                @include('agent.layouts.includes.footer')
+                @include('customer.layouts.includes.footer')
             </div>
             <!--end:::Main-->
         </div>
