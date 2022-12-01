@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.security.index') }}" class="text-dark">
-                    <div class="bg-white shadow-lg p-10 rounded h-250px">
+                    <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
                             <div class="fs-1 fw-bold">Sécurité</div>
                             <div>
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <p>Gérez vos moyens de sécurité : code secret, numéro de téléphone sécurité et Pass Sécurité</p>
-                        <div class="text-end align-items-end">
+                        <div class="text-end">
                             <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.identity.index') }}" class="text-dark">
-                    <div class="bg-white shadow-lg p-10 rounded h-250px">
+                    <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
                             <div class="fs-1 fw-bold">Mon Identité</div>
                             <div>
@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.contact.index') }}" class="text-dark">
-                    <div class="bg-white shadow-lg p-10 rounded h-250px">
+                    <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
                             <div class="fs-1 fw-bold">Mes Coordonnées</div>
                             <div>
@@ -86,7 +86,7 @@
             </div>
             <div class="col-md-4 col-sm-12 mb-5">
                 <a href="{{ route('customer.account.profil.secret.index') }}" class="text-dark">
-                    <div class="bg-white shadow-lg p-10 rounded h-250px">
+                    <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
                             <div class="fs-1 fw-bold">Code secret</div>
                             <div>
