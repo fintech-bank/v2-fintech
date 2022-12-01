@@ -43,6 +43,7 @@
         let valid = [];
 
         mobiscroll.util.http.getJson(`/api/calendar/disponibility?agent_id=${agent_id}&start=${min}&end=${max}`, (bookings) => {
+            console.log(bookings)
             for (let i = 0; i < bookings.length; ++i) {
                 let booking = bookings[i];
                 let bDate = new Date(booking.d);
@@ -73,8 +74,6 @@
             stepMinute: 30,
             width: null,
             onPageLoading: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
-                console.log(event)
-                console.log(inst)
                 getDisponibility(item.value, event.firstDay, function callback(bookings) {
                     inst.setOptions({
                         labels: bookings.labels,     // More info about labels: https://docs.mobiscroll.com/5-20-0/calendar#opt-labels
