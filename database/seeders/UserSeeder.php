@@ -55,7 +55,8 @@ class UserSeeder extends Seeder
             'civility' => "M",
             "firstname" => "John",
             "lastname" => "Doe",
-            "user_id" => 2
+            "user_id" => 2,
+            "agency_id" => 1
         ]);
 
         $user = User::create([
