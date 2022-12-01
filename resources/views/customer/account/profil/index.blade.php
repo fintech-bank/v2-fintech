@@ -62,7 +62,7 @@
                         </div>
                         <p>Accédez à vos coordonnées : numéro de téléphone / adresse postale / adresse e-mail</p>
                         <div class="text-end">
-                            <a href="" class="btn btn-link"><i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i> </a>
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
                         </div>
                     </div>
                 </a>
