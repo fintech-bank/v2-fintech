@@ -109,7 +109,7 @@ class Event extends Model
         }
     }
 
-    public static function getDataReason()
+    public static function  getDataReason()
     {
         $ar = collect();
 

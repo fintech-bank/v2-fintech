@@ -245,10 +245,15 @@
                                             size="2"
                                             size-text="fs-1" class="w-auto mb-10"/>
                                     </div>
-                                    <x-form.select
-                                        name="reason"
-                                        label="Votre besoin concerne"
-                                        :datas="\App\Models\Core\Event::getDataReason()" />
+                                    <div class="mb-10">
+                                        <label for="reason_id" class="form-label">Vos besoins concerne</label>
+                                        <select class="form-control form-control-solid selectpicker" name="reason_id" onchange="showSubreason(this)">
+                                            <option value=""></option>
+                                            <?php foreach (\App\Models\Core\Event::getDataReason() as $reason): ?>
+                                                <option value="<?= $reason['value'] ?>"><?= $reason['value'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
 
                                     <div id="divSubreason"></div>
                                     <div id="divQuestion" class="d-none">
