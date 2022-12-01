@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Calendar;
 use App\Http\Controllers\Controller;
 use App\Models\Core\Event;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
@@ -87,7 +88,7 @@ class CalendarController extends Controller
         $invalid = collect();
         $user = User::find($request->get('agent_id'));
         $calendar = $user->events()
-            ->whereBetween('start_at', [$request->get('start'), $request->get('end')])
+            ->whereBetween('start_at', [Carbon::createFromTimestamp(strtotime($request->get('start'))), Carbon::createFromTimestamp(strtotime($request->get('end')))])
             ->get();
 
         dd($calendar);
