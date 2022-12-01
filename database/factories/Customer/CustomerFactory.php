@@ -22,7 +22,7 @@ class CustomerFactory extends Factory
         return [
             'status_open_account' => $open[rand(0, 6)],
             'auth_code' => base64_encode(1234),
-            'agency_id' => Agency::all()->random()->id,
+            'agency_id' => 2,
         ];
     }
 }
