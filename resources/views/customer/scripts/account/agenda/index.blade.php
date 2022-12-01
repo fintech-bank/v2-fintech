@@ -12,6 +12,23 @@
     let dataTable = {}
     let block = {}
 
+    mobiscroll.setOptions({
+        locale: mobiscroll.localeFr,
+        theme: 'ios',
+        themeVariant: 'light'
+    })
+
+    $("[name='start_at']").mobiscroll.datepicker({
+        display: 'inline',
+        controls: ['calendar', 'timegrid'],      // More info about controls: https://docs.mobiscroll.com/5-20-0/calendar#opt-controls
+        min: min,                                // More info about min: https://docs.mobiscroll.com/5-20-0/calendar#opt-min
+        max: max,                                // More info about max: https://docs.mobiscroll.com/5-20-0/calendar#opt-max
+        minTime: '08:00',
+        maxTime: '19:59',
+        stepMinute: 60,
+        width: null,
+    });
+
     let showSubreason = (item) => {
         $.ajax({
             url: '/api/calendar/subreason',

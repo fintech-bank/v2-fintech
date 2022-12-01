@@ -2,6 +2,25 @@
 
 @section("css")
     <link rel="stylesheet" href="/plugins/mobiscroll/css/mobiscroll.jquery.min.css" />
+    <style type="text/css">
+        .md-calendar-booking .mbsc-calendar-text {
+            text-align: center;
+        }
+
+        .md-calendar-booking .booking-datetime .mbsc-datepicker-tab-calendar {
+            flex: 1 1 0;
+            min-width: 300px;
+        }
+
+        .md-calendar-booking .mbsc-timegrid-item {
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;
+        }
+
+        .md-calendar-booking .mbsc-timegrid-container {
+            top: 30px;
+        }
+    </style>
 @endsection
 
 @section('toolbar')
