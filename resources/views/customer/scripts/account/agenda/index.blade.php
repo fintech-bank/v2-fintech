@@ -30,6 +30,15 @@
         maxTime: '18:29',
         stepMinute: 30,
         width: null,
+        onPageLoading: function (event, inst) {  // More info about onPageLoading: https://docs.mobiscroll.com/5-20-0/calendar#event-onPageLoading
+            console.log(event)
+            /*getDatetimes(event.firstDay, function callback(bookings) {
+                inst.setOptions({
+                    labels: bookings.labels,     // More info about labels: https://docs.mobiscroll.com/5-20-0/calendar#opt-labels
+                    invalid: bookings.invalid    // More info about invalid: https://docs.mobiscroll.com/5-20-0/calendar#opt-invalid
+                });
+            });*/
+        }
     });
 
     let showSubreason = (item) => {
@@ -46,6 +55,8 @@
     let showQuestion = (item) => {
         elements.divQuestion.classList.remove('d-none')
     }
+
+
 
     elements.inputReason.addEventListener('change', e => {
         e.preventDefault()
