@@ -15,7 +15,7 @@
 @section("content")
     <div id="app" class="rounded container">
         <div class="text-center">
-            <div class="fs-2x uppercase">Profil de {{ auth()->user()->customers->info->full_name }}</div>
+            <div class="fs-2tx uppercase">Profil de {{ auth()->user()->customers->info->full_name }}</div>
             <div class="fs-1">Gérez ici vos moyens de sécurité : code secret, numéro de téléphone sécurité et Pass Sécurité.</div>
         </div>
     </div>
