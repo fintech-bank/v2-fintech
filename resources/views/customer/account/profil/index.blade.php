@@ -71,7 +71,7 @@
                 <a href="{{ route('customer.account.profil.grpd.index') }}" class="text-dark">
                     <div class="bg-white shadow-lg p-10 rounded">
                         <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
-                            <div class="fs-1 fw-bold">Mes données personnelles</div>
+                            <div class="fs-1 fw-bold w-50">Mes données personnelles</div>
                             <div>
                                 <i class="fa-solid fa-desktop text-black fs-2x me-2"></i>
                                 <i class="fa-solid fa-mobile text-black fs-2x me-2"></i>
