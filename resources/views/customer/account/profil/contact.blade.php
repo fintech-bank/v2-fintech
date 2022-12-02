@@ -35,7 +35,7 @@
             <div class="">{{ $customer->user->email }}</div>
         </div>
         <div class="d-flex flex-center justify-content-center w-50 mx-auto">
-            <div class="alert alert-primary d-flex align-items-center p-5 mb-10">
+            <div class="alert alert-light-primary d-flex align-items-center p-5 mb-10">
                 <i class="fa-solid fa-info-circle fs-2hx text-primary me-4"></i>
                 <div class="d-flex flex-column text-white">
                     <h4 class="mb-1">This is an alert</h4>
