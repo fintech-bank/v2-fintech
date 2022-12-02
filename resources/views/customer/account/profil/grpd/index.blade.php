@@ -290,7 +290,7 @@
 
                                         <!--begin::Switch-->
                                         <label class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" name="rip_canal_mail" value="1" checked="checked"/>
+                                            <input class="form-check-input" type="checkbox" name="rip_canal_sms" value="1" checked="checked"/>
                                             <span class="form-check-label fw-semibold text-muted">
 
                                         </span>
