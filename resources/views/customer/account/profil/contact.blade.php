@@ -105,6 +105,9 @@
             <div class="w-50">Pays</div>
             <div class="">{{ $customer->info->country }}</div>
         </div>
+        <div class="d-flex flex-wrap justify-content-end">
+            <button class="btn btn-circle btn-lg btn-secondary">Modifier</button>
+        </div>
     </div>
 @endsection
 
