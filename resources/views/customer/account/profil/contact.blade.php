@@ -75,7 +75,7 @@
         </div>
         <div class="separator separator-dashed border-gray-300 my-5"></div>
         <x-base.underline
-            title="Adresse"
+            title="Adresse {!! $customer->info->addressVerified !!}"
             size="4"
             size-text="fs-1"
             color="secondary"
