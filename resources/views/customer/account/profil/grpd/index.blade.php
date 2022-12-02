@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12 mb-5">
                 <div class="border border-gray-400 p-5">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-between align-items-center">
                         <a href="" class="text-black fs-2">Exprimer votre consentement à l’utilisation de certaines de vos données personnelles</a>
                         <a href=""><i class="fa-solid fa-arrow-right-long fs-2 text-hover-primary"></i></a>
                     </div>
