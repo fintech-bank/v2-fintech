@@ -392,7 +392,7 @@
 
                         <div class="mb-10">
                             <label for="type" class="form-label required">Votre demande concerne</label>
-                            <select name="type" id="type" class="form-control form-control-solid selectpicker">
+                            <select name="type" id="type" class="form-control form-control-solid selectpicker" onchange="selectDroitAccesType(this)">
                                 <option value=""></option>
                                 <option value="identity">Données d'identification et de situation personnelle</option>
                                 <option value="subscription">Données sur les produits et les contrats détenues</option>
