@@ -215,7 +215,7 @@
                                             label="Je m'oppose à recevoir les newsletters de {{ config('app.name') }}" />
                                     </div>
                                 </div>
-                                <div class="separator separator-dashed border-gray-500 my-3"></div>
+                                <div class="separator separator-dashed my-3"></div>
                                 <div class="d-flex flex-row align-items-center mb-10">
                                     <i class="fa-regular fa-handshake fs-4hx text-bank me-5"></i>
                                     <div class="d-flex flex-column">
@@ -228,7 +228,7 @@
                                             label="Je m'oppose à recevoir les offres commerciales" />
                                     </div>
                                 </div>
-                                <div class="separator separator-dashed border-gray-500 my-3"></div>
+                                <div class="separator separator-dashed my-3"></div>
                                 <div class="d-flex flex-row align-items-center mb-10">
                                     <i class="fa-regular fa-thumbs-up fs-4hx text-bank me-5"></i>
                                     <div class="d-flex flex-column">
@@ -241,7 +241,7 @@
                                             label="Je m'oppose à recevoir les enquêtes de satisfaction" />
                                     </div>
                                 </div>
-                                <div class="separator separator-dashed border-gray-500 my-3"></div>
+                                <div class="separator separator-dashed my-3"></div>
                                 <div class="d-flex flex-row align-items-center mb-10">
                                     <i class="fa-regular fa-thumbs-up fs-4hx text-bank me-5"></i>
                                     <div class="d-flex flex-column">
