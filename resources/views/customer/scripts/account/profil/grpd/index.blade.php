@@ -12,9 +12,9 @@
 
     let selectDroitAccesType = (item) => {
         if (item.value === 'other') {
-            forms.formDroitAcces.querySelector("#other").classList.remove('d-none')
+            forms.formDroitAcces.querySelector(".other").classList.remove('d-none')
         } else {
-            forms.formDroitAcces.querySelector("#other").classList.add('d-none')
+            forms.formDroitAcces.querySelector(".other").classList.add('d-none')
         }
     }
 

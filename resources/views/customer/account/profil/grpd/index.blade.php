@@ -400,7 +400,7 @@
                             </select>
                         </div>
 
-                        <div class="other">
+                        <div class="other d-none">
                             <x-form.input
                                 name="object_comment"
                                 label="Objet" />
