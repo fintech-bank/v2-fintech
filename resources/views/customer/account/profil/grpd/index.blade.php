@@ -19,7 +19,7 @@
             <div class="fs-1">{{ config('app.name') }} met cet espace à votre disposition pour vous permettre de garder la maîtrise de vos données personnelles et d’exercer vos droits concernant leur traitement.</div>
         </div>
         <div class="d-flex flex-center rounded border border-gray-300 ">
-            <div class="d-flex flex-column justify-content-center">
+            <div class="d-flex flex-column justify-content-center align-items-center">
                 <div class="fs-1">0</div>
                 <div class="fs-3">Demande</div>
                 <button class="btn btn-circle btn-lg btn-bank" disabled>Voir mes demandes</button>
