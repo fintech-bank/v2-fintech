@@ -64,6 +64,9 @@ class SubscribeController extends ApiController
         ];
 
         $http = Http::withoutVerifying()->post('https://cashback.fintech.ovh/api/auth/register', $data)->object();
+        $customer->setting->update([
+            'tos_cashback' => 1
+        ]);
 
         return $this->sendSuccess("Souscription effectuer", [$http->data]);
     }
