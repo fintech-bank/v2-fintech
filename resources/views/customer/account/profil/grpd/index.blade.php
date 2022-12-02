@@ -26,7 +26,7 @@
                 <div class="fs-2hx fw-light">{{ $customer->grpd_demande()->count() }}</div>
                 <div class="fs-5">Demande</div>
                 <button
-                    class="btn btn-circle btn-lg btn-bank" {{ $customer->grpd_demande()->count() == 0 ? 'disabled' : '' }}>
+                    class="btn btn-circle btn-lg btn-bank" {{ $customer->grpd_demande()->count() == 0 ? 'disabled' : '' }} data-bs-toggle="modal" data-bs-target="#demandes">
                     Voir mes demandes
                 </button>
             </div>
@@ -745,6 +745,46 @@
                         <x-form.button />
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="demandes">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Liste de vos demandes relatives GRPD</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-regular fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <table class="table table-bordered gy-5 gx-5">
+                        <thead>
+                            <tr>
+                                <th>Sujet</th>
+                                <th>Commentaire</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($customer->grpd_demande as $demande)
+                                <tr>
+                                    <td>{{ $demande->object }}</td>
+                                    <td>{!! $demande->comment !!}</td>
+                                    <td>{{ $demande->type_text }}</td>
+                                    <td>{!! $demande->status_label !!}</td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
