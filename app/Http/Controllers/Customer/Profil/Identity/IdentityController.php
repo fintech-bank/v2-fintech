@@ -9,9 +9,8 @@ class IdentityController extends Controller
 {
     public function __invoke()
     {
-        dd(auth()->user()->id);
         return view('customer.account.profil.identity', [
-            'customer' => Customer::find(auth()->user()->id)
+            'customer' => Customer::find(auth()->user()->customers->id)
         ]);
     }
 }
