@@ -31,7 +31,7 @@
 
         <p class="fw-bolder">Pour mieux vous accompagner au quotidien comme dans vos projets d’avenir, nous souhaitons recueillir votre adresse e-mail. Vous serez ainsi informé de nos actualités et de nos offres promotionnelles susceptibles de vous intéresser.</p>
         <div class="d-flex flex-row justify-content-around mb-10">
-            <div class="">Adresse e-mail personnel</div>
+            <div class="">Adresse e-mail personnel {!! $customer->user->email_verified !!}</div>
             <div class="">{{ $customer->user->email }}</div>
         </div>
         <div class="d-flex flex-center justify-content-center w-50 mx-auto">
