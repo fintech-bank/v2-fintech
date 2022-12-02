@@ -30,7 +30,21 @@
             btn.addEventListener('click', e => {
                 e.preventDefault()
                 btn.setAttribute('data-kt-indicator', 'on')
+                console.log(e.target.parentNode)
+                debugger
 
+                $.ajax({
+                    url: '/api/user/{{ $customer->user->id }}',
+                    method: 'DELETE',
+                    data: {'action': 'cancelRequest'},
+                    success: data => {
+                        btn.removeAttribute('data-kt-indicator')
+
+                    },
+                    error: err => {
+
+                    }
+                })
             })
         })
     }
