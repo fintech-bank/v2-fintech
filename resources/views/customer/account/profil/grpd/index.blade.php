@@ -262,22 +262,24 @@
                                 <div class="fs-2x fw-bolder">Préférences de canal</div>
                                 <p>Choisissez les moyens de contact qui vous conviennent pour recevoir ces communications</p>
                                 <!--begin::Input group-->
-                                <div class="d-flex flex-stack w-lg-50">
-                                    <!--begin::Label-->
-                                    <div class="me-5">
-                                        <label class="fs-6 fw-semibold form-label">Par Mail</label>
-                                        <div class="fs-7 fw-semibold text-muted">{{ $customer->user->email }}</div>
-                                    </div>
-                                    <!--end::Label-->
+                                <div class="d-flex flex-center mx-auto w-75">
+                                    <div class="d-flex flex-stack w-lg-50">
+                                        <!--begin::Label-->
+                                        <div class="me-5">
+                                            <label class="fs-6 fw-semibold form-label">Par Mail</label>
+                                            <div class="fs-7 fw-semibold text-muted">{{ $customer->user->email }}</div>
+                                        </div>
+                                        <!--end::Label-->
 
-                                    <!--begin::Switch-->
-                                    <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" name="rip_canal_mail" value="1" checked="checked"/>
-                                        <span class="form-check-label fw-semibold text-muted">
+                                        <!--begin::Switch-->
+                                        <label class="form-check form-switch form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox" name="rip_canal_mail" value="1" checked="checked"/>
+                                            <span class="form-check-label fw-semibold text-muted">
 
                                         </span>
-                                    </label>
-                                    <!--end::Switch-->
+                                        </label>
+                                        <!--end::Switch-->
+                                    </div>
                                 </div>
                                 <!--end::Input group-->
                             </div>
