@@ -166,7 +166,11 @@
                 if (data.state === 'warning') {
                     toastr.warning(`${data.message}`, `Sécurité`)
                 } else {
+                    toastr.success(`Votre mot de passe à été mise à jour`, `Sécurité`)
 
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
                 }
             },
             error: () => {
