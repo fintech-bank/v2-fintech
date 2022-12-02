@@ -725,7 +725,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formPortability" action="" method="post">
+                <form id="formPortability" action="/api/user/{{ $customer->user->id }}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="modal-body">
