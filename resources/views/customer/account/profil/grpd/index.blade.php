@@ -280,6 +280,23 @@
                                         </label>
                                         <!--end::Switch-->
                                     </div>
+                                    <div class="d-flex flex-stack w-lg-50">
+                                        <!--begin::Label-->
+                                        <div class="me-5">
+                                            <label class="fs-6 fw-semibold form-label">Par Téléphone</label>
+                                            <div class="fs-7 fw-semibold text-muted">{{ $customer->info->getPhoneNumber('obscure') }}</div>
+                                        </div>
+                                        <!--end::Label-->
+
+                                        <!--begin::Switch-->
+                                        <label class="form-check form-switch form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox" name="rip_canal_mail" value="1" checked="checked"/>
+                                            <span class="form-check-label fw-semibold text-muted">
+
+                                        </span>
+                                        </label>
+                                        <!--end::Switch-->
+                                    </div>
                                 </div>
                                 <!--end::Input group-->
                             </div>
