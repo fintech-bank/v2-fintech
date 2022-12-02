@@ -25,6 +25,10 @@
                 <button class="btn btn-circle btn-lg btn-bank" disabled>Voir mes demandes</button>
             </div>
         </div>
+
+        <div class="border border-gray-400 py-5">
+            <a href="" class="text-black">Exprimer votre consentement à l’utilisation de certaines de vos données personnelles</a>
+        </div>
     </div>
 @endsection
 
