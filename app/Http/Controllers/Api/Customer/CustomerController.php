@@ -211,6 +211,8 @@ class CustomerController extends Controller
 
                 return response()->json($cn);
 
+            case 'phone':
+
         }
 
         return response()->json();

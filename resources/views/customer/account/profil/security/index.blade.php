@@ -42,7 +42,7 @@
                             Vous avez changé de numéro de téléphone ?<br>
                             Pensez à le modifier.
                         </p>
-                        <button class="btn btn-circle btn-outline btn-outline-dark">Modifier le téléphone</button>
+                        <button class="btn btn-circle btn-outline btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editMobile">Modifier le téléphone</button>
                     </div>
                 </div>
             </div>
@@ -82,6 +82,82 @@
                 <div class="fw-bolder fs-1 mb-3">Code secret</div>
                 <p>Pour maintenir la sécurité de votre accès, nous vous invitons à modifier régulièrement votre code secret de banque à distance.</p>
                 <button class="btn btn-circle btn-outline btn-outline-dark">Modifier le code</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="editMobile">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Modifier mon numéro de téléphone de sécurité</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form action="" class="stepper stepper-pills" id="stepper_edit_mobile">
+                    <div class="modal-body">
+                        @csrf
+                        <input type="hidden" name="verify" value="phone">
+                        <div class="stepper-nav flex-center flex-wrap mb-10">
+                            <div class="stepper-item mx-8 my-4 current" data-kt-stepper-element="nav">
+                                <!--begin::Wrapper-->
+                                <div class="stepper-wrapper d-flex align-items-center">
+                                    <!--begin::Icon-->
+                                    <div class="stepper-icon w-40px h-40px">
+                                        <i class="stepper-check fas fa-check"></i>
+                                        <span class="stepper-number">1</span>
+                                    </div>
+                                    <!--end::Icon-->
+
+                                    <!--begin::Label-->
+                                    <div class="stepper-label">
+                                        <h3 class="stepper-title">
+                                            Saisie
+                                        </h3>
+                                    </div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Wrapper-->
+
+                                <!--begin::Line-->
+                                <div class="stepper-line h-40px"></div>
+                                <!--end::Line-->
+                            </div>
+                            <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
+                                <!--begin::Wrapper-->
+                                <div class="stepper-wrapper d-flex align-items-center">
+                                    <!--begin::Icon-->
+                                    <div class="stepper-icon w-40px h-40px">
+                                        <i class="stepper-check fas fa-check"></i>
+                                        <span class="stepper-number">2</span>
+                                    </div>
+                                    <!--begin::Icon-->
+
+                                    <!--begin::Label-->
+                                    <div class="stepper-label">
+                                        <h3 class="stepper-title">
+                                            Vérification
+                                        </h3>
+                                    </div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Wrapper-->
+
+                                <!--begin::Line-->
+                                <div class="stepper-line h-40px"></div>
+                                <!--end::Line-->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <x-form.button />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
