@@ -21,7 +21,7 @@
     });
     stepperMobile.on("kt.stepper.changed", function() {
         if(stepperMobile.getCurrentStepIndex() === 2) {
-            console.log(stepperMobile.getElement())
+
             block.blockEditMobile.block()
             $.ajax({
                 url: '/api/user/verify/phone/code',
@@ -39,4 +39,40 @@
             })
         }
     });
+
+    $(elements.stepperElementMobile).on('submit', e => {
+        e.preventDefault()
+        let form = $(elements.stepperElementMobile)
+        let url = form.attr('action')
+        let data =  form.serializeArray()
+        let btn = form.find('.btn-success')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            success: data => {
+                let modal = new bootstrap.Modal(modals.modalEditMobile)
+                btn.removeAttr('data-kt-indicator')
+
+                if(data.state === 'warning') {
+                    console.log(data.data)
+                    toastr.success(`${data.message}`, `Sécurité`)
+                    modal.hide()
+                } else {
+                    toastr.success(`Votre numéro de téléphone de sécurité à bien été mise à jour`, `Sécurité`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
+            },
+            error: () => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+            }
+        })
+    })
 </script>

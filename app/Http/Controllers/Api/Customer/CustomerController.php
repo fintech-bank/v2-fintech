@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\Customer;
 
+use App\Helper\CustomerInfoHelper;
 use App\Helper\LogHelper;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Jobs\Customer\AlertCustomerJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
@@ -18,7 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
-class CustomerController extends Controller
+class CustomerController extends ApiController
 {
     public function search(Request $request)
     {
@@ -213,6 +215,17 @@ class CustomerController extends Controller
                 return response()->json($cn);
 
             case 'phone':
+                $verify = CustomerInfoHelper::verifyMobilePhone($customer, $request->get('mobile'), $request->get('code'));
+                if($verify->count() == 0) {
+                    $customer->info->update([
+                        'mobile' => $request->get('mobile'),
+                        'mobileVerified' => true
+                    ]);
+
+                    return $this->sendSuccess();
+                } else {
+                    return $this->sendWarning($verify->first, $verify->toArray());
+                }
 
             case 'phoneCode':
                 $phone = $request->get('mobile');

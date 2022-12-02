@@ -98,7 +98,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form action="" class="stepper stepper-pills" id="stepper_edit_mobile">
+                <form action="/api/user/verify/phone" class="stepper stepper-pills" id="stepper_edit_mobile">
                     <div class="modal-body">
                         @csrf
                         <input type="hidden" name="verify" value="phone">
