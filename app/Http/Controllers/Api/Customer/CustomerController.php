@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Jobs\Customer\AlertCustomerJob;
 use App\Jobs\User\DroitAccessJob;
+use App\Jobs\User\GrpdPortabilityJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
@@ -357,7 +358,8 @@ class CustomerController extends ApiController
             'inacurate' => $this->accessInacurate($user, $request),
             'com_prospecting' => $this->comProspecting($user, $request),
             'erasure' => $this->erasure($user, $request),
-            'limit' => $this->limit($user, $request)
+            'limit' => $this->limit($user, $request),
+            'portability' => $this->portability($user, $request)
         };
     }
 
@@ -543,5 +545,21 @@ class CustomerController extends ApiController
         $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers, $req, 'Contact avec votre banque'));
 
         return $this->sendSuccess("Votre demande de limitation d'utilisation de vos données nous à bien été transmis et sera traiter dans les plus bref délai");
+    }
+
+    private function portability(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
+    {
+        $req = $user->customers->grpd_demande()->create([
+            'type' => 'portability',
+            'object' => "Demande de Portabilité",
+            'comment' => "Aucune description",
+            'customer_id' => $user->customers->id
+        ]);
+
+        dispatch(new GrpdPortabilityJob($user, $request))->delay(now()->addMinutes(rand(1,300)));
+
+        $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers,$req, 'Contact avec votre banque'));
+
+        return $this->sendSuccess("Votre demande de document à bien été transmis et sera bientôt disponible");
     }
 }

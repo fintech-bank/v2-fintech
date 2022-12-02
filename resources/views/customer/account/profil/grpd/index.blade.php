@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-12 mb-5">
-                <div class="border border-gray-400 p-5 bg-gray-200" data-bs-toggle="modal" data-bs-target="#GrpdRip"
+                <div class="border border-gray-400 p-5 bg-gray-200" data-bs-toggle="modal" data-bs-target="#Portability"
                      style="cursor: pointer">
                     <div class="d-flex flex-row justify-content-between align-items-end">
                         <div class="text-black fs-2 w-75">Exercer votre droit à la portabilité</div>
@@ -702,6 +702,42 @@
                                 <x-form.textarea
                                     name="comment"
                                     label="Votre message" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="Portability">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Exercer votre droit à la portabilité</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formPortability" action="" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <input type="hidden" name="action" value="portability">
+                        <p>Le droit à la portabilité vous offre la possibilité de télécharger certaines de vos données détenues par Société Générale, que vous avez fournies avec votre consentement ou pour les besoins de vos contrats, dans un format ouvert et lisible par machine.</p>
+                        <p class="fw-bolder">Bon à savoir</p>
+                        <p>Si votre demande porte sur un transfert des virements et prélèvements d’un compte détenu dans une autre banque, consultez le dispositif dédié ici</p>
+                        <div class="d-flex flex-wrap w-50 mx-auto align-items-center">
+                            <div class="d-flex flex-center flex-column">
+                                <p class="fw-bolder">
+                                    Souhaitez-vous générer la création d’un document rassemblant certaines des données personnelles que vous avez fournies avec votre consentement ou pour les besoins de vos contrats?
+                                </p>
                             </div>
                         </div>
                     </div>
