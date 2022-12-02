@@ -356,7 +356,8 @@ class CustomerController extends ApiController
             'droit_acces' => $this->accessDroitAcces($user, $request),
             'inacurate' => $this->accessInacurate($user, $request),
             'com_prospecting' => $this->comProspecting($user, $request),
-            'erasure' => $this->erasure($user, $request)
+            'erasure' => $this->erasure($user, $request),
+            'limit' => $this->limit($user, $request)
         };
     }
 
@@ -527,5 +528,20 @@ class CustomerController extends ApiController
         $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers, $req, 'Contact avec votre banque'));
 
         return $this->sendSuccess("Votre demande de suppression nous à bien été transmis et sera traiter dans les plus bref délai");
+    }
+
+    private function limit(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
+    {
+        $req = $user->customers->grpd_demande()->create([
+            'type' => 'com_prospecting',
+            'object' => $request->get('object'),
+            'comment' => $request->get('comment'),
+            'customer_id' => $user->customers->id
+        ]);
+
+        $user->customers->agent->user->notify(new NewGrpdNotification($req));
+        $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers, $req, 'Contact avec votre banque'));
+
+        return $this->sendSuccess("Votre demande de limitation d'utilisation de vos données nous à bien été transmis et sera traiter dans les plus bref délai");
     }
 }
