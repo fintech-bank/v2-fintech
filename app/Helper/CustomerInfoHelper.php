@@ -38,9 +38,7 @@ class CustomerInfoHelper
     public static function verifyMobilePhone(Customer $customer, string $mobile, string $code)
     {
         $error = collect();
-        dd(session()->all());
-        $key = base64_decode(\Session::get('edit_phone_code'));
-        dd($key);
+        $key = base64_decode($customer->setting->code_auth);
         $decode = explode('/', $key)[1];
         $lookup = new Lookup();
         if($code == $decode) {
@@ -53,7 +51,7 @@ class CustomerInfoHelper
             $error->push(["invalid_code" => "Le code instruit est invalide"]);
         }
 
-        \Session::remove('edit_phone_code');
+        $customer->setting->update(['code_auth' => null]);
         return $error;
     }
 }

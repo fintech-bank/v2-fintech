@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->boolean('securpass')->default(false);
             $table->string('securpass_key')->nullable();
             $table->string('securpass_model')->nullable();
+            $table->string('code_auth')->nullable();
         });
     }
 
@@ -20,6 +21,7 @@ return new class extends Migration {
             $table->removeColumn('securpass');
             $table->removeColumn('securpass_key');
             $table->removeColumn('securpass_model');
+            $table->removeColumn('code_auth');
         });
     }
 };
