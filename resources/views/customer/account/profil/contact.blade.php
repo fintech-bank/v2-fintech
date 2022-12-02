@@ -45,6 +45,13 @@
         <div class="d-flex flex-wrap justify-content-end">
             <button class="btn btn-circle btn-lg btn-secondary">Modifier</button>
         </div>
+        <div class="separator separator-dashed border-gray-300 my-5"></div>
+        <x-base.underline
+            title="Téléphones"
+            size="4"
+            size-text="fs-1"
+            color="secondary"
+            class="w-100 my-5" />
     </div>
 @endsection
 
