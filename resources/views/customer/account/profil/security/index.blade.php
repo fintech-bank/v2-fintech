@@ -68,10 +68,17 @@
                         <p>
                             En cas de perte ou de vol de votre smartphone, désactivez votre Pass Sécurité.
                         </p>
-                        @if($customer->setting->securpass)
-                            <button class="btn btn-circle btn-outline btn-outline-danger">Désactiver</button>
+                        @if(Agent::isMobile())
+                            @if($customer->setting->securpass)
+                                <button class="btn btn-circle btn-outline btn-outline-danger btnLogoutPass">Désactiver</button>
+                            @else
+                                <button class="btn btn-circle btn-outline btn-outline-success btnLoginPass">Activé</button>
+                            @endif
                         @else
-                            <button class="btn btn-circle btn-outline btn-outline-success">Activé</button>
+                            <div class="d-flex flex-row bg-light-danger border border-danger p-5 rounded rounded-2">
+                                <i class="fa-solid fa-xmark-circle fs-1 text-danger me-5"></i>
+                                Uniquement sur Téléphone
+                            </div>
                         @endif
                     </div>
                 </div>
