@@ -188,9 +188,9 @@ class CustomerController extends Controller
         return response()->json();
     }
 
-    public function verify($customer_id, Request $request)
+    public function verify(Request $request)
     {
-        $customer = Customer::find($customer_id ?? $request->get('customer_id'));
+        $customer = Customer::find($request->get('customer_id'));
         switch ($request->get('verify')) {
             case 'identity':
                 $customer->info->notify(new SendVerifyIdentityCustomerLinkNotification($customer, "Sécurité"));
