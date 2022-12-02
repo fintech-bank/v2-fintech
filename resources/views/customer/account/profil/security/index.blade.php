@@ -102,6 +102,7 @@
                     <div class="modal-body">
                         @csrf
                         <input type="hidden" name="verify" value="phone">
+                        <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                         <div class="stepper-nav flex-center flex-wrap mb-10">
                             <div class="stepper-item mx-8 my-4 current" data-kt-stepper-element="nav">
                                 <!--begin::Wrapper-->
