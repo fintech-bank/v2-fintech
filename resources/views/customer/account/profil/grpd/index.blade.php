@@ -47,6 +47,40 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="GrpdConsent">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Dématérialisation et traitement de données</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formGrpdConsent" action="" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="bg-gray-200 p-5 mb-10">
+                            <div class="fw-bolder">e-Documents</div>
+                            <p>Nous souhaitons recueillir votre consentement dans le cadre du service de dématérialisation des documents, e-Documents.</p>
+                            <p>En donnant votre accord, vous recevrez vos relevés et vos documents éligibles liés à vos comptes et produits au format électronique dans votre espace client sécurisé.</p>
+                            <p>Vous serez informé(e) sur votre adresse mail de la mise à disposition de nouveaux documents dans votre espace client.</p>
+                            <p>Le code secret de carte bancaire fait partie des éléments éligibles au service de dématérialisation des documents.</p>
+                            <p>En acceptant ce service, le code secret de votre carte sera consultable en ligne sur votre espace client sécurisé et ne sera plus envoyé par courrier.</p>
+                            <p>Les conditions d'accès au code, ainsi qu'à la carte font l’objet de précisions dans les conditions générales de votre contrat de banque à distance.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
