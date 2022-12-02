@@ -265,6 +265,7 @@ let executeVerifiedAjax = (type_swal, customer_id, forminfo, agent = null) => {
             showCancelButton: false,
             confirmButtonText: 'Valider',
             showLoaderOnConfirm: true,
+            backdrop: true,
             preConfirm: (password) => {
                 $.ajax({
                     url: '/api/user/verify/pass',
@@ -320,6 +321,7 @@ let executeVerifiedAjax = (type_swal, customer_id, forminfo, agent = null) => {
             showCancelButton: false,
             confirmButtonText: 'Authentifier',
             showLoaderOnConfirm: true,
+            backdrop: true,
             preConfirm: () => {
                 $.ajax({
                     url: '/api/user/verify/secure',
