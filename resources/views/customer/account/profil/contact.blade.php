@@ -208,8 +208,7 @@
                         <x-form.input
                             name="addressbis"
                             label="Complément d'adresse"
-                            value="{{ $customer->info->addressbis }}"
-                            required="true" />
+                            value="{{ $customer->info->addressbis }}" />
 
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
