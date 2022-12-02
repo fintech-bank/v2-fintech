@@ -534,7 +534,7 @@
                         <div class="d-flex flex-wrap w-50 mx-auto align-items-center">
                             <p class="fw-bolder mb-5">
                                 Pour rectifier vos autres données :<br>
-                                Veuillez préciser la nature des données que vous jugez inexactes ou incomplètes et pourquoi vous souhaitez leur rectification. Dans la mesure du possible, merci de joindre un justificatif attestant des données correctes.
+                                Veuillez préciser la nature des données que vous jugez inexactes ou incomplètes et pourquoi vous souhaitez leur rectification.
                             </p>
                             <div class="d-flex flex-center flex-column">
                                 <x-form.input
