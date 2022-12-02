@@ -230,7 +230,7 @@ class CustomerController extends ApiController
             case 'phoneCode':
                 $phone = $request->get('mobile');
                 $code = random_numeric(6);
-                \Session::put('edit_phone_code', encrypt($phone.'/'.$code));
+                \Session::put('edit_phone_code', base64_encode($phone.'/'.$code));
                 $customer->info->notify(new SendGeneralCodeNotification($customer, $code));
 
                 return response()->json();

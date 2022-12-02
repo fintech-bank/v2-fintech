@@ -38,7 +38,7 @@ class CustomerInfoHelper
     public static function verifyMobilePhone(Customer $customer, string $mobile, string $code)
     {
         $error = collect();
-        $key = decrypt(\Session::get('edit_phone_code'));
+        $key = base64_decode(\Session::get('edit_phone_code'));
         $decode = explode('/', $key)[1];
         $lookup = new Lookup();
         if($code == $decode) {
