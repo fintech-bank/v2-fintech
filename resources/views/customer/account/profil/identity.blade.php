@@ -18,7 +18,8 @@
             title="Profil de {{ $customer->info->full_name }}"
             size="4"
             size-text="fs-2hx"
-            color="bank" />
+            color="bank"
+            class="w-100 my-5"
     </div>
 @endsection
 
