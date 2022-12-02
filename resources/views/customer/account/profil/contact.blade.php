@@ -181,6 +181,72 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="EditAddress" data-bs-focus="false">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Modifier mon adresse postal</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formEditAddress" action="/api/user/{{ $customer->user->id }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="action" value="address">
+
+                        <x-form.input
+                            name="address"
+                            label="N° et voie"
+                            value="{{ $customer->info->address }}"
+                            required="true" />
+
+                        <x-form.input
+                            name="addressbis"
+                            label="Complément d'adresse"
+                            value="{{ $customer->info->addressbis }}"
+                            required="true" />
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <x-form.input
+                                    name="postal"
+                                    label="Code postal"
+                                    value="{{ $customer->info->postal }}"
+                                    required="true" />
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <x-form.input
+                                    name="city"
+                                    label="Ville"
+                                    value="{{ $customer->info->city }}"
+                                    required="true" />
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="mb-10">
+                                    <label for="country" class="form-label required">Pays</label>
+                                    <select class="form-control form-control-solid selectpicker" name="country">
+                                        <option value=""></option>
+                                        @foreach(\App\Helper\CountryHelper::getAll() as $country)
+                                            <option value="{{ $country->cca2 }}">{{ $country->name->official }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
