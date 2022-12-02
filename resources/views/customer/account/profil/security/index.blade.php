@@ -203,5 +203,5 @@
 @endsection
 
 @section("script")
-    @include("customer.scripts.account.profil.index")
+    @include("customer.scripts.account.profil.security.index")
 @endsection
