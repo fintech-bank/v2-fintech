@@ -556,7 +556,7 @@ class CustomerController extends ApiController
             'customer_id' => $user->customers->id
         ]);
 
-        dispatch(new GrpdPortabilityJob($user, $request))->delay(now()->addMinutes(rand(1,300)));
+        dispatch(new GrpdPortabilityJob($user, $req))->delay(now()->addMinutes(rand(1,300)));
 
         $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers,$req, 'Contact avec votre banque'));
 
