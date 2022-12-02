@@ -325,7 +325,6 @@ let executeVerifiedAjax = (type_swal, customer_id, forminfo, event = null, agent
     } else {
         Swal.fire({
             title: text,
-            input: 'password',
             showCancelButton: false,
             confirmButtonText: 'Authentifier',
             showLoaderOnConfirm: true,
