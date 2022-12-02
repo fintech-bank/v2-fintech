@@ -230,7 +230,7 @@
                                 <div class="mb-10">
                                     <label for="country" class="form-label required">Pays</label>
                                     <select class="form-control form-control-solid selectpicker" name="country">
-                                        <option value=""></option>
+                                        <option value="{{ $customer->info->country }}">{{ \App\Helper\CountryHelper::getCountryName($customer->info->country) }}</option>
                                         @foreach(\App\Helper\CountryHelper::getAll() as $country)
                                             <option value="{{ $country->cca2 }}">{{ $country->name->official }}</option>
                                         @endforeach
