@@ -60,7 +60,7 @@ class SubscribeController extends ApiController
             'lastname' => $customer->info->lastname,
             'email' => $request->get('email'),
             'password' => $request->get('password'),
-            'customer_fintech_id' => $customer_id
+            'customer_id' => $customer_id
         ];
 
         $http = Http::withoutVerifying()->post('https://cashback.fintech.ovh/api/auth/register', $data)->body();
