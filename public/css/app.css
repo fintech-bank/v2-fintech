@@ -427,3 +427,10 @@
 .fs-auto {
     font-size: inherit !important;
 }
+
+.swal2-container {
+    display: -webkit-box;
+    display: flex;
+    position: fixed;
+    z-index: 300000;
+}
