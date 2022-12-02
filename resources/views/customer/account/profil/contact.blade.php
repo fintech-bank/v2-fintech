@@ -55,7 +55,7 @@
 
         <div class="d-flex flex-row justify-content-around mb-10">
             <div class="">Téléphone Sécurisé <i class="fa-solid fa-lock ms-3"></i></div>
-            <div class="">{{ $customer->user->email }}</div>
+            <div class="">{{ $customer->info->mobile }}</div>
         </div>
     </div>
 @endsection
