@@ -51,6 +51,7 @@ class CustomerInfoHelper
             $error->push(["invalid_code" => "Le code instruit est invalide"]);
         }
 
+        \Session::remove('edit_phone_code');
         return $error;
     }
 }
