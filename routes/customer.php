@@ -60,15 +60,6 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
 
             Route::prefix('security')->name('security.')->group(function () {
                 Route::get('/', \App\Http\Controllers\Customer\Profil\Security\SecurityController::class)->name('index');
-                Route::prefix('phone')->name('phone.')->group(function () {
-                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\PhoneController::class)->name('index');
-                });
-                Route::prefix('authy')->name('authy.')->group(function () {
-                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\AuthyController::class)->name('index');
-                });
-                Route::prefix('password')->name("password.")->group(function () {
-                    Route::get('/', \App\Http\Controllers\Customer\Profil\Security\PasswordController::class)->name('index');
-                });
             });
 
             Route::prefix('identity')->name('identity.')->group(function () {
