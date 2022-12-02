@@ -12,6 +12,8 @@ return new class extends Migration {
             $table->string('securpass_key')->nullable();
             $table->string('securpass_model')->nullable();
             $table->string('code_auth')->nullable();
+            $table->boolean('cashback')->default(true);
+            $table->boolean('tos_cashback')->default(false);
         });
     }
 
