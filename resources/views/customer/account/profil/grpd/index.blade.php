@@ -88,7 +88,7 @@
                                     value="0"
                                     label="Non"
                                     for="edocument"
-                                    checked="{{ $customer->grpd->edocument ? 'false' : 'true' }}" />
+                                    checked="{{ $customer->grpd->edocument ? 'true' : 'false' }}" />
 
 
                             </div>
