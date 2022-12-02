@@ -536,14 +536,16 @@
                                 Pour rectifier vos autres données :<br>
                                 Veuillez préciser la nature des données que vous jugez inexactes ou incomplètes et pourquoi vous souhaitez leur rectification. Dans la mesure du possible, merci de joindre un justificatif attestant des données correctes.
                             </p>
-                            <x-form.input
-                                type-input="float"
-                                name="object"
-                                label="Objet" />
+                            <div class="d-flex flex-column">
+                                <x-form.input
+                                    type-input="float"
+                                    name="object"
+                                    label="Objet" />
 
-                            <x-form.textarea
-                                name="comment"
-                                label="Votre message" />
+                                <x-form.textarea
+                                    name="comment"
+                                    label="Votre message" />
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer text-end">
