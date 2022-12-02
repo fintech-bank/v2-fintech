@@ -101,6 +101,9 @@ Route::prefix('user')->group(function () {
     Route::post('verify/revenue', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verify']);
     Route::post('verify/phone', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verify']);
     Route::post('verify/phone/code', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verify']);
+    Route::post('verify/pass', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verify']);
+    Route::post('verify/pass/login', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verify']);
+    Route::post('verify/pass/logout', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verify']);
     Route::post('signate', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'signateDocument']);
     Route::get('signate/verify', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifySign']);
 });

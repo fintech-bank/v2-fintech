@@ -235,6 +235,16 @@ class CustomerController extends ApiController
 
                 return response()->json();
 
+            case 'pass':
+                if(\Hash::check($request->get('pass'), $customer->user->password)) {
+                    return $this->sendSuccess();
+                } else {
+                    return $this->sendError();
+                }
+
+            case 'securePassLogin':
+
+
         }
 
         return response()->json();

@@ -72,7 +72,11 @@
                             @if($customer->setting->securpass)
                                 <button class="btn btn-circle btn-outline btn-outline-danger btnLogoutPass">Désactiver</button>
                             @else
-                                <button class="btn btn-circle btn-outline btn-outline-success btnLoginPass" data-agent="{{ Agent::device()."-".Agent::platform()."-".Agent::version(Agent::platform())."-".gethostname() }}">Activé</button>
+                                <x-base.button
+                                    class="btn-circle btn-outline btn-outline-success btnLoginPass"
+                                    text="Activer"
+                                    :datas="[['name' => 'agent', 'value' => Agent::device().'-'.Agent::platform().'-'.Agent::version(Agent::platform()).'-'.gethostname()]]" />
+
                             @endif
                         @else
                             <div class="d-flex flex-row bg-light-danger border border-danger p-5 rounded rounded-2">

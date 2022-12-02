@@ -1,7 +1,9 @@
 <script type="text/javascript">
     let tables = {}
     let elements = {
-        stepperElementMobile: document.querySelector('#stepper_edit_mobile')
+        stepperElementMobile: document.querySelector('#stepper_edit_mobile'),
+        btnLoginPass: document.querySelector(".btnLoginPass"),
+        btnLogoutPass: document.querySelector(".btnLogoutPass"),
     }
     let modals = {
         modalEditMobile: document.querySelector("#editMobile")
@@ -19,8 +21,8 @@
     stepperMobile.on("kt.stepper.previous", function (stepper) {
         stepper.goPrevious(); // go next step
     });
-    stepperMobile.on("kt.stepper.changed", function() {
-        if(stepperMobile.getCurrentStepIndex() === 2) {
+    stepperMobile.on("kt.stepper.changed", function () {
+        if (stepperMobile.getCurrentStepIndex() === 2) {
 
             block.blockEditMobile.block()
             $.ajax({
@@ -40,11 +42,79 @@
         }
     });
 
+    if (elements.btnLoginPass) {
+        elements.btnLoginPass.addEventListener('click', e => {
+            e.preventDefault()
+            Swal.fire({
+                title: `Afin d'ajouter l'appareil "${e.target.dataset.agent}", veuillez saisir votre mot de passe`,
+                icon: 'question',
+                input: 'password',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Valider',
+                cancelButtonText: 'Annuler',
+                showLoaderOnConfirm: true,
+                preConfirm: (pass) => {
+                    $.ajax({
+                        url: '/api/user/verify/pass',
+                        method: 'post',
+                        data: {
+                            "verify": "pass",
+                            "customer_id": {{ $customer->id }},
+                            "pass": pass
+                        },
+                        success: data => {
+                            return data.json()
+                        },
+                        error: err => {
+                            Swal.showValidationMessage(
+                                `Request failed: ${err}`
+                            )
+                        }
+                    })
+                    return fetch(`//api.github.com/users/${login}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(response.statusText)
+                            }
+                            return response.json()
+                        })
+                        .catch(error => {
+                            Swal.showValidationMessage(
+                                `Request failed: ${error}`
+                            )
+                        })
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if(result.isConfirmed) {
+                    $.ajax({
+                        url: '/api/user/verify/pass/login',
+                        method: 'POST',
+                        data: {
+                            "customer_id": {{ $customer->id }},
+                            "verify": "securePassLogin",
+                            "agent": e.target.dataset.agent
+                        },
+                        success: data => {
+
+                        },
+                        error: err => {
+
+                        }
+                    })
+                }
+            })
+        })
+    }
+
     $(elements.stepperElementMobile).on('submit', e => {
         e.preventDefault()
         let form = $(elements.stepperElementMobile)
         let url = form.attr('action')
-        let data =  form.serializeArray()
+        let data = form.serializeArray()
         let btn = form.find('.btn-success')
 
         btn.attr('data-kt-indicator', 'on')
@@ -57,7 +127,7 @@
                 let modal = new bootstrap.Modal(modals.modalEditMobile)
                 btn.removeAttr('data-kt-indicator')
 
-                if(data.state === 'warning') {
+                if (data.state === 'warning') {
                     console.log(data.data)
                     toastr.success(`${data.message}`, `Sécurité`)
                     form[0].reset()
