@@ -81,14 +81,14 @@
                                     value="1"
                                     label="Oui"
                                     for="edocument"
-                                    checked="{{ $customer->grpd->edocument ? 'true' : 'false' }}" />
+                                    checked="{{ $customer->grpd->edocument == 1 ? 'true' : 'false' }}" />
 
                                 <x-form.radio
                                     name="edocument"
                                     value="0"
                                     label="Non"
                                     for="edocument"
-                                    checked="{{ !$customer->grpd->edocument ? 'true' : 'false' }}" />
+                                    checked="{{ $customer->grpd->edocument == 0 ? 'true' : 'false' }}" />
 
 
                             </div>
