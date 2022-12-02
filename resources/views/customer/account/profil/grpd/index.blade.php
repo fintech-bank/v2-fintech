@@ -781,7 +781,12 @@
                                     <td>{!! $demande->status_label !!}</td>
                                     <td>
                                         @if($demande->status == 'pending')
-                                            <button class="btn btn-xs btn-icon btn-danger btnCancelRequest" data-request="{{ $demande->id }}"><i class="fa-solid fa-ban text-white"></i> </button>
+                                            <!--<button class="btn btn-xs btn-icon btn-danger btnCancelRequest" data-request="{{ $demande->id }}"><i class="fa-solid fa-ban text-white"></i> </button>-->
+                                            <x-base.button
+                                                class="btn-xs btn-icon btn-danger btnCancelRequest"
+                                                text="<i class='fa-solid fa-ban text-white'></i>"
+                                                :datas="[['name' => 'request', 'value' => $demande->id]]" />
+
                                         @endif
                                     </td>
                                 </tr>

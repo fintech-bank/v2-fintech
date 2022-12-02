@@ -1,6 +1,8 @@
 <script type="text/javascript">
     let tables = {}
-    let elements = {}
+    let elements = {
+        btnCancelRequest: document.querySelectorAll('.btnCancelRequest')
+    }
     let modals = {}
     let forms = {
         formGrpdConsent: document.querySelector('#formGrpdConsent'),
@@ -21,6 +23,16 @@
         } else {
             forms.formDroitAcces.querySelector(".other").classList.add('d-none')
         }
+    }
+
+    if(elements.btnCancelRequest) {
+        elements.btnCancelRequest.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                btn.setAttribute('data-kt-indicator', 'on')
+
+            })
+        })
     }
 
     $(forms.formGrpdConsent).on('submit', e => {
