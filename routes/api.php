@@ -211,6 +211,7 @@ Route::prefix('customer')->group(function () {
 
     Route::prefix('{customer_id}/subscribe')->group(function () {
         Route::post('overdraft', [\App\Http\Controllers\Api\Customer\SubscribeController::class, 'overdraft']);
+        Route::post('cashback', [\App\Http\Controllers\Api\Customer\SubscribeController::class, 'cashback']);
     });
     Route::prefix('{customer_id}/pret')->group(function () {
         Route::post('verify', [\App\Http\Controllers\Api\Customer\PretController::class, 'verify']);
