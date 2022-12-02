@@ -30,8 +30,6 @@
             btn.addEventListener('click', e => {
                 e.preventDefault()
                 btn.setAttribute('data-kt-indicator', 'on')
-                console.log(e.target.parentNode.parentNode)
-                debugger
 
                 $.ajax({
                     url: '/api/user/{{ $customer->user->id }}',
@@ -39,10 +37,11 @@
                     data: {'action': 'cancelRequest'},
                     success: data => {
                         btn.removeAttribute('data-kt-indicator')
-
+                        $(e.target.parentNode.parentNode).fadeOut()
                     },
                     error: err => {
-
+                        btn.removeAttribute('data-kt-indicator')
+                        toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                     }
                 })
             })
