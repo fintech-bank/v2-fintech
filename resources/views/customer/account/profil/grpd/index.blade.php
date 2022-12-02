@@ -202,7 +202,7 @@
                             <div class="fs-2x fw-bolder">Préférences de contenus</div>
                             <p>Les communications Société Générale sont divisées en 4 grandes catégories. Notre objectif ? Faire en sorte que vous ne ratiez aucune opportunité. À vous d'indiquer vos préférences.</p>
 
-                            <div class="d-flex flex-center bg-white rounded shadow-sm mx-auto p-5 w-75">
+                            <div class="d-flex flex-center flex-column bg-white rounded shadow-sm mx-auto p-5 w-75">
                                 <div class="d-flex flex-row align-items-center mb-10">
                                     <i class="fa-regular fa-newspaper fs-4hx text-bank me-5"></i>
                                     <div class="d-flex flex-column">
