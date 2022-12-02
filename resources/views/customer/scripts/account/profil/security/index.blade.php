@@ -160,7 +160,6 @@
             method: 'POST',
             data: data,
             success: data => {
-                let modal = new bootstrap.Modal(modals.modalEditPassword)
                 btn.removeAttr('data-kt-indicator')
 
                 if (data.state === 'warning') {
