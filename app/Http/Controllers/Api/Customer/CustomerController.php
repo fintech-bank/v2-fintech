@@ -146,25 +146,25 @@ class CustomerController extends ApiController
         } elseif ($request->has('frais')) {
             $customer->business->result += $customer->business->frais;
             $customer->business->result -= $request->get('frais');
-        }elseif ($request->has('salaire')) {
+        } elseif ($request->has('salaire')) {
             $customer->business->result += $customer->business->salaire;
             $customer->business->result -= $request->get('salaire');
-        }elseif ($request->has('impot')) {
+        } elseif ($request->has('impot')) {
             $customer->business->result += $customer->business->impot;
             $customer->business->result -= $request->get('impot');
-        }elseif ($request->has('other_charge')) {
+        } elseif ($request->has('other_charge')) {
             $customer->business->result += $customer->business->other_charge;
             $customer->business->result -= $request->get('other_charge');
-        }elseif ($request->has('other_product')) {
+        } elseif ($request->has('other_product')) {
             $customer->business->result -= $customer->business->other_product;
             $customer->business->result += $request->get('other_product');
 
             $customer->business->result_finance -= $customer->business->apport_personnel;
             $customer->business->result_finance += $request->get('apport_personnel');
-        }elseif ($request->has('apport_personnel')) {
+        } elseif ($request->has('apport_personnel')) {
             $customer->business->result_finance -= $customer->business->apport_personnel;
             $customer->business->result_finance += $request->get('apport_personnel');
-        }elseif ($request->has('finance')) {
+        } elseif ($request->has('finance')) {
             $customer->business->result_finance -= $customer->business->finance;
             $customer->business->result_finance += $request->get('finance');
         }
@@ -172,7 +172,7 @@ class CustomerController extends ApiController
         $customer->business->update($request->except('_token'));
 
         $calc = intval($customer->business->result_finance / ($customer->business->result + $customer->business->result_finance) * 100);
-        if($calc <= 20) {
+        if ($calc <= 20) {
             $customer->business->update(['indicator' => false]);
         } else {
             $customer->business->update(['indicator' => true]);
@@ -216,7 +216,7 @@ class CustomerController extends ApiController
 
             case 'phone':
                 $verify = CustomerInfoHelper::verifyMobilePhone($customer, $request->get('mobile'), $request->get('code'));
-                if($verify->count() == 0) {
+                if ($verify->count() == 0) {
                     $customer->info->update([
                         'mobile' => $request->get('mobile'),
                         'mobileVerified' => true
@@ -230,19 +230,26 @@ class CustomerController extends ApiController
             case 'phoneCode':
                 $phone = $request->get('mobile');
                 $code = random_numeric(6);
-                $customer->setting->update(['code_auth' => base64_encode($phone.'/'.$code)]);
+                $customer->setting->update(['code_auth' => base64_encode($phone . '/' . $code)]);
                 $customer->info->notify(new SendGeneralCodeNotification($customer, $code));
 
                 return response()->json();
 
             case 'pass':
-                if(\Hash::check($request->get('pass'), $customer->user->password)) {
+                if (\Hash::check($request->get('pass'), $customer->user->password)) {
                     return $this->sendSuccess();
                 } else {
                     return $this->sendError();
                 }
 
             case 'securePassLogin':
+                $customer->setting->update([
+                    'securpass' => true,
+                    'securpass_model' => $request->get('agent'),
+                    'securpass_key' => base64_encode($request->get('agent').'/'.$customer->auth_code)
+                ]);
+
+                return $this->sendSuccess();
 
 
         }
@@ -261,7 +268,7 @@ class CustomerController extends ApiController
 
         return response()->json([
             'reste' => $reste_vivre,
-            'percent' => round($end,2),
+            'percent' => round($end, 2),
             'income' => $income,
             'charge' => $charge
         ]);
@@ -275,7 +282,7 @@ class CustomerController extends ApiController
         $start = $setting->gauge_start;
         $end = $setting->gauge_end;
         $solde = $setting->wallet->solde_remaining;
-        if($end < $solde) {
+        if ($end < $solde) {
             $end = $solde;
         } else {
             $end = $setting->gauge_end;
@@ -351,7 +358,7 @@ class CustomerController extends ApiController
     private function verifyCni(string $cni, string $versionCNI = '1995')
     {
         $cni_array = explode(',', $cni);
-        if($versionCNI == '1995') {
+        if ($versionCNI == '1995') {
             return VerifCNITrait::version1992($cni_array[0], $cni_array[1]);
         } else {
             return VerifCNITrait::version2021($cni_array[0], $cni_array[1]);

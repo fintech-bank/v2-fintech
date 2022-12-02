@@ -90,6 +90,7 @@
                 allowOutsideClick: () => !Swal.isLoading()
             }).then((result) => {
                 if(result.isConfirmed) {
+                    e.target.setAttribute('data-kt-indicator', 'on')
                     $.ajax({
                         url: '/api/user/verify/pass/login',
                         method: 'POST',
@@ -98,11 +99,18 @@
                             "verify": "securePassLogin",
                             "agent": e.target.dataset.agent
                         },
-                        success: data => {
+                        success: () => {
+                            e.target.removeAttribute('data-kt-indicator')
 
+                            toastr.success(`Le pass sécurité à été définie avec succès`, `Sécurité`)
+
+                            setTimeout(() => {
+                                window.location.reload()
+                            }, 1200)
                         },
                         error: err => {
-
+                            e.target.removeAttribute('data-kt-indicator')
+                            toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                         }
                     })
                 }
