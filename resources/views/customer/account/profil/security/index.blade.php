@@ -181,7 +181,7 @@
 
                             <!--begin::Wrapper-->
                             <div>
-                                <button type="button" class="btn btn-success" data-kt-stepper-action="submit">
+                                <button type="submit" class="btn btn-success" data-kt-stepper-action="submit">
                                     <span class="indicator-label">
                                         Valider
                                     </span>
