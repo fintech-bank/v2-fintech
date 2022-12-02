@@ -60,8 +60,9 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formGrpdConsent" action="" method="post">
+                <form id="formGrpdConsent" action="/api/user/{{ $customer->user->id }}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="modal-body">
                         <div class="bg-gray-200 p-5 mb-10">
                             <div class="fw-bolder">e-Documents</div>
@@ -168,8 +169,45 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="GrpdRip">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Votre banque, comme vous l'entendez</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formGrpdRip" action="/api/user/{{ $customer->user->id }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <p>
+                            Parce que nos communications doivent garder du sens pour vous, nous vous invitons à choisir les contenus que vous souhaitez recevoir et les moyens de vous contacter.<br>
+                            Vous pouvez à tout moment modifier vos choix en fonction de vos besoins.
+                        </p>
+
+                        <x-base.alert
+                            type="light"
+                            color="primary"
+                            icon="circle-info"
+                            title=""
+                            content="Ces choix ne concernent pas les communications de nature réglementaire ou liées à l’exécution de vos contrats." />
+
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
-    @include("customer.scripts.account.profil.index")
+    @include("customer.scripts.account.profil.grpd.index")
 @endsection
