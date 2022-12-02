@@ -21,6 +21,7 @@
     });
     stepperMobile.on("kt.stepper.changed", function() {
         if(stepperMobile.getCurrentStepIndex() === 2) {
+            console.log(stepperMobile.getElement())
             block.blockEditMobile.block()
             $.ajax({
                 url: '/api/user/verify/phone/code',
