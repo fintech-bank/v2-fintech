@@ -51,7 +51,7 @@
             size="4"
             size-text="fs-1"
             color="secondary"
-            class="w-100 my-5" />
+            class="w-100 mb-5" />
     </div>
 @endsection
 
