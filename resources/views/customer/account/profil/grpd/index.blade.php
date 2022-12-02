@@ -257,6 +257,32 @@
                             </div>
                         </div>
 
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="fs-2x fw-bolder">Préférences de canal</div>
+                                <p>Choisissez les moyens de contact qui vous conviennent pour recevoir ces communications</p>
+                                <!--begin::Input group-->
+                                <div class="d-flex flex-stack w-lg-50">
+                                    <!--begin::Label-->
+                                    <div class="me-5">
+                                        <label class="fs-6 fw-semibold form-label">Save Card for further billing?</label>
+                                        <div class="fs-7 fw-semibold text-muted">If you need more info, please check budget planning</div>
+                                    </div>
+                                    <!--end::Label-->
+
+                                    <!--begin::Switch-->
+                                    <label class="form-check form-switch form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="1" checked="checked"/>
+                                        <span class="form-check-label fw-semibold text-muted">
+            Save Card
+        </span>
+                                    </label>
+                                    <!--end::Switch-->
+                                </div>
+                                <!--end::Input group-->
+                            </div>
+                        </div>
+
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
