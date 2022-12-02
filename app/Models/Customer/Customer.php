@@ -84,6 +84,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereStripeCustomerId($value)
  * @property-read mixed $customer_card
  * @property-read \App\Models\Customer\CustomerConnector|null $connector
+ * @property-read \App\Models\Customer\CustomerGrpd|null $grpd
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerGrpdDemande[] $grpd_demande
+ * @property-read int|null $grpd_demande_count
  */
 class Customer extends Model
 {
@@ -202,6 +205,16 @@ class Customer extends Model
     public function connector()
     {
         return $this->hasOne(CustomerConnector::class);
+    }
+
+    public function grpd()
+    {
+        return $this->hasOne(CustomerGrpd::class);
+    }
+
+    public function grpd_demande()
+    {
+        return $this->hasMany(CustomerGrpdDemande::class);
     }
 
     public function getStatusTextAttribute()

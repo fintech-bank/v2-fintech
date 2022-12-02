@@ -333,6 +333,10 @@ class CustomerHelper
             'customer_id' => $customer->id,
         ]);
 
+        $customer->grpd()->create([
+            'customer_id' => $customer->id
+        ]);
+
         $situation = CustomerSituation::create([
             'legal_capacity' => $session->perso['legal_capacity'],
             'family_situation' => $session->perso['family_situation'],

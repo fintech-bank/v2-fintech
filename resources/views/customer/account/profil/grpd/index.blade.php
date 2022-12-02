@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="col-md-6 col-sm-12 mb-5">
-                <div class="border border-gray-400 p-5 bg-gray-200">
+                <div class="border border-gray-400 p-5 bg-gray-200" data-bs-toggle="modal" data-bs-target="#GrpdConsent">
                     <div class="d-flex flex-row justify-content-between align-items-end">
                         <a href="" class="text-black fs-2 w-75">Exprimer votre consentement à l’utilisation de certaines de vos données personnelles</a>
                         <a href=""><i class="fa-solid fa-arrow-right-long fs-2 text-hover-primary"></i></a>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-12 mb-5">
-                <div class="border border-gray-400 p-5 bg-gray-200">
+                <div class="border border-gray-400 p-5 bg-gray-200" data-bs-toggle="modal" data-bs-target="#GrpdRip">
                     <div class="d-flex flex-row justify-content-between align-items-end">
                         <a href="" class="text-black fs-2 w-75">Personnaliser vos préférences de contact pour la réception d’offres commerciales</a>
                         <a href=""><i class="fa-solid fa-arrow-right-long fs-2 text-hover-primary"></i></a>

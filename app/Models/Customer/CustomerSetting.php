@@ -56,6 +56,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereSecurpass($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereSecurpassKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereSecurpassModel($value)
+ * @property string|null $code_auth
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereCodeAuth($value)
  */
 class CustomerSetting extends Model
 {

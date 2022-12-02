@@ -9,6 +9,7 @@ use App\Models\Core\DocumentCategory;
 use App\Models\Core\Package;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCreditCard;
+use App\Models\Customer\CustomerGrpd;
 use App\Models\Customer\CustomerInfo;
 use App\Models\Customer\CustomerSetting;
 use App\Models\Customer\CustomerSituation;
@@ -91,6 +92,9 @@ class UserSeeder extends Seeder
             'user_id' => $user->id
         ]);
 
+        CustomerGrpd::create([
+            'customer_id' => $customer->id,
+        ]);
 
         $info = CustomerInfo::factory()->create([
             'type' => 'part',

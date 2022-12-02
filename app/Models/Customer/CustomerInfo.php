@@ -86,6 +86,7 @@ use Illuminate\Support\Str;
  * @property-read mixed $line_address
  * @property int $incomeVerified
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerInfo whereIncomeVerified($value)
+ * @property-read mixed $address_verify
  */
 class CustomerInfo extends Model
 {
