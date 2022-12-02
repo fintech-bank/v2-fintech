@@ -107,6 +107,7 @@
         </div>
         <div class="d-flex flex-wrap justify-content-end">
             <button class="btn btn-circle btn-lg btn-secondary">Modifier</button>
+            <button class="btn btn-circle btn-lg btn-secondary">Vérifier mon adresse</button>
         </div>
     </div>
 @endsection
