@@ -39,6 +39,7 @@ class CustomerInfoHelper
     {
         $error = collect();
         $key = base64_decode(\Session::get('edit_phone_code'));
+        dd($key);
         $decode = explode('/', $key)[1];
         $lookup = new Lookup();
         if($code == $decode) {
