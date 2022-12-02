@@ -38,8 +38,7 @@
             <div class="alert bg-light-primary d-flex align-items-center p-5 mb-10">
                 <i class="fa-solid fa-info-circle fs-2hx text-primary me-4"></i>
                 <div class="d-flex flex-column text-white">
-                    <h4 class="mb-1">This is an alert</h4>
-                    <span>The alert component can be used to highlight certain parts of your page for higher content visibility.</span>
+                    <span>Une adresse e-mail à jour est nécessaire pour s’assurer de recevoir toutes nos communications. Nous vous invitons donc à la renseigner ou la modifier si nécessaire.</span>
                 </div>
             </div>
         </div>
