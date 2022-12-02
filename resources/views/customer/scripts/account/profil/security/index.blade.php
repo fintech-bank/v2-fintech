@@ -46,7 +46,7 @@
         elements.btnLoginPass.addEventListener('click', e => {
             e.preventDefault()
             Swal.fire({
-                title: `Afin d'ajouter l'appareil "${e.target.dataset.agent}", veuillez saisir votre mot de passe`,
+                title: `Afin d'ajouter l'appareil "${e.dataset.agent}", veuillez saisir votre mot de passe`,
                 icon: 'question',
                 input: 'password',
                 inputAttributes: {
