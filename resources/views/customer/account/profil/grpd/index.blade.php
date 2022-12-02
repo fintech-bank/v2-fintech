@@ -378,6 +378,7 @@
                 <form id="formDroitAcces" action="/api/user/{{ $customer->user->id }}" method="post">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="action" value="droit_acces">
                     <div class="modal-body">
                         <p>Vous pouvez demander à accéder aux données personnelles vous concernant traitées dans le cadre de votre relation avec Société Générale.</p>
                         <p>La mise à disposition est immédiate pour :</p>
