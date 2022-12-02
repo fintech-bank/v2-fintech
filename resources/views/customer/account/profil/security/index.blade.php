@@ -160,6 +160,12 @@
                                 mask="+33999999999"
                                 required="true" />
                         </div>
+                        <div class="flex-column" data-kt-stepper-element="content">
+                            <x-form.input
+                                name="code"
+                                label="Code de vérification reçu par sms"
+                                required="true" />
+                        </div>
 
                     </div>
                     <div class="modal-footer">
