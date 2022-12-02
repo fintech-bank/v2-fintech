@@ -34,7 +34,7 @@
             <div class="">Adresse e-mail personnel</div>
             <div class="">{{ $customer->user->email }}</div>
         </div>
-        <div class="d-flex flex-wrap justify-content-center w-50 mx-auto">
+        <div class="d-flex flex-center justify-content-center w-50 mx-auto">
             <div class="alert alert-primary d-flex align-items-center p-5 mb-10">
                 <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                 <span class="svg-icon svg-icon-2hx svg-icon-primary me-4">
