@@ -20,14 +20,15 @@
         let data = form.serializeArray()
         let btn = form.find('[type="submit"]')
         let modal = new bootstrap.Modal(modals.modalEditMail)
-        modal.hide()
 
-        @if(Agent::isMobile())
-        let agent = '{{ Agent::device().'-'.Agent::platform().'-'.Agent::version(Agent::platform()).'-'.gethostname() }}'
-        executeVerifiedAjax('secure', {{ $customer->id }}, {'form': form, 'url': url, 'method': method, 'data': data, 'btn': btn}, agent)
-        @else
-        executeVerifiedAjax('password', {{ $customer->id }}, {'form': form, 'url': url, 'method': method, 'data': data, 'btn': btn})
-        @endif
+        modals.modalEditMail.addEventListener('hidden.bs.modal', () => {
+            @if(Agent::isMobile())
+            let agent = '{{ Agent::device().'-'.Agent::platform().'-'.Agent::version(Agent::platform()).'-'.gethostname() }}'
+            executeVerifiedAjax('secure', {{ $customer->id }}, {'form': form, 'url': url, 'method': method, 'data': data, 'btn': btn}, agent)
+            @else
+            executeVerifiedAjax('password', {{ $customer->id }}, {'form': form, 'url': url, 'method': method, 'data': data, 'btn': btn})
+            @endif
+        })
 
     })
 </script>
