@@ -346,7 +346,8 @@ class CustomerController extends ApiController
         $user = User::find($user_id);
         return match ($request->get('action')) {
             "mail" => $this->updateMail($user, $request),
-            "phone" => $this->updatePhone($user, $request)
+            "phone" => $this->updatePhone($user, $request),
+            "address" => $this->updateAddress($user, $request)
         };
     }
 
@@ -426,5 +427,18 @@ class CustomerController extends ApiController
 
         return $this->sendSuccess("Numéro de téléphone mise à jours");
 
+    }
+
+    private function updateAddress(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
+    {
+        $user->customers->info->update([
+            'address' => $request->get('address'),
+            'addressbis' => $request->get('addressbis'),
+            'postal' => $request->get('postal'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+        ]);
+
+        return $this->sendSuccess("Adresse postal modifié avec succès, veuillez faire vérifier votre adresse postal");
     }
 }
