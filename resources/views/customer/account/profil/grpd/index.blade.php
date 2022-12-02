@@ -781,7 +781,7 @@
                                     <td>{!! $demande->status_label !!}</td>
                                     <td>
                                         @if($demande->status == 'pending')
-                                            <button class="btn btn-xs btn-icon btn-danger"><i class="fa-solid fa-ban text-white"></i> </button>
+                                            <button class="btn btn-xs btn-icon btn-danger btnCancelRequest" data-request="{{ $demande->id }}"><i class="fa-solid fa-ban text-white"></i> </button>
                                         @endif
                                     </td>
                                 </tr>
