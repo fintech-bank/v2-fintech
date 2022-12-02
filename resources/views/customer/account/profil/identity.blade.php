@@ -20,6 +20,14 @@
             size-text="fs-2hx"
             color="bank"
             class="w-100 my-5 uppercase" />
+
+
+        <x-base.underline
+            title="Identité"
+            size="4"
+            size-text="fs-1"
+            color="secondary"
+            class="w-100 my-5" />
     </div>
 @endsection
 
