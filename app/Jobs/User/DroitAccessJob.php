@@ -5,6 +5,7 @@ namespace App\Jobs\User;
 use App\Helper\DocumentFile;
 use App\Models\Customer\CustomerGrpdDemande;
 use App\Models\User;
+use App\Notifications\Customer\GrpdUpdateDroitAcceNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -69,5 +70,7 @@ class DroitAccessJob implements ShouldQueue
                 'status' => 'rejected'
             ]);
         }
+
+        $this->user->customers->info->notify(new GrpdUpdateDroitAcceNotification($this->user->customers, $this->demande, 'Contact avec votre banque'));
     }
 }
