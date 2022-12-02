@@ -70,7 +70,9 @@
                         </p>
                         @if(Agent::isMobile())
                             @if($customer->setting->securpass)
-                                <button class="btn btn-circle btn-outline btn-outline-danger btnLogoutPass">Désactiver</button>
+                                <x-base.button
+                                    class="btn-circle btn-outline btn-outline-danger btnLogoutPass"
+                                    text="Désactiver" />
                             @else
                                 <x-base.button
                                     class="btn-circle btn-outline btn-outline-success btnLoginPass"
