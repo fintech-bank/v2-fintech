@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Api\Customer;
 
 use App\Helper\DocumentFile;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
+use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\SendLinkForContract;
 use App\Notifications\Customer\SendLinkForContractNotification;
 use App\Notifications\Customer\SendRequestNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
-class SubscribeController extends Controller
+class SubscribeController extends ApiController
 {
     public function overdraft($customer_id, Request $request)
     {
@@ -46,5 +49,22 @@ class SubscribeController extends Controller
         $wallet->customer->info->notify(new SendRequestNotification($wallet->customer, $req, "Comptes & Moyens de paiement"));
 
         return response()->json();
+    }
+
+    public function cashback($customer_id, Request $request)
+    {
+        $customer = Customer::find($customer_id);
+        $data = [
+            'civility' => $customer->info->civility,
+            'firstname' => $customer->info->firstname,
+            'lastname' => $customer->info->lastname,
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+            'customer_fintech_id' => $customer_id
+        ];
+
+        $http = Http::post('https://cashback.fintech.ovh/api/auth/register', $data)->object();
+
+        return $this->sendSuccess("Souscription effectuer", [$http->data]);
     }
 }
