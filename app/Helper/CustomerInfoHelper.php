@@ -51,7 +51,7 @@ class CustomerInfoHelper
             $error->push(["invalid_code" => "Le code instruit est invalide"]);
         }
 
-        $customer->setting->update(['code_auth' => null]);
+        $customer->setting->update(['code_auth' => '']);
         return $error;
     }
 }
