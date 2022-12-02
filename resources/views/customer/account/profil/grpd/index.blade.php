@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-12 mb-5">
-                <div class="border border-gray-400 p-5 bg-gray-200" data-bs-toggle="modal" data-bs-target="#GrpdRip"
+                <div class="border border-gray-400 p-5 bg-gray-200" data-bs-toggle="modal" data-bs-target="#ComProspecting"
                      style="cursor: pointer">
                     <div class="d-flex flex-row justify-content-between align-items-end">
                         <div class="text-black fs-2 w-75">Vous opposer à certaines utilisations de vos données
@@ -551,6 +551,63 @@
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="ComProspecting">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">S'opposer à certaines utilisations de vos données personnelles</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formComProspecting" action="" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <input type="hidden" name="action" value="com_prospecting">
+                        <p>Vous pouvez ici vous opposer à ce que vos données personnelles soient utilisées par Société Générale pour un objectif spécifique.</p>
+                        <x-base.alert
+                            type="light"
+                            color="primary"
+                            icon="circle-info"
+                            title=""
+                            content="
+                            <p>Pour vous opposer à ce que vos données soient utilisées pour des raisons tenant à votre situation particulière, veuillez préciser et justifier ces raisons grâce au formulaire ci-dessous.</p>
+                            <p class='fw-bolder'>Si votre demande d’opposition ne concerne pas la prospection, Société Générale ne pourra donner suite à votre demande si :</p>
+                            <ul>
+                                <li>il existe des motifs légitimes et impérieux à traiter ces données ou que celles-ci sont nécessaires à la constatation, exercice ou défense de droits en justice ;</li>
+                                <li>vous avez consenti au traitement de vos données ;</li>
+                                <li>un contrat s’y afférant vous lie avec Société Générale ;</li>
+                                <li>une obligation légale impose de traiter vos données ;</li>
+                                <li>le traitement est nécessaire à la sauvegarde de vos intérêts vitaux ou d'une autre personne physique.</li>
+                            </ul>
+                            " />
+
+                        <div class="d-flex flex-wrap w-50 mx-auto align-items-center">
+                            <div class="d-flex flex-center flex-column">
+                                <x-form.input
+                                    type-input="float"
+                                    name="object"
+                                    label="Objet" />
+
+                                <x-form.textarea
+                                    name="comment"
+                                    label="Votre message" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
                     </div>
                 </form>
             </div>
