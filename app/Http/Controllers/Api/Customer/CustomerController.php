@@ -17,6 +17,7 @@ use App\Notifications\Customer\Sending\SendVerifyIdentityCustomerLinkNotificatio
 use App\Notifications\Customer\Sending\SendVerifyIncomeCustomerLinkNotification;
 use App\Scope\VerifCNITrait;
 use App\Services\Persona;
+use App\Services\Twilio\Lookup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -344,7 +345,8 @@ class CustomerController extends ApiController
     {
         $user = User::find($user_id);
         return match ($request->get('action')) {
-            "mail" => $this->updateMail($user, $request)
+            "mail" => $this->updateMail($user, $request),
+            "phone" => $this->updatePhone($user, $request)
         };
     }
 
@@ -405,5 +407,24 @@ class CustomerController extends ApiController
         $user->customers->info->update(['email' => $request->get('email')]);
 
         return $this->sendSuccess("L'adresse mail pricipal à été mise à jours");
+    }
+
+    private function updatePhone(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
+    {
+        $lookup = new Lookup();
+        if($lookup->verify($request->get('phone'))) {
+            $user->customers->info->update(['phone' => $request->get('phone'), "phoneVerified" => true]);
+        } else {
+            $user->customers->info->update(['phone' => $request->get('phone'), "phoneVerified" => false]);
+        }
+
+        if($lookup->verify($request->get('mobile'))) {
+            $user->customers->info->update(['mobile' => $request->get('mobile'), "mobileVerified" => true]);
+        } else {
+            $user->customers->info->update(['mobile' => $request->get('mobile'), "mobileVerified" => false]);
+        }
+
+        return $this->sendSuccess("Numéro de téléphone mise à jours");
+
     }
 }
