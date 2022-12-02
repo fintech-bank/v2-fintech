@@ -153,9 +153,42 @@
                             </div>
                         </div>
 
+                        <div class="flex-column current" data-kt-stepper-element="content">
+                            <x-form.input-mask
+                                name="mobile"
+                                label="Numéro de téléphone"
+                                mask="+33999999999"
+                                required="true" />
+                        </div>
+
                     </div>
                     <div class="modal-footer">
-                        <x-form.button />
+                        <div class="d-flex flex-stack">
+                            <!--begin::Wrapper-->
+                            <div class="me-2">
+                                <button type="button" class="btn btn-light btn-active-light-primary" data-kt-stepper-action="previous">
+                                    Back
+                                </button>
+                            </div>
+                            <!--end::Wrapper-->
+
+                            <!--begin::Wrapper-->
+                            <div>
+                                <button type="button" class="btn btn-primary" data-kt-stepper-action="submit">
+                    <span class="indicator-label">
+                        Submit
+                    </span>
+                                    <span class="indicator-progress">
+                        Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                                </button>
+
+                                <button type="button" class="btn btn-primary" data-kt-stepper-action="next">
+                                    Continue
+                                </button>
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
                     </div>
                 </form>
             </div>
