@@ -232,6 +232,7 @@ class CustomerController extends ApiController
                 $code = random_numeric(6);
                 \Session::put('edit_phone_code', base64_encode($phone.'/'.$code));
                 $customer->info->notify(new SendGeneralCodeNotification($customer, $code));
+                dd(session()->all());
 
                 return response()->json();
 
