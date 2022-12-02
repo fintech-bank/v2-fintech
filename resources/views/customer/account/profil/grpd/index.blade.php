@@ -506,6 +506,7 @@
                 <form id="formInacturate" action="/api/user/{{ $customer->user->id }}" method="post">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="action" value="inacurate">
                     <div class="modal-body">
                         <p>Vous pouvez demander ici la rectification de vos données inexactes ou incomplètes.</p>
                         <p>

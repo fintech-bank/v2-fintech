@@ -12,6 +12,7 @@ use App\Mail\Customer\SendSignateDocumentRequestMail;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
 use App\Models\User;
+use App\Notifications\Agent\NewGrpdNotification;
 use App\Notifications\Customer\GrpdNewDroitAcceNotification;
 use App\Notifications\Customer\SendGeneralCodeNotification;
 use App\Notifications\Customer\Sending\SendVerifyAddressCustomerLinkNotification;
@@ -352,7 +353,8 @@ class CustomerController extends ApiController
             "address" => $this->updateAddress($user, $request),
             "grpd_consent" => $this->updateGrpdConsent($user, $request),
             "grpd_rip" => $this->updateGrpdRip($user, $request),
-            'droit_acces' => $this->accessDroitAcces($user, $request)
+            'droit_acces' => $this->accessDroitAcces($user, $request),
+            'inacurate' => $this->accessInacurate($user, $request)
         };
     }
 
@@ -478,5 +480,20 @@ class CustomerController extends ApiController
         // Notification
         $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers, $req, 'Contact avec votre banque'));
         return $this->sendSuccess("Votre demande à bien été transmis");
+    }
+
+    private function accessInacurate(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
+    {
+        $req = $user->customers->grpd_demande()->create([
+            'type' => 'inacurate',
+            'object' => $request->get('object'),
+            'comment' => $request->get('comment'),
+            'customer_id' => $user->customers->id
+        ]);
+
+        $user->customers->agent->user->notify(new NewGrpdNotification($req));
+        $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers, $req, 'Contact avec votre banque'));
+
+        return $this->sendSuccess("Votre demande de rectification à bien été prise en comptes");
     }
 }
