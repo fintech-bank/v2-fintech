@@ -5,9 +5,18 @@
     let forms = {
         formGrpdConsent: document.querySelector('#formGrpdConsent'),
         formGrpdRip: document.querySelector('#formGrpdRip'),
+        formDroitAcces: document.querySelector('#formDroitAcces'),
     }
     let dataTable = {}
     let block = {}
+
+    let selectDroitAccesType = (item) => {
+        if (item.value === 'other') {
+            forms.formDroitAcces.querySelector("#other").classList.remove('d-none')
+        } else {
+            forms.formDroitAcces.querySelector("#other").classList.add('d-none')
+        }
+    }
 
     $(forms.formGrpdConsent).on('submit', e => {
         e.preventDefault()
