@@ -71,7 +71,7 @@
             <div class="">{{ $customer->info->phone }} {!! $customer->info->phone_verify !!}</div>
         </div>
         <div class="d-flex flex-wrap justify-content-end">
-            <button class="btn btn-circle btn-lg btn-secondary">Modifier</button>
+            <button class="btn btn-circle btn-lg btn-secondary" data-bs-toggle="modal" data-bs-target="#EditPhone">Modifier</button>
         </div>
         <div class="separator separator-dashed border-gray-300 my-5"></div>
         <x-base.underline
