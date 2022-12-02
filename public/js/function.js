@@ -1,5 +1,7 @@
 const useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
+$.fn.modal.Constructor.prototype._enforceFocus = function () {}
+
 
 let tagify = (element, data) => {
     let ds = []
