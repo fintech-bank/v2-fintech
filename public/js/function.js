@@ -1,6 +1,6 @@
 const useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
-$.fn.modal.Constructor.prototype._enforceFocus = function () {}
+
 
 
 let tagify = (element, data) => {
@@ -256,6 +256,7 @@ if(document.querySelectorAll('.datetime')) {
  * @param agent //Device-software-version-name
  */
 let executeVerifiedAjax = (type_swal, customer_id, forminfo, agent = null) => {
+    $.fn.modal.Constructor.prototype._enforceFocus = function () {}
     let text = type_swal === 'password' ? 'Veuillez saisir votre mot de passe' : "Veuillez valider votre action avec votre téléphone"
     if(type_swal === 'password') {
         Swal.fire({
