@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="d-flex flex-wrap justify-content-end">
-            <button class="btn btn-circle btn-lg btn-secondary">Modifier</button>
+            <button class="btn btn-circle btn-lg btn-secondary" data-bs-toggle="modal" data-bs-target="#EditMail">Modifier</button>
         </div>
         <div class="separator separator-dashed border-gray-300 my-5"></div>
         <x-base.underline
@@ -110,6 +110,36 @@
             @if(!$customer->info->addressVerified)
                 <button class="btn btn-circle btn-lg btn-outline btn-outline-info">Vérifier mon adresse</button>
             @endif
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="EditMail">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Modifier mon adresse mail</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formEditMail" action="/api/user/verify/mail" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <x-form.input
+                            type="email"
+                            name="email"
+                            label="Nouvelle adresse Mail"
+                            required="true"
+                            value="{{ $customer->user->email }}" />
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
