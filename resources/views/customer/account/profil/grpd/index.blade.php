@@ -170,7 +170,7 @@
         </div>
     </div>
     <div class="modal fade" tabindex="-1" id="GrpdRip">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-bank">
                     <h3 class="modal-title text-white">Votre banque, comme vous l'entendez</h3>
@@ -202,7 +202,7 @@
                             <div class="fs-2x fw-bolder">Préférences de contenus</div>
                             <p>Les communications Société Générale sont divisées en 4 grandes catégories. Notre objectif ? Faire en sorte que vous ne ratiez aucune opportunité. À vous d'indiquer vos préférences.</p>
 
-                            <div class="d-flex flex-center bg-white rounded shadow-sm mx-auto p-5">
+                            <div class="d-flex flex-center bg-white rounded shadow-sm mx-auto p-5 w-75">
                                 <div class="d-flex flex-row align-items-center">
                                     <i class="fa-regular fa-newspaper fs-4hx text-bank me-5"></i>
                                     <div class="d-flex flex-column">
