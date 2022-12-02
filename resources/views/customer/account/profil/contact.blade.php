@@ -145,5 +145,5 @@
 @endsection
 
 @section("script")
-    @include("customer.scripts.account.profil.index")
+    @include("customer.scripts.account.profil.contact")
 @endsection

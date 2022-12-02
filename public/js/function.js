@@ -245,3 +245,128 @@ if(document.querySelectorAll('.datetime')) {
         })
     })
 }
+
+/**
+ *
+ * @param type_swal // password,secure
+ * @param customer_id
+ * @param forminfo
+ * @param agent //Device-software-version-name
+ */
+let executeVerifiedAjax = (type_swal, customer_id, forminfo, agent = null) => {
+    let text = type_swal === 'password' ? 'Veuillez saisir votre mot de passe' : "Veuillez valider votre action avec votre téléphone"
+    if(type_swal === 'password') {
+        Swal.fire({
+            title: text,
+            input: 'password',
+            inputAttributes: {
+                autocapitalize: 'off'
+            },
+            showCancelButton: false,
+            confirmButtonText: 'Valider',
+            showLoaderOnConfirm: true,
+            preConfirm: (password) => {
+                $.ajax({
+                    url: '/api/user/verify/pass',
+                    method: 'POST',
+                    data: {
+                        "verify": "pass",
+                        "customer_id": customer_id,
+                        "pass": password
+                    },
+                    success: () => {
+                        return null;
+                    },
+                    error: () => {
+                        Swal.showValidationMessage(
+                            `Mot de passe invalide`
+                        )
+                    }
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if(result.isConfirmed) {
+                forminfo.btn.attr('data-kt-indicator', 'on')
+
+                $.ajax({
+                    url: forminfo.url,
+                    method: forminfo.method,
+                    data: forminfo.data,
+                    success: data => {
+                        forminfo.btn.removeAttr('data-kt-indicator')
+
+                        if(data.state === 'warning') {
+                            toastr.success(`${data.message}`, ``)
+                        } else {
+                            toastr.success(`${data.message}`, ``)
+
+                            setTimeout(() => {
+                                window.location.reload()
+                            }, 1200)
+                        }
+                    },
+                    error: () => {
+                        forminfo.btn.removeAttr('data-kt-indicator')
+                        toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+                    }
+                })
+            }
+        })
+    } else {
+        Swal.fire({
+            title: text,
+            input: 'password',
+            showCancelButton: false,
+            confirmButtonText: 'Authentifier',
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                $.ajax({
+                    url: '/api/user/verify/secure',
+                    method: 'POST',
+                    data: {
+                        "verify": "secure",
+                        "customer_id": customer_id,
+                        "agent": agent
+                    },
+                    success: () => {
+                        return null;
+                    },
+                    error: () => {
+                        Swal.showValidationMessage(
+                            `Pass sécurité invalide`
+                        )
+                    }
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if(result.isConfirmed) {
+                forminfo.btn.attr('data-kt-indicator', 'on')
+
+                $.ajax({
+                    url: forminfo.url,
+                    method: forminfo.method,
+                    data: forminfo.data,
+                    success: data => {
+                        forminfo.btn.removeAttr('data-kt-indicator')
+
+                        if(data.state === 'warning') {
+                            toastr.success(`${data.message}`, ``)
+                        } else {
+                            toastr.success(`${data.message}`, ``)
+
+                            setTimeout(() => {
+                                window.location.reload()
+                            }, 1200)
+                        }
+                    },
+                    error: () => {
+                        forminfo.btn.removeAttr('data-kt-indicator')
+                        toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+                    }
+                })
+            }
+        })
+    }
+}
