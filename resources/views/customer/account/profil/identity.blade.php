@@ -28,6 +28,31 @@
             size-text="fs-1"
             color="secondary"
             class="w-100 my-5" />
+
+        <table class="table gy-7 gx-7">
+            <tbody>
+                <tr>
+                    <td>Situation Familiale</td>
+                    <td>{{ $customer->situation->family_situation }}</td>
+                </tr>
+                <tr>
+                    <td>Nombre d'enfant</td>
+                    <td>{{ $customer->situation->child }}</td>
+                </tr>
+                <tr>
+                    <td>Activité</td>
+                    <td>{{ $customer->situation->pro_category }}</td>
+                </tr>
+                <tr>
+                    <td>Catégorie</td>
+                    <td>{{ $customer->situation->pro_category_detail }}</td>
+                </tr>
+                <tr>
+                    <td>Profession</td>
+                    <td>{{ $customer->situation->pro_profession }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 @endsection
 
