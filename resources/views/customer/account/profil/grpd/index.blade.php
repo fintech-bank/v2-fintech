@@ -72,7 +72,27 @@
                             <p>En acceptant ce service, le code secret de votre carte sera consultable en ligne sur votre espace client sécurisé et ne sera plus envoyé par courrier.</p>
                             <p>Les conditions d'accès au code, ainsi qu'à la carte font l’objet de précisions dans les conditions générales de votre contrat de banque à distance.</p>
                         </div>
+                        <div class="mb-5">
+                            <p class="fw-bold">Je souhaite bénéficier de mes relevés et documents liés à mes comptes et produits au format électronique sur mon espace client sécurisé.</p>
+                            <p>Je donne mon accord</p>
+                            <div class="d-flex flex-row">
+                                <x-form.radio
+                                    name="edocument"
+                                    value="1"
+                                    label="Oui"
+                                    for="edocument"
+                                    checked="{{ $customer->grpd->edocument ? 'true' : 'false' }}" />
 
+                                <x-form.radio
+                                    name="edocument"
+                                    value="0"
+                                    label="Non"
+                                    for="edocument"
+                                    checked="{{ $customer->grpd->edocument ? 'false' : 'true' }}" />
+
+
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
