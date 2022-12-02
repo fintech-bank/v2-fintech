@@ -15,4 +15,7 @@
     stepperMobile.on("kt.stepper.previous", function (stepper) {
         stepper.goPrevious(); // go next step
     });
+    stepperMobile.on("kt.stepper.changed", function() {
+        console.log(stepperMobile.getCurrentStepIndex())
+    });
 </script>
