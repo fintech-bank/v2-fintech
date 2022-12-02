@@ -265,17 +265,17 @@
                                 <div class="d-flex flex-stack w-lg-50">
                                     <!--begin::Label-->
                                     <div class="me-5">
-                                        <label class="fs-6 fw-semibold form-label">Save Card for further billing?</label>
-                                        <div class="fs-7 fw-semibold text-muted">If you need more info, please check budget planning</div>
+                                        <label class="fs-6 fw-semibold form-label">Par Mail</label>
+                                        <div class="fs-7 fw-semibold text-muted">{{ $customer->user->email }}</div>
                                     </div>
                                     <!--end::Label-->
 
                                     <!--begin::Switch-->
                                     <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" checked="checked"/>
+                                        <input class="form-check-input" type="checkbox" name="rip_canal_mail" value="1" checked="checked"/>
                                         <span class="form-check-label fw-semibold text-muted">
-            Save Card
-        </span>
+
+                                        </span>
                                     </label>
                                     <!--end::Switch-->
                                 </div>
