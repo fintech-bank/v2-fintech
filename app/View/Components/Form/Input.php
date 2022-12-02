@@ -51,23 +51,25 @@ class Input extends Component
      * @var null
      */
     public $class;
+    private string $typeInput;
 
     /**
      * Create a new component instance.
      *
      * @param $name
-     * @param $type
-     * @param  string  $label
-     * @param  string  $value
-     * @param  bool  $required
-     * @param  bool  $autofocus
-     * @param  null  $placeholder
-     * @param  bool  $help
-     * @param  null  $helpText
-     * @param  null  $text
-     * @param  null  $class
+     * @param string $typeInput
+     * @param string $type
+     * @param string $label
+     * @param string $value
+     * @param bool $required
+     * @param bool $autofocus
+     * @param null $placeholder
+     * @param bool $help
+     * @param null $helpText
+     * @param null $text
+     * @param null $class
      */
-    public function __construct($name, $type = 'text', $label = '',
+    public function __construct($name, $typeInput = 'normal', $type = 'text', $label = '',
         $value = '', $required = false, $autofocus = false,
         $placeholder = null, $help = false, $helpText = null,
         $text = null, $class = null)
@@ -83,6 +85,7 @@ class Input extends Component
         $this->helpText = $helpText;
         $this->text = $text;
         $this->class = $class;
+        $this->typeInput = $typeInput;
     }
 
     /**

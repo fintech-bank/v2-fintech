@@ -515,7 +515,7 @@
                             <a href="{{ route('customer.account.agenda.index') }}">cliquant ici</a>.
                         </p>
 
-                        <div class="d-flex flex-row">
+                        <div class="d-flex flex-row mb-5">
                             <div class="rounded border border-2 w-50 p-10">
                                 <div class="fw-bolder">Rectifiez vos coordonnées :</div>
                                 <p>Numéro de téléphone / Adresse Postale / Adresse Email</p>
@@ -532,10 +532,18 @@
                             </div>
                         </div>
                         <div class="d-flex flex-wrap w-50 mx-auto align-items-center">
-                            <p class="fw-bolder">
+                            <p class="fw-bolder mb-5">
                                 Pour rectifier vos autres données :<br>
                                 Veuillez préciser la nature des données que vous jugez inexactes ou incomplètes et pourquoi vous souhaitez leur rectification. Dans la mesure du possible, merci de joindre un justificatif attestant des données correctes.
                             </p>
+                            <x-form.input
+                                type-input="float"
+                                name="object"
+                                label="Objet" />
+
+                            <x-form.textarea
+                                name="comment"
+                                label="Votre message" />
                         </div>
                     </div>
                     <div class="modal-footer text-end">
