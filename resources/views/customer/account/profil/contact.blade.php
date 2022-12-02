@@ -57,6 +57,18 @@
             <div class="">Téléphone Sécurisé <i class="fa-solid fa-lock ms-3"></i></div>
             <div class="">{{ $customer->info->mobile }}</div>
         </div>
+        <div class="d-flex flex-wrap justify-content-end mb-5">
+            <a href="{{ route('customer.account.profil.security.index') }}" class="btn btn-circle btn-lg btn-secondary">Modifier</a>
+        </div>
+
+        <div class="d-flex flex-row justify-content-around border border-bottom-1 mb-3">
+            <div class="">Mobile</div>
+            <div class="">{{ $customer->info->mobile }}</div>
+        </div>
+        <div class="d-flex flex-row justify-content-around border border-bottom-1 mb-3">
+            <div class="">Domicile</div>
+            <div class="">{{ $customer->info->phone }}</div>
+        </div>
     </div>
 @endsection
 
