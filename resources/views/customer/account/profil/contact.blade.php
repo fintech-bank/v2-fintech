@@ -106,8 +106,10 @@
             <div class="">{{ $customer->info->country }}</div>
         </div>
         <div class="d-flex flex-wrap justify-content-end">
-            <button class="btn btn-circle btn-lg btn-secondary">Modifier</button>
-            <button class="btn btn-circle btn-lg btn-secondary">Vérifier mon adresse</button>
+            <button class="btn btn-circle btn-lg btn-secondary me-3">Modifier</button>
+            @if(!$customer->info->addressVerified)
+                <button class="btn btn-circle btn-lg btn-info">Vérifier mon adresse</button>
+            @endif
         </div>
     </div>
 @endsection
