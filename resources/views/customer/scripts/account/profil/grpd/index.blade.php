@@ -34,7 +34,7 @@
                 $.ajax({
                     url: '/api/user/{{ $customer->user->id }}',
                     method: 'DELETE',
-                    data: {'action': 'cancelRequest'},
+                    data: {'action': 'cancelRequest', 'id': btn.dataset.request},
                     success: data => {
                         btn.removeAttribute('data-kt-indicator')
                         $(e.target.parentNode.parentNode).fadeOut()
