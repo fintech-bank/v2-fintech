@@ -22,6 +22,7 @@
         let data = form.serializeArray()
         let btn = form.find('[type="submit"]')
         let modal = new bootstrap.Modal(modals.modalEditMail)
+        modal.hide()
 
         @if(Agent::isMobile())
         let agent = '{{ Agent::device().'-'.Agent::platform().'-'.Agent::version(Agent::platform()).'-'.gethostname() }}'
