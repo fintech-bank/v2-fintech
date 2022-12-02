@@ -30,7 +30,7 @@
             btn.addEventListener('click', e => {
                 e.preventDefault()
                 btn.setAttribute('data-kt-indicator', 'on')
-                console.log(e.target.parentNode)
+                console.log(e.target.parentNode.parentNode)
                 debugger
 
                 $.ajax({
