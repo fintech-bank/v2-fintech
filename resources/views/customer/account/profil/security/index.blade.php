@@ -161,6 +161,7 @@
                                 required="true" />
                         </div>
                         <div class="flex-column" data-kt-stepper-element="content">
+                            <p class="helpEditMobileCode"></p>
                             <x-form.input
                                 name="code"
                                 label="Code de vérification reçu par sms"

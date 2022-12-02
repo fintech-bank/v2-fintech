@@ -34,6 +34,7 @@
                 success: () => {
                     block.blockEditMobile.release()
                     block.blockEditMobile.destroy()
+                    document.querySelector(".helpEditMobileCode").innerHTML = `Un code vous a été envoyé au numéro <strong>${document.querySelector("[name='mobile']").value}</strong>`
                 }
             })
         }
