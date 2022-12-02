@@ -92,6 +92,74 @@
 
                             </div>
                         </div>
+                        <div class="separator border-gray-300 my-5"></div>
+                        <div class="bg-gray-200 p-5 mb-10">
+                            <div class="fw-bolder">Utilisation de certaines de vos données personnelles </div>
+                            <p>Vous pouvez personnaliser vos interactions avec Société Générale en consentant à l’utilisation de certaines catégories de données.</p>
+                            <p>Vous pouvez modifier votre choix à tout moment.</p>
+                        </div>
+                        <div class="mb-5">
+                            <p class="fw-bolder">Donnée : le contenu de nos échanges téléphoniques, mails et Tchat</p>
+                            <p class="fw-bold">La lecture automatisée de nos échanges nous permet d’améliorer nos réponses.</p>
+                            <p>Je donne mon accord</p>
+                            <div class="d-flex flex-row">
+                                <x-form.radio
+                                    name="content_com"
+                                    value="1"
+                                    label="Oui"
+                                    for="content_com"
+                                    checked="true" />
+
+                                <x-form.radio
+                                    name="content_com"
+                                    value="0"
+                                    label="Non"
+                                    for="content_com" />
+
+                            </div>
+                        </div>
+                        <div class="separator border-gray-300 my-5"></div>
+                        <div class="mb-5">
+                            <p class="fw-bolder">Donnée : votre géo-localisation</p>
+                            <p class="fw-bold">Nous pouvons géolocaliser vos paiements par carte bancaires ainsi que vos connexions à nos sites et applications sécurisées.</p>
+                            <p>Je donne mon accord</p>
+                            <div class="d-flex flex-row">
+                                <x-form.radio
+                                    name="content_geo"
+                                    value="1"
+                                    label="Oui"
+                                    for="content_geo"
+                                    checked="true" />
+
+                                <x-form.radio
+                                    name="content_geo"
+                                    value="0"
+                                    label="Non"
+                                    for="content_geo" />
+
+                            </div>
+                        </div>
+                        <div class="separator border-gray-300 my-5"></div>
+                        <div class="mb-5">
+                            <p class="fw-bolder">Donnée : le contenu de vos échanges avec Société Générale sur les réseaux sociaux</p>
+                            <p class="fw-bold">Nous n’accédons pas à vos données et conversations privées sur les réseaux sociaux, mais proposons d’améliorer nos échanges à partir des informations que vous nous fournissez sur nos espaces d’échange avec Société Générale (par exemple @ SG_et vous sur Twitter, sur la page Société Générale et Vous sur Facebook).</p>
+                            <p>Je donne mon accord</p>
+                            <div class="d-flex flex-row">
+                                <x-form.radio
+                                    name="content_social"
+                                    value="1"
+                                    label="Oui"
+                                    for="content_social"
+                                    checked="true" />
+
+                                <x-form.radio
+                                    name="content_social"
+                                    value="0"
+                                    label="Non"
+                                    for="content_social" />
+
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
