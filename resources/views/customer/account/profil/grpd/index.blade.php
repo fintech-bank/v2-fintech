@@ -536,7 +536,7 @@
                                 Pour rectifier vos autres données :<br>
                                 Veuillez préciser la nature des données que vous jugez inexactes ou incomplètes et pourquoi vous souhaitez leur rectification. Dans la mesure du possible, merci de joindre un justificatif attestant des données correctes.
                             </p>
-                            <div class="d-flex flex-column">
+                            <div class="d-flex flex-center flex-column">
                                 <x-form.input
                                     type-input="float"
                                     name="object"
