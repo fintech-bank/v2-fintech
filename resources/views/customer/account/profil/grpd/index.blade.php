@@ -20,9 +20,9 @@
         </div>
         <div class="d-flex flex-center rounded border border-gray-300 py-10">
             <div class="d-flex flex-column justify-content-center align-items-center">
-                <div class="fs-2hx fw-light">0</div>
+                <div class="fs-2hx fw-light">{{ $customer->grpd_demande()->count() }}</div>
                 <div class="fs-5">Demande</div>
-                <button class="btn btn-circle btn-lg btn-bank" disabled>Voir mes demandes</button>
+                <button class="btn btn-circle btn-lg btn-bank" {{ $customer->grpd_demande()->count() == 0 ? 'disabled' : '' }}>Voir mes demandes</button>
             </div>
         </div>
 
