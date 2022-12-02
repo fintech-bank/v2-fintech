@@ -404,6 +404,6 @@ class CustomerController extends ApiController
         $user->update(['email' => $request->get('email')]);
         $user->customers->info->update(['email' => $request->get('email')]);
 
-        return $this->sendSuccess();
+        return $this->sendSuccess("L'adresse mail pricipal à été mise à jours");
     }
 }
