@@ -1,6 +1,8 @@
 <script type="text/javascript">
     let tables = {}
-    let elements = {}
+    let elements = {
+        btnVerifyAddress: document.querySelector('.btnVerifyAddress')
+    }
     let modals = {
         modalEditMail: document.querySelector('#EditMail'),
         modalEditPhone: document.querySelector('#EditPhone'),
@@ -16,6 +18,30 @@
         blockEditMail: new KTBlockUI(modals.modalEditMail.querySelector('.modal-body'))
     }
 
+    if(elements.btnVerifyAddress) {
+        elements.btnVerifyAddress.addEventListener('click', e => {
+            e.preventDefault()
+            elements.btnVerifyAddress.setAttribute('data-kt-indicator', 'on')
+
+            $.ajax({
+                url: '/api/user/verify/domicile',
+                method: 'POST',
+                data: {
+                    "verify": "address",
+                    "customer_id": {{ $customer->id }}
+                },
+                success: () => {
+                    elements.btnVerifyAddress.removeAttribute('data-kt-indicator')
+
+                    toastr.success(`Un email vous à été envoyé afin de vérifier votre adresse postal`, `Sécurité`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
+            })
+        })
+    }
     $(forms.formEditMail).on('submit', e => {
 
         e.preventDefault()

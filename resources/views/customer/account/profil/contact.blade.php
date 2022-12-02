@@ -108,7 +108,7 @@
         <div class="d-flex flex-wrap justify-content-end">
             <button class="btn btn-circle btn-lg btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#EditAddress">Modifier</button>
             @if(!$customer->info->addressVerified)
-                <button class="btn btn-circle btn-lg btn-outline btn-outline-info">Vérifier mon adresse</button>
+                <button class="btn btn-circle btn-lg btn-outline btn-outline-info btnVerifyAddress">Vérifier mon adresse</button>
             @endif
         </div>
     </div>
