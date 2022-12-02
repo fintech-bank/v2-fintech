@@ -1,5 +1,4 @@
 <script type="text/javascript">
-    $.fn.modal.Constructor.prototype._enforceFocus = function () {}
     let tables = {}
     let elements = {}
     let modals = {
