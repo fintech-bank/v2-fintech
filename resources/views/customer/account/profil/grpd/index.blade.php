@@ -779,7 +779,11 @@
                                     <td>{!! $demande->comment !!}</td>
                                     <td>{{ $demande->type_text }}</td>
                                     <td>{!! $demande->status_label !!}</td>
-                                    <td></td>
+                                    <td>
+                                        @if($demande->status == 'pending')
+                                            <button class="btn btn-xs btn-icon btn-danger"><i class="fa-solid fa-ban"></i> </button>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
