@@ -47,19 +47,19 @@
 
 @elseif($type == 'light')
     <!--begin::Alert-->
-    <div id="{{ isset($id) ? $id : '' }}" class="alert alert-dismissible bg-light-{{ $color }} d-flex flex-column flex-sm-row p-5 mb-10 {{ isset($class) ? $class : '' }}">
+    <div id="{{ isset($id) ? $id : '' }}" class="alert alert-dismissible bg-light-{{ $color }} d-flex flex-column align-items-center flex-sm-row p-5 mb-10 {{ isset($class) ? $class : '' }}">
         <!--begin::Icon-->
-        <i class="fa-solid fa-{{ $icon }} fa-2x text-{{ $color }} me-3"></i>
+        <i class="fa-solid fa-{{ $icon }} fs-2x text-white me-3"></i>
         <!--end::Icon-->
 
         <!--begin::Wrapper-->
         <div class="d-flex flex-column text-light pe-0 pe-sm-10">
             <!--begin::Title-->
-            <h4 class="mb-2 text-{{ $color }}">{{ $title }}</h4>
+            <h4 class="mb-2 fw-bolder text-white">{{ $title }}</h4>
             <!--end::Title-->
 
             <!--begin::Content-->
-            <span class="text-muted">{!! $content !!}</span>
+            <span class="text-white">{!! $content !!}</span>
             <!--end::Content-->
         </div>
         <!--end::Wrapper-->
