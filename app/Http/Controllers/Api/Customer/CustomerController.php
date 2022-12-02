@@ -446,14 +446,14 @@ class CustomerController extends ApiController
 
     private function updateGrpdConsent(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
     {
-        $user->customers->grpd->update($request->all());
+        $user->customers->grpd->update($request->except('_token', 'action', '_method'));
 
         return $this->sendSuccess("Consentement GRPD mis à jour");
     }
 
     private function updateGrpdRip(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
     {
-        $user->customers->grpd->update($request->all());
+        $user->customers->grpd->update($request->except('_token', 'action', '_method'));
 
         return $this->sendSuccess("GRPD Communication mis à jour");
     }
