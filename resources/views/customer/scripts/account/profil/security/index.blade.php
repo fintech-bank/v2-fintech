@@ -20,7 +20,6 @@
         stepper.goPrevious(); // go next step
     });
     stepperMobile.on("kt.stepper.changed", function() {
-        console.log(stepperMobile.getCurrentStepIndex())
         if(stepperMobile.getCurrentStepIndex() === 2) {
             block.blockEditMobile.block()
             $.ajax({
