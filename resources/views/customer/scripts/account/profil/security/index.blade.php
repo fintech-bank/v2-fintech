@@ -46,7 +46,7 @@
         elements.btnLoginPass.addEventListener('click', e => {
             e.preventDefault()
             Swal.fire({
-                title: `Afin d'ajouter l'appareil "${e.dataset.agent}", veuillez saisir votre mot de passe`,
+                title: `Afin d'ajouter l'appareil "${elements.btnLoginPass.dataset.agent}", veuillez saisir votre mot de passe`,
                 icon: 'question',
                 input: 'password',
                 inputAttributes: {
@@ -74,33 +74,21 @@
                             )
                         }
                     })
-                    return fetch(`//api.github.com/users/${login}`)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error(response.statusText)
-                            }
-                            return response.json()
-                        })
-                        .catch(error => {
-                            Swal.showValidationMessage(
-                                `Request failed: ${error}`
-                            )
-                        })
                 },
                 allowOutsideClick: () => !Swal.isLoading()
             }).then((result) => {
                 if(result.isConfirmed) {
-                    e.target.setAttribute('data-kt-indicator', 'on')
+                    elements.btnLoginPass.setAttribute('data-kt-indicator', 'on')
                     $.ajax({
                         url: '/api/user/verify/pass/login',
                         method: 'POST',
                         data: {
                             "customer_id": {{ $customer->id }},
                             "verify": "securePassLogin",
-                            "agent": e.target.dataset.agent
+                            "agent": elements.btnLoginPass.dataset.agent
                         },
                         success: () => {
-                            e.target.removeAttribute('data-kt-indicator')
+                            elements.btnLoginPass.removeAttribute('data-kt-indicator')
 
                             toastr.success(`Le pass sécurité à été définie avec succès`, `Sécurité`)
 
@@ -109,7 +97,7 @@
                             }, 1200)
                         },
                         error: err => {
-                            e.target.removeAttribute('data-kt-indicator')
+                            elements.btnLoginPass.removeAttribute('data-kt-indicator')
                             toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                         }
                     })
