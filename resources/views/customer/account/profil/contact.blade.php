@@ -31,8 +31,8 @@
 
         <p class="fw-bolder">Pour mieux vous accompagner au quotidien comme dans vos projets d’avenir, nous souhaitons recueillir votre adresse e-mail. Vous serez ainsi informé de nos actualités et de nos offres promotionnelles susceptibles de vous intéresser.</p>
         <div class="d-flex flex-row justify-content-around mb-10">
-            <div class="">Adresse e-mail personnel {!! $customer->user->email_verified !!}</div>
-            <div class="">{{ $customer->user->email }}</div>
+            <div class="">Adresse e-mail personnel</div>
+            <div class="">{{ $customer->user->email }} {!! $customer->user->email_verified !!}</div>
         </div>
         <div class="d-flex flex-center justify-content-center w-50 mx-auto">
             <div class="alert bg-light-primary d-flex align-items-center p-5 mb-10">
@@ -55,7 +55,7 @@
 
         <div class="d-flex flex-row justify-content-around mb-10">
             <div class="">Téléphone Sécurisé <i class="fa-solid fa-lock ms-3"></i></div>
-            <div class="">{{ $customer->info->mobile }}</div>
+            <div class="">{{ $customer->info->mobile }} {!! $customer->info->mobile_verify !!}</div>
         </div>
         <div class="d-flex flex-wrap justify-content-end mb-5">
             <a href="{{ route('customer.account.profil.security.index') }}" class="btn btn-circle btn-lg btn-secondary">Modifier</a>
@@ -63,12 +63,12 @@
 
         <div class="d-flex flex-row justify-content-around">
             <div class="">Mobile</div>
-            <div class="">{{ $customer->info->mobile }}</div>
+            <div class="">{{ $customer->info->mobile }} {!! $customer->info->mobile_verify !!}</div>
         </div>
         <div class="my-3"></div>
         <div class="d-flex flex-row justify-content-around">
             <div class="">Domicile</div>
-            <div class="">{{ $customer->info->phone }}</div>
+            <div class="">{{ $customer->info->phone }} {!! $customer->info->phone_verify !!}</div>
         </div>
         <div class="d-flex flex-wrap justify-content-end">
             <button class="btn btn-circle btn-lg btn-secondary">Modifier</button>
