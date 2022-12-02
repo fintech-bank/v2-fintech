@@ -42,6 +42,9 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex flex-wrap justify-content-end">
+            <button class="btn btn-circle btn-lg btn-secondary">Modifier</button>
+        </div>
     </div>
 @endsection
 
