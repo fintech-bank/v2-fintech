@@ -423,3 +423,7 @@
 .uppercase {
     text-transform: uppercase;
 }
+
+.fs-auto {
+    font-size: inherit;
+}

@@ -81,7 +81,7 @@
             color="secondary"
             class="w-100 mb-5" />
 
-        <div class="d-flex flex-row ">
+        <div class="d-flex flex-row">
             <div class="w-50">N° et Voie</div>
             <div class="w-50">{{ $customer->info->address }}</div>
         </div>
