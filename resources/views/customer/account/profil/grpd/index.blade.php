@@ -520,7 +520,14 @@
                                 <div class="fw-bolder">Rectifiez vos coordonnées :</div>
                                 <p>Numéro de téléphone / Adresse Postale / Adresse Email</p>
                                 <div class="text-center">
-                                    <a href="" class="btn btn-circle btn-outline btn-outline-dark">Rectifier vos données</a>
+                                    <a href="" class="btn btn-sm btn-circle btn-outline btn-outline-dark">Rectifier vos données</a>
+                                </div>
+                            </div>
+                            <div class="rounded border border-2 w-50 p-10">
+                                <div class="fw-bolder">Rectifiez vos éléments d’ identité : :</div>
+                                <p>Enfants à charge ou situation professionnelle</p>
+                                <div class="text-center">
+                                    <a href="{{ route('customer.account.profil.identity.index') }}" class="btn btn-sm btn-circle btn-outline btn-outline-dark">Rectifier vos données</a>
                                 </div>
                             </div>
                         </div>
