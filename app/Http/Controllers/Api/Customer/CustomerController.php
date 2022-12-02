@@ -578,7 +578,7 @@ class CustomerController extends ApiController
     {
         $request = $find;
 
-        $request->update(['status' => 'canceled']);
+        $request->update(['status' => 'cancel']);
 
         $user->customers->info->notify(new GrpdUpdateDroitAcceNotification($user->customers, $request, 'Contact avec votre banque'));
 
