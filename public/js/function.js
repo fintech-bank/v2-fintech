@@ -280,10 +280,9 @@ let executeVerifiedAjax = (type_swal, customer_id, forminfo, agent = null) => {
                     success: () => {
                         return null;
                     },
-                    error: () => {
-                        Swal.showValidationMessage(
-                            `Mot de passe invalide`
-                        )
+                    error: (err) => {
+                        console.log(err)
+                        debugger
                     }
                 })
             },
