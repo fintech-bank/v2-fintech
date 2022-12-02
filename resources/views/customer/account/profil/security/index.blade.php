@@ -228,7 +228,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formEditPassword" action="" method="post">
+                <form id="formEditPassword" action="/api/user/verify/password" method="post">
                     @csrf
                     <div class="modal-body">
                         <x-form.input
