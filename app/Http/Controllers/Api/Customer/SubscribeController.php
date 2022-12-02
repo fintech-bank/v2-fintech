@@ -65,6 +65,6 @@ class SubscribeController extends ApiController
 
         $http = Http::withoutVerifying()->post('https://cashback.fintech.ovh/api/auth/register', $data)->status();
 
-        dd($http)
+        dd($http);
     }
 }
