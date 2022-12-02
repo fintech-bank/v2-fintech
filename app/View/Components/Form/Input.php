@@ -51,7 +51,7 @@ class Input extends Component
      * @var null
      */
     public $class;
-    private string $typeInput;
+    public string $typeInput;
 
     /**
      * Create a new component instance.
