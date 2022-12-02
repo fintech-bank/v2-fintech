@@ -26,8 +26,13 @@
             </div>
         </div>
 
-        <div class="border border-gray-400 py-5">
-            <a href="" class="text-black">Exprimer votre consentement à l’utilisation de certaines de vos données personnelles</a>
+        <div class="separator separator-dotted separator-content border-dark my-15"><span class="h1">Vos préférences</span></div>
+
+        <div class="border border-gray-400 p-5">
+            <div class="d-flex flex-row justify-content-between">
+                <a href="" class="text-black">Exprimer votre consentement à l’utilisation de certaines de vos données personnelles</a>
+                <a href=""><i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
         </div>
     </div>
 @endsection
