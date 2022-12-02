@@ -232,6 +232,7 @@
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="verify" value="updatePass">
+                        <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                         <x-form.input
                             name="password"
                             label="Ancien mot de passe"
