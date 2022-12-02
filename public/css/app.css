@@ -425,5 +425,5 @@
 }
 
 .fs-auto {
-    font-size: inherit;
+    font-size: inherit !important;
 }
