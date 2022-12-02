@@ -203,7 +203,20 @@
                             <p>Les communications Société Générale sont divisées en 4 grandes catégories. Notre objectif ? Faire en sorte que vous ne ratiez aucune opportunité. À vous d'indiquer vos préférences.</p>
 
                             <div class="d-flex flex-center bg-white rounded shadow-sm mx-auto p-5 w-75">
-                                <div class="d-flex flex-row align-items-center">
+                                <div class="d-flex flex-row align-items-center mb-10">
+                                    <i class="fa-regular fa-newspaper fs-4hx text-bank me-5"></i>
+                                    <div class="d-flex flex-column">
+                                        <div class="fw-bolder fs-2x mb-5">Newsletters Société Générale</div>
+                                        <div class="text-muted fs-2x mb-5">Pour suivre l'actualité...</div>
+                                        <p>Financement, patrimoine, gestion des comptes, sécurité... ces communications à caractère informatif et pédagogique évoquent des thématiques qui pourraient vous intéresser et également des articles pratiques pour en savoir plus sur les solutions bancaires proposées par Société Générale.</p>
+                                        <x-form.checkbox
+                                            name="rip_newsletter"
+                                            value="1"
+                                            label="Je m'oppose à recevoir les newsletters de {{ config('app.name') }}" />
+                                    </div>
+                                </div>
+                                <div class="separator separator-dashed border-gray-500 my-3"></div>
+                                <div class="d-flex flex-row align-items-center mb-10">
                                     <i class="fa-regular fa-newspaper fs-4hx text-bank me-5"></i>
                                     <div class="d-flex flex-column">
                                         <div class="fw-bolder fs-2x mb-5">Newsletters Société Générale</div>
