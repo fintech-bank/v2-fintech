@@ -86,23 +86,23 @@
             <div class="w-50">{{ $customer->info->address }}</div>
         </div>
         <div class="my-3"></div>
-        <div class="d-flex flex-row justify-content-around">
-            <div class="">Complément</div>
+        <div class="d-flex flex-row">
+            <div class="w-50">Complément</div>
             <div class="">{{ $customer->info->addressbis }}</div>
         </div>
         <div class="my-3"></div>
-        <div class="d-flex flex-row justify-content-around">
-            <div class="">Code Postal</div>
+        <div class="d-flex flex-row">
+            <div class="w-50">Code Postal</div>
             <div class="">{{ $customer->info->postal }}</div>
         </div>
         <div class="my-3"></div>
-        <div class="d-flex flex-row justify-content-around">
-            <div class="">Ville</div>
+        <div class="d-flex flex-row">
+            <div class="w-50">Ville</div>
             <div class="">{{ $customer->info->city }}</div>
         </div>
         <div class="my-3"></div>
-        <div class="d-flex flex-row justify-content-around">
-            <div class="">Pays</div>
+        <div class="d-flex flex-row">
+            <div class="w-50">Pays</div>
             <div class="">{{ $customer->info->country }}</div>
         </div>
     </div>
