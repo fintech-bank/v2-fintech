@@ -61,12 +61,12 @@
             <a href="{{ route('customer.account.profil.security.index') }}" class="btn btn-circle btn-lg btn-secondary">Modifier</a>
         </div>
 
-        <div class="d-flex flex-row justify-content-around mb-3">
+        <div class="d-flex flex-row justify-content-around">
             <div class="">Mobile</div>
             <div class="">{{ $customer->info->mobile }}</div>
         </div>
-        <div class="separator border-gray-300"></div>
-        <div class="d-flex flex-row justify-content-around mb-3">
+        <div class="separator border-gray-300 my-3"></div>
+        <div class="d-flex flex-row justify-content-around">
             <div class="">Domicile</div>
             <div class="">{{ $customer->info->phone }}</div>
         </div>
