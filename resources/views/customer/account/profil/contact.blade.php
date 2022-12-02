@@ -125,9 +125,10 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formEditMail" action="/api/user/verify/mail" method="post">
+                <form id="formEditMail" action="/api/user/{{ $customer->user->id }}" method="post">
                     @csrf
                     <div class="modal-body">
+                        <input type="hidden" name="action" value="mail">
                         <x-form.input
                             type="email"
                             name="email"

@@ -10,6 +10,7 @@ use App\Jobs\Customer\AlertCustomerJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
+use App\Models\User;
 use App\Notifications\Customer\SendGeneralCodeNotification;
 use App\Notifications\Customer\Sending\SendVerifyAddressCustomerLinkNotification;
 use App\Notifications\Customer\Sending\SendVerifyIdentityCustomerLinkNotification;
@@ -264,7 +265,18 @@ class CustomerController extends ApiController
                     return $this->sendWarning("Le mot de passe actuel est invalide");
                 }
 
+            case 'updateMail':
+                $customer->user->update(['email' => $request->get('email')]);
+                $customer->info->update(['email' => $request->get('email')]);
 
+                return $this->sendSuccess("L'adresse mail à été mise à jours");
+
+            case 'secure':
+                if($customer->setting->securpass_model == $request->get('agent')) {
+                    return $this->sendSuccess();
+                } else {
+                    return $this->sendError();
+                }
         }
 
         return response()->json();
@@ -328,6 +340,14 @@ class CustomerController extends ApiController
         return response()->json();
     }
 
+    public function update($user_id, Request $request)
+    {
+        $user = User::find($user_id);
+        return match ($request->get('action')) {
+            "mail" => $this->updateMail($user, $request)
+        };
+    }
+
     private function subscribeAlerta()
     {
         session()->put('subscribe.alerta', true);
@@ -377,5 +397,13 @@ class CustomerController extends ApiController
             return VerifCNITrait::version2021($cni_array[0], $cni_array[1]);
         }
 
+    }
+
+    private function updateMail(User $user, Request $request)
+    {
+        $user->update(['email' => $request->get('email')]);
+        $user->customers->info->update(['email' => $request->get('email')]);
+
+        return $this->sendSuccess();
     }
 }

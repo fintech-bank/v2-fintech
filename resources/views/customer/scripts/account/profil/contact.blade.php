@@ -17,7 +17,7 @@
         e.preventDefault()
         let form = $(forms.formEditMail)
         let url = form.attr('action')
-        let method = 'POST'
+        let method = 'PUT'
         let data = form.serializeArray()
         let btn = form.find('[type="submit"]')
         let modal = new bootstrap.Modal(modals.modalEditMail)
