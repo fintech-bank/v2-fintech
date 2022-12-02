@@ -6,12 +6,16 @@
         btnLogoutPass: document.querySelector(".btnLogoutPass"),
     }
     let modals = {
-        modalEditMobile: document.querySelector("#editMobile")
+        modalEditMobile: document.querySelector("#editMobile"),
+        modalEditPassword: document.querySelector("#EditPassword"),
     }
-    let forms = {}
+    let forms = {
+        formEditPassword: document.querySelector("#formEditPassword"),
+    }
     let dataTable = {}
     let block = {
-        blockEditMobile: new KTBlockUI(modals.modalEditMobile.querySelector('.modal-body'))
+        blockEditMobile: new KTBlockUI(modals.modalEditMobile.querySelector('.modal-body')),
+        blockEditPassword: new KTBlockUI(modals.modalEditPassword.querySelector('.modal-body')),
     }
 
     let stepperMobile = new KTStepper(elements.stepperElementMobile);
@@ -134,6 +138,35 @@
                     setTimeout(() => {
                         window.location.reload()
                     }, 1200)
+                }
+            },
+            error: () => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+            }
+        })
+    })
+    $(forms.formEditPassword).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formEditPassword)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('.btn-bank')
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: data,
+            success: data => {
+                let modal = new bootstrap.Modal(modals.modalEditPassword)
+                btn.removeAttr('data-kt-indicator')
+
+                if (data.state === 'warning') {
+                    toastr.warning(`${data.message}`, `Sécurité`)
+                } else {
+
                 }
             },
             error: () => {

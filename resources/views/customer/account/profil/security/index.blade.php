@@ -231,6 +231,7 @@
                 <form id="formEditPassword" action="/api/user/verify/password" method="post">
                     @csrf
                     <div class="modal-body">
+                        <input type="hidden" name="verify" value="updatePass">
                         <x-form.input
                             name="password"
                             label="Ancien mot de passe"

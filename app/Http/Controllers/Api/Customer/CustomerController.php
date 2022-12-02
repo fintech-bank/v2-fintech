@@ -251,6 +251,19 @@ class CustomerController extends ApiController
 
                 return $this->sendSuccess();
 
+            case 'updatePass':
+                if(\Hash::check($request->get('password'), $customer->user->password)) {
+                    if($request->get('new_password') == $request->get('new_password_confirm')) {
+                        $customer->user->update([
+                            'password' => \Hash::make($request->get('new_password'))
+                        ]);
+                    } else {
+                        return $this->sendWarning("Les mots de passe ne correspond pas !");
+                    }
+                } else {
+                    return $this->sendWarning("Le mot de passe actuel est invalide");
+                }
+
 
         }
 
