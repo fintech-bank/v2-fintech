@@ -60,6 +60,7 @@
                 if(data.state === 'warning') {
                     console.log(data.data)
                     toastr.success(`${data.message}`, `Sécurité`)
+                    form[0].reset()
                     modal.hide()
                 } else {
                     toastr.success(`Votre numéro de téléphone de sécurité à bien été mise à jour`, `Sécurité`)
