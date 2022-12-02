@@ -50,7 +50,7 @@
         <div class="separator separator-dotted separator-content border-dark my-15"><span class="h1">Vos demandes</span></div>
         <div class="row">
             <div class="col-md-6 col-sm-12 mb-5">
-                <div class="border border-gray-400 p-5 bg-gray-200" data-bs-toggle="modal" data-bs-target="#GrpdConsent" style="cursor: pointer">
+                <div class="border border-gray-400 p-5 bg-gray-200" data-bs-toggle="modal" data-bs-target="#DroitAcces" style="cursor: pointer">
                     <div class="d-flex flex-row justify-content-between align-items-end">
                         <div class="text-black fs-2 w-75">Accéder à vos données personnelles traitées par Société Générale</div>
                         <i class="fa-solid fa-arrow-right-long fs-2 text-hover-primary"></i>
@@ -354,6 +354,62 @@
                             </div>
                         </div>
 
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="DroitAcces">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Accéder à vos données personnelles traitées par Société Générale</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formDroitAcces" action="/api/user/{{ $customer->user->id }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <p>Vous pouvez demander à accéder aux données personnelles vous concernant traitées dans le cadre de votre relation avec Société Générale.</p>
+                        <p>La mise à disposition est immédiate pour :</p>
+                        <ul>
+                            <li>Vos données d’identification et de situation personnelle (Identité, situation familiale et professionnelle, coordonnées, relation Société Générale…),</li>
+                            <li>Vos données sur les produits et prestations détenues.</li>
+                        </ul>
+                        <p>
+                            <span class="fw-bolder">Pour vos autres demandes, veuillez préciser votre attente.</span><br>
+                            Depuis la <a href="{{ route('customer.dashboard') }}">synthèse de vos comptes</a> vous avez accès aux données relatives à vos opérations bancaires et moyens de paiement.
+                        </p>
+
+                        <div class="mb-10">
+                            <label for="type" class="form-label required">Votre demande concerne</label>
+                            <select name="type" id="type" class="form-control form-control-solid selectpicker">
+                                <option value=""></option>
+                                <option value="identity">Données d'identification et de situation personnelle</option>
+                                <option value="subscription">Données sur les produits et les contrats détenues</option>
+                                <option value="other">Autres données détenues</option>
+                            </select>
+                        </div>
+
+                        <div class="other">
+                            <x-form.input
+                                name="object_comment"
+                                label="Objet" />
+
+                            <x-form.textarea
+                                name="comment"
+                                label="Votre Message" />
+
+                        </div>
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
