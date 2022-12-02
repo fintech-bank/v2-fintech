@@ -143,6 +143,44 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="EditPhone" data-bs-focus="false">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Modifier mes coordonnées Téléphonique</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formEditPhone" action="/api/user/{{ $customer->user->id }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="action" value="phone">
+
+                        <x-form.input
+                            name="phone"
+                            label="Domicile"
+                            required="true"
+                            value="{{ $customer->info->phone }}" />
+
+                        <x-form.input
+                            name="mobile"
+                            label="Portable"
+                            required="true"
+                            value="{{ $customer->info->mobile }}" />
+
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
