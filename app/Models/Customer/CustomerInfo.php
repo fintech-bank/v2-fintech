@@ -210,9 +210,9 @@ class CustomerInfo extends Model
     public function getAddressVerifyAttribute()
     {
         if($this->addressVerified) {
-            return "<i class='fa-regular fa-check-circle text-success' data-bs-toggle='tooltip' title='Vérifié'></i>";
+            return "<i class='fa-regular fa-check-circle text-success fs-auto' data-bs-toggle='tooltip' title='Vérifié'></i>";
         } else {
-            return "<i class='fa-regular fa-xmark-circle text-danger' data-bs-toggle='tooltip' title='Adresse Invalide'></i>";
+            return "<i class='fa-regular fa-xmark-circle text-danger fs-auto' data-bs-toggle='tooltip' title='Adresse Invalide'></i>";
         }
     }
 
