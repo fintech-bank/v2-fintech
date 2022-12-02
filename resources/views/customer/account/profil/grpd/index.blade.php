@@ -489,7 +489,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" id="Inacturate">
+    <div class="modal fade" tabindex="-1" id="Inacurate">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-bank">
