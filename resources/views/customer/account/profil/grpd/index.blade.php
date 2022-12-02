@@ -515,7 +515,7 @@
                             <a href="{{ route('customer.account.agenda.index') }}">cliquant ici</a>.
                         </p>
 
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-row">
                             <div class="rounded border border-2 w-50 p-10">
                                 <div class="fw-bolder">Rectifiez vos coordonnées :</div>
                                 <p>Numéro de téléphone / Adresse Postale / Adresse Email</p>
