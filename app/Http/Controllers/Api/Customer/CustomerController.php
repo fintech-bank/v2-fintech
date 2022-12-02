@@ -347,7 +347,9 @@ class CustomerController extends ApiController
         return match ($request->get('action')) {
             "mail" => $this->updateMail($user, $request),
             "phone" => $this->updatePhone($user, $request),
-            "address" => $this->updateAddress($user, $request)
+            "address" => $this->updateAddress($user, $request),
+            "grpd_consent" => $this->updateGrpdConsent($user, $request),
+            "grpd_rip" => $this->updateGrpdRip($user, $request),
         };
     }
 
@@ -440,5 +442,19 @@ class CustomerController extends ApiController
         ]);
 
         return $this->sendSuccess("Adresse postal modifié avec succès, veuillez faire vérifier votre adresse postal");
+    }
+
+    private function updateGrpdConsent(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
+    {
+        $user->customers->grpd->update($request->all());
+
+        return $this->sendSuccess("Consentement GRPD mis à jour");
+    }
+
+    private function updateGrpdRip(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
+    {
+        $user->customers->grpd->update($request->all());
+
+        return $this->sendSuccess("GRPD Communication mis à jour");
     }
 }

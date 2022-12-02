@@ -63,6 +63,7 @@
                 <form id="formGrpdConsent" action="/api/user/{{ $customer->user->id }}" method="post">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="action" value="grpd_consent">
                     <div class="modal-body">
                         <div class="bg-gray-200 p-5 mb-10">
                             <div class="fw-bolder">e-Documents</div>
@@ -185,6 +186,7 @@
                 <form id="formGrpdRip" action="/api/user/{{ $customer->user->id }}" method="post">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="action" value="grpd_rip">
                     <div class="modal-body">
                         <p>
                             Parce que nos communications doivent garder du sens pour vous, nous vous invitons à choisir les contenus que vous souhaitez recevoir et les moyens de vous contacter.<br>
