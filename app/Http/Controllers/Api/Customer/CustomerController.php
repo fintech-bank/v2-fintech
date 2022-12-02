@@ -215,7 +215,6 @@ class CustomerController extends ApiController
                 return response()->json($cn);
 
             case 'phone':
-                dd($request->get('code'));
                 $verify = CustomerInfoHelper::verifyMobilePhone($customer, $request->get('mobile'), $request->get('code'));
                 if($verify->count() == 0) {
                     $customer->info->update([
