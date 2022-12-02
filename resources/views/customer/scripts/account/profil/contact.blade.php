@@ -1,4 +1,5 @@
 <script type="text/javascript">
+    $.fn.modal.Constructor.prototype._enforceFocus = function () {}
     let tables = {}
     let elements = {}
     let modals = {
@@ -13,6 +14,7 @@
     }
 
     $(forms.formEditMail).on('submit', e => {
+
         e.preventDefault()
         let form = $(forms.formEditMail)
         let url = form.attr('action')
