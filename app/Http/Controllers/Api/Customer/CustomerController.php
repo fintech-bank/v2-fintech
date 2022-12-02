@@ -8,6 +8,7 @@ use App\Jobs\Customer\AlertCustomerJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
+use App\Notifications\Customer\SendGeneralCodeNotification;
 use App\Notifications\Customer\Sending\SendVerifyAddressCustomerLinkNotification;
 use App\Notifications\Customer\Sending\SendVerifyIdentityCustomerLinkNotification;
 use App\Notifications\Customer\Sending\SendVerifyIncomeCustomerLinkNotification;
@@ -189,7 +190,7 @@ class CustomerController extends Controller
 
     public function verify($customer_id, Request $request)
     {
-        $customer = Customer::find($customer_id);
+        $customer = Customer::find($customer_id ?? $request->get('customer_id'));
         switch ($request->get('verify')) {
             case 'identity':
                 $customer->info->notify(new SendVerifyIdentityCustomerLinkNotification($customer, "Sécurité"));
@@ -212,6 +213,14 @@ class CustomerController extends Controller
                 return response()->json($cn);
 
             case 'phone':
+
+            case 'phoneCode':
+                $phone = $request->get('mobile');
+                $code = random_numeric(6);
+                \Session::put('edit_phone_code', encrypt($phone.'/'.$code));
+                $customer->info->notify(new SendGeneralCodeNotification($customer, $code));
+
+                return response()->json();
 
         }
 
