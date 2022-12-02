@@ -241,7 +241,7 @@
                             <!--begin::Wrapper-->
                             <div class="mb-1">
                                 <!--begin::Label-->
-                                <label class="form-label fw-semibold fs-6 mb-2">
+                                <label class="form-label fw-semibold fs-6 mb-2 required">
                                     Nouveau mot de passe
                                 </label>
                                 <!--end::Label-->
@@ -249,7 +249,7 @@
                                 <!--begin::Input wrapper-->
                                 <div class="position-relative mb-3">
                                     <input class="form-control form-control-lg form-control-solid"
-                                           type="password" placeholder="" name="new_password" autocomplete="off" />
+                                           type="password" placeholder="" name="new_password" autocomplete="off" required/>
 
                                     <!--begin::Visibility toggle-->
                                     <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
