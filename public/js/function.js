@@ -255,7 +255,8 @@ if(document.querySelectorAll('.datetime')) {
  * @param forminfo
  * @param agent //Device-software-version-name
  */
-let executeVerifiedAjax = (type_swal, customer_id, forminfo, agent = null) => {
+let executeVerifiedAjax = (type_swal, customer_id, forminfo, event = null, agent = null) => {
+    event.preventDefault()
     let text = type_swal === 'password' ? 'Veuillez saisir votre mot de passe' : "Veuillez valider votre action avec votre téléphone"
     if(type_swal === 'password') {
         Swal.fire({
@@ -269,21 +270,27 @@ let executeVerifiedAjax = (type_swal, customer_id, forminfo, agent = null) => {
             showLoaderOnConfirm: true,
             backdrop: true,
             preConfirm: (password) => {
-                $.ajax({
-                    url: '/api/user/verify/pass',
+                return fetch('/api/user/verify/pass', {
                     method: 'POST',
-                    data: {
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                    },
+                    body: JSON.stringify({
                         "verify": "pass",
                         "customer_id": customer_id,
                         "pass": password
-                    },
-                    success: () => {
-                        return null;
-                    },
-                    error: (err) => {
-                        console.log(err)
-                        debugger
+                    })
+                }).then(response => {
+                    if(!response.ok) {
+                        throw new Error(response.statusText)
                     }
+                    return response.json()
+                }).catch(error => {
+                    Swal.fire({
+                        title: 'Mot de passe Invalide',
+                        text: error,
+                        icon: 'error'
+                    })
                 })
             },
             allowOutsideClick: () => !Swal.isLoading()
@@ -324,22 +331,27 @@ let executeVerifiedAjax = (type_swal, customer_id, forminfo, agent = null) => {
             showLoaderOnConfirm: true,
             backdrop: true,
             preConfirm: () => {
-                $.ajax({
-                    url: '/api/user/verify/secure',
+                return fetch('/api/user/verify/secure', {
                     method: 'POST',
-                    data: {
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                    },
+                    body: JSON.stringify({
                         "verify": "secure",
                         "customer_id": customer_id,
                         "agent": agent
-                    },
-                    success: () => {
-                        return null;
-                    },
-                    error: () => {
-                        Swal.showValidationMessage(
-                            `Pass sécurité invalide`
-                        )
+                    })
+                }).then(response => {
+                    if(!response.ok) {
+                        throw new Error(response.statusText)
                     }
+                    return response.json()
+                }).catch(error => {
+                    Swal.fire({
+                        title: 'Secure Pass Invalide',
+                        text: error,
+                        icon: 'error'
+                    })
                 })
             },
             allowOutsideClick: () => !Swal.isLoading()
