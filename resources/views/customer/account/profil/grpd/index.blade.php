@@ -217,15 +217,41 @@
                                 </div>
                                 <div class="separator separator-dashed border-gray-500 my-3"></div>
                                 <div class="d-flex flex-row align-items-center mb-10">
-                                    <i class="fa-regular fa-newspaper fs-4hx text-bank me-5"></i>
+                                    <i class="fa-regular fa-handshake fs-4hx text-bank me-5"></i>
                                     <div class="d-flex flex-column">
-                                        <div class="fw-bolder fs-2x mb-5">Newsletters Société Générale</div>
-                                        <div class="text-muted fs-2x mb-5">Pour suivre l'actualité...</div>
-                                        <p>Financement, patrimoine, gestion des comptes, sécurité... ces communications à caractère informatif et pédagogique évoquent des thématiques qui pourraient vous intéresser et également des articles pratiques pour en savoir plus sur les solutions bancaires proposées par Société Générale.</p>
+                                        <div class="fw-bolder fs-2x mb-5">Offres commerciales</div>
+                                        <div class="text-muted fs-2x mb-5">Pour vous accompagner</div>
+                                        <p>Votre carte doit évoluer pour s'adapter à vos besoins, vous souhaitez financer un projet, vous devenez parent, vous approchez du départ à la retraite... ces communications visent à vous accompagner et vous conseiller au quotidien. Et cela tout en vous faisant bénéficier de nos meilleures offres à des conditions tarifaires avantageuses.</p>
                                         <x-form.checkbox
-                                            name="rip_newsletter"
+                                            name="rip_commercial"
                                             value="1"
-                                            label="Je m'oppose à recevoir les newsletters de {{ config('app.name') }}" />
+                                            label="Je m'oppose à recevoir les offres commerciales" />
+                                    </div>
+                                </div>
+                                <div class="separator separator-dashed border-gray-500 my-3"></div>
+                                <div class="d-flex flex-row align-items-center mb-10">
+                                    <i class="fa-regular fa-thumbs-up fs-4hx text-bank me-5"></i>
+                                    <div class="d-flex flex-column">
+                                        <div class="fw-bolder fs-2x mb-5">Votre opinion</div>
+                                        <div class="text-muted fs-2x mb-5">Pour mieux vous satisfaire</div>
+                                        <p>Ces communications visent à recueillir votre avis ou à mesurer votre satisfaction en vue d'améliorer notre offre et nos services. Au-delà de la satisfaction que nous vous devons, ces envois sont pour nous le marqueur de confiance d'une relation privilégiée.</p>
+                                        <x-form.checkbox
+                                            name="rip_survey"
+                                            value="1"
+                                            label="Je m'oppose à recevoir les enquêtes de satisfaction" />
+                                    </div>
+                                </div>
+                                <div class="separator separator-dashed border-gray-500 my-3"></div>
+                                <div class="d-flex flex-row align-items-center mb-10">
+                                    <i class="fa-regular fa-thumbs-up fs-4hx text-bank me-5"></i>
+                                    <div class="d-flex flex-column">
+                                        <div class="fw-bolder fs-2x mb-5">Offres de parrainage</div>
+                                        <div class="text-muted fs-2x mb-5">Pour vous remercier</div>
+                                        <p>Ces communications visent à récompenser votre fidélité en vous faisant bénéficier d'une prime dans le cadre d'un parrainage. Vos filleuls : proches, amis, collègues... recevront également une prime de bienvenue.</p>
+                                        <x-form.checkbox
+                                            name="rip_sponsorship"
+                                            value="1"
+                                            label="Je m'oppose à recevoir les offres de parrainages" />
                                     </div>
                                 </div>
                             </div>
