@@ -263,7 +263,7 @@
                                 <p>Choisissez les moyens de contact qui vous conviennent pour recevoir ces communications</p>
                                 <!--begin::Input group-->
                                 <div class="d-flex flex-center mx-auto w-75">
-                                    <div class="d-flex flex-stack w-lg-50">
+                                    <div class="d-flex flex-stack w-lg-50 shadow-sm me-5">
                                         <!--begin::Label-->
                                         <div class="me-5">
                                             <label class="fs-6 fw-semibold form-label">Par Mail</label>
@@ -280,7 +280,7 @@
                                         </label>
                                         <!--end::Switch-->
                                     </div>
-                                    <div class="d-flex flex-stack w-lg-50">
+                                    <div class="d-flex flex-stack w-lg-50 shadow-sm">
                                         <!--begin::Label-->
                                         <div class="me-5">
                                             <label class="fs-6 fw-semibold form-label">Par Téléphone</label>
