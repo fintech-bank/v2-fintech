@@ -34,43 +34,45 @@ class DroitAccessJob implements ShouldQueue
 
     public function handle()
     {
-        // Génération du pdf
-        if($this->type == 'identity') {
-            $document = DocumentFile::createDoc(
-                $this->user->customers,
-                'user.grpd_droit_acces_perso',
-                "GRPD - Donnees d identification et de situation personnelle",
-                5,
-                generateReference(),
-                false,
-                false,
-                false,
-                true,
-            );
-        } else {
-            $document = DocumentFile::createDoc(
-                $this->user->customers,
-                'user.grpd_droit_acces_subscription',
-                "GRPD - Données sur les produits et les contrats détenues",
-                5,
-                generateReference(),
-                false,
-                false,
-                false,
-                true,
-            );
-        }
+        if($this->demande->status == 'pending') {
+            // Génération du pdf
+            if($this->type == 'identity') {
+                $document = DocumentFile::createDoc(
+                    $this->user->customers,
+                    'user.grpd_droit_acces_perso',
+                    "GRPD - Donnees d identification et de situation personnelle",
+                    5,
+                    generateReference(),
+                    false,
+                    false,
+                    false,
+                    true,
+                );
+            } else {
+                $document = DocumentFile::createDoc(
+                    $this->user->customers,
+                    'user.grpd_droit_acces_subscription',
+                    "GRPD - Données sur les produits et les contrats détenues",
+                    5,
+                    generateReference(),
+                    false,
+                    false,
+                    false,
+                    true,
+                );
+            }
 
-        if($document) {
-            $this->demande->update([
-                'status' => 'terminated'
-            ]);
-        } else {
-            $this->demande->update([
-                'status' => 'rejected'
-            ]);
-        }
+            if($document) {
+                $this->demande->update([
+                    'status' => 'terminated'
+                ]);
+            } else {
+                $this->demande->update([
+                    'status' => 'rejected'
+                ]);
+            }
 
-        $this->user->customers->info->notify(new GrpdUpdateDroitAcceNotification($this->user->customers, $this->demande, 'Contact avec votre banque'));
+            $this->user->customers->info->notify(new GrpdUpdateDroitAcceNotification($this->user->customers, $this->demande, 'Contact avec votre banque'));
+        }
     }
 }

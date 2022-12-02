@@ -111,6 +111,7 @@ Route::prefix('user')->group(function () {
     Route::get('signate/verify', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'verifySign']);
 
     Route::put('{user_id}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'update']);
+    Route::delete('{user_id}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'delete']);
 });
 
 Route::prefix('manager')->group(function () {

@@ -12,9 +12,11 @@ use App\Jobs\User\GrpdPortabilityJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
+use App\Models\Customer\CustomerGrpdDemande;
 use App\Models\User;
 use App\Notifications\Agent\NewGrpdNotification;
 use App\Notifications\Customer\GrpdNewDroitAcceNotification;
+use App\Notifications\Customer\GrpdUpdateDroitAcceNotification;
 use App\Notifications\Customer\SendGeneralCodeNotification;
 use App\Notifications\Customer\Sending\SendVerifyAddressCustomerLinkNotification;
 use App\Notifications\Customer\Sending\SendVerifyIdentityCustomerLinkNotification;
@@ -25,6 +27,7 @@ use App\Services\Twilio\Lookup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Redis;
 
 class CustomerController extends ApiController
 {
@@ -363,6 +366,14 @@ class CustomerController extends ApiController
         };
     }
 
+    public function delete($user_id, Request $request)
+    {
+        $user = User::find($user_id);
+        return match ($request->get('action')) {
+            "cancelRequest" => $this->cancelRequest($user, $user->customers->grpd_demande()->find($request->get('id')))
+        };
+    }
+
     private function subscribeAlerta()
     {
         session()->put('subscribe.alerta', true);
@@ -561,5 +572,16 @@ class CustomerController extends ApiController
         $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers,$req, 'Contact avec votre banque'));
 
         return $this->sendSuccess("Votre demande de document à bien été transmis et sera bientôt disponible");
+    }
+
+    private function cancelRequest(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, CustomerGrpdDemande $find)
+    {
+        $request = $find;
+
+        $request->update(['status' => 'canceled']);
+
+        $user->customers->info->notify(new GrpdUpdateDroitAcceNotification($user->customers, $request, 'Contact avec votre banque'));
+
+        return $this->sendSuccess("Votre demande à bien été annulé");
     }
 }
