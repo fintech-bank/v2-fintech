@@ -65,10 +65,45 @@
             <div class="">Mobile</div>
             <div class="">{{ $customer->info->mobile }}</div>
         </div>
-        <div class="separator border-gray-300 my-3"></div>
+        <div class="my-3"></div>
         <div class="d-flex flex-row justify-content-around">
             <div class="">Domicile</div>
             <div class="">{{ $customer->info->phone }}</div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-end">
+            <button class="btn btn-circle btn-lg btn-secondary">Modifier</button>
+        </div>
+        <div class="separator separator-dashed border-gray-300 my-5"></div>
+        <x-base.underline
+            title="Adresse"
+            size="4"
+            size-text="fs-1"
+            color="secondary"
+            class="w-100 mb-5" />
+
+        <div class="d-flex flex-row justify-content-around">
+            <div class="">N° et Voie</div>
+            <div class="">{{ $customer->info->address }}</div>
+        </div>
+        <div class="my-3"></div>
+        <div class="d-flex flex-row justify-content-around">
+            <div class="">Complément</div>
+            <div class="">{{ $customer->info->addressbis }}</div>
+        </div>
+        <div class="my-3"></div>
+        <div class="d-flex flex-row justify-content-around">
+            <div class="">Code Postal</div>
+            <div class="">{{ $customer->info->postal }}</div>
+        </div>
+        <div class="my-3"></div>
+        <div class="d-flex flex-row justify-content-around">
+            <div class="">Ville</div>
+            <div class="">{{ $customer->info->city }}</div>
+        </div>
+        <div class="my-3"></div>
+        <div class="d-flex flex-row justify-content-around">
+            <div class="">Pays</div>
+            <div class="">{{ $customer->info->country }}</div>
         </div>
     </div>
 @endsection
