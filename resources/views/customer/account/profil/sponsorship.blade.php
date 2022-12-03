@@ -19,11 +19,49 @@
             <div class="d-flex flex-column p-5">
                 <div class="fw-bolder fs-2 mb-5">Offre parrainage</div>
                 <div class="fs-1 mb-5">Parrainez un proche et recevez tous les deux 80 €*</div>
-                <button class="btn btn-circle btn-primary">Parrainer un proche</button>
+                <button class="btn btn-circle btn-primary" data-bs-toggle="modal" data-bs-target="#Sponsorship">Parrainer un proche</button>
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="Sponsorship">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Votre filleul</h3>
 
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formSponsorship" action="" method="post">
+                    @csrf
+                    @method('POST')
+                    <div class="modal-body">
+                        <p>Pour bénéficier de l’offre de parrainage, votre filleul doit être majeur et non-client Société Générale.</p>
+                        <div class="d-flex flex-row flex-center">
+                            <x-form.radio
+                                name="civility"
+                                label="Monsieur" />
+
+                            <x-form.radio
+                                name="civility"
+                                label="Madame" />
+
+                            <x-form.radio
+                                name="civility"
+                                label="Mademoiselle" />
+                        </div>
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
