@@ -6,6 +6,7 @@ use App\Models\Business\BusinessParam;
 use App\Models\Core\Agency;
 use App\Models\Core\Invoice;
 use App\Models\Core\Package;
+use App\Models\Core\Sponsorship;
 use App\Models\Document\DocumentTransmiss;
 use App\Models\User;
 use Carbon\Carbon;
@@ -215,6 +216,11 @@ class Customer extends Model
     public function grpd_demande()
     {
         return $this->hasMany(CustomerGrpdDemande::class);
+    }
+
+    public function sponsorships()
+    {
+        return $this->hasMany(Sponsorship::class);
     }
 
     public function getStatusTextAttribute()
