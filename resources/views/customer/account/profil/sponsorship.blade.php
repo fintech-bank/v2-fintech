@@ -16,7 +16,7 @@
     <div id="app" class="rounded container">
         <div class="d-flex flex-row shadow-lg rounded-lg h-250px">
             <img src="https://particuliers.societegenerale.fr/icd/static/pad-front/1.4.6/dist/56460d72d382792f547ce6d80bef19aa.png" alt="">
-            <div class="d-flex flex-column p-5">
+            <div class="d-flex flex-column p-5 align-items-center">
                 <div class="fw-bolder fs-2 mb-5">Offre parrainage</div>
                 <div class="fs-1 mb-5">Parrainez un proche et recevez tous les deux 80 €*</div>
                 <button class="btn btn-circle btn-primary">Parrainer un proche</button>
