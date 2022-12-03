@@ -41,7 +41,7 @@
                     @method('POST')
                     <div class="modal-body">
                         <p>Pour bénéficier de l’offre de parrainage, votre filleul doit être majeur et non-client Société Générale.</p>
-                        <div class="d-flex flex-row flex-center">
+                        <div class="d-flex flex-row flex-center mb-10">
                             <x-form.radio
                                 name="civility"
                                 value="M"
@@ -60,6 +60,19 @@
                                 for="Mademoiselle"
                                 label="Mademoiselle" />
                         </div>
+                        <x-form.input
+                            name="lastname"
+                            label="Nom" />
+
+                        <x-form.input
+                            name="firstname"
+                            label="Prénom" />
+
+                        <x-form.input
+                            type="email"
+                            name="email"
+                            label="Adresse Mail" />
+
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
