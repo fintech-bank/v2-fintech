@@ -8,6 +8,6 @@ class MobilityController extends Controller
 {
     public function index()
     {
-
+        return view('customer.account.profil.mobility.index');
     }
 }
