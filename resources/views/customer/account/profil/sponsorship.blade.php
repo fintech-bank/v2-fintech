@@ -61,17 +61,29 @@
                                 label="Mademoiselle" />
                         </div>
                         <x-form.input
+                            required="true"
                             name="lastname"
                             label="Nom" />
 
                         <x-form.input
+                            required="true"
                             name="firstname"
                             label="Prénom" />
 
                         <x-form.input
+                            required="true"
                             type="email"
                             name="email"
                             label="Adresse Mail" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <x-form.input
+                                    name="postal"
+                                    label="Code postal"/>
+                            </div>
+                            <div class="col-md-6" id="villeSelect"></div>
+                        </div>
 
                     </div>
                     <div class="modal-footer text-end">

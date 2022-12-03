@@ -41,12 +41,15 @@ class GeoController extends Controller
         <label for="city" class="required form-label">
             Ville
         </label>
-        <select id="city" class="form-select form-select-solid" data-placeholder="Selectionnez une ville" name="city">
+        <select id="city" class="form-select form-select-solid selectpicker" data-placeholder="Selectionnez une ville" name="city">
             <option value=""></option>
             <?php foreach ($results as $result) { ?>
                 <option value="<?= $result->city ?>"><?= $result->city ?></option>
             <?php } ?>
         </select>
+        <script>
+            $("[name='city']").selectpicker()
+        </script>
         <?php
         return response()->json(ob_get_clean());
     }
