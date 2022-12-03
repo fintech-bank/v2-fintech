@@ -14,6 +14,32 @@
 
 @section("content")
     <div id="app" class="rounded container">
+        @if($customer->sponsorships()->count() != 0)
+            <table class="table table-row-bordered table-striped gx-3 gy-3">
+                <thead>
+                    <tr>
+                        <th>Identité</th>
+                        <th>Etat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($customer->sponsorships as $sponsorship)
+                        <tr>
+                            <td>
+                                {{ $sponsorship->civility }} {{ $sponsorship->lastname }} {{ $sponsorship->firstname }}
+                            </td>
+                            <td>
+                                @if($sponsorship->closed)
+                                    <span class="badge badge-success"><i class="fa-solid fa-check-circle text-white me-2"></i> Ouverture effectuer</span>
+                                @else
+                                    <span class="badge badge-warning"><i class="fa-solid fa-spinner fa-spin-pulse text-white me-2"></i> En attente</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
         <div class="d-flex flex-row shadow-lg rounded-lg h-250px">
             <img src="https://particuliers.societegenerale.fr/icd/static/pad-front/1.4.6/dist/56460d72d382792f547ce6d80bef19aa.png" alt="">
             <div class="d-flex flex-column p-5">
