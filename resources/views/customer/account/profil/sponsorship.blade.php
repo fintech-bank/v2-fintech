@@ -44,14 +44,17 @@
                         <div class="d-flex flex-row flex-center">
                             <x-form.radio
                                 name="civility"
+                                value="M"
                                 label="Monsieur" />
 
                             <x-form.radio
                                 name="civility"
+                                value="Mme"
                                 label="Madame" />
 
                             <x-form.radio
                                 name="civility"
+                                value="Mlle"
                                 label="Mademoiselle" />
                         </div>
                     </div>
