@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerGrpdDemande whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read mixed $type_text
+ * @property-read mixed $status_label
  */
 class CustomerGrpdDemande extends Model
 {

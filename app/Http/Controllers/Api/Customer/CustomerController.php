@@ -10,6 +10,7 @@ use App\Jobs\Customer\AlertCustomerJob;
 use App\Jobs\User\DroitAccessJob;
 use App\Jobs\User\GrpdPortabilityJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
+use App\Models\Core\Sponsorship;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
 use App\Models\Customer\CustomerGrpdDemande;
@@ -372,6 +373,24 @@ class CustomerController extends ApiController
         return match ($request->get('action')) {
             "cancelRequest" => $this->cancelRequest($user, $user->customers->grpd_demande()->find($request->get('id')))
         };
+    }
+
+    public function sponsorship($user_id, Request $request)
+    {
+        $code = \Str::upper(\Str::random(6));
+        $user = User::find($user_id);
+        $sponsor = Sponsorship::create([
+            'civility' => $request->get('civility'),
+            'firstname' => $request->get('firstname'),
+            'lastname' => $request->get('lastname'),
+            'email' => $request->get('email'),
+            'postal' => $request->get('postal'),
+            'city' => $request->get('city'),
+            'code' => base64_encode($request->get('email').'/'.$code),
+            'customer_id' => $user->customers->id
+        ]);
+
+
     }
 
     private function subscribeAlerta()

@@ -88,6 +88,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Customer\CustomerGrpd|null $grpd
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerGrpdDemande[] $grpd_demande
  * @property-read int|null $grpd_demande_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Sponsorship[] $sponsorships
+ * @property-read int|null $sponsorships_count
  */
 class Customer extends Model
 {

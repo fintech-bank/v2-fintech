@@ -58,6 +58,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereSecurpassModel($value)
  * @property string|null $code_auth
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereCodeAuth($value)
+ * @property int $cashback
+ * @property int $tos_cashback
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereCashback($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereTosCashback($value)
  */
 class CustomerSetting extends Model
 {

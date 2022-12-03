@@ -36,7 +36,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formSponsorship" action="" method="post">
+                <form id="formSponsorship" action="/api/user/{{ $customer->user->id }}/sponsorship" method="post">
                     @csrf
                     @method('POST')
                     <div class="modal-body">
