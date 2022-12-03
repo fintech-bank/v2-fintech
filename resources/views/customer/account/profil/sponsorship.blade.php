@@ -18,6 +18,7 @@
             <img src="https://particuliers.societegenerale.fr/icd/static/pad-front/1.4.6/dist/56460d72d382792f547ce6d80bef19aa.png" alt="">
             <div class="d-flex flex-column p-5">
                 <div class="fw-bolder fs-2">Offre parrainage</div>
+                <div class="fs-1">Parrainez un proche et recevez tous les deux 80 €*</div>
             </div>
         </div>
     </div>
