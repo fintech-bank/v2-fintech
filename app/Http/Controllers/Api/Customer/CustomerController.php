@@ -7,6 +7,7 @@ use App\Helper\LogHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Jobs\Customer\AlertCustomerJob;
+use App\Jobs\Customer\NewSponsorshipJob;
 use App\Jobs\User\DroitAccessJob;
 use App\Jobs\User\GrpdPortabilityJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
@@ -390,7 +391,9 @@ class CustomerController extends ApiController
             'customer_id' => $user->customers->id
         ]);
 
+        dispatch(new NewSponsorshipJob($sponsor))->delay(now()->addMinute());
 
+        return $this->sendSuccess("Votre nouveau filleul à été ajouté et un email lui à été envoyer");
     }
 
     private function subscribeAlerta()
