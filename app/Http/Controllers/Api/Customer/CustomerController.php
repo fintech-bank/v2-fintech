@@ -15,6 +15,7 @@ use App\Models\Core\Sponsorship;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
 use App\Models\Customer\CustomerGrpdDemande;
+use App\Models\Customer\CustomerInfo;
 use App\Models\User;
 use App\Notifications\Agent\NewGrpdNotification;
 use App\Notifications\Customer\GrpdNewDroitAcceNotification;
@@ -257,14 +258,14 @@ class CustomerController extends ApiController
                 $customer->setting->update([
                     'securpass' => true,
                     'securpass_model' => $request->get('agent'),
-                    'securpass_key' => base64_encode($request->get('agent').'/'.$customer->auth_code)
+                    'securpass_key' => base64_encode($request->get('agent') . '/' . $customer->auth_code)
                 ]);
 
                 return $this->sendSuccess();
 
             case 'updatePass':
-                if(\Hash::check($request->get('password'), $customer->user->password)) {
-                    if($request->get('new_password') == $request->get('new_password_confirm')) {
+                if (\Hash::check($request->get('password'), $customer->user->password)) {
+                    if ($request->get('new_password') == $request->get('new_password_confirm')) {
                         $customer->user->update([
                             'password' => \Hash::make($request->get('new_password'))
                         ]);
@@ -282,7 +283,7 @@ class CustomerController extends ApiController
                 return $this->sendSuccess("L'adresse mail à été mise à jours");
 
             case 'secure':
-                if($customer->setting->securpass_model == $request->get('agent')) {
+                if ($customer->setting->securpass_model == $request->get('agent')) {
                     return $this->sendSuccess();
                 } else {
                     return $this->sendError();
@@ -380,20 +381,27 @@ class CustomerController extends ApiController
     {
         $code = \Str::upper(\Str::random(6));
         $user = User::find($user_id);
-        $sponsor = Sponsorship::create([
-            'civility' => $request->get('civility'),
-            'firstname' => $request->get('firstname'),
-            'lastname' => $request->get('lastname'),
-            'email' => $request->get('email'),
-            'postal' => $request->get('postal'),
-            'city' => $request->get('city'),
-            'code' => base64_encode($request->get('email').'/'.$code),
-            'customer_id' => $user->customers->id
-        ]);
 
-        dispatch(new NewSponsorshipJob($sponsor))->delay(now()->addMinute());
+        if (CustomerInfo::where('firstname', $request->get('firstname'))
+                ->where('lastname', $request->get('lastname'))
+                ->orWhere('email', $request->get('email'))->count() != 0) {
+            return $this->sendWarning("Ce client existe déjà chez nous !");
+        } else {
+            $sponsor = Sponsorship::create([
+                'civility' => $request->get('civility'),
+                'firstname' => $request->get('firstname'),
+                'lastname' => $request->get('lastname'),
+                'email' => $request->get('email'),
+                'postal' => $request->get('postal'),
+                'city' => $request->get('city'),
+                'code' => base64_encode($request->get('email') . '/' . $code),
+                'customer_id' => $user->customers->id
+            ]);
 
-        return $this->sendSuccess("Votre nouveau filleul à été ajouté et un email lui à été envoyer");
+            dispatch(new NewSponsorshipJob($sponsor))->delay(now()->addMinute());
+
+            return $this->sendSuccess("Votre nouveau filleul à été ajouté et un email lui à été envoyer");
+        }
     }
 
     private function subscribeAlerta()
@@ -458,13 +466,13 @@ class CustomerController extends ApiController
     private function updatePhone(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
     {
         $lookup = new Lookup();
-        if($lookup->verify($request->get('phone'))) {
+        if ($lookup->verify($request->get('phone'))) {
             $user->customers->info->update(['phone' => $request->get('phone'), "phoneVerified" => true]);
         } else {
             $user->customers->info->update(['phone' => $request->get('phone'), "phoneVerified" => false]);
         }
 
-        if($lookup->verify($request->get('mobile'))) {
+        if ($lookup->verify($request->get('mobile'))) {
             $user->customers->info->update(['mobile' => $request->get('mobile'), "mobileVerified" => true]);
         } else {
             $user->customers->info->update(['mobile' => $request->get('mobile'), "mobileVerified" => false]);
@@ -511,8 +519,8 @@ class CustomerController extends ApiController
         ]);
         // Création d'un job pour traité l'information si != other
 
-        if($request->get('type') != 'other') {
-            dispatch(new DroitAccessJob($user, $req, $request->get('type')))->delay(now()->addHours(rand(1,6)));
+        if ($request->get('type') != 'other') {
+            dispatch(new DroitAccessJob($user, $req, $request->get('type')))->delay(now()->addHours(rand(1, 6)));
         }
 
         // Notification
@@ -589,9 +597,9 @@ class CustomerController extends ApiController
             'customer_id' => $user->customers->id
         ]);
 
-        dispatch(new GrpdPortabilityJob($user, $req))->delay(now()->addMinutes(rand(1,300)));
+        dispatch(new GrpdPortabilityJob($user, $req))->delay(now()->addMinutes(rand(1, 300)));
 
-        $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers,$req, 'Contact avec votre banque'));
+        $user->customers->info->notify(new GrpdNewDroitAcceNotification($user->customers, $req, 'Contact avec votre banque'));
 
         return $this->sendSuccess("Votre demande de document à bien été transmis et sera bientôt disponible");
     }
