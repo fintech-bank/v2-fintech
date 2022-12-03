@@ -45,16 +45,19 @@
                             <x-form.radio
                                 name="civility"
                                 value="M"
+                                for="Monsieur"
                                 label="Monsieur" />
 
                             <x-form.radio
                                 name="civility"
                                 value="Mme"
+                                for="Madame"
                                 label="Madame" />
 
                             <x-form.radio
                                 name="civility"
                                 value="Mlle"
+                                for="Mademoiselle"
                                 label="Mademoiselle" />
                         </div>
                     </div>
