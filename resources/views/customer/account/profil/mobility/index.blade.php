@@ -15,6 +15,19 @@
 @section("content")
     <div id="app" class="rounded container">
         <p class="fw-bolder fs-2">Transférez les virements et prélévements récurrents de votre ancien compte sur votre compte Société Générale</p>
+        <div class="border border-2 rounded p-5 d-flex flex-column align-items-center mb-5">
+            <ul class="list-unstyled">
+                <li><strong>Une démarche simple:</strong> ous nous fournissez le RIB de votre ancien compte, formulez vos instructions en remplissant le formulaire ci-après et nous nous chargeons des formalités en votre nom.</li>
+                <li><strong>Un suivi complet:</strong> à tout moment depuis votre Espace Clients, vous suivez la progression de votre mobilité bancaire</li>
+            </ul>
+        </div>
+        <table class="table table-striped gx-5 gy-5" id="tableMobilities">
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
     </div>
 @endsection
 

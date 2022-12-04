@@ -67,9 +67,8 @@ class CustomerMobility extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public $timestamps = false;
 
-    protected $dates = ['start', 'end_prov', 'end_real', 'end_prlv', 'updated_at'];
+    protected $dates = ['created_at', 'updated_at', 'date_transfer'];
     protected $appends = ['status_text', 'status_label', 'comment_text'];
 
     public function customer()

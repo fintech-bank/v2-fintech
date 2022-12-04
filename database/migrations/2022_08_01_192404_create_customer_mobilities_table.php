@@ -15,33 +15,20 @@ return new class extends Migration
     {
         Schema::create('customer_mobilities', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['bank_start', 'bank_return', 'creditor_start', 'creditor_end', 'terminate']);
-            $table->string('old_iban');
-            $table->string('old_bic')->nullable();
-            $table->string('mandate');
-            $table->timestamp('start');
-            $table->timestamp('end_prov');
-            $table->timestamp('env_real')->nullable();
-            $table->timestamp('end_prlv')->nullable();
-            $table->integer('close_account')->default(0);
-            $table->longText('comment')->nullable();
-            $table->string('code')->nullable();
-            $table->timestamp('updated_at')->default(now());
-
-            $table->foreignId('customer_id')
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-
-            $table->foreignId('bank_id')
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-
-            $table->foreignId('customer_wallet_id')
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+            $table->string('name_mandate');
+            $table->string('ref_mandate');
+            $table->string('name_account');
+            $table->string('iban');
+            $table->string('bic');
+            $table->string('address');
+            $table->string('addressbis')->nullable();
+            $table->string('postal');
+            $table->string('ville');
+            $table->string('country');
+            $table->timestamp('date_transfer')->default(now());
+            $table->boolean('cloture');
+            $table->enum('status', ['pending', 'bank_start', 'select_mvm', 'bank_end', 'creditor_start', 'select_mvm', 'creditor_end', 'terminated'])->default('pending');
+            $table->timestamps();
         });
     }
 

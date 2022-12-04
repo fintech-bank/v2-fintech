@@ -45,6 +45,10 @@ Route::prefix('powens')->group(function () {
     Route::get('webview/success', [\App\Http\Controllers\PowensController::class, 'success'])->name('powens.success');
 });
 
+Route::prefix('bridge')->group(function () {
+    Route::get('redirect', [\App\Http\Controllers\BridgeController::class, 'redirect'])->name('bridge.redirect');
+});
+
 Auth::routes();
 Route::mailweb();
 
