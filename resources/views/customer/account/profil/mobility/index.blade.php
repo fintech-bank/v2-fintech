@@ -41,7 +41,7 @@
                             <strong>{{ $mobility->name_mandate }}</strong><br>
                             <i>{{ $mobility->ref_mandate }}</i>
                         </td>
-                        <td>{{ $mobility->types }}</td>
+                        <td>{{ $mobility->type->name }}</td>
                         <td>
                             <div class="d-flex flex-row justify-content-center align-items-center">
                                 <div class="d-flex flex-column">

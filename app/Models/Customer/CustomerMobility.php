@@ -92,14 +92,16 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility wherePostal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereRefMandate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereVille($value)
+ * @property-read MobilityType $type
  */
 class CustomerMobility extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
     protected $dates = ['created_at', 'updated_at', 'date_transfer'];
-    protected $appends = ['status_text', 'status_label', 'comment_text'];
+    protected $appends = ['status_label'];
 
     public function customer()
     {
@@ -117,46 +119,50 @@ class CustomerMobility extends Model
     }
 
 
-
-    protected function closeAccount(): Attribute
+    public function getStatus($format = '')
     {
-        return Attribute::make(
-            get: fn($value) => $value == 0 ? 'Non' : 'Oui',
-        );
-    }
-
-    public function getStatusTextAttribute()
-    {
-        return match ($this->status) {
-            "bank_start" => "Dossier Transmis (Banque)",
-            "bank_return" => "Dossier reçu (Banque)",
-            "creditor_start" => "Dossier transmis (Créancier)",
-            "creditor_end" => "Dossier reçu (Créancier)",
-            "terminate" => "Dossier Terminer",
-        };
-    }
-
-    public function getStatusColorAttribute()
-    {
-        return match ($this->status) {
-            "bank_start", "creditor_start" => "danger",
-            "bank_return", "terminate", "creditor_end" => "success",
-        };
+        if ($format == 'text') {
+            return match ($this->status) {
+                "pending" => "En attente",
+                "bank_start", "creditor_start" => "Demande en cours",
+                "select_mvm_bank", "select_mvm_creditor" => "Selection des mouvements",
+                "bank_end", "creditor_end" => "Selection transmise",
+                "terminated" => "Terminer",
+                "error" => "Erreur"
+            };
+        } elseif ($format == 'color') {
+            return match ($this->status) {
+                "pending", "creditor_end", "bank_end" => "warning",
+                "bank_start", "creditor_start" => "info",
+                "select_mvm_bank", "select_mvm_creditor" => "primary",
+                "terminated" => "success",
+                "error" => "danger"
+            };
+        } elseif($format == 'comment') {
+            return match ($this->status) {
+                "pending" => "Votre dossier est pris en compte",
+                "bank_start" => "Demande envoyer à la banque distante",
+                "select_mvm_bank", "select_mvm_creditor" => "Veuillez sélectionner les mouvements à transférer",
+                "bank_end" => "Transfère bancaire terminer",
+                "creditor_start" => "Demande envoyer au organisme créditeur",
+                "creditor_end" => "Transfère des organismes terminer",
+                "terminated" => "Transfère terminer",
+                "error" => "Erreur lors du transfère des informations bancaire",
+            };
+        } else {
+            return match ($this->status) {
+                "pending" => "spinner fa-spin-pulse",
+                "bank_start", "creditor_start", "bank_end", "creditor_end" => "arrow-right-arrow-left",
+                "select_mvm_bank", "select_mvm_creditor" => "list-check",
+                "terminated" => "circle-check",
+                "error" => "triangle-exclamation"
+            };
+        }
     }
 
     public function getStatusLabelAttribute()
     {
-        return '<span class="badge badge-'.$this->getStatusColorAttribute().' badge-sm">'.$this->getStatusTextAttribute().'</span>';
+        return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid fa-{$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</span>";
     }
 
-    public function getCommentTextAttribute()
-    {
-        return match($this->status) {
-            "bank_start" => "Votre dossier à été transmis à la banque de départ",
-            "bank_return" => "Votre dossier à été traité par la banque de départ et les informations sont dans notre banque",
-            "creditor_start" => "Votre dossier à été transmis aux créancier",
-            "creditor_end" => "Votre dossier à été traité par vos créancier et les informations sont dans notre banque",
-            "terminate" => "Votre dossier est à présent clôturer",
-        };
-    }
 }
