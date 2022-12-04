@@ -162,7 +162,7 @@ class CustomerMobility extends Model
 
     public function getStatusLabelAttribute()
     {
-        return "<span class='badge badge-{$this->getStatus('color')}'><i class='fa-solid fa-{$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</span>";
+        return "<span class='badge badge-{$this->getStatus('color')}' data-bs-toggle='tooltip' title='{$this->getStatus('comment')}'><i class='fa-solid fa-{$this->getStatus()} text-white me-2'></i> {$this->getStatus('text')}</span>";
     }
 
 }
