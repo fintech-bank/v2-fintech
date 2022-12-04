@@ -124,6 +124,9 @@ class SystemSeedCommand extends Command
 
         $this->info('Seeding: Liste des Distributeurs');
         $this->call('db:seed', ['class' => 'ResellerSeeder', 'force']);
+
+        $this->info('Seeding: Liste des Type de mobilité');
+        $this->call('db:seed', ['class' => 'MobilityTypeSeeder', 'force']);
         return 0;
     }
 
