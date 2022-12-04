@@ -63,6 +63,35 @@ use Illuminate\Support\Carbon;
  * @property-read mixed $status_color
  * @property-read mixed $status_label
  * @property-read mixed $status_text
+ * @property string $name_mandate
+ * @property string $ref_mandate
+ * @property string $name_account
+ * @property string $iban
+ * @property string $bic
+ * @property string $address
+ * @property string|null $addressbis
+ * @property string $postal
+ * @property string $ville
+ * @property string $country
+ * @property Carbon $date_transfer
+ * @property int $cloture
+ * @property Carbon|null $created_at
+ * @property int $mobility_type_id
+ * @property-read MobilityType $types
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereAddressbis($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereBic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereCloture($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereDateTransfer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereIban($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereMobilityTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereNameAccount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereNameMandate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility wherePostal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereRefMandate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereVille($value)
  */
 class CustomerMobility extends Model
 {
@@ -82,7 +111,7 @@ class CustomerMobility extends Model
         return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
     }
 
-    public function types()
+    public function type()
     {
         return $this->belongsTo(MobilityType::class, 'mobility_type_id');
     }
