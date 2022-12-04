@@ -14,7 +14,7 @@
 
 @section("content")
     <div id="app" class="rounded container">
-
+        <p class="fw-bolder fs-2">Transférez les virements et prélévements récurrents de votre ancien compte sur votre compte Société Générale</p>
     </div>
 @endsection
 
