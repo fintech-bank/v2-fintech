@@ -75,7 +75,13 @@
                     @csrf
                     @method('POST')
                     <div class="modal-body">
-
+                        <div class="d-flex flex-row justify-content-around">
+                            @foreach(\App\Models\Core\MobilityType::all() as $type)
+                                <x-form.radio-select
+                                    name="mobility_type_id"
+                                    label="{{ $type->name }}" />
+                            @endforeach
+                        </div>
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
