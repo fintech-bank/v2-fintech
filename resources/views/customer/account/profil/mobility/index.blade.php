@@ -51,6 +51,7 @@
                                 </div>
                             </div>
                         </td>
+                        <td>{!! $mobility->status_label !!}</td>
                         <td></td>
                     </tr>
                 @endforeach
