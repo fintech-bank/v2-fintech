@@ -21,7 +21,7 @@
                 <li><strong>Un suivi complet:</strong> à tout moment depuis votre Espace Clients, vous suivez la progression de votre mobilité bancaire</li>
             </ul>
         </div>
-        <table class="table border table-row-bordered border-2 table-striped gx-5 gy-5" id="tableMobilities">
+        <table class="table border table-row-bordered border-2 border-gray-300 table-striped gx-5 gy-5" id="tableMobilities">
             <thead>
                 <tr>
                     <th>Désignation</th>
