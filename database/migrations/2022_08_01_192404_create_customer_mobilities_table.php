@@ -28,7 +28,18 @@ return new class extends Migration
             $table->timestamp('date_transfer')->default(now());
             $table->boolean('cloture');
             $table->enum('status', ['pending', 'bank_start', 'select_mvm', 'bank_end', 'creditor_start', 'select_mvm', 'creditor_end', 'terminated'])->default('pending');
+            $table->text('comment')->nullable();
             $table->timestamps();
+
+            $table->foreignId('mobility_type_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->foreignId('customer_wallet_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 

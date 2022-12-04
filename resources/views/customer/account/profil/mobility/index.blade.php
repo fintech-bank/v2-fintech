@@ -24,9 +24,34 @@
         <table class="table table-striped gx-5 gy-5" id="tableMobilities">
             <thead>
                 <tr>
+                    <th>Désignation</th>
+                    <th>Type de Transfer</th>
+                    <th>Compte à compte</th>
+                    <th>Etape</th>
                     <th></th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach($customer->mobilities as $mobility)
+                    <tr>
+                        <td>
+                            <strong>{{ $mobility->name_mandate }}</strong><br>
+                            <i>{{ $mobility->ref_mandate }}</i>
+                        </td>
+                        <td>{{ $mobility }}</td>
+                        <td>
+                            <div class="d-flex flex-row justify-content-center align-items-center">
+                                <div class="d-flex flex-column">
+                                    <strong>{{ $mobility->name_account }}</strong>
+                                    <div class=""><strong>IBAN:</strong> {{ $mobility->iban }}</div>
+                                    <div class=""><strong>BIC:</strong> {{ $mobility->bic }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 @endsection

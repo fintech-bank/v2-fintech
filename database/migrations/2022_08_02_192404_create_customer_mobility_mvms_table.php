@@ -4,22 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+return new class extends Migration {
     public function up()
     {
-        Schema::create('customer_mobility_prlvs', function (Blueprint $table) {
+        Schema::create('customer_mobility_mvms', function (Blueprint $table) {
             $table->id();
             $table->uuid();
+            $table->enum('type_mvm', ['virement', 'prlv']);
+            $table->string('reference');
             $table->string('creditor');
-            $table->string('number_mandate');
-            $table->float('amount', 50);
-            $table->boolean('valid')->default(0);
+            $table->float('amount');
+            $table->timestamp('date_transfer')->nullable();
+            $table->timestamp('date_enc')->nullable();
+            $table->boolean('valid')->default(false);
 
             $table->foreignId('customer_mobility_id')
                 ->constrained()
@@ -28,13 +25,8 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('customer_mobility_prlvs');
+        Schema::dropIfExists('customer_mobility_mvms');
     }
 };

@@ -3,6 +3,7 @@
 namespace App\Models\Customer;
 
 use App\Models\Core\Bank;
+use App\Models\Core\MobilityType;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -71,40 +72,16 @@ class CustomerMobility extends Model
     protected $dates = ['created_at', 'updated_at', 'date_transfer'];
     protected $appends = ['status_text', 'status_label', 'comment_text'];
 
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class, 'customer_id');
-    }
-
-    public function bank()
-    {
-        return $this->belongsTo(Bank::class, 'bank_id');
-    }
-
     public function wallet()
     {
         return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
     }
 
-    public function prlvs()
+    public function types()
     {
-        return $this->hasMany(CustomerMobilityPrlv::class);
+        return $this->belongsTo(MobilityType::class, 'mobility_type_id');
     }
 
-    public function incomings()
-    {
-        return $this->hasMany(CustomerMobilityVirIncoming::class);
-    }
-
-    public function outgoings()
-    {
-        return $this->hasMany(CustomerMobilityVirOutgoing::class);
-    }
-
-    public function cheques()
-    {
-        return $this->hasMany(CustomerMobilityCheque::class);
-    }
 
 
     protected function closeAccount(): Attribute
