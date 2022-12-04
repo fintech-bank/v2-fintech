@@ -21,7 +21,7 @@
                 <li><strong>Un suivi complet:</strong> à tout moment depuis votre Espace Clients, vous suivez la progression de votre mobilité bancaire</li>
             </ul>
         </div>
-        <div class="d-flex flex-end">
+        <div class="d-flex flex-end mb-5">
             <button class="btn btn-circle btn-lg btn-outline btn-outline-bank">Souscrire un nouveau mandat</button>
         </div>
         <table class="table border table-row-bordered border-2 border-gray-300 table-striped gx-5 gy-5" id="tableMobilities">
