@@ -31,6 +31,11 @@ return new class extends Migration
             $table->text('comment')->nullable();
             $table->timestamps();
 
+            $table->foreignId('customer_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
             $table->foreignId('mobility_type_id')
                 ->constrained()
                 ->cascadeOnUpdate()

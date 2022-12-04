@@ -38,7 +38,7 @@
                             <strong>{{ $mobility->name_mandate }}</strong><br>
                             <i>{{ $mobility->ref_mandate }}</i>
                         </td>
-                        <td>{{ $mobility }}</td>
+                        <td></td>
                         <td>
                             <div class="d-flex flex-row justify-content-center align-items-center">
                                 <div class="d-flex flex-column">

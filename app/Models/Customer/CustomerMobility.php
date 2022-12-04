@@ -72,6 +72,11 @@ class CustomerMobility extends Model
     protected $dates = ['created_at', 'updated_at', 'date_transfer'];
     protected $appends = ['status_text', 'status_label', 'comment_text'];
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
     public function wallet()
     {
         return $this->belongsTo(CustomerWallet::class, 'customer_wallet_id');
