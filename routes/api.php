@@ -114,6 +114,10 @@ Route::prefix('user')->group(function () {
     Route::delete('{user_id}', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'delete']);
 
     Route::post('{user_id}/sponsorship', [\App\Http\Controllers\Api\Customer\CustomerController::class, 'sponsorship']);
+
+    Route::prefix('{user_id}/mobility')->group(function () {
+        Route::post('/', [\App\Http\Controllers\Api\User\MobilityController::class, 'store']);
+    });
 });
 
 Route::prefix('manager')->group(function () {

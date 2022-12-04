@@ -22,7 +22,7 @@
             </ul>
         </div>
         <div class="d-flex flex-end mb-5">
-            <button class="btn btn-circle btn-lg btn-outline btn-outline-dark">Souscrire un nouveau mandat</button>
+            <button class="btn btn-circle btn-lg btn-outline btn-outline-dark" data-bs-toggle="modal" data-bs-target="#Subscribe">Souscrire un nouveau mandat</button>
         </div>
         <table class="table border table-row-bordered border-2 border-gray-300 table-striped gx-5 gy-5" id="tableMobilities">
             <thead>
@@ -57,6 +57,32 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="modal fade" tabindex="-1" id="Subscribe">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Création du mandat</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formSubscribe" action="/api/user/{{ $customer->user->id }}/mobility" method="post">
+                    @csrf
+                    @method('POST')
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
