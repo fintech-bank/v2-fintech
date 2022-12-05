@@ -16,7 +16,7 @@
                     <a href="" class="d-flex flex-row justify-content-between align-items-center px-5">
                         <span class="d-flex flex-row">
                             <span class="fw-bolder">Compte bancaire</span>
-                            <span class="text-muted">{{ Str::mask($wallet->number_account, 0, 5) }}</span>
+                            <span class="text-muted">{{ Str::mask($wallet->number_account, '.', 0, 5) }}</span>
                         </span>
                     </a>
                 @endforeach
