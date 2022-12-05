@@ -42,6 +42,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex flex-end">
+                    <x-form.button />
+                </div>
             </form>
         @endif
     </div>
