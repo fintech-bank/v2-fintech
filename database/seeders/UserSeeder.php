@@ -52,11 +52,30 @@ class UserSeeder extends Seeder
             'agency_id' => 2,
         ]);
 
+        User::create([
+            'name' => 'Agent2',
+            'email' => 'agent2@fintech.io',
+            'password' => \Hash::make('password'),
+            'admin' => false,
+            'agent' => true,
+            'customer' => false,
+            'identifiant' => UserHelper::generateID(),
+            'agency_id' => 1,
+        ]);
+
         Agent::create([
             'civility' => "M",
             "firstname" => "John",
             "lastname" => "Doe",
             "user_id" => 2,
+            "agency_id" => 1
+        ]);
+
+        Agent::create([
+            'civility' => "M",
+            "firstname" => "John",
+            "lastname" => "Doe",
+            "user_id" => 3,
             "agency_id" => 2
         ]);
 
