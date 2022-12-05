@@ -43,6 +43,7 @@ class MobilityController extends ApiController
             'customer_wallet_id' => $request->get('customer_wallet_id'),
             'customer_id' => $request->get('customer_id'),
             'cloture' => false,
+            'mobility_type_id' => $typeMob->id
         ]);
 
         $wallet = CustomerWallet::find($request->get('customer_wallet_id'));
