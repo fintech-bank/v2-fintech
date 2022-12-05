@@ -28,7 +28,7 @@
                 <!--begin::Menu-->
                 <div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
                     @if(Route::is('customer.compte.index') || Route::is('customer.compte.card.index') || Route::is('customer.compte.transfer.index') || Route::is('customer.compte.sepa.index') || Route::is('customer.compte.budgets.index') || Route::is('customer.compte.offers.index'))
-                        <a href="{{ route('customer.dashboard') }}" class="menu-item {{ Route::is('customer.dashboard') ? 'here' : '' }} me-0 me-lg-2">
+                        <a href="{{ route('customer.compte.index') }}" class="menu-item {{ Route::is('customer.compte.index') || Route::is('customer.compte.wallet') ? 'here' : '' }} me-0 me-lg-2">
                             <span class="menu-link">
                                 <span class="menu-title">Mes comptes</span>
                                 <span class="menu-arrow d-lg-none"></span>
