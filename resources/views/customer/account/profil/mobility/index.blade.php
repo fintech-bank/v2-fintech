@@ -147,6 +147,12 @@
                                 </div>
                             </div>
                         </div>
+
+                        <x-form.select
+                            name="customer_wallet_id"
+                            label="Compte de reception"
+                            required="true"
+                            :datas="\App\Models\Customer\CustomerWallet::toSelect($customer->wallets()->where('status', 'active')->where('type', 'compte')->get())" />
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
