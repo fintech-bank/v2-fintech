@@ -36,7 +36,8 @@ class BankStartJob implements ShouldQueue
                     'reference' => $transfer->reference,
                     'creditor' => $transfer->creditor,
                     'amount' => $transfer->amount,
-                    'customer_mobility_id' => $this->mobility->id
+                    'customer_mobility_id' => $this->mobility->id,
+                    'date_transfer' => $transfer->date_transfer,
                 ]);
             }
             $this->mobility->update(['status' => "select_mvm_bank"]);
@@ -49,7 +50,8 @@ class BankStartJob implements ShouldQueue
                     'creditor' => $transfer->creditor,
                     'amount' => $transfer->amount,
                     'customer_mobility_id' => $this->mobility->id,
-                    'valid' => true
+                    'date_transfer' => $transfer->date_transfer,
+                    'valid' => true,
                 ]);
 
                 match ($mvm->type_mvm) {
