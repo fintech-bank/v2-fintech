@@ -117,6 +117,7 @@ Route::prefix('user')->group(function () {
 
     Route::prefix('{user_id}/mobility')->group(function () {
         Route::post('/', [\App\Http\Controllers\Api\User\MobilityController::class, 'store']);
+        Route::put('{ref_mandate}', [\App\Http\Controllers\Api\User\MobilityController::class, 'update']);
     });
 });
 

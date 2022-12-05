@@ -15,7 +15,7 @@
 @section("content")
     <div id="app" class="rounded container">
         @if($mobility->status == 'select_mvm_bank')
-            <form id="formSelectMvmBank" action="">
+            <form id="formSelectMvmBank" action="/api/user/{{ $mobility->customer->user->id }}/mobility/{{ $mobility->ref_mandate }}">
                 @csrf
                 @method('PUT')
                 <table class="table table-striped table-row-bordered border-bottom-1 gy-3 gx-3">
@@ -32,7 +32,7 @@
                             <tr>
                                 <td>
                                     <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" name="mvm_id" value="{{ $mouvement->id }}" id="mvm_id_{{ $mouvement->id }}"/>
+                                        <input class="form-check-input" type="checkbox" name="mvm_id[]" value="{{ $mouvement->id }}" id="mvm_id_{{ $mouvement->id }}"/>
                                     </div>
                                 </td>
                                 <td>{{ $mouvement->type_text }}</td>

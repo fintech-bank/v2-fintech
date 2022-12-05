@@ -71,4 +71,9 @@ class MobilityController extends ApiController
         return $this->sendSuccess("Mandat de mobilité bancaire créer avec succès", [$mobility]);
 
     }
+
+    public function update($user_id, $ref_mandate, Request $request)
+    {
+        dd($request->all());
+    }
 }
