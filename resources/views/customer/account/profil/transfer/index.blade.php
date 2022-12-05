@@ -22,7 +22,7 @@
         @if($customer->transfer)
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fa-solid fa-spinner fa-spin-pulse fs-2 text-warning me-2"></i> Transfert d'agence en cours...</h3>
+                    <h3 class="card-title"><i class="fa-solid fa-{{ $customer->transfer->getStatus() }} fs-2 text-{{ $customer->transfer->getStatus('color') }} me-2"></i> Transfert d'agence {{ $customer->transfer->getStatus('text') }}</h3>
                     <div class="card-toolbar">
                         @if($customer->transfer->status == 'waiting')
                             <button class="btn btn-danger btn-sm"><i class="fa-solid fa-ban text-white me-3"></i> Annuler la demande de transfert</button>
