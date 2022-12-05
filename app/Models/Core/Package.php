@@ -52,6 +52,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $type_cpt_label
  * @property-read mixed $type_cpt_text
  * @property-read mixed $type_prlv_text
+ * @property int $cashback
+ * @property int $paystar
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereCashback($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package wherePaystar($value)
  */
 class Package extends Model
 {

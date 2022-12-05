@@ -62,6 +62,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $tos_cashback
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereCashback($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting whereTosCashback($value)
+ * @property int $paystar
+ * @method static \Illuminate\Database\Eloquent\Builder|CustomerSetting wherePaystar($value)
  */
 class CustomerSetting extends Model
 {

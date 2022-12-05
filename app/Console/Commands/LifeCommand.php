@@ -244,6 +244,8 @@ class LifeCommand extends Command
                 'nb_virtual_card' => $customer->package->nb_carte_virtuel,
                 'check' => $customer->package->check,
                 'alerta' => $faker->boolean,
+                'cashback' => $customer->package->cashback,
+                'paystar' => $customer->package->paystar
             ]);
 
             CustomerSituation::create([
