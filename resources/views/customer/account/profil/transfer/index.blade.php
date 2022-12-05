@@ -35,6 +35,8 @@
                     @elseif($customer->transfer->status == 'terminated')
                     <p>Votre demande a été traité avec succès et votre compte a été transféré dans votre nouvelle agence.</p>
                         <i>Suppression automatique de votre dossier dans {{ $customer->transfer->updated_at->diffForHumans(now()) }}</i>
+                    @elseif($customer->transfer->status == 'waiting')
+                        <p>Votre demande de transfers nous a été transmis et va être traité dans les plus bref délai.</p>
                     @else
                     <p>Votre demande de transfert n'a pu aboutir, veuillez contacter votre conseiller clientèle afin d'en connaître la raison.</p>
                         <i>Suppression automatique de votre dossier dans {{ now()->longRelativeDiffForHumans($customer->transfer->updated_at->addHours(6)) }}</i>
