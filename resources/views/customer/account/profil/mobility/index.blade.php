@@ -166,6 +166,18 @@
                             name="date_transfer"
                             label="Choisissez la date à laquelle vous souhaitez que vos virements permanents soient transférés sur votre nouveau compte :"
                             required="true" />
+
+                        <div id="cloture_old_account">
+                            <x-base.underline
+                                title="Clôture du compte et transfert de solde"
+                                size-text="fs-1"
+                                size="2"
+                                class="w-auto my-5" />
+                            <p class="fs-6">La banque d'origine vous informera, pendant un délai de 13 mois à compter de la clôture du compte, de la présentation d'un virement, prélèvement ou paiement d'un chèque.
+                                Le cas échéant, la banque d'origine vous informera des obligations en suspens ou de toute autre circonstance de nature à empècher le transfert de solde et la clôture du compte d'origine.
+                                Une demande de clôture de votre compte au-delà de 6 mois à compter de la validation du mandat ne permet pas de bénéficier des  informations relatives aux opérations se présentant sur votre compte clos.
+                                Si vous avez fait le choix de ne pas clôturer votre compte d'origine, nous attirons votre attention sur la nécessité d'approvisionner  suffisamment ce compte pour éviter tout incident de paiement.</p>
+                        </div>
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
