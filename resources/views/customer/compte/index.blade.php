@@ -11,7 +11,7 @@
     <div id="app" class="rounded">
         <div class="row">
             <div class="col-md-9 col-sm-12 mb-10">
-                <div class="fs-2tx fw-bold text-primary uppercase">Comptes bancaires</div>
+                <div class="fs-1 fw-bold text-primary uppercase">Comptes bancaires</div>
             </div>
         </div>
     </div>
