@@ -34,7 +34,7 @@
                                 <span class="menu-arrow d-lg-none"></span>
                             </span>
                         </a>
-                        <a href="{{ route('customer.card') }}" class="menu-item {{ Route::is('customer.card') ? 'here' : '' }} me-0 me-lg-2">
+                        <a href="{{ route('customer.compte.card.index') }}" class="menu-item {{ Route::is('customer.compte.card.index') ? 'here' : '' }} me-0 me-lg-2">
                             <span class="menu-link">
                                 <span class="menu-title">Mes Cartes</span>
                                 <span class="menu-arrow d-lg-none"></span>
