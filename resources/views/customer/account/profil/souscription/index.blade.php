@@ -193,14 +193,20 @@
                                                 <!--end::Info-->
                                             </div>
                                             <!--end::Description-->
-                                            <!--begin::Price-->
-                                            <div class="ms-5">
-                                                <span class="mb-2">€</span>
-                                                <span class="fs-3x fw-bold" data-kt-plan-price-month="39" data-kt-plan-price-annual="399">{{ $package->price }}</span>
-                                                <span class="fs-7 opacity-50">/
-												<span data-kt-element="period">Par mois</span></span>
-                                            </div>
-                                            <!--end::Price-->
+                                            @if($package->price == 0)
+                                                <span class="ms-5">
+                                                    <span class="fs-3x fw-bold">Gratuit</span>
+                                                </span>
+                                            @else
+                                                <!--begin::Price-->
+                                                <div class="ms-5">
+                                                    <span class="mb-2">€</span>
+                                                    <span class="fs-3x fw-bold" data-kt-plan-price-month="39" data-kt-plan-price-annual="399">{{ $package->price }}</span>
+                                                    <span class="fs-7 opacity-50">/
+												    <span data-kt-element="period">Par mois</span></span>
+                                                </div>
+                                                <!--end::Price-->
+                                            @endif
                                         </label>
                                     @endforeach
                                 </div>
