@@ -76,20 +76,23 @@ class UpdateTransferAgencyNotification extends Notification
             "customer" => $this->customer
         ]);
 
+        $message->actionText = "Suivre votre transfert d'agence";
+        $message->actionUrl = $this->link;
+
         return $message;
     }
 
     public function toArray($notifiable)
     {
         return [
-            "icon" => "",
-            "color" => "",
+            "icon" => "fa-building",
+            "color" => "warning",
             "title" => $this->title,
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
             "category" => $this->category,
-            "models" => [$this->customer]
+            "models" => [$this->customer, $this->transferAgency]
         ];
     }
 
