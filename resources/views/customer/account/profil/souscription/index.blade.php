@@ -26,9 +26,23 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex flex-row justify-content-between border-bottom-2 border-gray-400">
+                        <div class="d-flex flex-row justify-content-between">
                             <strong>Tarif</strong>
                             {{ $customer->package->price_format }} / par mois
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Type de Prélèvement</strong>
+                            {{ $customer->package->type_prlv_text }}
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Carte Bancaire Visa Classic</strong>
+                            @if($customer->package->visa_classic)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
                         </div>
                     </div>
                 </div>
