@@ -3,6 +3,7 @@
 namespace App\Models\Core;
 
 use App\Helper\CountryHelper;
+use App\Models\Customer\CustomerTransferAgency;
 use App\Models\Document\DocumentTransmiss;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -70,6 +71,11 @@ class Agency extends Model
     public function agents()
     {
         return $this->hasMany(Agent::class);
+    }
+
+    public function transfer()
+    {
+        return $this->hasOne(CustomerTransferAgency::class);
     }
 
     public static function boot()

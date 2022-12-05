@@ -225,6 +225,11 @@ class Customer extends Model
         return $this->hasMany(Sponsorship::class);
     }
 
+    public function transfer()
+    {
+        return $this->hasOne(CustomerTransferAgency::class);
+    }
+
     public function getStatusTextAttribute()
     {
         $t = null;
