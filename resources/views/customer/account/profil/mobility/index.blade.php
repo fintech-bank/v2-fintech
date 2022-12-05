@@ -180,7 +180,8 @@
 
                             <x-form.checkbox
                                 name="cloture"
-                                label="Je souhaite clôturer mon compte d'origine et transférer le solde créditeur éventuel?" />
+                                label="Je souhaite clôturer mon compte d'origine et transférer le solde créditeur éventuel?"
+                                value="1" />
                         </div>
                     </div>
                     <div class="modal-footer text-end">
