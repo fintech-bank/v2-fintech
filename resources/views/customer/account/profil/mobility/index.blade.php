@@ -61,6 +61,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="d-flex flex-end">
+            <x-form.button />
+        </div>
     </div>
     <div class="modal fade" tabindex="-1" id="Subscribe">
         <div class="modal-dialog modal-lg">
