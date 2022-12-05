@@ -141,7 +141,7 @@
                                     <select name="country" id="country" class="form-control form-control-solid selectpicker">
                                         <option value=""></option>
                                         @foreach(\App\Helper\GeoHelper::getAllCountries() as $coutry)
-                                            <option value="{{ $coutry->name->common }}">{{ $coutry->name->common }}</option>
+                                            <option value="{{ $coutry->iso2 }}">{{ $coutry->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
