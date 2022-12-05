@@ -79,7 +79,9 @@
                             @foreach(\App\Models\Core\MobilityType::all() as $type)
                                 <x-form.radio-select
                                     name="mobility_type_id"
-                                    label="{{ $type->name }}" />
+                                    label="{{ $type->name }}"
+                                    label-content="{{ $type->description }}"
+                                    value="{{ $type->id }}"/>
                             @endforeach
                         </div>
                     </div>
