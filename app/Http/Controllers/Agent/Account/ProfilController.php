@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Agent\Account;
 
 use App\Http\Controllers\Controller;
-use App\Services\GoCardless\Customer;
+use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 
 class ProfilController extends Controller
