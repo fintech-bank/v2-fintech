@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Helper\UserHelper;
 use App\Models\Core\Agency;
+use App\Models\User;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class AgencySeeder extends Seeder
@@ -14,6 +17,7 @@ class AgencySeeder extends Seeder
      */
     public function run()
     {
+        $faker = Factory::create('fr_FR');
         Agency::create([
             'name' => 'FINTECH Bank',
             'bic' => 'FINFRPPXXX',
@@ -39,5 +43,32 @@ class AgencySeeder extends Seeder
             'online' => false,
             'phone' => '08 99 49 32 01',
         ]);
+
+        foreach (Agency::all() as $agency) {
+            $civility = ['M', "Mme", "Mlle"];
+            $choice_civility = $civility[rand(0,2)];
+            $firstname = $choice_civility == 'M' ? $faker->firstNameMale : $faker->firstNameFemale;
+            $lastname = $faker->lastName;
+
+            $user = User::create([
+                'name' => $firstname." ".$lastname,
+                'email' => $firstname.'.'.$lastname.'@fintech.ovh',
+                'password' => \Hash::make('password'),
+                'customer' => 0,
+                'agent' => 1,
+                'identifiant' => UserHelper::generateID(),
+                'agency_id' => $agency->id
+            ]);
+
+            $agent = $agency->agents()->create([
+                'civility' => $choice_civility,
+                'firstname' => $choice_civility == 'M' ? $faker->firstNameMale : $faker->firstNameFemale,
+                'lastname' => $faker->lastName,
+                'agency_id' => $agency->id,
+                'poste' => "Conseiller clientèle",
+                'phone' => $faker->phoneNumber,
+                'user_id' => $user->id
+            ]);
+        }
     }
 }
