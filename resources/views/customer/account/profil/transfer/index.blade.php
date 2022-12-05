@@ -79,7 +79,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mb-10 bg-gray-300">
+                        <div class="mb-10 bg-gray-300 p-5 rounded">
                             <label for="" class="form-label required">Je déclare vouloir transférer (vous pouvez sélectionner une ou plusieurs cases) :</label>
                             <x-form.checkbox
                                 name="transfer_account"
