@@ -135,7 +135,8 @@ class CustomerMobility extends Model
                 "select_mvm_bank", "select_mvm_creditor" => "Selection des mouvements",
                 "bank_end", "creditor_end" => "Selection transmise",
                 "terminated" => "Terminer",
-                "error" => "Erreur"
+                "error" => "Erreur",
+                default => "Inconnue"
             };
         } elseif ($format == 'color') {
             return match ($this->status) {
@@ -143,7 +144,8 @@ class CustomerMobility extends Model
                 "bank_start", "creditor_start" => "info",
                 "select_mvm_bank", "select_mvm_creditor" => "primary",
                 "terminated" => "success",
-                "error" => "danger"
+                "error" => "danger",
+                default => "secondary"
             };
         } elseif($format == 'comment') {
             return match ($this->status) {
@@ -155,6 +157,7 @@ class CustomerMobility extends Model
                 "creditor_end" => "Transfère des organismes terminer",
                 "terminated" => "Transfère terminer",
                 "error" => "Erreur lors du transfère des informations bancaire",
+                default => "Inconnue"
             };
         } else {
             return match ($this->status) {
@@ -162,7 +165,8 @@ class CustomerMobility extends Model
                 "bank_start", "creditor_start", "bank_end", "creditor_end" => "arrow-right-arrow-left",
                 "select_mvm_bank", "select_mvm_creditor" => "list-check",
                 "terminated" => "circle-check",
-                "error" => "triangle-exclamation"
+                "error" => "triangle-exclamation",
+                default => "circle-question"
             };
         }
     }
