@@ -71,6 +71,69 @@
                                 <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
                             @endif
                         </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Paiement à l'internationnal</strong>
+                            @if($customer->package->payment_international)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Retrait à l'internationnal</strong>
+                            @if($customer->package->withdraw_international)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Assurance sur les moyens de paiements</strong>
+                            @if($customer->package->payment_insurance)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Mise à disposition de chèque bancaire</strong>
+                            @if($customer->package->check)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Service cashback</strong>
+                            @if($customer->package->cashback)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Service Paystar</strong>
+                            @if($customer->package->paystar)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Nombre de carte physique</strong>
+                            @if($customer->wallets()->with('cards')->where('type', 'compte')->count('cards') <= $customer->package->nb_carte_physique)
+                                <span class="badge badge-success">{{ $customer->wallets()->with('cards')->where('type', 'compte')->count('cards') }} / {{ $customer->package->nb_carte_physique }}</span>
+                            @else
+                                <span class="badge badge-danger">{{ $customer->wallets()->with('cards')->where('type', 'compte')->count('cards') }} / {{ $customer->package->nb_carte_physique }}</span>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
