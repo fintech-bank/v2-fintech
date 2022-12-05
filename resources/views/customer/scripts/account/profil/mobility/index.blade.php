@@ -13,6 +13,7 @@
         elements.inputMobilityType.forEach(input => {
             input.addEventListener('click', e => {
                 e.preventDefault()
+                console.log(e)
                 if(e.target.value === 1) {
                     $("#cloture_old_account").fadeIn()
                 } else {
