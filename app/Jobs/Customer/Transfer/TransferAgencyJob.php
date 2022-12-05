@@ -26,7 +26,7 @@ class TransferAgencyJob implements ShouldQueue
 
         $this->transferAgency->update(['status' => 'progress']);
 
-        if($faker->boolean()) {
+        if($faker->boolean(80)) {
             $agent = $this->transferAgency->agency->agents->random();
             $agency = $this->transferAgency->customer->update(['agency_id' => $this->transferAgency->agency_id, "agent_id" => $agent->id]);
 
