@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex flex-row justify-content-between border border-bottom-2 border-gray-400">
-                            <strong>Prix</strong>
+                            <strong>Tarif</strong>
                             {{ $customer->package->price_format }} / par mois
                         </div>
                     </div>
