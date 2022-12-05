@@ -26,6 +26,7 @@ class BankStartJob implements ShouldQueue
         $bank = new BankFintech();
         $transfers = $bank->callTransferDoc();
         $this->mobility->update(['status' => "bank_start"]);
+        dd($transfers);
 
         if ($this->mobility->type->select_mvm) {
             foreach ($transfers as $transfer) {
