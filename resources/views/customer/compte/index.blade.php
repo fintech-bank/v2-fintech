@@ -14,5 +14,5 @@
 @endsection
 
 @section("script")
-    @include("customer.scripts.dashboard")
+    @include("customer.scripts.compte.index")
 @endsection
