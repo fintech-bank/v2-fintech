@@ -30,7 +30,13 @@
                     </div>
                 </div>
                 <div class="card-body">
-
+                    @if($customer->transfer->status == 'progress')
+                    <p>Votre demande est en cours de traitement par notre service financier.</p>
+                    @elseif($customer->transfer->status == 'terminated')
+                    <p>Votre demande a été traité avec succès et votre compte a été transféré dans votre nouvelle agence.</p>
+                    @else
+                    <p>Votre demande de transfert n'a pu aboutir, veuillez contacter votre conseiller clientèle afin d'en connaître la raison.</p>
+                    @endif
                 </div>
             </div>
         @endif

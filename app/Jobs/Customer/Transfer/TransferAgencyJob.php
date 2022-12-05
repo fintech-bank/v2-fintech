@@ -36,5 +36,6 @@ class TransferAgencyJob implements ShouldQueue
             $this->transferAgency->update(['status' => 'failed']);
         }
         $this->transferAgency->customer->info->notify(new UpdateTransferAgencyNotification($this->transferAgency->customer, $this->transferAgency, "Contact avec votre banque"));
+        dispatch(new DeleteTransferAgencyJob($this->transferAgency))->delay(now()->addHours(6));
     }
 }
