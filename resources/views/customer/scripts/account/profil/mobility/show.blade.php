@@ -30,7 +30,7 @@
                     toastr.success(`${data.message}`)
 
                     setTimeout(() => {
-                        window.location.reload()
+                        window.location.href='{{ route('customer.account.profil.mobility.index') }}'
                     }, 1200)
                 }
             },
