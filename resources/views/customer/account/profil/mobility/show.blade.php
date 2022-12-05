@@ -48,6 +48,38 @@
                 </div>
             </form>
         @endif
+            @if($mobility->status == 'select_mvm_creditor')
+                <form id="formSelectMvmCreditor" action="/api/user/{{ $mobility->customer->user->id }}/mobility/{{ $mobility->ref_mandate }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="action" value="select_mvm_creditor">
+                    <table class="table table-striped table-row-bordered border-bottom-1 gy-3 gx-3">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Créditeur</th>
+                            <th>Montant</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($mobility->creditors()->where('valid', 0)->get() as $mouvement)
+                            <tr>
+                                <td>
+                                    <div class="form-check form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" name="mvm_id[]" value="{{ $mouvement->id }}" id="mvm_id_{{ $mouvement->id }}"/>
+                                    </div>
+                                </td>
+                                <td>{{ $mouvement->creditor }}</td>
+                                <td>{{ eur($mouvement->amount) }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div class="d-flex flex-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            @endif
     </div>
 @endsection
 
