@@ -119,8 +119,7 @@
 
                         <x-form.input
                             name="addressbis"
-                            label="Complément Adresse Postal"
-                            required="true" />
+                            label="Complément Adresse Postal" />
 
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
