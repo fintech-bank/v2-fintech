@@ -10,7 +10,11 @@
         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Transfert Agence simple</h1>
         <!--end::Title-->
     </div>
-    <button class="btn btn-primary">Test</button>
+    <div class="d-flex align-items-center gap-2 gap-lg-3">
+        <!--begin::Secondary button-->
+        <a href="#" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary" data-bs-toggle="modal" data-bs-target="#addTransferAgency">Nouvelle demande de transfert</a>
+        <!--end::Secondary button-->
+    </div>
 @endsection
 
 @section("content")
