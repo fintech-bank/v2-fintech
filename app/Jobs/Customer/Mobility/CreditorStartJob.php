@@ -54,7 +54,7 @@ class CreditorStartJob implements ShouldQueue
 
                 CustomerSepaHelper::createPrlv(
                     $mvm->amount,
-                    $this->mobility->wallet->id,
+                    $this->mobility->wallet,
                     $mvm->creditor,
                     $mvm->date
                 );
