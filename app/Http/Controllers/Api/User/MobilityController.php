@@ -107,31 +107,24 @@ class MobilityController extends ApiController
                 foreach ($request->get('mvm_id') as  $mvm) {
                     $mouvement = $mobility->creditors()->find($mvm);
 
-                    CustomerSepaHelper::createPrlv(
-                        $mouvement->amount,
-                        $mobility->wallet,
-                        $mouvement->creditor,
-                        $mouvement->date
-                    );
-
-                    if($mvm->creditor == 'SECU' || $mvm->creditor == 'CAF') {
+                    if($mouvement->creditor == 'SECU' || $mouvement->creditor == 'CAF') {
                         for ($i=1; $i <= 12; $i++) {
                             CustomerTransfer::create([
                                 'uuid' => \Str::uuid(),
-                                'amount' => $mvm->amount,
-                                'reference' => $mvm->reference,
-                                'reason' => "Virement {$mvm->creditor}",
+                                'amount' => $mouvement->amount,
+                                'reference' => $mouvement->reference,
+                                'reason' => "Virement {$mouvement->creditor}",
                                 'type_transfer' => 'courant',
-                                'transfer_date' => $mvm->date->addMonths($i),
+                                'transfer_date' => $mouvement->date->addMonths($i),
                                 'customer_wallet_id' => $mobility->wallet->id,
                             ]);
                         }
                     } else {
                         CustomerSepaHelper::createPrlv(
-                            $mvm->amount,
+                            $mouvement->amount,
                             $mobility->wallet,
-                            $mvm->creditor,
-                            $mvm->date
+                            $mouvement->creditor,
+                            $mouvement->date
                         );
                     }
 
