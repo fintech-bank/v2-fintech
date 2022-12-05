@@ -41,7 +41,7 @@ class BankStartJob implements ShouldQueue
             }
             $this->mobility->update(['status' => "select_mvm_bank"]);
         } else {
-            foreach ($transfers as $transfer) {
+            foreach ($transfers->mvms as $transfer) {
                 $mvm = $this->mobility->mouvements()->create([
                     'uuid' => \Str::uuid(),
                     'type_mvm' => $transfer->type_mvm,
