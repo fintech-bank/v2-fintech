@@ -19,7 +19,6 @@
 
 @section("content")
     <div id="app" class="rounded container">
-        <h1>Test</h1>
         @if($customer->transfer)
             <div class="card shadow-sm">
                 <div class="card-header">
