@@ -11,21 +11,22 @@
     <div id="app" class="rounded">
         <div class="row">
             <div class="col-md-9 col-sm-12 mb-10">
-                <div class="fs-1 fw-bold text-primary uppercase mb-3"><i class="fa-solid fa-wallet fs-1 me-2 text-primary"></i> Comptes bancaires</div>
-                @foreach($wallets->where('type', 'compte')->get() as $wallet)
-                    <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
+                @if($wallets->where('type', 'compte')->count() != 0)
+                    <div class="fs-1 fw-bold text-primary uppercase mb-3"><i class="fa-solid fa-wallet fs-1 me-2 text-primary"></i> Comptes bancaires</div>
+                    @foreach($wallets->where('type', 'compte')->get() as $wallet)
+                        <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
                         <span class="d-flex flex-row fs-2">
                             <span class="fw-bolder">Compte bancaire</span>
                             <span class="text-muted">{{ Str::mask($wallet->number_account, '.', 0, 5) }}</span>
                         </span>
-                        <span class="d-flex flex-row align-items-center">
+                            <span class="d-flex flex-row align-items-center">
                             <span class="me-10">{!! $wallet->status_label !!}</span>
                             <span class="fs-2 fw-bolder">{{ eur($wallet->solde_remaining) }}</span>
                         </span>
-                    </a>
-                    <div class="ms-8">
-                        @foreach($wallet->cards as $card)
-                            <a href="{{ route('customer.compte.card.show', $card->id) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
+                        </a>
+                        <div class="ms-8">
+                            @foreach($wallet->cards as $card)
+                                <a href="{{ route('customer.compte.card.show', $card->id) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
                                 <span class="d-flex flex-row fs-2 align-items-center">
                                     <span class="symbol symbol-30px symbol-2by3">
                                         <img src="/storage/card/{{ $card->support->slug }}.png" alt="">
@@ -33,10 +34,11 @@
                                     <span class="fw-bolder">CB Visa </span>
                                     <span class="text-muted">{{ $card->number_card_oscure }}</span>
                                 </span>
-                            </a>
-                        @endforeach
-                    </div>
-                @endforeach
+                                </a>
+                            @endforeach
+                        </div>
+                    @endforeach
+                @endif
                 @dd($wallets->count())
                 @if($wallets->where('type', 'epargne')->count() != 0)
                     <div class="separator separator-dashed border-gray-600 my-10"></div>
