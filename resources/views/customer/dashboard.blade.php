@@ -70,7 +70,7 @@
                                                     {{ $wallet->type_text }}
                                                 </div>
                                             </div>
-                                            <span class="text-{{ $wallet->solde_remaining >= 0 ? 'success' : 'danger' }} d-flex flex-end">{{ $wallet->solde_remaining >= 0 ? "+ ".eur($wallet->solde_remaining) : -eur($wallet->solde_remaining) }}</span>
+                                            <span class="text-black d-flex flex-end">{{ eur($wallet->solde_remaining) }}</span>
                                         </a>
                                     @else
                                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row align-items-center text-black">
@@ -83,7 +83,7 @@
                                                     {{ $wallet->type_text }}
                                                 </div>
                                             </div>
-                                            <span class="text-{{ $wallet->solde_remaining >= 0 ? 'success' : 'danger' }} d-flex flex-end">{{ $wallet->solde_remaining >= 0 ? "+ ".eur($wallet->solde_remaining) : -eur($wallet->solde_remaining) }}</span>
+                                            <span class="text-black d-flex flex-end">{{ eur($wallet->solde_remaining) }}</span>
                                         </a>
                                     @endif
                                 @endforeach
