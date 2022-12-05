@@ -125,6 +125,11 @@ class CustomerMobility extends Model
         return $this->hasMany(CustomerMobilityMvm::class);
     }
 
+    public function creditors()
+    {
+        return $this->hasMany(CustomerMobilityCreditor::class);
+    }
+
 
     public function getStatus($format = '')
     {
