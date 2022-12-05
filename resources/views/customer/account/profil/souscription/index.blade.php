@@ -18,7 +18,7 @@
             <div class="col-md-4 col-sm-12">
                 <div class="card shadow-sm">
                     <div class="card-header">
-                        <h3 class="card-title">{{ $customer->package-> }}{{ $customer->package->name }}</h3>
+                        <h3 class="card-title"><i class="fa-solid {{ $customer->package->icon }} text-{{ $customer->package->color }} me-3"></i> {{ $customer->package->name }}</h3>
                         <div class="card-toolbar">
                             <button type="button" class="btn btn-sm btn-light">
                                 Mettre à jour
