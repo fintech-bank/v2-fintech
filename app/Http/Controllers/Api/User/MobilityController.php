@@ -7,6 +7,7 @@ use App\Helper\DocumentFile;
 use App\Http\Controllers\Api\ApiController;
 use App\Jobs\Customer\Mobility\BankStartJob;
 use App\Jobs\Customer\Mobility\CreditorStartJob;
+use App\Jobs\Customer\Mobility\TerminatedJob;
 use App\Models\Core\MobilityType;
 use App\Models\Customer\CustomerMobility;
 use App\Models\Customer\CustomerMobilityMvm;
@@ -95,6 +96,28 @@ class MobilityController extends ApiController
 
                 $mobility->customer->info->notify(new UpdateMobilityNotification($mobility->customer, $mobility, 'Contact avec votre banque'));
                 dispatch(new CreditorStartJob($mobility));
+
+                return $this->sendSuccess("Selection effectuée avec succès");
+
+            }
+        } else {
+            if($request->has('mvm_id')) {
+                foreach ($request->get('mvm_id') as  $mvm) {
+                    $mouvement = $mobility->creditors()->find($mvm);
+
+                    CustomerSepaHelper::createPrlv(
+                        $mouvement->amount,
+                        $mobility->wallet,
+                        $mouvement->creditor,
+                        $mouvement->date
+                    );
+
+                    $mouvement->update(['valid' => true]);
+                }
+
+                $mobility->update(['status' => 'creditor_end']);
+                $mobility->customer->info->notify(new UpdateMobilityNotification($mobility->customer, $mobility, 'Contact avec votre banque'));
+                dispatch(new TerminatedJob($mobility));
 
                 return $this->sendSuccess("Selection effectuée avec succès");
 
