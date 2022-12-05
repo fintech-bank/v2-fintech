@@ -62,5 +62,6 @@ class CreditorStartJob implements ShouldQueue
             $this->mobility->update(['status' => "creditor_end"]);
         }
         $this->mobility->customer->info->notify(new UpdateMobilityNotification($this->mobility->customer, $this->mobility, 'Contact avec ma banque'));
+        dispatch(new TerminatedJob($this->mobility))->delay(now()->addMinute());
     }
 }
