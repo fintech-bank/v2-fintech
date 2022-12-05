@@ -177,6 +177,32 @@
                             <div class="col-lg-6 mb-10 mb-lg-0">
                                 <!--begin::Tabs-->
                                 <div class="nav flex-column" role="tablist">
+                                    @foreach(\App\Models\Core\Package::where('type_cpt', $customer->info->type)->get() as $package)
+                                        <label class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6 {{ $package->id == $customer->package->id ? 'active' : '' }}" data-bs-toggle="tab" data-bs_target="#package_{{ Str::slug($package->name) }}" role="tab">
+                                            <!--end::Description-->
+                                            <div class="d-flex align-items-center me-2">
+                                                <!--begin::Radio-->
+                                                <div class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
+                                                    <input class="form-check-input" type="radio" name="package_id" @if($customer->package->id == $package->id) checked="checked" @endif value="{{ $package->id }}">
+                                                </div>
+                                                <!--end::Radio-->
+                                                <!--begin::Info-->
+                                                <div class="flex-grow-1">
+                                                    <div class="d-flex align-items-center fs-2 fw-bold flex-wrap">{{ $package->name }}</div>
+                                                </div>
+                                                <!--end::Info-->
+                                            </div>
+                                            <!--end::Description-->
+                                            <!--begin::Price-->
+                                            <div class="ms-5">
+                                                <span class="mb-2">€</span>
+                                                <span class="fs-3x fw-bold" data-kt-plan-price-month="39" data-kt-plan-price-annual="399">{{ $package->price }}</span>
+                                                <span class="fs-7 opacity-50">/
+												<span data-kt-element="period">Par mois</span></span>
+                                            </div>
+                                            <!--end::Price-->
+                                        </label>
+                                    @endforeach
                                     <!--begin::Tab link-->
                                     <label class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 active mb-6" data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_startup" aria-selected="true" role="tab">
                                         <!--end::Description-->
