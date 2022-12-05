@@ -39,7 +39,7 @@
                         <p>Votre demande de transfers nous a été transmis et va être traité dans les plus bref délai.</p>
                     @else
                     <p>Votre demande de transfert n'a pu aboutir, veuillez contacter votre conseiller clientèle afin d'en connaître la raison.</p>
-                        <i>Suppression automatique de votre dossier dans {{ now()->longAbsoluteDiffForHumans($customer->transfer->updated_at->addHours(6)) }}</i>
+                        <i>Suppression automatique de votre dossier dans {{ $customer->transfer->updated_at->addHours(6)->longRelativeDiffForHumans(now()) }}</i>
                     @endif
                 </div>
             </div>
