@@ -47,7 +47,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formAddTransferAgency" action="" method="post" enctype="multipart/form-data">
+                <form id="formAddTransferAgency" action="{{ route('customer.account.profil.transfer.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="modal-body">

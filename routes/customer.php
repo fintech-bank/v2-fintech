@@ -91,6 +91,7 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
 
             Route::prefix('transfer')->name('transfer.')->group(function () {
                 Route::get('/', [\App\Http\Controllers\Customer\Profil\TransferAgencyController::class, 'index'])->name('index');
+                Route::post('/', [\App\Http\Controllers\Customer\Profil\TransferAgencyController::class, 'store'])->name('store');
             });
 
             Route::prefix('paystar')->name('paystar.')->group(function () {

@@ -48,6 +48,7 @@ use Illuminate\Support\Str;
  * @property-read mixed $address_line
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Core\Agent[] $agents
  * @property-read int|null $agents_count
+ * @property-read CustomerTransferAgency|null $transfer
  */
 class Agency extends Model
 {

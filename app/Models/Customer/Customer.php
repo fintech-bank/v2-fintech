@@ -90,6 +90,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $grpd_demande_count
  * @property-read \Illuminate\Database\Eloquent\Collection|Sponsorship[] $sponsorships
  * @property-read int|null $sponsorships_count
+ * @property-read \App\Models\Customer\CustomerTransferAgency|null $transfer
  */
 class Customer extends Model
 {

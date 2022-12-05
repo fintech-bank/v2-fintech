@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerTransferAgency whereTransferJoint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerTransferAgency whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read mixed $status_label
  */
 class CustomerTransferAgency extends Model
 {
