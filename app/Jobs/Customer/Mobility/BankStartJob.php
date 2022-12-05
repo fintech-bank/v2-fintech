@@ -56,19 +56,19 @@ class BankStartJob implements ShouldQueue
                     "virement" => $this->postVirement($mvm),
                     "prlv" => $this->postPrlv($mvm)
                 };
+            }
 
-                if($this->mobility->cloture) {
-                    if($transfer->account->solde > 0) {
-                        CustomerTransactionHelper::createCredit(
-                            $this->mobility->wallet->id,
-                            'virement',
-                            'Virement Solde Transbank',
-                            "Virement Compte {$transfer->account->number} vers {$this->mobility->wallet->number_account} | Transbank N°{$this->mobility->ref_mandate}",
-                            $transfer->account->solde,
-                            true,
-                            now()
-                        );
-                    }
+            if($this->mobility->cloture) {
+                if($transfer->account->solde > 0) {
+                    CustomerTransactionHelper::createCredit(
+                        $this->mobility->wallet->id,
+                        'virement',
+                        'Virement Solde Transbank',
+                        "Virement Compte {$transfer->account->number} vers {$this->mobility->wallet->number_account} | Transbank N°{$this->mobility->ref_mandate}",
+                        $transfer->account->solde,
+                        true,
+                        now()
+                    );
                 }
             }
 
