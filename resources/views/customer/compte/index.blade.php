@@ -18,6 +18,9 @@
                             <span class="d-flex flex-row">
                                 <span class="fw-bolder">Compte Bancaire <span class="text-muted">{{ Str::mask($wallet->number_account, 0, 5) }}</span></span>
                             </span>
+                            <span class="d-flex flex-row">
+                                {{ eur($wallet->solde_remaining) }}
+                            </span>
                         </span>
                     </a>
                 @endforeach
