@@ -11,7 +11,7 @@
     <div id="app" class="rounded">
         <div class="row">
             <div class="col-md-9 col-sm-12 mb-10">
-                <div class="fs-1 fw-bold text-primary uppercase"><i class="fa-solid fa-wallet fs-1 me-2 text-warning"></i> Comptes bancaires</div>
+                <div class="fs-1 fw-bold text-primary uppercase"><i class="fa-solid fa-wallet fs-1 me-2 text-primary"></i> Comptes bancaires</div>
                 @foreach($wallets->where('type', 'compte')->get() as $wallet)
                     <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
                         <span class="d-flex flex-row fs-2">
@@ -36,8 +36,21 @@
                         @endforeach
                     </div>
                 @endforeach
-                <div class="separator separator-dashed border-gray-600 my-10"></div>
-                <div class="fs-1 fw-bold text-warning uppercase"><i class="fa-solid fa-coins fs-1 me-2 text-warning"></i> Comptes Epargne</div>
+                @if($wallet->where('type', 'epargne')->count() != 0)
+                    <div class="separator separator-dashed border-gray-600 my-10"></div>
+                    <div class="fs-1 fw-bold text-warning uppercase"><i class="fa-solid fa-coins fs-1 me-2 text-warning"></i> Comptes Epargne</div>
+                    @foreach($wallets->where('type', 'compte')->get() as $wallet)
+                        <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
+                            <span class="d-flex flex-row fs-2">
+                                <span class="fw-bolder">Compte épargne</span>
+                                <span class="text-muted">{{ Str::mask($wallet->number_account, '.', 0, 5) }}</span>
+                            </span>
+                                <span class="d-flex flex-row">
+                                <span class="fs-2 fw-bolder">{{ eur($wallet->solde_remaining) }}</span>
+                            </span>
+                        </a>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
