@@ -37,7 +37,7 @@
                         @endforeach
                     </div>
                 @endforeach
-                @if($wallet->where('type', 'epargne')->count() != 0)
+                @if($wallets->where('type', 'epargne')->count() != 0)
                     <div class="separator separator-dashed border-gray-600 my-10"></div>
                     <div class="fs-1 fw-bold text-warning uppercase mb-3"><i class="fa-solid fa-coins fs-1 me-2 text-warning"></i> Comptes Epargne</div>
                     @foreach($wallets->where('type', 'epargne')->get() as $wallet)
