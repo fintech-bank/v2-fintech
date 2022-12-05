@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobilityMvm whereValid($value)
  * @mixin \Eloquent
  * @property-read \App\Models\Customer\CustomerMobility $mobility
+ * @property-read mixed $type_text
  */
 class CustomerMobilityMvm extends Model
 {

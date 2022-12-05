@@ -95,6 +95,8 @@ use Illuminate\Support\Carbon;
  * @property-read MobilityType $type
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMobilityMvm[] $mouvements
  * @property-read int|null $mouvements_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMobilityCreditor[] $creditors
+ * @property-read int|null $creditors_count
  */
 class CustomerMobility extends Model
 {
