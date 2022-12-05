@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Customer\Compte;
 
 use App\Http\Controllers\Controller;
-use App\Services\GoCardless\Customer;
+use App\Models\Customer\Customer;
 
 class CompteController extends Controller
 {
