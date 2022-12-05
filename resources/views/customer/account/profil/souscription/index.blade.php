@@ -128,10 +128,10 @@
                         <div class="separator separator-dashed my-3"></div>
                         <div class="d-flex flex-row justify-content-between">
                             <strong>Nombre de carte physique</strong>
-                            @if($customer->wallets()->with('cards')->where('type', 'compte')->count('cards') <= $customer->package->nb_carte_physique)
-                                <span class="badge badge-success">{{ $customer->wallets()->with('cards')->where('type', 'compte')->count('cards') }} / {{ $customer->package->nb_carte_physique }}</span>
+                            @if($wallet->cards()->where('type', 'physique')->count() <= $customer->package->nb_carte_physique)
+                                <span class="badge badge-success">{{ $wallet->cards()->where('type', 'physique')->count() }} / {{ $customer->package->nb_carte_physique }}</span>
                             @else
-                                <span class="badge badge-danger">{{ $customer->wallets()->with('cards')->where('type', 'compte')->count('cards') }} / {{ $customer->package->nb_carte_physique }}</span>
+                                <span class="badge badge-danger">{{ $wallet->cards()->where('type', 'physique')->count() }} / {{ $customer->package->nb_carte_physique }}</span>
                             @endif
                         </div>
                     </div>

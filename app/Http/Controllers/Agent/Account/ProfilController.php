@@ -11,7 +11,8 @@ class ProfilController extends Controller
     public function index()
     {
         return view('customer.account.profil.index', [
-            "customer" => Customer::find(auth()->user()->customers->id)
+            "customer" => Customer::find(auth()->user()->customers->id),
+            "wallet" => Customer::find(auth()->user()->customers->id)->wallets()->where('type', 'compte')->first()
         ]);
     }
 }
