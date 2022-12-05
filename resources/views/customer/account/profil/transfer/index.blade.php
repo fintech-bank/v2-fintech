@@ -37,7 +37,7 @@
                         <i>Suppression automatique de votre dossier dans {{ $customer->transfer->updated_at->diffForHumans(now()) }}</i>
                     @else
                     <p>Votre demande de transfert n'a pu aboutir, veuillez contacter votre conseiller clientèle afin d'en connaître la raison.</p>
-                        <i>Suppression automatique de votre dossier dans {{ $customer->transfer->updated_at->diffForHumans(now()) }}</i>
+                        <i>Suppression automatique de votre dossier dans {{ now()->longAbsoluteDiffForHumans($customer->transfer->updated_at) }}</i>
                     @endif
                 </div>
             </div>
