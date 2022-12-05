@@ -23,6 +23,7 @@ use App\Models\User;
 use App\Models\User\UserFolder;
 use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
 use App\Scope\VerifCompatibilityBeforeLoanTrait;
+use App\Services\BankFintech;
 use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
@@ -105,8 +106,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $powens = new Client();
+        $bank = new BankFintech();
 
-        dd($powens->list());
+        dd($bank->callTransferDoc());
     }
 }
