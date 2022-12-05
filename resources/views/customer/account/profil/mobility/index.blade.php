@@ -140,7 +140,7 @@
                                     name="country"
                                     label="Pays"
                                     required="true"
-                                    :datas="\App\Helper\GeoHelper::getAllCountries()" />
+                                    :datas="collect(\App\Helper\GeoHelper::getAllCountries())" />
                             </div>
                         </div>
                     </div>
