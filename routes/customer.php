@@ -97,6 +97,10 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
             Route::prefix('paystar')->name('paystar.')->group(function () {
                 Route::get('/', \App\Http\Controllers\Customer\Profil\PaystarController::class)->name('index');
             });
+
+            Route::prefix('souscription')->name('souscription.')->group(function () {
+                Route::get('/', \App\Http\Controllers\Customer\Profil\SouscriptionController::class)->name('index');
+            });
         });
     });
     Route::prefix('compte')->name('compte.')->group(function () {

@@ -190,6 +190,23 @@
                     </div>
                 </a>
             </div>
+            <div class="col-md-4 col-sm-12 mb-5">
+                <a href="{{ route('customer.account.profil.paystar.index') }}" class="text-dark">
+                    <div class="bg-white shadow-lg p-10 rounded">
+                        <div class="d-flex flex-row justify-content-between mb-3 align-items-center">
+                            <div class="fs-1 fw-bold">Paystar</div>
+                            <div>
+                                <i class="fa-solid fa-desktop text-muted fs-2x me-2"></i>
+                                <i class="fa-solid fa-mobile text-black fs-2x me-2"></i>
+                            </div>
+                        </div>
+                        <p>Gérez vos services Paystar</p>
+                        <div class="text-end">
+                            <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 @endsection
