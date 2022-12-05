@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Helper\DocumentFile;
 use App\Http\Controllers\Api\ApiController;
+use App\Jobs\Customer\Mobility\BankStartJob;
 use App\Models\Core\MobilityType;
 use App\Models\Customer\CustomerMobility;
 use App\Models\Customer\CustomerWallet;
+use App\Notifications\Customer\NewMobilityNotification;
 use Illuminate\Http\Request;
 use Intervention\Validation\Rules\Bic;
 use Intervention\Validation\Rules\Iban;
@@ -62,6 +64,10 @@ class MobilityController extends ApiController
             ["mobility" => $mobility],
         );
 
+        dispatch(new BankStartJob($mobility))->delay(now()->addMinutes(rand(1,5)));
+        $mobility->wallet->customer->info->notify(new NewMobilityNotification($mobility->customer, $mobility, "Contact avec ma banque"));
+
+        return $this->sendSuccess("Mandat de mobilité bancaire créer avec succès", [$mobility]);
 
     }
 }

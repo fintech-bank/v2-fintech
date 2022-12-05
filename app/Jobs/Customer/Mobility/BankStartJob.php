@@ -5,6 +5,7 @@ namespace App\Jobs\Customer\Mobility;
 use App\Helper\CustomerSepaHelper;
 use App\Models\Customer\CustomerMobility;
 use App\Models\Customer\CustomerMobilityMvm;
+use App\Notifications\Customer\UpdateMobilityNotification;
 use App\Services\BankFintech;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -58,6 +59,7 @@ class BankStartJob implements ShouldQueue
 
             $this->mobility->update(['status' => "bank_end"]);
         }
+        $this->mobility->customer->info->notify(new UpdateMobilityNotification($this->mobility->customer, $this->mobility, 'Contact avec ma banque'));
     }
 
     private function postVirement(CustomerMobilityMvm $mvm)

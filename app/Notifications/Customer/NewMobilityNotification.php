@@ -59,11 +59,31 @@ class NewMobilityNotification extends Notification
                         <strong><?= $this->mobility->name_account ?></strong><br>
                         <strong>IBAN:</strong> <?= $this->mobility->iban ?><br>
                         <strong>BIC:</strong> <?= $this->mobility->bic ?><br>
-                        <strong>Banque:</strong>
+                        <strong>Banque:</strong> <?= Bank::getBankByBic($this->mobility->bic) ?>
                     </td>
+                </tr>
+                <tr>
+                    <td class="fw-bolder">Nouveau compte</td>
+                    <td><?= $this->mobility->wallet->name_account_generic ?></td>
+                </tr>
+                <?php if($this->mobility->date_transfer != null): ?>
+                <tr>
+                    <td class="fw-bolder">Date de transfers</td>
+                    <td><?= $this->mobility->date_transfer->format('d/m/Y') ?></td>
+                </tr>
+                <?php endif; ?>
+                <tr>
+                    <td class="fw-bolder">Cloture de l'ancien compte</td>
+                    <td><?= $this->mobility->cloture ? "Oui" : "Non" ?></td>
                 </tr>
             </tbody>
         </table>
+        <p>Toutes ces informations vont être transmise à la banque distante et une demande de listing de mouvement va lui être transmise.</p>
+        <?php if($this->mobility->type->select_mvm): ?>
+        <p>Une fois cette liste réceptionner chez nous, vous aurez la possibilité de sélectionner les mouvements que vous souhaiter ramener chez nous.</p>
+        <?php else: ?>
+        <p>Une fois cette liste réceptionner chez nous, les mouvements seront automatiquement instruits sur le compte choisi lors de l'établissement du mandat.</p>
+        <?php endif; ?>
         <?php
         return ob_get_clean();
     }
@@ -99,20 +119,23 @@ class NewMobilityNotification extends Notification
             "customer" => $this->customer
         ]);
 
+        $message->actionText = "Vos mandats de mobilité bancaire";
+        $message->actionUrl = $this->link;
+
         return $message;
     }
 
     public function toArray($notifiable)
     {
         return [
-            "icon" => "",
-            "color" => "",
+            "icon" => "fa-arrow-right-arrow-left",
+            "color" => "primary",
             "title" => $this->title,
             "text" => $this->message,
             "time" => now(),
             "link" => $this->link,
             "category" => $this->category,
-            "models" => [$this->customer]
+            "models" => [$this->customer, $this->mobility]
         ];
     }
 }
