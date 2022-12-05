@@ -17,7 +17,6 @@ class MobilityController extends ApiController
 {
     public function store($user_id, Request $request)
     {
-        dd($request->all());
         $typeMob = MobilityType::find($request->get('mobility_type_id'));
 
         $validator = \Validator::make($request->all(), [
