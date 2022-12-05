@@ -66,8 +66,8 @@ class BankStartJob implements ShouldQueue
                         $this->mobility->wallet->id,
                         'virement',
                         'Virement Solde Transbank',
-                        "Virement Compte {$transfer->account->number} vers {$this->mobility->wallet->number_account} | Transbank N°{$this->mobility->ref_mandate}",
-                        $transfer->account->solde,
+                        "Virement Compte {$transfers->account->number} vers {$this->mobility->wallet->number_account} | Transbank N°{$this->mobility->ref_mandate}",
+                        $transfers->account->solde,
                         true,
                         now()
                     );
