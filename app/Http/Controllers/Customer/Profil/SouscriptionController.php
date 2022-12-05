@@ -10,7 +10,8 @@ class SouscriptionController extends Controller
     public function index()
     {
         return view('customer.account.profil.souscription.index', [
-            "customer" => Customer::find(auth()->user()->customers->id)
+            "customer" => Customer::find(auth()->user()->customers->id),
+            "wallet" => Customer::find(auth()->user()->customers->id)->wallets()->where('type', 'compte')->first()
         ]);
     }
 }
