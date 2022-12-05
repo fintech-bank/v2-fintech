@@ -96,6 +96,14 @@
                                 label="l'ensemble des comptes des personnes dont je suis représentant légal et les services correspondants"
                                 value="1" />
                         </div>
+                        <x-form.input-file
+                            name="cni_principal"
+                            label="Pièce d'identité (Recto) personne principal"
+                            required="true" />
+                        <x-form.input-file
+                            name="cni_secondaire"
+                            label="Pièce d'identité (Recto) personne secondaire"
+                            required="true" />
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
