@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->string('code_auth')->nullable();
             $table->boolean('cashback')->default(true);
             $table->boolean('tos_cashback')->default(false);
+            $table->boolean('paystar')->default(false);
         });
     }
 
@@ -24,6 +25,9 @@ return new class extends Migration {
             $table->removeColumn('securpass_key');
             $table->removeColumn('securpass_model');
             $table->removeColumn('code_auth');
+            $table->removeColumn('cashback');
+            $table->removeColumn('tos_cashback');
+            $table->removeColumn('paystar');
         });
     }
 };

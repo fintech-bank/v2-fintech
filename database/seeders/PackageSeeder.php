@@ -31,6 +31,8 @@ class PackageSeeder extends Seeder
             'nb_carte_physique' => 1,
             'nb_carte_virtuel' => 0,
             'subaccount' => 0,
+            'cashback' => 1,
+            'paystar' => 0
         ]);
 
         Package::query()->create([
@@ -50,6 +52,8 @@ class PackageSeeder extends Seeder
             'nb_carte_physique' => 1,
             'nb_carte_virtuel' => 5,
             'subaccount' => 0,
+            'cashback' => 1,
+            'paystar' => 1
         ]);
 
         Package::query()->create([
@@ -69,6 +73,8 @@ class PackageSeeder extends Seeder
             'nb_carte_physique' => 5,
             'nb_carte_virtuel' => 5,
             'subaccount' => 1,
+            'cashback' => 1,
+            'paystar' => 1
         ]);
 
         Package::query()->create([
@@ -88,6 +94,8 @@ class PackageSeeder extends Seeder
             'nb_carte_physique' => 1,
             'nb_carte_virtuel' => 0,
             'subaccount' => 0,
+            'cashback' => 0,
+            'paystar' => 0
         ]);
 
         Package::query()->create([
@@ -107,6 +115,8 @@ class PackageSeeder extends Seeder
             'nb_carte_physique' => 5,
             'nb_carte_virtuel' => 5,
             'subaccount' => 1,
+            'cashback' => 0,
+            'paystar' => 0
         ]);
 
         Package::query()->create([
@@ -126,6 +136,8 @@ class PackageSeeder extends Seeder
             'nb_carte_physique' => 999,
             'nb_carte_virtuel' => 999,
             'subaccount' => 999,
+            'cashback' => 0,
+            'paystar' => 0
         ]);
 
         Package::query()->create([
@@ -145,6 +157,8 @@ class PackageSeeder extends Seeder
             'nb_carte_physique' => 5,
             'nb_carte_virtuel' => 10,
             'subaccount' => 1,
+            'cashback' => 0,
+            'paystar' => 0
         ]);
     }
 }

@@ -150,7 +150,9 @@ class UserSeeder extends Seeder
             'nb_physical_card' => 5,
             'nb_virtual_card' => 5,
             'check' => true,
-            'customer_id' => $customer->id
+            'customer_id' => $customer->id,
+            'cashback' => $customer->package->cashback,
+            'paystar' => $customer->package->paystar,
         ]);
 
         User\UserNotificationSetting::create([
