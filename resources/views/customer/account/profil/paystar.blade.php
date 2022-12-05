@@ -14,7 +14,7 @@
 
 @section("content")
     <div id="app" class="rounded container">
-        @if(!$customer->setting->paystar)
+        @if(!$customer->package->paystar)
             <div class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
                 <i class="fa-solid fa-exclamation-circle text-danger fs-5tx mb-5"></i>
                 <div class="text-center text-dark">
@@ -33,7 +33,23 @@
                 <!--end::Content-->
             </div>
         @else
-
+            <div class="text-center">
+                <div class="fs-5tx fw-bold">Vous pouvez recevoir des Paystar Entre Amis</div>
+                <p>
+                    Grâce à Paystar, vous pouvez recevoir les remboursements de vos amis en leur communiquant uniquement votre numéro de téléphone.<br>
+                    Profitez-en, c'est facile, instantané et 100% sécurisé !
+                </p>
+                <p>Si vous désirez aller plus loin et envoyer de l'argent avec le numéro de mobile de vos amis, nous vous invitons à vous rendre dans la rubrique « Paystar » de l'Appli
+                    {{ config('app.name') }}.</p>
+                <p>Si ce service ne vous intéresse plus, vous pouvez le désactiver.</p>
+                <div class="d-flex flex-row justify-content-around">
+                    @if($customer->setting->paystar)
+                        <button class="btn btn-circle btn-outline btn-outline-danger btnDesactivePaystar">Désactiver</button>
+                    @else
+                        <button class="btn btn-circle btn-outline btn-outline-success btnActivePaystar">Activer</button>
+                    @endif
+                </div>
+            </div>
         @endif
     </div>
 @endsection
