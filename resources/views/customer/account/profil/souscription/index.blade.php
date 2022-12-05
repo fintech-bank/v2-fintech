@@ -44,6 +44,33 @@
                                 <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
                             @endif
                         </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Dépot de chèque</strong>
+                            @if($customer->package->check_deposit)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Paiement & Retrait par carte bancaire</strong>
+                            @if($customer->package->payment_withdraw)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <strong>Découvert bancaire</strong>
+                            @if($customer->package->overdraft)
+                                <i class="fa-regular fa-circle-check fs-1 text-success"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
