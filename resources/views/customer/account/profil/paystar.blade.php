@@ -44,9 +44,9 @@
                 <p class="fs-1">Si ce service ne vous intéresse plus, vous pouvez le désactiver.</p>
                 <div class="d-flex flex-row justify-content-around">
                     @if($customer->setting->paystar)
-                        <button class="btn btn-circle btn-outline btn-outline-danger btnDesactivePaystar">Désactiver</button>
+                        <button class="btn btn-lg btn-circle btn-outline btn-outline-danger btnDesactivePaystar">Désactiver</button>
                     @else
-                        <button class="btn btn-circle btn-outline btn-outline-success btnActivePaystar">Activer</button>
+                        <button class="btn btn-lg btn-circle btn-outline btn-outline-success btnActivePaystar">Activer</button>
                     @endif
                 </div>
             </div>
