@@ -18,6 +18,7 @@
             <form id="formSelectMvmBank" action="/api/user/{{ $mobility->customer->user->id }}/mobility/{{ $mobility->ref_mandate }}">
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="action" value="select_mvm_bank">
                 <table class="table table-striped table-row-bordered border-bottom-1 gy-3 gx-3">
                     <thead>
                     <tr>
