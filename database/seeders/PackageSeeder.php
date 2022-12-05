@@ -32,7 +32,9 @@ class PackageSeeder extends Seeder
             'nb_carte_virtuel' => 0,
             'subaccount' => 0,
             'cashback' => 1,
-            'paystar' => 0
+            'paystar' => 0,
+            'icon' => 'fa-gem',
+            'color' => 'secondary'
         ]);
 
         Package::query()->create([
@@ -53,7 +55,9 @@ class PackageSeeder extends Seeder
             'nb_carte_virtuel' => 5,
             'subaccount' => 0,
             'cashback' => 1,
-            'paystar' => 1
+            'paystar' => 1,
+            'icon' => 'fa-gem',
+            'color' => 'warning'
         ]);
 
         Package::query()->create([
@@ -74,7 +78,10 @@ class PackageSeeder extends Seeder
             'nb_carte_virtuel' => 5,
             'subaccount' => 1,
             'cashback' => 1,
-            'paystar' => 1
+            'paystar' => 1,
+            'icon' => 'fa-gem',
+            'color' => 'black'
+
         ]);
 
         Package::query()->create([
@@ -95,7 +102,9 @@ class PackageSeeder extends Seeder
             'nb_carte_virtuel' => 0,
             'subaccount' => 0,
             'cashback' => 0,
-            'paystar' => 0
+            'paystar' => 0,
+            'icon' => 'fa-ring',
+            'color' => 'secondary'
         ]);
 
         Package::query()->create([
@@ -116,7 +125,9 @@ class PackageSeeder extends Seeder
             'nb_carte_virtuel' => 5,
             'subaccount' => 1,
             'cashback' => 0,
-            'paystar' => 0
+            'paystar' => 0,
+            'icon' => 'fa-ring',
+            'color' => 'warning'
         ]);
 
         Package::query()->create([
@@ -137,7 +148,9 @@ class PackageSeeder extends Seeder
             'nb_carte_virtuel' => 999,
             'subaccount' => 999,
             'cashback' => 0,
-            'paystar' => 0
+            'paystar' => 0,
+            'icon' => 'fa-building-columns',
+            'color' => 'secondary'
         ]);
 
         Package::query()->create([
@@ -158,7 +171,9 @@ class PackageSeeder extends Seeder
             'nb_carte_virtuel' => 10,
             'subaccount' => 1,
             'cashback' => 0,
-            'paystar' => 0
+            'paystar' => 0,
+            'icon' => 'fa-wheelchair',
+            'color' => 'success'
         ]);
     }
 }

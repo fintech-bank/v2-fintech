@@ -19,6 +19,8 @@ return new class extends Migration
             $table->float('price');
             $table->enum('type_prlv', ['mensual', 'trim', 'sem', 'annual']);
             $table->enum('type_cpt', ['part', 'pro', 'orga', 'assoc'])->default('part');
+            $table->string('icon');
+            $table->string('color');
             $table->boolean('visa_classic')->default(true);
             $table->boolean('check_deposit')->default(true);
             $table->boolean('payment_withdraw')->default(true);

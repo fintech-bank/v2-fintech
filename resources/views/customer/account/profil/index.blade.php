@@ -200,7 +200,7 @@
                                 <i class="fa-solid fa-mobile text-black fs-2x me-2"></i>
                             </div>
                         </div>
-                        <p>Avec {{ $customer->package->name }}, bénéficiez de services bancaires essentiels et choisissez, selon vos besoins, des services complémentaires.</p>
+                        <p>Avec le pack {{ $customer->package->name }}, bénéficiez de services bancaires essentiels et choisissez, selon vos besoins, des services complémentaires.</p>
                         <div class="text-end">
                             <i class="fa-solid fa-arrow-right-long text-hover-primary fs-1"></i>
                         </div>
