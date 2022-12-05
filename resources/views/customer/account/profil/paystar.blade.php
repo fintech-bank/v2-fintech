@@ -14,7 +14,7 @@
 
 @section("content")
     <div id="app" class="rounded container">
-        @if($customer->setting->paystar == 1)
+        @if(!$customer->setting->paystar)
             <div class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
                 <i class="fa-solid fa-exclamation-circle text-danger fs-5tx mb-5"></i>
                 <div class="text-center text-dark">
