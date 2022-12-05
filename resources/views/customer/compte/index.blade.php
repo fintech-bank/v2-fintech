@@ -18,7 +18,7 @@
                             <span class="fw-bolder">Compte bancaire</span>
                             <span class="text-muted">{{ Str::mask($wallet->number_account, '.', 0, 5) }}</span>
                         </span>
-                        <span class="d-flex flex-row">
+                        <span class="d-flex flex-row align-items-center">
                             <span class="me-10">{!! $wallet->status_label !!}</span>
                             <span class="fs-2 fw-bolder">{{ eur($wallet->solde_remaining) }}</span>
                         </span>
