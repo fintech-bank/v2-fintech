@@ -11,6 +11,7 @@ use App\Jobs\Customer\NewSponsorshipJob;
 use App\Jobs\User\DroitAccessJob;
 use App\Jobs\User\GrpdPortabilityJob;
 use App\Mail\Customer\SendSignateDocumentRequestMail;
+use App\Models\Core\Package;
 use App\Models\Core\Sponsorship;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerDocument;
@@ -368,6 +369,7 @@ class CustomerController extends ApiController
             'portability' => $this->portability($user, $request),
             'activePaystar' => $this->activePaystar($request),
             'desactivePaystar' => $this->desactivePaystar($request),
+            'updateSubscription' => $this->updateSubscription($user, $request)
         };
     }
 
@@ -635,5 +637,18 @@ class CustomerController extends ApiController
         ]);
 
         return $this->sendSuccess("Désactivation de l'option effectuer");
+    }
+
+    private function updateSubscription(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|User|\LaravelIdea\Helper\App\Models\_IH_User_C|null $user, Request $request)
+    {
+        $user_subscription = User\UserSubscription::where('subscribe_type', Package::class)
+            ->where('subscribe_id', $user->customers->package->id)
+            ->where('user_id', $user->id)
+            ->first();
+
+        $user_subscription->update(["subscribe_id" => $request->get('package_id')]);
+        $user->customers->update(['package_id' => $request->get('package_id')]);
+
+        return $this->sendSuccess("Votre souscription à été mise à jours");
     }
 }

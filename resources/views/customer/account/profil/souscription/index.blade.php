@@ -168,9 +168,10 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formUpdateSubscription" action="" method="post">
+                <form id="formUpdateSubscription" action="/api/user/{{ $customer->user->id }}" method="post">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="action" value="updateSubscription">
                     <div class="modal-body">
                         <div class="row mt-10">
                             <!--begin::Col-->
@@ -375,5 +376,5 @@
 @endsection
 
 @section("script")
-    @include("customer.scripts.account.profil.paystar")
+    @include("customer.scripts.account.profil.souscription")
 @endsection
