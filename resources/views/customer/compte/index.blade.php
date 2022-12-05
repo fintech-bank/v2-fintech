@@ -23,6 +23,7 @@
                         </span>
                     </a>
                 @endforeach
+                .separator.separator-dashed.border-gray-600.my-10
             </div>
         </div>
     </div>
