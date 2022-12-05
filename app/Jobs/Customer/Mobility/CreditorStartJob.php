@@ -3,7 +3,9 @@
 namespace App\Jobs\Customer\Mobility;
 
 use App\Helper\CustomerSepaHelper;
+use App\Helper\CustomerTransferHelper;
 use App\Models\Customer\CustomerMobility;
+use App\Models\Customer\CustomerTransfer;
 use App\Notifications\Customer\UpdateMobilityNotification;
 use App\Services\BankFintech;
 use Carbon\Carbon;
@@ -52,12 +54,26 @@ class CreditorStartJob implements ShouldQueue
                     'customer_mobility_id' => $this->mobility->id,
                 ]);
 
-                CustomerSepaHelper::createPrlv(
-                    $mvm->amount,
-                    $this->mobility->wallet,
-                    $mvm->creditor,
-                    $mvm->date
-                );
+                if($mvm->creditor == 'SECU' || $mvm->creditor == 'CAF') {
+                    for ($i=1; $i <= 12; $i++) {
+                        CustomerTransfer::create([
+                            'uuid' => \Str::uuid(),
+                            'amount' => $mvm->amount,
+                            'reference' => $mvm->reference,
+                            'reason' => "Virement {$mvm->creditor}",
+                            'type_transfer' => 'courant',
+                            'transfer_date' => Carbon::create(now()->year, now()->addMonths($i)->month, $creditor->days),
+                            'customer_wallet_id' => $this->mobility->wallet->id,
+                        ]);
+                    }
+                } else {
+                    CustomerSepaHelper::createPrlv(
+                        $mvm->amount,
+                        $this->mobility->wallet,
+                        $mvm->creditor,
+                        $mvm->date
+                    );
+                }
             }
             $this->mobility->update(['status' => "creditor_end"]);
         }

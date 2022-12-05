@@ -11,9 +11,11 @@ use App\Jobs\Customer\Mobility\TerminatedJob;
 use App\Models\Core\MobilityType;
 use App\Models\Customer\CustomerMobility;
 use App\Models\Customer\CustomerMobilityMvm;
+use App\Models\Customer\CustomerTransfer;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\NewMobilityNotification;
 use App\Notifications\Customer\UpdateMobilityNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Validation\Rules\Bic;
 use Intervention\Validation\Rules\Iban;
@@ -111,6 +113,27 @@ class MobilityController extends ApiController
                         $mouvement->creditor,
                         $mouvement->date
                     );
+
+                    if($mvm->creditor == 'SECU' || $mvm->creditor == 'CAF') {
+                        for ($i=1; $i <= 12; $i++) {
+                            CustomerTransfer::create([
+                                'uuid' => \Str::uuid(),
+                                'amount' => $mvm->amount,
+                                'reference' => $mvm->reference,
+                                'reason' => "Virement {$mvm->creditor}",
+                                'type_transfer' => 'courant',
+                                'transfer_date' => $mvm->date->addMonths($i),
+                                'customer_wallet_id' => $mobility->wallet->id,
+                            ]);
+                        }
+                    } else {
+                        CustomerSepaHelper::createPrlv(
+                            $mvm->amount,
+                            $mobility->wallet,
+                            $mvm->creditor,
+                            $mvm->date
+                        );
+                    }
 
                     $mouvement->update(['valid' => true]);
                 }
