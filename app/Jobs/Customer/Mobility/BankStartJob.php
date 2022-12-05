@@ -3,6 +3,7 @@
 namespace App\Jobs\Customer\Mobility;
 
 use App\Helper\CustomerSepaHelper;
+use App\Helper\CustomerTransactionHelper;
 use App\Models\Customer\CustomerMobility;
 use App\Models\Customer\CustomerMobilityMvm;
 use App\Notifications\Customer\UpdateMobilityNotification;
@@ -26,16 +27,15 @@ class BankStartJob implements ShouldQueue
         $bank = new BankFintech();
         $transfers = $bank->callTransferDoc();
         $this->mobility->update(['status' => "bank_start"]);
-        dd($transfers);
 
         if ($this->mobility->type->select_mvm) {
-            foreach ($transfers as $transfer) {
+            foreach ($transfers->mvms as $transfer) {
                 $this->mobility->mouvements()->create([
                     'uuid' => \Str::uuid(),
-                    'type_mvm' => $transfer['type_mvm'],
-                    'reference' => $transfer['reference'],
-                    'creditor' => $transfer['creditor'],
-                    'amount' => $transfer['amount'],
+                    'type_mvm' => $transfer->type_mvm,
+                    'reference' => $transfer->reference,
+                    'creditor' => $transfer->creditor,
+                    'amount' => $transfer->amount,
                     'customer_mobility_id' => $this->mobility->id
                 ]);
             }
@@ -44,10 +44,10 @@ class BankStartJob implements ShouldQueue
             foreach ($transfers as $transfer) {
                 $mvm = $this->mobility->mouvements()->create([
                     'uuid' => \Str::uuid(),
-                    'type_mvm' => $transfer['type_mvm'],
-                    'reference' => $transfer['reference'],
-                    'creditor' => $transfer['creditor'],
-                    'amount' => $transfer['amount'],
+                    'type_mvm' => $transfer->type_mvm,
+                    'reference' => $transfer->reference,
+                    'creditor' => $transfer->creditor,
+                    'amount' => $transfer->amount,
                     'customer_mobility_id' => $this->mobility->id,
                     'valid' => true
                 ]);
@@ -56,6 +56,20 @@ class BankStartJob implements ShouldQueue
                     "virement" => $this->postVirement($mvm),
                     "prlv" => $this->postPrlv($mvm)
                 };
+
+                if($this->mobility->cloture) {
+                    if($transfer->account->solde > 0) {
+                        CustomerTransactionHelper::createCredit(
+                            $this->mobility->wallet->id,
+                            'virement',
+                            'Virement Solde Transbank',
+                            "Virement Compte {$transfer->account->number} vers {$this->mobility->wallet->number_account} | Transbank N°{$this->mobility->ref_mandate}",
+                            $transfer->account->solde,
+                            true,
+                            now()
+                        );
+                    }
+                }
             }
 
             $this->mobility->update(['status' => "bank_end"]);
