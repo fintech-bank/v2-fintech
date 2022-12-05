@@ -74,7 +74,7 @@
                             <label for="agency_id" class="form-label required">Je souhaite transférer les comptes de cette agence vers :</label>
                             <select class="form-control form-control-solid selectpicker" name="agency_id" data-live-search="true" title="Tapez le code postal de l'agence souhaité">
                                 <option value="" data-tokens=""></option>
-                                @foreach(\App\Models\Core\Agency::all() as $agency)
+                                @foreach(\App\Models\Core\Agency::where('id', '!=', $customer->agency->id)->get() as $agency)
                                     <option value="{{ $agency->id }}" data-tokens="{{ $agency->postal }} {{ $agency->name }}">{{ $agency->name }}</option>
                                 @endforeach
                             </select>
