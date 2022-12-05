@@ -34,7 +34,7 @@
             </div>
         @else
             <div class="text-center">
-                <div class="fs-5tx fw-bold">Vous pouvez recevoir des Paystar Entre Amis</div>
+                <div class="fs-3tx fw-bold">Vous pouvez recevoir des Paystar Entre Amis</div>
                 <p class="fs-1">
                     Grâce à Paystar, vous pouvez recevoir les remboursements de vos amis en leur communiquant uniquement votre numéro de téléphone.<br>
                     Profitez-en, c'est facile, instantané et 100% sécurisé !
