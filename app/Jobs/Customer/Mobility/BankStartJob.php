@@ -61,7 +61,7 @@ class BankStartJob implements ShouldQueue
             }
 
             if($this->mobility->cloture) {
-                if($transfer->account->solde > 0) {
+                if($transfers->account->solde > 0) {
                     CustomerTransactionHelper::createCredit(
                         $this->mobility->wallet->id,
                         'virement',
