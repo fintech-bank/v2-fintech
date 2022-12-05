@@ -218,7 +218,7 @@
                                 <!--begin::Tab content-->
                                 <div class="tab-content rounded h-100 bg-light p-10">
                                     @foreach(\App\Models\Core\Package::where('type_cpt', $customer->info->type)->get() as $package)
-                                        <div class="tab-pane fade {{ $package->id == $customer->package->id ? 'show active' : '' }}" id="package_{{ Str::slug($package->name) }}" role="tabpanel">
+                                        <div class="tab-pane fade {{ $package->id == $customer->package->id ? 'active show' : '' }}" id="package_{{ Str::slug($package->name) }}" role="tabpanel">
                                             <div class="pb-5">
                                                 <h2 class="fw-bold text-dark">{{ $package->name }}</h2>
                                                 <div class="text-muted fw-semibold">De quoi est composer ce service ?</div>
