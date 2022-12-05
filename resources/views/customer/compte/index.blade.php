@@ -19,6 +19,7 @@
                             <span class="text-muted">{{ Str::mask($wallet->number_account, '.', 0, 5) }}</span>
                         </span>
                         <span class="d-flex flex-row">
+                            {!! $wallet->status_label !!}
                             <span class="fs-2 fw-bolder">{{ eur($wallet->solde_remaining) }}</span>
                         </span>
                     </a>
@@ -45,7 +46,8 @@
                                 <span class="fw-bolder">Compte épargne</span>
                                 <span class="text-muted">{{ Str::mask($wallet->number_account, '.', 0, 5) }}</span>
                             </span>
-                                <span class="d-flex flex-row">
+                            <span class="d-flex flex-row">
+                                {!! $wallet->status_label !!}
                                 <span class="fs-2 fw-bolder">{{ eur($wallet->solde_remaining) }}</span>
                             </span>
                         </a>
