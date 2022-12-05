@@ -68,17 +68,17 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="separator separator-dashed my-2 border-gray-500"></div>
-                    <strong>Mon Agence Actuel:</strong> {{ $customer->agency->name }}<br>
-                    <div class="mb-10">
-                        <label for="agency_id" class="form-label required">Je souhaite transférer les comptes de cette agence vers :</label>
-                        <select class="form-control form-control-solid selectpicker" name="agency_id" data-live-search="true">
-                            <option value="" data-tokens=""></option>
-                            @foreach(\App\Models\Core\Agency::all() as $agency)
-                                <option value="{{ $agency->id }}" data-tokens="{{ $agency->postal }} {{ $agency->name }}">{{ $agency->postal }} - {{ $agency->name }}</option>
-                            @endforeach
-                        </select>
+                        <div class="separator separator-dashed my-2 border-gray-500"></div>
+                        <strong>Mon Agence Actuel:</strong> {{ $customer->agency->name }}<br>
+                        <div class="mb-10">
+                            <label for="agency_id" class="form-label required">Je souhaite transférer les comptes de cette agence vers :</label>
+                            <select class="form-control form-control-solid selectpicker" name="agency_id" data-live-search="true" title="Tapez le code postal de l'agence souhaité">
+                                <option value="" data-tokens=""></option>
+                                @foreach(\App\Models\Core\Agency::all() as $agency)
+                                    <option value="{{ $agency->id }}" data-tokens="{{ $agency->postal }} {{ $agency->name }}">{{ $agency->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
