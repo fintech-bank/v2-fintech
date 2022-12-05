@@ -148,10 +148,10 @@
                             <strong>Sous Compte</strong>
                             @if($customer->package->subaccount == 0)
                                 <i class="fa-regular fa-circle-xmark fs-1 text-danger"></i>
-                            @elseif($customer->wallets()->where('type', 'compte')->count() <= $customer->package->subaccount)
-                                <span class="badge badge-success">{{ $customer->wallets()->where('type', 'compte')->count() }} / {{ $customer->package->subaccount }}</span>
+                            @elseif($customer->wallets()->where('type', 'compte')->count()-1 <= $customer->package->subaccount)
+                                <span class="badge badge-success">{{ $customer->wallets()->where('type', 'compte')->count()-1 }} / {{ $customer->package->subaccount }}</span>
                             @else
-                                <span class="badge badge-danger">{{ $customer->wallets()->where('type', 'compte')->count() }} / {{ $customer->package->subaccount }}</span>
+                                <span class="badge badge-danger">{{ $customer->wallets()->where('type', 'compte')->count()-1 }} / {{ $customer->package->subaccount }}</span>
                             @endif
                         </div>
                     </div>
