@@ -75,6 +75,7 @@
                     @csrf
                     @method('POST')
                     <div class="modal-body">
+                        <p>La mobilité bancaire concerne uniquement les comptes de dépôts. Les comptes d’épargne ainsi que les comptes titres, PEA sont exclus. Il n’est pas possible de faire une mobilité bancaire d’un compte joint (2 titulaires) vers un compte individuel (1 seul titulaire).</p>
                         <div class="d-flex flex-row justify-content-around">
                             @foreach(\App\Models\Core\MobilityType::all() as $type)
                                 <x-form.radio-select
@@ -153,6 +154,18 @@
                             label="Compte de reception"
                             required="true"
                             :datas="\App\Models\Customer\CustomerWallet::toSelect($customer->wallets()->where('status', 'active')->where('type', 'compte')->get())" />
+
+                        <x-base.underline
+                            title="Virements permanents"
+                            size-text="fs-1"
+                            size="2"
+                            class="w-auto my-5" />
+                        <p>La date que vous choisirez pourra être modifiée par {{ config('app.name') }} si la date de réception du mandat que vous avez signé ne permet pas de traiter vos demandes à la date mentionnée dans le mandat.</p>
+
+                        <x-form.input-date
+                            name="date_transfer"
+                            label="Choisissez la date à laquelle vous souhaitez que vos virements permanents soient transférés sur votre nouveau compte :"
+                            required="true" />
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
