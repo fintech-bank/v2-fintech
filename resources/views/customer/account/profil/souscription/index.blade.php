@@ -221,7 +221,7 @@
                                         <div class="tab-pane fade {{ $package->id == $customer->package->id ? 'active show' : '' }}" id="package_{{ Str::slug($package->name) }}" role="tabpanel">
                                             <div class="pb-5">
                                                 <h2 class="fw-bold text-dark">{{ $package->name }}</h2>
-                                                <div class="text-muted fw-semibold">De quoi est composer ce service ?</div>
+                                                <div class="text-muted fw-semibold">De quoi est composé ce service ?</div>
                                             </div>
                                             <!--begin::Body-->
                                             <div class="pt-1">
@@ -234,6 +234,124 @@
                                                     @else
                                                         <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
                                                     @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Dépot de chèque</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->check_deposit)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Paiement / Retrait par carte bancaire</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->payment_withdraw)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Découvert bancaire</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->overdraft)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Dépôt d'espèce</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->cash_deposit)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Retrait à l'internationnal</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->withdraw_international)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Paiement à l'internationnal</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->payment_international)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Assurance sur les moyens de paiement</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->payment_insurance)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Mise à disposition de chèque bancaire</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->check)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Service cashback</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->cashback)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Service Paystar</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    @if($package->paystar)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-danger fs-1"></i>
+                                                    @endif
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Nombre de carte bancaire physique gratuite</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    {{ $package->nb_carte_physique }}
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Nombre de carte bancaire virtuel gratuite</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    {{ $package->nb_carte_virtuel }}
+                                                    <!--end::Svg Icon-->
+                                                </div>
+                                                <div class="d-flex align-items-center mb-7">
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Nombre de sous compte gratuit</span>
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                                    {{ $package->subaccount }}
                                                     <!--end::Svg Icon-->
                                                 </div>
                                                 <!--end::Item-->
