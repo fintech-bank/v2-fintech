@@ -13,7 +13,7 @@
             <div class="col-md-9 col-sm-12 mb-10">
                 @if($wallets->where('type', 'compte')->count() != 0)
                     <div class="fs-1 fw-bold text-primary uppercase mb-3"><i class="fa-solid fa-wallet fs-1 me-2 text-primary"></i> Comptes bancaires</div>
-                    @foreach($wallets->where('type', 'compte')->get() as $wallet)
+                    @foreach($wallets->where('type', 'compte') as $wallet)
                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
                         <span class="d-flex flex-row fs-2">
                             <span class="fw-bolder">Compte bancaire</span>
@@ -43,7 +43,7 @@
                 @if($wallets->where('type', 'epargne')->count() != 0)
                     <div class="separator separator-dashed border-gray-600 my-10"></div>
                     <div class="fs-1 fw-bold text-warning uppercase mb-3"><i class="fa-solid fa-coins fs-1 me-2 text-warning"></i> Comptes Epargne</div>
-                    @foreach($wallets->where('type', 'epargne')->get() as $wallet)
+                    @foreach($wallets->where('type', 'epargne') as $wallet)
                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
                             <span class="d-flex flex-row fs-2">
                                 <span class="fw-bolder">Compte épargne</span>
