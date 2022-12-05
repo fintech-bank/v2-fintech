@@ -15,7 +15,7 @@
 @section("content")
     <div id="app" class="rounded container">
         <div class="row">
-            <div class="col-md-4 col-sm-12">
+            <div class="col-sm-12">
                 <div class="card shadow-sm">
                     <div class="card-header">
                         <h3 class="card-title"><i class="fa-solid {{ $customer->package->icon }} text-{{ $customer->package->color }} me-3"></i> {{ $customer->package->name }}</h3>
