@@ -85,6 +85,11 @@
                                     icon="{{ \App\Helper\IconHelpers::getIcons()->random() }}"/>
                             @endforeach
                         </div>
+                        <x-base.underline
+                            title="Information sur l'ancien compte"
+                            size-text="fs-1"
+                            size="2"
+                            class="w-auto my-5" />
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
