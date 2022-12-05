@@ -90,6 +90,59 @@
                             size-text="fs-1"
                             size="2"
                             class="w-auto my-5" />
+
+                        <x-form.input
+                            name="name_mandate"
+                            label="Nom du mandat"
+                            required="true" />
+
+                        <x-form.input
+                            name="name_account"
+                            label="Nom du compte"
+                            required="true" />
+
+                        <x-form.input
+                            name="iban"
+                            label="IBAN"
+                            required="true" />
+
+                        <x-form.input
+                            name="bic"
+                            label="BIC"
+                            required="true" />
+
+                        <x-form.input
+                            name="address"
+                            label="Adresse Postal"
+                            required="true" />
+
+                        <x-form.input
+                            name="addressbis"
+                            label="Complément Adresse Postal"
+                            required="true" />
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <x-form.input
+                                    name="postal"
+                                    label="Code Postal"
+                                    required="true" />
+                            </div>
+
+                            <div class="col-md-4 col-sm-12">
+                                <x-form.input
+                                    name="ville"
+                                    label="Ville"
+                                    required="true" />
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <x-form.select
+                                    name="country"
+                                    label="Pays"
+                                    required="true"
+                                    :datas="\App\Helper\CountryHelper::getAll()" />
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
