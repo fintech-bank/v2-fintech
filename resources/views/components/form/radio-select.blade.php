@@ -1,7 +1,7 @@
 <div class="mb-10">
     <!--begin::Option-->
-    <input type="radio" class="btn-check" name="{{ $name }}" value="{{ $value }}" @if($checked) checked="checked" @endif id="{{ $name }}"/>
-    <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="{{ $name }}">
+    <input type="radio" class="btn-check" name="{{ $name }}" value="{{ $value }}" @if($checked) checked="checked" @endif id="{{ $name }}_{{ $value }}"/>
+    <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="{{ $name }}_{{ $value }}">
         <i class="fa-solid fa-{{ $icon }} fs-3tx me-4"></i>
 
         <span class="d-block fw-semibold text-start">
