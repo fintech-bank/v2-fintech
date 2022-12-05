@@ -11,7 +11,7 @@ class CompteController extends Controller
     {
         return view('customer.compte.index', [
             "customer" => Customer::find(auth()->user()->customers->id),
-            'wallets' => Customer::find(auth()->user()->customers->id)->wallets
+            'wallets' => Customer::find(auth()->user()->customers->id)->wallets()
         ]);
     }
 }
