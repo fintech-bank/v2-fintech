@@ -14,7 +14,27 @@
 
 @section("content")
     <div id="app" class="rounded container">
+        @if($customer->setting->paystar)
+            <div class="alert alert-dismissible bg-light-danger d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
+                <i class="fa-solid fa-exclamation-circle text-danger fs-5tx mb-5"></i>
+                <div class="text-center text-dark">
+                    <h1 class="fw-bold mb-5">Accès Refuser</h1>
+                    <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
+                    <div class="mb-9">
+                        Votre compte ne permet pas l'établissement du système Paystar.<br>
+                        Veuillez mettre à jour votre souscription ou contacter votre conseiller afin d'activer la fonctionnalité.
+                    </div>
+                    <!--begin::Buttons-->
+                    <div class="d-flex flex-center flex-wrap">
+                        <a href="#" class="btn btn-danger m-2">Mettre à jour ma souscription</a>
+                    </div>
+                    <!--end::Buttons-->
+                </div>
+                <!--end::Content-->
+            </div>
+        @else
 
+        @endif
     </div>
 @endsection
 
