@@ -35,11 +35,11 @@
         @else
             <div class="text-center">
                 <div class="fs-5tx fw-bold">Vous pouvez recevoir des Paystar Entre Amis</div>
-                <p>
+                <p class="fs-1">
                     Grâce à Paystar, vous pouvez recevoir les remboursements de vos amis en leur communiquant uniquement votre numéro de téléphone.<br>
                     Profitez-en, c'est facile, instantané et 100% sécurisé !
                 </p>
-                <p>Si vous désirez aller plus loin et envoyer de l'argent avec le numéro de mobile de vos amis, nous vous invitons à vous rendre dans la rubrique « Paystar » de l'Appli
+                <p class="fs-1">Si vous désirez aller plus loin et envoyer de l'argent avec le numéro de mobile de vos amis, nous vous invitons à vous rendre dans la rubrique « Paystar » de l'Appli
                     {{ config('app.name') }}.</p>
                 <p>Si ce service ne vous intéresse plus, vous pouvez le désactiver.</p>
                 <div class="d-flex flex-row justify-content-around">
