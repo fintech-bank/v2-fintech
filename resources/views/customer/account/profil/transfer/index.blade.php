@@ -12,7 +12,7 @@
     </div>
     <div class="d-flex align-items-center gap-2 gap-lg-3">
         <!--begin::Secondary button-->
-        <a href="#" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary" data-bs-toggle="modal" data-bs-target="#addTransferAgency">Nouvelle demande de transfert</a>
+        <a href="#" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary" data-bs-toggle="modal" data-bs-target="#AddTransferAgency">Nouvelle demande de transfert</a>
         <!--end::Secondary button-->
     </div>
 @endsection
