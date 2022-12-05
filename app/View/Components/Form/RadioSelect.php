@@ -12,10 +12,11 @@ class RadioSelect extends Component
      * @param string $name
      * @param string $label
      * @param string $labelContent
+     * @param string $icon
      * @param string $value
      * @param bool $checked
      */
-    public function __construct(public string $name, public string $label, public string $labelContent, public string $value, public bool $checked = false)
+    public function __construct(public string $name, public string $label, public string $labelContent,public string $icon, public string $value, public bool $checked = false)
     {
 
     }

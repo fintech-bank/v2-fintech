@@ -81,7 +81,8 @@
                                     name="mobility_type_id"
                                     label="{{ $type->name }}"
                                     label-content="{{ $type->description }}"
-                                    value="{{ $type->id }}"/>
+                                    value="{{ $type->id }}"
+                                    icon="{{ \App\Helper\IconHelpers::getIcons()->random() }}"/>
                             @endforeach
                         </div>
                     </div>
