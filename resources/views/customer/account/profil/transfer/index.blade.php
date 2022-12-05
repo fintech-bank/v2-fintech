@@ -79,6 +79,23 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="mb-10 bg-gray-300">
+                            <label for="" class="form-label required">Je déclare vouloir transférer (vous pouvez sélectionner une ou plusieurs cases) :</label>
+                            <x-form.checkbox
+                                name="transfer_account"
+                                label="l'ensemble de mes comptes individuels et les services correspondants"
+                                value="1" />
+
+                            <x-form.checkbox
+                                name="transfer_joint"
+                                label="l'ensemble de mes comptes joints et les services correspondants"
+                                value="1" />
+
+                            <x-form.checkbox
+                                name="transfer_all"
+                                label="l'ensemble des comptes des personnes dont je suis représentant légal et les services correspondants"
+                                value="1" />
+                        </div>
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
