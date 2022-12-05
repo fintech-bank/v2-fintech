@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Helper\CustomerSepaHelper;
 use App\Helper\DocumentFile;
 use App\Http\Controllers\Api\ApiController;
 use App\Jobs\Customer\Mobility\BankStartJob;
+use App\Jobs\Customer\Mobility\CreditorStartJob;
 use App\Models\Core\MobilityType;
 use App\Models\Customer\CustomerMobility;
+use App\Models\Customer\CustomerMobilityMvm;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\NewMobilityNotification;
+use App\Notifications\Customer\UpdateMobilityNotification;
 use Illuminate\Http\Request;
 use Intervention\Validation\Rules\Bic;
 use Intervention\Validation\Rules\Iban;
@@ -74,6 +78,54 @@ class MobilityController extends ApiController
 
     public function update($user_id, $ref_mandate, Request $request)
     {
-        dd($request->all());
+        $mobility = CustomerMobility::where('ref_mandate', $ref_mandate)->first();
+
+        if($request->get('action') == 'select_mvm_bank') {
+            if($request->has('mvm_id')) {
+                foreach ($request->get('mvm_id') as  $mvm) {
+                    $mouvement = $mobility->mouvements()->find($mvm);
+
+                    match ($mouvement->type_mvm) {
+                        "virement" => $this->postVirement($mouvement),
+                        "prlv" => $this->postPrlv($mouvement)
+                    };
+
+                    $mouvement->update(['valid' => true]);
+                }
+
+                $mobility->customer->info->notify(new UpdateMobilityNotification($mobility->customer, $mobility, 'Contact avec votre banque'));
+                dispatch(new CreditorStartJob($mobility));
+
+                return $this->sendSuccess("Selection effectuée avec succès");
+
+            }
+        }
+    }
+
+    private function postVirement(CustomerMobilityMvm $mvm)
+    {
+        $rec_start = $mvm->mobility->date_transfer->addMonth();
+        $mvm->mobility->wallet->transfers()->create([
+            'uuid' => $mvm->uuid,
+            "amount" => $mvm->amount,
+            "reference" => $mvm->reference,
+            "reason" => "Virement vers ".$mvm->creditor,
+            "type_transfer" => 'courant',
+            'type' => 'permanent',
+            'recurring_start' => $rec_start,
+            'recurring_end' => $rec_start->addYear(),
+            'customer_wallet_id' => $mvm->mobility->wallet->id
+        ]);
+    }
+
+    private function postPrlv(CustomerMobilityMvm $mvm)
+    {
+        CustomerSepaHelper::createPrlv(
+            $mvm->amount,
+            $mvm->mobility->wallet,
+            $mvm->creditor,
+            $mvm->date_transfer
+        );
+
     }
 }
