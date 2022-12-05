@@ -5,7 +5,7 @@
         <div class="card-body ">
             <div class="fw-bolder fs-3">
                 Mandat de mobilité bancaire<br>
-                Mandat N°{{ $data->mobility->mandate }}
+                Mandat N°{{ $data->mobility->ref_mandate }}
             </div>
         </div>
     </div>
@@ -47,8 +47,8 @@
         <tbody>
         <tr>
             <td>
-                <strong>IBAN: </strong>{{ $data->mobility->old_iban }}<br>
-                <strong>Etablissement:</strong> {{ $data->mobility->bank->name }}<br>
+                <strong>IBAN: </strong>{{ $data->mobility->iban }}<br>
+                <strong>Etablissement:</strong> {{ $data->mobility->bic }}<br>
             </td>
         </tr>
         </tbody>
@@ -71,11 +71,11 @@
         <tr>
             <td>
                 <strong>Clotûre du compte de départ:</strong>
-                {{ $data->mobility->close_account }}<br>
-                @isset($data->mobility->end_prlv)
-                    <strong>Date de fin des virements permanents:</strong> {{ $data->mobility->env_prlv }}<br>
+                {{ $data->mobility->cloture }}<br>
+                @isset($data->mobility->date_transfer)
+                    <strong>Date de fin des virements permanents:</strong> {{ $data->mobility->date_transfer->format("d/m/Y") }}<br>
                 @endisset
-                <strong>Date de fin de la procédure (Prévu):</strong> {{ $data->mobility->end_prov }}
+                <strong>Date de fin de la procédure (Prévu):</strong> {{ $data->mobility->created_at->addDays(21)->format("d/m/Y") }}
             </td>
         </tr>
         </tbody>

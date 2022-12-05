@@ -22,13 +22,9 @@ class BankFintech
         return \Http::get('https://bank.fintech.ovh/inter')->object();
     }
 
-    public function callTransferDoc(Customer $customer, Agency $agence, string $num_mandate)
+    public function callTransferDoc()
     {
-        return \Http::timeout(50)->post('https://bank.fintech.ovh/mobility/transfer_doc', [
-            "customer" => $customer,
-            "agence" => $agence,
-            "num_mandate" => $num_mandate
-        ])->object();
+        return \Http::timeout(50)->post('https://bank.fintech.ovh/mobility/transfer_doc')->object();
     }
 
     public function status()

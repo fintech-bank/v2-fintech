@@ -31,10 +31,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobilityMvm whereUuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobilityMvm whereValid($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Customer\CustomerMobility $mobility
  */
 class CustomerMobilityMvm extends Model
 {
     protected $guarded = [];
     public $timestamps = false;
     protected $dates = ['date_transfer', 'date_enc'];
+
+
+    public function mobility()
+    {
+        return $this->belongsTo(CustomerMobility::class, 'customer_mobility_id');
+    }
 }

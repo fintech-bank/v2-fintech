@@ -75,6 +75,7 @@
                     @csrf
                     @method('POST')
                     <div class="modal-body">
+                        <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                         <p>La mobilité bancaire concerne uniquement les comptes de dépôts. Les comptes d’épargne ainsi que les comptes titres, PEA sont exclus. Il n’est pas possible de faire une mobilité bancaire d’un compte joint (2 titulaires) vers un compte individuel (1 seul titulaire).</p>
                         <div class="d-flex flex-row justify-content-around">
                             @foreach(\App\Models\Core\MobilityType::all() as $type)

@@ -93,6 +93,8 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereRefMandate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CustomerMobility whereVille($value)
  * @property-read MobilityType $type
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerMobilityMvm[] $mouvements
+ * @property-read int|null $mouvements_count
  */
 class CustomerMobility extends Model
 {
@@ -116,6 +118,11 @@ class CustomerMobility extends Model
     public function type()
     {
         return $this->belongsTo(MobilityType::class, 'mobility_type_id');
+    }
+
+    public function mouvements()
+    {
+        return $this->hasMany(CustomerMobilityMvm::class);
     }
 
 

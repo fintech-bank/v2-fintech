@@ -48,7 +48,7 @@ class Bank extends Model
 
     public $timestamps = false;
 
-    protected $appends = ['bank_symbol'];
+    protected $appends = ['bank_symbol', 'bank_by_bic'];
 
     public function beneficiaires()
     {
@@ -68,6 +68,17 @@ class Bank extends Model
     public function setCountryAttribute($value)
     {
         $this->attributes['country'] = \Str::upper(\Str::limit($value, 2, ''));
+    }
+
+    public static function getBankByBic(string $bic)
+    {
+        $bank = self::where('bic', $bic)->first();
+
+        if($bank) {
+            return $bank->name;
+        } else {
+            return "Banque inconnue";
+        }
     }
 
     public function getBankSymbolAttribute()

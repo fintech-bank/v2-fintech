@@ -1,0 +1,89 @@
+<?php
+
+namespace App\Jobs\Customer\Mobility;
+
+use App\Helper\CustomerSepaHelper;
+use App\Models\Customer\CustomerMobility;
+use App\Models\Customer\CustomerMobilityMvm;
+use App\Services\BankFintech;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+
+class BankStartJob implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    public function __construct(public CustomerMobility $mobility)
+    {
+    }
+
+    public function handle()
+    {
+        $bank = new BankFintech();
+        $transfers = $bank->callTransferDoc();
+        $this->mobility->update(['status' => "bank_start"]);
+
+        if ($this->mobility->type->select_mvm) {
+            foreach ($transfers as $transfer) {
+                $this->mobility->mouvements()->create([
+                    'uuid' => \Str::uuid(),
+                    'type_mvm' => $transfer['type_mvm'],
+                    'reference' => $transfer['reference'],
+                    'creditor' => $transfer['creditor'],
+                    'amount' => $transfer['amount'],
+                    'customer_mobility_id' => $this->mobility->id
+                ]);
+            }
+            $this->mobility->update(['status' => "select_mvm_bank"]);
+        } else {
+            foreach ($transfers as $transfer) {
+                $mvm = $this->mobility->mouvements()->create([
+                    'uuid' => \Str::uuid(),
+                    'type_mvm' => $transfer['type_mvm'],
+                    'reference' => $transfer['reference'],
+                    'creditor' => $transfer['creditor'],
+                    'amount' => $transfer['amount'],
+                    'customer_mobility_id' => $this->mobility->id,
+                    'valid' => true
+                ]);
+
+                match ($mvm->type_mvm) {
+                    "virement" => $this->postVirement($mvm),
+                    "prlv" => $this->postPrlv($mvm)
+                };
+            }
+
+            $this->mobility->update(['status' => "bank_end"]);
+        }
+    }
+
+    private function postVirement(CustomerMobilityMvm $mvm)
+    {
+        $rec_start = $mvm->mobility->date_transfer->addMonth();
+        $mvm->mobility->wallet->transfers()->create([
+            'uuid' => $mvm->uuid,
+            "amount" => $mvm->amount,
+            "reference" => $mvm->reference,
+            "reason" => "Virement vers ".$mvm->creditor,
+            "type_transfer" => 'courant',
+            'type' => 'permanent',
+            'recurring_start' => $rec_start,
+            'recurring_end' => $rec_start->addYear(),
+            'customer_wallet_id' => $mvm->mobility->wallet->id
+        ]);
+    }
+
+    private function postPrlv(CustomerMobilityMvm $mvm)
+    {
+        CustomerSepaHelper::createPrlv(
+            $mvm->amount,
+            $mvm->mobility->wallet,
+            $mvm->creditor,
+            $mvm->date_transfer
+        );
+
+    }
+}
