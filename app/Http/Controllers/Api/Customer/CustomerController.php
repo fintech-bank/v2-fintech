@@ -365,7 +365,9 @@ class CustomerController extends ApiController
             'com_prospecting' => $this->comProspecting($user, $request),
             'erasure' => $this->erasure($user, $request),
             'limit' => $this->limit($user, $request),
-            'portability' => $this->portability($user, $request)
+            'portability' => $this->portability($user, $request),
+            'activePaystar' => $this->activePaystar($request),
+            'desactivePaystar' => $this->desactivePaystar($request),
         };
     }
 
@@ -613,5 +615,25 @@ class CustomerController extends ApiController
         $user->customers->info->notify(new GrpdUpdateDroitAcceNotification($user->customers, $request, 'Contact avec votre banque'));
 
         return $this->sendSuccess("Votre demande à bien été annulé");
+    }
+
+    private function activePaystar(Request $request)
+    {
+        $customer = Customer::find($request->get('customer_id'));
+        $customer->setting()->update([
+            'paystar' => true
+        ]);
+
+        return $this->sendSuccess("Activation de l'option effectuer");
+    }
+
+    private function desactivePaystar(Request $request)
+    {
+        $customer = Customer::find($request->get('customer_id'));
+        $customer->setting()->update([
+            'paystar' => false
+        ]);
+
+        return $this->sendSuccess("Désactivation de l'option effectuer");
     }
 }
