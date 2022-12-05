@@ -214,14 +214,14 @@
                                     @foreach(\App\Models\Core\Package::where('type_cpt', $customer->info->type)->get() as $package)
                                         <div class="tab-pane fade {{ $package->id == $customer->package->id ? 'show active' : '' }}" id="package_{{ Str::slug($package->name) }}" role="tabpanel">
                                             <div class="pb-5">
-                                                <h2 class="fw-bold text-dark">What’s in Startup Plan?</h2>
-                                                <div class="text-muted fw-semibold">Optimal for 10+ team size and new startup</div>
+                                                <h2 class="fw-bold text-dark">{{ $package->name }}</h2>
+                                                <div class="text-muted fw-semibold">De quoi est composer ce service ?</div>
                                             </div>
                                             <!--begin::Body-->
                                             <div class="pt-1">
                                                 <!--begin::Item-->
                                                 <div class="d-flex align-items-center mb-7">
-                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Up to 10 Active Users</span>
+                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Carte bancaire visa classic</span>
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
                                                     <span class="svg-icon svg-icon-1 svg-icon-success">
 														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -229,88 +229,11 @@
 															<path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor"></path>
 														</svg>
 													</span>
-                                                    <!--end::Svg Icon-->
-                                                </div>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center mb-7">
-                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Up to 30 Project Integrations</span>
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
-                                                    <span class="svg-icon svg-icon-1 svg-icon-success">
-														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
-															<path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor"></path>
-														</svg>
-													</span>
-                                                    <!--end::Svg Icon-->
-                                                </div>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center mb-7">
-                                                    <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Analytics Module</span>
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
-                                                    <span class="svg-icon svg-icon-1 svg-icon-success">
-														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
-															<path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor"></path>
-														</svg>
-													</span>
-                                                    <!--end::Svg Icon-->
-                                                </div>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center mb-7">
-                                                    <span class="fw-semibold fs-5 text-muted flex-grow-1">Finance Module</span>
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
-                                                    <span class="svg-icon svg-icon-1">
-														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
-															<rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="currentColor"></rect>
-															<rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="currentColor"></rect>
-														</svg>
-													</span>
-                                                    <!--end::Svg Icon-->
-                                                </div>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center mb-7">
-                                                    <span class="fw-semibold fs-5 text-muted flex-grow-1">Accounting Module</span>
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
-                                                    <span class="svg-icon svg-icon-1">
-														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
-															<rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="currentColor"></rect>
-															<rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="currentColor"></rect>
-														</svg>
-													</span>
-                                                    <!--end::Svg Icon-->
-                                                </div>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center mb-7">
-                                                    <span class="fw-semibold fs-5 text-muted flex-grow-1">Network Platform</span>
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
-                                                    <span class="svg-icon svg-icon-1">
-														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
-															<rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="currentColor"></rect>
-															<rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="currentColor"></rect>
-														</svg>
-													</span>
-                                                    <!--end::Svg Icon-->
-                                                </div>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center">
-                                                    <span class="fw-semibold fs-5 text-muted flex-grow-1">Unlimited Cloud Space</span>
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen040.svg-->
-                                                    <span class="svg-icon svg-icon-1">
-														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
-															<rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="currentColor"></rect>
-															<rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="currentColor"></rect>
-														</svg>
-													</span>
+                                                    @if($package->visa_classic)
+                                                        <i class="fa-regular fa-circle-check text-success fs-1"></i>
+                                                    @else
+                                                        <i class="fa-regular fa-circle-xmark text-success fs-1"></i>
+                                                    @endif
                                                     <!--end::Svg Icon-->
                                                 </div>
                                                 <!--end::Item-->
