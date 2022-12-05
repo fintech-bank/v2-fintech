@@ -102,8 +102,7 @@
                             required="true" />
                         <x-form.input-file
                             name="cni_secondaire"
-                            label="Pièce d'identité (Recto) personne secondaire"
-                            required="true" />
+                            label="Pièce d'identité (Recto) personne secondaire" />
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
