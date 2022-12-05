@@ -52,7 +52,11 @@
                             </div>
                         </td>
                         <td>{!! $mobility->status_label !!}</td>
-                        <td></td>
+                        <td>
+                            @if($mobility->status == 'select_mvm_bank' || $mobility->status == 'select_mvm_creditor')
+                                <a href="{{ route('customer.account.profil.mobility.show', $mobility->ref_mandate) }}" class="btn btn-xs btn-icon btn-primary"><i class="fa-solid fa-eye text-white"></i> </a>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
