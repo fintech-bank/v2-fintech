@@ -10,6 +10,7 @@
         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Transfert Agence simple</h1>
         <!--end::Title-->
     </div>
+    <button class="btn btn-primary">Test</button>
 @endsection
 
 @section("content")
