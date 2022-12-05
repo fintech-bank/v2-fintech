@@ -14,14 +14,14 @@
                 <div class="fs-1 fw-bold text-primary uppercase">Comptes bancaires</div>
                 @foreach($wallets->where('type', 'compte')->get() as $wallet)
                     <a href="" class="btn btn-flex justify-content-between btn-secondary px-5 w-100">
-                        <span class="d-flex flex-row  align-items-center">
+                        <div class="d-flex flex-row  align-items-center">
                             <span class="d-flex flex-row">
                                 <span class="fw-bolder">Compte Bancaire <span class="text-muted">{{ Str::mask($wallet->number_account, 0, 5) }}</span></span>
                             </span>
                             <span class="d-flex flex-row">
                                 {{ eur($wallet->solde_remaining) }}
                             </span>
-                        </span>
+                        </div>
                     </a>
                 @endforeach
             </div>
