@@ -22,6 +22,17 @@
                             <span class="fs-2 fw-bolder">{{ eur($wallet->solde_remaining) }}</span>
                         </span>
                     </a>
+                    <div class="ms-8">
+                        @foreach($wallet->cards as $card)
+                            <a href="" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
+                                <span class="d-flex flex-row fs-2">
+                                    <img src="/storage/card/{{ $card->support->slug }}.png" alt="">
+                                    <span class="fw-bolder">CB Visa </span>
+                                    <span class="text-muted">{{ $card->number_card_oscure }}</span>
+                                </span>
+                            </a>
+                        @endforeach
+                    </div>
                 @endforeach
                 <div class="separator separator-dashed border-gray-600 my-10"></div>
             </div>
