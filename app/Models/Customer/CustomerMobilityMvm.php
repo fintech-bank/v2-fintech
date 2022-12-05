@@ -37,11 +37,19 @@ class CustomerMobilityMvm extends Model
 {
     protected $guarded = [];
     public $timestamps = false;
-    protected $dates = ['date_transfer', 'date_enc'];
+    protected $dates = ['date_transfer', 'date_enc', 'type_text'];
 
 
     public function mobility()
     {
         return $this->belongsTo(CustomerMobility::class, 'customer_mobility_id');
+    }
+
+    public function getTypeTextAttribute()
+    {
+        return match ($this->type_mvm) {
+            "virement" => "Virement Bancaire",
+            "prlv" => "Prélèvement bancaire"
+        };
     }
 }

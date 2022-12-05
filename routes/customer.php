@@ -86,6 +86,7 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
 
             Route::prefix('mobility')->name('mobility.')->group(function () {
                 Route::get('/', [\App\Http\Controllers\Customer\Profil\MobilityController::class, 'index'])->name('index');
+                Route::get('{ref_mandate}', [\App\Http\Controllers\Customer\Profil\MobilityController::class, 'show'])->name('show');
             });
 
             Route::prefix('transfer')->name('transfer.')->group(function () {
