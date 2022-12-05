@@ -57,7 +57,7 @@
                                                     {{ $wallet->type_text }}
                                                 </div>
                                             </div>
-                                            <span class="text-black d-flex flex-end">{{ $wallet->solde_remaining }}</span>
+                                            <span class="text-black d-flex flex-end">{{ eur($wallet->solde_remaining) }}</span>
                                         </a>
                                     @elseif($wallet->type == 'epargne')
                                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row align-items-center text-black">
