@@ -108,6 +108,6 @@ class HomeController extends Controller
     {
         $bank = new BankFintech();
 
-        dd($bank->callTransferDoc());
+        dd($bank->callCreditorDoc());
     }
 }
