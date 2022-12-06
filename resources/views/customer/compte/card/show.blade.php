@@ -150,7 +150,7 @@
             </div>
         </div>
         <!--end::Accordion-->
-        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10 @if(!Agent::isMobile()) disabled @endif">
+        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10" @if(!Agent::isMobile()) disabled @endif>
             <div class="d-flex flex-column">
                 <span class="fw-bolder fs-2">Consulter mon code secret</span>
                 <p>Vous avez oublier le code secret de votre carte bancaire ? Consulter le !</p>
