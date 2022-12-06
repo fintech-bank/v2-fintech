@@ -46,7 +46,7 @@
                         <span>{{ eur($card->limit_payment) }}</span>
                     </div>
                     <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
-                        <div class="bg-white rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="bg-success rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>
