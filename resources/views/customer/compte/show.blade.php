@@ -30,8 +30,8 @@
                         <div class="accordion-item mb-5">
                             <h2 class="accordion-header" id="flush-headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ $transaction->uuid }}" aria-expanded="false" aria-controls="flush-{{ $transaction->uuid }}">
-                                    <span class="d-flex flex-row justify-content-between align-items-center">
-                                        <span class="d-flex flex-row">
+                                    <span class="d-flex flex-row justify-content-between ">
+                                        <span class="d-flex flex-row align-items-center">
                                             {!! $transaction->type_symbol !!}
                                             <span class="">{{ $transaction->designation }}</span>
                                         </span>
