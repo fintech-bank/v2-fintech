@@ -62,6 +62,16 @@
                     <div class="fw-bolder fs-3">{{ eur($card->actual_limit_withdraw) }}</div>
                     <a href="" class="btn btn-link"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</a>
                 </div>
+                <div class="d-flex align-items-center flex-column mt-3 w-75">
+                    <div class="h-8px mx-3 w-100 bg-black bg-opacity-75 rounded">
+                        <div class="bg-success rounded h-8px" role="progressbar" style="width: {{ $card->getTransactionsMonthWithdraw(true) }}%;" aria-valuenow="{{ $card->getTransactionsMonthwithdraw() }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex justify-content-between fw-bold fs-6 opacity-75 w-100 mt-auto mb-2">
+                        <span class="text-success fw-bolder">Utilisé: {{ eur($card->getTransactionsMonthWithdraw()) }}</span>
+                        <span>Restant: {{ eur($card->actual_limit_withdraw - $card->getTransactionsMonthWithdraw()) }}</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
