@@ -73,7 +73,7 @@
                     <div class="separator separator-dashed border-gray-600 my-15"></div>
                 @if($customer->setting->cashback)
                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-column justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
-                            <span class="d-flex flex-row">
+                            <span class="d-flex flex-row justify-content-between align-items-center">
                                 <span class="d-flex flex-row fs-2">
                                     <span class="fw-bolder">Ma Cagnotte</span>
                                 </span>
