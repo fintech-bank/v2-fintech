@@ -63,7 +63,16 @@ class WalletExpenseChart
         return $this->chart->donutChart()
             ->setTitle('Dépense')
             ->setSubtitle('Depuis le '.now()->startOfMonth()->format('d.m.Y'))
-            ->addData([+$retrait, +$payment, +$virement, +$sepa, +$frais, +$souscription, +$autre, +$credit])
+            ->addData([
+                \Str::replace('-', '', $retrait),
+                \Str::replace('-', '', $payment),
+                \Str::replace('-', '', $virement),
+                \Str::replace('-', '', $sepa),
+                \Str::replace('-', '', $frais),
+                \Str::replace('-', '', $souscription),
+                \Str::replace('-', '', $autre),
+                \Str::replace('-', '', $credit)
+            ])
             ->setLabels(['Retrait bancaire', 'CB, Paiement, Loisir', 'Virement Bancaire', 'Prélèvement', 'Frais Bancaire', 'Souscription', 'Autre', 'Emprunts, Crédit'])
             ->setColors(['#E57373', '#F06292', '#BA68C8', '#9575CD', '#7986CB', '#64B5F6', '#4DB6AC', '#FFD54F']);
     }
