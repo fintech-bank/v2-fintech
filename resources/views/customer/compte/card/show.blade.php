@@ -130,14 +130,14 @@
                             <tr>
                                 <td>Paiement sans contact</td>
                                 <td>
-                                    @if($card->contact)
+                                    @if($card->payment_contact)
                                         <i class="fa-regular fa-circle-dot text-success me-3 fs-3"></i> Actif
                                     @else
                                         <i class="fa-regular fa-circle-dot text-danger me-3 fs-3"></i> Inactif
                                     @endif
                                 </td>
                                 <td>
-                                    @if($card->contact)
+                                    @if($card->payment_contact)
                                         <a href="" class="btn btn-link"><i class="fa-solid fa-lock me-2"></i> Désactiver</a>
                                     @else
                                         <a href="" class="btn btn-link"><i class="fa-solid fa-unlock me-2"></i> Activer</a>
