@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="card shadow-sm">
+        <div class="card shadow-sm mb-10">
             <div class="card-header">
                 <h3 class="card-title">Gérer mes plafonds</h3>
             </div>
@@ -84,33 +84,19 @@
                 </h2>
                 <div id="options" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#kt_accordion_1">
                     <div class="accordion-body">
-                        ...
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="kt_accordion_1_header_2">
-                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_2" aria-expanded="false" aria-controls="kt_accordion_1_body_2">
-                        Accordion Item #2
-                    </button>
-                </h2>
-                <div id="kt_accordion_1_body_2" class="accordion-collapse collapse" aria-labelledby="kt_accordion_1_header_2" data-bs-parent="#kt_accordion_1">
-                    <div class="accordion-body">
-                        ...
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="kt_accordion_1_header_3">
-                    <button class="accordion-button fs-4 fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_3" aria-expanded="false" aria-controls="kt_accordion_1_body_3">
-                        Accordion Item #3
-                    </button>
-                </h2>
-                <div id="kt_accordion_1_body_3" class="accordion-collapse collapse" aria-labelledby="kt_accordion_1_header_3" data-bs-parent="#kt_accordion_1">
-                    <div class="accordion-body">
-                        ...
+                        <table class="table table-sm">
+                            <caption class="bg-gray-300">Mes Options</caption>
+                            <tr>
+                                <td>Option Crédit</td>
+                                <td>
+                                    @if($card->facelia)
+                                        <i class="fa-regular fa-circle-dot text-success me-3 fs-3"></i> Souscrit
+                                    @else
+                                        <i class="fa-regular fa-circle-dot text-danger me-3 fs-3"></i> Non souscrit
+                                    @endif
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
