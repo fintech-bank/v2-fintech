@@ -20,7 +20,7 @@ class CompteController extends Controller
         ]);
     }
 
-    public function show($wallet_uuid)
+    public function wallet($wallet_uuid)
     {
         $wallet = CustomerWallet::where('uuid', $wallet_uuid)->first();
         return view('customer.compte.show', [
