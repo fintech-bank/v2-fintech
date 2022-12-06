@@ -11,7 +11,7 @@ class CompteController extends Controller
     public function index()
     {
         $cash = new CashbackApi();
-        dd($cash->callWallet(auth()->user()->customers->id)->data);
+        //dd($cash->callWallet(auth()->user()->customers->id)->data);
         return view('customer.compte.index', [
             "customer" => Customer::find(auth()->user()->customers->id),
             'wallets' => Customer::find(auth()->user()->customers->id)->wallets,
