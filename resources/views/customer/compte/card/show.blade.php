@@ -105,6 +105,23 @@
                                     @endif
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Option E-carte bleu</td>
+                                <td>
+                                    @if($customer->setting->nb_virtual_card != 0)
+                                        <i class="fa-regular fa-circle-dot text-success me-3 fs-3"></i> Souscrit
+                                    @else
+                                        <i class="fa-regular fa-circle-dot text-danger me-3 fs-3"></i> Non souscrit
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($customer->setting->nb_virtual_card != 0)
+                                        <a href="" class="btn btn-link"><i class="fa-solid fa-eye me-2"></i> Gérez</a>
+                                    @else
+                                        <a href="" class="btn btn-link"><i class="fa-solid fa-eye me-2"></i> Découvrir</a>
+                                    @endif
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
