@@ -34,7 +34,7 @@
                                         <div class="d-flex flex-column">
                                             {!! $transaction->getTypeSymbolAttribute(50) !!}
                                         </div>
-                                        <div class="fs-1 fw-bolder">{{ $transaction->designation }}</div>
+                                        <div class="fs-3">{{ $transaction->designation }}</div>
                                     </div>
                                     <div class="d-flex flex-row justify-content-end align-items-center mb-2">
                                         {{ $transaction->amount_format }}
