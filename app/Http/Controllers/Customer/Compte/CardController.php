@@ -8,13 +8,12 @@ use App\Models\Customer\CustomerWallet;
 
 class CardController extends Controller
 {
-    public function index($wallet_uuid)
+    public function index()
     {
-        $wallet = CustomerWallet::where('uuid', $wallet_uuid)->first();
 
         return view('customer.compte.card.index', [
             'customer' => Customer::find(auth()->user()->customers->id),
-            "cards" => $wallet->cards
+            "wallets" => Customer::find(auth()->user()->customers->id)->wallets
         ]);
     }
 }
