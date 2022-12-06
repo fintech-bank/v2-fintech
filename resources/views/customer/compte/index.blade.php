@@ -94,7 +94,7 @@
             <div class="col-md-3 col-sm-12 mb-10">
                 <a href="{{ route('customer.account.documents.index') }}" class="d-flex flex-row align-items-center text-dark">
                     <i class="fa-regular fa-file-lines fs-2hx me-2"></i>
-                    <span class="fs-2hx">Documents</span>
+                    <span class="fs-1">Documents</span>
                 </a>
                 <div class="separator separator-dotted my-10"></div>
             </div>
