@@ -50,7 +50,7 @@
                     </div>
                     <div class="d-flex justify-content-between fw-bold fs-6 opacity-75 w-100 mt-auto mb-2">
                         <span class="text-success fw-bolder">Utilisé: {{ eur($card->getTransactionsMonthPayment()) }}</span>
-                        <span>{{ eur($card->limit_payment) }}</span>
+                        <span>Restant: {{ eur($card->limit_payment - $card->getTransactionsMonthPayment()) }}</span>
                     </div>
                 </div>
             </div>
