@@ -18,7 +18,7 @@ class WalletExpenseChart
         return $this->chart->radialChart()
             ->setTitle('Dépense')
             ->setSubtitle('Depuis le '.now()->startOfMonth()->format('d.m.Y'))
-            ->addData([-80.30, -89.63, -96.30])
+            ->addData([80.30, 89.63, 96.30])
             ->setLabels(['Vie quotidienne', 'Emprunts', 'Loisirs'])
             ->setColors(['#D32F2F', '#03A9F4', '#04D6F9']);
     }
