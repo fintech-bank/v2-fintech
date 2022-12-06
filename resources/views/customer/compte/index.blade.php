@@ -73,11 +73,18 @@
                     <div class="separator separator-dashed border-gray-600 my-15"></div>
                 @if($customer->setting->cashback)
                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
-                            <span class="d-flex flex-row fs-2">
-                                <span class="fw-bolder">Ma Cagnotte</span>
+                            <span class="d-flex flex-column">
+                                <span class="d-flex flex-row fs-2">
+                                    <span class="fw-bolder">Ma Cagnotte</span>
+                                </span>
+                                <span class="d-flex flex-row">
+                                    <span class="fs-2 fw-bolder">{{ eur($cashback->balance) }}</span>
+                                </span>
                             </span>
-                            <span class="d-flex flex-row">
-                                <span class="fs-2 fw-bolder">{{ eur($cashback->balance) }}</span>
+                            <span class="d-flex flex-column">
+                                <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
+									<div class="bg-white rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
                             </span>
                         </a>
                 @endif
