@@ -24,6 +24,7 @@ class CompteController extends Controller
     public function wallet($wallet_uuid, WalletExpenseChart $chart)
     {
         $wallet = CustomerWallet::where('uuid', $wallet_uuid)->first();
+        dd($chart->build($wallet->id));
         return view('customer.compte.show', [
             'wallet' => $wallet,
             'chart' => $chart->build()

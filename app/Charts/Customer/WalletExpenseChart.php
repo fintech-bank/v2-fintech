@@ -2,6 +2,7 @@
 
 namespace App\Charts\Customer;
 
+use App\Models\Customer\CustomerTransaction;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class WalletExpenseChart
@@ -13,8 +14,16 @@ class WalletExpenseChart
         $this->chart = $chart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\DonutChart
+    public function build($customer_wallet_id): \ArielMejiaDev\LarapexCharts\DonutChart
     {
+        $data = collect();
+        $depot = CustomerTransaction::where('customer_wallet_id', $customer_wallet_id)
+            ->where('type', 'depot')
+            ->whereBetween('confirmed_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->average('amount');
+
+        dd($depot);
+
         return $this->chart->donutChart()
             ->setTitle('Dépense')
             ->setSubtitle('Depuis le '.now()->startOfMonth()->format('d.m.Y'))
