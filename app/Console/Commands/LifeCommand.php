@@ -1110,8 +1110,8 @@ class LifeCommand extends Command
                         CustomerTransactionHelper::createDebit(
                             $wallet->id,
                             'payment',
-                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
-                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
                             $faker->randomFloat(2, 0.01, 200),
                             false,
                             null,
@@ -1124,8 +1124,8 @@ class LifeCommand extends Command
                         CustomerTransactionHelper::createDebit(
                             $wallet->id,
                             'payment',
-                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
-                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
                             $faker->randomFloat(2, 0.01, 200),
                             true,
                             $day,
@@ -1141,8 +1141,8 @@ class LifeCommand extends Command
                         CustomerTransactionHelper::createDebit(
                             $wallet->id,
                             'facelia',
-                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
-                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
                             $faker->randomFloat(2, 0.01, 200),
                             true,
                             $day,
@@ -1155,8 +1155,8 @@ class LifeCommand extends Command
                         CustomerTransactionHelper::createDebit(
                             $wallet->id,
                             'payment',
-                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
-                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
                             $faker->randomFloat(2, 0.01, 200),
                             true,
                             $day,
