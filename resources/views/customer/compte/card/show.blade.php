@@ -15,8 +15,8 @@
                     <img src="/storage/card/{{ $card->support->slug }}.png" alt="" class="img-fluid m-0 p-0">
                 </div>
                 <div class="w-50">
-                    <div class="d-flex flex-center align-items-center">
-                        <div class="d-flex flex-column">
+                    <div class="d-flex flex-center ">
+                        <div class="d-flex flex-column align-items-center">
                             <div class="fw-bolder fs-2">CB VISA</div>
                             {{ $card->debit_format }}
                             <a href="{{ route('customer.compte.wallet', $card->wallet->uuid) }}" class="btn btn-link">{{ $card->wallet->name_account_generic }}</a>
