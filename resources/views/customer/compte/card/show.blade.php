@@ -54,6 +54,7 @@
                             <span>Restant: {{ eur($card->limit_payment - $card->getTransactionsMonthPayment()) }}</span>
                         </div>
                     </div>
+                    <a href="" class="btn btn-link"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</a>
                 </div>
                 <div class="separator separator-dashed my-5"></div>
                 <div class="fw-bolder"></div>
