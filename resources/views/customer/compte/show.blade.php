@@ -30,11 +30,11 @@
                         <div class="accordion-item mb-5">
                             <h2 class="accordion-header" id="flush-headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ $transaction->uuid }}" aria-expanded="false" aria-controls="flush-{{ $transaction->uuid }}">
-                                    <span class="row">
+                                    <span class="row align-items-center">
                                         <span class="col-md-2">
                                             {!! $transaction->getTypeSymbolAttribute(50) !!}
                                         </span>
-                                        <span class="col-md-9">
+                                        <span class="col-md-">
                                             {{ $transaction->designation }}
                                         </span>
                                         <span class="col-md-1">
