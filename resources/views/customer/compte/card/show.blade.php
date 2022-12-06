@@ -58,7 +58,8 @@
                 </div>
                 <div class="separator separator-dashed my-5"></div>
                 <div class="d-flex flex-row justify-content-between">
-                    <div class="fw-bolder">Capacité de retrait (France et étranger) <span class="text-muted fs-9">sur 7 jours glissants</span></div>
+                    <div class="fw-bolder fs-4">Capacité de retrait (France et étranger) <span class="text-muted fs-9">sur 7 jours glissants</span></div>
+                    <div class="fw-bolder fs-3">{{ eur($card->limit_withdraw) }}</div>
                 </div>
             </div>
         </div>
