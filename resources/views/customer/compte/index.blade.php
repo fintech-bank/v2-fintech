@@ -103,7 +103,7 @@
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
                 <a href="{{ route('customer.account.agenda.index') }}" class="d-flex flex-row align-items-center text-dark hover-zoom">
-                    <i class="fa-regular calendar-check fs-2hx me-2"></i>
+                    <i class="fa-regular fa-calendar-check fs-2hx me-2"></i>
                     <span class="fs-1">Mes rendez-vous</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
