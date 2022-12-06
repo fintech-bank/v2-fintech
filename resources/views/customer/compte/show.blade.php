@@ -22,31 +22,72 @@
                     size-text="fs-1"
                     class="uppercase w-100 my-5" />
 
-                @foreach($wallet->transactions()->where('confirmed', 0)->orderBy('updated_at', 'desc')->get() as $transaction)
 
-                @endforeach
-                <div class="accordion" id="opsAtt">
-                    @foreach($wallet->transactions()->where('confirmed', 0)->orderBy('updated_at', 'desc')->get() as $transaction)
-                        <div class="accordion-item mb-5">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ $transaction->uuid }}" aria-expanded="false" aria-controls="flush-{{ $transaction->uuid }}">
-                                    <div class="d-flex flex-row justify-content-between align-items-center mb-5">
-                                        <div class="d-flex flex-column">
-                                            {!! $transaction->getTypeSymbolAttribute(30) !!}
+                @foreach($wallet->transactions()->where('confirmed', 0)->orderBy('updated_at', 'desc')->get() as $transaction)
+                    <div class="mb-5">
+                        <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0"
+                           data-bs-toggle="collapse" href="#{{ $transaction->type }}_{{ $transaction->id }}">
+                            <div class="d-flex flex-row align-items-center text-black">
+                                {!! $transaction->getTypeSymbolAttribute() !!}
+                                <div class="d-flex flex-column">
+                                    {{ $transaction->designation }}<br>
+                                    <div class="text-muted">
+                                        {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format('d/m/Y')) }}
+                                    </div>
+                                </div>
+                            </div>
+                            @if ($transaction->amount < 0)
+                                <span class="text-danger fs-2 fw-bolder">{{ $transaction->amount_format }}</span>
+                            @else
+                                <span class="text-success fs-2 fw-bolder">+ {{ $transaction->amount_format }}</span>
+                            @endif
+                        </a>
+                        <div class="collapse" id="{{ $transaction->type }}_{{ $transaction->id }}">
+                            <div class="card card-body">
+                                <div class="ps-5 text-muted mb-5">{{ $transaction->type_text }}</div>
+                                <div class="mb-5">
+                                    <x-base.underline title="Détails de l'opération" class="mb-2" size-text="fs-3"
+                                                      size="3" color="{{ $transaction->type_color }}" />
+                                    <div class="d-flex flex-row justify-content-around">
+                                        <div>Transaction effectuée le: {{ $transaction->updated_at->format('d/m/Y') }}
                                         </div>
-                                        <div class="fs-3">{{ $transaction->designation }}</div>
+                                        <div>Comptabilisé à la date du:
+                                            {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format('d/m/Y')) }}
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-row justify-content-end align-items-center mb-2">
-                                        {{ $transaction->amount_format }}
+                                </div>
+                                <div class="mb-5">
+                                    <x-base.underline title="Libellé complet" class="mb-2" size-text="fs-3"
+                                                      size="3" color="{{ $transaction->type_color }}" />
+                                    <div class="d-flex flex-column">
+                                        <div class="fw-bold">{{ $transaction->designation }}</div>
+                                        <div>{{ $transaction->description }}</div>
                                     </div>
-                                </button>
-                            </h2>
-                            <div id="flush-{{ $transaction->uuid }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#opsAtt">
-                                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                                </div>
+                                <div class="text-center">
+                                    @if (!$transaction->confirmed)
+                                        <button class="btn btn-lg btn-circle btn-success btnAcceptTransaction me-2"
+                                                data-transaction="{{ $transaction->id }}"><i
+                                                class="fa-solid fa-check-circle me-2"></i> Accepter</button>
+                                        <button class="btn btn-lg btn-circle btn-danger btnRejectTransaction me-2"
+                                                data-transaction="{{ $transaction->id }}"><i
+                                                class="fa-solid fa-xmark-circle me-2"></i> Refuser</button>
+                                    @endif
+                                    @if ($transaction->type == 'payment')
+                                        <button class="btn btn-lg btn-circle btn-info btnOppositPayment me-2"
+                                                data-transaction="{{ $transaction->id }}"><i
+                                                class="fa-solid fa-ban me-2"></i> Opposition</button>
+                                    @endif
+                                    @if ($transaction->type == 'frais')
+                                        <button class="btn btn-lg btn-circle btn-info btnRemb me-2"
+                                                data-transaction="{{ $transaction->id }}"><i
+                                                class="fa-solid fa-exchange me-2"></i> Remboursement</button>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
