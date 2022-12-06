@@ -32,7 +32,7 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ $transaction->uuid }}" aria-expanded="false" aria-controls="flush-{{ $transaction->uuid }}">
                                     <span class="row">
                                         <span class="col-md-1">
-                                            {!! $transaction->type_symbol !!}
+                                            {!! $transaction->getTypeSymbolAttribute(50) !!}
                                         </span>
                                         <span class="col-md-10">
                                             {{ $transaction->designation }}
