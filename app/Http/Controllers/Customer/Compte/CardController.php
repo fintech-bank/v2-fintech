@@ -20,7 +20,7 @@ class CardController extends Controller
     public function show($card_id)
     {
         $card = CustomerCreditCard::find($card_id);
-        return view('customer.compte.card.index', [
+        return view('customer.compte.card.show', [
             'customer' => Customer::find(auth()->user()->customers->id),
             "card" => $card,
             "wallet" => $card->wallet
