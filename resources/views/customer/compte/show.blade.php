@@ -64,26 +64,6 @@
                                         <div>{{ $transaction->description }}</div>
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    @if (!$transaction->confirmed)
-                                        <button class="btn btn-lg btn-circle btn-success btnAcceptTransaction me-2"
-                                                data-transaction="{{ $transaction->id }}"><i
-                                                class="fa-solid fa-check-circle me-2"></i> Accepter</button>
-                                        <button class="btn btn-lg btn-circle btn-danger btnRejectTransaction me-2"
-                                                data-transaction="{{ $transaction->id }}"><i
-                                                class="fa-solid fa-xmark-circle me-2"></i> Refuser</button>
-                                    @endif
-                                    @if ($transaction->type == 'payment')
-                                        <button class="btn btn-lg btn-circle btn-info btnOppositPayment me-2"
-                                                data-transaction="{{ $transaction->id }}"><i
-                                                class="fa-solid fa-ban me-2"></i> Opposition</button>
-                                    @endif
-                                    @if ($transaction->type == 'frais')
-                                        <button class="btn btn-lg btn-circle btn-info btnRemb me-2"
-                                                data-transaction="{{ $transaction->id }}"><i
-                                                class="fa-solid fa-exchange me-2"></i> Remboursement</button>
-                                    @endif
-                                </div>
                             </div>
                         </div>
                     </div>
