@@ -27,7 +27,7 @@ class CompteController extends Controller
         //dd($chart->build($wallet->id));
         return view('customer.compte.show', [
             'wallet' => $wallet,
-            'chart' => $chart->build()
+            'chart' => $chart->build($wallet->id)
         ]);
     }
 }
