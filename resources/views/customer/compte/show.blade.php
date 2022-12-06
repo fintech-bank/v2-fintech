@@ -202,11 +202,7 @@
                     <span class="fs-1">Mes cartes</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        {!! $chart->container() !!}
-                    </div>
-                </div>
+                {!! $chart->container() !!}
             </div>
         </div>
     </div>
