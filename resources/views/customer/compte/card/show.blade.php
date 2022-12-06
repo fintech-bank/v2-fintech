@@ -19,6 +19,8 @@
                         <div class="d-flex flex-column">
                             <div class="fw-bolder fs-2">CB VISA</div>
                             {{ $card->debit_format }}
+                            <a href="{{ route('customer.compte.wallet', $card->wallet->uuid) }}" class="btn btn-link">{{ $card->wallet->name_account_generic }}</a>
+
                         </div>
                     </div>
                 </div>
