@@ -9,7 +9,7 @@ use App\Models\Customer\CustomerWallet;
 
 class CardController extends Controller
 {
-    public function index($wallet_id)
+    public function index()
     {
         return view('customer.compte.card.index', [
             'customer' => Customer::find(auth()->user()->customers->id),
@@ -17,7 +17,7 @@ class CardController extends Controller
         ]);
     }
 
-    public function show($wallet_id,$card_id)
+    public function show($card_id)
     {
         $card = CustomerCreditCard::find($card_id);
         return view('customer.compte.card.index', [

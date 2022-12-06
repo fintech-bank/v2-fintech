@@ -103,31 +103,34 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
             });
         });
     });
+
     Route::prefix('compte')->name('compte.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'index'])->name('index');
         Route::get('{wallet_uuid}', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'wallet'])->name('wallet');
 
-        Route::prefix('{wallet_uuid}/card')->name('card.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\CardController::class, 'index'])->name('index');
-            Route::get('/{id}', [\App\Http\Controllers\Customer\Compte\CardController::class, 'show'])->name('show');
-        });
-
-        Route::prefix('transfer')->name('transfer.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\TransferController::class, 'index'])->name('index');
-        });
-
-        Route::prefix('sepa')->name('sepa.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\SepaController::class, 'index'])->name('index');
-        });
-
-        Route::prefix('budgets')->name('budgets.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\BudgetsController::class, 'index'])->name('index');
-        });
-
-        Route::prefix('offers')->name('offers.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\OffersController::class, 'index'])->name('index');
-        });
     });
+
+    Route::prefix('card')->name('card.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Customer\Compte\CardController::class, 'index'])->name('index');
+        Route::get('/{id}', [\App\Http\Controllers\Customer\Compte\CardController::class, 'show'])->name('show');
+    });
+
+    Route::prefix('transfer')->name('transfer.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Customer\Compte\TransferController::class, 'index'])->name('index');
+    });
+
+    Route::prefix('sepa')->name('sepa.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Customer\Compte\SepaController::class, 'index'])->name('index');
+    });
+
+    Route::prefix('budgets')->name('budgets.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Customer\Compte\BudgetsController::class, 'index'])->name('index');
+    });
+
+    Route::prefix('offers')->name('offers.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Customer\Compte\OffersController::class, 'index'])->name('index');
+    });
+
     Route::prefix('pret')->group(function () {
         Route::get('/', \App\Http\Controllers\Customer\Pret\PretController::class)->name('customer.pret');
 
