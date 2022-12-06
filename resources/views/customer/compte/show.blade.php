@@ -30,7 +30,13 @@
                         <div class="accordion-item mb-5">
                             <h2 class="accordion-header" id="flush-headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ $transaction->uuid }}" aria-expanded="false" aria-controls="flush-{{ $transaction->uuid }}">
-                                    Accordion Item #1
+                                    <span class="d-flex flex-row justify-content-between align-items-center">
+                                        <span class="d-flex flex-row">
+                                            {!! $transaction->type_symbol !!}
+                                            <span class="">{{ $transaction->designation }}</span>
+                                        </span>
+                                        {{ $transaction->amount_format }}
+                                    </span>
                                 </button>
                             </h2>
                             <div id="flush-{{ $transaction->uuid }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#opsAtt">
