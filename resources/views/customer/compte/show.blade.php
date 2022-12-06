@@ -25,7 +25,7 @@
                 @foreach($wallet->transactions()->where('confirmed', 0)->orderBy('updated_at', 'desc')->get() as $transaction)
 
                 @endforeach
-                <div class="accordion accordion-flush" id="opsAtt">
+                <div class="accordion" id="opsAtt">
                     @foreach($wallet->transactions()->where('confirmed', 0)->orderBy('updated_at', 'desc')->get() as $transaction)
                         <div class="accordion-item mb-5">
                             <h2 class="accordion-header" id="flush-headingOne">
