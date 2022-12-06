@@ -85,7 +85,7 @@
                 <div id="options" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#kt_accordion_1">
                     <div class="accordion-body">
                         <table class="table table-sm">
-                            <caption class="bg-gray-300">Mes Options</caption>
+                            <title class="bg-gray-300">Mes Options</title>
                             <tr>
                                 <td>Option Crédit</td>
                                 <td>
