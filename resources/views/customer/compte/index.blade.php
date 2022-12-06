@@ -76,7 +76,7 @@
                                 <span class="fw-bolder">Ma Cagnotte</span>
                             </span>
                             <span class="d-flex flex-row">
-                                <span class="fs-2 fw-bolder">{{ eur($cashback->wallet) }}</span>
+                                <span class="fs-2 fw-bolder">{{ eur($cashback->balance) }}</span>
                             </span>
                         </a>
                 @endif
