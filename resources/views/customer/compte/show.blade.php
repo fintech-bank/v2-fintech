@@ -176,8 +176,22 @@
                 @endfor
 
             </div>
-            <div class="col-md-3 col-sm-12">
-
+            <div class="col-md-3 col-sm-12 mt-10">
+                <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom">
+                    <i class="fa-solid fa-arrow-right-arrow-left fs-2hx me-2"></i>
+                    <span class="fs-1">Effectuer un virement</span>
+                </a>
+                <div class="separator separator-dotted border-gray-400 my-10"></div>
+                <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom">
+                    <i class="fa-solid fa-money-check fs-2hx me-2"></i>
+                    <span class="fs-1">Télécharger mon rib</span>
+                </a>
+                <div class="separator separator-dotted border-gray-400 my-10"></div>
+                <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom">
+                    <i class="fa-solid fa-files-o fs-2hx me-2"></i>
+                    <span class="fs-1">Voir mes relevés</span>
+                </a>
+                <div class="separator separator-dotted border-gray-400 my-10"></div>
             </div>
         </div>
     </div>
