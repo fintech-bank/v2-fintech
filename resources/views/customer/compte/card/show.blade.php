@@ -25,6 +25,11 @@
                             @else
                                 <button class="btn btn-circle btn-outline btn-outline-dark">Dever ma carte</button>
                             @endif
+                            @if($card->status != 'opposit')
+                                <button class="btn btn-circle btn-outline btn-outline-danger">Faire opposition</button>
+                            @else
+                                <a href="" class="btn btn-link">Dossier {{ $card->opposition->reference }}</a>
+                            @endif
                         </div>
                     </div>
                 </div>
