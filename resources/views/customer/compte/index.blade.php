@@ -91,6 +91,12 @@
                         </a>
                 @endif
             </div>
+            <div class="col-md-3 col-sm-12 mb-10">
+                <a href="{{ route('customer.account.documents.index') }}" class="d-flex flex-row">
+                    <i class="fa-regular fa-file-lines fs-2hx me-2"></i>
+                    <span>Documents</span>
+                </a>
+            </div>
         </div>
     </div>
 @endsection
