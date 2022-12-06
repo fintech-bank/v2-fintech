@@ -91,7 +91,7 @@
                         </a>
                 @endif
             </div>
-            <div class="col-md-3 col-sm-12 mb-10 mt-15 ms-5">
+            <div class="col-md-3 col-sm-12 mb-10 mt-15">
                 <a href="{{ route('customer.account.documents.index') }}" class="d-flex flex-row align-items-center text-dark">
                     <i class="fa-regular fa-file-lines fs-2hx me-2"></i>
                     <span class="fs-1">Documents</span>
