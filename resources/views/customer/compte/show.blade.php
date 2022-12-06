@@ -35,7 +35,9 @@
                                             {!! $transaction->getTypeSymbolAttribute(50) !!}
                                             <span class="">{{ $transaction->designation }}</span>
                                         </span>
-                                        {{ $transaction->amount_format }}
+                                        <span class="d-flex flex-end">
+                                            {{ $transaction->amount_format }}
+                                        </span>
                                     </span>
                                 </button>
                             </h2>
