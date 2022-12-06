@@ -96,6 +96,7 @@
                     <i class="fa-regular fa-file-lines fs-2hx me-2"></i>
                     <span>Documents</span>
                 </a>
+                <div class="separator separator-dotted my-10"></div>
             </div>
         </div>
     </div>
