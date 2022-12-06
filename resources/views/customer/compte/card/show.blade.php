@@ -21,14 +21,14 @@
                             {{ $card->debit_format }}
                             <a href="{{ route('customer.compte.wallet', $card->wallet->uuid) }}" class="btn btn-link">{{ $card->wallet->name_account_generic }}</a>
                             @if($card->status == 'active')
-                                <button class="btn btn-circle btn-outline btn-outline-dark">Verrouiller ma carte</button>
+                                <button class="btn btn-circle btn-outline btn-outline-dark mb-5">Verrouiller ma carte</button>
                             @else
-                                <button class="btn btn-circle btn-outline btn-outline-dark">Dever ma carte</button>
+                                <button class="btn btn-circle btn-outline btn-outline-dark mb-5">Deverrouiller ma carte</button>
                             @endif
                             @if($card->status != 'opposit')
-                                <button class="btn btn-circle btn-outline btn-outline-danger">Faire opposition</button>
+                                <button class="btn btn-circle btn-outline btn-outline-danger mb-5">Faire opposition</button>
                             @else
-                                <a href="" class="btn btn-link">Dossier {{ $card->opposition->reference }}</a>
+                                <a href="" class="btn btn-link mb-5">Dossier {{ $card->opposition->reference }}</a>
                             @endif
                         </div>
                     </div>
