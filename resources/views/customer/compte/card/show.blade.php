@@ -150,10 +150,24 @@
             </div>
         </div>
         <!--end::Accordion-->
-        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up">
+        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10">
             <div class="d-flex flex-column">
                 <span class="fw-bolder fs-2">Consulter mon code secret</span>
                 <p>Vous avez oublier le code secret de votre carte bancaire ? Consulter le !</p>
+            </div>
+            <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
+        </a>
+        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10">
+            <div class="d-flex flex-column">
+                <span class="fw-bolder fs-2">Paramétrer ma carte</span>
+                <p>Adaptez les fonctionnalités de votre carte à vos usages : retraits, opérations à l'étranger ou achats en ligne chez les e-commercants</p>
+            </div>
+            <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
+        </a>
+        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10">
+            <div class="d-flex flex-column">
+                <span class="fw-bolder fs-2">Déclarer un voyage à l'étranger</span>
+                <p> Vous partez à l'étranger ? Dites-le nous pour éviter tout blocage de carte. </p>
             </div>
             <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
         </a>
