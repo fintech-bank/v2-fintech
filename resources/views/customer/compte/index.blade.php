@@ -70,6 +70,16 @@
                         </a>
                     @endforeach
                 @endif
+                @if($customer->setting->cashback)
+                        <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
+                            <span class="d-flex flex-row fs-2">
+                                <span class="fw-bolder">Ma Cagnotte</span>
+                            </span>
+                            <span class="d-flex flex-row">
+                                <span class="fs-2 fw-bolder">{{ eur($cashback->wallet) }}</span>
+                            </span>
+                        </a>
+                @endif
             </div>
         </div>
     </div>
