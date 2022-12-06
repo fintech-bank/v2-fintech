@@ -16,7 +16,7 @@
                         <span class="symbol symbol-30px symbol-2by3">
                             <img src="/storage/card/{{ $card->support->slug }}.png" alt="">
                         </span>
-                        <span class="fw-bolder">CB Visa </span>
+                        <span class="fw-bolder me-5">CB Visa </span>
                         <span class="text-muted">{{ $card->number_card_oscure }}</span>
                     </span>
                     {!! $card->status_label !!}
