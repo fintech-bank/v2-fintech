@@ -9,7 +9,13 @@
 
 @section("content")
     <div id="app" class="rounded">
-
+        <div class="w-75 rounded rounded-2 bg-white p-5">
+            <div class="d-flex flex-row">
+                <div class="w-50">
+                    <img src="/storage/card/{{ $card->slug }}.png" alt="">
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
