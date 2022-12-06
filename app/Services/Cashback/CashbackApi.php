@@ -8,6 +8,6 @@ class CashbackApi
 
     public function callWallet($customer_id)
     {
-        return \Http::post($this->endpoint.'/wallet', ["customer_id" => $customer_id])->object();
+        return \Http::withoutVerifying()->post($this->endpoint.'/wallet', ["customer_id" => $customer_id])->object();
     }
 }
