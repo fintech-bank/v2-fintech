@@ -75,7 +75,7 @@
             </div>
         </div>
         <!--begin::Accordion-->
-        <div class="accordion" id="kt_accordion_1">
+        <div class="accordion mb-10" id="kt_accordion_1">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="kt_accordion_1_header_1">
                     <button class="accordion-button fs-1 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#options" aria-expanded="true" aria-controls="options">
@@ -150,6 +150,15 @@
             </div>
         </div>
         <!--end::Accordion-->
+        <a href="" class="rounded border border-2 w-100 text-hover-primary">
+            <span class="d-flex flex-row justify-content-between">
+                <span class="d-flex flex-column">
+                    <span class="fw-bolder fs-2">Consulter mon code secret</span>
+                    <p>Vous avez oublier le code secret de votre carte bancaire ? Consulter le !</p>
+                </span>
+                <i class="fa-solid fa-arrow-right-long fs-1"></i>
+            </span>
+        </a>
     </div>
 @endsection
 
