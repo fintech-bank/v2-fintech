@@ -152,7 +152,7 @@ class CustomerTransaction extends Model
 
     public function getTypeSymbolAttribute($size = 30)
     {
-        $size_icon = $size - 10;
+        $size_icon = $size / 2;
         return '<div class="symbol symbol-' . $size . 'px symbol-circle me-2" data-bs-toggle="tooltip" title="' . $this->getTypeTextAttribute() . '">
                     <div class="symbol-label bg-'.$this->type_color.'"><span class="iconify" data-icon="' . $this->getTypeIconAttribute() . '"  data-width="' . $size_icon . '" data-height="' . $size_icon . '"></span></div>
                 </div>';
