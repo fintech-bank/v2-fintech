@@ -16,8 +16,10 @@
                 </div>
                 <div class="w-50">
                     <div class="d-flex flex-center">
-                        <div class="fw-bolder fs-2">CB VISA</div>
-                        {{ $card->debit_format }}
+                        <div class="d-flex flex-column">
+                            <div class="fw-bolder fs-2">CB VISA</div>
+                            {{ $card->debit_format }}
+                        </div>
                     </div>
                 </div>
             </div>
