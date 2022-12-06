@@ -26,7 +26,7 @@
                         </a>
                         <div class="ms-8">
                             @foreach($wallet->cards as $card)
-                                <a href="{{ route('customer.compte.card.show', $card->id) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
+                                <a href="{{ route('customer.card.show', $card->id) }}" class="d-flex flex-row justify-content-between align-items-center p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
                                 <span class="d-flex flex-row fs-2 align-items-center">
                                     <span class="symbol symbol-30px symbol-2by3">
                                         <img src="/storage/card/{{ $card->support->slug }}.png" alt="">
