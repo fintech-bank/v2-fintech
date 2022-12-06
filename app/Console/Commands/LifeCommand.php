@@ -1101,70 +1101,72 @@ class LifeCommand extends Command
         $faker = Factory::create('fr_FR');
         $wallets = CustomerWallet::where('type', 'compte')->where('status', 'active')->get();
 
-        foreach ($wallets as $wallet) {
-            $cards = $wallet->cards()->where('status', 'active')->get();
-            foreach ($cards as $card) {
-                $day = now()->subDays(rand(0,2));
-                if($card->is_differed) {
-                    if($faker->boolean) {
-                        CustomerTransactionHelper::createDebit(
-                            $wallet->id,
-                            'payment',
-                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
-                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
-                            $faker->randomFloat(2, 0.01, 200),
-                            false,
-                            null,
-                            true,
-                            $day->endOfMonth(),
-                            now(),
-                            $card->id,
-                        );
-                    } else {
-                        CustomerTransactionHelper::createDebit(
-                            $wallet->id,
-                            'payment',
-                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
-                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
-                            $faker->randomFloat(2, 0.01, 200),
-                            true,
-                            $day,
-                            false,
-                            null,
-                            now(),
-                            $card->id,
-                        );
+        if($faker->boolean(30)) {
+            foreach ($wallets as $wallet) {
+                $cards = $wallet->cards()->where('status', 'active')->get();
+                foreach ($cards as $card) {
+                    $day = now()->subDays(rand(0,2));
+                    if($card->is_differed) {
+                        if($faker->boolean) {
+                            CustomerTransactionHelper::createDebit(
+                                $wallet->id,
+                                'payment',
+                                "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                                "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                                $faker->randomFloat(2, 0.01, 200),
+                                false,
+                                null,
+                                true,
+                                $day->endOfMonth(),
+                                now(),
+                                $card->id,
+                            );
+                        } else {
+                            CustomerTransactionHelper::createDebit(
+                                $wallet->id,
+                                'payment',
+                                "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                                "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                                $faker->randomFloat(2, 0.01, 200),
+                                true,
+                                $day,
+                                false,
+                                null,
+                                now(),
+                                $card->id,
+                            );
+                        }
                     }
-                }
-                if($card->facelia) {
-                    if($faker->boolean) {
-                        CustomerTransactionHelper::createDebit(
-                            $wallet->id,
-                            'facelia',
-                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
-                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
-                            $faker->randomFloat(2, 0.01, 200),
-                            true,
-                            $day,
-                            false,
-                            null,
-                            now(),
-                            $card->id,
-                        );
-                    } else {
-                        CustomerTransactionHelper::createDebit(
-                            $wallet->id,
-                            'payment',
-                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
-                            "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
-                            $faker->randomFloat(2, 0.01, 200),
-                            true,
-                            $day,
-                            false,
-                            null,
-                            now(),
-                            $card->id,
-                        );
+                    if($card->facelia) {
+                        if($faker->boolean) {
+                            CustomerTransactionHelper::createDebit(
+                                $wallet->id,
+                                'facelia',
+                                "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                                "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                                $faker->randomFloat(2, 0.01, 200),
+                                true,
+                                $day,
+                                false,
+                                null,
+                                now(),
+                                $card->id,
+                            );
+                        } else {
+                            CustomerTransactionHelper::createDebit(
+                                $wallet->id,
+                                'payment',
+                                "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                                "CARTE {$card->number_card_oscure} {$day->format('d/m')} {$faker->company}",
+                                $faker->randomFloat(2, 0.01, 200),
+                                true,
+                                $day,
+                                false,
+                                null,
+                                now(),
+                                $card->id,
+                            );
+                        }
                     }
                 }
             }
