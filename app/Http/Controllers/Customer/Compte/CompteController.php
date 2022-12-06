@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer\Compte;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
+use App\Models\Customer\CustomerWallet;
 use App\Services\Cashback\CashbackApi;
 
 class CompteController extends Controller
@@ -16,6 +17,14 @@ class CompteController extends Controller
             "customer" => Customer::find(auth()->user()->customers->id),
             'wallets' => Customer::find(auth()->user()->customers->id)->wallets,
             'cashback' => $cash->callWallet(auth()->user()->customers->id)->data
+        ]);
+    }
+
+    public function show($wallet_uuid)
+    {
+        $wallet = CustomerWallet::where('uuid', $wallet_uuid)->first();
+        return view('customer.compte.show', [
+            'wallet' => $wallet
         ]);
     }
 }
