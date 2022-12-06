@@ -150,12 +150,12 @@
             </div>
         </div>
         <!--end::Accordion-->
-        <a href="" class="d-flex flex-row justify-content-between align-items-center rounded border border-2 w-100 bg-white text-dark text-hover-primary p-5">
+        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark text-hover-primary p-5">
             <div class="d-flex flex-column">
                 <span class="fw-bolder fs-2">Consulter mon code secret</span>
                 <p>Vous avez oublier le code secret de votre carte bancaire ? Consulter le !</p>
             </div>
-            <i class="fa-solid fa-arrow-right-long fs-1"></i>
+            <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
         </a>
     </div>
 @endsection
