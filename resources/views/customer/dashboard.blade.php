@@ -44,7 +44,7 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <div class="d-flex flex-row justify-content-between align-items-center p-5 rounded shadow-lg">
+                            <div class="d-flex flex-column justify-content-between align-items-center p-5 rounded shadow-lg">
                                 @foreach($customer->wallets()->where('status', 'active')->get() as $wallet)
                                     @if($wallet->type == 'compte')
                                         <a href="{{ route('customer.compte.wallet', $wallet->uuid) }}" class="d-flex flex-row align-items-center text-black">
