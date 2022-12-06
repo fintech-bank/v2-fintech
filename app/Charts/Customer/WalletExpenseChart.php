@@ -13,9 +13,9 @@ class WalletExpenseChart
         $this->chart = $chart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\RadialChart
+    public function build(): \ArielMejiaDev\LarapexCharts\DonutChart
     {
-        return $this->chart->radialChart()
+        return $this->chart->donutChart()
             ->setTitle('Dépense')
             ->setSubtitle('Depuis le '.now()->startOfMonth()->format('d.m.Y'))
             ->addData([80.30, 89.63, 96.30])
