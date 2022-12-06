@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Customer\Compte;
 
+use App\Charts\Customer\WalletExpenseChart;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerWallet;
@@ -20,11 +21,12 @@ class CompteController extends Controller
         ]);
     }
 
-    public function wallet($wallet_uuid)
+    public function wallet($wallet_uuid, WalletExpenseChart $chart)
     {
         $wallet = CustomerWallet::where('uuid', $wallet_uuid)->first();
         return view('customer.compte.show', [
-            'wallet' => $wallet
+            'wallet' => $wallet,
+            'chart'
         ]);
     }
 }

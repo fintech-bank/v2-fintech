@@ -1,6 +1,8 @@
 <script type="text/javascript">
     let tables = {}
-    let elements = {}
+    let elements = {
+        chart_expense: document.querySelector('#chart_expense'),
+    }
     let modals = {}
     let forms = {}
     let dataTable = {}
