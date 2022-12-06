@@ -408,7 +408,7 @@
                                 <div class="card-body">
                                     <div class="d-flex flex-row justify-content-between align-items-center mb-5">
                                         <div class="d-flex flex-column">
-                                            <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name ?? $transfer->wallet->epargne->wallet->name_account_generic }}</div>
+                                            <div class="fw-bold fs-2">{{ $transfer->beneficiaire->full_name ?? $transfer->wallet->epargne->payment->name_account_generic }}</div>
                                             depuis <strong>{{ $transfer->wallet->name_account_generic }}</strong>
                                         </div>
                                         <div class="fs-1 fw-bolder">{{ $transfer->amount_format }}</div>
