@@ -92,17 +92,17 @@
                 @endif
             </div>
             <div class="col-md-3 col-sm-12 mb-10 mt-15">
-                <a href="{{ route('customer.account.documents.index') }}" class="d-flex flex-row align-items-center text-dark">
+                <a href="{{ route('customer.account.documents.index') }}" class="d-flex flex-row align-items-center text-dark hover-zoom">
                     <i class="fa-regular fa-file-lines fs-2hx me-2"></i>
                     <span class="fs-1">Documents</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
-                <a href="{{ route('customer.account.profil.sponsorship.index') }}" class="d-flex flex-row align-items-center text-dark">
+                <a href="{{ route('customer.account.profil.sponsorship.index') }}" class="d-flex flex-row align-items-center text-dark hover-zoom">
                     <i class="fa-solid fa-people-pulling fs-2hx me-2"></i>
                     <span class="fs-1">Parrainer mes proches</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
-                <a href="{{ route('customer.account.agenda.index') }}" class="d-flex flex-row align-items-center text-dark">
+                <a href="{{ route('customer.account.agenda.index') }}" class="d-flex flex-row align-items-center text-dark hover-zoom">
                     <i class="fa-regular calendar-check fs-2hx me-2"></i>
                     <span class="fs-1">Mes rendez-vous</span>
                 </a>
