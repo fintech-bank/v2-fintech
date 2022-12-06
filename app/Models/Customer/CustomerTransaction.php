@@ -141,12 +141,12 @@ class CustomerTransaction extends Model
     public function getTypeColorAttribute()
     {
         return match ($this->type) {
-            'depot', 'souscription' => 'light-primary',
+            'depot', 'souscription' => 'primary',
             'retrait', 'autre' => 'secondary',
-            'payment', 'facelia' => 'light-success',
-            'sepa' => 'light-warning',
-            'frais' => 'light-danger',
-            default => 'light-info',
+            'payment', 'facelia' => 'success',
+            'sepa' => 'warning',
+            'frais' => 'danger',
+            default => 'info',
         };
     }
 
@@ -154,7 +154,7 @@ class CustomerTransaction extends Model
     {
         $size_icon = $size / 2;
         return '<div class="symbol symbol-' . $size . 'px symbol-circle me-2" data-bs-toggle="tooltip" title="' . $this->getTypeTextAttribute() . '">
-                    <div class="symbol-label bg-'.$this->type_color.'"><span class="iconify text-light-'.$this->getTypeColorAttribute().'" data-icon="' . $this->getTypeIconAttribute() . '"  data-width="' . $size_icon . '" data-height="' . $size_icon . '"></span></div>
+                    <div class="symbol-label bg-'.$this->type_color.'"><span class="iconify text-light-'.$this->type_color.'" data-icon="' . $this->getTypeIconAttribute() . '"  data-width="' . $size_icon . '" data-height="' . $size_icon . '"></span></div>
                 </div>';
     }
 
