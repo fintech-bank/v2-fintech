@@ -86,7 +86,7 @@
                     <div class="accordion-body">
                         <table class="table table-sm mb-10">
                             <tr>
-                                <td colspan="3" class="pe-5 bg-gray-300">Mes Options</td>
+                                <td colspan="3" class="pe-5 bg-gray-300 fw-bold fs-3">Mes Options</td>
                             </tr>
                             <tr>
                                 <td>Option Crédit</td>
