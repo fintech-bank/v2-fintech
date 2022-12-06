@@ -126,9 +126,9 @@
 
                 @for($i=1; $i <= 30; $i++)
                     @if($wallet->transactions()->where('confirmed', 1)->whereBetween('confirmed_at', [now()->subDays($i)->startOfDay(), now()->subDays($i)->endOfDay()])->orderBy('confirmed_at', 'desc')->count() != 0)
-                        <div class="fw-bolder ms-5">{{ formatDateFrench(now()->subDays($i)) }}</div>
+                        <div class="fw-bolder ms-5 lozad">{{ formatDateFrench(now()->subDays($i)) }}</div>
                         @foreach($wallet->transactions()->where('confirmed', 1)->whereBetween('confirmed_at', [now()->subDays($i)->startOfDay(), now()->subDays($i)->endOfDay()])->orderBy('confirmed_at', 'desc')->get() as $transaction)
-                            <div class="mb-5">
+                            <div class="mb-5 lozad">
                                 <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0"
                                    data-bs-toggle="collapse" href="#{{ $transaction->type }}_{{ $transaction->id }}">
                                     <div class="d-flex flex-row align-items-center text-black">
