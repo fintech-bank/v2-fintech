@@ -84,8 +84,10 @@
                 </h2>
                 <div id="options" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#kt_accordion_1">
                     <div class="accordion-body">
-                        <table class="table table-sm">
-                            <title class="bg-gray-300">Mes Options</title>
+                        <table class="table table-sm mb-10">
+                            <tr>
+                                <td colspan="3" class="pe-5">Mes Options</td>
+                            </tr>
                             <tr>
                                 <td>Option Crédit</td>
                                 <td>
@@ -93,6 +95,13 @@
                                         <i class="fa-regular fa-circle-dot text-success me-3 fs-3"></i> Souscrit
                                     @else
                                         <i class="fa-regular fa-circle-dot text-danger me-3 fs-3"></i> Non souscrit
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($card->facelia)
+                                        <a href="" class="btn btn-link"><i class="fa-solid fa-eye me-2"></i> Gérez</a>
+                                    @else
+                                        <a href="" class="btn btn-link"><i class="fa-solid fa-eye me-2"></i> Découvrir</a>
                                     @endif
                                 </td>
                             </tr>
