@@ -23,7 +23,7 @@ class CardController extends Controller
         return view('customer.compte.card.index', [
             'customer' => Customer::find(auth()->user()->customers->id),
             "card" => $card,
-            "wallet" =>
+            "wallet" => $card->wallet
         ]);
     }
 }
