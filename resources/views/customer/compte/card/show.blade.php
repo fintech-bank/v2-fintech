@@ -57,7 +57,9 @@
                     <a href="" class="btn btn-link"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</a>
                 </div>
                 <div class="separator separator-dashed my-5"></div>
-                <div class="fw-bolder"></div>
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="fw-bolder">Capacité de retrait (France et étranger) <div class="text-muted fs-6">sur 7 jours glissants</div></div>
+                </div>
             </div>
         </div>
     </div>
