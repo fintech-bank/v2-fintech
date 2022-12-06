@@ -10,8 +10,8 @@
 @section("content")
     <div id="app" class="rounded">
         <div class="d-flex flex-center w-75 rounded rounded-2 bg-white p-5">
-            <div class="d-flex flex-row m-0 p-0">
-                <div class="w-50">
+            <div class="d-flex flex-row">
+                <div class="w-50  m-0 p-0">
                     <img src="/storage/card/{{ $card->support->slug }}.png" alt="" class="img-fluid">
                 </div>
             </div>
