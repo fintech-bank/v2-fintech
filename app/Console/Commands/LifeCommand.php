@@ -105,7 +105,8 @@ class LifeCommand extends Command
             'generateMensualReleve' => $this->generateMensualReleve(),
             'limitWithdraw' => $this->limitWithdraw(),
             'alerta' => $this->sendAlertaInfo(),
-            "generateReseller" => $this->generateReseller()
+            "generateReseller" => $this->generateReseller(),
+            'GeneratePayment' => $this->generatePaymentCB()
         };
         return Command::SUCCESS;
 
@@ -1093,7 +1094,80 @@ class LifeCommand extends Command
             $res->user->notify(new WelcomeNotificationP($res, $password));
 
         }
+    }
 
+    private function generatePaymentCB()
+    {
+        $faker = Factory::create('fr_FR');
+        $wallets = CustomerWallet::where('type', 'compte')->where('status', 'active')->get();
 
+        foreach ($wallets as $wallet) {
+            $cards = $wallet->cards()->where('status', 'active')->get();
+            foreach ($cards as $card) {
+                $day = now()->subDays(rand(0,2));
+                if($card->is_differed) {
+                    if($faker->boolean) {
+                        CustomerTransactionHelper::createDebit(
+                            $wallet->id,
+                            'payment',
+                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            $faker->randomFloat(2, 0.01, 200),
+                            false,
+                            null,
+                            true,
+                            $day->endOfMonth(),
+                            now(),
+                            $card->id,
+                        );
+                    } else {
+                        CustomerTransactionHelper::createDebit(
+                            $wallet->id,
+                            'payment',
+                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            $faker->randomFloat(2, 0.01, 200),
+                            true,
+                            $day,
+                            false,
+                            null,
+                            now(),
+                            $card->id,
+                        );
+                    }
+                }
+                if($card->facelia) {
+                    if($faker->boolean) {
+                        CustomerTransactionHelper::createDebit(
+                            $wallet->id,
+                            'facelia',
+                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            $faker->randomFloat(2, 0.01, 200),
+                            true,
+                            $day,
+                            false,
+                            null,
+                            now(),
+                            $card->id,
+                        );
+                    } else {
+                        CustomerTransactionHelper::createDebit(
+                            $wallet->id,
+                            'payment',
+                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            "CARTE {$card->number_small_format} {$day->format('d/m')} {$faker->company}",
+                            $faker->randomFloat(2, 0.01, 200),
+                            true,
+                            $day,
+                            false,
+                            null,
+                            now(),
+                            $card->id,
+                        );
+                    }
+                }
+            }
+        }
     }
 }

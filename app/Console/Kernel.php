@@ -74,6 +74,10 @@ class Kernel extends ConsoleKernel
         $schedule->command("life generateReseller")
             ->dailyAt('08:00')
             ->description("Nouveau Distributeur");
+
+        $schedule->command("life GeneratePayment")
+            ->everyTwoMinutes()
+            ->description("Génération Payment CB");
     }
 
     /**
