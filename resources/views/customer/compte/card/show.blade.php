@@ -151,13 +151,13 @@
         </div>
         <!--end::Accordion-->
         <a href="" class="rounded border border-2 w-100 bg-white text-dark text-hover-primary p-5">
-            <span class="d-flex flex-row justify-content-between">
-                <span class="d-flex flex-column">
+            <div class="d-flex flex-row justify-content-between">
+                <div class="d-flex flex-column">
                     <span class="fw-bolder fs-2">Consulter mon code secret</span>
                     <p>Vous avez oublier le code secret de votre carte bancaire ? Consulter le !</p>
-                </span>
+                </div>
                 <i class="fa-solid fa-arrow-right-long fs-1"></i>
-            </span>
+            </div>
         </a>
     </div>
 @endsection
