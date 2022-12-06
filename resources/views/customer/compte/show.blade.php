@@ -77,7 +77,7 @@
                     size-text="fs-1"
                     class="uppercase w-100 my-5" />
 
-                {{ formatDateFrench(now()) }}
+                <div class="fw-bolder ms-5">{{ formatDateFrench(now()) }}</div>
                 @foreach($wallet->transactions()->where('confirmed', 1)->whereBetween('confirmed_at', [now()->startOfDay(), now()->endOfDay()])->orderBy('confirmed_at', 'desc')->get() as $transaction)
                     <div class="mb-5">
                         <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0"
@@ -123,6 +123,7 @@
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </div>
     </div>
