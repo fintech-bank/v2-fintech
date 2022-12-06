@@ -86,7 +86,7 @@
 									<div class="bg-white rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
                                 <p>Remboursement en attente de validation: {{ eur($cashback->balance) }}</p>
-                                <p><span class="text-danger">Plus que {{ eur($cashback->wallet->meta->limit_withdraw - $cashback->balance) }}</span></p>
+                                <p><span class="text-danger">Plus que {{ eur($cashback->wallet->meta->limit_withdraw - $cashback->balance) }}</span> pour pouvoir encaisser votre cagnotte. Découvrez les offres du moment !</p>
                             </span>
                         </a>
                 @endif
