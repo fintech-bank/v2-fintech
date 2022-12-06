@@ -9,7 +9,7 @@
 
 @section("content")
     <div id="app" class="rounded">
-        <div class="d-flex flex-wrap align-items-center w-75 rounded rounded-2 bg-white p-5">
+        <div class="d-flex flex-wrap align-items-center w-75 rounded rounded-2 bg-white p-5 mb-10">
             <div class="d-flex flex-row align-items-center">
                 <div class="w-50 me-5">
                     <img src="/storage/card/{{ $card->support->slug }}.png" alt="" class="img-fluid m-0 p-0">
@@ -31,6 +31,22 @@
                                 <a href="" class="btn btn-link mb-5">Dossier {{ $card->opposition->reference }}</a>
                             @endif
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h3 class="card-title">Gérer mes plafonds</h3>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center flex-column mt-3 w-100">
+                    <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
+                        <span>Plafond de paiement mensuel <span class="text-muted fs-8">(jusqu'au {{ now()->endOfMonth()->format("d/m/Y") }})</span></span>
+                        <span>{{ eur($card->limit_payment) }}</span>
+                    </div>
+                    <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
+                        <div class="bg-white rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>
