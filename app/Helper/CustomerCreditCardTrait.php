@@ -102,6 +102,29 @@ trait CustomerCreditCardTrait
         }
     }
 
+    public function getTransactionsMonthPayment($percent = false)
+    {
+        if ($percent == false) {
+            return -$this->transactions()
+                ->where('type', 'payment')
+                ->where('confirmed', true)
+                ->where('customer_credit_card_id', $this->id)
+                ->whereBetween('confirmed_at', [now()->subDays(7), now()])
+                ->get()
+                ->sum('amount');
+        } else {
+            $tran = -$this->transactions()
+                ->where('type', 'payment')
+                ->where('confirmed', true)
+                ->where('customer_credit_card_id', $this->id)
+                ->whereBetween('confirmed_at', [now()->subDays(7), now()])
+                ->get()
+                ->sum('amount');
+
+            return $tran * 100 / $this->limit_payment;
+        }
+    }
+
     public function opposit()
     {
         return $this->status == 'opposit' ? 'disabled overlay overlay-block overlay-layer bg-gray-600 bg-opacity-25' : '';

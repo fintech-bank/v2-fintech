@@ -48,6 +48,10 @@
                     <div class="h-8px mx-3 w-100 bg-black bg-opacity-75 rounded">
                         <div class="bg-success rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
+                    <div class="d-flex justify-content-between fw-bold fs-6 opacity-75 w-100 mt-auto mb-2">
+                        <span class="text-success fw-bolder">Utilisé: {{ eur($card->getTransactionsMonthPayment()) }}</span>
+                        <span>{{ eur($card->limit_payment) }}</span>
+                    </div>
                 </div>
             </div>
         </div>
