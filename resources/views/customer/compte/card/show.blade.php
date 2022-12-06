@@ -60,6 +60,7 @@
                 <div class="d-flex flex-row justify-content-between">
                     <div class="fw-bolder fs-4">Capacité de retrait (France et étranger) <span class="text-muted fs-9">sur 7 jours glissants</span></div>
                     <div class="fw-bolder fs-3">{{ eur($card->actual_limit_withdraw) }}</div>
+                    <a href="" class="btn btn-link"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</a>
                 </div>
             </div>
         </div>
