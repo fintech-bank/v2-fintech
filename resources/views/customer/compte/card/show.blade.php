@@ -150,7 +150,7 @@
             </div>
         </div>
         <!--end::Accordion-->
-        <a href="" class="rounded border border-2 w-100 text-hover-primary">
+        <a href="" class="rounded border border-2 w-100 bg-white text-dark text-hover-primary p-5">
             <span class="d-flex flex-row justify-content-between">
                 <span class="d-flex flex-column">
                     <span class="fw-bolder fs-2">Consulter mon code secret</span>
