@@ -108,7 +108,7 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
         Route::get('{wallet_uuid}', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'wallet'])->name('wallet');
 
         Route::prefix('card')->name('card.')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Compte\CardController::class, 'index'])->name('index');
+            Route::get('/index', [\App\Http\Controllers\Customer\Compte\CardController::class, 'index'])->name('index');
             Route::get('{id}', [\App\Http\Controllers\Customer\Compte\CardController::class, 'show'])->name('show');
         });
 
