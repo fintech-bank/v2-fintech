@@ -20,7 +20,7 @@ class WalletExpenseChart
         $depot = CustomerTransaction::where('customer_wallet_id', $customer_wallet_id)
             ->where('type', 'depot')
             ->whereBetween('confirmed_at', [now()->startOfMonth(), now()->endOfMonth()])
-            ->average('amount');
+            ->sum('amount');
 
         dd($depot);
 
