@@ -24,6 +24,7 @@ use App\Models\User\UserFolder;
 use App\Notifications\Customer\Customer\Customer\UpdateStatusAccountNotification;
 use App\Scope\VerifCompatibilityBeforeLoanTrait;
 use App\Services\BankFintech;
+use App\Services\Cashback\CashbackApi;
 use App\Services\CotationClient;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
@@ -106,8 +107,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $bank = new BankFintech();
+        $bank = new CashbackApi();
 
-        dd($bank->callCreditorDoc());
+        dd($bank->callWallet(1));
     }
 }
