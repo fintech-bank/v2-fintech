@@ -124,6 +124,55 @@
                     </div>
                 @endforeach
 
+                @for($i=0; $i <= 30; $i++)
+                    <div class="fw-bolder ms-5">{{ formatDateFrench(now()->addDays($i)) }}</div>
+                    @foreach($wallet->transactions()->where('confirmed', 1)->whereBetween('confirmed_at', [now()->addDays($i)->startOfDay(), now()->addDays($i)->endOfDay()])->orderBy('confirmed_at', 'desc')->get() as $transaction)
+                        <div class="mb-5">
+                            <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0"
+                               data-bs-toggle="collapse" href="#{{ $transaction->type }}_{{ $transaction->id }}">
+                                <div class="d-flex flex-row align-items-center text-black">
+                                    {!! $transaction->getTypeSymbolAttribute() !!}
+                                    <div class="d-flex flex-column">
+                                        {{ $transaction->designation }}<br>
+                                        <div class="text-muted">
+                                            {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format('d/m/Y')) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                @if ($transaction->amount < 0)
+                                    <span class="text-danger fs-2 fw-bolder">{{ $transaction->amount_format }}</span>
+                                @else
+                                    <span class="text-success fs-2 fw-bolder">+ {{ $transaction->amount_format }}</span>
+                                @endif
+                            </a>
+                            <div class="collapse" id="{{ $transaction->type }}_{{ $transaction->id }}">
+                                <div class="card card-body">
+                                    <div class="ps-5 text-muted mb-5">{{ $transaction->type_text }}</div>
+                                    <div class="mb-5">
+                                        <x-base.underline title="Détails de l'opération" class="mb-2" size-text="fs-3"
+                                                          size="3" color="{{ $transaction->type_color }}" />
+                                        <div class="d-flex flex-row justify-content-around">
+                                            <div>Transaction effectuée le: {{ $transaction->updated_at->format('d/m/Y') }}
+                                            </div>
+                                            <div>Comptabilisé à la date du:
+                                                {{ $transaction->confirmed ? $transaction->confirmed_at->format('d/m/Y') : ($transaction->differed ? $transaction->differed_at->format('d/m/Y') : $transaction->updated_at->format('d/m/Y')) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <x-base.underline title="Libellé complet" class="mb-2" size-text="fs-3"
+                                                          size="3" color="{{ $transaction->type_color }}" />
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bold">{{ $transaction->designation }}</div>
+                                            <div>{{ $transaction->description }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endfor
+
             </div>
         </div>
     </div>
