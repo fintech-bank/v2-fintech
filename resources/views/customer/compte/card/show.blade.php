@@ -41,7 +41,7 @@
             </div>
             <div class="card-body">
                 <div class="d-flex align-items-center flex-column mt-3 w-100">
-                    <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
+                    <div class="d-flex justify-content-between fw-bold fs-6 opacity-75 w-100 mt-auto mb-2">
                         <span>Plafond de paiement mensuel <span class="text-muted fs-8">(jusqu'au {{ now()->endOfMonth()->format("d/m/Y") }})</span></span>
                         <span>{{ eur($card->limit_payment) }}</span>
                     </div>
