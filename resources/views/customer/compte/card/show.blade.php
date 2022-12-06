@@ -20,11 +20,7 @@
                             <div class="fw-bolder fs-2">CB VISA</div>
                             {{ $card->debit_format }}
                             <a href="{{ route('customer.compte.wallet', $card->wallet->uuid) }}" class="btn btn-link">{{ $card->wallet->name_account_generic }}</a>
-                            @if($card->status == 'active')
-                                <button class="btn btn-circle btn-outline btn-outline-dark">Verrouiller ma carte</button>
-                            @else
-                                <button class="btn btn-circle btn-outline btn-outline-dark">Deverrouiller ma carte</button>
-                            @endif
+
                         </div>
                     </div>
                 </div>
