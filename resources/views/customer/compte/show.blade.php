@@ -29,7 +29,7 @@
                     @foreach($wallet->transactions()->where('confirmed', 0)->orderBy('updated_at', 'desc')->get() as $transaction)
                         <div class="accordion-item mb-5">
                             <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed d-flex flex-row justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ $transaction->uuid }}" aria-expanded="false" aria-controls="flush-{{ $transaction->uuid }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ $transaction->uuid }}" aria-expanded="false" aria-controls="flush-{{ $transaction->uuid }}">
                                     <span class="row">
                                         <span class="col-md-1">
                                             {!! $transaction->type_symbol !!}
