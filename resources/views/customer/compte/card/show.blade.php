@@ -41,9 +41,6 @@
             </div>
             <div class="card-body">
                 <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
                     <div class="bg-white text-primary rounded p-3" role="status">
                         Carte en opposition
                     </div>
