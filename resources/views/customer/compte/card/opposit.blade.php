@@ -26,7 +26,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-12 border-right-2">
                         <div class="d-flex flex-row justify-content-between">
                             <div class="d-flex flex-column">
                                 <div class="fs-2 fw-bolder uppercase">Référence</div>
@@ -50,7 +50,6 @@
                             </div>
                         @endif
                     </div>
-                    <div class="vr"></div>
                     <div class="col-md-8 col-sm-12">
                         <div class="border border-gray-600 rounded p-5 mb-10">
                             <div class="fw-bolder fs-2">Description de l'opposition</div>
