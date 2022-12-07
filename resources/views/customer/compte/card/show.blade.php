@@ -28,7 +28,7 @@
                             @if($card->status != 'opposit')
                                 <button class="btn btn-circle btn-outline btn-outline-danger mb-5" data-bs-toggle="modal" data-bs-target="#OppositCard">Faire opposition</button>
                             @else
-                                <a href="" class="btn btn-link mb-5">Dossier {{ $card->opposition->reference }}</a>
+                                <a href="{{ route('customer.card.opposit', $card->id) }}" class="btn btn-link mb-5">Dossier {{ $card->opposition->reference }}</a>
                             @endif
                         </div>
                     </div>
