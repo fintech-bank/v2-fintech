@@ -54,13 +54,13 @@
                             <span>Restant: {{ eur($card->limit_payment - $card->getTransactionsMonthPayment()) }}</span>
                         </div>
                     </div>
-                    <a href="" class="btn btn-link"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</a>
+                    <button class="btn btn-link btnEditLimitPayment"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</button>
                 </div>
                 <div class="separator separator-dashed my-5"></div>
                 <div class="d-flex flex-row justify-content-between">
                     <div class="fw-bolder fs-4">Capacité de retrait (France et étranger) <span class="text-muted fs-9">sur 7 jours glissants</span></div>
                     <div class="fw-bolder fs-3">{{ eur($card->actual_limit_withdraw) }}</div>
-                    <a href="" class="btn btn-link"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</a>
+                    <button class="btn btn-link btnEditLimitWithdraw"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</button>
                 </div>
                 <div class="d-flex align-items-center flex-column mt-3 w-75">
                     <div class="h-8px mx-3 w-100 bg-black bg-opacity-75 rounded">
@@ -99,9 +99,9 @@
                                 </td>
                                 <td>
                                     @if($card->facelia)
-                                        <a href="" class="btn btn-link"><i class="fa-solid fa-eye me-2"></i> Gérez</a>
+                                        <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#GestionCredit"><i class="fa-solid fa-eye me-2"></i> Gérez</a>
                                     @else
-                                        <a href="" class="btn btn-link"><i class="fa-solid fa-eye me-2"></i> Découvrir</a>
+                                        <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#SubscribeCredit"><i class="fa-solid fa-eye me-2"></i> Découvrir</a>
                                     @endif
                                 </td>
                             </tr>
@@ -116,9 +116,9 @@
                                 </td>
                                 <td>
                                     @if($customer->setting->nb_virtual_card != 0)
-                                        <a href="" class="btn btn-link"><i class="fa-solid fa-eye me-2"></i> Gérez</a>
+                                        <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#GestionECard"><i class="fa-solid fa-eye me-2"></i> Gérez</a>
                                     @else
-                                        <a href="" class="btn btn-link"><i class="fa-solid fa-eye me-2"></i> Découvrir</a>
+                                        <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#SubscribeECard"><i class="fa-solid fa-eye me-2"></i> Découvrir</a>
                                     @endif
                                 </td>
                             </tr>
@@ -138,9 +138,9 @@
                                 </td>
                                 <td>
                                     @if($card->payment_contact)
-                                        <a href="" class="btn btn-link"><i class="fa-solid fa-lock me-2"></i> Désactiver</a>
+                                        <a href="" class="btn btn-link btnDesactiveContact"><i class="fa-solid fa-lock me-2"></i> Désactiver</a>
                                     @else
-                                        <a href="" class="btn btn-link"><i class="fa-solid fa-unlock me-2"></i> Activer</a>
+                                        <a href="" class="btn btn-link btnActiveContact"><i class="fa-solid fa-unlock me-2"></i> Activer</a>
                                     @endif
                                 </td>
                             </tr>
@@ -151,7 +151,7 @@
         </div>
         <!--end::Accordion-->
         @if(Agent::isMobile())
-            <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10">
+            <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10" data-bs-toggle="modal" data-bs-target="#showCodeCard">
                 <div class="d-flex flex-column">
                     <span class="fw-bolder fs-2">Consulter mon code secret</span>
                     <p>Vous avez oublier le code secret de votre carte bancaire ? Consulter le !</p>
@@ -159,14 +159,14 @@
                 <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
             </a>
         @endif
-        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10">
+        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10" data-bs-toggle="modal" data-bs-target="#ConfigCard">
             <div class="d-flex flex-column">
                 <span class="fw-bolder fs-2">Paramétrer ma carte</span>
                 <p>Adaptez les fonctionnalités de votre carte à vos usages : retraits, opérations à l'étranger ou achats en ligne chez les e-commercants</p>
             </div>
             <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
         </a>
-        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10">
+        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10" data-bs-toggle="modal" data-bs-target="#DeclareTravel">
             <div class="d-flex flex-column">
                 <span class="fw-bolder fs-2">Déclarer un voyage à l'étranger</span>
                 <p> Vous partez à l'étranger ? Dites-le nous pour éviter tout blocage de carte. </p>

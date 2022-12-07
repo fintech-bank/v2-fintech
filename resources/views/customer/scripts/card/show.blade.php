@@ -11,7 +11,7 @@
     let dataTable = {}
     let block = {}
 
-    if(elements.btnDesactiveCard) {
+    if (elements.btnDesactiveCard) {
         elements.btnDesactiveCard.addEventListener('click', e => {
             e.preventDefault()
             elements.btnDesactiveCard.setAttribute('data-kt-indicator', 'on')
@@ -22,7 +22,7 @@
                 data: {"action": "desactiveCard"},
                 success: data => {
                     elements.btnDesactiveCard.removeAttribute('data-kt-indicator')
-                    if(data.state === 'warning') {
+                    if (data.state === 'warning') {
                         toastr.warning(`${data.message}`)
                     } else {
                         toastr.success(`${data.message}`)
@@ -39,7 +39,7 @@
             })
         })
     }
-    if(elements.btnActiveCard) {
+    if (elements.btnActiveCard) {
         elements.btnActiveCard.addEventListener('click', e => {
             e.preventDefault()
             elements.btnActiveCard.setAttribute('data-kt-indicator', 'on')
@@ -50,7 +50,7 @@
                 data: {"action": "activeCard"},
                 success: data => {
                     elements.btnActiveCard.removeAttribute('data-kt-indicator')
-                    if(data.state === 'warning') {
+                    if (data.state === 'warning') {
                         toastr.warning(`${data.message}`)
                     } else {
                         toastr.success(`${data.message}`)
@@ -95,7 +95,7 @@
                     data: data,
                     success: data => {
                         btn.removeAttr('data-kt-indicator')
-                        if(data.state === 'warning') {
+                        if (data.state === 'warning') {
                             toastr.warning(`${data.message}`)
                         } else {
                             toastr.success(`${data.message}`)
