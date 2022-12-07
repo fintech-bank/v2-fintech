@@ -36,7 +36,7 @@
                                 <div class="">{{ Str::ucfirst($card->opposition->type) }}</div>
                             </div>
                         </div>
-                        <ul class="steps">
+                        <ul class="steps w-100">
                             <li class="step step-success">
                                 <div class="step-content">
                                     <span class="step-circle">1</span>
