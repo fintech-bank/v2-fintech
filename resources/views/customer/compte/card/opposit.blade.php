@@ -14,8 +14,8 @@
                 <nav>
                     <ol class="cd-multi-steps text-center custom-icons">
                         <li {{ $card->opposition->status == 'submit' ? 'class="current"' : 'class="visited"' }} class="visited">Soumission</li>
-                        <li>Etude en cours</li>
-                        <li>Terminer</li>
+                        <li><em>Etude en cours</em></li>
+                        <li><em>Terminer</em></li>
                     </ol>
                 </nav>
             </div>
