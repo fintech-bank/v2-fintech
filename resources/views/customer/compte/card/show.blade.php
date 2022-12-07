@@ -44,7 +44,7 @@
                     <div class="spinner-border text-primary" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                    <div class="text-primary" role="status">
+                    <div class="bg-white text-primary rounded p-3" role="status">
                         Carte en opposition
                     </div>
                 </div>
