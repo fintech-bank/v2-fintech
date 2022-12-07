@@ -13,10 +13,9 @@
             <div class="card-body">
                 <nav>
                     <ol class="cd-multi-steps text-center custom-icons">
-                        <li class="visited"><a href="#0">Cart</a></li>
-                        <li class="visited"><a href="#0">Billing</a></li>
-                        <li class="current"><em>Delivery</em></li>
-                        <li><em>Review</em></li>
+                        <li {{ $card->opposition->status == 'submit' ? 'class="current"' : 'class="visited"' }} class="visited">Soumission</li>
+                        <li class="visited">Etude en cours</li>
+                        <li class="current">Terminer</li>
                     </ol>
                 </nav>
             </div>
