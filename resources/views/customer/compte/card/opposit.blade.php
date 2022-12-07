@@ -23,6 +23,9 @@
         <div class="card shadow-sm">
             <div class="card-header">
                 <h3 class="card-title">Carte Bancaire {{ $card->full_info }} - Opposition sur la carte</h3>
+                <div class="card-toolbar">
+                    <a href="{{ route('customer.card.show', $card->id) }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left me-2"></i> Retour à la carte</a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="row">
