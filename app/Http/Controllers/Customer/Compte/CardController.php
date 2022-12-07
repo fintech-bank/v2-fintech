@@ -48,7 +48,7 @@ class CardController extends Controller
         $file = $request->file('file');
         $file->storeAs(public_path('uploads/card/opposit/'.$card->opposition->reference.'/'), $file->getClientOriginalName().'.'.$file->getClientOriginalExtension());
 
-        $card->update(['status' => 'progress']);
+        $card->opposition()->update(['status' => 'progress']);
 
         return redirect()->back()->with('success', "Votre documents nous à bien été transmis");
     }
