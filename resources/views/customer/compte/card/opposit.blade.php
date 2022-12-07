@@ -58,21 +58,23 @@
                                     Votre demande d'opposition est actuellement en <strong>Soumission</strong>.<br>
                                     Afin de traiter au mieux votre requete, veuillez nous faire parvenir les justificatifs suivants:
                                 </p>
-                                <ul>
+                                <ul class="mb-5">
                                     <li><strong>Vol:</strong> Dépot de plainte effectuer auprès de votre commissariat.</li>
                                     <li><strong>Perte:</strong> Déclaration de perte effectuer auprès de votre commissariat.</li>
                                     <li><strong>Fraude:</strong> Dépot de plainte effectuer auprès de votre commissariat ainsi qu'une capture d'écran des mouvements frauduleux.</li>
                                 </ul>
+
+                                <x-form.input-file
+                                    name="file"
+                                    label="Document à fournir"
+                                    required="true" />
+
+                                <div class="d-flex flex-wrap justify-content-end">
+                                    <x-form.button />
+                                </div>
                             @endif
 
-                            <x-form.input-file
-                                name="file"
-                                label="Document à fournir"
-                                required="true" />
 
-                            <div class="d-flex flex-wrap justify-content-end">
-                                <x-form.button />
-                            </div>
                         </form>
                     </div>
                 </div>
