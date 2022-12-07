@@ -11,6 +11,33 @@
     <div id="app" class="rounded">
         <div class="card shadow-sm">
             <div class="card-header">
+                <h3 class="card-title">Etape</h3>
+            </div>
+            <div class="card-body">
+                <ul class="steps w-100">
+                    <li class="step step-success">
+                        <div class="step-content">
+                            <span class="step-circle">1</span>
+                            <span class="step-text">Soumission</span>
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span class="step-circle">2</span>
+                            <span class="step-text">Etude en cours</span>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-content">
+                            <span class="step-circle">3</span>
+                            <span class="step-text">Terminer</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card shadow-sm">
+            <div class="card-header">
                 <h3 class="card-title">Carte Bancaire {{ $card->full_info }} - Opposition sur la carte</h3>
             </div>
             <div class="card-body">
@@ -36,26 +63,6 @@
                                 <div class="">{{ Str::ucfirst($card->opposition->type) }}</div>
                             </div>
                         </div>
-                        <ul class="steps w-100">
-                            <li class="step step-success">
-                                <div class="step-content">
-                                    <span class="step-circle">1</span>
-                                    <span class="step-text">Soumission</span>
-                                </div>
-                            </li>
-                            <li class="step step-active">
-                                <div class="step-content">
-                                    <span class="step-circle">2</span>
-                                    <span class="step-text">Etude en cours</span>
-                                </div>
-                            </li>
-                            <li class="step">
-                                <div class="step-content">
-                                    <span class="step-circle">3</span>
-                                    <span class="step-text">Terminer</span>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
