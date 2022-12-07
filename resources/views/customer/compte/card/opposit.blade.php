@@ -22,6 +22,13 @@
                                 <div class="">{{ $card->opposition->reference }}</div>
                             </div>
                         </div>
+                        <div class="separator separator-dotted border-gray-600 my-5"></div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="d-flex flex-column">
+                                <div class="fs-2 fw-bolder uppercase">Type d'opposition</div>
+                                <div class="">{{ Str::ucfirst($card->opposition->type) }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
