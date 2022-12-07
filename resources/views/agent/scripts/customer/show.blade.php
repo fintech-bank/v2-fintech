@@ -635,7 +635,7 @@
             $.ajax({
                 url: '/api/customer/{{ $customer->id }}/alert',
                 method: 'POST',
-                data: {"action": "password"},
+                data: {"action": "password", "customer_id": {{ $customer->id }}},
                 success: () => {
                     toastr.success(`Une notification va être envoyer au client`, ``)
                 }
@@ -649,7 +649,7 @@
                 $.ajax({
                     url: '/api/customer/{{ $customer->id }}/verify',
                     method: 'POST',
-                    data: {"verify": "identity"},
+                    data: {"verify": "identity", "customer_id": {{ $customer->id }}},
                     success: () => {
                         toastr.success(`Une notification à été envoyé au client`, ``)
                     }
@@ -664,7 +664,7 @@
                 $.ajax({
                     url: '/api/customer/{{ $customer->id }}/verify',
                     method: 'POST',
-                    data: {"verify": "address"},
+                    data: {"verify": "address", "customer_id": {{ $customer->id }}},
                     success: () => {
                         toastr.success(`Une notification à été envoyé au client`, ``)
                     }
@@ -679,7 +679,7 @@
                 $.ajax({
                     url: '/api/customer/{{ $customer->id }}/verify',
                     method: 'POST',
-                    data: {"verify": "income"},
+                    data: {"verify": "income","customer_id": {{ $customer->id }}},
                     success: () => {
                         toastr.success(`Une notification à été envoyé au client`, ``)
                     }
