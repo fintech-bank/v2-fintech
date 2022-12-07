@@ -191,7 +191,15 @@
                     @csrf
                     @method('PUT')
                     <div class="modal-body">
-
+                        <div class="mb-10">
+                            <label for="type">Type d'opposition</label>
+                            <select name="type" id="type" class="form-control form-control-solid selectpicker" data-title="Slectionner une cause à l'opposition">
+                                <option value=""></option>
+                                <option value="vol">Vol</option>
+                                <option value="perte">Perte</option>
+                                <option value="fraude">Fraude</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
