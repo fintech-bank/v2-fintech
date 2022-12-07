@@ -51,7 +51,7 @@
                         @endif
                     </div>
                     <div class="col-md-8 col-sm-12">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('customer.card.piece') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @if($card->opposition->status == 'submit')
                                 <p>
@@ -73,7 +73,12 @@
                                     <x-form.button />
                                 </div>
                             @endif
-
+                            @if($card->opposition->status == 'progress')
+                                <p>Votre dossier est en étude, votre conseiller vous contactera si des informations complémentaires sont requise.</p>
+                            @endif
+                            @if($card->opposition->status == 'terminate')
+                                <p>Votre dossier est clotûrer, si votre opposition concerne une fraude, veuillez nous restituer votre carte bancaire afin de la détruire.</p>
+                            @endif
 
                         </form>
                     </div>

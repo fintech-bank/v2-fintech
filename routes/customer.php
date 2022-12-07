@@ -114,6 +114,7 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
         Route::get('/', [\App\Http\Controllers\Customer\Compte\CardController::class, 'index'])->name('index');
         Route::get('/{id}', [\App\Http\Controllers\Customer\Compte\CardController::class, 'show'])->name('show');
         Route::get('/{id}/opposit', [\App\Http\Controllers\Customer\Compte\CardController::class, 'opposit'])->name('opposit');
+        Route::post('/{id}/opposit', [\App\Http\Controllers\Customer\Compte\CardController::class, 'piece'])->name('piece');
     });
 
     Route::prefix('transfer')->name('transfer.')->group(function () {
