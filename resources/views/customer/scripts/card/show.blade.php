@@ -19,7 +19,7 @@
                 method: 'PUT',
                 data: {"action": "desactiveCard"},
                 success: data => {
-                    elements.btnDesactiveCard.removeAttr('data-kt-indicator')
+                    elements.btnDesactiveCard.removeAttribute('data-kt-indicator')
                     if(data.state === 'warning') {
                         toastr.warning(`${data.message}`)
                     } else {
@@ -31,7 +31,7 @@
                     }
                 },
                 error: () => {
-                    elements.btnDesactiveCard.removeAttr('data-kt-indicator')
+                    elements.btnDesactiveCard.removeAttribute('data-kt-indicator')
                     toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                 }
             })
@@ -47,7 +47,7 @@
                 method: 'PUT',
                 data: {"action": "activeCard"},
                 success: data => {
-                    elements.btnActiveCard.removeAttr('data-kt-indicator')
+                    elements.btnActiveCard.removeAttribute('data-kt-indicator')
                     if(data.state === 'warning') {
                         toastr.warning(`${data.message}`)
                     } else {
@@ -59,7 +59,7 @@
                     }
                 },
                 error: () => {
-                    elements.btnActiveCard.removeAttr('data-kt-indicator')
+                    elements.btnActiveCard.removeAttribute('data-kt-indicator')
                     toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                 }
             })
