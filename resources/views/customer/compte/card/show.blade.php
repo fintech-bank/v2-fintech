@@ -61,13 +61,13 @@
                             <span>Restant: {{ eur($card->limit_payment - $card->getTransactionsMonthPayment()) }}</span>
                         </div>
                     </div>
-                    <button class="btn btn-link btnEditLimitPayment"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</button>
+                    <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#EditPlafondPayment"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</button>
                 </div>
                 <div class="separator separator-dashed my-5"></div>
                 <div class="d-flex flex-row justify-content-between">
                     <div class="fw-bolder fs-4">Capacité de retrait (France et étranger) <span class="text-muted fs-9">sur 7 jours glissants</span></div>
                     <div class="fw-bolder fs-3">{{ eur($card->actual_limit_withdraw) }}</div>
-                    <button class="btn btn-link btnEditLimitWithdraw"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</button>
+                    <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#EditPlafondWithdraw"><i class="fa-solid fa-edit text-dark me-2"></i> Modifier</button>
                 </div>
                 <div class="d-flex align-items-center flex-column mt-3 w-75">
                     <div class="h-8px mx-3 w-100 bg-black bg-opacity-75 rounded">
@@ -240,6 +240,69 @@
                             name="description"
                             label="Décrivez la cause de l'opposition"
                             required="true" />
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="EditPlafondPayment">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Capacité de paiement</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formEditPlafondPayment" action="/api/card/{{ $card->id }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="action" value="editLimitPayment">
+                    <div class="modal-body">
+                        <p>Votre capacité de paiement mensuel en vigueur est de <strong>{{ eur($card->limit_payment) }}</strong></p>
+                        <x-form.input
+                            name="limit_payment"
+                            label="De quel montant souhaitez-vous augmenter votre capacité de paiement ?"
+                            required="true" />
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="EditPlafondWithdraw">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Capacité de retrait</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formEditPlafondPayment" action="/api/card/{{ $card->id }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="action" value="editLimitWithdraw">
+                    <div class="modal-body">
+                        <p>Pour augmenter votre plafond de retrait, veuillez indiquer ci-dessous le montant dont vous avez besoin. Cette somme va correspondre au montant maximum que vous serez en mesure de retirer dans les 2 prochains jours.</p>
+                        <x-form.input
+                            name="limit_payment"
+                            label="Vous souhaitez une nouvelle capacité exceptionnelle de retrait pour 48H de :"
+                            required="true"
+                            help-text="Valable immédiatement jusqu’au {{ now()->addDays(2)->format('d/m/Y') }}" />
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />

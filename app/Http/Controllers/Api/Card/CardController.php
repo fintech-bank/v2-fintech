@@ -20,7 +20,8 @@ class CardController extends ApiController
         return match($request->get('action')) {
             "desactiveCard" => $this->desactiveCard($card),
             "activeCard" => $this->activeCard($card),
-            "oppositCard" => $this->oppositCard($card, $request)
+            "oppositCard" => $this->oppositCard($card, $request),
+            'editLimitPayment' => $this->editLimitPayment($card, $request)
         };
     }
 
@@ -52,5 +53,12 @@ class CardController extends ApiController
         $card->update(['status' => 'opposit']);
 
         return $this->sendSuccess("Dossier d'opposition transmis");
+    }
+
+    private function editLimitPayment(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerCreditCard_C|CustomerCreditCard|null $card, Request $request)
+    {
+        $card->update(["limit_payment" => $request->get('limit_payment')]);
+
+        return $this->sendSuccess("Plafond de paiement edité");
     }
 }
