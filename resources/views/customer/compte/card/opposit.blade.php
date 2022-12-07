@@ -26,7 +26,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-4 col-sm-12 border border-right-2">
+                    <div class="col-md-4 col-sm-12 border border-end-2">
                         <div class="d-flex flex-row justify-content-between">
                             <div class="d-flex flex-column">
                                 <div class="fs-2 fw-bolder uppercase">Référence</div>
