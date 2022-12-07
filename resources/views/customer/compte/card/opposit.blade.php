@@ -9,10 +9,7 @@
 
 @section("content")
     <div id="app" class="rounded">
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h3 class="card-title">Etape</h3>
-            </div>
+        <div class="card shadow-sm mb-10">
             <div class="card-body">
                 <nav>
                     <ol class="cd-multi-steps text-center custom-icons">
