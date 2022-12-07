@@ -1,7 +1,7 @@
 @extends("customer.layouts.app")
 
 @section("css")
-    <link src="https://cssscript.com/demo/step-flow-bootstrap/bootstrap-steps.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cssscript.com/demo/step-flow-bootstrap/bootstrap-steps.min.css">
 @endsection
 
 @section('toolbar')
