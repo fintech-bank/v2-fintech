@@ -36,23 +36,18 @@
                 }
             })
         })
-
-        $().on('submit', e => {
+    }
+    if(elements.btnActiveCard) {
+        elements.btnActiveCard.addEventListener('click', e => {
             e.preventDefault()
-            let form = $()
-            let url = form.attr('action')
-            let data = form.serializeArray()
-            let btn = form.find('[type="submit"]')
-            let method = form.find('[name="_method"]').val()
-
-            btn.attr('data-kt-indicator', 'on')
+            elements.btnActiveCard.setAttribute('data-kt-indicator', 'on')
 
             $.ajax({
-                url: url,
-                method: method,
-                data: data,
+                url: '/api/card/{{ $card->id }}',
+                method: 'PUT',
+                data: {"action": "activeCard"},
                 success: data => {
-                    btn.removeAttr('data-kt-indicator')
+                    elements.btnActiveCard.removeAttr('data-kt-indicator')
                     if(data.state === 'warning') {
                         toastr.warning(`${data.message}`)
                     } else {
@@ -64,7 +59,7 @@
                     }
                 },
                 error: () => {
-                    btn.removeAttr('data-kt-indicator')
+                    elements.btnActiveCard.removeAttr('data-kt-indicator')
                     toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                 }
             })
