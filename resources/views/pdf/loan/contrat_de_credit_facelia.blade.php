@@ -36,7 +36,7 @@
             dans la limite du montant de l'encours autorisée par le Prêteur.
         </p>
         <p>
-            <span class="fw-bolder">Désignation du compte : {{ $data->pret->wallet->number_account }}</span><br>
+            <span class="fw-bolder">Désignation du compte : {{ $data->loan->wallet->number_account }}</span><br>
             Le contrat de crédit ne pourra pas commencer à être exécuté et les fonds ne pourront être utilisés qu’à l’expiration du
             délai de rétractation de 14 jours, ou dès le 8ᵉ jour sur demande expresse de l’Emprunteur.
         </p>
@@ -51,7 +51,7 @@
     <div class="page-break"></div>
     <div class="rounded py-1 px-1 border">
         <span class="fw-bolder">Taux débiteur :</span> Le taux débiteur est variable. Toutes utilisations résultant de l’utilisation de l'encours donne lieu
-        à la perception d’intérêts.<br> <strong>Taux variable : de {{ $data->pret->plan->tarif->max_interest }}% à {{ $data->pret->plan->tarif->min_interest }}% au
+        à la perception d’intérêts.<br> <strong>Taux variable : de {{ $data->loan->plan->tarif->max_interest }}% à {{ $data->loan->plan->tarif->min_interest }}% au
             {{ now()->format("d/m/Y") }}.</strong>
         <p>
             Le taux indiqué est ainsi constitué d’un taux de référence majoré d’un certain nombre de points. Ce taux de référence est
@@ -71,7 +71,7 @@
             d’origine.
         </p>
         <p>
-            <span class="fw-bolder"><span class="underline">Montant total du crédit dû par l’Emprunteur : </span>{{ eur($data->pret->amount_loan) }}</span>
+            <span class="fw-bolder"><span class="underline">Montant total du crédit dû par l’Emprunteur : </span>{{ eur($data->loan->amount_loan) }}</span>
         </p>
         <p>
             <span class="fw-bolder">Sûretés et assurances exigées :</span><br>
