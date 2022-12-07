@@ -50,6 +50,7 @@
                             </div>
                         @endif
                     </div>
+                    <div class="vr"></div>
                     <div class="col-md-8 col-sm-12">
                         <div class="border border-gray-600 rounded p-5 mb-10">
                             <div class="fw-bolder fs-2">Description de l'opposition</div>
