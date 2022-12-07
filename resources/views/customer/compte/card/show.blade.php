@@ -355,15 +355,17 @@
                             </div>
                         </div>
 
-                        <x-form.input-dialer
-                            name="amount_available"
-                            label="Montant souhaité"
-                            min="500"
-                            max="5000"
-                            step="500"
-                            value="500"
-                            prefix="€"
-                            required="true" />
+                        <div class="d-flex flex-center w-50 mx-auto">
+                            <x-form.input-dialer
+                                name="amount_available"
+                                label="Montant souhaité"
+                                min="500"
+                                max="5000"
+                                step="500"
+                                value="500"
+                                prefix="€"
+                                required="true" />
+                        </div>
 
                     </div>
                     <div class="modal-footer text-end">
