@@ -311,6 +311,33 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="SubscribeCredit">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">L’option Crédit de votre carte bancaire</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formSubscribeCredit" action="/api/card/{{ $card->id }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="action" value="subscribeAlterna">
+                    <div class="modal-body">
+                        <p>L’option Crédit associée au crédit renouvelable Alterna(1), vous offre la possibilité de payer au comptant ou à crédit(2) lors de vos achats ou retraits. Vous pouvez l’ajouter gratuitement(3) à votre carte bancaire actuelle : cartes CB Visa, CB Visa Premier, CB Mastercard, CB Gold Mastercard(3) .</p>
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
