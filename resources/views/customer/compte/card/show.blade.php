@@ -302,7 +302,7 @@
                             name="limit_payment"
                             label="Vous souhaitez une nouvelle capacité exceptionnelle de retrait pour 48H de :"
                             required="true"
-                            help-text="Valable immédiatement jusqu’au {{ now()->addDays(2)->format('d/m/Y') }}" />
+                            text="Valable immédiatement jusqu’au {{ now()->addDays(2)->format('d/m/Y') }}" />
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
