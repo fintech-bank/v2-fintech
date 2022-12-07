@@ -41,7 +41,7 @@
             </div>
             <div class="card-body">
                 <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
-                    <div class="bg-white text-primary rounded p-3" role="status">
+                    <div class="bg-white text-danger rounded p-3" role="status">
                         <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
                     </div>
                 </div>
@@ -80,7 +80,7 @@
             </div>
         </div>
         <!--begin::Accordion-->
-        <div class="accordion mb-10" id="kt_accordion_1">
+        <div class="accordion mb-10 {{ $card->status == 'opposit' ? 'overlay overlay-block' : '' }}" id="kt_accordion_1">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="kt_accordion_1_header_1">
                     <button class="accordion-button fs-1 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#options" aria-expanded="true" aria-controls="options">
@@ -89,6 +89,11 @@
                 </h2>
                 <div id="options" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#kt_accordion_1">
                     <div class="accordion-body">
+                        <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
+                            <div class="bg-white text-danger rounded p-3" role="status">
+                                <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                            </div>
+                        </div>
                         <table class="table table-sm mb-10">
                             <tr>
                                 <td colspan="3" class="pe-5 bg-gray-300 fw-bold fs-3">Mes Options</td>
