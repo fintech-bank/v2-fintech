@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="vr"></div>
+                    <div class="vr w-1px"></div>
                 </div>
             </div>
         </div>
