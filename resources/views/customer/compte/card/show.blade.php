@@ -40,11 +40,13 @@
                 <h3 class="card-title">Gérer mes plafonds</h3>
             </div>
             <div class="card-body">
-                <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
-                    <div class="bg-white text-danger rounded p-3" role="status">
-                        <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                @if($card->status == 'opposit')
+                    <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
+                        <div class="bg-white text-danger rounded p-3" role="status">
+                            <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                        </div>
                     </div>
-                </div>
+                @endif
                 <div class="d-flex flex-row justify-content-between align-items-center">
                     <div class="d-flex align-items-center flex-column mt-3 w-75">
                         <div class="d-flex justify-content-between fw-bold fs-6 opacity-75 w-100 mt-auto mb-2">
@@ -89,11 +91,13 @@
                 </h2>
                 <div id="options" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#kt_accordion_1">
                     <div class="accordion-body">
-                        <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
-                            <div class="bg-white text-danger rounded p-3" role="status">
-                                <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                        @if($card->status == 'opposit')
+                            <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
+                                <div class="bg-white text-danger rounded p-3" role="status">
+                                    <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                                </div>
                             </div>
-                        </div>
+                        @endif
                         <table class="table table-sm mb-10">
                             <tr>
                                 <td colspan="3" class="pe-5 bg-gray-300 fw-bold fs-3">Mes Options</td>
@@ -162,11 +166,13 @@
         <!--end::Accordion-->
         @if(Agent::isMobile())
             <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10 {{ $card->status == 'opposit' ? 'overlay overlay-block' : '' }}" data-bs-toggle="modal" data-bs-target="#showCodeCard">
-                <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
-                    <div class="bg-white text-danger rounded p-3" role="status">
-                        <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                @if($card->status == 'opposit')
+                    <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
+                        <div class="bg-white text-danger rounded p-3" role="status">
+                            <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                        </div>
                     </div>
-                </div>
+                @endif
                 <div class="d-flex flex-column">
                     <span class="fw-bolder fs-2">Consulter mon code secret</span>
                     <p>Vous avez oublier le code secret de votre carte bancaire ? Consulter le !</p>
@@ -175,11 +181,13 @@
             </a>
         @endif
         <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10 {{ $card->status == 'opposit' ? 'overlay overlay-block' : '' }}" data-bs-toggle="modal" data-bs-target="#ConfigCard">
-            <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
-                <div class="bg-white text-danger rounded p-3" role="status">
-                    <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+            @if($card->status == 'opposit')
+                <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
+                    <div class="bg-white text-danger rounded p-3" role="status">
+                        <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                    </div>
                 </div>
-            </div>
+            @endif
             <div class="d-flex flex-column">
                 <span class="fw-bolder fs-2">Paramétrer ma carte</span>
                 <p>Adaptez les fonctionnalités de votre carte à vos usages : retraits, opérations à l'étranger ou achats en ligne chez les e-commercants</p>
@@ -187,11 +195,13 @@
             <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
         </a>
         <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10 {{ $card->status == 'opposit' ? 'overlay overlay-block' : '' }}" data-bs-toggle="modal" data-bs-target="#DeclareTravel">
-            <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
-                <div class="bg-white text-danger rounded p-3" role="status">
-                    <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+            @if($card->status == 'opposit')
+                <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
+                    <div class="bg-white text-danger rounded p-3" role="status">
+                        <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                    </div>
                 </div>
-            </div>
+            @endif
             <div class="d-flex flex-column">
                 <span class="fw-bolder fs-2">Déclarer un voyage à l'étranger</span>
                 <p> Vous partez à l'étranger ? Dites-le nous pour éviter tout blocage de carte. </p>
