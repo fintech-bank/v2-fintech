@@ -133,15 +133,16 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
         Route::get('/', [\App\Http\Controllers\Customer\Compte\OffersController::class, 'index'])->name('index');
     });
 
-    Route::prefix('pret')->group(function () {
-        Route::get('/', \App\Http\Controllers\Customer\Pret\PretController::class)->name('customer.pret');
+    Route::prefix('pret')->name('credit.')->group(function () {
+        Route::get('/', \App\Http\Controllers\Customer\Pret\PretController::class)->name('index');
 
-        Route::prefix('perso')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Pret\PretPersoController::class, 'index'])->name('customer.pret.perso');
+        Route::prefix('perso')->name('perso.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Pret\PretPersoController::class, 'index'])->name('index');
+            Route::get('{reference}', [\App\Http\Controllers\Customer\Pret\PretPersoController::class, 'show'])->name('show');
         });
 
-        Route::prefix('immo')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Customer\Pret\PretImmoController::class, 'index'])->name('customer.pret.immo');
+        Route::prefix('immo')->name('immo.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Customer\Pret\PretImmoController::class, 'index'])->name('index');
         });
     });
     Route::prefix('contact')->name('contact.')->group(function () {

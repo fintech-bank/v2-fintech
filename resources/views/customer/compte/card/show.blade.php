@@ -113,7 +113,7 @@
                                 </td>
                                 <td>
                                     @if($card->facelia)
-                                        <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#GestionCredit"><i class="fa-solid fa-eye me-2"></i> Gérez</a>
+                                        <a href="{{ route('customer.credit.perso.show', $card->facelias->pret->reference) }}" class="btn btn-link"><i class="fa-solid fa-eye me-2"></i> Gérez</a>
                                     @else
                                         <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#SubscribeCredit"><i class="fa-solid fa-eye me-2"></i> Découvrir</a>
                                     @endif
