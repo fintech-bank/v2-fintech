@@ -147,18 +147,6 @@ class CardController extends ApiController
                     'facelia' => $alterna,
                 ]
             );
-            DocumentFile::createDoc(
-                $card->wallet->customer,
-                'general.fiche_de_dialogue',
-                $credit->reference.' - Fiche de Dialogue',
-                3,
-                $credit->reference,
-                false,
-                false,
-                false,
-                true,
-                []
-            );
 
             DocumentFile::createDoc(
                 $card->wallet->customer,
