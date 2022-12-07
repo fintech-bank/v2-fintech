@@ -334,7 +334,7 @@
                             <p class="text-center fs-2 fw-bolder">Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.</p>
                         </div>
                         <div class="text-center fs-1 mb-5">Une option pour payer au comptant ou à crédit</div>
-                        <div class="d-flex flex-row justify-content-around">
+                        <div class="d-flex flex-row justify-content-around mb-10">
                             <div class="d-flex flex-column align-items-center">
                                 <div class="rounded-5">
                                     <i class="fa-solid fa-credit-card fs-3tx mb-2 "></i>
@@ -354,6 +354,17 @@
                                 <p>Ajout de l’option : sans frais</p>
                             </div>
                         </div>
+
+                        <x-form.input-dialer
+                            name="amount_available"
+                            label="Montant souhaité"
+                            min="500"
+                            max="5000"
+                            step="500"
+                            value="500"
+                            prefix="€"
+                            required="true" />
+
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
