@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use App\Models\Customer\CustomerCreditCard;
 use App\Models\Customer\CustomerWallet;
+use Illuminate\Http\Request;
 
 class CardController extends Controller
 {
@@ -35,5 +36,20 @@ class CardController extends Controller
             "card" => $card,
             "wallet" => $card->wallet
         ]);
+    }
+
+    public function piece($card_id, Request $request)
+    {
+        $request->validate([
+            'file' => "required|file|mimes:png,bpm,jpg,jpeg,pdf"
+        ]);
+        $card = CustomerCreditCard::find($card_id);
+
+        $file = $request->file('file');
+        $file->storeAs(public_path('uploads/card/opposit/'.$card->opposition->reference.'/'), $file->getClientOriginalName().'.'.$file->getClientOriginalExtension());
+
+        $card->update(['status' => 'progress']);
+
+        return redirect()->back()->with('success', "Votre documents nous à bien été transmis");
     }
 }
