@@ -40,13 +40,6 @@
                                 <div class="">{{ Str::ucfirst($card->opposition->type) }}</div>
                             </div>
                         </div>
-                        <div class="separator separator-dotted border-gray-600 my-5"></div>
-                        <div class="d-flex flex-row justify-content-between">
-                            <div class="d-flex flex-column">
-                                <div class="fs-2 fw-bolder uppercase">Type d'opposition</div>
-                                <div class="">{{ Str::ucfirst($card->opposition->type) }}</div>
-                            </div>
-                        </div>
                         @if($card->opposition->type == 'fraude')
                             <div class="separator separator-dotted border-gray-600 my-5"></div>
                             <div class="d-flex flex-row justify-content-between">
@@ -56,6 +49,31 @@
                                 </div>
                             </div>
                         @endif
+                    </div>
+                    <div class="col-md-8 col-sm-12">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @if($card->opposition->status == 'submit')
+                                <p>
+                                    Votre demande d'opposition est actuellement en <strong>Soumission</strong>.<br>
+                                    Afin de traiter au mieux votre requete, veuillez nous faire parvenir les justificatifs suivants:
+                                </p>
+                                <ul>
+                                    <li><strong>Vol:</strong> Dépot de plainte effectuer auprès de votre commissariat.</li>
+                                    <li><strong>Perte:</strong> Déclaration de perte effectuer auprès de votre commissariat.</li>
+                                    <li><strong>Fraude:</strong> Dépot de plainte effectuer auprès de votre commissariat ainsi qu'une capture d'écran des mouvements frauduleux.</li>
+                                </ul>
+                            @endif
+
+                            <x-form.input-file
+                                name="file"
+                                label="Document à fournir"
+                                required="true" />
+
+                            <div class="d-flex flex-wrap justify-content-end">
+                                <x-form.button />
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
