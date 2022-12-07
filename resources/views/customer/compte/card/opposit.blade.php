@@ -1,7 +1,7 @@
 @extends("customer.layouts.app")
 
 @section("css")
-    <link rel="stylesheet" href="https://cssscript.com/demo/step-flow-bootstrap/bootstrap-steps.min.css">
+    <link rel="stylesheet" href="https://codyhouse.co/demo/breadcrumbs-multi-steps-indicator/css/style.css">
 @endsection
 
 @section('toolbar')
@@ -14,26 +14,14 @@
                 <h3 class="card-title">Etape</h3>
             </div>
             <div class="card-body">
-                <ul class="steps w-100">
-                    <li class="step step-success">
-                        <div class="step-content">
-                            <span class="step-circle">1</span>
-                            <span class="step-text">Soumission</span>
-                        </div>
-                    </li>
-                    <li class="step step-active">
-                        <div class="step-content">
-                            <span class="step-circle">2</span>
-                            <span class="step-text">Etude en cours</span>
-                        </div>
-                    </li>
-                    <li class="step">
-                        <div class="step-content">
-                            <span class="step-circle">3</span>
-                            <span class="step-text">Terminer</span>
-                        </div>
-                    </li>
-                </ul>
+                <nav>
+                    <ol class="cd-multi-steps text-center custom-icons">
+                        <li class="visited"><a href="#0">Cart</a></li>
+                        <li class="visited"><a href="#0">Billing</a></li>
+                        <li class="current"><em>Delivery</em></li>
+                        <li><em>Review</em></li>
+                    </ol>
+                </nav>
             </div>
         </div>
         <div class="card shadow-sm">
