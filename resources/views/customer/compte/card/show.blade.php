@@ -341,6 +341,18 @@
                                 </div>
                                 <p>Carte associée au crédit renouvelable Alterna(1)</p>
                             </div>
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="rounded-5">
+                                    <i class="fa-solid fa-money-check fs-3tx mb-2 "></i>
+                                </div>
+                                <p>Paiement et retrait au comptant ou à crédit(2)</p>
+                            </div>
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="rounded-5">
+                                    <i class="fa-solid fa-percentage fs-3tx mb-2 "></i>
+                                </div>
+                                <p>Ajout de l’option : sans frais</p>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer text-end">
