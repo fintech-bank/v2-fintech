@@ -81,7 +81,7 @@ class CardController extends ApiController
             CustomerLoanHelper::create(
                 $card->wallet->id,
                 $card->wallet->customer,
-                $request->get('amount_available'),
+                \Str::replace('€ ', '', $request->get('amount_available')),
                 $request->get('loan_plan_id'),
                 $request->get('duration'),
                 '10',
