@@ -51,7 +51,7 @@
                         @endif
                     </div>
                     <div class="col-md-8 col-sm-12">
-                        <form action="{{ route('customer.card.piece') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('customer.card.piece', $card->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @if($card->opposition->status == 'submit')
                                 <p>
