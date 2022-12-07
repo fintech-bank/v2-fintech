@@ -42,7 +42,7 @@
             <div class="card-body">
                 <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
                     <div class="bg-white text-primary rounded p-3" role="status">
-                        Carte en opposition
+                        <i class="fa-solid fa-circle-xmark text-danger me-2"></i> Carte en opposition
                     </div>
                 </div>
                 <div class="d-flex flex-row justify-content-between align-items-center">
