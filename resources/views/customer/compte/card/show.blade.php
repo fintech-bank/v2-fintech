@@ -335,7 +335,7 @@
                         </div>
                         <div class="text-center fs-1">Une option pour payer au comptant ou à crédit</div>
                         <div class="d-flex flex-row justify-content-around">
-                            <div class="d-flex flex-center justify-content-center mx-auto">
+                            <div class="d-flex flex-column align-items-center">
                                 <i class="fa-solid fa-credit-card fs-2x"></i>
                                 <p>Carte associée au crédit renouvelable Alterna(1)</p>
                             </div>
