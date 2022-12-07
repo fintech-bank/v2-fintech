@@ -329,7 +329,7 @@
                     @method('PUT')
                     <input type="hidden" name="action" value="subscribeAlterna">
                     <div class="modal-body">
-                        <div class="d-flex flex-center justify-content-center w-50 mx-auto">
+                        <div class="d-flex flex-column justify-content-center w-50 mx-auto">
                             <p class="text-center fs-2 fw-bold">L’option Crédit associée au crédit renouvelable Alterna(1), vous offre la possibilité de payer au comptant ou à crédit(2) lors de vos achats ou retraits. Vous pouvez l’ajouter gratuitement(3) à votre carte bancaire actuelle : cartes CB Visa, CB Visa Premier, CB Mastercard, CB Gold Mastercard(3) .</p>
                             <p class="text-center fs-2 fw-bolder">Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.</p>
                         </div>
