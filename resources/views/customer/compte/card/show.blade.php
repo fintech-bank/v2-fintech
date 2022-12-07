@@ -192,7 +192,7 @@
                     @method('PUT')
                     <div class="modal-body">
                         <div class="mb-10">
-                            <label for="type">Type d'opposition</label>
+                            <label for="type" class="form-label required">Type d'opposition</label>
                             <select name="type" id="type" class="form-control form-control-solid selectpicker" data-title="Slectionner une cause à l'opposition">
                                 <option value=""></option>
                                 <option value="vol">Vol</option>
@@ -200,6 +200,10 @@
                                 <option value="fraude">Fraude</option>
                             </select>
                         </div>
+                        <x-form.textarea
+                            name="description"
+                            label="Décrivez la cause de l'opposition"
+                            required="true" />
                     </div>
                     <div class="modal-footer text-end">
                         <x-form.button />
