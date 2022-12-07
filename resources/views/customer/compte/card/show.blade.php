@@ -190,6 +190,7 @@
                 <form id="formOppositCard" action="/api/card/{{ $card->id }}" method="post">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="action" value="oppositCard">
                     <div class="modal-body">
                         <div class="mb-10">
                             <label for="type" class="form-label required">Type d'opposition</label>

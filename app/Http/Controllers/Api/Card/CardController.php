@@ -20,6 +20,7 @@ class CardController extends ApiController
         return match($request->get('action')) {
             "desactiveCard" => $this->desactiveCard($card),
             "activeCard" => $this->activeCard($card),
+            "oppositCard" => $this->oppositCard($card, $request)
         };
     }
 
@@ -35,5 +36,21 @@ class CardController extends ApiController
         $card->update(['status' => 'active']);
 
         return $this->sendSuccess("Carte activé");
+    }
+
+    private function oppositCard(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerCreditCard_C|CustomerCreditCard|null $card, Request $request)
+    {
+        $opposit = $card->opposition()->create([
+            'reference' => generateReference(),
+            'type' => $request->get('type'),
+            'description' => $request->get('description'),
+            'verif_fraude' => $request->get('type') == 'fraude',
+            'status' => 'submit',
+            'customer_credit_card_id' => $card->id
+        ]);
+
+        $card->update(['status' => 'opposit']);
+
+        return $this->sendSuccess("Dossier d'opposition transmis");
     }
 }
