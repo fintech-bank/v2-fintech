@@ -365,6 +365,11 @@
                                 value="500"
                                 prefix="€"
                                 required="true" />
+
+                            <x-form.input
+                                name="duration"
+                                label="Durée (en Année)"
+                                required="true" />
                         </div>
 
                     </div>
