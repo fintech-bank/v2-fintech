@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Card;
 
 use App\Http\Controllers\Api\ApiController;
+use App\Jobs\Customer\Card\LimitWithdrawJob;
 use App\Models\Customer\CustomerCreditCard;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class CardController extends ApiController
             "desactiveCard" => $this->desactiveCard($card),
             "activeCard" => $this->activeCard($card),
             "oppositCard" => $this->oppositCard($card, $request),
-            'editLimitPayment' => $this->editLimitPayment($card, $request)
+            'editLimitPayment' => $this->editLimitPayment($card, $request),
+            'editLimitWithdraw' => $this->editLimitWithdraw($card, $request),
         };
     }
 
@@ -60,5 +62,13 @@ class CardController extends ApiController
         $card->update(["limit_payment" => $request->get('limit_payment')]);
 
         return $this->sendSuccess("Plafond de paiement edité");
+    }
+
+    private function editLimitWithdraw(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerCreditCard_C|CustomerCreditCard|null $card, Request $request)
+    {
+        dispatch(new LimitWithdrawJob($card, $card->limit_retrait))->delay(now()->addDays(2));
+        $card->update(['limit_retrait' => $request->get('limit_retrait')]);
+
+        return $this->sendSuccess("Limite de retrait edité");
     }
 }

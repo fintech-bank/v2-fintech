@@ -299,7 +299,7 @@
                     <div class="modal-body">
                         <p>Pour augmenter votre plafond de retrait, veuillez indiquer ci-dessous le montant dont vous avez besoin. Cette somme va correspondre au montant maximum que vous serez en mesure de retirer dans les 2 prochains jours.</p>
                         <x-form.input
-                            name="limit_payment"
+                            name="limit_retrait"
                             label="Vous souhaitez une nouvelle capacité exceptionnelle de retrait pour 48H de :"
                             required="true"
                             text="Valable immédiatement jusqu’au {{ now()->addDays(2)->format('d/m/Y') }}" />
