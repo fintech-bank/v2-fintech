@@ -200,6 +200,7 @@ class CardController extends ApiController
                 true,
                 [
                     'loan' => $credit,
+                    'wallet' => $card->wallet
                 ]
             );
             DocumentFile::createDoc(
