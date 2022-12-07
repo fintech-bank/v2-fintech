@@ -51,6 +51,8 @@
                         @endif
                     </div>
                     <div class="col-md-8 col-sm-12">
+                        <div class="fw-bolder fs-2">Description de l'opposition</div>
+                        <blockcote>{!! $card->opposition->description !!}</blockcote>
                         <form action="{{ route('customer.card.piece', $card->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @if($card->opposition->status == 'submit')
