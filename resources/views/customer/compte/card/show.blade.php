@@ -337,7 +337,7 @@
                         <div class="d-flex flex-row justify-content-around">
                             <div class="d-flex flex-column align-items-center">
                                 <div class="rounded-5">
-                                    <i class="fa-solid fa-credit-card fs-2hx mb-2 "></i>
+                                    <i class="fa-solid fa-credit-card fs-3tx mb-2 "></i>
                                 </div>
                                 <p>Carte associée au crédit renouvelable Alterna(1)</p>
                             </div>
