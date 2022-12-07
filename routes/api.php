@@ -274,3 +274,8 @@ Route::prefix('transaction')->group(function () {
     Route::get('/search', [\App\Http\Controllers\Api\Transaction\TransactionController::class, 'search'])->name('api.transaction.search');
     Route::get('/{reference}', [\App\Http\Controllers\Api\Transaction\TransactionController::class, 'retrieve'])->name('api.transaction.retrieve');
 });
+
+Route::prefix('card')->group(function () {
+    Route::post('/', [\App\Http\Controllers\Api\Card\CardController::class, 'store']);
+    Route::put('{card_id}', [\App\Http\Controllers\Api\Card\CardController::class, 'update']);
+});

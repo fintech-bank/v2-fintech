@@ -21,12 +21,12 @@
                             {{ $card->debit_format }}
                             <a href="{{ route('customer.compte.wallet', $card->wallet->uuid) }}" class="btn btn-link">{{ $card->wallet->name_account_generic }}</a>
                             @if($card->status == 'active')
-                                <button class="btn btn-circle btn-outline btn-outline-dark mb-5">Verrouiller ma carte</button>
+                                <button class="btn btn-circle btn-outline btn-outline-dark mb-5 btnDesactiveCard" data-card="{{ $card->id }}">Verrouiller ma carte</button>
                             @else
-                                <button class="btn btn-circle btn-outline btn-outline-dark mb-5">Deverrouiller ma carte</button>
+                                <button class="btn btn-circle btn-outline btn-outline-dark mb-5 btnActiveCard" data-card="{{ $card->id }}">Deverrouiller ma carte</button>
                             @endif
                             @if($card->status != 'opposit')
-                                <button class="btn btn-circle btn-outline btn-outline-danger mb-5">Faire opposition</button>
+                                <button class="btn btn-circle btn-outline btn-outline-danger mb-5" data-bs-toggle="modal" data-bs-target="#OppositCard">Faire opposition</button>
                             @else
                                 <a href="" class="btn btn-link mb-5">Dossier {{ $card->opposition->reference }}</a>
                             @endif
@@ -174,8 +174,34 @@
             <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
         </a>
     </div>
+    <div class="modal fade" tabindex="-1" id="OppositCard">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Opposition sur ma carte bancaire</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formOppositCard" action="/api/card/{{ $card->id }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
-    @include("customer.scripts.compte.index")
+    @include("customer.scripts.card.show")
 @endsection
