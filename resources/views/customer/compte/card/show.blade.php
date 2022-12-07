@@ -333,10 +333,10 @@
                             <p class="text-center fs-2 fw-bold">L’option Crédit associée au crédit renouvelable Alterna(1), vous offre la possibilité de payer au comptant ou à crédit(2) lors de vos achats ou retraits. Vous pouvez l’ajouter gratuitement(3) à votre carte bancaire actuelle : cartes CB Visa, CB Visa Premier, CB Mastercard, CB Gold Mastercard(3) .</p>
                             <p class="text-center fs-2 fw-bolder">Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.</p>
                         </div>
-                        <div class="text-center fs-1">Une option pour payer au comptant ou à crédit</div>
+                        <div class="text-center fs-1 mb-5">Une option pour payer au comptant ou à crédit</div>
                         <div class="d-flex flex-row justify-content-around">
                             <div class="d-flex flex-column align-items-center">
-                                <i class="fa-solid fa-credit-card fs-2x"></i>
+                                <i class="fa-solid fa-credit-card fs-2hx mb-2"></i>
                                 <p>Carte associée au crédit renouvelable Alterna(1)</p>
                             </div>
                         </div>
