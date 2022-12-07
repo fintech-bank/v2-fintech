@@ -355,7 +355,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-center w-50 mx-auto">
+                        <div class="d-flex flex-center flex-column w-50 mx-auto">
                             <x-form.input-dialer
                                 name="amount_available"
                                 label="Montant souhaité"
