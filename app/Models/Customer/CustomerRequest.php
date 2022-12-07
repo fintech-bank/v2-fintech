@@ -85,7 +85,9 @@ class CustomerRequest extends Model
     public function getModelDataAttribute()
     {
         return match ($this->link_model) {
-            "App\Models\Customer\CustomerEpargne" => "Compte Epargne"
+            "App\Models\Customer\CustomerEpargne" => "Compte Epargne",
+            "App\Models\Customer\CustomerPret" => "Crédit",
+            "App\Models\Customer\CustomerWallet" => "Compte",
         };
     }
 }
