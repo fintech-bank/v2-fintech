@@ -26,4 +26,14 @@ class CardController extends Controller
             "wallet" => $card->wallet
         ]);
     }
+
+    public function opposit($card_id)
+    {
+        $card = CustomerCreditCard::find($card_id);
+        return view('customer.compte.card.opposit', [
+            'customer' => Customer::find(auth()->user()->customers->id),
+            "card" => $card,
+            "wallet" => $card->wallet
+        ]);
+    }
 }

@@ -140,5 +140,10 @@ trait CustomerCreditCardTrait
         ]);
     }
 
+    public function getFullInfoAttribute()
+    {
+        return "CB ".$this->support->name." - N° ".$this->number_card_oscure;
+    }
+
 
 }

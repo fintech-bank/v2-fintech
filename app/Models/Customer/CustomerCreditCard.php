@@ -102,7 +102,8 @@ class CustomerCreditCard extends Model
         'debit_format',
         'status_label',
         'logo_card',
-        'is_differed'
+        'is_differed',
+        'full_info'
     ];
 
     public function wallet()
