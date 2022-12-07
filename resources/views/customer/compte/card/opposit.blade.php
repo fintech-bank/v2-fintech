@@ -51,8 +51,10 @@
                         @endif
                     </div>
                     <div class="col-md-8 col-sm-12">
-                        <div class="fw-bolder fs-2">Description de l'opposition</div>
-                        <blockquote class="mb-10">{!! $card->opposition->description !!}</blockquote>
+                        <div class="border border-gray-600 rounded p-5">
+                            <div class="fw-bolder fs-2">Description de l'opposition</div>
+                            <blockquote class="mb-10">{!! $card->opposition->description !!}</blockquote>
+                        </div>
                         <form action="{{ route('customer.card.piece', $card->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @if($card->opposition->status == 'submit')
