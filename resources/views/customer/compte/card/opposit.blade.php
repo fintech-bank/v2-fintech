@@ -31,7 +31,6 @@
                         </div>
                         <div class="vr"></div>
                     </div>
-                    <div class="vr"></div>
                 </div>
             </div>
         </div>
