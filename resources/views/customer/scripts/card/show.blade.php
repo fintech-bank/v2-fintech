@@ -8,6 +8,7 @@
     let forms = {
         formOppositCard: document.querySelector("#formOppositCard"),
         formEditPlafondPayment: document.querySelector("#formEditPlafondPayment"),
+        formEditPlafondWithdraw: document.querySelector("#formEditPlafondWithdraw"),
     }
     let dataTable = {}
     let block = {}
@@ -126,37 +127,59 @@
 
         btn.attr('data-kt-indicator', 'on')
 
-        Swal.fire({
-            title: 'Êtes-vous sur ?',
-            text: "La création d'un dossier d'opposition va bloquer votre carte bancaire ?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Oui!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: url,
-                    method: method,
-                    data: data,
-                    success: data => {
-                        btn.removeAttr('data-kt-indicator')
-                        if (data.state === 'warning') {
-                            toastr.warning(`${data.message}`)
-                        } else {
-                            toastr.success(`${data.message}`)
+        $.ajax({
+            url: url,
+            method: method,
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+                if (data.state === 'warning') {
+                    toastr.warning(`${data.message}`)
+                } else {
+                    toastr.success(`${data.message}`)
 
-                            setTimeout(() => {
-                                window.location.reload()
-                            }, 1200)
-                        }
-                    },
-                    error: () => {
-                        btn.removeAttr('data-kt-indicator')
-                        toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
-                    }
-                })
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
+            },
+            error: () => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+            }
+        })
+
+
+    })
+    $(forms.formEditPlafondWithdraw).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formEditPlafondWithdraw)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('[type="submit"]')
+        let method = form.find('[name="_method"]').val()
+
+        btn.attr('data-kt-indicator', 'on')
+
+        $.ajax({
+            url: url,
+            method: method,
+            data: data,
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+                if (data.state === 'warning') {
+                    toastr.warning(`${data.message}`)
+                } else {
+                    toastr.success(`${data.message}`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
+            },
+            error: () => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
             }
         })
 

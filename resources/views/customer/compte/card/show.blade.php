@@ -292,7 +292,7 @@
                     <!--end::Close-->
                 </div>
 
-                <form id="formEditPlafondPayment" action="/api/card/{{ $card->id }}" method="post">
+                <form id="formEditPlafondWithdraw" action="/api/card/{{ $card->id }}" method="post">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="action" value="editLimitWithdraw">
