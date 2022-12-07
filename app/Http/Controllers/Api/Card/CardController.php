@@ -214,7 +214,7 @@ class CardController extends ApiController
                 false,
                 true,
                 [
-                    'loan' => $credit,
+                    'credit' => $credit,
                 ]
             );
 
