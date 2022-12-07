@@ -161,7 +161,12 @@
         </div>
         <!--end::Accordion-->
         @if(Agent::isMobile())
-            <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10" data-bs-toggle="modal" data-bs-target="#showCodeCard">
+            <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10 {{ $card->status == 'opposit' ? 'overlay overlay-block' : '' }}" data-bs-toggle="modal" data-bs-target="#showCodeCard">
+                <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
+                    <div class="bg-white text-danger rounded p-3" role="status">
+                        <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                    </div>
+                </div>
                 <div class="d-flex flex-column">
                     <span class="fw-bolder fs-2">Consulter mon code secret</span>
                     <p>Vous avez oublier le code secret de votre carte bancaire ? Consulter le !</p>
@@ -169,14 +174,24 @@
                 <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
             </a>
         @endif
-        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10" data-bs-toggle="modal" data-bs-target="#ConfigCard">
+        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10 {{ $card->status == 'opposit' ? 'overlay overlay-block' : '' }}" data-bs-toggle="modal" data-bs-target="#ConfigCard">
+            <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
+                <div class="bg-white text-danger rounded p-3" role="status">
+                    <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                </div>
+            </div>
             <div class="d-flex flex-column">
                 <span class="fw-bolder fs-2">Paramétrer ma carte</span>
                 <p>Adaptez les fonctionnalités de votre carte à vos usages : retraits, opérations à l'étranger ou achats en ligne chez les e-commercants</p>
             </div>
             <i class="fa-solid fa-arrow-right-long fs-1 align-items-center"></i>
         </a>
-        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10" data-bs-toggle="modal" data-bs-target="#DeclareTravel">
+        <a href="" class="d-flex flex-row justify-content-between rounded border border-2 w-100 bg-white text-dark p-5 hover-elevate-up mb-10 {{ $card->status == 'opposit' ? 'overlay overlay-block' : '' }}" data-bs-toggle="modal" data-bs-target="#DeclareTravel">
+            <div class="overlay-layer card-rounded bg-dark bg-opacity-5">
+                <div class="bg-white text-danger rounded p-3" role="status">
+                    <i class="fa-solid fa-circle-xmark text-danger fs-3 me-2"></i> Carte en opposition
+                </div>
+            </div>
             <div class="d-flex flex-column">
                 <span class="fw-bolder fs-2">Déclarer un voyage à l'étranger</span>
                 <p> Vous partez à l'étranger ? Dites-le nous pour éviter tout blocage de carte. </p>
