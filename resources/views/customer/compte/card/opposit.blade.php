@@ -47,6 +47,15 @@
                                 <div class="">{{ Str::ucfirst($card->opposition->type) }}</div>
                             </div>
                         </div>
+                        @if($card->opposition->type == 'fraude')
+                            <div class="separator separator-dotted border-gray-600 my-5"></div>
+                            <div class="d-flex flex-row justify-content-between">
+                                <div class="d-flex flex-column">
+                                    <div class="fs-2 fw-bolder uppercase">Vérification de la fraude</div>
+                                    <div class="">{{ $card->opposition->verif_fraude ? 'Oui' : 'Non' }}</div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
