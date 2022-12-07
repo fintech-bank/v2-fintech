@@ -76,6 +76,7 @@ class CardController extends ApiController
 
     private function subscribeAlterna(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerCreditCard_C|CustomerCreditCard|null $card, Request $request)
     {
+        dd($request->all());
         try {
             CustomerLoanHelper::create(
                 $card->wallet->id,
