@@ -68,26 +68,27 @@
         })
     }
 
-    Swal.fire({
-        title: 'Êtes-vous sur ?',
-        text: "La création d'un dossier d'opposition va bloquer votre carte bancaire ?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Oui!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $(forms.formOppositCard).on('submit', e => {
-                e.preventDefault()
-                let form = $(forms.formOppositCard)
-                let url = form.attr('action')
-                let data = form.serializeArray()
-                let btn = form.find('[type="submit"]')
-                let method = form.find('[name="_method"]').val()
 
-                btn.attr('data-kt-indicator', 'on')
+    $(forms.formOppositCard).on('submit', e => {
+        e.preventDefault()
+        let form = $(forms.formOppositCard)
+        let url = form.attr('action')
+        let data = form.serializeArray()
+        let btn = form.find('[type="submit"]')
+        let method = form.find('[name="_method"]').val()
 
+        btn.attr('data-kt-indicator', 'on')
+
+        Swal.fire({
+            title: 'Êtes-vous sur ?',
+            text: "La création d'un dossier d'opposition va bloquer votre carte bancaire ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui!'
+        }).then((result) => {
+            if (result.isConfirmed) {
                 $.ajax({
                     url: url,
                     method: method,
@@ -109,9 +110,9 @@
                         toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
                     }
                 })
-            })
-        }
+            }
+        })
+
+
     })
-
-
 </script>
