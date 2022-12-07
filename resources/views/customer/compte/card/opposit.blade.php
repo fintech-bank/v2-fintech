@@ -29,8 +29,9 @@
                                 <div class="">{{ Str::ucfirst($card->opposition->type) }}</div>
                             </div>
                         </div>
+                        <div class="vr"></div>
                     </div>
-                    <div class="vr w-1px"></div>
+                    <div class="vr"></div>
                 </div>
             </div>
         </div>
