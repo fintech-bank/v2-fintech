@@ -3,7 +3,7 @@
 @section("content")
     <div class="text-center fw-bolder fs-3 mb-5">
         <div class="">OFFRE DE CONTRAT DE CREDIT</div>
-        <div class="">{{ $data->pret->plan->name }}</div>
+        <div class="">{{ $data->loan->plan->name }}</div>
     </div>
     <p>
         La présente offre de crédit est faite en application de l’article L.312-1 et suivants du code de la consommation.
@@ -29,7 +29,7 @@
     <p class="fw-bolder fs-italic mb-10">Ci-après dénommé(e)(s) l’"Emprunteur" ou le « Client » même en cas de pluralité d’emprunteurs,</p>
     <div class="rounded py-1 px-1 border">
         <div class="fw-bolder bg-gray-300 uppercase">CARACTERISTIQUES ESSENTIELLES DU CREDIT</div>
-        <p><strong>Type de crédit:</strong> {{ $data->pret->plan->name }}</p>
+        <p><strong>Type de crédit:</strong> {{ $data->loan->plan->name }}</p>
         <p>
             <span class="fw-bolder">Conditions de mise à disposition des fonds :</span><br>
             Le Prêteur met à disposition un encours égale à la demande utilisable par l'emprunteur par l'intermédiaire de virement bancaire, ou autre
