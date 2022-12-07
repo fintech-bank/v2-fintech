@@ -356,6 +356,13 @@
                         </div>
 
                         <div class="d-flex flex-center flex-column w-50 mx-auto">
+                            <div class="mb-10">
+                                <label for="loan_plan_id" class="form-label required">Type de pret</label>
+                                <select class="form-control form-control-solid selectpicker" name="loan_plan_id">
+                                    <option value="8">Crédit Renouvelable Alterna</option>
+                                </select>
+                            </div>
+
                             <x-form.input-dialer
                                 name="amount_available"
                                 label="Montant souhaité"
