@@ -181,18 +181,6 @@ class CreditCardController extends ApiController
                         ]
                     );
 
-                    DocumentFile::createDoc(
-                        $card->wallet->customer,
-                        'general.fiche_de_dialogue',
-                        $pret->reference.' - Fiche de Dialogue',
-                        3,
-                        $pret->reference,
-                        false,
-                        false,
-                        false,
-                        true,
-                        []
-                    );
 
                     DocumentFile::createDoc(
                         $card->wallet->customer,
