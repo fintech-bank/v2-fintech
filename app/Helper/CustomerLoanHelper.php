@@ -53,7 +53,7 @@ class CustomerLoanHelper
                 'mensuality' => $mensuality
             ]);
 
-            if ($plan->id == 6) {
+            if ($plan->id == 8) {
                 $facelia = CustomerFacelia::query()->create([
                     'reference' => generateReference(),
                     'amount_available' => $amount,

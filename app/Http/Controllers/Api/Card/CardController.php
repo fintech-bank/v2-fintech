@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Card;
 
+use App\Helper\CustomerLoanHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Jobs\Customer\Card\LimitWithdrawJob;
 use App\Models\Customer\CustomerCreditCard;
@@ -24,6 +25,7 @@ class CardController extends ApiController
             "oppositCard" => $this->oppositCard($card, $request),
             'editLimitPayment' => $this->editLimitPayment($card, $request),
             'editLimitWithdraw' => $this->editLimitWithdraw($card, $request),
+            'subscribeAlterna' => $this->subscribeAlterna($card, $request)
         };
     }
 
@@ -70,5 +72,24 @@ class CardController extends ApiController
         $card->update(['limit_retrait' => $request->get('limit_retrait')]);
 
         return $this->sendSuccess("Limite de retrait edité");
+    }
+
+    private function subscribeAlterna(\Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|\LaravelIdea\Helper\App\Models\Customer\_IH_CustomerCreditCard_C|CustomerCreditCard|null $card, Request $request)
+    {
+        try {
+            CustomerLoanHelper::create(
+                $card->wallet->id,
+                $card->wallet->customer,
+                $request->get('amount_available'),
+                $request->get('loan_plan_id'),
+                $request->get('duration'),
+                '10',
+                'open',
+                $card
+            );
+            return $this->sendSuccess("Demande de crédit facelia effectué");
+        }catch (\Exception $exception) {
+            return $this->sendWarning("Erreur", ['errors', $exception]);
+        }
     }
 }
