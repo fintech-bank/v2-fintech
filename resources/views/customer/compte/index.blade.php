@@ -70,8 +70,8 @@
                         </a>
                     @endforeach
                 @endif
-                    <div class="separator separator-dashed border-gray-600 my-15"></div>
                 @if($customer->setting->tos_cashback)
+                        <div class="separator separator-dashed border-gray-600 my-15"></div>
                         <a href="{{ route('customer.account.profil.cashback.index') }}" class="d-flex flex-column p-5 rounded border border-2 bg-gray-300 text-black hover-zoom">
                             <span class="d-flex flex-row justify-content-between mb-3">
                                 <span class="d-flex flex-row fs-2">
