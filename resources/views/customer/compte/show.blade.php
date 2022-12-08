@@ -24,7 +24,7 @@
 
 
                 <div class="mb-10">
-                    @foreach($wallet->transactions()->where('confirmed', 0)->orderBy('updated_at', 'desc')->get() as $transaction)
+                    @foreach($wallet->transactions()->where('confirmed', 0)->where('differed', 0)->orderBy('updated_at', 'desc')->get() as $transaction)
                         <div class="mb-5">
                             <a class="d-flex flex-row h-50px p-5 justify-content-between align-items-center rounded bg-white mb-0"
                                data-bs-toggle="collapse" href="#{{ $transaction->type }}_{{ $transaction->id }}">
