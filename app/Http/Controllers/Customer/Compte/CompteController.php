@@ -17,7 +17,7 @@ class CompteController extends Controller
         return view('customer.compte.index', [
             "customer" => Customer::find(auth()->user()->customers->id),
             'wallets' => Customer::find(auth()->user()->customers->id)->wallets,
-            'cashback' => $cash->callWallet(auth()->user()->customers->id)->data
+            'cashback' => isset($cash->callWallet(auth()->user()->customers->id)->data) ?? null
         ]);
     }
 

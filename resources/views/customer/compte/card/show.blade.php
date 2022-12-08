@@ -387,6 +387,32 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" id="SubscribeECard">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Souscription au service E-carte Bleu</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formSubscribeECard" action="/api/card/{{ $card->id }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
