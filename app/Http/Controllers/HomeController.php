@@ -107,8 +107,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $bank = new CashbackApi();
+        $bank = new Client();
 
-        dd($bank->callWallet(1));
+        dd($bank->getConnector(5));
     }
 }

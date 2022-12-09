@@ -8,4 +8,9 @@ class Client extends Powens
     {
         return \Http::withToken($this->auth_token)->get($this->endpoint."users/me/subscriptions")->object();
     }
+
+    public function getConnector($id)
+    {
+        return \Http::withToken($this->auth_token)->get($this->endpoint."/connectors/".$id)->object();
+    }
 }

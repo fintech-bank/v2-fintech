@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 
 trait TransactionTrait
 {
+    use TransactionFailedTrait;
     /**
      * @param int $wallet_id
      * @param string $type_mvm
@@ -209,5 +210,44 @@ trait TransactionTrait
         }
     }
 
+    public function createFraisBancaire($description)
+    {
+        return $this->createDebit(
+            $this->wallet->id,
+            'frais',
+            "Commission d'intervention",
+            $description,
+            2.5,
+            'true',
+            now()->startOfDay()
+        );
+    }
+
+    public function verifAccountBalanceForTransaction(CustomerTransaction $transaction): bool
+    {
+        if ($transaction->amount <= $transaction->wallet->solde_remaining) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function comingToConfirmedTransaction(CustomerTransaction $transaction): bool
+    {
+        return $transaction->update([
+            "confirmed" => true,
+            "confirmed_at" => now()->startOfDay(),
+            "updated_at" => now()
+        ]);
+    }
+
+    protected function comingFailed(CustomerTransaction $transaction): CustomerTransaction|null
+    {
+        return match ($transaction->type) {
+            "virement" => $this->failedVirement($transaction),
+            "payment" => $this->failedPayment($transaction),
+            "sepa" => $this->failedSepa($transaction),
+        };
+    }
 
 }

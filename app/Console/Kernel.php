@@ -8,6 +8,7 @@ use App\Console\Schedules\SystemCreditSchedule;
 use App\Console\Schedules\SystemCustomerSchedule;
 use App\Console\Schedules\SystemEpargneSchedule;
 use App\Console\Schedules\SystemSepaSchedule;
+use App\Console\Schedules\SystemTransactionSchedule;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -27,10 +28,8 @@ class Kernel extends ConsoleKernel
         SystemCreditSchedule::boot($schedule);
         SystemCheckSchedule::boot($schedule);
         SystemSepaSchedule::boot($schedule);
+        SystemTransactionSchedule::boot($schedule);
 
-        $schedule->command('system:agent executeTransactionComing')
-            ->everySixHours()
-            ->description("Execution des transactions entrente [log]");
 
 
         $schedule->command('system:agent executeVirement')

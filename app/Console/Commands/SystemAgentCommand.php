@@ -10,6 +10,7 @@ use App\Models\Customer\CustomerTransaction;
 use App\Models\Customer\CustomerTransfer;
 use App\Notifications\Agent\CalendarAlert;
 use App\Notifications\Customer\RejectedTransferNotification;
+use App\Scope\TransactionTrait;
 use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\SlackNotifier;
@@ -18,7 +19,7 @@ use macropage\LaravelSchedulerWatcher\LaravelSchedulerCustomMutex;
 
 class SystemAgentCommand extends Command
 {
-    use LaravelSchedulerCustomMutex;
+    use LaravelSchedulerCustomMutex, TransactionTrait;
     /**
      * The name and signature of the console command.
      *
@@ -52,8 +53,6 @@ class SystemAgentCommand extends Command
         }
         match ($this->argument('action')) {
             "calendarAlert" => $this->calendarAlert(),
-            "executeSepaOrders" => $this->executeSepaOrders(),
-            "executeTransactionComing" => $this->executeTransactionComing(),
             "executeVirement" => $this->executeVirement(),
         };
 
@@ -109,52 +108,6 @@ class SystemAgentCommand extends Command
 
         $this->line("Date: ".now()->format("d/m/Y à H:i"));
         $this->slack->send("Exécution des prélèvement SEPA");
-    }
-
-    private function executeTransactionComing()
-    {
-        $transactions = CustomerTransaction::where('confirmed', false)
-            ->where('designation', 'NOT LIKE', '%Remise%')
-            ->get();
-        $arr_effect = [];
-        $arr_reject = [];
-
-        foreach ($transactions as $transaction) {
-            if($transaction->opposit()->count() == 0) {
-                if ($transaction->withdraw()->count() != 1) {
-                    if ($transaction->updated_at->between(now()->startOfDay(), now()->endOfDay())) {
-                        if ($transaction->amount <= $transaction->wallet->solde_remaining) {
-                            CustomerTransactionHelper::updated($transaction);
-
-                            $arr_effect[] = [
-                                $transaction->wallet->customer->info->full_name,
-                                $transaction->type_text,
-                                $transaction->wallet->name_account_generic,
-                                $transaction->amount_format,
-                            ];
-
-                        } else {
-                            $arr_reject[] = [
-                                $transaction->wallet->customer->info->full_name,
-                                $transaction->type_text,
-                                $transaction->wallet->name_account_generic,
-                                $transaction->amount_format,
-                                "Solde Insuffisant"
-                            ];
-                        }
-                    }
-                }
-            }
-        }
-
-        $this->line("Date: ".now()->format("d/m/Y à H:i"));
-        $this->info("Liste des transactions entrante mise à jours");
-        $this->output->table(['Client', 'Type', 'Compte', 'Montant'], $arr_effect);
-        $this->slack->send("Liste des transactions entrante mise à jours", json_encode($arr_effect));
-
-        $this->error("Liste des transactions entrante rejeté");
-        $this->output->table(['Client', 'Type', 'Compte', 'Montant', "Raison"], $arr_reject);
-        $this->slack->send("Liste des transactions entrante rejeté", json_encode($arr_reject));
     }
 
     private function executeVirement()
