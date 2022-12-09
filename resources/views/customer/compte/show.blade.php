@@ -232,9 +232,11 @@
                         <div class="card-header bg-secondary">
                             <h3 class="card-title">Compte</h3>
                             <div class="card-toolbar">
+                                @if($wallet->customer->package->overdraft)
                                 <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#RequestOverdraft">
                                     Demander un découvert bancaire
                                 </button>
+                                @endif
                             </div>
                         </div>
                         <div class="card-body">
