@@ -192,7 +192,7 @@
                     <span class="fs-1">Voir mes relevés</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
-                <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom">
+                <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom" data-bs-toggle="modal" data-bs-target="#features">
                     <span class="iconify fs-2tx me-2" data-icon="jam:cogs-f"></span>
                     <span class="fs-1">Caractéristique</span>
                 </a>
@@ -211,6 +211,25 @@
                 @endif
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
                 {!! $chart->container() !!}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="features">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">{{ $wallet->name_account_generic }}</h3>
+    
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">                   
+                        <i class="fa-regular fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+    
+                <div class="modal-body">
+                    
+                </div>
             </div>
         </div>
     </div>
