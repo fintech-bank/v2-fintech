@@ -73,4 +73,10 @@ return [
         'redirect_uri' => env('POWENS_REDIRECT_URI'),
     ],
 
+    'plaid' => [
+        'client_id' => env('PLAID_CLIENT_ID'),
+        'secret_key' => env('PLAID_SECRET_KEY'),
+        'environment' => env('PLAID_ENVIRONMENT'),
+    ],
+
 ];
