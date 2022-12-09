@@ -112,7 +112,8 @@ class HomeController extends Controller
         $bank = new Api();
         try {
             $inst = $bank->client->institutions->list(100, 0, ['FR']);
-            $token = $bank->client->sandbox->createPublicToken('ins_122883', ['assets', 'auth', 'identity']);
+            $token = $bank->client->sandbox->createPublicToken('ins_122883', ['assets', 'auth', 'identity', 'transactions']);
+
         } catch (PlaidRequestException $e) {
             dd($e);
         }
