@@ -14,13 +14,12 @@
         blockRequestOverdraft: new KTBlockUI(modals.modalRequestOverdraft.querySelector(".modal-body"))
     }
 
-    let subscribeOverdraft = (item) => {
+    let subscribeOverdraft = (item, maxValue) => {
         $.ajax({
-            url: url,
+            url: '/api/customer/{{ $wallet->customer->id }}/subscribe/overdraft',
             method: 'POST',
-            data: {""},
+            data: {"balance_decouvert": document.querySelector('[name="balance_decouvert"]'), "balance_max": maxValue},
             success: data => {
-                btn.removeAttr('data-kt-indicator')
                 if(data.state === 'warning') {
                     toastr.warning(`${data.message}`)
                 } else {
@@ -69,7 +68,7 @@
 									<!--begin::Buttons-->
 									<div class="d-flex flex-center flex-wrap">
 										<a href="#" data-bs-dismiss="modal" class="btn btn-outline btn-outline-success btn-active-success m-2">Annuler ma demande</a>
-										<a href="#" class="btn btn-success m-2 subscribeOverdraft" onclick="subscribeOverdraft(this)">Oui, souscrire</a>
+										<a href="#" class="btn btn-success m-2 subscribeOverdraft" onclick="subscribeOverdraft(this, data.value)">Oui, souscrire</a>
 									</div>
 									<!--end::Buttons-->
 								</div>
