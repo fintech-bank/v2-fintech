@@ -43,6 +43,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Jenssegers\Agent\Agent;
 use RTippin\Messenger\Messenger;
+use TomorrowIdeas\Plaid\PlaidRequestException;
 use Vicopo\Vicopo;
 
 class HomeController extends Controller
@@ -110,7 +111,11 @@ class HomeController extends Controller
     {
         $bank = new Api();
         $user = new \TomorrowIdeas\Plaid\Entities\User('1', "MOCKELYN Maxime", "+33749061225", now()->timestamp, 'test@test.com', null, null);
-        $token = $bank->client->sandbox->createPublicToken('ins_132352', ['balance'], ['user_token' => $user]);
+        try {
+            $token = $bank->client->sandbox->createPublicToken('ins_132352', ['balance'], ['user_token' => $user]);
+        } catch (PlaidRequestException $e) {
+            dd($e->getMessage());
+        }
         dd($token);
     }
 }
