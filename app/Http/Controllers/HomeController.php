@@ -115,7 +115,6 @@ class HomeController extends Controller
             $access = $bank->client->items->exchangeToken($token->public_token);
             $item_id = $access->item_id;
             $access_token = $access->access_token;
-            dd($token);
 
             $auth = $bank->client->auth->get($access_token);
         } catch (PlaidRequestException $e) {
