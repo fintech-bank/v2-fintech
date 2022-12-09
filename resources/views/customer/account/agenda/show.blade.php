@@ -129,7 +129,7 @@
                                     <div class="d-flex flex-column {{ $message->agent_id != null ? 'align-items-start' : 'align-items-end' }}">
                                         <div class="d-flex align-items-center mb-2">
                                             <div class="symbol symbol-35px symbol-circle">
-                                                {!! $message->agent_id != null ? $message->agent->user->avatar_symbol : Gravatar::get($message->user->email) !!}
+                                                {!! $message->agent_id != null ? $message->agent->user->avatar_symbol : Gravatar::get('nomail@mail.com') !!}
                                             </div>
                                             <div class="ms-3">
                                                 <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">{{ $message->agent_id != null ? $message->agent->full_name : "Vous" }}</a>
