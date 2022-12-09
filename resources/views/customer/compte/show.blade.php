@@ -179,6 +179,7 @@
             <div class="col-md-3 col-sm-12 mt-10">
                 <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom">
                     <i class="fa-solid fa-arrow-right-arrow-left fs-2hx me-2"></i>
+                    <span class="iconify fs-2tx me-2" data-icon="fa6-solid:money-bill-transfer"></span>
                     <span class="fs-1">Effectuer un virement</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
