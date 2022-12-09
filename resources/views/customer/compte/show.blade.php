@@ -265,7 +265,7 @@
                                             Capacité mensuelle de paiement jusqu'au {{ now()->endOfMonth()->format("d/m/Y") }}
                                         </div>
                                     </div>
-                                    {{ $card->actual_limit_payment }}
+                                    {{ eur($card->actual_limit_payment) }}
                                 </div>
                             @endforeach
                         </div>
