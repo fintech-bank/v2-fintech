@@ -229,7 +229,7 @@
 
                 <div class="modal-body">
                     <div class="card shadow-sm">
-                        <div class="card-header bg-gray-300">
+                        <div class="card-header bg-secondary">
                             <h3 class="card-title">Compte</h3>
                             <div class="card-toolbar">
                                 <!--<button type="button" class="btn btn-sm btn-light">
@@ -245,7 +245,7 @@
                         </div>
                     </div>
                     <div class="card shadow-sm">
-                        <div class="card-header bg-gray-300">
+                        <div class="card-header bg-secondary">
                             <h3 class="card-title">Cartes Associé</h3>
                             <div class="card-toolbar">
                                 <!--<button type="button" class="btn btn-sm btn-light">
