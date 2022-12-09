@@ -25,7 +25,7 @@
                 block.blockRequestOverdraft.destroy()
                 console.log(data)
                 if(data.access === true) {
-                    return `<div class="alert bg-light-success d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
+                    modals.modalRequestOverdraft.querySelector(".modal-body").innerHTML = `<div class="alert bg-light-success d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10">
 								<!--begin::Icon-->
                                 <span class="iconify fs-5tx text-success mb-5" data-icon="material-symbols:playlist-add-check-circle-outline"></span>
 								<!--end::Icon-->
@@ -51,7 +51,7 @@
 								<!--end::Content-->
 								</div>`
                 } else {
-                    return `<div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+                    modals.modalRequestOverdraft.querySelector(".modal-body").innerHTML = `<div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row w-100 p-5 mb-10">
 								<!--begin::Icon-->
 								<!--begin::Svg Icon | path: icons/duotune/communication/com003.svg-->
 								<span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
