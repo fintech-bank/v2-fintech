@@ -255,7 +255,7 @@
                         </div>
                         <div class="card-body">
                             @foreach($wallet->cards as $card)
-                                <div class="d-flex flex-row justify-content-between">
+                                <div class="d-flex flex-row justify-content-between align-items-center">
                                     <div class="d-flex flex-row align-items-center">
                                         <div class="symbol symbol-30px symbol-2by3 me-3">
                                             <img src="/storage/card/{{ $card->support->slug }}.png" alt=""/>
