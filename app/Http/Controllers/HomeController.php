@@ -113,10 +113,10 @@ class HomeController extends Controller
         try {
             $inst = $bank->client->institutions->list(100, 0, ['FR']);
             $token = $bank->client->sandbox->createPublicToken('ins_122883', ['assets', 'auth', 'identity', 'transactions']);
-
+            $auth = $bank->client->auth->get($token->public_token);
         } catch (PlaidRequestException $e) {
             dd($e);
         }
-        dd($inst, $token);
+        dd($inst, $token, $auth);
     }
 }
