@@ -284,21 +284,14 @@
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                        <i class="fa-solid fa-xmark fs-1"></i>
                     </div>
                     <!--end::Close-->
                 </div>
 
-                <form id="formRequestOverdraft" action="" method="post">
-                    @csrf
-                    @method('POST')
-                    <div class="modal-body">
+                <div class="modal-body">
 
-                    </div>
-                    <div class="modal-footer text-end">
-                        <x-form.button />
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
