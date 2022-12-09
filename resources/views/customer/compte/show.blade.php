@@ -240,7 +240,7 @@
                         <div class="card-body">
                             <div class="d-flex flex-row justify-content-between">
                                 <span>Autorisation de découvert</span>
-                                <span>{{ $wallet->balance_decouvert_format }}</span>
+                                <span>{{ eur($wallet->balance_decouvert) }}</span>
                             </div>
                         </div>
                     </div>
