@@ -256,9 +256,14 @@
                         <div class="card-body">
                             @foreach($wallet->cards as $card)
                                 <div class="d-flex flex-row justify-content-between">
-                                    <div class="symbol symbol-50px symbol-2by3">
+                                    <div class="symbol symbol-30px symbol-2by3">
                                         <img src="/storage/card/{{ $card->support->slug }}.png" alt=""/>
                                     </div>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <span>CB {{ $card->support->name }}</span>
+                                        Capacité mensuelle de paiement jusqu'au {{ now()->endOfMonth()->format("d/m/Y") }}
+                                    </div>
+                                    {{ $card->actual_limit_payment }}
                                 </div>
                             @endforeach
                         </div>
