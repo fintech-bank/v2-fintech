@@ -86,7 +86,7 @@ trait CustomerCreditCardTrait
                 ->where('type', 'retrait')
                 ->where('confirmed', true)
                 ->where('customer_credit_card_id', $this->id)
-                ->whereBetween('confirmed_at', [now()->subDays(7), now()])
+                ->whereBetween('confirmed_at', [now()->subDays(7)->startOfDay(), now()->endOfDay()])
                 ->get()
                 ->sum('amount');
         } else {
@@ -94,7 +94,7 @@ trait CustomerCreditCardTrait
                 ->where('type', 'retrait')
                 ->where('confirmed', true)
                 ->where('customer_credit_card_id', $this->id)
-                ->whereBetween('confirmed_at', [now()->subDays(7), now()])
+                ->whereBetween('confirmed_at', [now()->subDays(7)->startOfDay(), now()->endOfDay()])
                 ->get()
                 ->sum('amount');
 
