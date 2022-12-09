@@ -11,6 +11,6 @@ class Client extends Powens
 
     public function getConnector($id)
     {
-        return \Http::withToken($this->auth_token)->get($this->endpoint."users/me/connections")->object();
+        return \Http::withToken($this->auth_token)->get($this->endpoint."/users")->object();
     }
 }
