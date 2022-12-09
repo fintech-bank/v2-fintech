@@ -109,7 +109,7 @@ class HomeController extends Controller
     public function test()
     {
         $bank = new Api();
-
-        dd($bank->client->institutions->list(500, 0, ['FR'], ["products" => ['investments']]));
+        $token = $bank->client->sandbox->createPublicToken('ins_132352', ['assets', 'auth', 'balance', 'transactions']);
+        dd($token);
     }
 }
