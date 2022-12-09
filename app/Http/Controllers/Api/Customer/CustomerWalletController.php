@@ -19,10 +19,9 @@ class CustomerWalletController extends ApiController
 
     public function update($customer_id, $number_account, Request $request)
     {
-        switch ($request->get('action')) {
-            case 'state':
-                $this->updateStateWallet($number_account, $request);
-        }
+        return match ($request->get('action')) {
+            "state" => $this->updateStateWallet($number_account, $request)
+        };
     }
 
     public function chartSummary($customer_id, $number_account)
@@ -97,5 +96,7 @@ class CustomerWalletController extends ApiController
         ]);
 
         $wallet->customer->info->notify(new UpdateStatusWalletNotification($wallet->customer, $wallet, "Comptes & Moyens de paiement"));
+
+        return $this->sendSuccess();
     }
 }
