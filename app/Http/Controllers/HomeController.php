@@ -30,6 +30,7 @@ use App\Services\Fintech\Payment\Sepa;
 use App\Services\Fintech\Payment\Transfers;
 use App\Services\GeoPortailLook;
 use App\Services\Mapbox;
+use App\Services\Plaid\Api;
 use App\Services\Powens\Client;
 use App\Services\PushbulletApi;
 use App\Services\SlackNotifier;
@@ -107,8 +108,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $bank = new Client();
+        $bank = new Api();
 
-        dd($bank->getConnector(5));
+        dd($bank->client->institutions->list());
     }
 }
