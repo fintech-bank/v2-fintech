@@ -14,30 +14,8 @@
         blockRequestOverdraft: new KTBlockUI(modals.modalRequestOverdraft.querySelector(".modal-body"))
     }
 
-    let subscribeOverdraft = () => {
-        $.ajax({
-            url: '/api/customer/{{ $wallet->customer->id }}/subscribe/overdraft',
-            method: 'POST',
-            data: {"balance_decouvert": document.querySelector('[name="balance_decouvert"]'), "balance_max": 1000},
-            success: data => {
-                if(data.state === 'warning') {
-                    toastr.warning(`${data.message}`)
-                } else {
-                    toastr.success(`${data.message}`)
-
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 1200)
-                }
-            },
-            error: () => {
-                btn.removeAttr('data-kt-indicator')
-                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
-            }
-        })
-    }
-
     $(modals.modalRequestOverdraft).on('shown.bs.modal', e => {
+        e.preventDefault()
         block.blockRequestOverdraft.block()
 
         $.ajax({
@@ -68,7 +46,7 @@
 									<!--begin::Buttons-->
 									<div class="d-flex flex-center flex-wrap">
 										<a href="#" data-bs-dismiss="modal" class="btn btn-outline btn-outline-success btn-active-success m-2">Annuler ma demande</a>
-										<a href="#" class="btn btn-success m-2 subscribeOverdraft" onclick="subscribeOverdraft()">Oui, souscrire</a>
+										<button class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#SubscribeOverdraft">Oui, souscrire</button>
 									</div>
 									<!--end::Buttons-->
 								</div>
