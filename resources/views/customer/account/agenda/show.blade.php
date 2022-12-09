@@ -132,7 +132,7 @@
                                                 @if($message->agent_id !== null)
                                                     {!! $message->agent->user->avatar_symbol !!}
                                                 @else
-                                                    {!! Gravatar::get('nomail@mail.com') !!}
+                                                    <img src="{!! Gravatar::get('nomail@mail.com') !!}" />
                                                 @endif
                                             </div>
                                             <div class="ms-3">
