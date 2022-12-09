@@ -110,7 +110,7 @@ class HomeController extends Controller
     {
         $bank = new Api();
         $user = new \TomorrowIdeas\Plaid\Entities\User('1', "MOCKELYN Maxime", "+33749061225", now()->timestamp, 'test@test.com', null, null);
-        dd($user);
+        dd($user->token);
         $token = $bank->client->sandbox->createPublicToken('ins_132352', ['balance']);
         dd($token);
     }
