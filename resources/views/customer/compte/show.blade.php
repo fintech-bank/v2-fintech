@@ -228,7 +228,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm mb-5">
                         <div class="card-header bg-secondary">
                             <h3 class="card-title">Compte</h3>
                             <div class="card-toolbar">
