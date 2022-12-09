@@ -114,7 +114,7 @@ class HomeController extends Controller
         try {
             $token = $bank->client->sandbox->createPublicToken('ins_132352', ['balance'], ['user_token' => $user]);
         } catch (PlaidRequestException $e) {
-            dd($e->getMessage());
+            dd($e);
         }
         dd($token);
     }
