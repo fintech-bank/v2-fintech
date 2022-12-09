@@ -135,7 +135,7 @@ class LifeCommand extends Command
 
             $users->push(User::create([
                 'name' => $customer_type_choice == 'part' ? $lastname . ' ' . $firstname : $company,
-                'email' => $customer_type_choice != 'part' ? $company."@".$faker->safeEmailDomain : $firstname.'.'.$lastname.'@'.$faker->safeEmailDomain,
+                'email' => $customer_type_choice != 'part' ? Str::camel($company)."@".$faker->safeEmailDomain : $firstname.'.'.$lastname.'@'.$faker->safeEmailDomain,
                 'password' => Hash::make('password'),
                 'identifiant' => UserHelper::generateID(),
                 'type_customer' => $customer_type_choice,
