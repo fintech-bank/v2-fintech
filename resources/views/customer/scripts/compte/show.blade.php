@@ -68,7 +68,7 @@
 									<!--begin::Buttons-->
 									<div class="d-flex flex-center flex-wrap">
 										<a href="#" data-bs-dismiss="modal" class="btn btn-outline btn-outline-success btn-active-success m-2">Annuler ma demande</a>
-										<a href="#" class="btn btn-success m-2 subscribeOverdraft" onclick="subscribeOverdraft(this, data.value)">Oui, souscrire</a>
+										<a href="#" class="btn btn-success m-2 subscribeOverdraft" onclick="subscribeOverdraft(this, ${data.value})">Oui, souscrire</a>
 									</div>
 									<!--end::Buttons-->
 								</div>
