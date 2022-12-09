@@ -178,35 +178,34 @@
             </div>
             <div class="col-md-3 col-sm-12 mt-10">
                 <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom">
-                    <i class="fa-solid fa-arrow-right-arrow-left fs-2hx me-2"></i>
                     <span class="iconify fs-2tx me-2" data-icon="fa6-solid:money-bill-transfer"></span>
                     <span class="fs-1">Effectuer un virement</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
                 <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom">
-                    <i class="fa-solid fa-money-check fs-2hx me-2"></i>
+                    <span class="iconify fs-2tx me-2" data-icon="icon-park-twotone:bank-card-two"></span>
                     <span class="fs-1">Télécharger mon rib</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
                 <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom">
-                    <i class="fa-regular fa-copy fs-2hx me-2"></i>
+                    <span class="iconify fs-2tx me-2" data-icon="ph:files"></span>
                     <span class="fs-1">Voir mes relevés</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
                 <a href="" class="d-flex flex-row align-items-center text-dark hover-zoom">
-                    <i class="fa-solid fa-cog fs-2hx me-2"></i>
+                    <span class="iconify fs-2tx me-2" data-icon="jam:cogs-f"></span>
                     <span class="fs-1">Caractéristique</span>
                 </a>
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
                 <a href="{{ route('customer.card.index') }}" class="d-flex flex-row align-items-center text-dark hover-zoom">
-                    <i class="fa-solid fa-credit-card fs-2hx me-2"></i>
+                    <span class="iconify fs-2tx me-2" data-icon="pixelarticons:credit-card-multiple"></span>
                     <span class="fs-1">Mes cartes</span>
                 </a>
                 @if($wallet->customer->package->check_deposit)
                     <div class="separator separator-dotted border-gray-400 my-10"></div>
                     <a href="{{ route('customer.card.index') }}" class="d-flex flex-row align-items-center text-dark hover-zoom">
                         <!--<i class="fa-solid fa-credit-card fs-2hx me-2"></i>-->
-                        <span class="iconify fs-2hx" data-icon="circum:money-check-1"></span>
+                        <span class="iconify fs-2tx me-2" data-icon="circum:money-check-1"></span>
                         <span class="fs-1">Déposer une remise de chèque</span>
                     </a>
                 @endif
