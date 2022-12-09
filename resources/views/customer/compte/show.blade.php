@@ -232,9 +232,9 @@
                         <div class="card-header bg-secondary">
                             <h3 class="card-title">Compte</h3>
                             <div class="card-toolbar">
-                                <!--<button type="button" class="btn btn-sm btn-light">
-                                    Action
-                                </button>-->
+                                <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#RequestOverdraft">
+                                    Demander un découvert bancaire
+                                </button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -271,6 +271,32 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="RequestOverdraft">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white">Demande de découvert bancaire</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark text-white fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <form id="formRequestOverdraft" action="" method="post">
+                    @csrf
+                    @method('POST')
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer text-end">
+                        <x-form.button />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
