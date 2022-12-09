@@ -110,7 +110,6 @@ class HomeController extends Controller
     public function test()
     {
         $bank = new Api();
-        $user = new \TomorrowIdeas\Plaid\Entities\User('1', "MOCKELYN Maxime", "+33749061225", now()->timestamp, 'test@test.com', null, null);
         try {
             $token = $bank->client->sandbox->createPublicToken('ins_132352', ['assets', 'auth']);
         } catch (PlaidRequestException $e) {
