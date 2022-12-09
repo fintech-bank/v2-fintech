@@ -109,17 +109,8 @@ class HomeController extends Controller
 
     public function test()
     {
-        $bank = new Api();
-        try {
-            $token = $bank->client->sandbox->createPublicToken('ins_122883', ['assets', 'auth', 'identity', 'transactions']);
-            $access = $bank->client->items->exchangeToken($token->public_token);
-            $item_id = $access->item_id;
-            $access_token = $access->access_token;
+        $cashback = new CashbackApi();
 
-            $auth = $bank->client->auth->get($access_token);
-        } catch (PlaidRequestException $e) {
-            dd($e);
-        }
-        dd($auth);
+        dd($cashback->callWallet(auth()->user()->customers->id));
     }
 }
