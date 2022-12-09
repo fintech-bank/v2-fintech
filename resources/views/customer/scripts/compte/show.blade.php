@@ -6,9 +6,7 @@
     let modals = {
         modalRequestOverdraft: document.querySelector("#RequestOverdraft")
     }
-    let forms = {
-        formRequestOverdraft: document.querySelector("#formRequestOverdraft")
-    }
+    let forms = {}
     let dataTable = {}
     let block = {
         blockRequestOverdraft: new KTBlockUI(modals.modalRequestOverdraft.querySelector(".modal-body"))
