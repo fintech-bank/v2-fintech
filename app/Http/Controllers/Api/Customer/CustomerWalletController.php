@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api\Customer;
 
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerWallet;
 use App\Notifications\Customer\UpdateStatusWalletNotification;
 use Illuminate\Http\Request;
 
-class CustomerWalletController extends Controller
+class CustomerWalletController extends ApiController
 {
     public function info($customer_id, $number_account)
     {
