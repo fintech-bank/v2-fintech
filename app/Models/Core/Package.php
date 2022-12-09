@@ -56,6 +56,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $paystar
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereCashback($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package wherePaystar($value)
+ * @property string $icon
+ * @property string $color
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Package whereIcon($value)
  */
 class Package extends Model
 {

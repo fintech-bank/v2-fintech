@@ -487,20 +487,23 @@ class LifeCommand extends Command
                                     $dab = CustomerWithdrawDab::where('open', 1)->get()->random();
                                     $status_type = ['pending', 'accepted', 'rejected', 'terminated'];
                                     $status = $status_type[rand(0, 3)];
-                                    $withdraw = CustomerWithdraw::createWithdraw($wallet->id, $amount, $dab->id, $status);
 
-                                    $transaction = CustomerTransactionHelper::createDebit(
-                                        $wallet->id,
-                                        'retrait',
-                                        Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
-                                        Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
-                                        $amount,
-                                        true,
-                                        $now
-                                    );
+                                    if($amount <= $card->actual_limit_withdraw) {
+                                        $withdraw = CustomerWithdraw::createWithdraw($wallet->id, $amount, $dab->id, $status);
 
-                                    $withdraw->update(["customer_transaction_id" => $transaction->id]);
-                                    $retrait++;
+                                        $transaction = CustomerTransactionHelper::createDebit(
+                                            $wallet->id,
+                                            'retrait',
+                                            Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
+                                            Str::upper("Carte {$card->number_format} Retrait DAB FH {$now->format('d/m')} {$now->format('H:i')} " . Str::limit($dab->name, 10, '')),
+                                            $amount,
+                                            true,
+                                            $now
+                                        );
+
+                                        $withdraw->update(["customer_transaction_id" => $transaction->id]);
+                                        $retrait++;
+                                    }
                                     break;
 
                                 case 'payment':
@@ -509,19 +512,21 @@ class LifeCommand extends Command
                                     $confirmed = $faker->boolean;
                                     $differed = !$confirmed ? $faker->boolean : false;
 
-                                    CustomerTransactionHelper::createDebit(
-                                        $wallet->id,
-                                        'payment',
-                                        "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
-                                        "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
-                                        $amount,
-                                        $confirmed,
-                                        $confirmed ? $now : null,
-                                        $differed,
-                                        $differed ? $now->endOfMonth() : null,
-                                        $card->id
-                                    );
-                                    $payment++;
+                                    if($amount <= $card->actual_limit_payment) {
+                                        CustomerTransactionHelper::createDebit(
+                                            $wallet->id,
+                                            'payment',
+                                            "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
+                                            "Carte {$card->number_format} {$now->format('d/m')} {$faker->companySuffix}",
+                                            $amount,
+                                            $confirmed,
+                                            $confirmed ? $now : null,
+                                            $differed,
+                                            $differed ? $now->endOfMonth() : null,
+                                            $card->id
+                                        );
+                                        $payment++;
+                                    }
                             }
                         }
                     } else {

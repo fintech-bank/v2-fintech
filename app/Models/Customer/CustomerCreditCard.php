@@ -84,6 +84,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read bool $is_differed
  * @property-read CreditCardOpposit|null $opposition
  * @property-read mixed $number_small_format
+ * @property-read mixed $actual_limit_payment
+ * @property-read mixed $full_info
  */
 class CustomerCreditCard extends Model
 {
@@ -96,6 +98,7 @@ class CustomerCreditCard extends Model
         'limit_withdraw',
         'access_withdraw',
         'actual_limit_withdraw',
+        'actual_limit_payment',
         'number_card_oscure',
         'number_format',
         'expiration',
@@ -158,6 +161,11 @@ class CustomerCreditCard extends Model
     public function getActualLimitWithdrawAttribute()
     {
         return $this->getTransactionsMonthWithdraw() - (-$this->limit_retrait);
+    }
+
+    public function getActualLimitPaymentAttribute()
+    {
+        return $this->getTransactionsMonthPayment() - (-$this->limit_payment);
     }
 
     public function getNumberCardOscureAttribute()
