@@ -15,7 +15,27 @@
     }
 
     let subscribeOverdraft = (item) => {
-        console.log(item)
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {""},
+            success: data => {
+                btn.removeAttr('data-kt-indicator')
+                if(data.state === 'warning') {
+                    toastr.warning(`${data.message}`)
+                } else {
+                    toastr.success(`${data.message}`)
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200)
+                }
+            },
+            error: () => {
+                btn.removeAttr('data-kt-indicator')
+                toastr.error(`Erreur lors de l'execution de l'appel, consulter les logs ou contacter un administrateur`, `Erreur Système`)
+            }
+        })
     }
 
     $(modals.modalRequestOverdraft).on('shown.bs.modal', e => {
@@ -44,6 +64,7 @@
 									        <li><strong>TAEG: ${data.taux}</strong></li>
 									    </ul>
 									    <p>Voulez-vous effectuer une demande de découvert bancaire ?</p>
+                                        <input type="text" name="balance_decouvert" value="${data.value}" class="form-control form-control-solid">
 									</div>
 									<!--begin::Buttons-->
 									<div class="d-flex flex-center flex-wrap">
