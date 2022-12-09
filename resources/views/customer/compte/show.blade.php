@@ -219,16 +219,31 @@
             <div class="modal-content">
                 <div class="modal-header bg-bank">
                     <h3 class="modal-title text-white">{{ $wallet->name_account_generic }}</h3>
-    
+
                     <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">                   
-                        <i class="fa-regular fa-xmark fs-1"></i>
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark fs-1"></i>
                     </div>
                     <!--end::Close-->
                 </div>
-    
+
                 <div class="modal-body">
-                    
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Compte</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-row justify-content-between">
+                                <span>Autorisation de découvert</span>
+                                <span>{{ $wallet->balance_decouvert_format }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
