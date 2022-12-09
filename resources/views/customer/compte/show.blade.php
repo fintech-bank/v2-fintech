@@ -229,7 +229,7 @@
 
                 <div class="modal-body">
                     <div class="card shadow-sm">
-                        <div class="card-header">
+                        <div class="card-header bg-gray-300">
                             <h3 class="card-title">Compte</h3>
                             <div class="card-toolbar">
                                 <!--<button type="button" class="btn btn-sm btn-light">
@@ -242,6 +242,25 @@
                                 <span>Autorisation de découvert</span>
                                 <span class="fs-2 fw-bold">{{ eur($wallet->balance_decouvert) }}</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-gray-300">
+                            <h3 class="card-title">Cartes Associé</h3>
+                            <div class="card-toolbar">
+                                <!--<button type="button" class="btn btn-sm btn-light">
+                                    Action
+                                </button>-->
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            @foreach($wallet->cards as $card)
+                                <div class="d-flex flex-row justify-content-between">
+                                    <div class="symbol symbol-50px symbol-2by3">
+                                        <img src="/storage/card/{{ $card->support->slug }}.png" alt=""/>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
