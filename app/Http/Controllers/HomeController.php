@@ -110,6 +110,6 @@ class HomeController extends Controller
     {
         $bank = new Api();
 
-        dd($bank->client->institutions->list(500, 0, ['FR']));
+        dd($bank->client->institutions->list(500, 0, ['FR'], ["products" => ['assets']]));
     }
 }
