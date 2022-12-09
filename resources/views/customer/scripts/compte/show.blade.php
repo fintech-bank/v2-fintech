@@ -18,7 +18,7 @@
         $.ajax({
             url: '/api/customer/{{ $wallet->customer->id }}/subscribe/overdraft',
             method: 'POST',
-            data: {"balance_decouvert": document.querySelector('[name="balance_decouvert"]'), "balance_max": maxValue},
+            data: {"balance_decouvert": document.querySelector('[name="balance_decouvert"]'), "balance_max": 1000},
             success: data => {
                 if(data.state === 'warning') {
                     toastr.warning(`${data.message}`)
