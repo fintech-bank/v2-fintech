@@ -302,35 +302,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" id="SubscribeOverdraft">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header bg-bank">
-                    <h3 class="modal-title text-white">Souscription à un découvert bancaire</h3>
-
-                    <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-solid fa-xmark text-white fs-1"></i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-
-                <form id="formSubscribeOverdraft" action="/api/customer/{{ $wallet->customer->id }}/subscribe/overdraft" method="post">
-                    @csrf
-                    @method('POST')
-                    <div class="modal-body">
-                        <x-form.input
-                            name="balance_decouvert"
-                            label="Montant du découvert souhaité"
-                            required="true" />
-                    </div>
-                    <div class="modal-footer text-end">
-                        <x-form.button />
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section("script")

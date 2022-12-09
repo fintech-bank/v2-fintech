@@ -46,7 +46,7 @@
 									<!--begin::Buttons-->
 									<div class="d-flex flex-center flex-wrap">
 										<a href="#" data-bs-dismiss="modal" class="btn btn-outline btn-outline-success btn-active-success m-2">Annuler ma demande</a>
-										<button class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#SubscribeOverdraft">Oui, souscrire</button>
+										<a href="{{ route('customer.account.agenda.index') }}" class="btn btn-success m-2">Oui, souscrire</a>
 									</div>
 									<!--end::Buttons-->
 								</div>
