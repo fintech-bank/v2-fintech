@@ -112,7 +112,7 @@ class HomeController extends Controller
         $bank = new Api();
         try {
             $token = $bank->client->sandbox->createPublicToken('ins_122883', ['assets', 'auth', 'identity', 'transactions']);
-            $access = $bank->client->items->exchangeToken($token);
+            $access = $bank->client->items->exchangeToken($token->public_token);
             $item_id = $access->item_id;
             $access_token = $access->access_token;
             dd($token);
