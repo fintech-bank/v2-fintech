@@ -21,6 +21,9 @@
 
             $(this).find('[data-kt-repeater="select2"]').select2();
             $(this).find('[data-kt-repeater="datepicker"]').flatpickr();
+            Inputmask({
+                "mask": "9999999"
+            }).mask($(this).find('[data-kt-repeater="mask"]'))
         },
 
         hide: function (deleteElement) {
