@@ -11,11 +11,42 @@
     <div id="app" class="rounded container">
         <div class="card shadow-sm">
             <div class="card-header">
-                <h3 class="card-title">Nouvelle remise de chèque</h3>       
+                <h3 class="card-title">Nouvelle remise de chèque</h3>
             </div>
-            <form id="" action="" method="POST" enctype="multipart/formdata">
+            <form id="" action="/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}" method="POST" enctype="multipart/formdata">
+                @csrf
+                <input type="hidden" name="action" value="check_deposit">
                 <div class="card-body">
-                    
+                    <div id="chq_repeat">
+                        <div class="form-group">
+                            <div data-repeater-list="chq_repeat">
+                                <div data-repeater-item>
+                                    <div class="form-group row">
+                                        <div class="col-md-2">
+                                            <label for="number" class="form-label">Numéro du chèque</label>
+                                            <input type="text" class="form-control form-control-solid" name="number[]" placeholder="Numéro du chèque">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="number" class="form-label">Montant</label>
+                                            <input type="text" class="form-control form-control-solid" name="amount[]" placeholder="Montant du chèque">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="number" class="form-label">Nom du payeur</label>
+                                            <input type="text" class="form-control form-control-solid" name="name_deposit[]" placeholder="Nom du payeur">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="number" class="form-label">Banque du payeur</label>
+                                            <input type="text" class="form-control form-control-solid" name="bank_deposit[]" placeholder="Banque du payeur">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="number" class="form-label">Date de dépot</label>
+                                            <input type="text" class="form-control form-control-solid" name="date_deposit[]" placeholder="Date du dépot">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <x-form.button />

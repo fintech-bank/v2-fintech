@@ -87,6 +87,15 @@ class CustomerWalletController extends ApiController
         return response()->json($result);
     }
 
+    public function storeWallet($customer_id, $number_account, Request $request)
+    {
+        $wallet = CustomerWallet::where('number_account', $number_account)->first();
+
+        return match ($request->get('action')) {
+            "check_deposit" => "",
+        };
+    }
+
     private function updateStateWallet($number_account, Request $request)
     {
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
