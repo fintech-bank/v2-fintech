@@ -184,6 +184,7 @@ Route::prefix('customer')->group(function () {
 
         Route::prefix('{number_account}/transaction')->group(function () {
             Route::post('{transaction_uuid}', [\App\Http\Controllers\Api\Customer\TransactionController::class, 'update']);
+            Route::get('{transaction_uuid}', [\App\Http\Controllers\Api\Customer\TransactionController::class, 'info']);
         });
 
         Route::prefix('{number_account}/transfers')->group(function () {

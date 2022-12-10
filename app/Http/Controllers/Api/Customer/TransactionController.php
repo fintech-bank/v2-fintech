@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api\Customer;
 
 use App\Helper\CustomerTransactionHelper;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerTransaction;
 use App\Notifications\Customer\OppositTransactionNotification;
 use App\Notifications\Customer\RejectTransactionNotification;
 use Illuminate\Http\Request;
 
-class TransactionController extends Controller
+class TransactionController extends ApiController
 {
     public function update($customer, $wallet, $transaction_uuid, Request $request)
     {
@@ -70,5 +71,12 @@ class TransactionController extends Controller
         }
 
 
+    }
+
+    public function info($customer_id, $number_account, $transaction_uuid)
+    {
+        $transaction = CustomerTransaction::where('uuid', $transaction_uuid)->first();
+
+        return $this->sendSuccess(null, [$transaction]);
     }
 }
