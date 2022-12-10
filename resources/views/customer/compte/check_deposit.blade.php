@@ -24,23 +24,23 @@
                                     <div class="form-group row">
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Numéro du chèque</label>
-                                            <input type="text" class="form-control form-control-solid" name="number[]" placeholder="Numéro du chèque">
+                                            <input type="text" class="form-control form-control-solid" name="number" placeholder="Numéro du chèque">
                                         </div>
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Montant</label>
-                                            <input type="text" class="form-control form-control-solid" name="amount[]" placeholder="Montant du chèque">
+                                            <input type="text" class="form-control form-control-solid" name="amount" placeholder="Montant du chèque">
                                         </div>
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Nom du payeur</label>
-                                            <input type="text" class="form-control form-control-solid" name="name_deposit[]" placeholder="Nom du payeur">
+                                            <input type="text" class="form-control form-control-solid" name="name_deposit" placeholder="Nom du payeur">
                                         </div>
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Banque du payeur</label>
-                                            <input type="text" class="form-control form-control-solid" name="bank_deposit[]" placeholder="Banque du payeur">
+                                            <input type="text" class="form-control form-control-solid" name="bank_deposit" placeholder="Banque du payeur">
                                         </div>
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Date de dépot</label>
-                                            <input type="text" class="form-control form-control-solid" name="date_deposit[]" placeholder="Date du dépot">
+                                            <input type="text" class="form-control form-control-solid" name="date_deposit" placeholder="Date du dépot">
                                         </div>
                                         <div class="col-md-2">
                                             <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-light-danger mt-3 mt-md-8">
