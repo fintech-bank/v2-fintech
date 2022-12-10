@@ -108,7 +108,8 @@
 <script>
     var botmanWidget = {
         aboutText: 'Write Something',
-        introMessage: "✋ Hi! I'm form Code Solution Stuff"
+        introMessage: "✋ Hi! I'm form Code Solution Stuff",
+        frameEndpoint: '/iFrameUrl'
     };
 </script>
 
