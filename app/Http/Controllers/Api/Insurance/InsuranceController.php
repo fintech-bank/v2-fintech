@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api\Insurance;
 
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class InsuranceController extends Controller
+class InsuranceController extends ApiController
 {
     public function index()
     {
@@ -14,6 +15,6 @@ class InsuranceController extends Controller
 
     public function info(Request $request)
     {
-        dd($request->all());
+        return $this->sendSuccess(null, ["request" => $request->all()]);
     }
 }
