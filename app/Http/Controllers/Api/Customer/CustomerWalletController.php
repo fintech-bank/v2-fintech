@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Api\Customer;
 
+use App\Helper\CustomerTransactionHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Customer\CustomerWallet;
+use App\Notifications\Agent\NewCheckDepositNotification;
 use App\Notifications\Customer\UpdateStatusWalletNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CustomerWalletController extends ApiController
@@ -92,7 +95,7 @@ class CustomerWalletController extends ApiController
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
         return match ($request->get('action')) {
-            "check_deposit" => dd($request->all()),
+            "check_deposit" => $this->checkDeposit($wallet, $request),
         };
     }
 
@@ -107,5 +110,44 @@ class CustomerWalletController extends ApiController
         $wallet->customer->info->notify(new UpdateStatusWalletNotification($wallet->customer, $wallet, "Comptes & Moyens de paiement"));
 
         return $this->sendSuccess();
+    }
+
+    private function checkDeposit(CustomerWallet $wallet, Request $request)
+    {
+        $deposit = $wallet->deposits()->create([
+            'reference' => generateReference(),
+            'amount' => 0,
+            'state' => 'pending',
+            'customer_wallet_id' => $wallet->id,
+        ]);
+
+        foreach ($request->get('chq_repeat') as $chq) {
+            $deposit->lists()->create([
+                'number' => $chq['number'],
+                'amount' => $chq['amount'],
+                'name_deposit' => $chq['name_deposit'],
+                'bank_deposit' => $chq['bank_deposit'],
+                'date_deposit' => Carbon::createFromTimestamp(strtotime($chq['date_deposit'])),
+                'customer_check_deposit_id' => $deposit->id
+            ]);
+
+            $deposit->update([
+                'amount' => $deposit->amount + $chq['amount']
+            ]);
+        }
+
+        $transaction = CustomerTransactionHelper::createCredit(
+            $deposit->wallet->id,
+            'depot',
+            'Remise de chèque',
+            "Remise de {$deposit->lists()->count()} Chèques | Ref: {$deposit->reference}",
+            $deposit->amount,
+        );
+
+        $deposit->update(["customer_transaction_id" => $transaction->id]);
+
+        $deposit->wallet->customer->agent->notify(new NewCheckDepositNotification($deposit));
+
+        return redirect()->back()->with('success', "Votre remise de chèque N°{$deposit->reference} à été enregistré avec succès");
     }
 }
