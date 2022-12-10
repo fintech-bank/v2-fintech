@@ -37,6 +37,12 @@
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Banque du payeur</label>
                                             <input type="text" class="form-control form-control-solid" name="bank_deposit" placeholder="Banque du payeur">
+                                            <select class="form-control form-control-solid" name="bank_deposit" data-live-search="true" title="selectionner une banque">
+                                                <option value=""></option>
+                                                @foreach(\App\Models\Core\Bank::all() as $bank)
+                                                    <option value="{{ $bank->name }}">{{ $bank->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Date de dépot</label>
