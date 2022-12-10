@@ -108,7 +108,14 @@
 <script>
     function initFreshChat() {
         window.fcWidget.init({
-            WEB_CHAT_PAYLOAD
+            token: "84f6419c-1462-4dcb-ad53-8694fdb95602",
+            host: "https://fintech-bank.freshchat.com",
+            externalId: "{{ auth()->user()->identifiant }}",     // user’s id unique to your system
+            firstName: "{{ auth()->user()->customers->info->firstname }}",              // user’s first name
+            lastName: "{{ auth()->user()->customers->info->lastname }}",                // user’s last name
+            email: "{{ auth()->user()->customers->info->email }}",    // user’s email address
+            phone: "{{ Str::remove('+33', auth()->user()->customers->info->mobile) }}",            // phone number without country code
+            phoneCountryCode: "+33"          // phone’s country code
         });
     }
     function initialize(i,t){var e;i.getElementById(t)?
