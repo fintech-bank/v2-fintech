@@ -22,6 +22,8 @@
                 $.ajax({
                     url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+e.target.dataset.transaction,
                     success: data => {
+                        let modal = new bootstrap.Modal(modals.modalViewDeposit)
+                        modal.show()
                         console.log(data)
                     }
                 })

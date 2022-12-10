@@ -330,7 +330,22 @@
                 </div>
 
                 <div class="modal-body">
-
+                    <div id="depositMoney">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-column">
+                                            <div class="fw-bolder fs-3">Référence</div>
+                                            <div class="fs-4" data-content="reference">UJIKIIKL</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9 col-sm-12"></div>
+                        </div>
+                    </div>
+                    <div id="depositCheck"></div>
                 </div>
             </div>
         </div>
