@@ -55,3 +55,5 @@ Route::mailweb();
 Route::get('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('auth.logout');
 Route::get('/test', [\App\Http\Controllers\HomeController::class, 'test']);
 Route::post('/push', [\App\Http\Controllers\HomeController::class, 'push'])->middleware(['auth']);
+
+Route::match(['get', 'post'], 'botman', [\App\Http\Controllers\Chatbot\ChatbotController::class, 'handle']);

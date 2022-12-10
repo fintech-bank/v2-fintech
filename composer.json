@@ -17,6 +17,8 @@
         "barryvdh/laravel-dompdf": "^2.0",
         "barryvdh/laravel-ide-helper": "^2.12",
         "barryvdh/laravel-snappy": "^1.0",
+        "botman/botman": "^2.7",
+        "botman/driver-web": "^1.5",
         "creativeorange/gravatar": "^1.0",
         "darkaonline/l5-swagger": "^8.4",
         "dcblogdev/laravel-sent-emails": "^2.0",

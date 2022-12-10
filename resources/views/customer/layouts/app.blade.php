@@ -18,6 +18,7 @@
     <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/assets/plugins/custom/editormd/css/editormd.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css">
     <link rel="stylesheet" href="/css/app.css">
     @yield("css")
     <!--end::Global Stylesheets Bundle-->
@@ -104,6 +105,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.0.279/pdf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
 <script src="//code.tidio.co/y3ykzy1n0thcqss40z4rsnbllis4zog7.js" async></script>
+<script>
+    var botmanWidget = {
+        aboutText: 'Write Something',
+        introMessage: "✋ Hi! I'm form Code Solution Stuff"
+    };
+</script>
+
+<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 <script src="/js/app.js"></script>
 <script src="/js/function.js"></script>
 <script type="text/javascript">
