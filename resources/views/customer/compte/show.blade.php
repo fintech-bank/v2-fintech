@@ -65,6 +65,11 @@
                                             <div>{{ $transaction->description }}</div>
                                         </div>
                                     </div>
+                                    <div class="mb-5 d-flex flex-wrap justify-content-center">
+                                        @if($transaction->type == 'depot')
+                                            <button class="btn btn-sm btn-circle btn-outline btn-outline-primary">Voir la remise</button>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
