@@ -111,7 +111,7 @@
         distinct_id: "{{ auth()->user()->customers->id }}", // Unique visitor ID in your system
         email: "{{ auth()->user()->email }}", // visitor email
         name: "{{ auth()->user()->name }}", // Visitor name
-        phone: "{{ auth()->user()->customers->info->mobile }}" //Visitor phone,
+        phone: "{{ auth()->user()->customers->info->mobile }}", //Visitor phone,
         identifiant_client: "{{ auth()->user()->identifiant }}"
     };
 </script>
