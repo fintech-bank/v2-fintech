@@ -17,7 +17,7 @@
         show: function () {
             $(this).slideDown();
 
-            $(this).find('[name="bank_deposit"]').selectpicker()
+            $(this).find('[name="bank_deposit"]').select2()
         },
 
         hide: function (deleteElement) {
