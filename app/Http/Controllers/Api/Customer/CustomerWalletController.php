@@ -146,7 +146,7 @@ class CustomerWalletController extends ApiController
 
         $deposit->update(["customer_transaction_id" => $transaction->id]);
 
-        $deposit->wallet->customer->agent->agents->notify(new NewCheckDepositNotification($deposit));
+        $deposit->wallet->customer->agent->agents->user->notify(new NewCheckDepositNotification($deposit));
 
         return redirect()->back()->with('success', "Votre remise de chèque N°{$deposit->reference} à été enregistré avec succès");
     }

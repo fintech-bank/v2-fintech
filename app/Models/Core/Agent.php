@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Agent extends Model
 {
+
     protected $guarded = [];
     public $timestamps = false;
     protected $appends = ['full_name'];
