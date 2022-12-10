@@ -203,7 +203,7 @@
                 </a>
                 @if($wallet->customer->package->check_deposit)
                     <div class="separator separator-dotted border-gray-400 my-10"></div>
-                    <a href="{{ route('customer.card.index') }}" class="d-flex flex-row align-items-center text-dark hover-zoom">
+                    <a href="{{ route('customer.compte.check_deposit.check_deposit') }}" class="d-flex flex-row align-items-center text-dark hover-zoom">
                         <!--<i class="fa-solid fa-credit-card fs-2hx me-2"></i>-->
                         <span class="iconify fs-2tx me-2" data-icon="circum:money-check-1"></span>
                         <span class="fs-1">Déposer une remise de chèque</span>

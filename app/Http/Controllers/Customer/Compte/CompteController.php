@@ -30,4 +30,13 @@ class CompteController extends Controller
             'chart' => $chart->build($wallet->id)
         ]);
     }
+
+    public function check_deposit($wallet_uuid)
+    {
+        $wallet = CustomerWallet::where('uuid', $wallet_uuid)->first();
+
+        return view('customer.compte.check_deposit', [
+            'wallet' => $wallet
+        ]);
+    }
 }

@@ -108,6 +108,10 @@ Route::prefix('customer')->name('customer.')->middleware(['auth', 'customer'])->
         Route::get('/', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'index'])->name('index');
         Route::get('{wallet_uuid}', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'wallet'])->name('wallet');
 
+        Route::prefix('{wallet_uuid}/check_deposit')->name('check_deposit.')->group(function() {
+            Route::get('/', [\App\Http\Controllers\Customer\Compte\CompteController::class, 'check_deposit'])->name('check_deposit');
+        });
+
     });
 
     Route::prefix('card')->name('card.')->group(function () {
