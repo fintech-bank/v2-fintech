@@ -24,7 +24,7 @@
                                     <div class="form-group row mb-5">
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Numéro du chèque</label>
-                                            <input type="text" class="form-control form-control-solid" name="number" placeholder="Numéro du chèque">
+                                            <input type="text" class="form-control form-control-solid" name="number" data-inputmask="9999999" placeholder="Numéro du chèque">
                                         </div>
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Montant</label>
