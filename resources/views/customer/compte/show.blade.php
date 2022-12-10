@@ -209,6 +209,14 @@
                         <span class="fs-1">Déposer une remise de chèque</span>
                     </a>
                 @endif
+                @if($wallet->customer->package->cash_deposit)
+                    <div class="separator separator-dotted border-gray-400 my-10"></div>
+                    <a href="{{ route('customer.card.index') }}" class="d-flex flex-row align-items-center text-dark hover-zoom">
+                        <!--<i class="fa-solid fa-credit-card fs-2hx me-2"></i>-->
+                        <span class="iconify fs-2tx me-2" data-icon="vaadin:money-deposit"></span>
+                        <span class="fs-1">Programmer une remise d'espèce</span>
+                    </a>
+                @endif
                 <div class="separator separator-dotted border-gray-400 my-10"></div>
                 {!! $chart->container() !!}
             </div>
