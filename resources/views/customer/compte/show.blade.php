@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="mb-5 d-flex flex-wrap justify-content-center">
                                         @if($transaction->type == 'depot')
-                                            <button class="btn btn-sm btn-circle btn-outline btn-outline-primary">Voir la remise</button>
+                                            <button class="btn btn-sm btn-circle btn-outline btn-outline-primary btnViewDeposit" data-transaction="{{ $transaction->id }}">Voir la remise</button>
                                         @endif
                                     </div>
                                 </div>
@@ -302,6 +302,25 @@
             <div class="modal-content">
                 <div class="modal-header bg-bank">
                     <h3 class="modal-title text-white">Demande de découvert bancaire</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark fs-1"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="viewDeposit">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-bank">
+                    <h3 class="modal-title text-white"></h3>
 
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">

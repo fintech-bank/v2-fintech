@@ -2,14 +2,25 @@
     let tables = {}
     let elements = {
         chart_expense: document.querySelector('#chart_expense'),
+        btnViewDeposit: document.querySelectorAll(".btnViewDeposit")
     }
     let modals = {
-        modalRequestOverdraft: document.querySelector("#RequestOverdraft")
+        modalRequestOverdraft: document.querySelector("#RequestOverdraft"),
+        modalViewDeposit: document.querySelector("#viewDeposit"),
     }
     let forms = {}
     let dataTable = {}
     let block = {
         blockRequestOverdraft: new KTBlockUI(modals.modalRequestOverdraft.querySelector(".modal-body"))
+    }
+
+    if(elements.btnViewDeposit) {
+        elements.btnViewDeposit.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault()
+                console.log(e.target)
+            })
+        })
     }
 
     $(modals.modalRequestOverdraft).on('shown.bs.modal', e => {
