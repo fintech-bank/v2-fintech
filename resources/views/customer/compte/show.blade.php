@@ -331,31 +331,26 @@
 
                 <div class="modal-body">
                     <div id="depositMoney">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-12">
-                                <div class="card shadow-sm">
-                                    <div class="card-body">
-                                        <div class="d-flex flex-column">
-                                            <div class="fw-bolder fs-3">Référence</div>
-                                            <div class="fs-4" data-content="reference">UJIKIIKL</div>
-                                        </div>
-                                        <div class="separator separator-doted border-gray-600 my-3"></div>
-                                        <div class="d-flex flex-column">
-                                            <div class="fw-bolder fs-3">Montant</div>
-                                            <div class="fs-4" data-content="amount">230,00 €</div>
-                                        </div>
-                                        <div class="separator separator-doted border-gray-600 my-3"></div>
-                                        <div class="d-flex flex-column">
-                                            <div class="fw-bolder fs-3">Etat</div>
-                                            <div class="fs-4" data-content="status">
-                                                <span class="badge badge-success"><i class="fa-solid fa-check-circle text-white me-2"></i> Terminé</span>
-                                            </div>
-                                        </div>
-                                        <div class="separator separator-doted border-gray-600 my-3"></div>
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex flex-column">
+                                    <div class="fw-bolder fs-3">Référence</div>
+                                    <div class="fs-4" data-content="reference">UJIKIIKL</div>
+                                </div>
+                                <div class="separator separator-doted border-gray-600 my-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="fw-bolder fs-3">Montant</div>
+                                    <div class="fs-4" data-content="amount">230,00 €</div>
+                                </div>
+                                <div class="separator separator-doted border-gray-600 my-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="fw-bolder fs-3">Etat</div>
+                                    <div class="fs-4" data-content="status">
+                                        <span class="badge badge-success"><i class="fa-solid fa-check-circle text-white me-2"></i> Terminé</span>
                                     </div>
                                 </div>
+                                <div class="separator separator-doted border-gray-600 my-3"></div>
                             </div>
-                            <div class="col-md-9 col-sm-12"></div>
                         </div>
                     </div>
                     <div id="depositCheck"></div>
