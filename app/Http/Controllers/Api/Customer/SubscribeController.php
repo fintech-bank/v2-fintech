@@ -26,7 +26,7 @@ class SubscribeController extends ApiController
 
         $doc = DocumentFile::createDoc(
             $wallet->customer,
-            'wallet.autorisation_decouvert_permanent',
+            'loan.autorisation_decouvert_permanent',
             'Autorisation Decouvert Permanente',
             3,
             generateReference(),
