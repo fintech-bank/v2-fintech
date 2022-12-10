@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <div data-repeater-list="chq_repeat">
                                 <div data-repeater-item>
-                                    <div class="form-group row">
+                                    <div class="form-group row mb-5">
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Numéro du chèque</label>
                                             <input type="text" class="form-control form-control-solid" name="number" placeholder="Numéro du chèque">
