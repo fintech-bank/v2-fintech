@@ -18,7 +18,6 @@
     <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/assets/plugins/custom/editormd/css/editormd.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css">
     <link rel="stylesheet" href="/css/app.css">
     @yield("css")
     <!--end::Global Stylesheets Bundle-->
@@ -104,26 +103,20 @@
 <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.0.279/pdf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
-<script src="//code.tidio.co/y3ykzy1n0thcqss40z4rsnbllis4zog7.js" async></script>
-<script>
-    var botmanWidget = {
-        aboutText: 'Write Something',
-        introMessage: "✋ Hi! I'm form Code Solution Stuff",
-        frameEndpoint: '/iFrameUrl'
-    };
-</script>
-
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 <script src="/js/app.js"></script>
 <script src="/js/function.js"></script>
-<script type="text/javascript">
-    document.tidioIdentify = {
-        distinct_id: "{{ auth()->user()->customers->id }}", // Unique visitor ID in your system
-        email: "{{ auth()->user()->email }}", // visitor email
-        name: "{{ auth()->user()->name }}", // Visitor name
-        phone: "{{ auth()->user()->customers->info->mobile }}", //Visitor phone,
-        identifiant_client: "{{ auth()->user()->identifiant }}"
-    };
+<script>
+    function initFreshChat() {
+        window.fcWidget.init({
+            WEB_CHAT_PAYLOAD
+        });
+    }
+    function initialize(i,t){var e;i.getElementById(t)?
+        initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,
+            e.src="https://fintech-bank.freshchat.com/js/widget.js",e.onload=initFreshChat,i.head.appendChild(e))}
+    function initiateCall(){initialize(document,"Freshchat-js-sdk")}
+    window.addEventListener?window.addEventListener("load",initiateCall,!1):
+        window.attachEvent("load",initiateCall,!1);
 </script>
 @auth
     <script src="{{ asset('js/enable-push.js') }}"></script>

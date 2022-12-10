@@ -36,6 +36,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.0.279/pdf.min.js"></script>
     <script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <script src="/js/app.js"></script>
-    <script src="//code.tidio.co/y3ykzy1n0thcqss40z4rsnbllis4zog7.js" async></script>
+    <script>
+        function initFreshChat() {
+            window.fcWidget.init({
+                WEB_CHAT_PAYLOAD
+            });
+        }
+        function initialize(i,t){var e;i.getElementById(t)?
+            initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,
+                e.src="https://fintech-bank.freshchat.com/js/widget.js",e.onload=initFreshChat,i.head.appendChild(e))}
+        function initiateCall(){initialize(document,"Freshchat-js-sdk")}
+        window.addEventListener?window.addEventListener("load",initiateCall,!1):
+            window.attachEvent("load",initiateCall,!1);
+    </script>
     @yield("scripts")
 </html>
