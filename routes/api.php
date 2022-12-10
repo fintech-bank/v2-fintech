@@ -228,7 +228,7 @@ Route::prefix('customer')->group(function () {
 
 Route::prefix('insurance')->group(function () {
     Route::post('/', [\App\Http\Controllers\Api\Insurance\InsuranceController::class, 'store']);
-    Route::get('{reference}', [\App\Http\Controllers\Api\Insurance\InsuranceController::class, 'info']);
+    Route::post('{reference}', [\App\Http\Controllers\Api\Insurance\InsuranceController::class, 'info']);
 
     Route::prefix('{reference}/claim')->group(function () {
         Route::post('/', [\App\Http\Controllers\Api\Insurance\ClaimController::class, 'store']);
