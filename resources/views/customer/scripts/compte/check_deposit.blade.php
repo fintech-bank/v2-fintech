@@ -9,6 +9,9 @@
     let block = {}
 
     $(elements.repeaterChqRepeat).find('[data-kt-repeater="datepicker"]').flatpickr();
+    Inputmask({
+        "mask": "9999999"
+    }).mask($(elements.repeaterChqRepeat).find('[data-kt-repeater="mask"]'))
 
     $(elements.repeaterChqRepeat).repeater({
         initEmpty: false,
