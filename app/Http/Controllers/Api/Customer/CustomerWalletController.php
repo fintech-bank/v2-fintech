@@ -92,7 +92,7 @@ class CustomerWalletController extends ApiController
         $wallet = CustomerWallet::where('number_account', $number_account)->first();
 
         return match ($request->get('action')) {
-            "check_deposit" => "",
+            "check_deposit" => dd($request->all()),
         };
     }
 
