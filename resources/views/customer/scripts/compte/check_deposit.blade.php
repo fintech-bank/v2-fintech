@@ -8,6 +8,8 @@
     let dataTable = {}
     let block = {}
 
+    $(elements.repeaterChqRepeat).find('[data-kt-repeater="datepicker"]').flatpickr();
+
     $(elements.repeaterChqRepeat).repeater({
         initEmpty: false,
         defaultValues: {
@@ -24,9 +26,5 @@
         hide: function (deleteElement) {
             $(this).slideUp(deleteElement);
         },
-
-        ready: (element) => {
-            $(this).find('[data-kt-repeater="datepicker"]').flatpickr();
-        }
     })
 </script>
