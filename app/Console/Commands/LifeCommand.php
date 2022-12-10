@@ -523,6 +523,7 @@ class LifeCommand extends Command
                                             $confirmed ? $now : null,
                                             $differed,
                                             $differed ? $now->endOfMonth() : null,
+                                            null,
                                             $card->id
                                         );
                                         $payment++;
