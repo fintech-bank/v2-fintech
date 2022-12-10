@@ -18,8 +18,13 @@
         elements.btnViewDeposit.forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault()
-                console.log(e.target)
 
+                $.ajax({
+                    url: '/api/customer/{{ $wallet->customer->id }}/wallet/{{ $wallet->number_account }}/transaction/'+e.target.dataset.transaction,
+                    success: data => {
+                        console.log(data)
+                    }
+                })
             })
         })
     }
