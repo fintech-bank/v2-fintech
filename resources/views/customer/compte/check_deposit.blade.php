@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label for="number" class="form-label">Date de dépot</label>
-                                            <input type="text" class="form-control form-control-solid" name="date_deposit" placeholder="Date du dépot">
+                                            <input type="text" class="form-control form-control-solid" data-kt-repeater="datepicker" name="date_deposit" placeholder="Date du dépot">
                                         </div>
                                         <div class="col-md-2">
                                             <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-light-danger mt-3 mt-md-8">

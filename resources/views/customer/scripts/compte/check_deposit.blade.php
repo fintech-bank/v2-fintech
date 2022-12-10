@@ -18,6 +18,7 @@
             $(this).slideDown();
 
             $(this).find('[data-kt-repeater="select2"]').select2();
+            $(this).find('[data-kt-repeater="datepicker"]').flatpickr();
         },
 
         hide: function (deleteElement) {
