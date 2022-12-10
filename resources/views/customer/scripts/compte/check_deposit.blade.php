@@ -17,7 +17,7 @@
         show: function () {
             $(this).slideDown();
 
-            $(this).find('[name="bank_deposit"]').select2()
+            $(this).find('[data-kt-repeater="select2"]').select2();
         },
 
         hide: function (deleteElement) {
