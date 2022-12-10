@@ -67,6 +67,6 @@
 @endsection
 
 @section("script")
-    <script src="assets/plugins/custom/formrepeater/formrepeater.bundle.js"></script>
+    <script src="/assets/plugins/custom/formrepeater/formrepeater.bundle.js"></script>
     @include("customer.scripts.compte.check_deposit")
 @endsection
