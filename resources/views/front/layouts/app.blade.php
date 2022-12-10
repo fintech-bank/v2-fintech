@@ -5,6 +5,7 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="mylead-verification" content="52167ad03c9c22fd4c684f73031498c4">
         <title>{{ config('app.name') }} - Particulier</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
         <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
