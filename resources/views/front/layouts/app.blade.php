@@ -50,5 +50,18 @@
         window.addEventListener?window.addEventListener("load",initiateCall,!1):
             window.attachEvent("load",initiateCall,!1);
     </script>
+    <!-- Begin TradeTracker SuperTag Code -->
+    <script type="text/javascript">
+
+        var _TradeTrackerTagOptions = {
+            t: 'a',
+            s: '438110',
+            chk: '9f471d5184bf8bedddca4e0ab07386a8',
+            overrideOptions: {}
+        };
+
+        (function() {var tt = document.createElement('script'), s = document.getElementsByTagName('script')[0]; tt.setAttribute('type', 'text/javascript'); tt.setAttribute('src', (document.location.protocol == 'https:' ? 'https' : 'http') + '://tm.tradetracker.net/tag?t=' + _TradeTrackerTagOptions.t + '&amp;s=' + _TradeTrackerTagOptions.s + '&amp;chk=' + _TradeTrackerTagOptions.chk); s.parentNode.insertBefore(tt, s);})();
+    </script>
+    <!-- End TradeTracker SuperTag Code -->
     @yield("scripts")
 </html>
