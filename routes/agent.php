@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('agence')->name('agent.')->middleware(['auth', 'agent'])->group(function () {
-    Route::get('/', [\App\Http\Controllers\Agent\HomeController::class, 'index'])->name('index');
+    Route::get('/', [\App\Http\Controllers\Agent\HomeController::class, 'index'])->name('dashboard');
 
     Route::prefix('account')->name('account.')->group(function () {
         Route::prefix('notify')->name('notify.')->group(function () {
